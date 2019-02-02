@@ -1,0 +1,173 @@
+#texdoc clsguide
+#texdoc tds
+
+snippet s
+\section{$1}
+endsnippet
+
+snippet ss
+\subsection{$1}
+endsnippet
+
+snippet sss
+\subsection{$1}
+endsnippet
+
+snippet use
+\usepackage${1:[${2}]}{${0:${VISUAL}}}
+{%%}
+endsnippet
+
+snippet doc
+\documentclass{${1:article}}
+{%%}
+\begin{document}
+${0:${VISUAL:% boraa}}
+\end{document}
+endsnippet
+
+# lista de itens
+snippet f
+\frame{
+	{$1}
+	${0:${VISUAL}}
+}
+{%%}
+endsnippet
+
+# lista de itens
+snippet it
+\begin{itemize}
+	\item $0
+\end{itemize}
+{%%}
+endsnippet
+
+# item de lista
+snippet i
+\item $1
+endsnippet
+
+# begin/end
+snippet b
+\begin{${1:center}}
+ ${0:${VISUAL: content}}
+\end{$1}
+{%%}
+endsnippet
+
+# figuca com pacote graphicx
+snippet fi
+\begin{figure}[!htb]
+\center{
+        \includegraphics[width=2cm]
+        {${0:${VISUAL: img}}}
+    }
+\end{figure}
+{%%}
+endsnippet
+
+# begin/end
+snippet @
+@$1{$2,
+    author		= {$3},
+	title		= {$4},
+	date		= {${0:${VISUAL}}},
+}
+{%%}
+endsnippet
+
+snippet db
+\documentclass[17pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[backend=bibtex]{biblatex} % bibliotegrafia
+\usepackage{fontawesome} % https://ctan.org/pkg/fontawesome
+\usepackage{filecontents} % inserir em outros arquivos
+
+\newcommand{\link}[2]{\textcolor{violet}{\href{#1}{#2}}} % link colorido
+\setbeamertemplate{headline}{
+    \vspace{1ex}\hfill\textit{\insertsection}\hspace*{1ex}\newline
+    \vspace{1ex}\hfill\textit{\insertsubsection}\hspace*{1ex}
+}
+\setbeamertemplate{navigation symbols}{} % remove navigation symbols
+\setbeamertemplate{footline}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,center,dp=1ex]{white}
+        \hyperlink{indice}{\insertframenumber/\inserttotalframenumber}
+    \end{beamercolorbox}%
+}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\AtBeginDocument{
+    {
+        \setbeamertemplate{headline}{}\setbeamertemplate{footline}{}
+        \frame{
+            \maketitle
+            \small
+            \link{http://www.github.com/felipedacs}{\faGithub}\ 
+            \link{http://www.gitlab.com/felipedacs}{\faGitlab}\
+            \link{http://www.linkedin.com/in/felipedacs}{\faLinkedin}\
+            \link{http://www.slideshare.net/felipedacs}{\faSlideshare}\
+            ://felipedacs
+            \hfill 
+            \link{http://www.dacs.work}{dacs.work}
+        }
+    }
+}
+\AtBeginSection[]{
+    {
+        \setbeamertemplate{headline}{} % retira section/subsection
+        \frame{{\hfill\faMapO}\tableofcontents[sectionstyle=show/hide,subsectionstyle=shaded/shaded/hide]}
+    }
+}
+\AtBeginSubsection[]{
+    {
+        \setbeamertemplate{headline}{} % retira section/subsection
+        \frame{{\hfill\faMapMarker}\tableofcontents[sectionstyle=shaded/hide,subsectionstyle=show/shaded/hide]}
+    }
+}
+\AtEndDocument{
+    {
+        \setbeamertemplate{headline}{}\setbeamertemplate{footline}{} % retira section/subsection
+        \frame{{That's all}Muito Obrigado!}
+        \frame[t]{\nocite{*}\printbibliography}
+    }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Corpo %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{filecontents}{abc.bib}
+% página 8 da documentação biblatex
+% article: author, title, journaltitle, year/date
+% online: author/editor, title, year/date, url
+% misc: author/editor, title, year/date
+% iguais ao misc: image, music, movie, video, software
+\end{filecontents}
+\addbibresource{abc.bib}
+
+\title{$1}
+\subtitle{$2}
+\author{${3:Felipe Silva}}
+\date{${4:\today}}
+
+\begin{document}
+
+\frame[allowframebreaks]{
+    {Overview}
+    \label{indice}
+    % \tableofcontents[sections={1-5}]
+    % \framebreak
+    % \tableofcontents[sections={6-10}]
+    \tableofcontents[sections={*}]
+}
+
+\section{$5}
+\frame{
+    {$6}
+	${0:${VISUAL}}
+}
+{%%}
+\end{document}
+endsnippet

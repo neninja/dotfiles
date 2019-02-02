@@ -1,0 +1,14 @@
+readme.pdf
+*.aux
+*.log
+*.out
+*.xmpi
+*.blg
+*.bbl
+*.bbl
+*-blx.bib
+*.maf
+*.mtc
+*.mtc0
+*.run.xml
+*.toc

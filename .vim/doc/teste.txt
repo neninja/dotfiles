@@ -1,0 +1,22 @@
+" vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly
+You need the noreadonly and modifiable keywords in the vim modeline above.
+Help files are by default regarded as readonly and nomodifiable files by vim.
+
+Notes about sed *sed* *sfsed* <<<
+
+Swapping word's in stream (I know, you don't need the cat)
+ cat Myfile.h|sed 's/foo/fyy/g'
+
+Notes about vim *vim* *sfvim* <<<
+ Stuff I have learned about vim.
+ Create a help link like this |add-local-help|
+ Regenerate help tags: |helptags|
+
+ A realy big section closed with a tag <<<
+ --- lots of stuf ---
+ Closing tag >>>
+
+Telephonelist *sfphone* <<<
+ mom: 555-676767-333
+ dad: 555-767676-222
+ sis: 555-121212-999

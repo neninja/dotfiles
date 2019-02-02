@@ -1,0 +1,36 @@
+ Notes Comandos interessantes do vim catalogados por mim, *dacs*
+ `https://dacs.run`
+
+  {count}|gt|
+	next tab >
+	gt
+	3gt
+<
+  {count}|gT|
+	previous tab >
+	gT
+	3gT
+<
+  :|tabf| [file]
+	nova tab arquivo existente >
+	:tabf ~/.vimrc
+	:tabf .vimrc
+<
+  :|tabe| [file]
+	nova tab arquivo novo >
+	:tabe ~/dev/python/newfile.py
+	:tabe newfile.py
+<
+  ggVG=
+	identar arquivo inteiro
+
+  <C-v>[count]jI`//`<Esc>
+	insere comentário `//` em [count] linhas para baixo >
+	<C-v>3jI//<Esc>
+	<C-v>8jI#<Esc>
+<
+  <C-v>[count]j[count]ld<Esc>
+	descomenta em [count] linhas para baixo com [count]+1 linhas >
+	<C-v>3j2ld<Esc>
+	<C-v>8j5ld<Esc>
+<

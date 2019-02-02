@@ -1,0 +1,36 @@
+# Aliases
+# =====================
+# CD
+alias cphp='cd ~/dev/php'
+alias cpy='cd ~/dev/python'
+alias cfront='cd ~/dev/front/'
+alias ctex='cd ~/dev/tex'
+alias cgh='cd ~/go/src/github.com/felipedacs'
+alias cgl='cd ~/go/src/gitlab.com/felipedacs'
+alias cdf='cd ~/dev/dacsfiles ; l'
+alias ccv='cd ~/dev/tex/cv'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# GIT
+alias ga="git add ."
+alias gc="git commit"
+alias gps='git push origin master'
+alias gfr='git fetch --all ; git reset --hard origin/master'
+alias gs='git status'
+alias gop='xdg-open $(git config --get remote.origin.url)'
+alias gi="git init;wget -q https://unlicense.org/UNLICENSE;(echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>readme.md;echo 'readme.pdf'>.gitignore;echo 'readme.pdf'>.gitignore;echo '*.aux'>>.gitignore;echo '*.log'>>.gitignore;echo '*.out'>>.gitignore;echo '*.xmpi'>>.gitignore;echo '*.blg'>>.gitignore;echo '*.bbl'>>.gitignore;echo '*.bbl'>>.gitignore;echo '*-blx.bib'>>.gitignore;echo '*.maf'>>.gitignore;echo '*.mtc'>>.gitignore;echo '*.mtc0'>>.gitignore;echo '*.run.xml'>>.gitignore;echo '*.toc'>>.gitignore"
+
+# LS
+alias ll='ls -alF'
+alias l='ls -XF --color'
+# Scrot
+alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'
+
+# etc
+alias op='xdg-open .'
+alias v='vim'
+
+# sites
+alias yt="xdg-open 'https://youtube.com'"

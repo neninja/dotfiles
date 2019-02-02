@@ -1,0 +1,6 @@
+dacs	dacs.txt	/*dacs*
+sed	teste.txt	/*sed*
+sfphone	teste.txt	/*sfphone*
+sfsed	teste.txt	/*sfsed*
+sfvim	teste.txt	/*sfvim*
+vim	teste.txt	/*vim*
