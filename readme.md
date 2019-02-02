@@ -1,4 +1,13 @@
 # dotfiles
+
+## Install
+
+```
+wget -O - http://dacs.run/dotfiles/lazy.sh | sh
+```
+
+or
+ 
 ```
 cd ~ # optional
 mkdir dev # optional
