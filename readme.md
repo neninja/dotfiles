@@ -1,5 +1,10 @@
 # dotfiles
 ```
-wget -O - https://github.com/felipedacs/dotfiles/lazy.sh | sudo bash
-wget -O - https://dacs.run/dotfiles | sudo bash
+cd ~ # optional
+mkdir dev # optional
+cd dev # optional
+git clone https://github.com/felipedacs/dotfiles.git
+cd dotfiles
+chmod +x install.sh
+./install.sh
 ```
