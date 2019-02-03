@@ -1,0 +1,14 @@
+! xrdb ~/.Xdefaults
+!URxvt*termName: rxvt-unicode-256color
+!URxvt.termName: rxvt-unicode-256color
+
+URxvt*background: black
+URxvt*foreground: white
+URxvt*font: xft:Monospace:size=11:antialias=true
+URxvt.scrollBar: false
+
+! ctrl shift v ctrl shift c
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard

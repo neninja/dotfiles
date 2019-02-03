@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-# cores: https://misc.flogisoft.com/bash/tip_colors_and_formatting
-# Shell prompt based on the Solarized Dark theme.
-# Screenshot: http://i.imgur.com/EkEtphC.png
 # Heavily inspired by @necolas’s prompt: https://github.com/necolas/dotfiles
-# iTerm → Profiles → Text → use 13pt Monaco with 1.1 vertical spacing.
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
 	export TERM='gnome-256color';
@@ -62,35 +58,21 @@ prompt_git() {
 	fi;
 }
 
-if tput setaf 1 &> /dev/null; then
-	tput sgr0; # reset colors
-	bold=$(tput bold);
-	reset=$(tput sgr0);
-	# Solarized colors, taken from http://git.io/solarized-colors.
-	black=$(tput setaf 0);
-	blue=$(tput setaf 33);
-	cyan=$(tput setaf 37);
-	green=$(tput setaf 64);
-	orange=$(tput setaf 166);
-	purple=$(tput setaf 125);
-	red=$(tput setaf 124);
-	violet=$(tput setaf 61);
-	white=$(tput setaf 15);
-	yellow=$(tput setaf 136);
-else
-	bold='';
-	reset="\e[0m";
-	black="\e[1;30m";
-	blue="\e[1;34m";
-	cyan="\e[1;36m";
-	green="\e[1;32m";
-	orange="\e[1;33m";
-	purple="\e[1;35m";
-	red="\e[1;31m";
-	violet="\e[1;35m";
-	white="\e[1;37m";
-	yellow="\e[1;33m";
-fi;
+# cores: https://misc.flogisoft.com/bash/tip_colors_and_formatting
+reset="\e[0m";
+black="\e[0;30m";
+blue="\e[1;34m";
+cyan="\e[0;36m";
+green="\e[0;32m";
+orange="\e[0;33m";
+purple="\e[0;35m";
+red="\e[1;31m";
+violet="\e[0;35m";
+white="\e[0;37m";
+yellow="\e[0;33m";
+
+lightreset="\e[49m";
+lightred="\e[0;41m"
 
 # Highlight the user name when logged in as root.
 if [[ "${USER}" == "root" ]]; then
@@ -107,9 +89,8 @@ else
 fi;
 
 # Set the terminal title and prompt.
-PS1="\[\033]0;\W\007\]"; # working directory base name
-PS1+="\[${cyan}\]\w"; # working directory full path
-PS1+="\$(prompt_git \"\[${white}\] on \[${violet}\]\" \"\[${blue}\]\")"; # Git repository details
+PS1="\[${cyan}\]\w"; # working directory full path
+PS1+="\$(prompt_git \"\[${white}\] on \[${lightred}\]\" ${lightreset}\"\[${red}\]\")"; # Git repository details
 PS1+="\[${white}\] $ \[${reset}\]"; # `$` (and reset color)
 export PS1;
 

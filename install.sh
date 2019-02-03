@@ -5,9 +5,8 @@
 # Site:             dacs.run/dotfiles
 # Autor/Mantenedor: Felipe Silva - github.com/felipedacs
 # ---------------------------------------------------------- #
-# Esse sript instala pacotes, programas, temas e arquivos de
-# configuração selecionados para linux conforme o cenário
-# escolhido na interface gráfica.
+# Esse sript linka arquivos de configuração (dotfiles) 
+# selecionados para linux
 #
 # Utilização comum:
 #   chmod +x install.sh
@@ -25,6 +24,7 @@
 # Sistema operacional:
 #   Lubuntu 18.10 em:
 #   Xubuntu 18.10 em:
+#   Ubuntu Minimal 18.04 em: 
 # ---------------------------------------------------------- #
 # Agradecimentos:
 #
@@ -43,12 +43,14 @@
 #   Lars Kappert: https://github.com/webpro/dotfiles
 #   Lars Kappert: https://github.com/webpro/awesome-dotfiles
 # ---------------------------------------------------------- #
+
 # ------------------------- FUNÇÕES ------------------------ #
 linkandoDotfiles(){
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install -all
     ln -v -s -f $(pwd)/.fzf.bash $HOME/.fzf.bash
 
+    # bash
     ln -v -s -f $(pwd)/.bashrc $HOME/.bashrc
     ln -v -s -f $(pwd)/.inputrc $HOME/.inputrc
     ln -v -s -f $(pwd)/.bash_profile $HOME/.bash_profile
@@ -57,16 +59,18 @@ linkandoDotfiles(){
     ln -v -s -f $(pwd)/.functions $HOME/.functions
     ln -v -s -f $(pwd)/.aliases $HOME/.aliases
     ln -v -s -f $(pwd)/.scripts $HOME/.scripts
+    
+    # urxvt
+    ln -v -s -f $(pwd)/.xinitrc $HOME/.xinitrc
+    ln -v -s -f $(pwd)/.Xdefaults $HOME/.Xdefaults
 
+    # git
     ln -v -s -f $(pwd)/.gitconfig $HOME/.gitconfig
 
-    ln -v -s -f $(pwd)/.vimrc $HOME/.vimrc
-    ln -v -s -f $(pwd)/.vim/dacs-snippets $HOME/.vim
-
-    # existe a pasta doc?
-    [ -d "$HOME/.vim/doc" ] && rm -r $HOME/.vim/doc
-    informaAcaoCenario "CONFIGURANDO HELP VIM"
-    ln -v -s -f $(pwd)/.vim/doc $HOME/.vim/doc
+    # nvim
+    ln -v -s -f $(pwd)/.nvimrc $HOME/.nvimrc
+    mkdir -p ~/.config/nvim
+    echo 'source ~/.nvimrc' > ~/.config/nvim/init.vim
 }
 
 linkandoDotfiles

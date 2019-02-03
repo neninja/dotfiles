@@ -30,7 +30,7 @@ alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'
 
 # etc
 alias op='xdg-open .'
-alias v='vim'
+alias n='nvim'
 
 # sites
 alias yt="xdg-open 'https://youtube.com'"
