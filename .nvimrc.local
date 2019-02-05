@@ -22,7 +22,10 @@ set expandtab
 " Searching
 set hlsearch
 set incsearch
-set inccommand=split
+":%s"
+if has('nvim')
+	set inccommand=split 
+endif
 set ignorecase
 set smartcase
 
@@ -47,26 +50,20 @@ set showbreak=↳\
 " Mostra os comandos no canto inferior direito
 set showcmd
 
+"-------------------------------------------------
+" Popup
+"-------------------------------------------------
+set wildmenu
+set wildmode=list:full
+set completeopt=longest,menuone,preview " cool completion view
+set completeopt+=noselect               " deixar digitar
+set wildchar=<Tab>                      " (default)
+set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
+set complete=.,w,b,u,t
+
 "*********************************************************
-" Abbreviations
+" Abbreviations/Commands
 "*********************************************************
-" Completar snippet
-noremap ,, <Esc>/{%[^%]*%}<CR>c%
-inoremap ,, <Esc>/{%[^%]*%}<CR>c%
-
-" Fechar automaticamente
-" Melhorar o <left><left>......, vimrc não reconhece comando de leader para {%%}
-" Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
-inoremap ¢ (){%%}<left><left><left><left><left>
-inoremap ( (){%%}<left><left><left><left><left>
-inoremap { {}{%%}<left><left><left><left><left>
-inoremap [ []{%%}<left><left><left><left><left>
-inoremap " ""{%%}<left><left><left><left><left>
-inoremap ' ''{%%}<left><left><left><left><left>
-
-inoremap *** <c-K>Sb<space>
-inoremap --- <CR><CR><up><tab><tab><tab><tab><tab><tab><c-K>HH<c-K>HH<c-K>HH<down>
-
 " No one is really happy until you have this shortcuts
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
@@ -81,29 +78,59 @@ cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
 
-command Rc execute ":vsp ~/.nvimrc"
-cnoreabbrev rc Rc
-
-command Rl execute ":vsp ~/.nvimrc.local"
-cnoreabbrev rl Rl
-
-command Rb execute ":vsp ~/.nvimrclocal.bundles"
-cnoreabbrev rb Rb
-
+" Cursor
 cnoreabbrev cul set cul
 cnoreabbrev nocul set nocul
 
-" % newfile
-" R rename
-" D delete
-noremap <silent> <leader>n :vsp ~/dev/dotfiles/nvim/notes/<CR>
+"-------------------------------------------------
+" Nvimrc
+"-------------------------------------------------
+cnoreabbrev rc vsp ~/.nvimrc
+cnoreabbrev rl vsp ~/.nvimrc.local
+cnoreabbrev rb vsp ~/.nvimrc.local.bundles
+cnoreabbrev rs source ~/.nvimrc
+
+"-------------------------------------------------
+" Dev and Apresentation mode
+"-------------------------------------------------
+fun DevRead()
+    Goyo!
+    set background=dark
+endfun
+cnoreabbrev dev call DevRead()
+
+fun AprRead()
+    Goyo
+    set background=light
+endfun
+cnoreabbrev apr call AprRead()
 
 "*********************************************************
 " Mappings
 "*********************************************************
+" leader on ~/.nvimrc
+
+" Completar snippet
+noremap ,, <ESC>/{%[^%]*%}<CR>c%
+inoremap ,, <ESC>/{%[^%]*%}<CR>c%
+
+" Fechar automaticamente
+" Melhorar o <left><left>......, vimrc não reconhece comando de leader para {%%}
+" Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
+inoremap ¢ (){%%}<left><left><left><left><left>
+inoremap ( (){%%}<left><left><left><left><left>
+inoremap { {}{%%}<left><left><left><left><left>
+inoremap [ []{%%}<left><left><left><left><left>
+inoremap " ""{%%}<left><left><left><left><left>
+inoremap ' ''{%%}<left><left><left><left><left>
+
 " j e k mantem cursor no meio do editor
 nnoremap j jzz
 nnoremap k kzz
+
+" Search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " Only hjkl
 inoremap <up> <nop>
@@ -115,37 +142,15 @@ noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
 
-set wildmenu
-set wildmode=list:full
-set completeopt=longest,menuone,preview " cool completion view
-set completeopt+=noselect               " deixar digitar
-set wildchar=<Tab>                      " (default)
-set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
-set complete=.,w,b,u,t
-
 nnoremap <c-n> :tabe 
 
 " Acabar com o ctrl z
 nnoremap <C-Z> u
-nnoremap <c-z> u
+nnoremap <C-z> u
+" re do with <C-R> built-in
 
-" Split
-" Open the same file
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
-" Search an file
-noremap <Leader>l :<C-u>vsp
-noremap <Leader>j :<C-u>sp
-
-" Switching windows
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
-noremap - <C-w>-
-noremap + <C-w>+
-noremap > <C-w>>
-noremap < <C-w><
+" Close all splits
+noremap <Leader>e :on<CR>
 
 " Tabs
 nnoremap <Tab> gt
@@ -155,35 +160,63 @@ nnoremap <S-Tab> gT
 nnoremap <leader><space> :noh<cr>
 
 " Indent all file and go back
-nnoremap <C-A> i<++><esc>gg=G:%s/<++>/<esc>
+nnoremap <C-A> i<++><esc>gg=G/<++>/<CR>v/><CR>dzz
 
 " Echo local
 noremap <Leader>. :pwd<CR>
-noremap <Leader>e :on<CR>
 
+"-------------------------------------------------
+" Split
+"-------------------------------------------------
+" Open the same file
+noremap <leader>h :<C-u>split<CR>
+noremap <leader>v :<C-u>vsplit<CR>
+" Search an file
+noremap <leader>l :<C-u>vsp 
+noremap <leader>j :<C-u>sp 
+
+" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
+" Resize
+noremap - <C-w>-
+noremap + <C-w>+
+noremap > <C-w>>
+noremap < <C-w><
+
+"-------------------------------------------------
+" DeathNotes
+"-------------------------------------------------
+" % newfile
+" R rename
+" D delete
+noremap <silent> <leader>dn :vsp ~/dev/dotfiles/nvim/notes/<CR>
+
+" Simbolos para as deathnotes
+" todo: identificar pwd e aplicar somente no diretorio os remaps
+inoremap *** <c-K>Sb<space>
+inoremap ___ <CR><CR><up><tab><tab><tab><tab><tab><tab><c-K>HH<c-K>HH<c-K>HH<down>
 
 "*********************************************************
 " Visual Settings
 "*********************************************************
-syntax on
-filetype plugin indent on
-set relativenumber          " distancias entre a linha do cursor
-set number                  " numero das linhas
-set autoread                " vim checar quando o texto for modificado
-set showmatch               "mostra fechamento de {['']}
-set ai                      "auto indentação -> ==
-set mouse=a                 "libera uso do mouse em todos modos
-
-" Search mappings: These will make it so that going to the next one in a
-" Search will center on the line it's found in.
-nnoremap n nzzzv
-nnoremap N Nzzzv
+syntax on                   " Required for plugins
+filetype plugin indent on   " Required for plugins
+set relativenumber          " Distancias entre a linha do cursor
+set number                  " Numero das linhas
+set autoread                " Checar quando o texto for modificado
+set showmatch               " Mostra fechamento de {['']}
+set ai                      " Auto indentação -> ==
+set mouse=a                 " Libera uso do mouse em todos modos
 
 "*********************************************************
 " Custom configs langs
 "*********************************************************
-" Funções para comentar linhas de código
-" Parametro deve ser entre aspas e conter, se necessário, espaço e contra-barra
+" Funções para comentar/decomentar linha a linha de código
+" Parâmetro deve ser entre aspas e conter, se necessário, espaço e contra-barra
 function ComentaNormal(carac)
     execute "normal! I".a:carac
     echo a:carac
@@ -240,10 +273,10 @@ au BufNewFile,BufRead *.cls set filetype=tex
 "*********************************************************
 " :edit a folder to open a file browser
 " <CR>/v/t to open in an h-split/v-split/tab
-" check |netrw-browse-maps| for more mappings
-let g:netrw_banner=0        " disable annoying banner
-let g:netrw_altv=1          " open splits to the right
-let g:netrw_liststyle=3     " tree view
+" Check |netrw-browse-maps| for more mappings
+let g:netrw_banner=0        " Disable annoying banner
+let g:netrw_altv=1          " Open splits to the right
+let g:netrw_liststyle=3     " Tree view
 
 " Toggle para mostrar diretórios
 let g:tnet = 1

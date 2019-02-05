@@ -1,4 +1,4 @@
-! xrdb ~/.Xdefaults
+! bbbb ~/.Xdefaults
 
 ! Appearance
 URxvt*background: black
@@ -18,7 +18,7 @@ URxvt.perl-ext-common: default,matcher,resize-font
 ! Extension: matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
-URxvt.matcher.rend.0: Uline Bold fg5
+URxvt.matcher.rend.0: Uline Bold
 
 ! Extension: resizefont
 URxvt.keysym.C-minus:     resize-font:smaller
