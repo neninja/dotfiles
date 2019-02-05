@@ -1,0 +1,245 @@
+set rtp+=~/.fzf
+" Configurações de plugins do nvim
+
+" Required:
+call plug#begin(expand('~/.config/nvim/plugged'))
+
+"*********************************************************
+" Plug install packages
+"*********************************************************
+" Barra lateral que mostra variáveis, funçoes objetos e etc
+" Instalar ctags: sudo apt-get install exuberant-ctags
+Plug 'majutsushi/tagbar'
+
+Plug 'lervag/vimtex'                        " Compilador LaTeX
+Plug 'tpope/vim-fugitive'                   " Comandos git no vim
+Plug 'junegunn/gv.vim'                      " Commits in browser
+Plug 'gregsexton/gitv', {'on': ['Gitv']}    " Arvore de branches
+Plug 'airblade/vim-gitgutter'               " Marcações + - _ ~ de git
+Plug 'SirVer/ultisnips'                     " Engine de snippets
+
+Plug 'w0rp/ale'                             " Lint geral do vim
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " ctrl p
+Plug 'junegunn/fzf.vim'
+
+Plug 'junegunn/goyo.vim'    " Modo limpo
+Plug 'chrisbra/Colorizer'   " Cores mostradas com código
+
+" Favorite themes
+Plug 'joshdick/onedark.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'ewilazarus/preto'
+Plug 'andreasvc/vim-256noir'
+
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+" Sintaxe de linguagens vim
+" Deve ser instalado DEPOIS do vim go
+Plug 'sheerun/vim-polyglot'
+call plug#end()
+
+"*********************************************************
+"" Plugins config
+"*********************************************************
+"-------------------------------------------------
+" Themes
+"-------------------------------------------------
+"#########################################
+" OneDark
+"#########################################
+let g:onedark_terminal_italics=1
+
+"#########################################
+" PaperColor
+"#########################################
+" https://github.com/NLKNguyen/papercolor-theme/blob/master/colors/PaperColor.vim
+" https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
+let g:PaperColor_Theme_Options = {
+            \   'theme': {
+            \     'default.dark': {
+            \ 		'allow_bold': 1,
+            \ 		'allow_italic': 1,
+            \       'override' : {
+            \         'color00' : ['#080808', '235'],
+            \         'linenumber_bg' : ['#080808', '235'],
+            \         'color03' : ['#080808', '114'],
+            \         'color05' : ['#080808', '240'],
+            \         'color07' : ['#080808', '248'],
+            \         'color10' : ['#080808', '176'],
+            \         'color11' : ['#080808', '153'],
+            \         'color13' : ['#080808', '179'],
+            \         'color14' : ['#080808', '176'],
+            \       }
+            \     }
+            \   }
+            \ }
+
+set background=dark " light or dark for PaperColor colorscheme
+colorscheme PaperColor
+
+" Cores mais bonitas porem não funciona com urxvt ¯\_(ツ)_/¯
+" set termguicolors
+
+"#########################################
+" Polyglot
+"#########################################
+let g:polyglot_disabled = ['go', 'latex']
+
+"#########################################
+" fzf
+"#########################################
+nnoremap <c-p> :Files<CR>
+
+"#########################################
+" VimTex
+"#########################################
+
+augroup tex
+    au FileType tex nmap <leader>r :VimtexCompile<cr>
+
+    " Compila duas vezes para pdf [SUBSTITUIDO PELO PLUGIN VIMTEX]
+    " É necessário compilar duas vezes para ter certeza de atualizar a toc
+    " https://tex.stackexchange.com/questions/301103/empty-table-of-contents
+    "au FileType tex nmap <leader>r <Esc>:w<CR>:!clear;pdflatex %<CR><CR>:!clear;pdflatex %<CR><CR>:!clear;bibtex '%:r'.aux<CR><CR>:!clear;pdflatex %<CR><CR>:!clear;pdflatex %<CR><CR>
+
+    "" Abre evince
+    "au FileType tex nmap <leader>e <Esc>:w<CR>:!clear;evince '%:r'.pdf &<CR><CR>
+augroup end
+"#########################################
+" Vim-Go
+"#########################################
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "goimports" " import automatico ao salvar
+let g:go_fmt_fail_silently = 1
+let g:go_info_mode='guru'
+
+augroup go
+    " Executa
+    au FileType go nmap <leader>r <Plug>(go-run)
+
+    " Testa
+    au FileType go nmap <leader>tp <Plug>(go-test)
+    au FileType go nmap <leader>tt :GoTest ./...<CR>
+    au FileType go nmap <leader>tf <Plug>(go-test-func)
+    au FileType go nmap <leader>cc <Plug>(go-coverage-toggle)
+    au FileType go nmap <leader>cb :GoCoverageBrowser<CR>
+    au FileType go nmap <leader>a :w<CR>:GoAlternate<CR>
+    ":AV
+    au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    ":AI
+    au Filetype go command! -bang AI call go#alternate#Switch(<bang>0, 'split')
+
+    " Documentação
+    au FileType go nmap <leader>dv <Plug>(go-doc)
+    au FileType go nmap <leader>db <Plug>(go-doc-browser)
+    au FileType go nmap <leader>gi <Plug>(go-info)
+
+    "<- [[
+    "-> ]]
+    au FileType go nmap <leader>dc :GoDecls<CR>
+    au FileType go nmap <leader>dd :GoDeclsDir<CR>
+
+    au BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+augroup END
+
+"-------------------------------------------------
+" Autocomplete
+"-------------------------------------------------
+"#########################################
+" Deoplete
+"#########################################
+let g:deoplete#enable_at_startup = 1
+
+"#########################################
+" UltiSnips
+"#########################################
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/dev/dotfiles/nvim/dacs-snippets']
+let g:UltiSnipsSnippetsDir="~/dev/dotfiles/nvim/dacs-snippets"
+let g:tex_flavor='latex' "ultisnippets reconhecerem .tex
+
+noremap <leader><tab> :UltiSnipsEdit<cr>/\<snippet\> .*<cr>N:echo "tecle n"<cr>
+
+"#########################################
+" TagBar
+"#########################################
+map <leader><bs> :Tagbar<cr>
+
+"-------------------------------------------------
+" Git
+"-------------------------------------------------
+"#########################################
+" Fugitive
+"#########################################
+noremap <Leader>gw :Gw<CR>
+noremap <Leader>gq :Gwq<CR>
+noremap <Leader>gd :Gdiff<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gr :Gread<CR>
+
+"#########################################
+" Gitgutter
+"#########################################
+" [c -> previous chunk   ]c -> next chunk
+" <leader>hp -> mostra valor anterior do hunk
+" <leader>hs -> stage["git add line"] modificação, removendo chunk
+" <leader>hu -> desfaz modificação não staged no chunk
+set updatetime=100 "atualização mais rápida
+
+":GitGutterEnable
+let g:gitgutter_enabled=0
+noremap <leader>c :GitGutterToggle<CR>
+
+"#########################################
+" Ale
+"#########################################
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    return l:counts.total == 0 ? '' : '!'
+endfunction
+
+nmap <silent> ! <Plug>(ale_previous_wrap)
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf(
+                \   '%dW %dE',
+                \   all_non_errors,
+                \   all_errors
+                \)
+endfunction
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+"-------------------------------------------------
+" Misc
+"-------------------------------------------------
+"######################################################
+" Statusline // using some plugins
+"######################################################
+" Créditos: https://gabri.me/blog/diy-vim-statusline
+" Créditos: https://kadekillary.work/post/statusline/
+set laststatus=2	"fixar status bar
+
+set statusline+=
+set statusline+=\%{LinterStatus()}
+set statusline+=%=						        " Espaço
+set statusline+=\ %{FugitiveStatusline()}\ %*	" branch
+set statusline+=\ %m\%f\ %* 	                " nome abreviado/teste readonly/modificado/
+set statusline+=%=						        " Espaço
+set statusline+=\ %p%%\ %l:\%c                  " Rownumber/total (%)

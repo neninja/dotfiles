@@ -5,7 +5,7 @@
 # Site:             dacs.run/dotfiles
 # Autor/Mantenedor: Felipe Silva - github.com/felipedacs
 # ---------------------------------------------------------- #
-# Esse sript linka arquivos de configuração (dotfiles) 
+# Esse sript linka arquivos de configuração (dotfiles)
 # selecionados para linux
 #
 # Utilização comum:
@@ -24,7 +24,7 @@
 # Sistema operacional:
 #   Lubuntu 18.10 em:
 #   Xubuntu 18.10 em:
-#   Ubuntu Minimal 18.04 em: 
+#   Ubuntu Minimal 18.04 em:
 # ---------------------------------------------------------- #
 # Agradecimentos:
 #
@@ -47,7 +47,7 @@
 # ------------------------- FUNÇÕES ------------------------ #
 linkandoDotfiles(){
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install -all
+    ~/.fzf/install --all
     ln -v -s -f $(pwd)/.fzf.bash $HOME/.fzf.bash
 
     # bash
@@ -59,7 +59,7 @@ linkandoDotfiles(){
     ln -v -s -f $(pwd)/.functions $HOME/.functions
     ln -v -s -f $(pwd)/.aliases $HOME/.aliases
     ln -v -s -f $(pwd)/.scripts $HOME/.scripts
-    
+
     # urxvt
     ln -v -s -f $(pwd)/.xinitrc $HOME/.xinitrc
     ln -v -s -f $(pwd)/.Xdefaults $HOME/.Xdefaults
@@ -69,8 +69,14 @@ linkandoDotfiles(){
 
     # nvim
     ln -v -s -f $(pwd)/.nvimrc $HOME/.nvimrc
+    ln -v -s -f $(pwd)/.nvimrc.local $HOME/.nvimrc.local
+    ln -v -s -f $(pwd)/.nvimrc.local.bundles $HOME/.nvimrc.local.bundles
     mkdir -p ~/.config/nvim
     echo 'source ~/.nvimrc' > ~/.config/nvim/init.vim
+
+    mkdir -p ~/.urxvt
+    mkdir -p ~/.urxvt/ext
+    ln -v -s -f $(pwd)/urxvt/resize-font $HOME/.urxvt/ext/resize-font
 }
 
 linkandoDotfiles

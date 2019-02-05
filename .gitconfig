@@ -7,7 +7,7 @@
     email = felipe.dacs@gmail.com
     username = felipedacs
 [core]
-    editor = vim
+    editor = nvim
 [color]
     ui = true
 [color "branch"]
