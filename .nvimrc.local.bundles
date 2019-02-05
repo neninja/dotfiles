@@ -65,6 +65,13 @@ let g:PaperColor_Theme_Options = {
 			\     'default.dark': {
 			\ 		'allow_bold': 1,
 			\ 		'allow_italic': 1,
+            \       'override' : {
+            \         'color03' : ['#080808', '114'],
+            \         'color05' : ['#080808', '240'],
+            \         'color07' : ['#080808', '248'],
+            \         'color10' : ['#080808', '037'],
+            \         'color14' : ['#080808', '037'],
+            \       }
 			\     },
 			\     'default.light': {
 			\ 		'allow_bold': 1,
