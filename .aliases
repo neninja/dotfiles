@@ -20,7 +20,7 @@ alias gps='git push origin master'
 alias gfr='git fetch --all ; git reset --hard origin/master'
 alias gs='git status'
 alias gop='xdg-open $(git config --get remote.origin.url)'
-alias gi="git init;wget -q https://unlicense.org/UNLICENSE;(echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>readme.md;echo 'readme.pdf'>.gitignore;echo 'readme.pdf'>.gitignore;echo '*.aux'>>.gitignore;echo '*.log'>>.gitignore;echo '*.out'>>.gitignore;echo '*.xmpi'>>.gitignore;echo '*.blg'>>.gitignore;echo '*.bbl'>>.gitignore;echo '*.bbl'>>.gitignore;echo '*-blx.bib'>>.gitignore;echo '*.maf'>>.gitignore;echo '*.mtc'>>.gitignore;echo '*.mtc0'>>.gitignore;echo '*.run.xml'>>.gitignore;echo '*.toc'>>.gitignore"
+alias gi="git init;wget -q https://unlicense.org/UNLICENSE;(echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>readme.md;echo 'readme.pdf'>.gitignore;echo 'readme.pdf'>.gitignore;echo '*.aux'>>.gitignore;echo '*.log'>>.gitignore;echo '*.out'>>.gitignore;echo '*.xmpi'>>.gitignore;echo '*.blg'>>.gitignore;echo '*.bbl'>>.gitignore;echo '*.bbl'>>.gitignore;echo '*-blx.bib'>>.gitignore;echo '*.maf'>>.gitignore;echo '*.mtc'>>.gitignore;echo '*.mtc0'>>.gitignore;echo '*.run.xml'>>.gitignore;echo '*.toc'>>.gitignore;echo '*.fdb_latexmk'>>.gitignore;echo '*.fls'>>.gitignore;echo '*.synctex.gz'>>.gitignore"
 
 # LS
 alias ll='ls -alF'
@@ -31,6 +31,8 @@ alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'
 # etc
 alias op='xdg-open .'
 alias n='nvim'
+alias e='evince'
+alias r='ranger'
 
 # sites
 alias yt="xdg-open 'https://youtube.com'"

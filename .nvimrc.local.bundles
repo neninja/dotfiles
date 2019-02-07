@@ -134,7 +134,7 @@ augroup tex
 	" https://tex.stackexchange.com/questions/301103/empty-table-of-contents
 	" Também compilar bibliografia e mais uma vez a toc
 	" au FileType tex nmap <leader>r <Esc>:w<CR>:!clear;pdflatex %<CR><CR>:!clear;pdflatex %<CR><CR>:!clear;bibtex '%:r'.aux<CR><CR>:!clear;pdflatex %<CR><CR>:!clear;pdflatex %<CR><CR>
-	" au FileType tex nmap <leader>e <Esc>:w<CR>:!clear;evince '%:r'.pdf &<CR><CR>
+	au FileType tex nmap <leader>e <Esc>:!clear;evince '%:r'.pdf &<CR><CR>
 augroup end
 
 "#########################################
