@@ -160,7 +160,7 @@ nnoremap <S-Tab> gT
 nnoremap <leader><space> :noh<cr>
 
 " Indent all file and go back
-nnoremap <C-A> i<++><esc>gg=G/<++>/<CR>v/><CR>dzz
+nnoremap <C-A> i<++><esc>gg=G/<++>/<CR>v/><CR>dzz==
 
 " Echo local
 noremap <Leader>. :pwd<CR>

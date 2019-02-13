@@ -129,7 +129,10 @@ nnoremap <C-p> :Files<CR>
 augroup tex
 	au FileType tex nmap <leader>r :VimtexCompile<cr>
 
-	" Abaixo está como era compilado/aberto pdf antes do plugin:
+    " VimTex falha diversas vezes e é preciso compilar com pdflatex para o plugin voltar
+	au FileType tex nmap <leader>p <Esc>:!clear;pdflatex %<CR><CR>
+
+    " Como era antes do plugin
 	" É necessário compilar duas vezes para ter certeza de atualizar a toc
 	" https://tex.stackexchange.com/questions/301103/empty-table-of-contents
 	" Também compilar bibliografia e mais uma vez a toc

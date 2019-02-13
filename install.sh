@@ -2,8 +2,8 @@
 #
 # install.sh - Padrão de instalação inicial no linux
 #
-# Site:             dacs.run/dotfiles
-# Autor/Mantenedor: Felipe Silva - github.com/felipedacs
+# Site:             ceife.run/dotfiles
+# Autor/Mantenedor: Felipe Silva - github.com/ceife
 # ---------------------------------------------------------- #
 # Esse sript linka arquivos de configuração (dotfiles)
 # selecionados para linux
