@@ -15,6 +15,7 @@ alias ....='cd ../../..'
 
 # GIT
 alias g="git"
+alias gf="git flow"
 alias ga="git add ."
 alias gc="git commit"
 alias gps='git push origin master'

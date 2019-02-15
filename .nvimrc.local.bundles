@@ -211,6 +211,8 @@ map <leader><bs> :Tagbar<cr>
 "#########################################
 noremap <Leader>gw :Gw<CR>
 noremap <Leader>gq :Gwq<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gd :Gdiff<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gr :Gread<CR>
