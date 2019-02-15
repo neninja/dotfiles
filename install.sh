@@ -46,10 +46,6 @@
 
 # ------------------------- FUNÇÕES ------------------------ #
 linkandoDotfiles(){
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --all
-    ln -v -s -f $(pwd)/.fzf.bash $HOME/.fzf.bash
-
     # bash
     ln -v -s -f $(pwd)/.bashrc $HOME/.bashrc
     ln -v -s -f $(pwd)/.inputrc $HOME/.inputrc
@@ -73,6 +69,7 @@ linkandoDotfiles(){
     ln -v -s -f $(pwd)/.nvimrc.local.bundles $HOME/.nvimrc.local.bundles
     mkdir -p ~/.config/nvim
     echo 'source ~/.nvimrc' > ~/.config/nvim/init.vim
+    echo 'source ~/.nvimrc' > ~/.vimrc
 
     mkdir -p ~/.urxvt
     mkdir -p ~/.urxvt/ext
