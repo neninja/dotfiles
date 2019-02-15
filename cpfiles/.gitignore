@@ -1,3 +1,4 @@
+# latex
 README.pdf
 *.aux
 *.log
@@ -12,3 +13,6 @@ README.pdf
 *.mtc0
 *.run.xml
 *.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz

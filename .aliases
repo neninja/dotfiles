@@ -14,13 +14,14 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # GIT
+alias g="git"
 alias ga="git add ."
 alias gc="git commit"
 alias gps='git push origin master'
 alias gfr='git fetch --all ; git reset --hard origin/master'
 alias gs='git status'
 alias gop='xdg-open $(git config --get remote.origin.url)'
-alias gi="git init;wget -q https://unlicense.org/UNLICENSE;(echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>readme.md;echo 'readme.pdf'>.gitignore;echo 'readme.pdf'>.gitignore;echo '*.aux'>>.gitignore;echo '*.log'>>.gitignore;echo '*.out'>>.gitignore;echo '*.xmpi'>>.gitignore;echo '*.blg'>>.gitignore;echo '*.bbl'>>.gitignore;echo '*.bbl'>>.gitignore;echo '*-blx.bib'>>.gitignore;echo '*.maf'>>.gitignore;echo '*.mtc'>>.gitignore;echo '*.mtc0'>>.gitignore;echo '*.run.xml'>>.gitignore;echo '*.toc'>>.gitignore;echo '*.fdb_latexmk'>>.gitignore;echo '*.fls'>>.gitignore;echo '*.synctex.gz'>>.gitignore"
+alias gi="cp ~/dev/dotfiles/cpfiles/UNLICENSE UNLICENSE;(echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>README.md;cp ~/dev/dotfiles/cpfiles/.gitignore .gitignore; echo don\'t forget to use git init or git flow init"
 
 # LS
 alias ll='ls -alF'
