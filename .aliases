@@ -15,14 +15,9 @@ alias ....='cd ../../..'
 
 # GIT
 alias g="git"
-alias gf="git flow"
-alias ga="git add ."
-alias gc="git commit"
-alias gps='git push origin master'
 alias gfr='git fetch --all ; git reset --hard origin/master'
-alias gs='git status'
 alias gop='xdg-open $(git config --get remote.origin.url)'
-alias gi="cp ~/dev/dotfiles/cpfiles/UNLICENSE UNLICENSE;(echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>README.md;cp ~/dev/dotfiles/cpfiles/.gitignore .gitignore; echo don\'t forget to use git init or git flow init"
+alias gi="cp ~/dev/dotfiles/cpfiles/UNLICENSE UNLICENSE;(echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>README.md;cp ~/dev/dotfiles/cpfiles/.gitignore .gitignore; echo don\'t forget to use git init or git flow init and create branch master"
 
 # LS
 alias ll='ls -alF'
@@ -35,6 +30,3 @@ alias op='xdg-open .'
 alias n='nvim'
 alias e='evince'
 alias r='ranger'
-
-# sites
-alias yt="xdg-open 'https://youtube.com'"

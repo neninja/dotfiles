@@ -25,6 +25,34 @@
     changed = yellow bold
     untracked = red bold
 [alias]
+    ## git flow ##
+    # http://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html
+    # necessario dar push na master e na develop vazias
+    fi = flow init
+
+    # features
+    ffs = flow feature start
+    fff = flow feature finish
+    ffps = flow feature publish
+    ffpl = flow feature pull
+
+    # releases
+    frs = flow release start
+    frf = flow release finish
+    frps = flow release publish
+    frpl = flow release pull
+
+    # hotfixes
+    fhs = flow hotfix start
+    fhf = flow hotfix finish
+
+    # caso as autenticações falhem é necessario excluir/enviar remotamente as branches/tags
+    # git push origin BRANCH
+    # git push origin :BRANCH
+    # git push origin TAG
+    # git push origin :TAG
+
+    #############
     a = add --all
     ai = add -i
     #############
@@ -36,6 +64,7 @@
     amr = am --resolved
     ams = am --skip
     #############
+    # para apagar branch remote => git push origin :branch
     b = branch
     ba = branch -a
     bd = branch -d

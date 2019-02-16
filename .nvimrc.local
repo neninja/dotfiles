@@ -90,21 +90,6 @@ cnoreabbrev rl vsp ~/.nvimrc.local
 cnoreabbrev rb vsp ~/.nvimrc.local.bundles
 cnoreabbrev rs source ~/.nvimrc
 
-"-------------------------------------------------
-" Dev and Apresentation mode
-"-------------------------------------------------
-fun DevRead()
-    Goyo!
-    set background=dark
-endfun
-cnoreabbrev dev call DevRead()
-
-fun AprRead()
-    Goyo
-    set background=light
-endfun
-cnoreabbrev apr call AprRead()
-
 "*********************************************************
 " Mappings
 "*********************************************************
