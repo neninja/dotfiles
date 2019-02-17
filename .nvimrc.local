@@ -136,6 +136,11 @@ nnoremap <C-z> u
 
 " Close all splits
 noremap <Leader>e :on<CR>
+" wgy dont work????????
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
 
 " Tabs
 nnoremap <Tab> gt
@@ -258,6 +263,10 @@ au BufNewFile,BufRead *.cls set filetype=tex
 "#########################################
 augroup python
     au FileType python nmap <leader>r :vsp<CR>:terminal python3 %<CR>
+    au FileType python vnoremap // :call ComentaVisual("# ")<CR>
+    au FileType python vnoremap ;; :s/%\s/<CR>:noh<CR>
+    au FileType python nmap // :call ComentaNormal("# ")<esc>
+    au FileType python nmap ;; :s/%\s/<CR>:noh<CR>
 augroup END
 
 "*********************************************************
