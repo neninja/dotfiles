@@ -32,15 +32,15 @@
 
     # features
     ffs = flow feature start
-    fff = flow feature finish
     ffps = flow feature publish
     ffpl = flow feature pull
+    fff = flow feature finish
 
     # releases
     frs = flow release start
-    frf = flow release finish
     frps = flow release publish
     frpl = flow release pull
+    frf = flow release finish
 
     # hotfixes
     fhs = flow hotfix start
