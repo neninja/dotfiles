@@ -141,6 +141,12 @@ if has('nvim')
   tnoremap <Esc> <C-\><C-n>
 endif
 
+" Surround
+vnoremap <silent> ' c'<c-r>"'
+vnoremap <silent> " c"<c-r>""
+vnoremap <silent> ( c(<c-r>")
+vnoremap <silent> { c{<c-r>"}
+vnoremap <silent> [ c[<c-r>"]
 
 " Tabs
 nnoremap <Tab> gt
@@ -264,9 +270,9 @@ au BufNewFile,BufRead *.cls set filetype=tex
 augroup python
     au FileType python nmap <leader>r :vsp<CR>:terminal python3 %<CR>
     au FileType python vnoremap // :call ComentaVisual("# ")<CR>
-    au FileType python vnoremap ;; :s/%\s/<CR>:noh<CR>
+    au FileType python vnoremap ;; :s/#\s/<CR>:noh<CR>
     au FileType python nmap // :call ComentaNormal("# ")<esc>
-    au FileType python nmap ;; :s/%\s/<CR>:noh<CR>
+    au FileType python nmap ;; :s/#\s/<CR>:noh<CR>
 augroup END
 
 "#########################################
@@ -275,9 +281,9 @@ augroup END
 augroup python
     au FileType php nmap <leader>r :vsp<CR>:terminal php %<CR>
     au FileType php vnoremap // :call ComentaVisual("// ")<CR>
-    au FileType php vnoremap ;; :s/%\s/<CR>:noh<CR>
+    au FileType php vnoremap ;; :s/\/\/\s/<CR>:noh<CR>
     au FileType php nmap // :call ComentaNormal("// ")<esc>
-    au FileType php nmap ;; :s/%\s/<CR>:noh<CR>
+    au FileType php nmap ;; :s/\/\/\s/<CR>:noh<CR>
 augroup END
 "*********************************************************
 " File browsing
