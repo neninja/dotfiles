@@ -110,8 +110,8 @@ inoremap " ""{%%}<left><left><left><left><left>
 inoremap ' ''{%%}<left><left><left><left><left>
 
 " j e k mantem cursor no meio do editor
-nnoremap j jzz
-nnoremap k kzz
+" nnoremap j jzz
+" nnoremap k kzz
 
 " Search will center on the line it's found in.
 nnoremap n nzzzv
