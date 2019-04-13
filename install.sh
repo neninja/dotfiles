@@ -45,9 +45,6 @@
 # ---------------------------------------------------------- #
 
 # -------------------------- MAIN -------------------------- #
-# loga como root
-sudo -i
-
 mkdir -p $HOME/.config
 
 # bash
@@ -70,20 +67,20 @@ ln -v -s -f $(pwd)/i3/config $HOME/.config/i3/config
 ln -v -s -f $(pwd)/i3/i3blocks.conf $HOME/.i3blocks.conf
 
 # i3blocks-scripts
-mkdir -p /usr/share/i3blocks
-ln -v -s -f $(pwd)/i3/scripts/battery /usr/share/i3blocks/battery
-ln -v -s -f $(pwd)/i3/scripts/cpu_usage /usr/share/i3blocks/cpu_usage
-ln -v -s -f $(pwd)/i3/scripts/keyindicator /usr/share/i3blocks/keyindicator
-ln -v -s -f $(pwd)/i3/scripts/mediaplayer /usr/share/i3blocks/mediaplayer
-ln -v -s -f $(pwd)/i3/scripts/openvpn /usr/share/i3blocks/openvpn
-ln -v -s -f $(pwd)/i3/scripts/temperature /usr/share/i3blocks/temperature
-ln -v -s -f $(pwd)/i3/scripts/bandwidth /usr/share/i3blocks/bandwidth
-ln -v -s -f $(pwd)/i3/scripts/disk /usr/share/i3blocks/disk
-ln -v -s -f $(pwd)/i3/scripts/iface /usr/share/i3blocks/iface
-ln -v -s -f $(pwd)/i3/scripts/load_average /usr/share/i3blocks/load_average
-ln -v -s -f $(pwd)/i3/scripts/memory /usr/share/i3blocks/memory
-ln -v -s -f $(pwd)/i3/scripts/volume /usr/share/i3blocks/volume
-ln -v -s -f $(pwd)/i3/scripts/wifi /usr/share/i3blocks/wifi
+sudo mkdir -p /usr/share/i3blocks
+sudo ln -v -s -f $(pwd)/i3/scripts/battery /usr/share/i3blocks/battery
+sudo ln -v -s -f $(pwd)/i3/scripts/cpu_usage /usr/share/i3blocks/cpu_usage
+sudo ln -v -s -f $(pwd)/i3/scripts/keyindicator /usr/share/i3blocks/keyindicator
+sudo ln -v -s -f $(pwd)/i3/scripts/mediaplayer /usr/share/i3blocks/mediaplayer
+sudo ln -v -s -f $(pwd)/i3/scripts/openvpn /usr/share/i3blocks/openvpn
+sudo ln -v -s -f $(pwd)/i3/scripts/temperature /usr/share/i3blocks/temperature
+sudo ln -v -s -f $(pwd)/i3/scripts/bandwidth /usr/share/i3blocks/bandwidth
+sudo ln -v -s -f $(pwd)/i3/scripts/disk /usr/share/i3blocks/disk
+sudo ln -v -s -f $(pwd)/i3/scripts/iface /usr/share/i3blocks/iface
+sudo ln -v -s -f $(pwd)/i3/scripts/load_average /usr/share/i3blocks/load_average
+sudo ln -v -s -f $(pwd)/i3/scripts/memory /usr/share/i3blocks/memory
+sudo ln -v -s -f $(pwd)/i3/scripts/volume /usr/share/i3blocks/volume
+sudo ln -v -s -f $(pwd)/i3/scripts/wifi /usr/share/i3blocks/wifi
 
 # ranger
 mkdir -p $HOME/.config/ranger
