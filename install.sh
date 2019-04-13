@@ -46,6 +46,8 @@
 
 # ------------------------- FUNÇÕES ------------------------ #
 linkandoDotfiles(){
+    mkdir -p $HOME/.config
+
     # bash
     ln -v -s -f $(pwd)/.bashrc $HOME/.bashrc
     ln -v -s -f $(pwd)/.inputrc $HOME/.inputrc
@@ -59,6 +61,10 @@ linkandoDotfiles(){
     # urxvt
     ln -v -s -f $(pwd)/.xinitrc $HOME/.xinitrc
     ln -v -s -f $(pwd)/.Xdefaults $HOME/.Xdefaults
+
+    # ranger
+    mkdir -p $HOME/.config/ranger
+    ln -v -s -f $(pwd)/rc.conf $HOME/.config/ranger/rc.conf
 
     # git
     ln -v -s -f $(pwd)/.gitconfig $HOME/.gitconfig
