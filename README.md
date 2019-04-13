@@ -4,7 +4,7 @@ Os arquivos são guardados e referenciados principalmente por aliases à pasta c
 ## Install
 
 ```
-wget -O - http://ceife.run/dotfiles/lazy.sh | sh
+wget -O - http://neni.dev/dotfiles/lazy.sh | sh
 ```
 
 or
@@ -13,7 +13,7 @@ or
 cd ~
 mkdir dev
 cd dev
-git clone https://github.com/ceife/dotfiles.git
+git clone https://github.com/nenitf/dotfiles.git
 cd dotfiles
 chmod +x install.sh
 ./install.sh
