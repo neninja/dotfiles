@@ -2,8 +2,8 @@
 #
 # install.sh - Padrão de instalação inicial no linux
 #
-# Site:             ceife.run/dotfiles
-# Autor/Mantenedor: Felipe Silva - github.com/ceife
+# Site:             neni.dev/dotfiles
+# Autor/Mantenedor: Felipe Silva - github.com/nenitf
 # ---------------------------------------------------------- #
 # Esse sript linka arquivos de configuração (dotfiles)
 # selecionados para linux
