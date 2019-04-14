@@ -40,7 +40,7 @@ END {
 	if (type == "swap")
 		printf("%.1fG\n", (swap_total-swap_free)/1024/1024)
 	else
-        printf("%.2f%% (%.1fG)\n", mem_free/mem_total, (mem_total-mem_free)/1024/1024)
+        printf("%.2f%% (%.1fG)\n", mem_free/mem_total*100, (mem_total-mem_free)/1024/1024)
 
 	# TODO: short text
 
