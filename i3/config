@@ -158,6 +158,7 @@ bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bar {
         status_command i3status
 	    status_command i3blocks
+        status_command SCRIPT_DIR=~/dev/dotfiles/i3/scripts i3blocks
         position top
 }
 
