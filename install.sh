@@ -64,7 +64,7 @@ ln -v -s -f $(pwd)/.Xdefaults $HOME/.Xdefaults
 # i3
 mkdir -p $HOME/.config/i3
 ln -v -s -f $(pwd)/i3/config $HOME/.config/i3/config
-ln -v -s -f $(pwd)/i3/i3blocks.conf $HOME/.i3blocks.conf
+ln -v -s -f $(pwd)/i3/.i3blocks.conf $HOME/.i3blocks.conf
 
 # ranger
 mkdir -p $HOME/.config/ranger
