@@ -33,6 +33,12 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec urxvt
 
+# browser
+bindsym $mod+b exec qutebrowser
+
+# file mana
+bindsym $mod+Escape quit
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -135,7 +141,7 @@ mode "resize" {
         bindsym l resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
-        bindsym h resize grow width 10 px or 10 ppt
+        bindsym ccedilla resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -161,3 +167,5 @@ bar {
         position top
 }
 
+# remove borders
+for_window [class="^.*"] border pixel 0

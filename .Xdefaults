@@ -1,9 +1,11 @@
-! bbbb ~/.Xdefaults
+! Para att urxvt:
+! xrdb ~/.Xdefaults
 
 ! Appearance
 URxvt*background: black
 URxvt*foreground: white
 URxvt*font: xft:Monospace:size=11:antialias=true
+!URxvt.font: xft:SF Mono:size=12,xft:Inconsolata Nerd Font Mono:size=11 
 URxvt.scrollBar: false
 
 ! ctrl shift v ctrl shift c

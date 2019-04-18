@@ -39,7 +39,7 @@ while (<MPSTAT>) {
 close(MPSTAT);
 
 # Print short_text, full_text
-printf "%.2f%%\n", $cpu_usage;
+printf "%.f%%\n", $cpu_usage;
 printf "%.2f%%\n", $cpu_usage;
 
 # Print color, if needed
