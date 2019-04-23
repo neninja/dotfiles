@@ -20,6 +20,9 @@ README.pdf
 # python
 __pycache__/
 
+# suckless clonados everytime
+suckless/
+
 # npm
 .DS_Store
 node_modules

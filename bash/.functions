@@ -10,6 +10,24 @@ function mk (){
     mkdir $1 ; cd $1
 }
 
+# make install não aceita link simbolico, portanto deve ser feita uma copia do arquivo config
+function ats (){
+    cp -f $DF/st/config.h $DF/suckless/st/config.h
+    cd $DF/suckless/st
+    sudo make install clean
+    echo "st atualizado"
+
+    cp -f $DF/dmenu/config.h $DF/suckless/dmenu/config.h
+    cd $DF/suckless/dmenu
+    sudo make install clean
+    echo "dmenu atualizado"
+
+    cp -f $DF/dwm/config.h $DF/suckless/dwm/config.h
+    cd $DF/suckless/dwm
+    sudo make install clean
+    echo "dwm atualizado"
+}
+
 # USE: extract imazip.zip
 function extract () {
   if [ -f $1 ] ; then
