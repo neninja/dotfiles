@@ -48,18 +48,15 @@
 mkdir -p $HOME/.config
 
 # bash
-ln -v -s -f $(pwd)/.bashrc $HOME/.bashrc
-ln -v -s -f $(pwd)/.inputrc $HOME/.inputrc
-ln -v -s -f $(pwd)/.bash_profile $HOME/.bash_profile
-ln -v -s -f $(pwd)/.bash_prompt $HOME/.bash_prompt
-ln -v -s -f $(pwd)/.exports $HOME/.exports
-ln -v -s -f $(pwd)/.functions $HOME/.functions
-ln -v -s -f $(pwd)/.aliases $HOME/.aliases
-ln -v -s -f $(pwd)/.scripts $HOME/.scripts
+ln -v -s -f $(pwd)/bash/.bashrc $HOME/.bashrc
+ln -v -s -f $(pwd)/bash/.inputrc $HOME/.inputrc
 
 # urxvt
-ln -v -s -f $(pwd)/.xinitrc $HOME/.xinitrc
-ln -v -s -f $(pwd)/.Xdefaults $HOME/.Xdefaults
+ln -v -s -f $(pwd)/urxvt/.xinitrc $HOME/.xinitrc
+ln -v -s -f $(pwd)/urxvt/.Xdefaults $HOME/.Xdefaults
+mkdir -p ~/.urxvt
+mkdir -p ~/.urxvt/ext
+ln -v -s -f $(pwd)/urxvt/resize-font $HOME/.urxvt/ext/resize-font
 
 # i3
 mkdir -p $HOME/.config/i3
@@ -68,19 +65,17 @@ ln -v -s -f $(pwd)/i3/.i3blocks.conf $HOME/.i3blocks.conf
 
 # ranger
 mkdir -p $HOME/.config/ranger
-ln -v -s -f $(pwd)/rc.conf $HOME/.config/ranger/rc.conf
+ln -v -s -f $(pwd)/ranger/rc.conf $HOME/.config/ranger/rc.conf
+ln -v -s -f $(pwd)/ranger/commands.py $HOME/.config/ranger/commands.py
 
 # git
-ln -v -s -f $(pwd)/.gitconfig $HOME/.gitconfig
+ln -v -s -f $(pwd)/git/.gitconfig $HOME/.gitconfig
 
 # nvim
-ln -v -s -f $(pwd)/.nvimrc $HOME/.nvimrc
-ln -v -s -f $(pwd)/.nvimrc.local $HOME/.nvimrc.local
-ln -v -s -f $(pwd)/.nvimrc.local.bundles $HOME/.nvimrc.local.bundles
-mkdir -p ~/.config/nvim
-echo 'source ~/.nvimrc' > ~/.config/nvim/init.vim
-echo 'source ~/.nvimrc' > ~/.vimrc
+echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.config/nvim/init.vim
+echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.vimrc
 
-mkdir -p ~/.urxvt
-mkdir -p ~/.urxvt/ext
-ln -v -s -f $(pwd)/urxvt/resize-font $HOME/.urxvt/ext/resize-font
+# qutebrowser
+ln -v -s -f $(pwd)/qutebrowser/config.py $HOME/.config/qutebrowser/config.py
+mkdir -p ~/.config/qutebrowser/bookmarks
+ln -v -s -f $(pwd)/qutebrowser/urls $HOME/.config/qutebrowser/bookmarks/urls

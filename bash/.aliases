@@ -3,25 +3,26 @@
 # CD
 alias cphp='cd ~/dev/php'
 alias cpy='cd ~/dev/python'
-alias cfront='cd ~/dev/front/'
+alias cfr='cd ~/dev/front/'
 alias ctex='cd ~/dev/tex'
 alias cgh='cd ~/go/src/github.com/nenitf'
 alias cgl='cd ~/go/src/gitlab.com/nenitf'
 alias cdf='cd ~/dev/dotfiles ; l'
-alias cv='cd ~/dev/tex/cv'
+alias ccv='cd ~/dev/tex/cv'
+alias cv='nvim ~/dev/tex/cv/felipe_silva.tex'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # configfiles
-alias dn='nvim ~/.nvimrc'
-alias dnl='nvim ~/.nvimrc.local'
-alias dnb='nvim ~/.nvimrc.local.bundles'
-alias da='nvim ~/.aliases'
-alias dr='nvim ~/.config/ranger/rc.conf'
-alias dib='nvim ~/.i3blocks.conf'
-alias dic='nvim ~/.config/i3/config'
-alias dis='cd ~/dev/dotfiles/i3/scripts'
+alias cfn='nvim $DF/nvim/.nvimrc'
+alias cfnp='nvim $DF/nvim/.nvimrc.plugs'
+alias cfa='nvim $DF/bash/.aliases'
+alias cfe='nvim $DF/bash/.exports'
+alias cfr='nvim $DF/ranger/rc.conf'
+alias cfi='nvim $DF/i3/config'
+alias cfib='nvim $DF/i3/.i3blocks.conf'
+alias cfis='cd $DF/i3/scripts'
 
 # GIT
 alias g="git"
@@ -30,7 +31,7 @@ alias gop='xdg-open $(git config --get remote.origin.url)'
 alias gi="cp ~/dev/dotfiles/cpfiles/UNLICENSE UNLICENSE;(echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>README.md;cp ~/dev/dotfiles/cpfiles/.gitignore .gitignore; echo don\'t forget to use git init or git flow init and create branch master"
 
 # LS
-alias ll='ls -alF'
+alias ll='ls -alF --color'
 alias l='ls -XF --color'
 # Scrot
 alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'

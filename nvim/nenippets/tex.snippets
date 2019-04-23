@@ -15,12 +15,12 @@ endsnippet
 
 snippet use
 \usepackage${1:[${2}]}{${0:${VISUAL}}}
-{%%}
+{##}
 endsnippet
 
 snippet doc
 \documentclass{${1:article}}
-{%%}
+{##}
 \begin{document}
 ${0:${VISUAL:% boraa}}
 \end{document}
@@ -32,7 +32,7 @@ snippet f
 	{$1}
 	${0:${VISUAL}}
 }
-{%%}
+{##}
 endsnippet
 
 # lista de itens
@@ -52,7 +52,7 @@ snippet b
 \begin{${1:center}}
 	${0:${VISUAL: content}}
 \end{$1}
-{%%}
+{##}
 endsnippet
 
 # figuca com pacote graphicx
@@ -63,7 +63,7 @@ snippet fi
 	{${0:${VISUAL: img}}}
 }
 \end{figure}
-{%%}
+{##}
 endsnippet
 
 # begin/end
@@ -73,12 +73,12 @@ snippet @
 	title		= {$4},
 	date		= {${0:${VISUAL}}},
 }
-{%%}
+{##}
 endsnippet
 
 snippet c
 \cite[${1}]{${0:${VISUAL}}}
-{%%}
+{##}
 endsnippet
 
 snippet db
@@ -138,9 +138,9 @@ snippet db
 	}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%% Corpo %%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+##%%%%%%%%%%%%%%%%%%%%%% Corpo %%%%%%%%%%%%%%%%%%%%%%%%
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{filecontents}{abc.bib}
 % página 8 da documentação biblatex
 % article: author, title, journaltitle, year/date
@@ -171,6 +171,6 @@ snippet db
 	{$6}
 	${0:${VISUAL}}
 }
-{%%}
+{##}
 \end{document}
 endsnippet

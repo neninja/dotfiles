@@ -207,8 +207,8 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/dev/dotfiles/nvim/dacs-snippets']
-let g:UltiSnipsSnippetsDir="~/dev/dotfiles/nvim/dacs-snippets"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/dev/dotfiles/nvim/nenippets']
+let g:UltiSnipsSnippetsDir="~/dev/dotfiles/nvim/nenippets"
 let g:tex_flavor='latex' "ultisnippets reconhecerem .tex
 
 noremap <leader><tab> :UltiSnipsEdit<cr>/\<snippet\> .*<cr>N:echo "tecle n"<cr>

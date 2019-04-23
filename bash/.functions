@@ -10,12 +10,6 @@ function mk (){
     mkdir $1 ; cd $1
 }
 
-# GIT
-# USE: gc mensagem
-#function gc (){
-#    git commit -m "$1"
-#}
-
 # USE: extract imazip.zip
 function extract () {
   if [ -f $1 ] ; then
