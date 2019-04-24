@@ -3,5 +3,6 @@ export GIT_MERGE_AUTOEDIT='no'
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export DF=$HOME/dev/dotfiles
+export IS=$HOME/dev/is
 export VISUAL=nvim
 export EDITOR=$VISUAL

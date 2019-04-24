@@ -1,50 +1,83 @@
 # Functions
 # =====================
 # USE: phps 8080
-function phps (){
+function phps(){
     php -S localhost:$1
 }
 
 # USE: mk folder
-function mk (){
-    mkdir $1 ; cd $1
+function mk(){
+    mkdir $1;
+    cd $1;
 }
 
 # make install não aceita link simbolico, portanto deve ser feita uma copia do arquivo config
-function ats (){
-    cp -f $DF/st/config.h $DF/suckless/st/config.h
-    cd $DF/suckless/st
-    sudo make install clean
-    echo "st atualizado"
+# USE: ars
+function ats(){
+    cp -f $IS/st/config.h $IS/suckless/st/config.h;
+    cd $IS/suckless/st;
+    sudo make install clean;
+    echo "st atualizado";
 
-    cp -f $DF/dmenu/config.h $DF/suckless/dmenu/config.h
-    cd $DF/suckless/dmenu
-    sudo make install clean
-    echo "dmenu atualizado"
+    cp -f $IS/dmenu/config.h $IS/suckless/dmenu/config.h;
+    cd $IS/suckless/dmenu;
+    sudo make install clean;
+    echo "dmenu atualizado";
 
-    cp -f $DF/dwm/config.h $DF/suckless/dwm/config.h
-    cd $DF/suckless/dwm
-    sudo make install clean
-    echo "dwm atualizado"
+    cp -f $IS/dwm/config.h $IS/suckless/dwm/config.h;
+    cd $IS/suckless/dwm;
+    sudo make install clean;
+    echo "dwm atualizado";
+}
+
+# base of repository
+# USE: gi
+function gi(){
+    cp ~/dev/dotfiles/cpfiles/UNLICENSE UNLICENSE;
+    (echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>README.md;
+    cp ~/dev/dotfiles/cpfiles/.gitignore .gitignore;
+    echo don\'t forget to use git init or git flow init and create branch master;
 }
 
 # USE: extract imazip.zip
 function extract () {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)  tar xjf $1      ;;
-      *.tar.gz)   tar xzf $1      ;;
-      *.bz2)      bunzip2 $1      ;;
-      *.rar)      rar x $1        ;;
-      *.gz)       gunzip $1       ;;
-      *.tar)      tar xf $1       ;;
-      *.tbz2)     tar xjf $1      ;;
-      *.tgz)      tar xzf $1      ;;
-      *.zip)      unzip $1        ;;
-      *.Z)        uncompress $1   ;;
-      *)          echo "'$1' cannot be extracted via extract()" ;;
+    if [ -f $1 ]; then
+        case $1 in
+            *.tar.bz2)
+            tar xjf $1
+            ;;
+    *.tar.gz)
+        tar xzf $1
+        ;;
+    *.bz2)
+        bunzip2 $1
+        ;;
+    *.rar)
+        rar x $1
+        ;;
+    *.gz)
+        gunzip $1
+        ;;
+    *.tar)
+        tar xf $1
+        ;;
+    *.tbz2)
+        tar xjf $1
+        ;;
+    *.tgz)
+        tar xzf $1
+        ;;
+    *.zip)
+        unzip $1
+        ;;
+    *.Z)
+        uncompress $1
+        ;;
+    *)
+        echo "'$1' cannot be extracted via extract()"
+        ;;
     esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+    else
+        echo "'$1' is not a valid file"
+            fi
 }
