@@ -10,7 +10,7 @@
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
 ## Type: Dict
-c.aliases = {'w': 'session-save', 'q': 'quit', 'wq': 'quit --save', '<tab>': 'tab-next'}
+c.aliases = {'w': 'session-save', 'q': 'quit', 'wq': 'quit --save', '<tab>': 'tab-focus'}
 
 ## Time interval (in milliseconds) between auto-saves of
 ## config/cookies/etc.
@@ -1350,7 +1350,7 @@ c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'yt': 'https:/
 # c.zoom.text_only = False
 
 ## Bindings for normal mode
-config.bind('<Tab>', 'tab-next')
+config.bind('<Tab>', 'tab-focus')
 config.bind('<Ctrl-R>', 'config-source')
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')

@@ -39,6 +39,7 @@ alias l='ls -XF --color'
 alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'
 
 # etc
+alias mci='sudo make clean install'
 alias op='xdg-open .'
 alias n='nvim'
 alias e='evince'
