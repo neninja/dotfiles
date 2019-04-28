@@ -77,6 +77,7 @@ set timeoutlen=3000
 
 " Copy paste
 set clipboard=unnamed
+noremap <leader>y V"+y:echo "Copiado!!"<CR>
 vnoremap <leader>y "+y:echo "Copiado!!"<CR>
 
 " Quebra de linha com simbolo
@@ -140,6 +141,45 @@ inoremap { {}{##}<left><left><left><left><left>
 inoremap [ []{##}<left><left><left><left><left>
 inoremap " ""{##}<left><left><left><left><left>
 inoremap ' ''{##}<left><left><left><left><left>
+
+" emoticons unicode
+" https://www.jemoticons.com/en/
+" angry as a fuck, flip the table
+inoremap \\a (╯°□°)╯︵ ┻━┻
+" bring back the table
+inoremap \\b ┬──┬ ノ(°-°ノ)
+" cool
+inoremap \\c (⌐■_■)
+" dancing
+inoremap \\d ヾ(⌐■_■)ノ♪
+" forsake
+inoremap \\f (´ヘ｀;)
+" gopher
+inoremap \\g ʕ◔ϖ◔ʔ
+" happy
+inoremap \\h \(•◡•)/
+" impressed
+inoremap \\i (ﾉ°▽̣°)ﾉ
+" lenny face
+inoremap \\l ( ͡° ͜ʖ ͡°)
+" mighty
+inoremap \\m ᕙ(°□°)ᕗ
+" put some magic
+inoremap \\p (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+" run
+inoremap \\r ε=ε=┏( >_<)┛
+" shrug
+inoremap \\s ¯\_(ツ)_/¯
+" thanks
+inoremap \\t (~˘▾˘)~
+" i don't understand
+inoremap \\u ┐(´д`)┌
+" worried
+inoremap \\w (⊙﹏⊙)
+" yeah
+inoremap \\y ╭( ˃̵ᴗ˂̵)و
+" whyyyy
+inoremap \\? ( ˘･з･)
 
 " j e k mantem cursor no meio do editor
 " nnoremap j jzz

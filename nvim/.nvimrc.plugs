@@ -277,6 +277,6 @@ set statusline+=
 set statusline+=\ %{LinterStatus()}
 set statusline+=%=						        " Espaço
 set statusline+=\ %{FugitiveStatusline()}\ %*	" Branch
-set statusline+=\ %m\%f\ %* 	                " Nome abreviado e readonly/modificado
+set statusline+=\ %r\%m\%f\ %* 	                " Nome readonly, modificado e nome abreviado
 set statusline+=%=						        " Espaço
 set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual

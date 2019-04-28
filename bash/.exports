@@ -6,3 +6,4 @@ export DF=$HOME/dev/dotfiles
 export IS=$HOME/dev/is
 export VISUAL=nvim
 export EDITOR=$VISUAL
+

@@ -1,0 +1,67 @@
+#
+# Calcurse - arquivo de configuração de teclas
+#
+# Este arquivo define as teclas de atalhos (keybindings) usadas pelo Calcurse.
+# Linhas iniciadas com "#" são comentários, e são ignoradas pelo Calcurse.
+# Para designar uma tecla de atalho para uma ação, o arquivo deve conter uma
+# linha com a seguinte sintaxe:
+#
+#        AÇÃO  TECLA1  TECLA2  ...  TECLAn
+#
+# Onde AÇÃO é o que será executado quando TECLA1, TECLA2, ..., ou TECLAn
+# for pressionada.
+#
+# Para definir atalhos que usem a tecla CONTROL, insira antes 'C-' na tecla.
+# Para as teclas ESC, barra de espaço e Tab horizontal, podem ser# especificadas as palavras-chave 'ESC', 'SPC' e 'TAB', respectivamente.
+# Teclas de setas podem também ser especificadas com as palavras-chave UP, DWN,# LFT e RGT.# Por último, teclas Home e End podem ser designadas usando as palavras-chave
+# 'KEY_HOME' e 'KEY_END'.#
+# Uma descrição do como cada palavra-chave de AÇÃO é está disponível no menu
+# de configuração online do calcurse.
+
+generic-cancel  ESC 
+generic-select  SPC 
+generic-credits  @ 
+generic-help  ? 
+generic-quit  q Q 
+generic-save  s S ^S 
+generic-reload  R 
+generic-copy  c 
+generic-paste  p ^V 
+generic-change-view  TAB 
+generic-import  i I 
+generic-export  x X 
+generic-goto  g G 
+generic-other-cmd  o O 
+generic-config-menu  C 
+generic-redraw  ^R 
+generic-add-appt  ^A 
+generic-add-todo  ^T 
+generic-prev-day  T ^H 
+generic-next-day  t ^L 
+generic-prev-week  W ^K 
+generic-next-week  w ^J 
+generic-prev-month  M 
+generic-next-month  m 
+generic-prev-year  Y 
+generic-next-year  y 
+generic-scroll-down  ^N 
+generic-scroll-up  ^P 
+generic-goto-today  ^G 
+generic-command  : 
+move-right  l L RGT 
+move-left  h H LFT 
+move-down  j J DWN 
+move-up  k K UP 
+start-of-week  0 
+end-of-week  $ 
+add-item  a A 
+del-item  d D 
+edit-item  e E 
+view-item  v V 
+pipe-item  | 
+flag-item  ! 
+repeat  r 
+edit-note  n N 
+view-note  > 
+raise-priority  + 
+lower-priority  - 
