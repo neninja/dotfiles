@@ -19,9 +19,9 @@ alias ....='cd ../../..'
 # configfiles
 alias cfn='nvim $DF/nvim/.nvimrc'
 alias cfnp='nvim $DF/nvim/.nvimrc.plugs'
-alias cfa='nvim $DF/bash/.aliases'
-alias cfe='nvim $DF/bash/.exports'
-alias cfe='nvim $DF/bash/.functions'
+alias cfa='nvim $DF/bash/aliases'
+alias cfe='nvim $DF/bash/exports'
+alias cff='nvim $DF/bash/functions'
 alias isi='nvim ~/dev/is/install.sh'
 alias cdfi='nvim $DF/install.sh'
 
@@ -37,9 +37,14 @@ alias l='ls -XF --color'
 # Scrot
 alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'
 
-# etc
-alias mci='sudo make clean install'
-alias op='xdg-open .'
+# programs
 alias n='nvim'
 alias e='evince'
 alias nn='nnn'
+alias f='feh'
+alias i='i3lock'
+
+# lazy
+alias op='xdg-open .'
+alias mci='sudo make clean install'
+alias snc='sudo nvim config.h'

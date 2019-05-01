@@ -11,25 +11,6 @@ function mk(){
     cd $1;
 }
 
-# make install não aceita link simbolico, portanto deve ser feita uma copia do arquivo config
-# USE: ars
-function ats(){
-    cp -f $IS/st/config.h $IS/suckless/st/config.h;
-    cd $IS/suckless/st;
-    sudo make install clean;
-    echo "st atualizado";
-
-    cp -f $IS/dmenu/config.h $IS/suckless/dmenu/config.h;
-    cd $IS/suckless/dmenu;
-    sudo make install clean;
-    echo "dmenu atualizado";
-
-    cp -f $IS/dwm/config.h $IS/suckless/dwm/config.h;
-    cd $IS/suckless/dwm;
-    sudo make install clean;
-    echo "dwm atualizado";
-}
-
 # base of repository
 # USE: gi
 function gi(){
@@ -80,4 +61,8 @@ function extract () {
     else
         echo "'$1' is not a valid file"
             fi
+}
+
+function rcp(){
+    curl -X POST -H "Content-Type: application/json" -d @$1.json $2
 }

@@ -255,19 +255,6 @@ noremap + <C-w>+
 noremap > <C-w>>
 noremap < <C-w><
 
-"-------------------------------------------------
-" DeathNotes
-"-------------------------------------------------
-" % newfile
-" R rename
-" D delete
-noremap <silent> <leader>dn :vsp ~/dev/dotfiles/nvim/notes/<CR>
-
-" Simbolos para as deathnotes
-" todo: identificar pwd e aplicar somente no diretorio os remaps
-inoremap *** <c-K>Sb<space>
-inoremap ___ <CR><CR><up><tab><tab><tab><tab><tab><tab><c-K>HH<c-K>HH<c-K>HH<down>
-
 "*********************************************************
 " Visual Settings
 "*********************************************************
@@ -309,9 +296,9 @@ augroup END
 " MARKDOWN
 "#########################################
 augroup markdown
-    " Compila, abre evince e deleta pdf
+    " Compila, abre pdfviewr e deleta pdf
     au FileType markdown nmap <leader>r <Esc>:w<CR>:!clear;pandoc % -o '%:r'.pdf<CR><CR>
-    au FileType markdown nmap <leader>e <Esc>:w<CR>:!clear;evince '%:r'.pdf &<CR><CR>
+    au FileType markdown nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER '%:r'.pdf &<CR><CR>
     au FileType markdown nmap <leader>d <Esc>:w<CR>:!clear;rm '%:r'.pdf &<CR><CR>
 augroup END
 
