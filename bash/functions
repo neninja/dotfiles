@@ -63,6 +63,17 @@ function extract () {
             fi
 }
 
+
+# REST CLIENTE COM CURL #
+
+# USE: rcp req localhost:5050/api/sample
+# req equivale a um arquivo existente req.json
 function rcp(){
     curl -X POST -H "Content-Type: application/json" -d @$1.json $2
+}
+
+# USE: rcg localhost:5050/api/sample
+# Arquivo de resposta disponivel em /tmp/resp.json
+function rcg(){
+    curl $1 > /tmp/resp.json && cat /tmp/resp.json
 }
