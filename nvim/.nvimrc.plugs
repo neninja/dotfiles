@@ -13,6 +13,7 @@ Plug 'majutsushi/tagbar'
 Plug 'lervag/vimtex'            " Compilador LaTeX
 Plug 'tpope/vim-fugitive'       " Comandos git no vim
 Plug 'junegunn/gv.vim'          " Commits in browser
+"Plug 'junegunn/vim-emoji'          " Commits in browser
 Plug 'airblade/vim-gitgutter'   " Marcações + - _ ~ de git
 Plug 'SirVer/ultisnips'         " Engine de snippets
 Plug 'w0rp/ale'                 " Lint geral do vim
@@ -136,7 +137,13 @@ let g:polyglot_disabled = ['go', 'latex']
 "#########################################
 " Fzf
 "#########################################
-nnoremap <C-p> :Files<CR>
+"nnoremap <C-p> :Files<CR>
+
+"#########################################
+" Emoji
+"#########################################
+"APRENDER MAIS SOBRE BUFFERS ANTES DE USAR EMOJIS
+"set completefunc=emoji#complete
 
 "#########################################
 " VimTex

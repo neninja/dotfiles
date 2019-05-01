@@ -367,4 +367,3 @@ fun! ToggleGerenciador()
     endif
 endfun
 nnoremap <leader><CR> :call ToggleGerenciador()<cr>
-
