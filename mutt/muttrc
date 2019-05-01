@@ -1,0 +1,43 @@
+set editor=nvim
+
+set from="felipe.dacs@gmail.com"
+set realname="Felipe Silva"
+
+set signature=~/dev/dotfiles/mutt/felipe-dacs/assinatura.sig
+
+# Credential
+set imap_user="felipe.dacs@gmail.com"
+set smtp_url="smtp://felipe.dacs@smtp.gmail.com:587/"
+
+# Secure
+set ssl_starttls=yes
+set ssl_force_tls=yes
+
+# Receive mailboxes
+set folder="imaps://imap.gmail.com:993"
+set spoolfile="+INBOX"
+
+# update a buffer in:
+set timeout=20
+
+# Colors
+color hdrdefault cyan default  
+color attachment yellow default  
+color header brightyellow default "From: "  
+color header brightyellow default "Subject: "  
+color header brightyellow default "Date: "  
+color quoted green default  
+color quoted1 cyan default  
+color quoted2 green default  
+color quoted3 cyan default  
+color error   red       default
+color message  white      default
+color indicator white      red
+color status  white      blue
+color tree   red       default
+color search  white      blue
+color markers  red       default
+color index   yellow default '~O'  
+color index   yellow default '~N'  
+color index   brightred    default '~F'
+color index   blue default  '~D'

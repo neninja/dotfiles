@@ -51,9 +51,15 @@ ln -v -s -f $(pwd)/x/.Xdefaults $HOME/.Xdefaults
 
 # calcurse
 mkdir -p ~/.calcurse
-ln -v -s -f $(pwd)/calcurse/conf $HOME/.calcurse/conf
-ln -v -s -f $(pwd)/calcurse/keys $HOME/.calcurse/keys
-ln -v -s -f $(pwd)/calcurse/todo $HOME/.calcurse/todo
+ln -s $HOME/dev/dotfiles/calcurse ~/.calcurse
+#ln -v -s -f $(pwd)/calcurse/conf $HOME/.calcurse/conf
+#ln -v -s -f $(pwd)/calcurse/keys $HOME/.calcurse/keys
+#ln -v -s -f $(pwd)/calcurse/todo $HOME/.calcurse/todo
+
+# neomutt
+# links simbolicos para diretórios devem possuir caminhos absolutos
+rm -r ~/.config/mutt
+ln -s $HOME/dev/dotfiles/mutt ~/.config/mutt
 
 # git
 ln -v -s -f $(pwd)/git/.gitconfig $HOME/.gitconfig
