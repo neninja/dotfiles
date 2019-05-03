@@ -49,15 +49,18 @@ ln -v -s -f $(pwd)/bash/.inputrc $HOME/.inputrc
 ln -v -s -f $(pwd)/x/.xinitrc $HOME/.xinitrc
 ln -v -s -f $(pwd)/x/.Xdefaults $HOME/.Xdefaults
 
+# feh
+ln -v -s -f $(pwd)/feh/.fehbg $HOME/.fehbg
+
 # calcurse
-mkdir -p ~/.calcurse
+rm -r ~/.calcurse
 ln -s $HOME/dev/dotfiles/calcurse ~/.calcurse
 #ln -v -s -f $(pwd)/calcurse/conf $HOME/.calcurse/conf
 #ln -v -s -f $(pwd)/calcurse/keys $HOME/.calcurse/keys
 #ln -v -s -f $(pwd)/calcurse/todo $HOME/.calcurse/todo
 
 # neomutt
-# links simbolicos para diretórios devem possuir caminhos absolutos
+# links simbolicos para diretórios devem possuir caminhos absolutos, sem pwd
 rm -r ~/.config/mutt
 ln -s $HOME/dev/dotfiles/mutt ~/.config/mutt
 
