@@ -7,26 +7,18 @@
 # ---------------------------------------------------------- #
 # Esse sript linka arquivos de configuração (dotfiles)
 # selecionados para linux
-#
-# Utilização:
-#   ./install.sh
-#
-# ---------------------------------------------------------- #
-# Testes:
-#
-# bash --version #versão do bash
-#   4.4.19
-#
-# Sistema operacional:
-#   Ubuntu Minimal 18.04 em:
 # ---------------------------------------------------------- #
 # Agradecimentos:
 #
 # Matheus Muller:
 #   https://www.udemy.com/shell-script-do-basico-ao-profissional/
 #
-# gbencke durante o meetup de python:
+# gbencke durante o meetup de python em 2018 onde explicou as
+# vantagens da portabilidade dos dotfiles:
 #   https://github.com/gbencke
+#
+# Luke por disponibilizar material de alta qualidade sobre linux:
+#   http://lukesmith.xyz
 #
 # A todos que disponibilizaram seus dotfiles online:
 #   Luke Smith: https://github.com/LukeSmithxyz/voidrice
