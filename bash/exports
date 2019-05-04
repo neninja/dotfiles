@@ -9,3 +9,7 @@ export EDITOR=$VISUAL
 export PDFVIEWER=zathura
 export BROWSER=qutebrowser
 export IMGVIEWER=feh
+
+# nnn
+export NNN_BMS='cdf:~/dev/dotfiles;is:~/dev/is;iss:~/dev/is/tmp/suckless;cphp:~/dev/php;cpy:~/dev/python;cgh:~/go/src/github.com/nenitf;cgl:~/go/src/gitlab.com/nenitf;ctex:~/dev/tex;ccv:~/dev/tex/cv;'
+export NNN_NOTE='~/.mynotes'

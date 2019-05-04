@@ -39,6 +39,13 @@
 # ---------------------------------------------------------- #
 
 # -------------------------- MAIN -------------------------- #
+mkdir -p ~/dev/php
+mkdir -p ~/dev/front
+mkdir -p ~/go/src/github.com/nenitf
+mkdir -p ~/go/src/gitlab.com/nenitf
+mkdir -p ~/dev/tex
+mkdir -p ~/dev/python
+
 mkdir -p $HOME/.config
 
 # bash
