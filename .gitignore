@@ -20,8 +20,8 @@ README.pdf
 # python
 __pycache__/
 
-# suckless clonados everytime
-suckless/
+# calcurse pid
+calcurse/.calcurse.pid
 
 # npm
 .DS_Store
