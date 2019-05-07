@@ -60,8 +60,8 @@ ln -s $HOME/dev/dotfiles/calcurse ~/.calcurse
 
 # neomutt
 # links simbolicos para diretórios devem possuir caminhos absolutos, sem pwd
-rm -r ~/.config/mutt
-ln -s $HOME/dev/dotfiles/mutt ~/.config/mutt
+rm -r ~/.config/neomutt
+ln -s $HOME/dev/dotfiles/neomutt ~/.config/neomutt
 
 # git
 ln -v -s -f $(pwd)/git/.gitconfig $HOME/.gitconfig
