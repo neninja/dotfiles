@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
 volume(){
-    volume=34
-    echo " $volume%"
+    volume=$(amixer -D pulse get Master | grep -o -m 1 -E [0-9]+%)
+    echo " $volume"
 }
 
 cpu(){
-
     cpu_usage=$1
     cpu_output="CPU "
     # 1 21 41 61 81
@@ -40,11 +39,8 @@ hd(){
 }
 
 online(){
-    downl=123.32
-
-    upl=432.32
-
-    echo " $downl  $upl"
+    wget --spider -q google.com
+    if [ "$?" != 0 ]; then echo "OFFLINE"; else echo "ONLINE"; fi
 }
 
 battery(){

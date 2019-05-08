@@ -21,9 +21,9 @@ alias ....='cd ../../..'
 # configfiles
 alias cfn='nvim $DF/nvim/.nvimrc'
 alias cfnp='nvim $DF/nvim/.nvimrc.plugs'
-alias cfa='nvim $DF/bash/aliases'
-alias cfe='nvim $DF/bash/exports'
-alias cff='nvim $DF/bash/functions'
+alias cfa='nvim $DF/bash/aliases.sh'
+alias cfe='nvim $DF/bash/exports.sh'
+alias cff='nvim $DF/bash/functions.sh'
 alias isi='nvim $IS/install.sh'
 alias cdfi='nvim $DF/install.sh'
 
