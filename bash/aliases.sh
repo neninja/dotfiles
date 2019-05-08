@@ -1,7 +1,7 @@
 # Aliases
 # =====================
 # CD
-alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard"'
+alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard\n-> to clean: rm -rf * .*"'
 alias cphp='cd ~/dev/php'
 alias cpy='cd ~/dev/python'
 alias cfr='cd ~/dev/front/'

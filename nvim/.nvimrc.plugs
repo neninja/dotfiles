@@ -50,6 +50,7 @@ Plug 'sheerun/vim-polyglot'
 " but not working for some reason with '/dev/tty' ¯\_(ツ)_/¯
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 "*********************************************************
@@ -287,3 +288,8 @@ set statusline+=\ %{FugitiveStatusline()}\ %*	" Branch
 set statusline+=\ %r\%m\%f\ %* 	                " Nome readonly, modificado e nome abreviado
 set statusline+=%=						        " Espaço
 set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
+
+"#########################################
+" CtrlP
+"#########################################
+nnoremap <C-Space> :CtrlPBuffer<CR>

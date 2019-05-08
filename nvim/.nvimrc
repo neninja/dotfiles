@@ -199,7 +199,6 @@ noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
 
-nnoremap <c-n> :tabe 
 
 " Acabar com o ctrl z
 nnoremap <C-Z> u
@@ -221,14 +220,14 @@ vnoremap <silent> { c{<c-r>"}
 vnoremap <silent> [ c[<c-r>"]
 
 " Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
+"nnoremap <Tab> gt
+"nnoremap <S-Tab> gT
 
 " Clean search (highlight)
 nnoremap <leader><space> :noh<cr>
 
 " Indent all file and go back
-nnoremap <C-A> i<++><esc>gg=G/<++>/<CR>v/><CR>dzz==
+nnoremap <C-A> i<++><esc>gg=G/<++>/<CR>v/><CR>d==
 
 " Echo local
 noremap <Leader>. :pwd<CR>
@@ -345,7 +344,27 @@ augroup python
     au FileType php nmap ;; :s/\/\/\s/<CR>:noh<CR>
 augroup END
 "*********************************************************
-" File browsing
+" Buffers
+"*********************************************************
+" Use buffers instead tabs
+"   the same file dont open twice
+"   more velocity
+" View and select buffers
+nnoremap <Tab> :ls <CR>:b<Space>
+
+" Open new file in buffer
+nnoremap <c-n> :e<Space>
+
+nnoremap <silent> <leader>dd :bd<cr>
+nnoremap <silent> <leader>df :bd!<cr>
+
+nnoremap <silent> [b :bp<CR>
+nnoremap <silent> ]b :bn<CR>
+nnoremap <silent> [B :bp<CR>
+nnoremap <silent> ]B :bn<CR>
+
+" Leave a buffer even without save
+set hidden
 "*********************************************************
 " :edit a folder to open a file browser
 " <CR>/v/t to open in an h-split/v-split/tab
