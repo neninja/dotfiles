@@ -121,12 +121,13 @@ ps1_simple(){
     fi;
 
     PS1+="$BG_DEFAULT$FG_YELLOW[\W]"; # working directory, pwd command show full path
-    PS1+="$BG_RED$FG_WHITE$(prompt_git )"; # Git repository details
 
     if [ ! -w "$PWD" ]; then
         # Current directory is not writable
-        PS1+="$BG_YELLOW_LIGHT$FG_GRAY_DARK  "
+        PS1+="$BG_DEFAULT$FG_GRAY_DARK "
     fi
+
+    PS1+="$BG_RED$FG_WHITE$(prompt_git )$BG_DEFAULT"; # Git repository details
 
     PS1+="$BG_DEFAULT$FG_WHITE \$ $BFG_RESET_ALL";
     PS1+="$BFG_RESET_ALL"; # reset bg and fg colors
@@ -137,6 +138,7 @@ ps1_simple(){
     export PS2;
 }
 
+# WIP
 # Heavily inspired by @abhijitvalluri simple power line:
 #   https://github.com/abhijitvalluri/bash-powerline-shell
 ps1_simple_powerline(){
@@ -193,11 +195,11 @@ ps1_simple_powerline(){
         PS1+="$BG_BLUE$FG_BLACK"
     fi
     if [ "$CURRENT_DIR_PWD" = "" ]; then
-    #PS1+="$BG_BLUE$FG_GRAY_LIGHT $CURRENT_DIR_PWD "
-    PS1+="$BG_BLUE$FG_GRAY_LIGHT \W "
+        #PS1+="$BG_BLUE$FG_GRAY_LIGHT $CURRENT_DIR_PWD "
+        PS1+="$BG_BLUE$FG_WHITE \W "
     else
-    PS1+="$BG_BLUE$FG_GRAY_LIGHT $CURRENT_DIR_PWD "
-    #PS1+="$BG_BLUE$FG_GRAY_LIGHT \W "
+        PS1+="$BG_BLUE$FG_WHITE $CURRENT_DIR_PWD "
+        #PS1+="$BG_BLUE$FG_GRAY_LIGHT \W "
     fi
 
     PS1+="$BG_RED$FG_WHITE\$(prompt_git )"; # Git repository details
@@ -207,16 +209,16 @@ ps1_simple_powerline(){
         PS1+="$BG_YELLOW$FG_BLACK  "
     fi
 
-    PS1+="$BG_GRAY_DARK$FG_GRAY_LIGHT \$ "
+    PS1+="$BG_GRAY_DARK$FG_WHITE \$ "
     PS1+="$BFG_RESET_ALL$FG_GRAY_DARK"
     PS1+="$BFG_RESET_ALL "
     export PS1;
 
-    PS2+="$BG_GRAY_DARK$FG_GRAY_LIGHT + "
+    PS2+="$BG_GRAY_DARK$FG_WHITE + "
     PS2+="$BFG_RESET_ALL$FG_GRAY_DARK"
     PS2+="$BFG_RESET_ALL "
     export PS2;
 }
 
-#PROMPT_COMMAND="ps1_simple; $PROMPT_COMMAND"
-PROMPT_COMMAND="ps1_simple_powerline; $PROMPT_COMMAND"
+PROMPT_COMMAND="ps1_simple; $PROMPT_COMMAND"
+#PROMPT_COMMAND="ps1_simple_powerline; $PROMPT_COMMAND"
