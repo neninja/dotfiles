@@ -31,6 +31,7 @@
 # ---------------------------------------------------------- #
 
 # -------------------------- MAIN -------------------------- #
+mkdir -p ~/dev/desh
 mkdir -p ~/dev/php
 mkdir -p ~/dev/front
 mkdir -p ~/go/src/github.com/nenitf
