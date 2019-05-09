@@ -42,22 +42,24 @@ mkdir -p ~/dev/python
 mkdir -p $HOME/.config
 
 # bash
-ln -v -s -f $(pwd)/bash/.bashrc $HOME/.bashrc
-ln -v -s -f $(pwd)/bash/.inputrc $HOME/.inputrc
+ln -vsf $(pwd)/bash/.bashrc $HOME/.bashrc
+ln -vsf $(pwd)/bash/.inputrc $HOME/.inputrc
 
 # x
-ln -v -s -f $(pwd)/x/.xinitrc $HOME/.xinitrc
-ln -v -s -f $(pwd)/x/.Xdefaults $HOME/.Xdefaults
+ln -vsf $(pwd)/x/.xinitrc $HOME/.xinitrc
+ln -vsf $(pwd)/x/.Xdefaults $HOME/.Xdefaults
 
 # feh
-ln -v -s -f $(pwd)/feh/.fehbg $HOME/.fehbg
+mkdir -p ~/.config/feh
+ln -vsf $(pwd)/feh/.fehbg $HOME/.fehbg
+ln -vsf $(pwd)/feh/.fehbg $HOME/.config/feh/keys
 
 # calcurse
 rm -r ~/.calcurse
 ln -s $HOME/dev/dotfiles/calcurse ~/.calcurse
-#ln -v -s -f $(pwd)/calcurse/conf $HOME/.calcurse/conf
-#ln -v -s -f $(pwd)/calcurse/keys $HOME/.calcurse/keys
-#ln -v -s -f $(pwd)/calcurse/todo $HOME/.calcurse/todo
+#ln -vsf $(pwd)/calcurse/conf $HOME/.calcurse/conf
+#ln -vsf $(pwd)/calcurse/keys $HOME/.calcurse/keys
+#ln -vsf $(pwd)/calcurse/todo $HOME/.calcurse/todo
 
 # neomutt
 # links simbolicos para diretórios devem possuir caminhos absolutos, sem pwd
@@ -65,7 +67,7 @@ rm -r ~/.config/neomutt
 ln -s $HOME/dev/dotfiles/neomutt ~/.config/neomutt
 
 # git
-ln -v -s -f $(pwd)/git/.gitconfig $HOME/.gitconfig
+ln -vsf $(pwd)/git/.gitconfig $HOME/.gitconfig
 
 # nvim
 echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.config/nvim/init.vim
@@ -73,5 +75,5 @@ echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.vimrc
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser/bookmarks
-ln -v -s -f $(pwd)/qutebrowser/urls $HOME/.config/qutebrowser/bookmarks/urls
-ln -v -s -f $(pwd)/qutebrowser/config.py $HOME/.config/qutebrowser/config.py
+ln -vsf $(pwd)/qutebrowser/urls $HOME/.config/qutebrowser/bookmarks/urls
+ln -vsf $(pwd)/qutebrowser/config.py $HOME/.config/qutebrowser/config.py
