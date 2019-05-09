@@ -1,2 +1,2 @@
 #!/bin/sh
-'feh' '--bg-fill' '/home/neni/dev/is/images/etg.jpg' 
+'feh' '--bg-fill' 'messy-room.jpg' 

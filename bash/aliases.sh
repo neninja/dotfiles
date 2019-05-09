@@ -40,11 +40,11 @@ alias l='ls -XF --color'
 alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'
 
 # programs
-alias f='feh'
+alias f='feh -.'
+alias ff='fff'
 alias i='i3lock'
 alias m='neomutt'
 alias n='nvim'
-alias nn='nnn'
 alias p='pandoc'
 alias z='zathura'
 

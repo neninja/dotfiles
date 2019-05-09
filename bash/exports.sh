@@ -10,6 +10,15 @@ export PDFVIEWER=zathura
 export BROWSER=qutebrowser
 export IMGVIEWER=feh
 
-# nnn
-export NNN_BMS='cdf:~/dev/dotfiles;is:~/dev/is;iss:~/dev/is/tmp/suckless;cphp:~/dev/php;cpy:~/dev/python;cgh:~/go/src/github.com/nenitf;cgl:~/go/src/gitlab.com/nenitf;ctex:~/dev/tex;ccv:~/dev/tex/cv;'
-export NNN_NOTE='~/.mynotes'
+
+# fff
+# Favourites (Bookmarks) (keys 1-9) (dir or file)
+export FFF_FAV1=~/dev/
+export FFF_FAV2=
+export FFF_FAV3=
+export FFF_FAV4=
+export FFF_FAV5=
+export FFF_FAV6=
+export FFF_FAV7=
+export FFF_FAV8=
+export FFF_FAV9=
