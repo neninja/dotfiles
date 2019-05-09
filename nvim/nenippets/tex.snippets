@@ -55,23 +55,17 @@ snippet b
 {##}
 endsnippet
 
-# figuca com pacote graphicx
+# figura com pacote graphicx
 snippet fi
-\begin{figure}[!htb]
-\center{
-	\includegraphics[width=2cm]
-	{${0:${VISUAL: img}}}
-}
-\end{figure}
-{##}
+\includegraphics[width=.2\textwidth,height=.2\textheight]{${0:${VISUAL}}}
 endsnippet
 
 # begin/end
 snippet @
-@$1{$2,
+@$1{${2:atalho},
 	author		= {$3},
 	title		= {$4},
-	date		= {${0:${VISUAL}}},
+	date		= {${0:ano${VISUAL}}},
 }
 {##}
 endsnippet
@@ -81,96 +75,21 @@ snippet c
 {##}
 endsnippet
 
-snippet db
-\documentclass[17pt]{beamer}
-\usepackage[utf8]{inputenc}
-\usepackage[portuguese]{babel}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage[backend=biber]{biblatex} % bibliotegrafia
-\usepackage{csquotes}
-\usepackage{fontawesome} % https://ctan.org/pkg/fontawesome
-\usepackage{filecontents} % inserir em outros arquivos
+snippet slides
+\documentclass{slides}
 
-\newcommand{\link}[2]{\textcolor{violet}{\href{#1}{#2}}} % link colorido
-\setbeamertemplate{headline}{
-	\vspace{1ex}\hfill\textit{\insertsection}\hspace*{1ex}\newline
-	\vspace{1ex}\hfill\textit{\insertsubsection}\hspace*{1ex}
-}
-\setbeamertemplate{navigation symbols}{} % remove navigation symbols
-\setbeamertemplate{footline}{
-		\hfill\hyperlink{indice}{\insertframenumber/\inserttotalframenumber}
-}
-\setbeamertemplate{bibliography item}{\insertbiblabel}
-\AtBeginDocument{
-	{
-	\setbeamertemplate{headline}{}\setbeamertemplate{footline}{}
-		\frame{
-			\maketitle
-			\small
-			\link{http://www.github.com/ceife}{\faGithub}\ 
-			\link{http://www.gitlab.com/ceife}{\faGitlab}\
-			\link{http://www.linkedin.com/in/ceife}{\faLinkedin}\
-			\link{http://www.slideshare.net/ceife}{\faSlideshare}\
-			://ceife
-			\hfill 
-			\link{http://www.ceife.run}{ceife.run}
-		}
-	}
-}
-\AtBeginSection[]{
-	{
-		\setbeamertemplate{headline}{} % retira section/subsection
-		\frame{{\hfill\faMapO}\tableofcontents[sectionstyle=show/hide,subsectionstyle=shaded/shaded/hide]}
-	}
-}
-\AtBeginSubsection[]{
-	{
-		\setbeamertemplate{headline}{} % retira section/subsection
-		\frame{{\hfill\faMapMarker}\tableofcontents[sectionstyle=shaded/hide,subsectionstyle=show/shaded/hide]}
-	}
-	
-	ndDocument{
-	{
-		\setbeamertemplate{headline}{}\setbeamertemplate{footline}{} % retira section/subsection
-		\frame{{That's all}Muito Obrigado!}
-		\frame[t]{\nocite{*}\printbibliography}
-	}
-}
+\begin{filecontents}{ref.bib}
 
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-##%%%%%%%%%%%%%%%%%%%%%% Corpo %%%%%%%%%%%%%%%%%%%%%%%%
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{filecontents}{abc.bib}
-% página 8 da documentação biblatex
-% article: author, title, journaltitle, year/date
-% online: author/editor, title, year/date, url
-% misc: author/editor, title, year/date
-% iguais ao misc: image, music, movie, video, software
 \end{filecontents}
-\addbibresource{abc.bib}
+\addbibresource{ref.bib}
 
 \title{$1}
 \subtitle{$2}
-\author{${3:Felipe Silva}}
-\date{${4:\today}}
+\author{Felipe Silva}
+\date{\today}
+%\titlegraphic{\includegraphics[width=.2\textwidth,height=.2\textheight]{logo.png}}
 
 \begin{document}
-
-\frame[allowframebreaks]{
-	{Overview}
-	\label{indice}
-	% \tableofcontents[sections={1-5}]
-	% \framebreak
-	% \tableofcontents[sections={6-10}]
-	\tableofcontents[sections={*}]
-}
-
-\section{$5}
-\frame{
-	{$6}
-	${0:${VISUAL}}
-}
-{##}
+${0:sections/subsctions/frames${VISUAL}}
 \end{document}
 endsnippet
