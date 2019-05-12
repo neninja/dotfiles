@@ -1,0 +1,45 @@
+# Basic
+set from="felipe.dacs@gmail.com"
+set realname="Felipe Silva"
+set signature=~/.config/neomutt/gmail.felipe.dacs/assinatura.sig
+
+# Credential
+set imap_user="felipe.dacs@gmail.com"
+set smtp_url="smtp://felipe.dacs@smtp.gmail.com:587/"
+source ~/.pass1
+
+set folder = "imaps://imap.gmail.com:993"
+set header_cache = ~/Mail/neomutt/gmail.felipe.dacs/cache/headers
+set message_cachedir = ~/Mail/neomutt/gmail.felipe.dacs/cache/bodies
+set certificate_file = ~/Mail/neomutt/gmail.felipe.dacs/certificates  
+
+# Sync Gmail, cuidar o nome das pastas!
+set spoolfile   = "+INBOX"
+set postponed   = "imaps://imap.gmail.com:993/[Gmail]/Rascunhos"
+set record      = "" # Disable saving outgoing mail since Gmail saves them by default.
+#set trash       = "" # Disable saving trash mail since Gmail saves them by default.
+
+
+# Changing the account unmailboxes * is necessary for clean sidebar
+# so its important especify which are labels you want
+
+unmailboxes *
+
+set imap_check_subscribed=no # accept labels of gmail
+#set sidebar_delim_chars='.' # See absolute path, its necessary whe you dont know in mailbox
+set my_path_labels = "imaps://imap.gmail.com:993"
+mailboxes   $my_path_labels/INBOX                       \
+            $my_path_labels/[Gmail]/E-mails\ enviados   \
+            $my_path_labels/[Gmail]/Importante          \
+            $my_path_labels/[Gmail]/Lixeira             \
+            $my_path_labels/[Gmail]/Rascunhos           \
+            $my_path_labels/[Gmail]/Spam                \
+            $my_path_labels/[Gmail]/Todos\ os\ e-mails  \
+            $my_path_labels/saves                       \
+            $my_path_labels/saves/accounts              \
+            $my_path_labels/saves/bills                 \
+            $my_path_labels/jobs/vagas-interessantes    \
+            $my_path_labels/newsletter                  \
+            $my_path_labels/newsletter/vagas            \
+            $my_path_labels/academic/to-study           \
+

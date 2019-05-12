@@ -1,43 +1,63 @@
-set editor=nvim
+# Thanks for:
+#   Guide: https://neomutt.org/guide/reference.html
+#   AlexTheMad: https://ubuntuforums.org/archive/index.php/t-1197245.html
+#   https://raw.githubusercontent.com/neomutt/samples/master/config/neomuttrc-example
+#   Jeffrey Tong: https://medium.com/@itsjefftong/mutt-gmail-59447a4bffef
+#   Miguel Mota: https://gist.github.com/miguelmota/9456162
 
-set from="felipe.dacs@gmail.com"
-set realname="Felipe Silva"
+# sources
+source ~/.config/neomutt/aliases
+source ~/.config/neomutt/theme
 
-set signature=~/dev/dotfiles/mutt/felipe-dacs/assinatura.sig
+# Folder hooks
+folder-hook 'account.gmail.dev.felipe.dacs'     'source ~/.config/neomutt/account.gmail.dev.felipe.dacs'
+folder-hook 'account.gmail.felipe.dacs'         'source ~/.config/neomutt/account.gmail.felipe.dacs'
 
-# Credential
-set imap_user="felipe.dacs@gmail.com"
-set smtp_url="smtp://felipe.dacs@smtp.gmail.com:587/"
+# Default account
+source ~/.config/neomutt/account.gmail.dev.felipe.dacs         
+
+# Macros for switching accounts
+macro index b '<sync-mailbox><enter-command>source ~/.config/neomutt/account.gmail.dev.felipe.dacs<enter><change-folder>!<enter>'
+macro index v '<sync-mailbox><enter-command>source ~/.config/neomutt/account.gmail.felipe.dacs<enter><change-folder>!<enter>'
 
 # Secure
 set ssl_starttls=yes
 set ssl_force_tls=yes
 
-# Receive mailboxes
-set folder="imaps://imap.gmail.com:993"
-set spoolfile="+INBOX"
-
 # update a buffer in:
-set timeout=20
+set mail_check=90
+set timeout=15
 
-# Colors
-color hdrdefault cyan default  
-color attachment yellow default  
-color header brightyellow default "From: "  
-color header brightyellow default "Subject: "  
-color header brightyellow default "Date: "  
-color quoted green default  
-color quoted1 cyan default  
-color quoted2 green default  
-color quoted3 cyan default  
-color error   red       default
-color message  white      default
-color indicator white      red
-color status  white      blue
-color tree   red       default
-color search  white      blue
-color markers  red       default
-color index   yellow default '~O'  
-color index   yellow default '~N'  
-color index   brightred    default '~F'
-color index   blue default  '~D'
+# Sidebar
+set sidebar_visible = yes
+set sidebar_width = 60
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+set sidebar_sort_method = 'path'
+#set imap_check_subscribed # labels gmail
+#set sidebar_delim_chars='.' # See absolute path, its necessary when you dont know name to put in mailbox inside account.etc file
+bind index \Cj sidebar-next
+bind index \Ck sidebar-prev
+bind index \Cl sidebar-open
+
+# Message Pager
+unhdr_order * # Zera ordem de fields para serem setados logo abaixo
+hdr_order Date: From: To: Cc: Reply-To: Subject: # Ordem de fields do email
+set include # quote msg when replying
+set reply_to # use adress from reply-to header when replying
+set fast_reply # do not ask for to, subject,.. when replying
+set auto_tag # if something is tagged run commands on all tagged msgs
+set delete_untag # untag msgs when marking them for deletion
+set mark_old = no # don't differentiate between new and old
+set forward_format="Fwd: %s"
+set editor = "nvim"
+set charset = "utf-8"
+auto_view text/html
+
+# Index
+set index_format="%4C [%Z] %g %{%d/%b/%y %H:%M} %-15.15L (%?l?%4l&%4c?) %s"
+set sort=reverse-threads
+bind index n compose-to-sender
+
+# Compose
+set abort_nosubject=ask-no
