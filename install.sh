@@ -54,17 +54,25 @@ mkdir -p ~/.config/feh
 ln -vsf $(pwd)/feh/.fehbg $HOME/.fehbg
 ln -vsf $(pwd)/feh/.fehbg $HOME/.config/feh/keys
 
-# calcurse
-rm -r ~/.calcurse
-ln -s $HOME/dev/dotfiles/calcurse ~/.calcurse
-#ln -vsf $(pwd)/calcurse/conf $HOME/.calcurse/conf
-#ln -vsf $(pwd)/calcurse/keys $HOME/.calcurse/keys
-#ln -vsf $(pwd)/calcurse/todo $HOME/.calcurse/todo
-
 # neomutt
 # links simbolicos para diretórios devem possuir caminhos absolutos, sem pwd
-rm -r ~/.config/neomutt
-ln -s $HOME/dev/dotfiles/neomutt ~/.config/neomutt
+# Create a folder on directory .config, so dont type a name of folder you want
+ln -vsf $HOME/dev/dotfiles/neomutt ~/.config
+
+# calcurse
+# isn't possible to rename a folder with ln: so it's necessary remove if exist so create
+rm -rf ~/.calcurse
+ln -vsf $HOME/dev/dotfiles/calcurse ~/.calcurse
+
+# newsboat
+rm -rf ~/.newsboat
+ln -vsf $HOME/dev/dotfiles/newsboat ~/.newsboat
+
+# zathura
+ln -vsf $HOME/dev/dotfiles/zathura ~/.config
+
+# mpv
+ln -vsf $HOME/dev/dotfiles/mpv ~/.config
 
 # git
 ln -vsf $(pwd)/git/.gitconfig $HOME/.gitconfig

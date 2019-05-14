@@ -10,6 +10,9 @@ export PDFVIEWER=zathura
 export BROWSER=qutebrowser
 export IMGVIEWER=feh
 
+# Rádios
+export RADIO_CORE="http://194.58.97.117:8000/coreradio"
+
 
 # fff
 # Favourites (Bookmarks) (keys 1-9) (dir or file)

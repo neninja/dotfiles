@@ -23,6 +23,12 @@ __pycache__/
 # calcurse pid
 calcurse/.calcurse.pid
 
+# newsboat
+cache.db
+cache.db.lock
+history.cmdline
+history.search
+
 # npm
 .DS_Store
 node_modules
