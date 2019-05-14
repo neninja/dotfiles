@@ -9,16 +9,16 @@
 source ~/.config/neomutt/aliases
 source ~/.config/neomutt/theme
 
-# Folder hooks
-folder-hook 'account.gmail.dev.felipe.dacs'     'source ~/.config/neomutt/account.gmail.dev.felipe.dacs'
-folder-hook 'account.gmail.felipe.dacs'         'source ~/.config/neomutt/account.gmail.felipe.dacs'
+#folder-hook 'account.gmail.dev.felipe.dacs'     'source ~/.config/neomutt/account.gmail.dev.felipe.dacs'
+#folder-hook 'account.gmail.felipe.dacs'         'source ~/.config/neomutt/account.gmail.felipe.dacs'
 
 # Default account
 source ~/.config/neomutt/account.gmail.dev.felipe.dacs         
 
 # Macros for switching accounts
-macro index b '<sync-mailbox><enter-command>source ~/.config/neomutt/account.gmail.dev.felipe.dacs<enter><change-folder>!<enter>'
-macro index v '<sync-mailbox><enter-command>source ~/.config/neomutt/account.gmail.felipe.dacs<enter><change-folder>!<enter>'
+bind index a noop # remove existing bind for a
+macro index a1 '<sync-mailbox><enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/account.gmail.felipe.dacs<enter><change-folder>!<enter>'
+macro index a2 '<sync-mailbox><enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/account.gmail.dev.felipe.dacs<enter><change-folder>!<enter>'
 
 # Secure
 set ssl_starttls=yes
@@ -30,7 +30,7 @@ set timeout=15
 
 # Sidebar
 set sidebar_visible = yes
-set sidebar_width = 60
+set sidebar_width = 35
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 set mail_check_stats
 set sidebar_sort_method = 'path'
@@ -55,7 +55,7 @@ set charset = "utf-8"
 auto_view text/html
 
 # Index
-set index_format="%4C [%Z] %g %{%d/%b/%y %H:%M} %-15.15L (%?l?%4l&%4c?) %s"
+set index_format="%4C [%Z] %{%d/%b/%y %H:%M} %-15.15L %s"
 set sort=reverse-threads
 bind index n compose-to-sender
 
