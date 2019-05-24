@@ -52,17 +52,12 @@ ln -vsf $(pwd)/x/.Xdefaults $HOME/.Xdefaults
 # feh
 mkdir -p ~/.config/feh
 ln -vsf $(pwd)/feh/.fehbg $HOME/.fehbg
-ln -vsf $(pwd)/feh/.fehbg $HOME/.config/feh/keys
+ln -vsf $(pwd)/feh/keys $HOME/.config/feh/keys
 
 # neomutt
 # links simbolicos para diretórios devem possuir caminhos absolutos, sem pwd
 # Create a folder on directory .config, so dont type a name of folder you want
 ln -vsf $HOME/dev/dotfiles/neomutt ~/.config
-
-# calcurse
-# isn't possible to rename a folder with ln: so it's necessary remove if exist so create
-rm -rf ~/.calcurse
-ln -vsf $HOME/dev/dotfiles/calcurse ~/.calcurse
 
 # newsboat
 rm -rf ~/.newsboat

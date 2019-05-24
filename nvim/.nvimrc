@@ -227,7 +227,7 @@ vnoremap <silent> [ c[<c-r>"]
 nnoremap <leader><space> :noh<cr>
 
 " Indent all file and go back
-nnoremap <C-A> i<++><esc>gg=G/<++>/<CR>v/><CR>d==
+nnoremap <C-S> i<++><esc>gg=G/<++>/<CR>v/><CR>d==
 
 " Echo local
 noremap <Leader>. :pwd<CR>

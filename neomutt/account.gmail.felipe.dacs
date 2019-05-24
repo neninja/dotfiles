@@ -6,8 +6,8 @@ set signature=~/.config/neomutt/gmail.felipe.dacs/assinatura.sig
 # Credential
 set imap_user="felipe.dacs@gmail.com"
 set smtp_url="smtp://felipe.dacs@smtp.gmail.com:587/"
-set imap_pass="`cat ~/.pass`"
-set smtp_pass="`cat ~/.pass`"
+set imap_pass="`cat /tmp/nmp1`"
+set smtp_pass="`cat ~/.nmp1`"
 
 set folder = "imaps://imap.gmail.com:993"
 set header_cache = ~/Mail/neomutt/gmail.felipe.dacs/cache/headers

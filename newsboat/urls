@@ -24,14 +24,22 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC_BzFbxG2za3bp5NRRRXJSw you
 https://www.youtube.com/feeds/videos.xml?channel_id=UCDrekHmOnkptxq3gUU0IyfA youtube dev ingles "~Devon Crawford"
 
 # podcast
-# laracast, podtag, schoolofnet, devnaestrada, lambda3, PodProgramar
+# schoolofnet feed?
+https://podtag.com.br/feed.xml podcast dev "~PodTag"
+https://devnaestrada.com.br/feed.xml podcast dev "~Dev na estrada"
+http://feeds.soundcloud.com/users/soundcloud:users:222925285/sounds.rss podcast dev "~Lambda3"
+#mpv não toca videos que estejam em playlists soundcloud!
+#   https://www.lambda3.com.br/podcast-tecnico/ podcast dev "~Lambda3 Dev"
+#   https://www.lambda3.com.br/podcast-nao-tecnico/ podcast geral "~Lambda3 Não-Dev"
+https://mundopodcast.com.br/podprogramar/feed/ podcast dev "~PodProgramar"
 https://hipsters.tech/feed/podcast/ podcast dev "~Hipsters"
 http://feeds.feedburner.com/CastalioPodcastMP3 podcast dev "~Castalio"
 http://feeds.feedburner.com/hack-n-cast podcast dev "Hack'n'Cast"
-https://www.sudocast.com.br/episode/index.xml podcast dev "~SudoCast"
 http://feeds.feedburner.com/PizzaDeDados podcast dev "~Pizza de Dados"
 https://www.codingblocks.net/podcast-feed.xml podcast dev ingles "~Coding Blocks"
-https://www.spreaker.com/show/2885428/episodes/feed podcast empreendedorismo "~Resumo Cast"
 https://zofepod.libsyn.com/rss podcast dev "~Zofe"
 https://changelog.com/gotime/feed podcast dev ingles "~Go Time"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCQuf1U2keL0Gh1qxm_JHPmw podcast empreendedorismo "~Aparelho Elétrico"
+http://feeds.soundcloud.com/users/soundcloud:users:122572437/sounds.rss podcast empreendedorismo "~Aparelho Elétrico"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-_86oFtIIsl7sfcJSxmpYQ/videos podcast empreendedorismo "~Resumo Cast"
+#mpv não entende o site spreaker
+#https://www.spreaker.com/show/2885428/episodes/feed podcast empreendedorismo "~Resumo Cast"

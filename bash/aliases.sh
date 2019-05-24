@@ -8,12 +8,12 @@ alias cfr='cd ~/dev/front/'
 alias ctex='cd ~/dev/tex'
 alias cgh='cd ~/go/src/github.com/nenitf'
 alias cgl='cd ~/go/src/gitlab.com/nenitf'
-alias cdf='cd $DF ; l'
 alias cdfs='cd $DF/scripts ; l'
 alias iss='cd ~/dev/is/tmp/suckless'
 alias is='cd $IS'
 alias ccv='cd ~/dev/tex/cv'
 alias cv='nvim ~/dev/tex/cv/felipe_silva.tex'
+alias .b='. ~/.bashrc'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -36,15 +36,16 @@ alias gop='xdg-open $(git config --get remote.origin.url)'
 # LS
 alias ll='ls -alF --color'
 alias l='ls -XF --color'
+alias lm='ls -lS --block-size=M'
 
 # Scrot
 alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'
 
 # programs
-alias f='feh -.'
 alias ff='fff'
 alias i='i3lock'
 alias n='nvim'
+alias nm='neomutt'
 alias p='pandoc'
 alias z='zathura'
 

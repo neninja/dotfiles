@@ -1,5 +1,17 @@
 # Functions
 # =====================
+# USE: f
+# USE: f image.jpg
+f(){
+    feh -. $1 &
+}
+
+# USE: cdf
+# USE: cdf feh
+cdf(){
+    cd ~/dev/dotfiles/$1
+}
+
 # USE: phps 8080
 phps(){
     php -S localhost:$1
@@ -108,4 +120,10 @@ rcp(){
 # Arquivo de resposta disponivel em /tmp/resp.json
 rcg(){
     curl $1 > /tmp/resp.json && cat /tmp/resp.json
+}
+
+# USE: fmtpendrive sdb1
+fmtpendrive(){
+    # identificar pendrive: sudo fdisk -l
+    sudo mkfs.vfat -I /dev/$1
 }

@@ -10,3 +10,6 @@ done;
 unset file;
 
 shopt -s autocd # Mudar diretório sem cd
+
+# USE: nn
+source ~/dev/dotfiles/scripts/ninjanotes.sh

@@ -22,6 +22,11 @@ __pycache__/
 
 # calcurse pid
 calcurse/.calcurse.pid
+calcurse/*.sav
+
+# nn
+nn/apts/
+nn/todo/
 
 # newsboat
 cache.db

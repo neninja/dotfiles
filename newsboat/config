@@ -3,6 +3,9 @@
 
 feedlist-format "%2i %n |%7T| %t %> %u"
 
+datetime-format "%D"
+articlelist-format "%2i %f |%D| %t %> %L"
+
 #show-read-feeds no
 auto-reload yes
 
@@ -36,6 +39,7 @@ color info                  red     black
 color article               cyan    default
 
 browser qutebrowser
+player mpv
 
 # Macros
 # macro-prefix (,) + key
