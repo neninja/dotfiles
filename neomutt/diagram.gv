@@ -1,0 +1,8 @@
+digraph D{
+    "criar email" [shape=square, style=filled]
+    "criar email" -> n -> "preencher email"
+    n -> tab -> "seleciona email"
+    "seleciona email" -> enter
+    "seleciona email" -> space -> space -> enter [color=hotpink,penwidth=3.0]
+
+}

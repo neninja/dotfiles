@@ -1,0 +1,60 @@
+//https://martin.elwin.com/blog/2008/05/uml-use-case-diagrams-graphviz/
+
+digraph G {
+    rankdir=LR;
+    labelloc="b";
+    peripheries=0;
+
+    /* Actor Nodes */
+
+    node [shape=plaintext, style=invis];
+
+    subgraph clusterUser {label="User"; user};
+    subgraph clusterAdmin {label="Administrator"; admin};
+
+    {
+        rank=min;
+
+        user [shapefile="actor.png"];
+        admin [shapefile="actor.png"];
+    }
+
+
+    /* Use Case Nodes */
+
+    node [shape=ellipse, style=solid];
+
+    {
+        rank=same;
+
+        log_in [label="Log In"];
+        manage_user [label="Manage User"];
+    }
+
+    log_in_pwd [label="Log In Password"];
+    log_in_cert [label="Log In Certificate"];
+
+    change_email [label="Change Email"];
+    change_pwd [label="Change Password"];
+    
+
+    /* Edges */
+
+    edge  [arrowhead="oarrow"];
+
+    admin->user;
+
+    edge [arrowhead=none];
+    
+    user->log_in;
+    admin->manage_user;
+
+    edge [arrowtail="vee", label="<<extend>>", style=dashed];
+
+    log_in->manage_user;
+    log_in->log_in_pwd;
+    log_in->log_in_cert;
+
+    manage_user->change_email;
+    manage_user->change_pwd;
+}

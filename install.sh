@@ -44,10 +44,16 @@ mkdir -p $HOME/.config
 # bash
 ln -vsf $(pwd)/bash/.bashrc $HOME/.bashrc
 ln -vsf $(pwd)/bash/.inputrc $HOME/.inputrc
+touch $HOME/.extra
 
 # x
 ln -vsf $(pwd)/x/.xinitrc $HOME/.xinitrc
 ln -vsf $(pwd)/x/.Xdefaults $HOME/.Xdefaults
+
+# cmus
+mkdir -p $HOME/.config/cmus
+ln -vsf $(pwd)/cmus/rc $HOME/.config/cmus/rc
+
 
 # feh
 mkdir -p ~/.config/feh

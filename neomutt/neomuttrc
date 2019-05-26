@@ -13,7 +13,7 @@ source ~/.config/neomutt/theme
 #folder-hook 'account.gmail.felipe.dacs'         'source ~/.config/neomutt/account.gmail.felipe.dacs'
 
 # Default account
-source ~/.config/neomutt/account.gmail.dev.felipe.dacs         
+source ~/.config/neomutt/account.gmail.felipe.dacs         
 
 # Macros for switching accounts
 bind index a noop # remove existing bind for a
@@ -61,3 +61,6 @@ bind index n compose-to-sender
 
 # Compose
 set abort_nosubject=ask-no
+bind index,pager @ compose-to-sender
+
+set quit=ask-no

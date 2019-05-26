@@ -38,9 +38,6 @@ alias ll='ls -alF --color'
 alias l='ls -XF --color'
 alias lm='ls -lS --block-size=M'
 
-# Scrot
-alias sct='scrot -s -d 5 -c ~/Imagens/prints/scrot::%Y-%m-%d::%H%M%S.jpg'
-
 # programs
 alias ff='fff'
 alias i='i3lock'

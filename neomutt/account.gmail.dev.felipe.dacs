@@ -6,8 +6,8 @@ set realname="Felipe Silva"
 # Credential
 set imap_user="dev.felipe.dacs@gmail.com"
 set smtp_url="smtp://dev.felipe.dacs@smtp.gmail.com:587/"
-set imap_pass="`cat ~/.pass`"
-set smtp_pass="`cat ~/.pass`"
+#set imap_pass="`cat ~/.pass`" # need use gpg, but how
+#set smtp_pass="`cat ~/.pass`" # need use gpg, but how
 
 set folder = "imaps://imap.gmail.com:993"                     
 set header_cache = ~/Mail/neomutt/gmail.dev.felipe.dacs/cache/headers            

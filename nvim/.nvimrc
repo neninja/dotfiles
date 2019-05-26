@@ -142,6 +142,14 @@ inoremap [ []{##}<left><left><left><left><left>
 inoremap " ""{##}<left><left><left><left><left>
 inoremap ' ''{##}<left><left><left><left><left>
 
+" surround
+xnoremap ¢ xi()<ESC>P<ESC>
+xnoremap ( xi()<ESC>P<ESC>
+xnoremap { xi{}<ESC>P<ESC>
+xnoremap [ xi[]<ESC>P<ESC>
+xnoremap " xi""<ESC>P<ESC>
+xnoremap ' xi''<ESC>P<ESC>
+
 " emoticons unicode
 " https://www.jemoticons.com/en/
 " angry as a fuck, flip the table
@@ -227,7 +235,7 @@ vnoremap <silent> [ c[<c-r>"]
 nnoremap <leader><space> :noh<cr>
 
 " Indent all file and go back
-nnoremap <C-S> i<++><esc>gg=G/<++>/<CR>v/><CR>d==
+nnoremap <C-S> i<++><esc>gg=G/<++>/<CR>v/><CR>d==:noh<CR>
 
 " Echo local
 noremap <Leader>. :pwd<CR>
@@ -299,6 +307,16 @@ augroup markdown
     au FileType markdown nmap <leader>r <Esc>:w<CR>:!clear;pandoc % -o '%:r'.pdf<CR><CR>
     au FileType markdown nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER '%:r'.pdf &<CR><CR>
     au FileType markdown nmap <leader>d <Esc>:w<CR>:!clear;rm '%:r'.pdf &<CR><CR>
+augroup END
+
+"#########################################
+" DOT GV
+"#########################################
+au! BufRead,BufNewFile *.gv       setfiletype dot
+augroup dot
+    au FileType dot nmap <leader>r <Esc>:w<CR>:!clear;dot -Tpdf -O %<CR><CR>
+    au FileType dot nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
+    au FileType dot inoremap > <SPACE>-><SPACE>
 augroup END
 
 "#########################################
