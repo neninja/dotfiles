@@ -2,8 +2,9 @@
 source ~/.extra
 
 volume(){
-    volume=$(amixer -D pulse get Master | grep -o -m 1 -E [0-9]+%)
-    echo " $volume"
+    local volume_lvl=$(amixer -D pulse get Master | grep -o -m 1 -E [0-9]+%)
+    local volume_status=$(amixer -D pulse get Master | grep -o -m 1 "off")
+    echo " $volume_lvl $volume_status"
 }
 
 cpu(){
@@ -94,8 +95,6 @@ datetime(){
     echo " $(date +%H:%M)"
 }
 
-
-#kill $(ps -ef | grep -m 1 -P "bash $HOME/dev/dotfiles/scripts/dwm/status.sh" | awk '{print $2}') &>/dev/null
 while true; do
 
     # base do script:
@@ -121,7 +120,7 @@ while true; do
     let DIFF_TOTAL=$TOTAL-$PREV_TOTAL
     let DIFF_TOTAL_IDLE=$DIFF_TOTAL-$DIFF_IDLE
     let CPU_USAGE=(1000*$DIFF_TOTAL_IDLE/$DIFF_TOTAL+5)/10
-   echo "CPU: $CPU_USAGE%"
+    echo "CPU: $CPU_USAGE%"
 
     # Remember the total and idle CPU times for the next check.
     PREV_TOTAL="$TOTAL"

@@ -1,0 +1,3 @@
+Comando;Descrição
+rm -rf * .*;Apagar quais quer arquivos ou folders do diretório
+du -sh *;Mostra espaço ocupado pelos folders no diretório

@@ -64,7 +64,7 @@ nn(){
     local DAYS_RANGE=7 # range of days that will show
 
     # files stored
-    local CONF_DIR=~/dev/dotfiles/nn
+    local CONF_DIR=~/.config/nn
     local TODO_FILE=$CONF_DIR/todo
     local APTS_FILE=$CONF_DIR/apts
     local BTDS_FILE=$CONF_DIR/birthdays

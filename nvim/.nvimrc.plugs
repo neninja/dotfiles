@@ -25,6 +25,9 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'ewilazarus/preto'
 Plug 'andreasvc/vim-256noir'
 
+" CSV
+Plug 'chrisbra/csv.vim'
+
 " Apresentações
 " :Goyo ou :Goyo 80%x80%
 " set background=light

@@ -54,7 +54,6 @@ ln -vsf $(pwd)/x/.Xdefaults $HOME/.Xdefaults
 mkdir -p $HOME/.config/cmus
 ln -vsf $(pwd)/cmus/rc $HOME/.config/cmus/rc
 
-
 # feh
 mkdir -p ~/.config/feh
 ln -vsf $(pwd)/feh/.fehbg $HOME/.fehbg
