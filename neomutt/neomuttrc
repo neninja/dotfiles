@@ -57,7 +57,7 @@ auto_view text/html
 # Index
 set index_format="%4C [%Z] %{%d/%b/%y %H:%M} %-15.15L %s"
 set sort=reverse-threads
-bind index n compose-to-sender
+bind index N compose-to-sender
 
 # Compose
 set abort_nosubject=ask-no
