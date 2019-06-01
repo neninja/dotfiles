@@ -12,7 +12,3 @@ shopt -s autocd # Mudar diretório sem cd
 
 # * ~/.extra can be used for other settings you don’t want to commit.
 source ~/.extra;
-
-# Scripts
-# USE: nn
-source ~/dev/dotfiles/scripts/ninjanotes.sh;

@@ -67,7 +67,6 @@ set smartcase
 " Directories for swp files
 set nobackup
 set noswapfile
-set autochdir
 set fileformats=unix,dos,mac
 
 " Delay entre atalhos
@@ -303,10 +302,21 @@ augroup END
 " MARKDOWN
 "#########################################
 augroup markdown
-    " Compila, abre pdfviewr e deleta pdf
-    au FileType markdown nmap <leader>r <Esc>:w<CR>:!clear;pandoc % -o '%:r'.pdf<CR><CR>
-    au FileType markdown nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER '%:r'.pdf &<CR><CR>
-    au FileType markdown nmap <leader>d <Esc>:w<CR>:!clear;rm '%:r'.pdf &<CR><CR>
+    " Converte arquivo file.md atual em file.md.pdf
+    au FileType markdown nmap <leader>r <Esc>:w<CR>:!clear;pandoc % -o %.pdf<CR><CR>
+    " Abre file.md.pdf com comando comando $PDFVIEWER
+    au FileType markdown nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
+augroup END
+
+"#########################################
+" CSV
+"#########################################
+augroup csv
+    " Transforma como md em /tmp, salva, converte em pdf com pandoc em /tmp e fecha buffer; abre pdfviewer
+    "au FileType csv nmap <leader>r <Esc>:w<CR>:sav! /tmp/%.md<CR><ESC>:setfiletype markdown<CR>ggo-\|-<ESC>:%s/;/\|/<CR>:w<CR>:!echo /tmp/'%:r'.pdf <CR>
+    "au FileType csv nmap <leader>r <Esc>:w<CR>:sav! /tmp/%.md<CR><ESC>:setfiletype markdown<CR>ggo-\|-<ESC>:%s/;/\|/<CR>:w<CR>:!echo /tmp/'%:r'.pdf <CR>
+    au FileType csv nmap <leader>r <Esc>:w<CR>:sav! /tmp/%.md<CR><ESC>:setfiletype markdown<CR>ggo-\|-<ESC>:%s/;/\|/<CR>:w<CR>:!pandoc % -o '%:r'.pdf<CR><CR>:bd<CR>
+    au FileType csv nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER /tmp/'%:r'.csv.pdf &<CR><CR>
 augroup END
 
 "#########################################
@@ -386,23 +396,34 @@ nnoremap <silent> ]B :bn<CR>
 " Leave a buffer even without save
 set hidden
 "*********************************************************
-" :edit a folder to open a file browser
+" Netrw
+"*********************************************************
+" :h netrw-quickcom
 " <CR>/v/t to open in an h-split/v-split/tab
 " Check |netrw-browse-maps| for more mappings
 let g:netrw_banner=0        " Disable annoying banner
 let g:netrw_altv=1          " Open splits to the right
 let g:netrw_liststyle=3     " Tree view
+"set autochdir "Deixa absoluto o path do netrw!!!
 
 " Toggle para mostrar diretórios
-let g:tnet = 1
-fun! ToggleGerenciador()
-    if(g:tnet==1)
-        :vs
-        :edit .
-        let g:tnet = 0
+let g:NetrwIsOpen=0
+
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
     else
-        :q!
-        let g:tnet = 1
+        let g:NetrwIsOpen=1
+        silent Lexplore
     endif
-endfun
-nnoremap <leader><CR> :call ToggleGerenciador()<cr>
+endfunction
+
+" Add your own mapping. For example:
+noremap <silent> <leader><CR> :call ToggleNetrw()<CR>

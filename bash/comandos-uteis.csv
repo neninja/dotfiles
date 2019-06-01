@@ -1,3 +1,6 @@
-Comando;Descrição
-rm -rf * .*;Apagar quais quer arquivos ou folders do diretório
-du -sh *;Mostra espaço ocupado pelos folders no diretório
+Comando;Categoria;Descrição
+rm -rf * .*;Arquivos/folders;Apagar quais quer arquivos ou folders do diretório
+du -sh *;Arquivos/folders;Mostra espaço ocupado pelos folders no diretório
+apt list;Arquivos/folders;Mostra programas/pacotes instalados
+xrandr;Monitores;Lista monitores
+xrandr --output <monitor> --auto;Monitores;Habilita segundo monitor

@@ -23,8 +23,8 @@
 #   Adicionar agendamento: nn <dd/mm/yyyy> <texto a ser add no arquivo apts>
 #
 # Como habilitar comando nn?
-#   Escrever no .bashrc:
-#       source ~/caminho/desse/arquivo.sh
+#   Escrever alias no .bashrc:
+#       alias nn="./path/to/ninjanotes.sh"
 #
 # Quais arquivos ficam as notas?
 #   Pelas variáveis:
@@ -194,3 +194,5 @@ nn(){
     echo ""
 
 }
+
+nn

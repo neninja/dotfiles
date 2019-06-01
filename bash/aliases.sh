@@ -2,6 +2,7 @@
 # =====================
 # CD
 alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard\n-> to clean: rm -rf * .*"'
+alias cde='cd ~/dev/emd'
 alias cphp='cd ~/dev/php'
 alias cpy='cd ~/dev/python'
 alias cfr='cd ~/dev/front/'
@@ -45,8 +46,13 @@ alias n='nvim'
 alias nm='neomutt'
 alias p='pandoc'
 alias z='zathura'
+alias docker='sudo docker'
 
 # lazy
 alias op='xdg-open .'
 alias mci='sudo make clean install'
 alias snc='sudo nvim config.h'
+
+
+# scripts
+alias nn="./dev/dotfiles/scripts/ninjanotes.sh"

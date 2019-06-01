@@ -1,5 +1,10 @@
 # Functions
 # =====================
+# DESC: Ver previsão do tempo para Porto Alegre
+# USE: wttr
+wttr(){
+curl wttr.in/porto+alegre?lang=pt-br
+}
 
 # DESC: Abrir folder com feh em tamanho centralizado
 # USE: f
@@ -34,7 +39,7 @@ gi(){
     cp ~/dev/dotfiles/cpfiles/git/UNLICENSE UNLICENSE;
     (echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>README.md;
     cp ~/dev/dotfiles/cpfiles/git/.gitignore .gitignore;
-    echo -e "\n-> don\'t forget to use git init or git flow init and create branch master";
+    echo -e "\n-> don't forget to use git init or git flow init and create branch master";
 }
 
 # DESC: Copiar classe de apresentações do latex para uso

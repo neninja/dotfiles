@@ -1,5 +1,14 @@
+# pandoc
+README.md.pdf
+readme.md.pdf
+
+# graphviz
+*.dot.pdf
+*.dot.png
+*.gv.pdf
+*.gv.png
+
 # latex
-README.pdf
 *.aux
 *.log
 *.out
