@@ -1,0 +1,78 @@
+#https://en.wikipedia.org/wiki/BibTeX
+#https://www.verbosus.com/bibtex-style-examples.html
+#\cite[90]{feh} %página opcional e nome
+snippet article "Article from a journal or magazine"
+@article{${1:atalho},
+	author  = {${2:Peter Adams}},
+	title   = {${3:The title of the work}},
+	journal = {${4:The name of the journal}},
+	${6:volume  = 4,}
+	${7:number  = 2,}
+	${8:month   = 7,}
+	${0:note    = {An optional note},} 
+	year    = ${5:1993}
+}
+endsnippet
+
+snippet book "Book with an explicit publisher"
+@book{${1:atalho},
+	author  = {${2:Peter Adams}},
+	title   = {${3:The title of the work}},
+	publisher = {${4:The name of the publisher}},
+	${6:${VISUAL:volume  = 4,}}
+	${7:series    = 10,}
+	${8:edition   = 3,}
+	${9:isbn      = {3257227892},}
+	${10:month   = 7,}
+	${0:note    = {An optional note},} 
+	year    = ${5:1993}
+}
+endsnippet
+
+snippet booklet "Work that is printed, but without publisher"
+@booklet{${1:atalho},
+	${3:author       = {Peter Caxton},}
+	${4:howpublished = {How it was published},}
+	${5:address      = {The address of the publisher},}
+	${6:month        = 7,}
+	${7:year         = 1993,}
+	${0:note         = {An optional note},}
+	title        = {${2:The title of the work}}
+}
+endsnippet
+
+snippet manual "Technical documentation"
+@manual{${1:atalho},
+	${3:title        = {The title of the work},}
+	${4:author       = {Peter Gainsford},}
+	${5:organization = {The organization},}
+	${6:address      = {The address of the publisher},}
+	${7:edition      = 3,}
+	${8:month        = 7,}
+	${9:year         = 1993,}
+	${0:note         = {An optional note},}
+	title        = {${2:The title of the work}}
+}
+endsnippet
+
+snippet misc "Technical documentation"
+@misc{${1:atalho},
+	${3:author       = {Peter Isley},}
+	${4:howpublished = {How it was published},}
+	${5:month        = 7,}
+	${6:year         = 1993,}
+	${0:note         = {An optional note},}
+	title        = {${2:The title of the work}}
+}
+endsnippet
+
+snippet site "Site"
+@misc{${1:atalho},
+	${3:author       = {Peter Isley},}
+	howpublished = {\url{${4:http://web.archive.org/web/20080207010024/http://www.808multimedia.com/winnt/kernel.htm}}},
+	${5:month        = 7,}
+	${6:year         = 1993,}
+	note         = {Accessed: ${0:2010-09-30}},
+	title        = {${2:The title of the work}}
+}
+endsnippet

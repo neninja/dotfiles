@@ -10,7 +10,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 " Instalar ctags: sudo apt-get install exuberant-ctags
 Plug 'majutsushi/tagbar'
 
-Plug 'lervag/vimtex'            " Compilador LaTeX
 Plug 'tpope/vim-fugitive'       " Comandos git no vim
 Plug 'junegunn/gv.vim'          " Commits in browser
 "Plug 'junegunn/vim-emoji'          " Commits in browser
@@ -149,22 +148,6 @@ let g:polyglot_disabled = ['go', 'latex']
 "APRENDER MAIS SOBRE BUFFERS ANTES DE USAR EMOJIS
 "set completefunc=emoji#complete
 
-"#########################################
-" VimTex
-"#########################################
-augroup tex
-	au FileType tex nmap <leader>r :VimtexCompile<cr>
-
-    " VimTex falha diversas vezes e é preciso compilar com pdflatex para o plugin voltar
-	au FileType tex nmap <leader>p <Esc>:!clear;pdflatex %<CR><CR>
-
-    " Como era antes do plugin
-	" É necessário compilar duas vezes para ter certeza de atualizar a toc
-	" https://tex.stackexchange.com/questions/301103/empty-table-of-contents
-	" Também compilar bibliografia e mais uma vez a toc
-	" au FileType tex nmap <leader>r <Esc>:w<CR>:!clear;pdflatex %<CR><CR>:!clear;pdflatex %<CR><CR>:!clear;bibtex '%:r'.aux<CR><CR>:!clear;pdflatex %<CR><CR>:!clear;pdflatex %<CR><CR>
-	au FileType tex nmap <leader>e <Esc>:!clear;$PDFVIEWER '%:r'.pdf &<CR><CR>
-augroup end
 
 "#########################################
 " Vim-Go
@@ -296,3 +279,4 @@ set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
 " CtrlP
 "#########################################
 nnoremap <C-Space> :CtrlPBuffer<CR>
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'

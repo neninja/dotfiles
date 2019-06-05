@@ -22,6 +22,7 @@ alias ....='cd ../../..'
 # configfiles
 alias cfn='nvim $DF/nvim/.nvimrc'
 alias cfnp='nvim $DF/nvim/.nvimrc.plugs'
+alias cfns='nvim $DF/nvim/nenippets'
 alias cfa='nvim $DF/bash/aliases.sh'
 alias cfe='nvim $DF/bash/exports.sh'
 alias cff='nvim $DF/bash/functions.sh'
@@ -55,4 +56,4 @@ alias snc='sudo nvim config.h'
 
 
 # scripts
-alias nn="./dev/dotfiles/scripts/ninjanotes.sh"
+alias nn="bash $HOME/dev/dotfiles/scripts/ninjanotes.sh"

@@ -24,50 +24,50 @@
 #
 # Como habilitar comando nn?
 #   Escrever alias no .bashrc:
-#       alias nn="./path/to/ninjanotes.sh"
+#       alias nn="bash /path/to/ninjanotes.sh"
 #
 # Quais arquivos ficam as notas?
 #   Pelas variáveis:
-#       local CONF_DIR=~/dev/dotfiles/nn
-#       local TODO_FILE=$CONF_DIR/todo
-#       local APTS_FILE=$CONF_DIR/apts
-#       local BTDS_FILE=$CONF_DIR/birthdays
+#       CONF_DIR=~/dev/dotfiles/nn
+#       TODO_FILE=$CONF_DIR/todo
+#       APTS_FILE=$CONF_DIR/apts
+#       BTDS_FILE=$CONF_DIR/birthdays
 #
 # Inspiração:
 #   Calcurse: https://calcurse.org/
 #   td-cli: https://github.com/darrikonn/td-cli
 
-nn(){
     # COLORS PREFERENCES
     #####################################
     # https://misc.flogisoft.com/bash/tip_colors_and_formatting
-    local RESET="\e[0m\e[39m\e[49m"
-    local BOLD="\e[1m"
-    local STRIKE="\e[9m"
-    local BLINK="\e[25m"
+    RESET="\e[0m\e[39m\e[49m"
+    BOLD="\e[1m"
+    STRIKE="\e[9m"
+    BLINK="\e[25m"
 
-    local BG_RED="\e[41m"
+    BG_RED="\e[41m"
 
-    local FG_YELLOW="\e[33m"
-    local FG_GREEN="\e[32m"
-    local FG_CYAN="\e[36m"
+    FG_YELLOW="\e[33m"
+    FG_GREEN="\e[32m"
+    FG_CYAN="\e[36m"
 
-    local TODO_STYLE=$FG_CYAN
-    local APTS_STYLE=$FG_YELLOW
-    local BTDS_STYLE=$FG_GREEN
+    TODO_STYLE=$FG_CYAN
+    APTS_STYLE=$FG_YELLOW
+    BTDS_STYLE=$FG_GREEN
 
-    local WARN_STYLE=$BG_RED
+    WARN_STYLE=$BG_RED
     #####################################
 
     # GERAL PREFERENCES
     #####################################
-    local DAYS_RANGE=7 # range of days that will show
+    DAYS_RANGE=7 # range of days that will show
 
     # files stored
-    local CONF_DIR=~/.config/nn
-    local TODO_FILE=$CONF_DIR/todo
-    local APTS_FILE=$CONF_DIR/apts
-    local BTDS_FILE=$CONF_DIR/birthdays
+    PATH_NINJANOTES=~/dev/dotfiles/scripts/ninjanotes.sh
+    CONF_DIR=~/.config/nn
+    TODO_FILE=$CONF_DIR/todo
+    APTS_FILE=$CONF_DIR/apts
+    BTDS_FILE=$CONF_DIR/birthdays
     #####################################
 
     # create empty dir/files
@@ -80,8 +80,8 @@ nn(){
         # list todo and apts
 
         # seconds are comparable
-        local HOJE=$(date -d "today 00:00" +'%s')
-        local PROX_SEMANA=$(date -d "$APTS_RANGE days" +'%s')
+        HOJE=$(date -d "today 00:00" +'%s')
+        PROX_SEMANA=$(date -d "$APTS_RANGE days" +'%s')
 
         echo -e $BOLD"\nto do"$RESET
         echo -en $TODO_STYLE
@@ -90,8 +90,8 @@ nn(){
 
         echo -en $BOLD"\nappointments"$RESET
         for number_day_week in $(seq 0 $DAYS_RANGE); do
-            local DATA_DMY_SEMANA=$(date -d "+$number_day_week days" +"%d/%m/%Y")
-            local DATA_DM_SEMANA=$(date -d "+$number_day_week days" +"%d/%m")
+            DATA_DMY_SEMANA=$(date -d "+$number_day_week days" +"%d/%m/%Y")
+            DATA_DM_SEMANA=$(date -d "+$number_day_week days" +"%d/%m")
             if [ $(grep -Fc "$DATA_DMY_SEMANA" $APTS_FILE) -gt 0 ] || [ $(grep -Fc "$DATA_DM_SEMANA" $BTDS_FILE) -gt 0 ]; then
                 echo -e "\n$DATA_DM_SEMANA"
 
@@ -133,13 +133,13 @@ nn(){
             rt | ra) # remove todo or apt
                 # concat command sed
                 #   must be like:  sed -i "1d;3d;4d;5d" file
-                local command_sed=""
+                command_sed=""
                 # maintain if is ra or rt
-                local option_remove="$1"
+                option_remove="$1"
 
                 # loop while exists parameters
                 while [[ $# -gt 1 ]]; do
-                    local key="$2"
+                    key="$2"
 
                     # remove line from 1
                     if [ $key -gt 0 ]; then
@@ -156,24 +156,23 @@ nn(){
                 done
 
                 if [ $option_remove == "rt" ]; then sed -i "$command_sed" $TODO_FILE; else sed -i "$command_sed" $APTS_FILE; fi
-                nn
                 ;;
             *)  # write a todo
                 if [[ $1 =~ ^[0-9]{2}+\/[0-9]{2} ]]; then
                     # nn date and what more?
                     if [ $# -gt 1 ]; then
-                        local DIA=$(echo $1 | awk -F/ '{print $1}')
-                        local MES=$(echo $1 | awk -F/ '{print $2}')
+                        DIA=$(echo $1 | awk -F/ '{print $1}')
+                        MES=$(echo $1 | awk -F/ '{print $2}')
 
                         # year is a parameter?
                         if [[ $1 =~ ^[0-9]{2}+\/[0-9]{2}+\/[0-9]{2} ]]; then
-                            local ANO=$(echo $1 | awk -F/ '{print 20$3}')
+                            ANO=$(echo $1 | awk -F/ '{print 20$3}')
                         else
-                            local ANO=$(date +'%Y')
+                            ANO=$(date +'%Y')
                         fi
 
                         # stderr to /dev/null
-                        local DATA_APTS=$(date -d "$MES/$DIA/$ANO" +"%s" 2>/dev/null)
+                        DATA_APTS=$(date -d "$MES/$DIA/$ANO" +"%s" 2>/dev/null)
 
                         # date is correct?
                         if [ $DATA_APTS -ge 0 ] &>/dev/null; then
@@ -187,12 +186,7 @@ nn(){
                     # nn fyuhfud fdygfiudf fuhaidof duafhiaosd udfhaiodfj
                     echo "$@" >> $TODO_FILE
                 fi
-                nn
                 ;;
         esac
     fi
     echo ""
-
-}
-
-nn

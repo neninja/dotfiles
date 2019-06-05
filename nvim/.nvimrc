@@ -149,45 +149,6 @@ xnoremap [ xi[]<ESC>P<ESC>
 xnoremap " xi""<ESC>P<ESC>
 xnoremap ' xi''<ESC>P<ESC>
 
-" emoticons unicode
-" https://www.jemoticons.com/en/
-" angry as a fuck, flip the table
-inoremap \\a (╯°□°)╯︵ ┻━┻
-" bring back the table
-inoremap \\b ┬──┬ ノ(°-°ノ)
-" cool
-inoremap \\c (⌐■_■)
-" dancing
-inoremap \\d ヾ(⌐■_■)ノ♪
-" forsake
-inoremap \\f (´ヘ｀;)
-" gopher
-inoremap \\g ʕ◔ϖ◔ʔ
-" happy
-inoremap \\h \(•◡•)/
-" impressed
-inoremap \\i (ﾉ°▽̣°)ﾉ
-" lenny face
-inoremap \\l ( ͡° ͜ʖ ͡°)
-" mighty
-inoremap \\m ᕙ(°□°)ᕗ
-" put some magic
-inoremap \\p (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-" run
-inoremap \\r ε=ε=┏( >_<)┛
-" shrug
-inoremap \\s ¯\_(ツ)_/¯
-" thanks
-inoremap \\t (~˘▾˘)~
-" i don't understand
-inoremap \\u ┐(´д`)┌
-" worried
-inoremap \\w (⊙﹏⊙)
-" yeah
-inoremap \\y ╭( ˃̵ᴗ˂̵)و
-" whyyyy
-inoremap \\? ( ˘･з･)
-
 " j e k mantem cursor no meio do editor
 " nnoremap j jzz
 " nnoremap k kzz
@@ -297,6 +258,23 @@ augroup go
     au FileType go nmap // :call ComentaNormal("// ")<esc>
     au FileType go nmap ;; :s/\/\/\s/<CR>:noh<CR>
 augroup END
+
+"#########################################
+" VUE
+"#########################################
+autocmd BufRead,BufNewFile *.vue setfiletype html
+
+"#########################################
+" VimTex
+"#########################################
+augroup tex
+	" É necessário compilar duas vezes para ter certeza de atualizar a toc
+	" https://tex.stackexchange.com/questions/301103/empty-table-of-contents
+	" Também compilar bibliografia e mais uma vez a toc
+    " Erros salvos em log
+	au FileType tex nmap <leader>r <Esc>:w<CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;bibtex '%:r' > bibtex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>
+	au FileType tex nmap <leader>e <Esc>:!clear;$PDFVIEWER '%:r'.pdf &<CR><CR>
+augroup end
 
 "#########################################
 " MARKDOWN

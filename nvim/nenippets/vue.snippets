@@ -1,0 +1,87 @@
+# html
+####################################################
+snippet cl "class=..."
+class="${0:${VISUAL}}"
+endsnippet
+
+snippet id "id=..."
+id="${0:${VISUAL}}"
+endsnippet
+
+snippet div "<div>...</div>"
+<div>
+	${0:${VISUAL}}
+</div>
+{##}
+endsnippet
+
+snippet ul "<ul>...</ul>"
+<ul>
+	${0:${VISUAL}}
+</ul>
+{##}
+endsnippet
+
+snippet li "<li>...</li>"
+<li>${0:${VISUAL}}</li>
+{##}
+endsnippet
+
+snippet a "<a href>...</a>"
+<a href="${1:#}">${0:texto}</a>{##}
+endsnippet
+
+
+# javascript
+####################################################
+
+snippet log "console.log(...)"
+console.log(${0})
+endsnippet
+
+
+# vue
+####################################################
+
+snippet template "<html></html><js></js><css></css>"
+<template>
+	${0:${VISUAL}}
+</template>
+
+<script>
+export default {
+	components: {
+	}
+}
+</script>
+
+<style>
+/* @import '../src/assets/icomoon/style.css'; */
+</style>
+endsnippet
+
+snippet import "import component from @/path"
+import ${1:NomeDoComponente} from ${0:'@/components/Fotos/FotoGaleria.vue'}
+{##}
+endsnippet
+
+snippet data "data(){ return{ ... } }"
+data(){
+	return{
+		${1:atributo}: ${0:valor},
+		{##}
+	}
+}
+endsnippet
+
+snippet vfor "v-for=... key=..."
+v-for="(${0:valor}, index) in ${1:valores}" :key="index"
+endsnippet
+
+snippet vif "v-if=..."
+v-if="(${0:condition}"
+endsnippet
+
+snippet vshow "v-show=..."
+v-show="(${0:condition}"
+endsnippet

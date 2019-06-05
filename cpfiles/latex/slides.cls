@@ -7,9 +7,7 @@
 \usepackage{csquotes} % requisição babel
 \usepackage{hyperref} % hyperlinks
 \usepackage{graphicx} % inserir imagens
-\usepackage[backend=biber]{biblatex} % bibliografia
 \usepackage{fontawesome} % https://ctan.org/pkg/fontawesome
-\usepackage{filecontents} % inserir em outros arquivos
 
 % link colorido
 \newcommand{\link}[2]{\textcolor{violet}{\href{#1}{#2}}}
@@ -33,8 +31,7 @@
     \bigskip
     \usebeamerfont{author}\insertauthor\par
     \usebeamerfont{institute}\insertinstitute\par
-    \usebeamerfont{date}Criada em \insertdate\par
-    %\usebeamerfont{date}Atualizada em \today\par
+    \usebeamerfont{date}Editada em \insertdate\par
     %\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
     \bigskip
     \small
@@ -99,8 +96,14 @@
 
         % Print referencias
         \frame[t]{
+            % printar todas referencias, mesmo que não sejam citadas
             \nocite{*}
-            \printbibliography
+
+            % estilo da bibliografia
+            \bibliographystyle{abbrv}
+
+            % chamando o mesmo-nome-do-arquivo-tex.bib
+            \bibliography{\jobname}
         }
     }
 }

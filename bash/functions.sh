@@ -148,7 +148,7 @@ rcp(){
 
 # DESC: Gravar tela (metade-esquerda ou tamanho especificado)
 # USE: ffmpegs final.mp4
-# USE: ffmpegs final.mp4 -s 1366x768
+# USE: ffmpegs final.mp4 "-s 1366x768"
 ffmpegs(){
     mkdir -p ~/Vídeos/ffmpeg
 
@@ -171,6 +171,23 @@ ffmpegwp(){
     # Videos gravados com ffmpeg para wpp
     # https://stackoverflow.com/questions/39887869/ffmpeg-whatsapp-video-format-not-supported
     ffmpeg -i $1 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p $2
+}
+
+# DESC: Converter vídeo em gif
+# USE: ffmpeg2 10 18 input.mp4 output
+# 		ffmpeg2 <inicio-do-corte> <duração-do-corte> <arquivo-video> <arquivo-gif>
+# THANKS: https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
+ffmpeggif(){
+	ffmpeg -ss $1 -t $2 -i $3 -f gif $4.gif
+}
+
+# DESC: Converter vídeo em gif com maior qualidade
+# USE: ffmpeg2 10 18 input.mp4 output
+# 		ffmpeg2 <inicio-do-corte> <duração-do-corte> <arquivo-video> <arquivo-gif>
+# THANKS: https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
+ffmpeggif2(){
+	ffmpeg -ss $1 -t $2 -i $3  -filter_complex "[0:v] palettegen" palette.png
+	ffmpeg -ss $1 -t $2 -i $3 -i palette.png -filter_complex "[0:v][1:v] paletteuse" $4.gif
 }
 
 ################################################

@@ -1,6 +1,10 @@
 #texdoc clsguide
 #texdoc tds
 
+snippet c
+\chapter{$1}
+endsnippet
+
 snippet s
 \section{$1}
 endsnippet
@@ -70,18 +74,12 @@ snippet @
 {##}
 endsnippet
 
-snippet c
-\cite[${1}]{${0:${VISUAL}}}
-{##}
+snippet ci
+\cite${2:[${1:pagina}]}{${0:nome}}
 endsnippet
 
 snippet slides
 \documentclass{slides}
-
-\begin{filecontents}{ref.bib}
-
-\end{filecontents}
-\addbibresource{ref.bib}
 
 \title{$1}
 \subtitle{$2}
