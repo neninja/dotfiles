@@ -48,7 +48,7 @@ endsnippet
 
 # item de lista
 snippet i
-\item $1
+\item $0
 endsnippet
 
 # begin/end
@@ -78,16 +78,34 @@ snippet ci
 \cite${2:[${1:pagina}]}{${0:nome}}
 endsnippet
 
-snippet slides
+snippet fn
+\footnote{$0}
+endsnippet
+
+snippet slides "Criação de slides"
 \documentclass{slides}
+% cp ~/dev/dotfiles/cpfiles/latex/slides.cls slides.cls
 
 \title{$1}
 \subtitle{$2}
-\author{Felipe Silva}
+\author{Neni}
 \date{\today}
 %\titlegraphic{\includegraphics[width=.2\textwidth,height=.2\textheight]{logo.png}}
 
 \begin{document}
 ${0:sections/subsctions/frames${VISUAL}}
+\end{document}
+endsnippet
+
+snippet apostila "Criação de apostila"
+\documentclass{apostila}
+% cp ~/dev/dotfiles/cpfiles/latex/apostila.cls apostila.cls
+
+\title{$1}
+\author{Neni}
+\date{\today}
+
+\begin{document}
+${0:chapters/sections/subsctions${VISUAL}}
 \end{document}
 endsnippet

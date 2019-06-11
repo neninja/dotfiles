@@ -54,7 +54,16 @@ set editor = "nvim"
 set charset = "utf-8"
 auto_view text/html
 
-# Index
+# Index Format
+# Z: A three character set of message status flags:
+#       first: new/read/replied flags (“n”/“o”/“r”/“O”/“N”)
+#       second: deleted or encryption flags (“D”/“d”/“S”/“P”/“s”/“K”)
+#       third: either tagged/flagged (“*”/“!”), or one of the characters Listed in $to_chars:
+#           + only recipient
+#           T address appears in To but not only recipient
+#           C address is specified in Cc but not only
+#           F email sent by me
+#           L mail list
 set index_format="%4C [%Z] %{%d/%b/%y %H:%M} %-15.15L %s"
 set sort=reverse-threads
 bind index N compose-to-sender

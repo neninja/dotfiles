@@ -1,6 +1,7 @@
 # pandoc
-README.md.pdf
-readme.md.pdf
+#README.md.pdf
+#readme.md.pdf
+*.md.pdf
 
 # graphviz
 *.dot.pdf
@@ -10,21 +11,23 @@ readme.md.pdf
 
 # latex
 *.aux
-*.log
-*.out
-*.xmpi
+*.bbl
 *.blg
-*.bbl
-*.bbl
 *-blx.bib
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lol
+*.lot
 *.maf
 *.mtc
 *.mtc0
+*.out
 *.run.xml
-*.toc
-*.fdb_latexmk
-*.fls
 *.synctex.gz
+*.toc
+*.xmpi
 
 # python
 __pycache__/

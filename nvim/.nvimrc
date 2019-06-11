@@ -365,9 +365,9 @@ nnoremap <silent> <leader>dd :bd<cr>
 nnoremap <silent> <leader>df :bd!<cr>
 
 nnoremap <silent> [b :bp<CR>
-nnoremap <silent> [<Space> :bp<CR>
+nnoremap <silent> <Space>[ :bp<CR>
 nnoremap <silent> ]b :bn<CR>
-nnoremap <silent> ]<Space> :bn<CR>
+nnoremap <silent> <Space>] :bn<CR>
 nnoremap <silent> [B :bp<CR>
 nnoremap <silent> ]B :bn<CR>
 

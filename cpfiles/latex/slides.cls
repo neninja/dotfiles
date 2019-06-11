@@ -6,6 +6,7 @@
 \usepackage[portuguese]{babel} % dicionário, auxilia na quebra de palavras e tradução de comportamentos do latex como data
 \usepackage{csquotes} % requisição babel
 \usepackage{hyperref} % hyperlinks
+\usepackage{xcolor} % colorir texto
 \usepackage{graphicx} % inserir imagens
 \usepackage{fontawesome} % https://ctan.org/pkg/fontawesome
 
