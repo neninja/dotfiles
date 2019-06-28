@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+cat $HOME/dev/dotfiles/cpfiles/fonts/dmenu_copypaste | dmenu -l 20 -i -p "Escolha o que deseja copiar" | awk '{print $1}' | tr -d "\n" | xclip -selection clipboard
+
+

@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+OPT="mute/unmute\nmax\n20\n40\n60\n80"
+choice=$(echo $OPT | dmenu -i -p "Mutar ou digite o % de volume")
+
+case "$choice" in
+  mute/unmute) amixer -q -D pulse sset Master toggle ;;
+  max) amixer -q -D pulse sset Master 100% ;;
+  *) amixer -q -D pulse sset Master $choice%;;
+esac

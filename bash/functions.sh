@@ -3,7 +3,25 @@
 # DESC: Ver previsão do tempo para Porto Alegre
 # USE: wttr
 wttr(){
-curl wttr.in/porto+alegre?lang=pt-br
+    curl wttr.in/porto+alegre?lang=pt-br
+}
+
+# DESC: Abrir com nvim explorador de arquivos ou o arquivo
+# USE: n
+# USE: n .
+# USE: n folder
+# USE: n file.txt
+n(){
+    if [ ! -z $1 ]; then
+        if [ -d $1 ] && [ ! -z $1 ]; then
+            cd $1
+            nvim -c ":Defx" 
+        else
+            nvim $1
+        fi
+    else
+        nvim -c ":Defx" 
+    fi
 }
 
 # DESC: Abrir folder com feh em tamanho centralizado
@@ -11,13 +29,6 @@ curl wttr.in/porto+alegre?lang=pt-br
 # USE: f image.jpg
 f(){
     feh -q -. $1
-}
-
-# DESC: Acessar dotfiles o folder rapidamente
-# USE: cdf
-# USE: cdf feh
-cdf(){
-    cd ~/dev/dotfiles/$1
 }
 
 # DESC: Servidor php
@@ -93,7 +104,7 @@ extract() {
 }
 
 ################################################
-# OLUME E BRILHO 
+# VOLUME E BRILHO 
 ################################################
 
 # DESC: Variar volume
@@ -124,53 +135,53 @@ fmtpendrive(){
 }
 
 ################################################
-# REST CLIENTE COM CURL
+# REST CLIENT COM CURL
 ################################################
-# OBJ: Utilizar curl como rest client invés de postman etc
-
-# DESC: Requisição GET com arquivo json de resposta
-# USE: rcg localhost:5050/api/sample
-rcg(){
-    curl $1 > /tmp/resp.json && cat /tmp/resp.json
-}
-
-# DESC: Requisição post com arquivo json para envio
-# USE: rcp req localhost:5050/api/sample
-# req equivale a um arquivo existente req.json
-rcp(){
-    curl -X POST -H "Content-Type: application/json" -d @$1.json $2
-}
-
+source $DF/scripts/restc.sh
 
 ################################################
 # FFMPEG
 ################################################
 
 # DESC: Gravar tela (metade-esquerda ou tamanho especificado)
-# USE: ffmpegs final.mp4
-# USE: ffmpegs final.mp4 "-s 1366x768"
+# USE: ffmpegs 1366x768
 ffmpegs(){
     mkdir -p ~/Vídeos/ffmpeg
 
     # https://ffmpeg.org/ffmpeg-all.html
     # https://ffmpeg.org/ffmpeg-devices.html#x11grab
     # screen dimension with xdpyinfo
-    ffmpeg -f x11grab $2 -i :0.0 ~/Vídeos/ffmpeg/$1
+    local NOME_VID=$(echo "ffmpeg-$(date -d now "+%Y-%m-%d--%Hh-%Mm-%Ss").mp4")
+    if [ ! -z $1 ]; then
+        ffmpeg -f x11grab -s $1 -i :0.0 ~/Vídeos/ffmpeg/$NOME_VID
+    else
+        ffmpeg -f x11grab -s 1366x768 -i :0.0 ~/Vídeos/ffmpeg/$NOME_VID
+    fi
 }
 
 # DESC: Dobrar velocidade de um vídeo
-# USE: ffmpeg2 input.mp4 output.mp4
+# USE: ffmpeg2 input
 ffmpeg2(){
     # https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video
-    ffmpeg -i $1 -filter:v "setpts=0.5*PTS" $2
+    local NOME_VID=$(echo "ffmpeg-accelerated-$(date -d now "+%Y-%m-%d--%Hh-%Mm-%Ss").mp4")
+    ffmpeg -i $1.mp4 -filter:v "setpts=0.5*PTS" $NOME_VID
+}
+
+# DESC: Cortar vídeo
+# USE: ffmpegcut 00:00:15.0 00:00:5.0 video
+#   ffmpegcut <a-partir-de> <manter-no decorrer-de> <video-mp4>
+ffmpegcut(){
+    local NOME_VID=$(echo "ffmpeg-cutted-$(date -d now "+%Y-%m-%d--%Hh-%Mm-%Ss").mp4")
+    ffmpeg -ss $1 -i $3.mp4 -t $2 $NOME_VID
 }
 
 # DESC: Compatibilizar vídeos para o whatsapp
-# USE: ffmpegwp broken.mp4 working.mp4
+# USE: ffmpegwp broken working
 ffmpegwp(){
     # Videos gravados com ffmpeg para wpp
     # https://stackoverflow.com/questions/39887869/ffmpeg-whatsapp-video-format-not-supported
-    ffmpeg -i $1 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p $2
+    local NOME_VID=$(echo "ffmpeg-wp-$(date -d now "+%Y-%m-%d--%Hh-%Mm-%Ss").mp4")
+    ffmpeg -i $1.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p $NOME_VID
 }
 
 # DESC: Converter vídeo em gif
@@ -178,7 +189,7 @@ ffmpegwp(){
 # 		ffmpeg2 <inicio-do-corte> <duração-do-corte> <arquivo-video> <arquivo-gif>
 # THANKS: https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
 ffmpeggif(){
-	ffmpeg -ss $1 -t $2 -i $3 -f gif $4.gif
+    ffmpeg -ss $1 -t $2 -i $3 -f gif $4.gif
 }
 
 # DESC: Converter vídeo em gif com maior qualidade
@@ -186,8 +197,8 @@ ffmpeggif(){
 # 		ffmpeg2 <inicio-do-corte> <duração-do-corte> <arquivo-video> <arquivo-gif>
 # THANKS: https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
 ffmpeggif2(){
-	ffmpeg -ss $1 -t $2 -i $3  -filter_complex "[0:v] palettegen" palette.png
-	ffmpeg -ss $1 -t $2 -i $3 -i palette.png -filter_complex "[0:v][1:v] paletteuse" $4.gif
+    ffmpeg -ss $1 -t $2 -i $3  -filter_complex "[0:v] palettegen" palette.png
+    ffmpeg -ss $1 -t $2 -i $3 -i palette.png -filter_complex "[0:v][1:v] paletteuse" $4.gif
 }
 
 ################################################

@@ -1,5 +1,5 @@
 snippet #!
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 endsnippet
 
 snippet #nenitf
@@ -11,7 +11,18 @@ endsnippet
 
 snippet if "if [ condition ]; then; fi"
 if [ ${1:condition} ]; then
-	${0:${VISUAL}}
+	$0
 fi
 {##}
+endsnippet
+
+snippet case "switch"
+case $1 in
+	$3)
+	$0
+	;;${2:
+	*)
+	Default condition to be executed
+	;;}
+esac
 endsnippet

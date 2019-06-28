@@ -18,7 +18,7 @@ snippet sss
 endsnippet
 
 snippet use
-\usepackage${1:[${2}]}{${0:${VISUAL}}}
+\usepackage${1:[${2}]}{$0}
 {##}
 endsnippet
 
@@ -26,7 +26,7 @@ snippet doc
 \documentclass{${1:article}}
 {##}
 \begin{document}
-${0:${VISUAL:% boraa}}
+${0:% boraa}
 \end{document}
 endsnippet
 
@@ -34,7 +34,7 @@ endsnippet
 snippet f
 \frame{
 	{$1}
-	${0:${VISUAL}}
+	$0
 }
 {##}
 endsnippet
@@ -54,14 +54,14 @@ endsnippet
 # begin/end
 snippet b
 \begin{${1:center}}
-	${0:${VISUAL: content}}
+	${0:content}
 \end{$1}
 {##}
 endsnippet
 
 # figura com pacote graphicx
 snippet fi
-\includegraphics[width=.2\textwidth,height=.2\textheight]{${0:${VISUAL}}}
+\includegraphics[width=.2\textwidth,height=.2\textheight]{$0}
 endsnippet
 
 # begin/end
@@ -69,7 +69,7 @@ snippet @
 @$1{${2:atalho},
 	author		= {$3},
 	title		= {$4},
-	date		= {${0:ano${VISUAL}}},
+	date		= {${0:ano}},
 }
 {##}
 endsnippet
@@ -93,7 +93,7 @@ snippet slides "Criação de slides"
 %\titlegraphic{\includegraphics[width=.2\textwidth,height=.2\textheight]{logo.png}}
 
 \begin{document}
-${0:sections/subsctions/frames${VISUAL}}
+${0:sections/subsctions/frames}
 \end{document}
 endsnippet
 
@@ -106,6 +106,6 @@ snippet apostila "Criação de apostila"
 \date{\today}
 
 \begin{document}
-${0:chapters/sections/subsctions${VISUAL}}
+${0:chapters/sections/subsctions}
 \end{document}
 endsnippet

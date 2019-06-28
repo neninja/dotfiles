@@ -1,7 +1,12 @@
 # pandoc
-#README.md.pdf
-#readme.md.pdf
+README.md.pdf
+README.pdf
+readme.md.pdf
+readme.pdf
 *.md.pdf
+*.csv.md
+*.csv.pdf
+*.csv.md.pdf
 
 # graphviz
 *.dot.pdf

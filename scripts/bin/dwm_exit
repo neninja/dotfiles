@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+#https://bbs.archlinux.org/viewtopic.php?id=95984
+
+choice=$(echo "logout\nscreen-lock\nshutdown" | dmenu -i -nb red -nf black -sb blue -sf black)
+
+case "$choice" in
+  logout) pkill -u "$USER" ;;
+  screen-lock) slock ;;
+  shutdown) st -e sudo shutdown -h now ;;
+esac

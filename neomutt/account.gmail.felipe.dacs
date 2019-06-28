@@ -27,11 +27,13 @@ mailboxes   imaps://imap.gmail.com:993/INBOX                       \
             imaps://imap.gmail.com:993/[Gmail]/Rascunhos           \
             imaps://imap.gmail.com:993/[Gmail]/Spam                \
             imaps://imap.gmail.com:993/[Gmail]/Todos\ os\ e-mails  \
-            imaps://imap.gmail.com:993/saves                       \
-            imaps://imap.gmail.com:993/saves/accounts              \
-            imaps://imap.gmail.com:993/saves/bills                 \
-            imaps://imap.gmail.com:993/jobs/vagas-interessantes    \
-            imaps://imap.gmail.com:993/newsletter                  \
-            imaps://imap.gmail.com:993/newsletter/vagas            \
-            imaps://imap.gmail.com:993/academic/to-study
+            imaps://imap.gmail.com:993/Saves                       \
+            imaps://imap.gmail.com:993/Saves/Accounts              \
+            imaps://imap.gmail.com:993/Saves/Bills                 \
+            imaps://imap.gmail.com:993/Jobs/vagas-interessantes    \
+            imaps://imap.gmail.com:993/Newsletter                  \
+            imaps://imap.gmail.com:993/Newsletter/Vagas            \
+            imaps://imap.gmail.com:993/Newsletter/Emails           \
+            imaps://imap.gmail.com:993/Newsletter/Artigos          \
+            imaps://imap.gmail.com:993/Academic/Materiais
 

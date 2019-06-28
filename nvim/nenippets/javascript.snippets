@@ -1,0 +1,78 @@
+snippet f "function (){...}"
+function ${1:nome}(){
+	$0
+}
+endsnippet
+
+snippet log "console.log(...)"
+console.log($0)
+endsnippet
+
+snippet req "Require('...')"
+require('$0')
+endsnippet
+
+#const ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g} = require('$1');
+snippet creq "assign a CommonJS-style module to a var"
+const ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/$2/g} = require('$1');
+endsnippet
+
+snippet => "(...) => {...}"
+(${1:req, res}) => {
+	${2:return $0;}
+}
+endsnippet
+
+snippet mod "module.exports = ..."
+module.exports = $0
+endsnippet
+
+###################################
+# express
+###################################
+snippet eapp "const app = express()"
+const ${0:app} = express();
+endsnippet
+
+snippet erouter "const router = express.Router()"
+const ${1:routes} = ${0:express}.Router();
+endsnippet
+
+snippet eget "routes.get('/', ...)"
+${1:routes}.get('${2:/}', $0);
+endsnippet
+
+snippet epost "routes.post('/', ...)"
+${1:routes}.post('${2:/}', $0);
+endsnippet
+
+snippet edel "routes.delete('/', ...)"
+${1:routes}.delete('${2:/}', $0);
+endsnippet
+
+snippet eput "routes.put('/', ...)"
+${1:routes}.put('${2:/}', $0);
+endsnippet
+
+snippet elis "app.listen(3333)"
+${0:app}.listen(3333);
+endsnippet
+
+###################################
+# mongoose
+###################################
+snippet mcon "mongoose.connect"
+${1:mongoose}.connect('$0', {
+	useNewUrlParser: true
+});
+endsnippet
+
+snippet msch "mongoose.Schema"
+const ${1:Class}Schema = ${2:mongoose}.Schema({
+	${0:Nome: String,}
+}${2:, {
+	// created at
+	// updated at
+	timestamps: true
+}});
+endsnippet

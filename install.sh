@@ -41,41 +41,44 @@ mkdir -p ~/dev/python
 
 mkdir -p $HOME/.config
 
+DIRDF=$HOME/dev/dotfiles
+
 # bash
-ln -vsf $(pwd)/bash/.bashrc $HOME/.bashrc
-ln -vsf $(pwd)/bash/.inputrc $HOME/.inputrc
+ln -vsf $DIRDF/bash/.bashrc $HOME/.bashrc
+ln -vsf $DIRDF/bash/.inputrc $HOME/.inputrc
+ln -vsf $DIRDF/bash/.profile $HOME/.profile
 touch $HOME/.extra
 
 # x
-ln -vsf $(pwd)/x/.xinitrc $HOME/.xinitrc
-ln -vsf $(pwd)/x/.Xdefaults $HOME/.Xdefaults
+ln -vsf $DIRDF/x/.xinitrc $HOME/.xinitrc
+ln -vsf $DIRDF/x/.Xdefaults $HOME/.Xdefaults
 
 # cmus
 mkdir -p $HOME/.config/cmus
-ln -vsf $(pwd)/cmus/rc $HOME/.config/cmus/rc
+ln -vsf $DIRDF/cmus/rc $HOME/.config/cmus/rc
 
 # feh
 mkdir -p ~/.config/feh
-ln -vsf $(pwd)/feh/.fehbg $HOME/.fehbg
-ln -vsf $(pwd)/feh/keys $HOME/.config/feh/keys
+ln -vsf $DIRDF/feh/.fehbg $HOME/.fehbg
+ln -vsf $DIRDF/feh/keys $HOME/.config/feh/keys
 
 # neomutt
 # links simbolicos para diretórios devem possuir caminhos absolutos, sem pwd
 # Create a folder on directory .config, so dont type a name of folder you want
-ln -vsf $HOME/dev/dotfiles/neomutt ~/.config
+ln -vsf $DIRDF/neomutt ~/.config
 
 # newsboat
 rm -rf ~/.newsboat
-ln -vsf $HOME/dev/dotfiles/newsboat ~/.newsboat
+ln -vsf $DIRDF/newsboat ~/.newsboat
 
 # zathura
-ln -vsf $HOME/dev/dotfiles/zathura ~/.config
+ln -vsf $DIRDF/zathura ~/.config
 
 # mpv
-ln -vsf $HOME/dev/dotfiles/mpv ~/.config
+ln -vsf $DIRDF/mpv ~/.config
 
 # git
-ln -vsf $(pwd)/git/.gitconfig $HOME/.gitconfig
+ln -vsf $DIRDF/git/.gitconfig $HOME/.gitconfig
 
 # nvim
 echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.config/nvim/init.vim
@@ -83,5 +86,5 @@ echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.vimrc
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser/bookmarks
-ln -vsf $(pwd)/qutebrowser/urls $HOME/.config/qutebrowser/bookmarks/urls
-ln -vsf $(pwd)/qutebrowser/config.py $HOME/.config/qutebrowser/config.py
+ln -vsf $DIRDF/qutebrowser/urls $HOME/.config/qutebrowser/bookmarks/urls
+ln -vsf $DIRDF/qutebrowser/config.py $HOME/.config/qutebrowser/config.py

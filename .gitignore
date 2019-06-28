@@ -1,21 +1,38 @@
-# latex
+# pandoc
+README.md.pdf
 README.pdf
+readme.md.pdf
+readme.pdf
+*.md.pdf
+*.csv.md
+*.csv.pdf
+*.csv.md.pdf
+
+# graphviz
+*.dot.pdf
+*.dot.png
+*.gv.pdf
+*.gv.png
+
+# latex
 *.aux
-*.log
-*.out
-*.xmpi
+*.bbl
 *.blg
-*.bbl
-*.bbl
 *-blx.bib
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lol
+*.lot
 *.maf
 *.mtc
 *.mtc0
+*.out
 *.run.xml
-*.toc
-*.fdb_latexmk
-*.fls
 *.synctex.gz
+*.toc
+*.xmpi
 
 # python
 __pycache__/

@@ -1,0 +1,65 @@
+snippet input "<input type=''>"
+<input type="$0">
+endsnippet
+
+snippet html5 "<html></html>"
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<link rel="icon" type="image/png" href="imgs/fav.ico">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<title>$1</title>
+</head>
+<body>
+$0
+<script src="/js/index.js"></script>
+</body>
+
+</html>
+endsnippet
+
+snippet scripts "<script src=...></script>"
+<script src="$0"></script>
+endsnippet
+
+snippet linkrel "External CSS"
+	<link rel="stylesheet" type="text/css" href="$0.css">
+endsnippet
+
+snippet cl "class=..."
+class="$0"
+endsnippet
+
+snippet id "id=..."
+id="$0"
+endsnippet
+
+snippet div "<div>...</div>"
+<div>
+	$0
+</div>
+{##}
+endsnippet
+
+snippet ul "<ul>...</ul>"
+<ul>
+	$0
+</ul>
+{##}
+endsnippet
+
+snippet li "<li>...</li>"
+<li>$0</li>
+{##}
+endsnippet
+
+snippet a "<a href>...</a>"
+<a href="${1:#}">${0:texto}</a>{##}
+endsnippet
+
+snippet h1 "<h1>...</h1>"
+<h1>${VISUAL}</h1>
+endsnippet

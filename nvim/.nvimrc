@@ -8,7 +8,7 @@ let mapleader="\<space>"
 " Vim-PLug core
 "*********************************************************
 if has('vim_starting')
-  set nocompatible               " Be iMproved
+    set nocompatible               " Be iMproved
 endif
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
@@ -17,20 +17,20 @@ let g:vim_bootstrap_langs = "go"
 let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
-  if !executable("curl")
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  let g:not_finish_vimplug = "yes"
+    if !executable("curl")
+        echoerr "You have to install curl or first install vim-plug yourself!"
+        execute "q!"
+    endif
+    echo "Installing Vim-Plug..."
+    echo ""
+    silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let g:not_finish_vimplug = "yes"
 
-  autocmd VimEnter * PlugInstall
+    autocmd VimEnter * PlugInstall
 endif
 
 if filereadable(expand("~/dev/dotfiles/nvim/.nvimrc.plugs"))
-  source ~/dev/dotfiles/nvim/.nvimrc.plugs
+    source ~/dev/dotfiles/nvim/.nvimrc.plugs
 endif
 
 " Configurações built-in do nvim
@@ -59,7 +59,7 @@ set hlsearch
 set incsearch
 ":%s"
 if has('nvim')
-	set inccommand=split 
+    set inccommand=split 
 endif
 set ignorecase
 set smartcase
@@ -97,19 +97,19 @@ set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
 set complete=.,w,b,u,t
 
 "*********************************************************
-" Abbreviations/Commands
+" Basics Abbreviations/Commands
 "*********************************************************
 " No one is really happy until you have this shortcuts
 cnoreabbrev W! w!
-cnoreabbrev Q! q!
+" cnoreabbrev Q! q!
 cnoreabbrev Qa! qa!
 cnoreabbrev QA! qa!
 cnoreabbrev Wq wq
 cnoreabbrev Wa wa
 cnoreabbrev wQ wq
-cnoreabbrev WQ wq
+" cnoreabbrev WQ wq
 cnoreabbrev W w
-cnoreabbrev Q q
+" cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
 
@@ -117,12 +117,8 @@ cnoreabbrev QA qa
 cnoreabbrev cul set cul
 cnoreabbrev nocul set nocul
 
-"-------------------------------------------------
-" Nvimrc
-"-------------------------------------------------
-cnoreabbrev rc vsp ~/.nvimrc
-cnoreabbrev rp vsp ~/.nvimrc.plugs
-cnoreabbrev rs source ~/.nvimrc
+" Terminal command
+nnoremap ! :!
 
 "*********************************************************
 " Mappings
@@ -134,20 +130,18 @@ inoremap ,, <ESC>/{#[^%]*#}<CR>c%
 " Fechar automaticamente
 " Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
 " Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
-inoremap ¢ (){##}<left><left><left><left><left>
+inoremap {<Tab> {}<left><CR><CR><up><tab>
 inoremap ( (){##}<left><left><left><left><left>
-inoremap { {}{##}<left><left><left><left><left>
 inoremap [ []{##}<left><left><left><left><left>
 inoremap " ""{##}<left><left><left><left><left>
 inoremap ' ''{##}<left><left><left><left><left>
 
 " surround
-xnoremap ¢ xi()<ESC>P<ESC>
-xnoremap ( xi()<ESC>P<ESC>
-xnoremap { xi{}<ESC>P<ESC>
-xnoremap [ xi[]<ESC>P<ESC>
-xnoremap " xi""<ESC>P<ESC>
-xnoremap ' xi''<ESC>P<ESC>
+xnoremap ( xi()<ESC>P
+xnoremap { xi{}<ESC>P
+xnoremap [ xi[]<ESC>P
+xnoremap " xi""<ESC>P
+xnoremap ' xi''<ESC>P
 
 " j e k mantem cursor no meio do editor
 " nnoremap j jzz
@@ -177,7 +171,7 @@ nnoremap <C-z> u
 noremap <Leader>e :on<CR>
 " wgy dont work????????
 if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
+    tnoremap <Esc> <C-\><C-n>
 endif
 
 " Surround
@@ -211,16 +205,15 @@ noremap <leader>l :<C-u>vsp
 noremap <leader>j :<C-u>sp 
 
 " Switching windows
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
+"   Igual ao dwm
+noremap <c-j> <C-w>w
+noremap <c-k> <C-w>W
 
 " Resize
-noremap - <C-w>-
-noremap + <C-w>+
-noremap > <C-w>>
-noremap < <C-w><
+nmap <C-w>j <C-w>-
+nmap <c-w>k <C-w>+
+nmap <c-w>l <C-w>>
+nmap <c-w>h <C-w><
 
 "*********************************************************
 " Visual Settings
@@ -265,18 +258,6 @@ augroup END
 autocmd BufRead,BufNewFile *.vue setfiletype html
 
 "#########################################
-" VimTex
-"#########################################
-augroup tex
-	" É necessário compilar duas vezes para ter certeza de atualizar a toc
-	" https://tex.stackexchange.com/questions/301103/empty-table-of-contents
-	" Também compilar bibliografia e mais uma vez a toc
-    " Erros salvos em log
-	au FileType tex nmap <leader>r <Esc>:w<CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;bibtex '%:r' > bibtex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>
-	au FileType tex nmap <leader>e <Esc>:!clear;$PDFVIEWER '%:r'.pdf &<CR><CR>
-augroup end
-
-"#########################################
 " MARKDOWN
 "#########################################
 augroup markdown
@@ -293,8 +274,8 @@ augroup csv
     " Transforma como md em /tmp, salva, converte em pdf com pandoc em /tmp e fecha buffer; abre pdfviewer
     "au FileType csv nmap <leader>r <Esc>:w<CR>:sav! /tmp/%.md<CR><ESC>:setfiletype markdown<CR>ggo-\|-<ESC>:%s/;/\|/<CR>:w<CR>:!echo /tmp/'%:r'.pdf <CR>
     "au FileType csv nmap <leader>r <Esc>:w<CR>:sav! /tmp/%.md<CR><ESC>:setfiletype markdown<CR>ggo-\|-<ESC>:%s/;/\|/<CR>:w<CR>:!echo /tmp/'%:r'.pdf <CR>
-    au FileType csv nmap <leader>r <Esc>:w<CR>:sav! /tmp/%.md<CR><ESC>:setfiletype markdown<CR>ggo-\|-<ESC>:%s/;/\|/<CR>:w<CR>:!pandoc % -o '%:r'.pdf<CR><CR>:bd<CR>
-    au FileType csv nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER /tmp/'%:r'.csv.pdf &<CR><CR>
+    au FileType csv nmap <leader>r <Esc>:w<CR>:sav! %.md<CR><ESC>:setfiletype markdown<CR>ggo-\|-\|-<ESC>:%s/;/\|/g<CR>:w<CR>:!pandoc % -o '%:r'.pdf<CR><CR>:bd<CR>
+    au FileType csv nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
 augroup END
 
 "#########################################
@@ -323,6 +304,13 @@ augroup tex
     au FileType tex vnoremap ;; :s/%\s/<CR>:noh<CR>
     au FileType tex nmap // :call ComentaNormal("% ")<esc>
     au FileType tex nmap ;; :s/%\s/<CR>:noh<CR>
+
+    " É necessário compilar duas vezes para ter certeza de atualizar a toc
+    " https://tex.stackexchange.com/questions/301103/empty-table-of-contents
+    " Também compilar bibliografia e mais uma vez a toc
+    " Erros salvos em log
+    au FileType tex nmap <leader>r <Esc>:w<CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;bibtex '%:r' > bibtex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>
+    au FileType tex nmap <leader>e <Esc>:!clear;$PDFVIEWER '%:r'.pdf &<CR><CR>
 augroup END
 
 " Reconhecer classes com syntax de latex
@@ -349,6 +337,25 @@ augroup python
     au FileType php nmap // :call ComentaNormal("// ")<esc>
     au FileType php nmap ;; :s/\/\/\s/<CR>:noh<CR>
 augroup END
+
+"#########################################
+" JAVASCRIPT
+"#########################################
+augroup javascript
+    au FileType javascript vnoremap // :call ComentaVisual("// ")<CR>
+    au FileType javascript vnoremap ;; :s/\/\/\s/<CR>:noh<CR>
+    au FileType javascript nmap // :call ComentaNormal("// ")<esc>
+    au FileType javascript nmap ;; :s/\/\/\s/<CR>:noh<CR>
+augroup END
+
+"#########################################
+" VIMSCRIPT
+"#########################################
+augroup vim
+    au FileType vim vnoremap // :call ComentaVisual("\" ")<CR>
+    au FileType vim nmap // :call ComentaNormal("\" ")<esc>
+augroup END
+
 "*********************************************************
 " Buffers
 "*********************************************************
@@ -356,10 +363,14 @@ augroup END
 "   the same file dont open twice
 "   more velocity
 " View and select buffers
-nnoremap <Tab> :ls <CR>:b<Space>
+"   Actually im using plugin
+"nnoremap <Tab> :ls <CR>:b<space>
+
+" Leave a buffer even without save
+set hidden
 
 " Open new file in buffer
-nnoremap <c-n> :e<Space>
+nnoremap <c-n> :e **/*
 
 nnoremap <silent> <leader>dd :bd<cr>
 nnoremap <silent> <leader>df :bd!<cr>
@@ -370,38 +381,134 @@ nnoremap <silent> ]b :bn<CR>
 nnoremap <silent> <Space>] :bn<CR>
 nnoremap <silent> [B :bp<CR>
 nnoremap <silent> ]B :bn<CR>
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
 
-" Leave a buffer even without save
-set hidden
-"*********************************************************
-" Netrw
-"*********************************************************
-" :h netrw-quickcom
-" <CR>/v/t to open in an h-split/v-split/tab
-" Check |netrw-browse-maps| for more mappings
-let g:netrw_banner=0        " Disable annoying banner
-let g:netrw_altv=1          " Open splits to the right
-let g:netrw_liststyle=3     " Tree view
-"set autochdir "Deixa absoluto o path do netrw!!!
-
-" Toggle para mostrar diretórios
-let g:NetrwIsOpen=0
-
-function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        silent Lexplore
+" https://www.reddit.com/r/vim/comments/3hwall/how_to_close_vim_when_last_buffer_is_deleted/
+function! QuitBuffOrWindow(bang)
+     if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+         if(a:bang == "!")
+             :q!
+         else
+             :q
+         endif
+     else
+         if(a:bang == "!")
+             :bdelete!
+         else
+             :bdelete
+         endif
+    endif
+endfunction
+function! QuitWriteBuffOrWindow()
+     if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+         :wq
+     else
+         :w
+         :bdelete
     endif
 endfunction
 
-" Add your own mapping. For example:
-noremap <silent> <leader><CR> :call ToggleNetrw()<CR>
+command WQ execute ":call QuitWriteBuffOrWindow()"
+command -bang Q :call QuitBuffOrWindow("<bang>")
+cnoreabbrev q Q
+cnoreabbrev wq WQ
+
+"*********************************************************
+" Conceal
+"*********************************************************
+" PRECISO DESCROBRIR:
+"   COMO EVITAR QE A COR DE CONCEAL SOBSCREVA OUTRAS SYNTAXES:
+"       SE -> ESTÁ EM STRING, DEVE TER COR DE STRING
+"       SE EM COMENTÁRIO, COMO COMENTÁRIO
+"   PORQUE ALGUNS SIMBOLOS CONCEAL DUPLICAM?
+
+" Semelhante a ligatures do firacode!
+" Conceal utiliza os digraphs do vim, e els ficam isiveis somente em
+" edição/visualização. O arquivo fonte não é modificado com os simbolos.
+" Simbolos do vim -> :h digraphtable
+" https://vi.stackexchange.com/questions/5696/adding-conceal-to-already-existing-syntax-highlighting
+" https://alok.github.io/2018/05/09/more-about-vim-conceal/
+" https://www.maximewack.com/post/emulating_ligatures/
+" https://www.reddit.com/r/vim/comments/bd0y01/use_matchadd_conceal_function_problem/
+
+" hide in normal and visual mode
+
+set concealcursor=
+set conceallevel=2
+
+" Cor de chars modificados
+hi Conceal guibg=NONE guifg=white gui=bold ctermfg=white ctermbg=NONE cterm=bold
+
+" Por algum motivo, o primeiro match é o responsável por match search
+" matchadd é usado pois somente :syn não pode especificar prioridade
+" matchadd as vezes repete o digraph
+call matchadd('String', '-------:------', 10, 200, {'conceal': 'a'})
+augroup javascript
+    au FileType javascript call matchadd('Conceal','true',0,-1,{'conceal':'✓'})
+    au FileType javascript call matchadd('Conceal','false',0,-1,{'conceal':'×'})
+    au FileType javascript call matchadd('Conceal','\<await\>',0,-1,{'conceal':'↺'})
+    au FileType javascript call matchadd('Conceal','\<async\>',0,-1,{'conceal':'⇄'})
+    au FileType javascript call matchadd('Conceal','\<function\>',0,-1,{'conceal':'ƒ'})
+    au FileType javascript call matchadd('Conceal','\<return\>',0,-1,{'conceal':'↖'})
+    au FileType javascript call matchadd('Conceal','\<null\>',0,-1,{'conceal':'ø'})
+    au FileType javascript call matchadd('Conceal','\<undefined\>',0,-1,{'conceal':'¿'})
+    au FileType javascript call matchadd('Conceal','=>',0,-1,{'conceal':'→'})
+    "au BufEnter *.js :syn match Conceal 'true' contained conceal cchar=✓
+    "au BufEnter *.js :syn match Conceal 'false' contained conceal cchar=×
+    "au BufEnter *.js :syn match Conceal '\<await\>' conceal cchar=↺
+    "au BufEnter *.js :syn match Conceal 'async' conceal cchar=⇄
+
+    au BufEnter *.js :syn match Conceal '<=' conceal cchar=≤
+    au BufEnter *.js :syn match Conceal '>=' conceal cchar=≥
+    au BufEnter *.js :syn match Conceal '!=' conceal cchar=≠
+    au BufEnter *.js :syn match Conceal '==' conceal cchar=≡
+
+    "au FileType javascript call matchadd('Conceal','<=',10,-1,{'conceal':'≤'})
+    "au FileType javascript call matchadd('Conceal','>=',10,-1,{'conceal':'≥'})
+    "au FileType javascript call matchadd('Conceal','!=',10,-1,{'conceal':'≠'})
+    "au FileType javascript call matchadd('Conceal','==',10,-1,{'conceal':'≡'})
+augroup END
+augroup go
+    au FileType go call matchadd('Conceal','true',0,-1,{'conceal':'✓'})
+    au FileType go call matchadd('Conceal','false',0,-1,{'conceal':'×'})
+    au FileType go call matchadd('Conceal','\<nil\>',0,-1,{'conceal':'ø'})
+    au FileType go call matchadd('Conceal','\<func\>',0,-1,{'conceal':'ƒ'})
+    au FileType go call matchadd('Conceal','\<go\>',0,-1,{'conceal':'⇄'})
+
+    "au FileType go call matchadd('Conceal','->',0,-1,{'conceal':'→'})
+    "au FileType go call matchadd('Conceal','<-',0, -1,{'conceal':'←'})
+    au BufEnter *.go :syn match Conceal '->' conceal cchar=→
+    au BufEnter *.go :syn match Conceal '<-' conceal cchar=←
+
+    au BufEnter *.go :syn match Conceal '<=' conceal cchar=≤
+    au BufEnter *.go :syn match Conceal '>=' conceal cchar=≥
+    au BufEnter *.go :syn match Conceal '!=' conceal cchar=≠
+    au BufEnter *.go :syn match Conceal '==' conceal cchar=≡
+augroup END
+
+function! ToggleConcealLevel()
+    if &conceallevel == 0
+        setlocal conceallevel=2
+    else
+        setlocal conceallevel=0
+    endif
+endfunction
+
+" diminui nivel conceal caso queira...
+nnoremap <silent> <C-c><C-y> :call ToggleConcealLevel()<CR>
+
+"*********************************************************
+" EXTRA CONFIGS
+"*********************************************************
+if filereadable(expand("~/.nvimrc.extra"))
+    source ~/.nvimrc.extra
+endif
+
+
+
+
+
+
+
+

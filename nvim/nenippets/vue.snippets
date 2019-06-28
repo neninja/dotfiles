@@ -1,51 +1,6 @@
-# html
-####################################################
-snippet cl "class=..."
-class="${0:${VISUAL}}"
-endsnippet
-
-snippet id "id=..."
-id="${0:${VISUAL}}"
-endsnippet
-
-snippet div "<div>...</div>"
-<div>
-	${0:${VISUAL}}
-</div>
-{##}
-endsnippet
-
-snippet ul "<ul>...</ul>"
-<ul>
-	${0:${VISUAL}}
-</ul>
-{##}
-endsnippet
-
-snippet li "<li>...</li>"
-<li>${0:${VISUAL}}</li>
-{##}
-endsnippet
-
-snippet a "<a href>...</a>"
-<a href="${1:#}">${0:texto}</a>{##}
-endsnippet
-
-
-# javascript
-####################################################
-
-snippet log "console.log(...)"
-console.log(${0})
-endsnippet
-
-
-# vue
-####################################################
-
 snippet template "<html></html><js></js><css></css>"
 <template>
-	${0:${VISUAL}}
+	$0
 </template>
 
 <script>
