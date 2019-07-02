@@ -42,7 +42,7 @@ else
 endif
 Plug 'kristijanhusak/defx-icons' " Adaptação de devicons para o explorador defx
 Plug 'bagrat/vim-buffet' " Bufline
-Plug 'sunaku/vim-modusline'
+Plug 'sunaku/vim-modusline' " Status line colorida dependendo do modo
 
 " Apresentações
 " :Goyo ou :Goyo 80%x80%
@@ -51,11 +51,6 @@ Plug 'junegunn/goyo.vim'
 " Autocomplete
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'wokalski/autocomplete-flow'
-
-" You will also need the following for function argument completion:
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
