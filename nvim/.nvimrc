@@ -364,7 +364,9 @@ augroup END
 "   more velocity
 " View and select buffers
 "   Actually im using plugin
-"nnoremap <Tab> :ls <CR>:b<space>
+nnoremap <Tab> :ls <CR>:b<space>
+" nnoremap <Tab> :bn<CR>
+" nnoremap <S-Tab> :bp<CR>
 
 " Leave a buffer even without save
 set hidden
@@ -381,8 +383,6 @@ nnoremap <silent> ]b :bn<CR>
 nnoremap <silent> <Space>] :bn<CR>
 nnoremap <silent> [B :bp<CR>
 nnoremap <silent> ]B :bn<CR>
-nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
 
 " https://www.reddit.com/r/vim/comments/3hwall/how_to_close_vim_when_last_buffer_is_deleted/
 function! QuitBuffOrWindow(bang)

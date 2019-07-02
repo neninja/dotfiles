@@ -41,7 +41,6 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'kristijanhusak/defx-icons' " Adaptação de devicons para o explorador defx
-Plug 'bagrat/vim-buffet' " Bufline
 Plug 'sunaku/vim-modusline' " Status line colorida dependendo do modo
 
 " Apresentações
@@ -325,53 +324,6 @@ let g:ctrlp_prompt_mappings = {
             \ 'MarkToOpen()':         ['<c-z>'],
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
-
-"#########################################
-" Vim-buffet
-"#########################################
-" Erro, aparece "z"
-"let g:buffet_powerline_separators = 1
-
-function! g:BuffetSetCustomColors()
-    " Cor padrão do buffer
-    " ------------------------------
-
-    " the current buffer
-    hi BuffetCurrentBuffer guibg=lightblue guifg=black gui=NONE ctermbg=lightblue guifg=black cterm=NONE
-
-    " an active buffer (a non-current buffer visible in a non-current window)
-    hi BuffetActiveBuffer guibg=NONE guifg=white gui=NONE ctermfg=white ctermbg=NONE cterm=NONE
-
-    " a non-current and non-active buffer
-    hi BuffetBuffer guibg=NONE guifg=white gui=NONE ctermfg=white ctermbg=NONE cterm=NONE
-
-
-    " Modificados
-    " ------------------------------
-
-    " the current buffer when modified
-    hi BuffetModCurrentBuffer guibg=lightblue guifg=black gui=bold ctermfg=black ctermbg=lightblue cterm=bold
-
-    " a modified active buffer (a non-current buffer visible in a non-current window)
-    hi BuffetModActiveBuffer guibg=NONE guifg=lightblue gui=bold ctermfg=lightblue ctermbg=NONE cterm=bold
-
-    " a modified non-current and non-active buffer
-    hi BuffetModBuffer guibg=NONE guifg=lightblue gui=bold ctermfg=lightblue ctermbg=NONE cterm=bold
-
-
-    " Simbolos
-    " ------------------------------
-
-    " the truncation indicator (count of truncated buffers from the left or right)
-    hi BuffetTrunc guibg=NONE guifg=yellow gui=bold ctermfg=yellow ctermbg=NONE cterm=bold
-
-    " a tab
-    hi BuffetTab guibg=NONE guifg=NONE ctermfg=NONE ctermbg=NONE
-endfunction
-
-
-let g:buffet_use_devicons = 1
-
 
 "#########################################
 " Defx
