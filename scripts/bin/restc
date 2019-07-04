@@ -27,13 +27,13 @@ formatJSON(){
     # Pode optar pelo print com ou sem indentação
     # https://stackoverflow.com/questions/2875424/correct-way-to-check-for-a-command-line-flag-in-bash
     if [ "$1" = "--no-json-format" ]; then
-        echo "cat $2" >> $3
-        echo "echo ''" >> $3
+        echo "cat $2 && echo ''" >> $3
     else
         # É possível identar o arquivo pelo vim ou nvim com:
         #   :%!python -m json.tool
         #   nvim -c '%!python -m json.tool' -c wq $2
         echo "cat $1 | python -m json.tool" >> $2
+        echo "#cat $1 && echo ''" >> $2
     fi
 }
 
