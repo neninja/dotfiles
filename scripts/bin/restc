@@ -1,0 +1,165 @@
+#!/usr/bin/env sh
+#
+# Rest Curl
+#
+# Autor: Felipe Silva
+#	Site: neni.dev
+# 	Github: nenitf
+#	Gitlab: nenitf
+#
+# O que faz:
+#   Cria scripts shell dinâmicamente com a requisição esperada do curl
+#
+# Por quê?
+#   Evitar usar restclients para testes de APIs simples com scripts em shell
+#
+# Comandos:
+#   Execute o comando "restc" e veja exemplos
+#
+# Como habilitar comando restc?
+#   Add pasta que este arquivo está em seu PATH
+#       PATH="$HOME/scripts/bin:$PATH"
+
+formatJSON(){
+    # Pode optar pelo print com ou sem indentação
+    # https://stackoverflow.com/questions/2875424/correct-way-to-check-for-a-command-line-flag-in-bash
+    if [ "$1" = "--no-json-format" ]; then
+        echo "cat $2" >> $3
+        echo "echo ''" >> $3
+    else
+        # É possível identar o arquivo pelo vim ou nvim com:
+        # :%!python -m json.tool
+        # nvim -c '%!python -m json.tool' -c wq $2
+        echo "cat $1 | python -m json.tool" >> $2
+    fi
+}
+
+
+case $1 in
+    get|g)
+        URL=$2
+        # localhost:3333/posts  ->  localhost_posts
+        URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*/localhost/g' | sed -r 's/\//_/g')
+        FILE_RES="/tmp/g-res_$URL_FILENAME-restc.json"
+        SCRIPT_REQ="g-req_$URL_FILENAME-restc.sh"
+
+        # Faz a requisição
+        COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES $URL)
+        echo $COMANDO_CURL > $SCRIPT_REQ
+        echo "echo ''" >> $SCRIPT_REQ
+
+        formatJSON $3 $FILE_RES $SCRIPT_REQ
+
+        echo "Edite e/ou execute a requisição gerada com:\nsh $SCRIPT_REQ"
+        ;;
+    post|p)
+        URL=$3
+        # localhost:3333/posts  ->  localhost_posts
+        URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*/localhost/g' | sed -r 's/\//_/g')
+
+        case $2 in
+            json|j)
+                FILE_RES="/tmp/pj-res_$URL_FILENAME-restc.json"
+                JSON_REQ="/tmp/pj-req_$URL_FILENAME-restc.json"
+                SCRIPT_REQ="pj-req_$URL_FILENAME-restc.sh"
+
+                # Cria arquivo específico de dados da requisição
+                echo "echo '{\n\"id\": 1\n}' > $JSON_REQ" > $SCRIPT_REQ
+
+                # Faz a requisição
+                COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X POST -H \"Content-Type: application/json\" -d @$JSON_REQ $URL)
+                echo $COMANDO_CURL >> $SCRIPT_REQ
+                echo "echo ''" >> $SCRIPT_REQ
+
+                formatJSON $4 $FILE_RES $SCRIPT_REQ
+
+                echo "Edite e/ou execute a requisição gerada com:\nsh $SCRIPT_REQ"
+                ;;
+            form|f)
+                FILE_RES="/tmp/pf-res_$URL_FILENAME-restc.json"
+                FORM_REQ="/tmp/pf-req_$URL_FILENAME-restc.json"
+                SCRIPT_REQ="pf-req_$URL_FILENAME-restc.sh"
+
+                # Cria arquivo específico de dados da requisição
+                echo '#-F "userid=1"\' > $FORM_REQ
+                echo '#-F "image=@/home/neni/test.jpg"\' >> $FORM_REQ
+
+                # Faz a requisição
+                COMANDO_CURL=$(curl -# -X POST -w %{content_type}"\n\n" -o $FILE_RES -K $FORM_REQ $URL)
+                echo $COMANDO_CURL >> $SCRIPT_REQ
+                echo "echo ''" >> $SCRIPT_REQ
+
+                formatJSON $4 $FILE_RES $SCRIPT_REQ
+
+                echo "Edite e/ou execute a requisição gerada com:\nsh $SCRIPT_REQ"
+                ;;
+            *)
+                echo "POST:"
+                echo "restc post json <url> [--no-json-format]"
+                echo "restc post form <url> [--no-json-format]"
+                ;;
+        esac
+        ;;
+    put)
+        URL=$2
+        # localhost:3333/posts  ->  localhost_posts
+        URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*/localhost/g' | sed -r 's/\//_/g')
+        FILE_RES="/tmp/put-res_$URL_FILENAME-restc.json"
+        JSON_REQ="/tmp/put-req_$URL_FILENAME-restc.json"
+        SCRIPT_REQ="put-req_$URL_FILENAME-restc.sh"
+
+        # Cria arquivo específico de dados da requisição
+        echo "echo '{\n\"id\": 1\n}' > $JSON_REQ" > $SCRIPT_REQ
+
+        # Faz a requisição
+        COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X PUT -H \"Content-Type: application/json\" -d @$JSON_REQ $URL)
+        echo $COMANDO_CURL >> $SCRIPT_REQ
+        echo "echo ''" >> $SCRIPT_REQ
+
+        formatJSON $4 $FILE_RES $SCRIPT_REQ
+
+        echo "Edite e/ou execute a requisição gerada com:\nsh $SCRIPT_REQ"
+        ;;
+    delete)
+        URL=$2
+        # localhost:3333/posts  ->  localhost_posts
+        URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*/localhost/g' | sed -r 's/\//_/g')
+        FILE_RES="/tmp/d-res_$URL_FILENAME-restc.json"
+        SCRIPT_REQ="d-req_$URL_FILENAME-restc.sh"
+
+        # Faz a requisição
+        COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X DELETE $URL)
+        echo $COMANDO_CURL >> $SCRIPT_REQ
+        echo "echo ''" >> $SCRIPT_REQ
+
+        formatJSON $4 $FILE_RES $SCRIPT_REQ
+
+        echo "Edite e/ou execute a requisição gerada com:\nsh $SCRIPT_REQ"
+        ;;
+    clear)
+        rm *-restc.*
+        ;;
+    *)
+        echo "Script para a criação de templates/scripts de requisição, após criados - na mesma pasta do comando - basta executá-los com sh nomedoarquivo.sh"
+        echo "Arquivos de respostas salvos temporariamente em /tmp/ como restc-*-res_*.json"
+
+        echo "\nGET:"
+        echo "restc get <url> [--no-json-format]"
+
+        echo "\nPOST:"
+        echo "restc post json <url> [--no-json-format]"
+        echo "restc post form <url> [--no-json-format]"
+
+        echo "\nPUT:"
+        echo "restc put <url> [--no-json-format]"
+
+        echo "\nDELETE:"
+        echo "restc delete form <url> [--no-json-format]"
+
+        echo "\nMISC"
+        echo "restc clear // deleta todos .sh de requisição restc"
+
+        echo "\nDICAS"
+        echo "- Utilize o comando fc caso precise modificar o script e depois executá-lo"
+        ;;
+esac
