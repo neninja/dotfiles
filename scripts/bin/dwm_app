@@ -111,10 +111,10 @@ case $APP_ESCOLHIDO in
         ;;
 
     "gimp")
-        st -e gimp
+        gimp
         ;;
 
     "inkscape")
-        st -e inkscape
+        inkscape
         ;;
 esac
