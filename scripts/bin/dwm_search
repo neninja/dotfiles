@@ -20,7 +20,7 @@ if [ ! -z $TIPO_DE_PESQUISA ]; then
 
             CONFIG_ESCOLHIDA=$(find $DIRDF $DIRIS -not \( -path $HOME/dev/dotfiles/.git -prune \) -not \( -path $HOME/dev/is/.git -prune \) -not \( -path  $HOME/dev/is/tmp/nerd-fonts -prune \) | sed "s/\/home\/$USER\/dev\///g" | dmenu -l 20 -i -p "Escolha arquivo ou pasta");
 
-            # Fazer algo somente após enter no dmen
+            # Fazer algo somente após enter no dmenu
             if [ ! -z $CONFIG_ESCOLHIDA ]; then
                 # PATH DEVE SER: /home/user/dev/$CONFIG_ESCOLHIDA
                 DEVCOMP='/dev/'
@@ -45,7 +45,7 @@ if [ ! -z $TIPO_DE_PESQUISA ]; then
 
             PROJETO_ESCOLHIDO=$(find $DIRPHP $DIRPYTHON $DIRGO1 $DIRGO2 $DIRNODE $DIRFRONT -maxdepth 1 -mindepth 1 -type d | sed -e "s/\/home\/$USER\/dev\///" -e "s/\/home\/$USER\/go/go/" | dmenu -l 20 -i -p "Escolha a pasta");
 
-            # Fazer algo somente após enter no dmen
+            # Fazer algo somente após enter no dmenu
             if [ ! -z $PROJETO_ESCOLHIDO ]; then
                 DEVCOMP='/dev/'
                 LINGUAGEM=$(echo "$PROJETO_ESCOLHIDO" | awk -F/ '{print $1}')
@@ -62,16 +62,18 @@ if [ ! -z $TIPO_DE_PESQUISA ]; then
                 cd $PATH_CORRETO
                 st
             fi
-                ;;
-            livro)
-                # diretórios onde existem pdfs
-                DIRLIVROS="$HOME/Livros/"
+            ;;
+        livro)
+            # diretórios onde existem pdfs
+            DIRLIVROS="$HOME/Livros/"
 
-                LIVRO_ESCOLHIDO=$(find $DIRLIVROS -type f -printf "%P\n" | dmenu -l 20 -i -p "Escolha um livro");
+            LIVRO_ESCOLHIDO=$(find $DIRLIVROS -type f -printf "%P\n" | dmenu -l 20 -i -p "Escolha um livro");
 
-            # Fazer algo somente após enter no dmen
-            if [ ! -z $LIVRO_ESCOLHIDO ]; then
-                zathura $DIRLIVROS$LIVRO_ESCOLHIDO
+            PATH_LIVRO="$DIRLIVROS$LIVRO_ESCOLHIDO"
+
+            # Fazer algo se existe o livro
+            if [ -f "$PATH_LIVRO" ]; then
+                zathura "$PATH_LIVRO"
             fi
             ;;
     esac
