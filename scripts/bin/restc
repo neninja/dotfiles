@@ -37,6 +37,11 @@ formatJSON(){
     fi
 }
 
+echoJSON(){
+    # Esreve json a ser enviado no script
+    echo "echo '\n\n\n{\n\t\"id\": 1\n}\n\n\n' > $1" >> $2
+}
+
 printMsg(){
     echo "Arquivo de requisição gerado: $1"
 }
@@ -85,8 +90,7 @@ case $1 in
                 # Escreve dica de execução no script
                 echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
 
-                # Esreve json a ser enviado no script
-                echo "echo '\n\n\n{\n\"id\": 1\n}\n\n\n' > $JSON_REQ" >> $SCRIPT_REQ
+                echoJSON $JSON_REQ $SCRIPT_REQ
 
                 # Esreve a requisição no script
                 COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X POST -H \"Content-Type: application/json\" -d @$JSON_REQ $URL)
@@ -154,8 +158,7 @@ case $1 in
         # Escreve dica de execução no script
         echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
 
-        # Esreve json a ser enviado no script
-        echo "echo '{\n\"id\": 1\n}' > $JSON_REQ" >> $SCRIPT_REQ
+        echoJSON $JSON_REQ $SCRIPT_REQ
 
         # Esreve a requisição no script
         COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X PUT -H \"Content-Type: application/json\" -d @$JSON_REQ $URL)
