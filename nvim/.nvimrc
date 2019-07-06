@@ -417,6 +417,7 @@ cnoreabbrev wq WQ
 "*********************************************************
 " Conceal
 "*********************************************************
+" BUG de duplicar quando escrito function em markdown
 " PRECISO DESCROBRIR:
 "   COMO EVITAR QE A COR DE CONCEAL SOBSCREVA OUTRAS SYNTAXES:
 "       SE -> ESTÁ EM STRING, DEVE TER COR DE STRING
@@ -438,65 +439,65 @@ set concealcursor=
 set conceallevel=2
 
 " Cor de chars modificados
-hi Conceal guibg=NONE guifg=white gui=bold ctermfg=white ctermbg=NONE cterm=bold
+" hi Conceal guibg=NONE guifg=white gui=bold ctermfg=white ctermbg=NONE cterm=bold
 
 " Por algum motivo, o primeiro match é o responsável por match search
 " matchadd é usado pois somente :syn não pode especificar prioridade
 " matchadd as vezes repete o digraph
-call matchadd('String', '-------:------', 10, 200, {'conceal': 'a'})
-augroup javascript
-    au FileType javascript call matchadd('Conceal','true',0,-1,{'conceal':'✓'})
-    au FileType javascript call matchadd('Conceal','false',0,-1,{'conceal':'×'})
-    au FileType javascript call matchadd('Conceal','\<await\>',0,-1,{'conceal':'↺'})
-    au FileType javascript call matchadd('Conceal','\<async\>',0,-1,{'conceal':'⇄'})
-    au FileType javascript call matchadd('Conceal','\<function\>',0,-1,{'conceal':'ƒ'})
-    au FileType javascript call matchadd('Conceal','\<return\>',0,-1,{'conceal':'↖'})
-    au FileType javascript call matchadd('Conceal','\<null\>',0,-1,{'conceal':'ø'})
-    au FileType javascript call matchadd('Conceal','\<undefined\>',0,-1,{'conceal':'¿'})
-    au FileType javascript call matchadd('Conceal','=>',0,-1,{'conceal':'→'})
+" call matchadd('String', '-------:------', 10, 200, {'conceal': 'a'})
+" augroup javascript
+    " au FileType javascript call matchadd('Conceal','true',0,-1,{'conceal':'✓'})
+    " au FileType javascript call matchadd('Conceal','false',0,-1,{'conceal':'×'})
+    " au FileType javascript call matchadd('Conceal','\<await\>',0,-1,{'conceal':'↺'})
+    " au FileType javascript call matchadd('Conceal','\<async\>',0,-1,{'conceal':'⇄'})
+    " au FileType javascript call matchadd('Conceal','\<function\>',0,-1,{'conceal':'ƒ'})
+    " au FileType javascript call matchadd('Conceal','\<return\>',0,-1,{'conceal':'↖'})
+    " au FileType javascript call matchadd('Conceal','\<null\>',0,-1,{'conceal':'ø'})
+    " au FileType javascript call matchadd('Conceal','\<undefined\>',0,-1,{'conceal':'¿'})
+    " au FileType javascript call matchadd('Conceal','=>',0,-1,{'conceal':'→'})
     "au BufEnter *.js :syn match Conceal 'true' contained conceal cchar=✓
     "au BufEnter *.js :syn match Conceal 'false' contained conceal cchar=×
     "au BufEnter *.js :syn match Conceal '\<await\>' conceal cchar=↺
     "au BufEnter *.js :syn match Conceal 'async' conceal cchar=⇄
 
-    au BufEnter *.js :syn match Conceal '<=' conceal cchar=≤
-    au BufEnter *.js :syn match Conceal '>=' conceal cchar=≥
-    au BufEnter *.js :syn match Conceal '!=' conceal cchar=≠
-    au BufEnter *.js :syn match Conceal '==' conceal cchar=≡
+    " au BufEnter *.js :syn match Conceal '<=' conceal cchar=≤
+    " au BufEnter *.js :syn match Conceal '>=' conceal cchar=≥
+    " au BufEnter *.js :syn match Conceal '!=' conceal cchar=≠
+    " au BufEnter *.js :syn match Conceal '==' conceal cchar=≡
 
     "au FileType javascript call matchadd('Conceal','<=',10,-1,{'conceal':'≤'})
     "au FileType javascript call matchadd('Conceal','>=',10,-1,{'conceal':'≥'})
     "au FileType javascript call matchadd('Conceal','!=',10,-1,{'conceal':'≠'})
     "au FileType javascript call matchadd('Conceal','==',10,-1,{'conceal':'≡'})
-augroup END
-augroup go
-    au FileType go call matchadd('Conceal','true',0,-1,{'conceal':'✓'})
-    au FileType go call matchadd('Conceal','false',0,-1,{'conceal':'×'})
-    au FileType go call matchadd('Conceal','\<nil\>',0,-1,{'conceal':'ø'})
-    au FileType go call matchadd('Conceal','\<func\>',0,-1,{'conceal':'ƒ'})
-    au FileType go call matchadd('Conceal','\<go\>',0,-1,{'conceal':'⇄'})
+" augroup END
+" augroup go
+    " au FileType go call matchadd('Conceal','true',0,-1,{'conceal':'✓'})
+    " au FileType go call matchadd('Conceal','false',0,-1,{'conceal':'×'})
+    " au FileType go call matchadd('Conceal','\<nil\>',0,-1,{'conceal':'ø'})
+    " au FileType go call matchadd('Conceal','\<func\>',0,-1,{'conceal':'ƒ'})
+    " au FileType go call matchadd('Conceal','\<go\>',0,-1,{'conceal':'⇄'})
 
     "au FileType go call matchadd('Conceal','->',0,-1,{'conceal':'→'})
     "au FileType go call matchadd('Conceal','<-',0, -1,{'conceal':'←'})
-    au BufEnter *.go :syn match Conceal '->' conceal cchar=→
-    au BufEnter *.go :syn match Conceal '<-' conceal cchar=←
+    " au BufEnter *.go :syn match Conceal '->' conceal cchar=→
+    " au BufEnter *.go :syn match Conceal '<-' conceal cchar=←
 
-    au BufEnter *.go :syn match Conceal '<=' conceal cchar=≤
-    au BufEnter *.go :syn match Conceal '>=' conceal cchar=≥
-    au BufEnter *.go :syn match Conceal '!=' conceal cchar=≠
-    au BufEnter *.go :syn match Conceal '==' conceal cchar=≡
-augroup END
+    " au BufEnter *.go :syn match Conceal '<=' conceal cchar=≤
+    " au BufEnter *.go :syn match Conceal '>=' conceal cchar=≥
+    " au BufEnter *.go :syn match Conceal '!=' conceal cchar=≠
+    " au BufEnter *.go :syn match Conceal '==' conceal cchar=≡
+" augroup END
 
-function! ToggleConcealLevel()
-    if &conceallevel == 0
-        setlocal conceallevel=2
-    else
-        setlocal conceallevel=0
-    endif
-endfunction
+" function! ToggleConcealLevel()
+    " if &conceallevel == 0
+        " setlocal conceallevel=2
+    " else
+        " setlocal conceallevel=0
+    " endif
+" endfunction
 
 " diminui nivel conceal caso queira...
-nnoremap <silent> <C-c><C-y> :call ToggleConcealLevel()<CR>
+" nnoremap <silent> <C-c><C-y> :call ToggleConcealLevel()<CR>
 
 "*********************************************************
 " EXTRA CONFIGS
