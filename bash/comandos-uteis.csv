@@ -16,3 +16,4 @@ lsblk;Disco;Lista discos/pendrives
 mount /dev/sdb1 /media/folderexistente;Disco;Exibe arquivos do pendrive em /media/folderexistente
 lshw;Hardware Geral;Lista completa do hardware do comptador
 fc-list;Fonts;Lista completa de fontes instaladas
+startx;Software;Inicia xorg/xserver
