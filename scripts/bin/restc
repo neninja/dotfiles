@@ -59,7 +59,7 @@ case $1 in
         echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
 
         # Esreve a requisição no script
-        COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES $URL)
+        COMANDO_CURL=$(echo curl -# -w %{content_type} -H \"Authorization: Bearer token\" -o $FILE_RES $URL)
         echo $COMANDO_CURL >> $SCRIPT_REQ
 
         # Pula uma linha para não juntar content_type com a resposta json
@@ -93,7 +93,7 @@ case $1 in
                 echoJSON $JSON_REQ $SCRIPT_REQ
 
                 # Esreve a requisição no script
-                COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X POST -H \"Content-Type: application/json\" -d @$JSON_REQ $URL)
+                COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X POST -H \"Content-Type: application/json\" -H \"Authorization: Bearer token\" -d @$JSON_REQ $URL)
                 echo $COMANDO_CURL >> $SCRIPT_REQ
 
                 # Pula uma linha para não juntar content_type com a resposta json
@@ -123,7 +123,7 @@ case $1 in
                 echo '#-F "image=@/home/neni/test.jpg"\' >> $FORM_REQ
 
                 # Esreve a requisição no script
-                COMANDO_CURL=$(curl -# -X POST -w %{content_type}"\n\n" -o $FILE_RES -K $FORM_REQ $URL)
+                COMANDO_CURL=$(echo curl -# -X POST -w %{content_type}"\n\n" -H \"Authorization: Bearer token\" -o $FILE_RES -K $FORM_REQ $URL)
                 echo $COMANDO_CURL >> $SCRIPT_REQ
 
                 # Pula uma linha para não juntar content_type com a resposta json
@@ -161,7 +161,7 @@ case $1 in
         echoJSON $JSON_REQ $SCRIPT_REQ
 
         # Esreve a requisição no script
-        COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X PUT -H \"Content-Type: application/json\" -d @$JSON_REQ $URL)
+        COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X PUT -H \"Content-Type: application/json\" -H \"Authorization: Bearer token\" -d @$JSON_REQ $URL)
         echo $COMANDO_CURL >> $SCRIPT_REQ
 
         # Pula uma linha para não juntar content_type com a resposta json
@@ -189,7 +189,7 @@ case $1 in
         echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
 
         # Esreve a requisição no script
-        COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X DELETE $URL)
+        COMANDO_CURL=$(echo curl -# -w %{content_type} -H \"Authorization: Bearer token\" -o $FILE_RES -X DELETE $URL)
         echo $COMANDO_CURL >> $SCRIPT_REQ
 
         # Pula uma linha para não juntar content_type com a resposta json
