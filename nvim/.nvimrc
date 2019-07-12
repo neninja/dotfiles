@@ -49,10 +49,11 @@ set binary
 set backspace=indent,eol,start
 
 " Tabs. May be overriten by autocmd rules
-set tabstop=4
-set softtabstop=0
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
+" autocmd FileType javascript setlocal tabstop=2
 
 " Searching
 set hlsearch
@@ -117,9 +118,6 @@ cnoreabbrev QA qa
 cnoreabbrev cul set cul
 cnoreabbrev nocul set nocul
 
-" Terminal command
-nnoremap ! :!
-
 "*********************************************************
 " Mappings
 "*********************************************************
@@ -131,10 +129,20 @@ inoremap ,, <ESC>/{#[^%]*#}<CR>c%
 " Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
 " Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
 inoremap {<Tab> {}<left><CR><CR><up><tab>
+inoremap {<space> {}{##}<left><left><left><left><left><space><space><left>
+inoremap { {}{##}<left><left><left><left><left>
+
+inoremap (<Tab> ()<left><CR><CR><up><tab>
+inoremap (<space> (){##}<left><left><left><left><left><space><space><left>
 inoremap ( (){##}<left><left><left><left><left>
+
+inoremap [<Tab> []<left><CR><CR><up><tab>
+inoremap [<space> []{##}<left><left><left><left><left><space><space><left>
 inoremap [ []{##}<left><left><left><left><left>
+
 inoremap " ""{##}<left><left><left><left><left>
 inoremap ' ''{##}<left><left><left><left><left>
+
 
 " surround
 xnoremap ( xi()<ESC>P
