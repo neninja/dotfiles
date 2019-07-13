@@ -1,16 +1,24 @@
 ( Parentêses
-:art: git 🎨 Improving structure / format of the code
+:tada: git 🎉 Initial commit
 :recycle: git ♻️ Refactoring code
-:zap: git ⚡️ Improving performance
 :fire: git 🔥 Removing code or files
 :bug: git 🐛 Fixing a bug
+:boom: git 💥 Introducing breaking changes
 :ambulance: git 🚑 Critical hotfix
 :pencil: git 📝 Writing docs
+:sparkles: git ✨ Introducing new features
 :rocket: git 🚀 Deploying stuff
 :lipstick: git 💄 Updating the UI and style files
 :white_check_mark: git ✅ Adding a test
 :heavy_check_mark: git ✔️ Make a test pass
-:tada: git 🎉 Initial commit
+:wrench: git 🔧 Changing configuration files
+:poop: git 💩 Writing bad code that needs to be improved
+:rewind: git ⏪ Reverting changes
+:twisted_rightwards_arrows: git 🔀 Merging branches
+:alien: git 👽 Updating code due to external API changes
+:art: git 🎨 Improving structure / format of the code
+:zap: git ⚡️ Improving performance
+:ok_hand: git 👌 Updating code due to code review changes
 :lock: git 🔒 Fixing security issues
 :construction_worker: git 👷 Adding CI build system
 :green_heart: git 💚 Fixing CI Build
@@ -18,12 +26,3 @@
 :arrow_up: git ⬆️ Upgrading dependencies
 :heavy_plus_sign: git ➕ Adding a dependency
 :heavy_minus_sign: git ➖ Removing a dependency
-:wrench: git 🔧 Changing configuration files
-:poop: git 💩 Writing bad code that needs to be improved
-:rewind: git ⏪ Reverting changes
-:twisted_rightwards_arrows: git 🔀 Merging branches
-:alien: git 👽 Updating code due to external API changes
-:page_facing_up: git 📄 Adding or updating license
-:sparkles: git ✨ Introducing new features
-:boom: git 💥 Introducing breaking changes
-:ok_hand: git 👌 Updating code due to code review changes
