@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 #
 # Rest Curl
 #
@@ -20,124 +20,266 @@
 #   Add pasta que este arquivo está em seu PATH
 #       PATH="$HOME/scripts/bin:$PATH"
 #   Instale as dependências:
-#       python 3
-#       xclip
+#       jq
+#
+# TODO
+#   Arquivo .restc local na pasta da requisição
+#       Ele, se existir, vai servir as variáveis:
+#           baseurl: Base da URL de todas as requisições que vão ser feitas
+#               e.g. localhost:3333
+#           token: Token que vai no header
+#               e.g. Bearer fidkkjh54k5jghgf2.ew2r14df45ry42fgfd2.rt4yrtrytr2fg84tw3
+#           path_req: pasta padrão para requisição, onde estão os arquivos
 
-formatJSON(){
-    # Pode optar pelo print com ou sem indentação
-    # https://stackoverflow.com/questions/2875424/correct-way-to-check-for-a-command-line-flag-in-bash
-    if [ "$1" = "--no-json-format" ]; then
-        echo "cat $2 && echo ''" >> $3
+# Os arquivos de script possuem sempre a mesma estrutura, mudando apenas alguns valores de variáveis
+scriptCreate(){
+    URL=$1
+    HTTP_METHOD=$2
+    HTTP_METHOD_ABR=$3
+    TYPE_BODY=$4
+
+    REQ_NUMERO=1
+
+    # Define nomes de arquivos
+    URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*//g' | sed -r 's/\//_/g') # localhost:3333/posts  ->  _posts
+    SCRIPT_RESTC="$HTTP_METHOD_ABR-$URL_FILENAME-req-$REQ_NUMERO-restc.sh"
+    REQ_HEAD="/tmp/$HTTP_METHOD_ABR-$URL_FILENAME-req-$REQ_NUMERO-head-restc.txt"
+    REQ_BODY="/tmp/$HTTP_METHOD_ABR-$URL_FILENAME-req-$REQ_NUMERO-body-restc.json"
+    RES_BODY="/tmp/$HTTP_METHOD_ABR-$URL_FILENAME-res-$REQ_NUMERO-restc.json"
+
+
+    # Escreve dica de execução no script
+    echo "# sh $SCRIPT_RESTC\n" > $SCRIPT_RESTC
+
+    headerCreate $REQ_HEAD $SCRIPT_RESTC $TYPE_BODY
+
+    bodyCreate $REQ_BODY $SCRIPT_RESTC $TYPE_BODY
+
+    # Esreve a requisição no script
+    if [ "$TYPE_BODY" = "json" ]; then
+      COMANDO_CURL=$(echo curl -# -w %{content_type} -X $HTTP_METHOD -K $REQ_HEAD -d @$REQ_BODY -o $RES_BODY $URL)
+    elif [ "$TYPE_BODY" = "multiform" ]; then
+      COMANDO_CURL=$(echo curl -# -w %{content_type} -X $HTTP_METHOD -K $REQ_HEAD -K $REQ_BODY -o $RES_BODY $URL)
     else
-        # É possível identar o arquivo pelo vim ou nvim com:
-        #   :%!python -m json.tool
-        #   nvim -c '%!python -m json.tool' -c wq $2
-        echo "cat $1 | python -m json.tool" >> $2
-        echo "#cat $1 && echo ''" >> $2
+      COMANDO_CURL=$(echo curl -# -w %{content_type} -X $HTTP_METHOD -K $REQ_HEAD -o $RES_BODY $URL)
     fi
+    
+    echo $COMANDO_CURL >> $SCRIPT_RESTC
+
+    # Pula uma linha para não juntar content_type com a resposta json
+    echo "echo ''" >> $SCRIPT_RESTC
+
+    # Escreve o comando de cat formatado ou não do json de resposta
+    formatJSON $RES_BODY $SCRIPT_RESTC
+
+    # Informa o nome do arquivo gerado
+    printMsg $SCRIPT_RESTC
+}
+
+headerCreate(){
+    TYPE=""
+    if [ "$3" = "json" ]; then
+        TYPE="application/json"
+    fi
+    
+    echo "# header" >> $2
+    echo "echo '
+    \n-H \"Content-Type: $TYPE\" \n-H \"Authorization: Bearer _t_o_k_e_n_\"
+    \n' > $1\n\n" >> $2
+
+}
+
+bodyCreate(){
+    if [ "$3" = "json" ]; then
+        echo "# body" >> $2
+        echoJSON $1 $2
+        echo "\n" >> $2
+    elif [ "$3" = "multiform" ]; then
+        echo "# body" >> $2
+        echoFormData $1 $2
+        echo "\n" >> $2
+    else
+        # GET
+        echo "\n" >> $1
+    fi
+}
+
+echoFormData(){
+    echo "echo '
+    \n
+    \n
+    \n-F \"userid=1\"
+    \n#-F \"image=@/home/neni/test.jpg\"
+    \n
+    \n
+    \n
+    ' > $FORM_REQ" >> $SCRIPT_REQ
 }
 
 echoJSON(){
     # Esreve json a ser enviado no script
-    echo "echo '\n\n\n{\n\t\"id\": 1\n}\n\n\n' > $1" >> $2
+    echo "echo '
+    \n{ \n\t\"id\": 1\n}
+    \n' > $1" >> $2
+}
+
+formatJSON(){
+  TEST_FILE="/tmp/restc-test-json.json"
+        # É possível identar o arquivo pelo vim ou nvim com:
+        #   :%!python -m json.tool
+        #   nvim -c '%!python -m json.tool' -c wq $2
+        #echo "cat $1 | python -m json.tool" >> $2
+
+     #   echo "cat $1 | jq" >> $2
+     #   echo "if [ \"\$1\" = "y" ]; then
+     #   cat $1 && echo ''
+     # else
+     #   cat $1 | jq
+     # fi" >> $2
+
+        #echo "#cat $1 && echo ''" >> $2
+        echo "cat $1 | jq '.' > $TEST_FILE; echo ''; cat \"$1\"" >> $2
 }
 
 printMsg(){
     echo "Arquivo de requisição gerado: $1"
 }
 
+dialogMenu(){
+  OPTS=("CRIAR GET" "" \
+    "CRIAR POST JSON" "" \
+    "CRIAR POST FORM" "" \
+    "CRIAR PUT" "" \
+    "CRIAR DELETE" "")
+
+  # https://stackoverflow.com/questions/23356779/how-can-i-store-the-find-command-results-as-an-array-in-bash
+  find ./ -maxdepth 1 -name "*-restc.sh" -type f -print0 > /tmp/req-files
+  while IFS= read -r -d $'\0'; do
+    #  if [[ "$REPLY" =~ "g-" ]]; then
+    #    OPTS+=(1)
+    #  elif [[ "$REPLY" =~ "pj-" ]]; then
+    #    OPTS+=(2)
+    #  elif [[ "$REPLY" =~ "pf-" ]]; then
+    #    OPTS+=(2)
+    #  elif [[ "$REPLY" =~ "put-" ]]; then
+    #    OPTS+=(3)
+    #  elif [[ "$REPLY" =~ "d-" ]]; then
+    #    OPTS+=(4)
+    #  fi
+    REPLY=$(echo $REPLY | sed 's|^./||')
+    OPTS+=("$REPLY")
+    OPTS+=("")
+  done < /tmp/req-files
+
+  dialog \
+    --cancel-label "Sair" \
+    --menu "Escolha ação, ou arquivo" 25 55 20 "${OPTS[@]}" 2>/tmp/req-files
+
+  response=$?
+  case $response in
+    0)
+      CHOICE=$(</tmp/req-files)
+
+      case $CHOICE in
+        "CRIAR GET")
+          dialogCreateURL "g"
+          ;;
+        "CRIAR POST JSON")
+          dialogCreateURL "p j"
+          ;;
+        "CRIAR POST FORM")
+          dialogCreateURL "p f"
+          ;;
+        "CRIAR PUT")
+          dialogCreateURL "put"
+          ;;
+        "CRIAR DELETE")
+          dialogCreateURL "d"
+          ;;
+        *)
+          dialogRequest $CHOICE
+          ;;
+      esac
+      ;;
+  esac
+}
+
+dialogCreateURL(){
+  HTTP_METHOD_ABBR=$1
+  URL_REQ=$(dialog \
+    --cancel-label "Voltar" \
+    --ok-label "Criar" \
+    --inputbox "Digite seu nome" 10 60 --stdout) 
+
+  # https://bash.cyberciti.biz/guide/A_yes/no_dialog_box
+  # Get exit status
+  response=$?
+  case $response in
+    0)
+      # Usar URL
+      restc g $URL_REQ
+      FILE_REQ=$(ls -c | head -1) # Last file created is a a file request of restc
+      echo $URL_REQ
+      dialogRequest $FILE_REQ 
+      ;;
+    1) 
+      # Voltar ao menu
+      dialogMenu
+      ;;
+  esac
+}
+
+dialogRequest(){
+  FILE_REQ=$1
+  CAT_TEXT=$(cat $FILE_REQ)
+
+  TEXT_EDITED=$(dialog --title "$FILE_REQ" \
+    --ok-label "Enviar/Salvar" \
+    --extra-button --extra-label "Usar $EDITOR" \
+    --cancel-label "Voltar" \
+    --editbox "$FILE_REQ" 0 60 --stdout)
+
+  # https://bash.cyberciti.biz/guide/A_yes/no_dialog_box
+  # Get exit status
+  response=$?
+  case $response in
+    0)
+      # Enviar/Salvar
+      echo "$TEXT_EDITED" > $FILE_REQ
+      bash $FILE_REQ
+      echo ""
+      read -p "Tecle qualquer coisa para prosseguir"
+      #bash $FILE_REQ | dialog --ok-label "Voltar para requisição" --programbox 20 60
+      response=$?
+      case $response in
+        0) dialogRequest $FILE_REQ ;;
+      esac
+      ;;
+    1)
+      # Voltar ao menu
+      dialogMenu
+      ;;
+    3)
+      # Editar com editor preferido
+      $EDITOR $FILE_REQ
+      dialogRequest $FILE_REQ
+      ;;
+  esac
+}
+
 case $1 in
     get|g)
-        # Variáveis de nomes imutáveis
         URL=$2
-        # localhost:3333/posts  ->  _posts
-        URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*//g' | sed -r 's/\//_/g')
-        FILE_RES="/tmp/g-$URL_FILENAME-res-restc.json"
-        SCRIPT_REQ="g-$URL_FILENAME-req-restc.sh"
-
-        # Escreve dica de execução no script
-        echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
-
-        # Esreve a requisição no script
-        COMANDO_CURL=$(echo curl -# -w %{content_type} -H \"Authorization: Bearer token\" -o $FILE_RES $URL)
-        echo $COMANDO_CURL >> $SCRIPT_REQ
-
-        # Pula uma linha para não juntar content_type com a resposta json
-        echo "echo ''" >> $SCRIPT_REQ
-
-        # Escreve o comando de cat formatado ou não do json de resposta
-        formatJSON $3 $FILE_RES $SCRIPT_REQ
-
-        # Informa o nome do arquivo gerado
-        printMsg $SCRIPT_REQ
-
-        # Executa o script para evitar trabalho manual
-        sh $SCRIPT_REQ
+        scriptCreate $URL "GET" "g" ""
         ;;
     post|p)
-        # Variáveis de nomes imutáveis
         URL=$3
-        # localhost:3333/posts  ->  _posts
-        URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*//g' | sed -r 's/\//_/g')
-
         case $2 in
             json|j)
-                # Variáveis de nomes imutáveis
-                FILE_RES="/tmp/pj-$URL_FILENAME-res-restc.json"
-                JSON_REQ="/tmp/pj-$URL_FILENAME-req-restc.json"
-                SCRIPT_REQ="pj-$URL_FILENAME-req-restc.sh"
-
-                # Escreve dica de execução no script
-                echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
-
-                echoJSON $JSON_REQ $SCRIPT_REQ
-
-                # Esreve a requisição no script
-                COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X POST -H \"Content-Type: application/json\" -H \"Authorization: Bearer token\" -d @$JSON_REQ $URL)
-                echo $COMANDO_CURL >> $SCRIPT_REQ
-
-                # Pula uma linha para não juntar content_type com a resposta json
-                echo "echo ''" >> $SCRIPT_REQ
-
-                # Escreve o comando de cat formatado ou não do json de resposta
-                formatJSON $4 $FILE_RES $SCRIPT_REQ
-
-                # Informa o nome do arquivo gerado
-                printMsg $SCRIPT_REQ
-
-                # Edita e executa o script para evitar trabalho manual
-                $EDITOR $SCRIPT_REQ
-                sh $SCRIPT_REQ
+                scriptCreate $URL "POST" "pj" "json"
                 ;;
             form|f)
-                # Variáveis de nomes imutáveis
-                FILE_RES="/tmp/pf-$URL_FILENAME-res-restc.json"
-                FORM_REQ="/tmp/pf-$URL_FILENAME-req-restc.json"
-                SCRIPT_REQ="pf-$URL_FILENAME-req-restc.sh"
-
-                # Escreve dica de execução no script
-                echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
-
-                # Esreve data a ser enviada no script
-                echo '#-F "userid=1"\' >> $FORM_REQ
-                echo '#-F "image=@/home/neni/test.jpg"\' >> $FORM_REQ
-
-                # Esreve a requisição no script
-                COMANDO_CURL=$(echo curl -# -X POST -w %{content_type}"\n\n" -H \"Authorization: Bearer token\" -o $FILE_RES -K $FORM_REQ $URL)
-                echo $COMANDO_CURL >> $SCRIPT_REQ
-
-                # Pula uma linha para não juntar content_type com a resposta json
-                echo "echo ''" >> $SCRIPT_REQ
-
-                # Escreve o comando de cat formatado ou não do json de resposta
-                formatJSON $4 $FILE_RES $SCRIPT_REQ
-
-                # Informa o nome do arquivo gerado
-                printMsg $SCRIPT_REQ
-
-                # Edita e executa o script para evitar trabalho manual
-                $EDITOR $SCRIPT_REQ
-                sh $SCRIPT_REQ
+                scriptCreate $URL "POST" "pf" "json"
                 ;;
             *)
                 echo "POST:"
@@ -147,65 +289,18 @@ case $1 in
         esac
         ;;
     put)
-        # Variáveis de nomes imutáveis
         URL=$2
-        # localhost:3333/posts  ->  _posts
-        URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*//g' | sed -r 's/\//_/g')
-        FILE_RES="/tmp/put-$URL_FILENAME-res-restc.json"
-        JSON_REQ="/tmp/put-$URL_FILENAME-req-restc.json"
-        SCRIPT_REQ="put-$URL_FILENAME-req-restc.sh"
-
-        # Escreve dica de execução no script
-        echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
-
-        echoJSON $JSON_REQ $SCRIPT_REQ
-
-        # Esreve a requisição no script
-        COMANDO_CURL=$(echo curl -# -w %{content_type} -o $FILE_RES -X PUT -H \"Content-Type: application/json\" -H \"Authorization: Bearer token\" -d @$JSON_REQ $URL)
-        echo $COMANDO_CURL >> $SCRIPT_REQ
-
-        # Pula uma linha para não juntar content_type com a resposta json
-        echo "echo ''" >> $SCRIPT_REQ
-
-        # Escreve o comando de cat formatado ou não do json de resposta
-        formatJSON $4 $FILE_RES $SCRIPT_REQ
-
-        # Informa o nome do arquivo gerado
-        printMsg $SCRIPT_REQ
-
-        # Edita e executa o script para evitar trabalho manual
-        $EDITOR $SCRIPT_REQ
-        sh $SCRIPT_REQ
+        scriptCreate $URL "PUT" "put" "json"
         ;;
-    delete)
-        # Variáveis de nomes imutáveis
+    delete|d)
         URL=$2
-        # localhost:3333/posts  ->  _posts
-        URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*//g' | sed -r 's/\//_/g')
-        FILE_RES="/tmp/d-$URL_FILENAME-res-restc.json"
-        SCRIPT_REQ="d-$URL_FILENAME-req-restc.sh"
-
-        # Escreve dica de execução no script
-        echo "# sh $SCRIPT_REQ\n" > $SCRIPT_REQ
-
-        # Esreve a requisição no script
-        COMANDO_CURL=$(echo curl -# -w %{content_type} -H \"Authorization: Bearer token\" -o $FILE_RES -X DELETE $URL)
-        echo $COMANDO_CURL >> $SCRIPT_REQ
-
-        # Pula uma linha para não juntar content_type com a resposta json
-        echo "echo ''" >> $SCRIPT_REQ
-
-        # Escreve o comando de cat formatado ou não do json de resposta
-        formatJSON $4 $FILE_RES $SCRIPT_REQ
-
-        # Informa o nome do arquivo gerado
-        printMsg $SCRIPT_REQ
-
-        # Executa o script para evitar trabalho manual
-        sh $SCRIPT_REQ
+        scriptCreate $URL "DELETE" "d" "json"
         ;;
     clear)
         rm *-restc.*
+        ;;
+    gui)
+      dialogMenu
         ;;
     *)
         echo "Script para a criação de templates/scripts de requisição, após criados - na mesma pasta do comando - basta executá-los com sh nomedoarquivo.sh"
@@ -231,3 +326,4 @@ case $1 in
         echo "- Utilize o comando fc caso precise modificar o script e depois executá-lo"
         ;;
 esac
+
