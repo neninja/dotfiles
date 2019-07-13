@@ -15,13 +15,7 @@ Plug 'tpope/vim-fugitive'       " Comandos git no vim
 Plug 'junegunn/gv.vim'          " Commits in browser
 Plug 'airblade/vim-gitgutter'   " Marcações + - _ ~ de git
 
-Plug 'mattn/emmet-vim'
-"Plug 'torbiak/probe'
-
-" Engine de snippets
-Plug 'SirVer/ultisnips'
-
-" Lint deral do vim
+" Lint geral do vim
 Plug 'w0rp/ale'
 
 " cores com highlight no vim
@@ -47,15 +41,6 @@ Plug 'sunaku/vim-modusline' " Status line colorida dependendo do modo
 " :Goyo ou :Goyo 80%x80%
 Plug 'junegunn/goyo.vim'
 
-" Autocomplete
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
 " Run, test and read documentation for go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -65,6 +50,11 @@ Plug 'sheerun/vim-polyglot'
 
 " Fuzzy search
 Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Universalizar vim/neovim com outros editores usando o mesmo arquivo de configuração
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 "*********************************************************
@@ -104,22 +94,6 @@ cnoreabbrev apr call AprRead()
 "#########################################
 let g:polyglot_disabled = ['go', 'latex']
 
-"...........
-" Vim-Javascript
-"...........
-" erro ao utilizar conceal proprio
-"   ao utilizar await function o simbolo await se repete duas vezes.
-" let g:javascript_conceal_arrow_function       = "→"
-" let g:javascript_conceal_function             = "ƒ"
-" let g:javascript_conceal_null                 = "ø"
-" let g:javascript_conceal_return               = "↖"
-" let g:javascript_conceal_undefined            = "¿"
-" let g:javascript_conceal_prototype            = "¶"
-" let g:javascript_conceal_static               = "•"
-"let g:javascript_conceal_this                 = "@"
-"let g:javascript_conceal_NaN                  = "ℕ"
-"let g:javascript_conceal_super                = "Ω"
-
 "#########################################
 " Vim-Go
 "#########################################
@@ -157,33 +131,29 @@ augroup go
     au BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 augroup END
 
-"-------------------------------------------------
-" Autocomplete
-"-------------------------------------------------
 "#########################################
-" Deoplete
+" COC
 "#########################################
-let g:deoplete#enable_at_startup = 1
+"
+"------------------------------------
+"  SNIPPETS
+"------------------------------------
+" Use :CocList snippets to open snippets list.
+" Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
+" Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-"#########################################
-" UltiSnips
-"#########################################
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/dev/dotfiles/nvim/nenippets']
-let g:UltiSnipsSnippetsDir="~/dev/dotfiles/nvim/nenippets"
-let g:tex_flavor='latex' "ultisnippets reconhecerem .tex
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" snippets diferentes para o mesmo arquivo
-augroup javascript
-    " au filetype javascript UltiSnipsAddFiletypes html
-    au BufEnter *.vue UltiSnipsAddFiletypes javascript.html
-    au BufEnter *.js so ~/dev/dotfiles/nvim/customhigroups.vim
-augroup END
+let g:coc_snippet_next = '<tab>'
 
-noremap <leader><tab> :UltiSnipsEdit<cr>/\<snippet\> .*<cr>N:echo "tecle n"<cr>
 
 "#########################################
 " TagBar
@@ -397,6 +367,3 @@ function! s:defx_my_settings() abort
                 \ defx#do_action('toggle_columns',
                 \                'mark:indent:icon:filename:type:size:time')
 endfunction
-
-let g:neosnippet#enable_completed_snippet = 1
-let g:autocomplete_flow#insert_paren_after_function = 0

@@ -1,6 +1,45 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet try "try catch"
+try {
+	${1:// ...}
+} catch (err) {
+	${0:// ...}
+}
+endsnippet
+
 snippet f "function (){...}"
 function ${1:nome}(){
-	$0
+	${0:// ...}
+}
+endsnippet
+
+snippet if "if() { ... }"
+if (${1:condition}) {
+	${0:// ...}
 }
 endsnippet
 
@@ -8,19 +47,27 @@ snippet log "console.log(...)"
 console.log($0);
 endsnippet
 
-snippet req "Require('...')"
+snippet req "require('...')"
 require('$0');
 endsnippet
 
+# work with ultisnips but not in coc
 #const ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g} = require('$1');
-snippet creq "assign a CommonJS-style module to a var"
-const ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/$2/g} = require('$1');
+#snippet creq "const ... = require('...')"
+#const ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/$2/g} = require('$1');
+#endsnippet
+#snippet imp "import ... from ..."
+#import ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/$2/g} from '$1';
+#endsnippet
+snippet creq "const ... = require('...')"
+const $1 = require('$0');
+endsnippet
+snippet imp "import ... from ..."
+import $1 from '$0';
 endsnippet
 
-snippet => "(...) => {...}"
-(${1:req, res}) => {
-	${2:return $0;}
-}
+snippet mod "module.exports = ..."
+module.exports = $0
 endsnippet
 
 snippet mod "module.exports = ..."
