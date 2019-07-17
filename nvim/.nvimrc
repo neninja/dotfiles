@@ -129,19 +129,19 @@ inoremap ,, <ESC>/{#[^%]*#}<CR>c%
 " Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
 " Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
 inoremap {<Tab> {}<left><CR><CR><up><tab>
-inoremap {<space> {}{##}<left><left><left><left><left><space><space><left>
-inoremap { {}{##}<left><left><left><left><left>
+inoremap {<space> {}<left><space><space><left>
+inoremap { {}<left>
 
 inoremap (<Tab> ()<left><CR><CR><up><tab>
-inoremap (<space> (){##}<left><left><left><left><left><space><space><left>
-inoremap ( (){##}<left><left><left><left><left>
+inoremap (<space> ()<left><space><space><left>
+inoremap ( ()<left>
 
 inoremap [<Tab> []<left><CR><CR><up><tab>
-inoremap [<space> []{##}<left><left><left><left><left><space><space><left>
-inoremap [ []{##}<left><left><left><left><left>
+inoremap [<space> []<left><space><space><left>
+inoremap [ []<left>
 
-inoremap " ""{##}<left><left><left><left><left>
-inoremap ' ''{##}<left><left><left><left><left>
+inoremap " ""<left>
+inoremap ' ''<left>
 
 
 " surround
