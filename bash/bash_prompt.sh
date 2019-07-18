@@ -127,7 +127,7 @@ ps1_simple(){
         PS1+="$BG_DEFAULT$FG_GRAY_DARK "
     fi
 
-    PS1+="$BG_RED$FG_WHITE$(prompt_git )$BG_DEFAULT"; # Git repository details
+    PS1+="$BG_CYAN$FG_BLACK$(prompt_git )$BG_DEFAULT"; # Git repository details
 
     PS1+="$BG_DEFAULT$FG_WHITE \$ $BFG_RESET_ALL";
     PS1+="$BFG_RESET_ALL"; # reset bg and fg colors
