@@ -15,6 +15,9 @@ Plug 'tpope/vim-fugitive'       " Comandos git no vim
 Plug 'junegunn/gv.vim'          " Commits in browser
 Plug 'airblade/vim-gitgutter'   " Marcações + - _ ~ de git
 
+" Linha de buffers
+Plug 'bling/vim-bufferline'
+
 " Lint geral do vim
 Plug 'w0rp/ale'
 
@@ -63,7 +66,10 @@ call plug#end()
 "-------------------------------------------------
 " Themes
 "-------------------------------------------------
-" Tema próprio
+" Ver highlight-groups
+"so $VIMRUNTIME/syntax/hitest.vim
+let g:onedark_terminal_italics = 1
+" onedark adaptado
 so ~/dev/dotfiles/nvim/thenfeite.vim
 
 " Ver highlight group da palavra sob o cursor
@@ -88,6 +94,12 @@ fun AprRead()
     set background=light
 endfun
 cnoreabbrev apr call AprRead()
+
+"#########################################
+" Polyglot
+"#########################################
+let g:bufferline_echo = 1
+let g:bufferline_rotate = 1
 
 "#########################################
 " Polyglot
