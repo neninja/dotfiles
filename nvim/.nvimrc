@@ -371,9 +371,9 @@ augroup END
 "   the same file dont open twice
 "   more velocity
 " View and select buffers
-"nnoremap <Tab> :ls <CR>:b<space>
-nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
+nnoremap <Tab> :ls <CR>:b<space>
+"nnoremap <Tab> :bn<CR>
+"nnoremap <S-Tab> :bp<CR>
 
 " Leave a buffer even without save
 set hidden

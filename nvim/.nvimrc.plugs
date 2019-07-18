@@ -15,9 +15,6 @@ Plug 'tpope/vim-fugitive'       " Comandos git no vim
 Plug 'junegunn/gv.vim'          " Commits in browser
 Plug 'airblade/vim-gitgutter'   " Marcações + - _ ~ de git
 
-" Linha de buffers
-Plug 'bling/vim-bufferline'
-
 " Lint geral do vim
 Plug 'w0rp/ale'
 
@@ -94,12 +91,6 @@ fun AprRead()
     set background=light
 endfun
 cnoreabbrev apr call AprRead()
-
-"#########################################
-" Polyglot
-"#########################################
-let g:bufferline_echo = 1
-let g:bufferline_rotate = 1
 
 "#########################################
 " Polyglot
