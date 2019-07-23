@@ -48,7 +48,7 @@ mk(){
 # USE: gi
 gi(){
     cp ~/dev/dotfiles/cpfiles/git/UNLICENSE UNLICENSE;
-    (echo -n '# '; pwd | rev | cut -d '/' -f1 | rev)>README.md;
+    (echo -n '# '; pwd | rev | cut -d '/' -f1 | rev) >> README.md;
     cp ~/dev/dotfiles/cpfiles/git/.gitignore .gitignore;
     echo -e "\n-> don't forget to use git init or git flow init and create branch master";
 }
