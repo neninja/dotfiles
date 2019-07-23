@@ -27,6 +27,7 @@ alias nm='neomutt'
 alias p='pandoc'
 alias z='zathura'
 alias docker='sudo docker'
+alias docker-compose='sudo docker-compose'
 
 # lazy
 alias op='xdg-open .'
