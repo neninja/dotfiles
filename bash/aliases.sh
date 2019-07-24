@@ -28,6 +28,7 @@ alias p='pandoc'
 alias z='zathura'
 alias docker='sudo docker'
 alias docker-compose='sudo docker-compose'
+alias xcb='tr -d "\n" | xclip -selection clipboard'
 
 # lazy
 alias op='xdg-open .'
