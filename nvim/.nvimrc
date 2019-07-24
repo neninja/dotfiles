@@ -1,6 +1,8 @@
 " autor: nenitf
 " A partir de vim-bootstrap b0a75e4
 " motivacional: https://www.youtube.com/watch?v=XA2WjJbmmoM
+" TODO:
+"   Skeletons para .html phpunit.xml .editorconfig
 
 let mapleader="\<space>"
 
@@ -226,14 +228,17 @@ nmap <c-w>h <C-w><
 "*********************************************************
 " Visual Settings
 "*********************************************************
-syntax on                   " Required for plugins
-filetype plugin indent on   " Required for plugins
-set relativenumber          " Distancias entre a linha do cursor
-set number                  " Numero das linhas
-set autoread                " Checar quando o texto for modificado
-set showmatch               " Mostra fechamento de {['']}
-set ai                      " Auto indentação -> ==
-set mouse=a                 " Libera uso do mouse em todos modos
+syntax on                             " Required for plugins
+filetype plugin indent on             " Required for plugins
+set relativenumber                    " Distancias entre a linha do cursor
+set number                            " Numero das linhas
+set showmatch                         " Mostra fechamento de {['']}
+set ai                                " Auto indentação -> ==
+set mouse=a                           " Libera uso do mouse em todos modos
+
+" Checar quando o texto for modificado
+set autoread
+au FocusGained,BufEnter * :silent! !
 
 "*********************************************************
 " Custom configs langs
