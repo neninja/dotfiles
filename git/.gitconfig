@@ -111,7 +111,7 @@
     #############
     l =  log --decorate --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     ld = log --decorate --graph --abbrev-commit --date=short --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
-    lg = log --date=format:'%d/%m/%Y %a %H:%M:%S' --decorate --graph --pretty=format:'%Cred %H%Creset %C(yellow)%d%Creset\n %C(bold blue)%an%Creset em %Cgreen%ad%Creset\n\n %C(bold)%s\n %b'
+    lg = log --date=format:'%d/%m/%Y %a %H:%M:%S' --decorate --graph --pretty=format:'%Cred%H%Creset %C(yellow)%d%Creset\n%C(bold blue)%an%Creset em %Cgreen%ad%Creset\n\n%C(bold)%s\n%b'
     #############
     ls = ls-files
     lsf = !git ls-files | grep -i
