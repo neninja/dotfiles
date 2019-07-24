@@ -1,28 +1,28 @@
-( Parentêses
-:tada: git 🎉 Initial commit
-:recycle: git ♻️ Refactoring code
-:fire: git 🔥 Removing code or files
-:bug: git 🐛 Fixing a bug
-:boom: git 💥 Introducing breaking changes
-:ambulance: git 🚑 Critical hotfix
-:pencil: git 📝 Writing docs
-:sparkles: git ✨ Introducing new features
-:rocket: git 🚀 Deploying stuff
-:lipstick: git 💄 Updating the UI and style files
-:white_check_mark: git ✅ Adding a test
-:heavy_check_mark: git ✔️ Make a test pass
-:wrench: git 🔧 Changing configuration files
-:poop: git 💩 Writing bad code that needs to be improved
-:rewind: git ⏪ Reverting changes
-:twisted_rightwards_arrows: git 🔀 Merging branches
-:alien: git 👽 Updating code due to external API changes
-:art: git 🎨 Improving structure / format of the code
-:zap: git ⚡️ Improving performance
-:ok_hand: git 👌 Updating code due to code review changes
-:lock: git 🔒 Fixing security issues
-:construction_worker: git 👷 Adding CI build system
-:green_heart: git 💚 Fixing CI Build
-:arrow_down: git ⬇️ Downgrading dependencies
-:arrow_up: git ⬆️ Upgrading dependencies
-:heavy_plus_sign: git ➕ Adding a dependency
-:heavy_minus_sign: git ➖ Removing a dependency
+(                     Parentêses
+:tada:                git 🎉 Inicia projeto
+:recycle:             git ♻️ Refatora código
+:art:                 git 🎨 Melhora estrutura/formatação do código
+:fire:                git 🔥 Remove arquivos
+:bug:                 git 🐛 Conserta bug
+:boom:                git 💥 Introduz mudanças drásticas
+:pencil:              git 📝 Escreve documentação
+:sparkles:            git ✨ Introduz novas features
+:rocket:              git 🚀 Configura para deploy
+:lipstick:            git 💄 Atualiza UI e arquivos de estilo
+:white_check_mark:    git ✅ Adiciona teste
+:x:                   git x Faz teste falhar
+:heavy_check_mark:    git ✔️ Faz o teste passar
+:wrench:              git 🔧 Atualiza arquivos de configuração
+:poop:                git 💩 Escreve código que precisará ser revisto
+:rewind:              git ⏪ Reverte mudanças
+:alien:               git 👽 Atualiza código para uma API externa
+:ambulance:           git 🚑 Adiciona hotfix
+:zap:                 git ⚡️ Melhora desempenho
+:ok_hand:             git 👌 Atualiza código revisado
+:lock:                git 🔒 Corrige issues de segurança
+:construction_worker: git 👷 Adiciona sistema de CI build
+:green_heart:         git 💚 Corrige CI Build
+:arrow_down:          git ⬇️ Rebaixa versão de dependência
+:arrow_up:            git ⬆️ Atualiza versão de dependência
+:heavy_plus_sign:     git ➕ Adiciona dependência
+:heavy_minus_sign:    git ➖ Remove dependência
