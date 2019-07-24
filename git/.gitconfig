@@ -5,7 +5,7 @@
 [user]
     name = Felipe Silva
     email = felipe.dacs@gmail.com
-    username = felipedacs
+    username = nenitf
 [core]
     editor = nvim
 [color]
@@ -57,8 +57,8 @@
     ai = add -i
     #############
     ap = apply
-    as = apply --stat
-    ac = apply --check
+    aps = apply --stat
+    apc = apply --check
     #############
     ama = am --abort
     amr = am --resolved
@@ -231,7 +231,7 @@
     assumeall = !git status -s | awk {'print $2'} | xargs git assume
     #############
     bump = !sh -c 'git commit -am \"Version bump v$1\" && git psuoc && git release $1' -
-    release = !sh -c 'git tag v$1 && git pst' -
+    #release = !sh -c 'git tag v$1 && git pst' -
     unrelease = !sh -c 'git tag -d v$1 && git pso :v$1' -
     merged = !sh -c 'git o master && git plom && git bd $1 && git rpo' -
     aliases = !git config -l | grep alias | cut -c 7-
@@ -247,3 +247,10 @@
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
     subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 master' -
     human = name-rev --name-only --refs=refs/heads/*
+
+    #############
+    # default macros of commits/messages
+    # https://github.com/ahmadawais/Emoji-Log
+    # RELEASE.
+    aula = "!f() { git add .; git commit -m \"🚀 RELEASE: Aula $@\"; git tag -a \"aula-$@\" -m \"🚀 RELEASE: Aula $@\"; git push origin master --tags; }; f"
+    release = "!f() { git tag -a \"$@\" -m \"🚀 RELEASE $@\"; git push origin master --tags; }; f"
