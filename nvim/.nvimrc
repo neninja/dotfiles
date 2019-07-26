@@ -380,6 +380,13 @@ nnoremap <Tab> :ls <CR>:b<space>
 "nnoremap <Tab> :bn<CR>
 "nnoremap <S-Tab> :bp<CR>
 
+" Fechar todos buffers e deixar somente um
+" Somente buffers sem conteúdo por salvar são fechados
+" https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
+" nnoremap <c-n> :%bd | e # | b # | q<CR>
+command! BufOnly execute '%bdelete|e #|b#|bd%|normal `"'
+" cnoreabbrev bo BufOnly
+
 " Leave a buffer even without save
 set hidden
 
