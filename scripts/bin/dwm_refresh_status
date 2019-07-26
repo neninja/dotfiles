@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+# https://www.youtube.com/watch?v=NuS_JLkQbKc&t=571s
+# https://github.com/LukeSmithxyz/voidrice/commit/2e33d77b156d071ae408c8d463d43d41ba7aa68b
+pkill -f $HOME/dev/dotfiles/scripts/dwm_status.sh
+$HOME/dev/dotfiles/scripts/dwm_status.sh&

@@ -4,7 +4,11 @@ source ~/.extra
 volume(){
     local volume_lvl=$(amixer -D pulse get Master | grep -o -m 1 -E [0-9]+%)
     local volume_status=$(amixer -D pulse get Master | grep -o -m 1 "off")
-    echo " $volume_lvl $volume_status"
+    if [ "$volume_status" = off ]; then
+      echo " $volume_lvl"
+    else
+      echo " $volume_lvl"
+    fi
 }
 
 cpu(){
@@ -19,9 +23,10 @@ cpu(){
     #printf "%b" "\x05$cpu%\x01"
 
     local cpu_usage=$1
-    local cpu_output="CPU "
+    local cpu_output=""
+    #cpu_output+="CPU "
     # 1 21 41 61 81
-    for i in {1..100..20}; do
+    for i in {1..100..10}; do
         if [ $cpu_usage -ge $i ]; then
             cpu_output+="█"
         else
@@ -33,9 +38,10 @@ cpu(){
 
 ram(){
     local ram_usage=`free | awk '/Mem/ {printf "%.0f", $3/$2*100}'`
-    local ram_output="RAM "
+    local ram_output=""
+    #ram_output+="RAM "
     # 1 21 41 61 81
-    for i in {1..100..20}; do
+    for i in {1..100..10}; do
         if [ $ram_usage -ge $i ]; then
             ram_output+="█"
         else
@@ -52,7 +58,7 @@ hd(){
 }
 
 online(){
-    curl -w %{http_code} --silent -o /dev/null google.com | awk '{if($0=="000") {print "OFFLINE"} else { print "ONLINE"}}'
+    curl -w %{http_code} --silent -o /dev/null google.com | awk '{if($0=="000") {print "OFF"} else { print "ON"}}'
 }
 
 battery(){
@@ -92,7 +98,7 @@ echo "$battery_output"
 }
 
 datetime(){
-    echo " $(date +%H:%M)"
+  echo "$(date +%a' '%d/%m/%y' '%H:%M)"
 }
 
 while true; do
@@ -127,7 +133,7 @@ while true; do
     PREV_IDLE="$CPU_IDLE"
 
 
-    xsetroot -name "$(volume) ╎ $(cpu $CPU_USAGE) $(ram) $(hd) ╎ $(online) ╎ $(battery) ╎ $(datetime) 😣"
+    xsetroot -name "$(volume) ╎ $(cpu $CPU_USAGE) $(ram) $(hd) ╎ $(online) ╎ $(battery) ╎ $(datetime)"
     echo "Atualizado as $(date +%H:%M:%S)"
     sleep 5s
 done

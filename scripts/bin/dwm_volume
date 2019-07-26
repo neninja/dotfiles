@@ -8,3 +8,5 @@ case "$choice" in
   max) amixer -q -D pulse sset Master 100% ;;
   *) amixer -q -D pulse sset Master $choice%;;
 esac
+
+dwm_refresh_status

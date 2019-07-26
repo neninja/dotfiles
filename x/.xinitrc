@@ -3,7 +3,8 @@
 
 # set status
 # kill previous script if running
-pkill -f $DF/scripts/dwm/status.sh
+# same of dwm_refresh_status
+pkill -f $HOME/dev/dotfiles/scripts/dwm_status.sh
 ~/dev/dotfiles/scripts/dwm_status.sh&
 
 # init dwm
