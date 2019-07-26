@@ -18,3 +18,4 @@ lshw;Hardware Geral;Lista completa do hardware do comptador
 fc-list;Fonts;Lista completa de fontes instaladas
 startx;Software;Inicia xorg/xserver
 more;Software;Quando usado com pipe, carrega melhor a visualização do terminal
+dpkg -i <.deb>;Software;Instala software de arquivo.deb
