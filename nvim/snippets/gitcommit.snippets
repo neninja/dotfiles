@@ -1,0 +1,86 @@
+# https://gist.github.com/rxaviers/7360908
+# https://gitmoji.carloscuesta.me/
+# 🎉  Inicia projeto                            :tada:                
+# ♻️   Refatora código                           :recycle:             
+# 🎨  Melhora estrutura/formatação do código    :art:                 
+# 🔥  Remove arquivos                           :fire:                
+# 🐛  Conserta bug                              :bug:                 
+# 💥  Introduz mudanças drásticas               :boom:                
+# 📝  Escreve documentação                      :pencil:              
+# ✨  Introduz novas features                   :sparkles:            
+# 🚀  Configura para deploy                     :rocket:              
+# 💄  Atualiza UI e arquivos de estilo          :lipstick:            
+# ✅  Adiciona teste                            :white_check_mark:    
+# x   Faz teste falhar                          :x:                   
+# ✔️   Faz o teste passar                        :heavy_check_mark:    
+# 🔧  Atualiza arquivos de configuração         :wrench:              
+# 💩  Escreve código que precisará ser revisto  :poop:                
+# ⏪  Reverte mudanças                          :rewind:              
+# 👽  Atualiza código para uma API externa      :alien:               
+# 🚑  Adiciona hotfix                           :ambulance:           
+# ⚡️  Melhora desempenho                        :zap:                 
+# 👌  Atualiza código revisado                  :ok_hand:             
+# 
+# 🔒  Corrige issues de segurança               :lock:                
+# 👷  Adiciona sistema de CI build              :construction_worker: 
+# 💚  Corrige CI Build                          :green_heart:         
+# ⬇️   Rebaixa versão de dependência             :arrow_down:          
+# ⬆️   Atualiza versão de dependência            :arrow_up:            
+# ➕  Adiciona dependência                      :heavy_plus_sign:     
+# ➖  Remove dependência                        :heavy_minus_sign:    
+
+# https://opensource.com/article/19/2/emoji-log-git-commit-messages
+# :tada:
+snippet initial "🎉 Initial commit"
+🎉 Initial commit
+endsnippet
+
+# :package:
+snippet feat "📦 FEAT: IMPERATIVE_MESSAGE"
+📦 FEAT(${0/(.+\/)*(\w+)(-|\b|$)(\..+$)?/DD/g}: ${0:Git ignore file}
+endsnippet
+
+# :fire:
+snippet drop "🔥 DROP: IMPERATIVE_MESSAGE"
+🔥 DROP: ${0:Git ignore file}
+endsnippet
+
+# :wrench:
+snippet chore "🔧 CHORE: IMPERATIVE_MESSAGE"
+🔧 CHORE: ${0:Git ignore file}
+endsnippet
+
+# :wrench:
+snippet style "🎨 STYLE: IMPERATIVE_MESSAGE"
+🎨 STYLE: ${0:Git ignore file}
+endsnippet
+
+# :ok_hand:
+snippet refactor "👌 REFACTOR: IMPERATIVE_MESSAGE"
+👌 REFACTOR: ${0:Remote IP API Function}
+endsnippet
+
+# :bug:
+snippet fix "🐛 FIX: IMPERATIVE_MESSAGE"
+🐛 FIX: ${0:Case converter}
+endsnippet
+
+# :book:
+snippet docs "📖 DOCS: IMPERATIVE_MESSAGE"
+📖 DOCS: ${0:API Interface Tutorial}
+endsnippet
+
+# :white_check_mark:
+snippet test "✅ TEST: IMPERATIVE_MESSAGE"
+✅ TEST: ${0:Mock User Login/Logout}
+endsnippet
+
+# :rocket:
+snippet release "🚀 RELEASE: Número"
+🚀 RELEASE: ${0:1.0.0}
+endsnippet
+
+snippet breaking "💥 BREAKING CHANGES"
+💥 BREAKING CHANGES
+${0:O que vai ser afetado após a mudança?}
+endsnippet

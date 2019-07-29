@@ -1,3 +1,16 @@
+snippet p "<p></p>" 
+<p>$0</p>
+endsnippet
+
+snippet strong "<strong></strong>" 
+<strong>$0</strong>
+endsnippet
+
+snippet br "<br>" 
+<br>
+$0
+endsnippet
+
 snippet input "<input type=''>"
 <input type="$0">
 endsnippet
@@ -41,23 +54,21 @@ snippet div "<div>...</div>"
 <div>
 	$0
 </div>
-{##}
 endsnippet
 
 snippet ul "<ul>...</ul>"
 <ul>
 	$0
 </ul>
-{##}
+
 endsnippet
 
 snippet li "<li>...</li>"
 <li>$0</li>
-{##}
 endsnippet
 
 snippet a "<a href>...</a>"
-<a href="${1:#}">${0:texto}</a>{##}
+<a href="${1:#}">${0:texto}</a>
 endsnippet
 
 snippet h1 "<h1>...</h1>"

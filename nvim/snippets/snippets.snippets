@@ -23,8 +23,23 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet s "snippet endsnippet"
-${1:snippet $2 "$3" $4
-$0
-endsnippet}
+# https://github.com/neoclide/coc-snippets/blob/master/tests/snippets/snippets.snippets
+
+
+# We use a little hack so that the snippet is expanded
+# and parsed correctly
+snippet usnip "Ultisnips snippet definition" b
+`!p snip.rv = "snippet"` ${1:Tab_trigger} "${2:Description}" ${3:b}
+${0:${VISUAL}}
+`!p snip.rv = "endsnippet"`
+endsnippet
+
+snippet global "Global snippet" b
+`!p snip.rv = "global"` !p
+${0:${VISUAL}}
+`!p snip.rv = "endglobal"`
+endsnippet
+
+snippet vis "${VISUAL}" i
+\$\{VISUAL${1:${2:default}${3:/transform/}}\}
 endsnippet

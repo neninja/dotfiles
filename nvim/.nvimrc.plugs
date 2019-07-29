@@ -22,6 +22,9 @@ Plug 'w0rp/ale'
 " :ColorToggle
 Plug 'chrisbra/Colorizer'
 
+" Engine de snippets
+Plug 'SirVer/ultisnips'
+
 " Ferramentas de visualização CSV
 Plug 'chrisbra/csv.vim'
 
@@ -137,26 +140,6 @@ augroup END
 "#########################################
 " COC
 "#########################################
-"
-"------------------------------------
-"  SNIPPETS
-"------------------------------------
-" Use :CocList snippets to open snippets list.
-" Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
-" Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
 
 "#########################################
 " TagBar
@@ -371,3 +354,21 @@ function! s:defx_my_settings() abort
                 \ defx#do_action('toggle_columns',
                 \                'mark:indent:icon:filename:type:size:time')
 endfunction
+
+"#########################################
+" UltiSnips
+"#########################################
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/dev/dotfiles/nvim/snippets']
+let g:UltiSnipsSnippetsDir="~/dev/dotfiles/nvim/snippets"
+let g:tex_flavor='latex' "ultisnippets reconhecerem .tex
+
+" snippets diferentes para o mesmo arquivo
+augroup javascript
+    " au filetype javascript UltiSnipsAddFiletypes html
+    au BufEnter *.vue UltiSnipsAddFiletypes javascript.html
+    au BufEnter *.js so ~/dev/dotfiles/nvim/customhigroups.vim
+augroup END
