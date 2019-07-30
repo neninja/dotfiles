@@ -123,10 +123,6 @@ cnoreabbrev nocul set nocul
 "*********************************************************
 " Mappings
 "*********************************************************
-" Completar snippet
-noremap ,, <ESC>/{#[^%]*#}<CR>c%
-inoremap ,, <ESC>/{#[^%]*#}<CR>c%
-
 " Fechar automaticamente
 " Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
 " Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
