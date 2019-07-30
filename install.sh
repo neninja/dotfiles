@@ -79,14 +79,15 @@ ln -vsf $DIRDF/mpv ~/.config
 
 # git
 ln -vsf $DIRDF/git/.gitconfig $HOME/.gitconfig
+ln -vsf $DIRDF/git/.gitmessage $HOME/.gitmessage
 
 # nvim
 echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.config/nvim/init.vim
 echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.vimrc
-rm -rf ~/.config/coc/ultisnips
-mkdir -p ~/.config/coc
-ln -vsf $DIRDF/nvim/coc ~/.config/coc/ultisnips
-vim -c 'CocInstall -sync coc-json coc-css coc-html coc-snippets coc-tsserver coc-emmet coc-eslint |q'
+vim -c 'CocInstall -sync coc-json coc-css coc-html coc-tsserver coc-emmet coc-eslint coc-marketplace |q'
+
+# dialog
+ln -vsf $DIRDF/x/.dialogrc $HOME/.dialogrc
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser/bookmarks

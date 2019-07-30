@@ -3,7 +3,7 @@
 #   https://gist.github.com/pksunkara/988716
 #   https://github.com/alikins/gitconfig/blob/master/gitconfig
 [user]
-    name = Felipe Silva
+	name = felipe
     email = felipe.dacs@gmail.com
     username = nenitf
 [core]
@@ -254,3 +254,5 @@
     # RELEASE.
     aula = "!f() { git add .; git commit -m \"🚀 RELEASE: Aula $@\"; git tag -a \"aula-$@\" -m \"🚀 RELEASE: Aula $@\"; git push origin master --tags; }; f"
     release = "!f() { git tag -a \"$@\" -m \"🚀 RELEASE $@\"; git push origin master --tags; }; f"
+    [commit]
+  template = ~/.gitmessage
