@@ -15,8 +15,8 @@ if [ ! -z $TIPO_DE_PESQUISA ]; then
     case $TIPO_DE_PESQUISA in
         "configuração")
             # diretórios onde existem arquivos/pastas de configuração
-            DIRDF=$HOME/dev/dotfiles
-            DIRIS=$HOME/dev/is
+            DIRDF="$HOME/dev/dotfiles"
+            DIRIS="$HOME/dev/is"
 
             CONFIG_ESCOLHIDA=$(find $DIRDF $DIRIS -not \( -path $HOME/dev/dotfiles/.git -prune \) -not \( -path $HOME/dev/is/.git -prune \) -not \( -path  $HOME/dev/is/tmp/nerd-fonts -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/dmenu/.git -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/dwm/.git -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/st/.git -prune \)| sed "s/\/home\/$USER\/dev\///g" | dmenu -l 20 -i -p "Escolha arquivo ou pasta");
 
