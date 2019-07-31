@@ -66,9 +66,9 @@ if [ ! -z $TIPO_DE_PESQUISA ]; then
             ;;
         livro)
             # diretórios onde existem pdfs
-            DIRLIVROS="$HOME/Livros/"
+            DIRLIVROS="$HOME/Livros"
 
-            LIVRO_ESCOLHIDO=$(find $DIRLIVROS -type f -printf "%P\n" | dmenu -l 20 -i -p "Escolha um livro");
+            LIVRO_ESCOLHIDO=$(find $DIRLIVROS -not \( -path $DIRLIVROS/.git -prune \) -type f -printf "%P\n" | dmenu -l 20 -i -p "Escolha um livro");
 
             PATH_LIVRO="$DIRLIVROS$LIVRO_ESCOLHIDO"
 
