@@ -41,9 +41,10 @@ if [ ! -z $TIPO_DE_PESQUISA ]; then
             DIRGO1="$HOME/go/src/github.com/nenitf"
             DIRGO2="$HOME/go/src/gitlab.com/nenitf $HOME/go/src/gitlab.com/nenitf $HOME/go/src/gitlab.com/nenitf/udemy"
             DIRNODE="$DIRDEV/nodejs $DIRDEV/nodejs/school-of-net $DIRDEV/nodejs/udemy $DIRDEV/nodejs/rocketseat"
-            DIRFRONT="$DIRDEV/front $DIRDEV/front/school-of-net $DIRDEV/front/udemy $DIRDEV/front/rocketseat "
+            DIRFRONT="$DIRDEV/front $DIRDEV/front/school-of-net $DIRDEV/front/udemy $DIRDEV/front/rocketseat"
+            DIRTEX="$DIRDEV/tex"
 
-            PROJETO_ESCOLHIDO=$(find $DIRPHP $DIRPYTHON $DIRGO1 $DIRGO2 $DIRNODE $DIRFRONT -maxdepth 1 -mindepth 1 -type d | sed -e "s/\/home\/$USER\/dev\///" -e "s/\/home\/$USER\/go/go/" | dmenu -l 20 -i -p "Escolha a pasta");
+            PROJETO_ESCOLHIDO=$(find $DIRPHP $DIRPYTHON $DIRGO1 $DIRGO2 $DIRNODE $DIRFRONT $DIRTEX -maxdepth 1 -mindepth 1 -type d | sed -e "s/\/home\/$USER\/dev\///" -e "s/\/home\/$USER\/go/go/" | dmenu -l 20 -i -p "Escolha a pasta");
 
             # Fazer algo somente após enter no dmenu
             if [ ! -z $PROJETO_ESCOLHIDO ]; then
