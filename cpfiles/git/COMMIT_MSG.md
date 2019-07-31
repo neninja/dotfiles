@@ -16,7 +16,7 @@ Cada mensagem de commit Tem um **cabeçalho**, **corpo** e **rodapé**. O primei
 <LINHA EM BRANCO>
 <rodapé>
 ```
-O **cabeçalho** é obrigatório (com exceção do escopo). *Deve possuir apenas uma linha e não pode ultrapassar 70 caracteres*
+O **cabeçalho** é obrigatório (com exceção do escopo). *Deve possuir apenas uma linha e não pode ultrapassar 51 caracteres*
 O **corpo** é a descrição prolongada do que foi realizado, podendo ser listado com hífens ou descritos com parágrafos. *Não deve ultrapassar 70 caracteres por linha*
 O **rodapé** deve especificar issues, PR ou explicitar BREAKING CHANGES. *Não deve ultrapassar 70 caracteres por linha*
 ```
