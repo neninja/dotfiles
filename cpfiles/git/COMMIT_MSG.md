@@ -19,24 +19,15 @@ Cada mensagem de commit Tem um **cabeçalho**, **corpo** e **rodapé**. O primei
 O **cabeçalho** é obrigatório (com exceção do escopo). *Deve possuir apenas uma linha e não pode ultrapassar 70 caracteres*
 O **corpo** é a descrição prolongada do que foi realizado, podendo ser listado com hífens ou descritos com parágrafos. *Não deve ultrapassar 70 caracteres por linha*
 O **rodapé** deve especificar issues, PR ou explicitar BREAKING CHANGES. *Não deve ultrapassar 70 caracteres por linha*
-
 ```
-📖 DOCS(changelog): update changelog to beta.5
+📖 DOCS(readme): add instrução de instalação
 ```
-```
-🐛 FIX: need to depend on latest rxjs and zone.js
-
-The version in our package.json gets copied to the one we publish, and users need the latest of these.
-```
-
-<!--### Revert
-If the commit reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit. In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.-->
 
 ### Cabeçalho
 #### Tipo
 Vai especificar a tipificação do commit. É constituído de: ``<emoji> <PALAVRA-EM-MAIÚSCULO>``, sendo os possíveis valores de tipo:
-- 📦 FEAT: **adiciona** nova feature/funcionalidade para usuário final (afeta [MINOR](https://semver.org/#summary) ou pode afetar [MAJOR](https://semver.org/#summary) se conter BREAKING CHANGE no rodapé)
-- 🐛 FIX: **CORRIGE** bug feature/funcionalidade para usuário final (afeta [PATCH](https://semver.org/#summary) ou pode afetar [MAJOR](https://semver.org/#summary) se conter BREAKING CHANGE no rodapé)
+- 📦 FEAT: **adiciona** nova feature/funcionalidade para usuário final - afeta [MINOR](https://semver.org/#summary) ou pode afetar [MAJOR](https://semver.org/#summary) se conter BREAKING CHANGE no rodapé
+- 🐛 FIX: **CORRIGE** bug feature/funcionalidade para usuário final - afeta [PATCH](https://semver.org/#summary) ou pode afetar [MAJOR](https://semver.org/#summary) se conter BREAKING CHANGE no rodapé
 - 👌 REFACTOR: **refatora,** **atualiza** ou **modifica** código para usuário final
 - 📖 DOCS: **adiciona**, **modifica**, **atualiza** ou **remove** algo na documentação (usar o escopo!)
 - 🎨 STYLE: **estiliza** o código, não afeta a lógica
@@ -44,14 +35,9 @@ Vai especificar a tipificação do commit. É constituído de: ``<emoji> <PALAVR
 - 🔧 CHORE: **adiciona**, **modifica**, **atualiza** ou **remove** arquivos externos ao projeto (gulp, npm, configurações e etc), não afeta usuário final
 
 #### Escopo
-Escopo do que está sendo modificado, valor opcional, se omitido os parentêses devem ser apagados. Valores possíveis de escopo devem vir das instruções de projeto.
-Valores aceitos:
-- readme: Especifica alteração no readme
-  - types: DOCS
-<!--
-- deploy: Relação com instruções de deploy do projeto
-  - types: CHORE
--->
+Escopo do que está sendo modificado, valor opcional, se omitido os parentêses devem ser apagados.
+Valores aceitos quando as alterações:
+- readme: São diretas no readme [tipos: DOCS]
 
 #### Assunto
 - Usar verbos no imperativo somente
