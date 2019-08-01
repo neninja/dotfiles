@@ -3,7 +3,7 @@
 #   https://gist.github.com/pksunkara/988716
 #   https://github.com/alikins/gitconfig/blob/master/gitconfig
 [user]
-  name = felipe
+  name = Felipe Silva
   email = felipe.dacs@gmail.com
   username = nenitf
 [core]
@@ -84,8 +84,6 @@
   #############
   cl = clone
   cld = clone --depth 1
-  clg = !sh -c 'git clone git://github.com/$1 $(basename $1)' -
-  clgp = !sh -c 'git clone git@github.com:$(git config --get user.username)/$1 $1' -
   #############
   cp = cherry-pick
   cpa = cherry-pick --abort
@@ -109,8 +107,9 @@
   #############
   g = grep -p
   #############
-  l =  log --decorate --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-  ld = log --decorate --graph --abbrev-commit --date=short --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+  # Para pesquisar commits usar: --grep "palavra"
+  l =  log --decorate --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset '
+  ld = log --decorate --graph --abbrev-commit --date=short --pretty=format:'%Cred%h%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'
   lg = log --date=format:'%d/%m/%Y %a %H:%M:%S' --decorate --graph --pretty=format:'%Cred%H%Creset %C(yellow)%d%Creset\n%C(bold blue)%an%Creset em %Cgreen%ad%Creset\n\n%C(bold)%s\n%b'
   #############
   ls = ls-files
