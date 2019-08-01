@@ -10,7 +10,7 @@ https://github.com/ahmadawais/Emoji-Log/
 ## Commit Message Format
 Cada mensagem de commit Tem um **cabeçalho**, **corpo** e **rodapé**. O primeiro contendo um **tipo**, **escopo** e **assunto**:
 ```
-<tipo>(<escopo>): <assunto>
+<tipo>(<escopo>): <título>
 <LINHA EM BRANCO>
 <corpo>
 <LINHA EM BRANCO>
