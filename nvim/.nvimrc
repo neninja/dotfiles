@@ -515,16 +515,22 @@ set conceallevel=2
 " nnoremap <silent> <C-c><C-y> :call ToggleConcealLevel()<CR>
 
 "*********************************************************
+" Commit configs
+"*********************************************************
+"augroup gitsetup
+"  autocmd!
+"  au FileType gitcommit syn clear gitcommitSummary
+"  " Char maximo pro título do commit
+"  au FileType gitcommit syn match gitcommitSummary "^.\{0,80\}" contained containedin=gitcommitFirstLine nextgroup=gitcommitOverflow contains=@Spell
+"  " Quebra automatica de linha
+"  au FileType gitcommit
+"        \| autocmd CursorMoved,CursorMovedI *
+"        \  let &l:textwidth = line('.') == 1 ? 50 : 72
+"augroup end
+
+"*********************************************************
 " EXTRA CONFIGS
 "*********************************************************
 if filereadable(expand("~/.nvimrc.extra"))
     source ~/.nvimrc.extra
 endif
-
-
-
-
-
-
-
-
