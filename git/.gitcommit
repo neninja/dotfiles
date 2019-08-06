@@ -1,0 +1,11 @@
+
+# Afeta usuário final:
+#   FEAT: adiciona, modifica ou remove feature/funcionalidade (afeta MINOR)
+#   FIX: corrige bug feature/funcionalidade (afeta PATCH)
+# NÃO afeta usuário final:
+#   REFACTOR: refatora código de produção
+#   DOCS: adiciona, modifica, remove ou estiliza item na documentação
+#   TEST: adiciona, modifica ou remove testes
+#   CHORE: adiciona, modifica ou remove arquivos auxiliares do ambiente dev (gulp, npm, configurações e etc)
+#   STYLE: estiliza código de produção, teste ou de ambiente sem não afetar a lógica
+# COMMIT_MSG.md
