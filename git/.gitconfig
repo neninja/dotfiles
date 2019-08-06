@@ -255,4 +255,4 @@
   release = "!f() { git tag -a \"$@\" -m \"🚀 RELEASE $@\"; git push origin master --tags; }; f"
 
 [commit]
-  template = ~/.gitmessage
+  # template = ~/.gitcommit
