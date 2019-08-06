@@ -251,8 +251,8 @@
   # default macros of commits/messages
   # https://github.com/ahmadawais/Emoji-Log
   # RELEASE.
-  aula = "!f() { git add .; git commit -m \"🚀 RELEASE: Aula $@\"; git tag -a \"aula-$@\" -m \"🚀 RELEASE: Aula $@\"; git push origin master --tags; }; f"
-  release = "!f() { git tag -a \"$@\" -m \"🚀 RELEASE $@\"; git push origin master --tags; }; f"
+  aula = "!f() { git add -A; git commit -m \"🚀 RELEASE: Aula $@\"; git tag \"aula-$@\"; git push origin master --tags; }; f"
+  release = "!f() { git tag \"$@\"; git push origin master --tags; }; f"
 
 [commit]
   # template = ~/.gitcommit
