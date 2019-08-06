@@ -79,7 +79,6 @@ ln -vsf $DIRDF/mpv ~/.config
 
 # git
 ln -vsf $DIRDF/git/.gitconfig $HOME/.gitconfig
-ln -vsf $DIRDF/git/.gitmessage $HOME/.gitmessage
 
 # nvim
 echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.config/nvim/init.vim
