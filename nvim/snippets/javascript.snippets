@@ -26,19 +26,6 @@
 # $0
 # endsnippet
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet qw
-${1:a text}
-${1/\w+\s*/\u$0/}
-endsnippet
-
-
-snippet one "visual transform" b
-${1/\w+/${1}/g}
-endsnippet
-
-snippet two "placeholder transform" b
-${1/^(?P<word>[a-z]+)!(?P=word)$/$1/g}
-endsnippet
 
 snippet constm "const { ... } = module" 
 const { $0 } = $1;
@@ -48,7 +35,7 @@ snippet ? "condition ? true : false"
 ${1:condition} ? ${2:true} : ${3:false}
 endsnippet
 
-snippet try "try catch"
+snippet "^try" "try catch" rbA
 try {
 	${1:// ...}
 } catch (err) {
@@ -62,7 +49,7 @@ function ${1:nome}(){
 }
 endsnippet
 
-snippet if "if() { ... }"
+snippet "^if" "if() { ... }" rbA
 if (${1:condition}) {
 	${0:// ...}
 }
@@ -77,10 +64,11 @@ require('$0');
 endsnippet
 
 snippet creq "const ... = require('...')"
-const ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/$2/g} = require('$1');
+const ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/$2/g}$0 = require('$1');
 endsnippet
+
 snippet imp "import ... from ..."
-import ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/$2/g} from '$1';
+import ${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/$2/g}$0 from '$1';
 endsnippet
 
 snippet mod "module.exports = ..."
