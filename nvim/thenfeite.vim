@@ -324,6 +324,9 @@ call s:h("cssSelectorOp", { "fg": s:purple })
 call s:h("cssSelectorOp2", { "fg": s:purple })
 call s:h("cssTagName", { "fg": s:red })
 
+" Shell
+call s:h("shComment", { "fg": s:comment_grey })
+
 " Fish Shell
 call s:h("fishKeyword", { "fg": s:purple })
 call s:h("fishConditional", { "fg": s:purple })
@@ -347,9 +350,10 @@ call s:h("goTypeDecl", { "fg": s:purple })
 
 " HTML
 call s:h("htmlTitle", { "fg": s:white })
+call s:h("htmlComment", { "fg": s:comment_grey })
 call s:h("htmlArg", { "fg": s:dark_yellow })
 call s:h("htmlEndTag", { "fg": s:white })
-call s:h("htmlH1", { "fg": s:white })
+call s:h("htmlH1", { "fg": s:red })
 call s:h("htmlLink", { "fg": s:purple })
 call s:h("htmlSpecialChar", { "fg": s:dark_yellow })
 call s:h("htmlSpecialTagName", { "fg": s:red })
@@ -436,7 +440,11 @@ call s:h("lessAmpersandChar", { "fg": s:white })
 call s:h("lessClass", { "fg": s:dark_yellow })
 
 " Markdown
-call s:h("markdownCode", { "fg": s:green })
+call s:h("markdownCode", { "fg": s:blue })
+call s:h("mkdCode", { "fg": s:black, "bg": s:white })
+call s:h("mkdCodeDelimiter", { "fg": s:white })
+call s:h("mkdLink", { "fg": s:blue })
+call s:h("mkdHeading", { "fg": s:red })
 call s:h("markdownCodeBlock", { "fg": s:green })
 call s:h("markdownCodeDelimiter", { "fg": s:green })
 call s:h("markdownHeadingDelimiter", { "fg": s:red })
@@ -477,6 +485,7 @@ call s:h("perlSubName",{ "fg": s:yellow })
 call s:h("perlVarPlain",{ "fg": s:blue })
 
 " PHP
+call s:h("phpComment", { "fg": s:comment_grey })
 call s:h("phpVarSelector", { "fg": s:red })
 call s:h("phpOperator", { "fg": s:white })
 call s:h("phpParent", { "fg": s:white })
@@ -598,6 +607,7 @@ call s:h("diffRemoved", { "fg": s:red })
 
 " Git Highlighting {{{
 
+call s:h("gitconfigComment", { "fg": s:comment_grey })
 call s:h("gitcommitComment", { "fg": s:comment_grey })
 call s:h("gitcommitUnmerged", { "fg": s:green })
 call s:h("gitcommitOnBranch", {})
