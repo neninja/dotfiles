@@ -324,6 +324,10 @@ call s:h("cssSelectorOp", { "fg": s:purple })
 call s:h("cssSelectorOp2", { "fg": s:purple })
 call s:h("cssTagName", { "fg": s:red })
 
+" Graphviz
+" .dot .gv
+call s:h("dotComment", { "fg": s:comment_grey })
+
 " Shell
 call s:h("shComment", { "fg": s:comment_grey })
 
@@ -550,6 +554,7 @@ call s:h("scssSelectorName", { "fg": s:dark_yellow })
 call s:h("scssVariable", { "fg": s:purple })
 
 " TeX
+call s:h("texComment", { "fg": s:comment_grey })
 call s:h("texStatement", { "fg": s:purple })
 call s:h("texSubscripts", { "fg": s:dark_yellow })
 call s:h("texSuperscripts", { "fg": s:dark_yellow })
