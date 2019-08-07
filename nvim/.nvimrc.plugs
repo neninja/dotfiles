@@ -170,20 +170,28 @@ cnoreabbrev gv Gvsplit
 "#########################################
 " Gitgutter
 "#########################################
-" [c -> previous chunk   ]c -> next chunk
 " <leader>hp -> mostra valor anterior do hunk
 " <leader>hs -> stage["git add line"] modificação, removendo chunk
 " <leader>hu -> desfaz modificação não staged no chunk
-set updatetime=100 "atualização mais rápida
+nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+
+" atualização mais rápida
+set updatetime=100
 
 ":GitGutterEnable
 let g:gitgutter_enabled=0
-noremap <Leader>c :GitGutterToggle<CR>
+cnoreabbrev ggt call Gitguttettog()
+
+fun Gitguttettog()
+    GitGutterToggle
+    echo "Use [h ]h e <leader>hp <leader>hs <leader>hu"
+endfun
 
 "#########################################
-" Ale
+" ALE
 "#########################################
-nmap <silent> ! <Plug>(ale_previous_wrap)
+nmap <silent> ! <Plug>(ale_next_wrap)
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
