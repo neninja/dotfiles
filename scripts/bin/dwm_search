@@ -12,70 +12,70 @@ OPTS="configuração\nprojeto\nlivro"
 TIPO_DE_PESQUISA=$(echo $OPTS | dmenu -i -p "O que está procurando?");
 
 if [ ! -z $TIPO_DE_PESQUISA ]; then
-    case $TIPO_DE_PESQUISA in
-        "configuração")
-            # diretórios onde existem arquivos/pastas de configuração
-            DIRDF="$HOME/dev/dotfiles"
-            DIRIS="$HOME/dev/is"
+  case $TIPO_DE_PESQUISA in
+    "configuração")
+      # diretórios onde existem arquivos/pastas de configuração
+      DIRDF="$HOME/dev/dotfiles"
+      DIRIS="$HOME/dev/is"
 
-            CONFIG_ESCOLHIDA=$(find $DIRDF $DIRIS -not \( -path $HOME/dev/dotfiles/.git -prune \) -not \( -path $HOME/dev/is/.git -prune \) -not \( -path  $HOME/dev/is/tmp/nerd-fonts -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/dmenu/.git -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/dwm/.git -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/st/.git -prune \)| sed "s/\/home\/$USER\/dev\///g" | dmenu -l 20 -i -p "Escolha arquivo ou pasta");
+      CONFIG_ESCOLHIDA=$(find $DIRDF $DIRIS -not \( -path $HOME/dev/dotfiles/.git -prune \) -not \( -path $HOME/dev/is/.git -prune \) -not \( -path  $HOME/dev/is/tmp/nerd-fonts -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/dmenu/.git -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/dwm/.git -prune \) -not \( -path  $HOME/dev/is/tmp/suckless/st/.git -prune \)| sed "s/\/home\/$USER\/dev\///g" | dmenu -l 20 -i -p "Escolha arquivo ou pasta");
 
-            # Fazer algo somente após enter no dmenu
-            if [ ! -z $CONFIG_ESCOLHIDA ]; then
-                # PATH DEVE SER: /home/user/dev/$CONFIG_ESCOLHIDA
-                DEVCOMP='/dev/'
-                PATH_CORRETO=$HOME$DEVCOMP$CONFIG_ESCOLHIDA
-                if [ -f $PATH_CORRETO ]; then
-                    st -e nvim -c 'cd %:p:h' $PATH_CORRETO
-                elif [ -d $PATH_CORRETO ]; then
-                    cd $PATH_CORRETO
-                    st
-                fi
-            fi
+      # Fazer algo somente após enter no dmenu
+      if [ ! -z $CONFIG_ESCOLHIDA ]; then
+        # PATH DEVE SER: /home/user/dev/$CONFIG_ESCOLHIDA
+        DEVCOMP='/dev/'
+        PATH_CORRETO=$HOME$DEVCOMP$CONFIG_ESCOLHIDA
+        if [ -f $PATH_CORRETO ]; then
+          st -e nvim -c 'cd %:p:h' $PATH_CORRETO
+        elif [ -d $PATH_CORRETO ]; then
+          cd $PATH_CORRETO
+          st
+        fi
+      fi
+      ;;
+    projeto)
+      # diretórios onde existem projetos
+      DIRDEV="$HOME/dev"
+      DIRPHP="$DIRDEV/php $DIRDEV/php/school-of-net $DIRDEV/php/udemy"
+      DIRPYTHON="$DIRDEV/python $DIRDEV/python/school-of-net $DIRDEV/python/udemy"
+      DIRGO1="$HOME/go/src/github.com/nenitf"
+      DIRGO2="$HOME/go/src/gitlab.com/nenitf $HOME/go/src/gitlab.com/nenitf $HOME/go/src/gitlab.com/nenitf/udemy"
+      DIRNODE="$DIRDEV/nodejs $DIRDEV/nodejs/school-of-net $DIRDEV/nodejs/udemy $DIRDEV/nodejs/rocketseat"
+      DIRFRONT="$DIRDEV/front $DIRDEV/front/school-of-net $DIRDEV/front/udemy $DIRDEV/front/rocketseat"
+      DIRTEX="$DIRDEV/tex"
+
+      PROJETO_ESCOLHIDO=$(find $DIRPHP $DIRPYTHON $DIRGO1 $DIRGO2 $DIRNODE $DIRFRONT $DIRTEX -maxdepth 1 -mindepth 1 -type d | sed -e "s/\/home\/$USER\/dev\///" -e "s/\/home\/$USER\/go/go/" | dmenu -l 20 -i -p "Escolha a pasta");
+
+      # Fazer algo somente após enter no dmenu
+      if [ ! -z $PROJETO_ESCOLHIDO ]; then
+        DEVCOMP='/dev/'
+        LINGUAGEM=$(echo "$PROJETO_ESCOLHIDO" | awk -F/ '{print $1}')
+
+        # Devido à $GOPATH, somente projetos go não ficm em $HOME/dev/
+        case $LINGUAGEM in
+          "go")
+            PATH_CORRETO="$HOME/$PROJETO_ESCOLHIDO"
             ;;
-        projeto)
-            # diretórios onde existem projetos
-            DIRDEV="$HOME/dev"
-            DIRPHP="$DIRDEV/php $DIRDEV/php/school-of-net $DIRDEV/php/udemy"
-            DIRPYTHON="$DIRDEV/python $DIRDEV/python/school-of-net $DIRDEV/python/udemy"
-            DIRGO1="$HOME/go/src/github.com/nenitf"
-            DIRGO2="$HOME/go/src/gitlab.com/nenitf $HOME/go/src/gitlab.com/nenitf $HOME/go/src/gitlab.com/nenitf/udemy"
-            DIRNODE="$DIRDEV/nodejs $DIRDEV/nodejs/school-of-net $DIRDEV/nodejs/udemy $DIRDEV/nodejs/rocketseat"
-            DIRFRONT="$DIRDEV/front $DIRDEV/front/school-of-net $DIRDEV/front/udemy $DIRDEV/front/rocketseat"
-            DIRTEX="$DIRDEV/tex"
-
-            PROJETO_ESCOLHIDO=$(find $DIRPHP $DIRPYTHON $DIRGO1 $DIRGO2 $DIRNODE $DIRFRONT $DIRTEX -maxdepth 1 -mindepth 1 -type d | sed -e "s/\/home\/$USER\/dev\///" -e "s/\/home\/$USER\/go/go/" | dmenu -l 20 -i -p "Escolha a pasta");
-
-            # Fazer algo somente após enter no dmenu
-            if [ ! -z $PROJETO_ESCOLHIDO ]; then
-                DEVCOMP='/dev/'
-                LINGUAGEM=$(echo "$PROJETO_ESCOLHIDO" | awk -F/ '{print $1}')
-
-                # Devido à $GOPATH, somente projetos go não ficm em $HOME/dev/
-                case $LINGUAGEM in
-                    "go")
-                        PATH_CORRETO="$HOME/$PROJETO_ESCOLHIDO"
-                        ;;
-                    *)
-                        PATH_CORRETO=$HOME$DEVCOMP$PROJETO_ESCOLHIDO
-                        ;;
-                esac
-                cd $PATH_CORRETO
-                st
-            fi
+          *)
+            PATH_CORRETO=$HOME$DEVCOMP$PROJETO_ESCOLHIDO
             ;;
-        livro)
-            # diretórios onde existem pdfs
-            DIRLIVROS="$HOME/Livros"
+        esac
+        cd $PATH_CORRETO
+        st
+      fi
+      ;;
+    livro)
+      # diretórios onde existem pdfs
+      DIRLIVROS="$HOME/Livros"
 
-            LIVRO_ESCOLHIDO=$(find $DIRLIVROS -not \( -path $DIRLIVROS/.git -prune \) -type f -printf "%P\n" | dmenu -l 20 -i -p "Escolha um livro");
+      LIVRO_ESCOLHIDO=$(find $DIRLIVROS -not \( -path $DIRLIVROS/.git -prune \) -type f -printf "%P\n" | dmenu -l 20 -i -p "Escolha um livro");
 
-            PATH_LIVRO="$DIRLIVROS/$LIVRO_ESCOLHIDO"
+      PATH_LIVRO="$DIRLIVROS/$LIVRO_ESCOLHIDO"
 
-            # Fazer algo se existe o livro
-            if [ -f "$PATH_LIVRO" ]; then
-                zathura "$PATH_LIVRO"
-            fi
-            ;;
-    esac
+      # Fazer algo se existe o livro
+      if [ -f "$PATH_LIVRO" ]; then
+        zathura "$PATH_LIVRO"
+      fi
+      ;;
+  esac
 fi
