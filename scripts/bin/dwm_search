@@ -70,7 +70,7 @@ if [ ! -z $TIPO_DE_PESQUISA ]; then
 
             LIVRO_ESCOLHIDO=$(find $DIRLIVROS -not \( -path $DIRLIVROS/.git -prune \) -type f -printf "%P\n" | dmenu -l 20 -i -p "Escolha um livro");
 
-            PATH_LIVRO="$DIRLIVROS$LIVRO_ESCOLHIDO"
+            PATH_LIVRO="$DIRLIVROS/$LIVRO_ESCOLHIDO"
 
             # Fazer algo se existe o livro
             if [ -f "$PATH_LIVRO" ]; then
