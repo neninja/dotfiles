@@ -18,6 +18,8 @@ Plug 'airblade/vim-gitgutter'   " Marcações + - _ ~ de git
 " Lint geral do vim
 Plug 'w0rp/ale'
 
+Plug 'mattn/emmet-vim'
+
 " cores com highlight no vim
 " :ColorToggle
 Plug 'chrisbra/Colorizer'

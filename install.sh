@@ -83,7 +83,7 @@ ln -vsf $DIRDF/git/.gitconfig $HOME/.gitconfig
 # nvim
 echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.config/nvim/init.vim
 echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.vimrc
-vim -c 'CocInstall -sync coc-json coc-css coc-html coc-tsserver coc-emmet coc-eslint coc-marketplace |q'
+vim -c 'CocInstall -sync coc-json coc-css coc-html coc-tsserver coc-eslint coc-marketplace |q'
 
 # dialog
 ln -vsf $DIRDF/x/.dialogrc $HOME/.dialogrc
