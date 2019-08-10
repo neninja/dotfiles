@@ -1,2 +1,9 @@
 #!/bin/sh
-'feh' '--bg-fill' '/home/neni/Imagens/misc/rocketseat.png' 
+#'feh' '--bg-fill' '/home/neni/Imagens/imgs/wallpapers/Drawings/img040.jpg' 
+
+#while true; do
+#feh --bg-fill --recursive --randomize --no-fehbg ~/Imagens/imgs/wallpapers/* 
+#    sleep 5s
+#done
+
+feh --bg-fill --recursive --randomize --no-fehbg ~/Imagens/imgs/wallpapers/* 
