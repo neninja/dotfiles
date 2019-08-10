@@ -93,7 +93,7 @@ prompt_git() {
 
             [ -n "${s}" ] && s=" [${s}]";
 
-            echo -e " ${1} ${branchName}${s} ";
+            echo -e " ${1}${branchName}${s}";
         else
             return;
         fi;
@@ -120,14 +120,23 @@ ps1_simple(){
         hostStyle="$FG_YELLOW";
     fi;
 
-    PS1+="$BG_DEFAULT$FG_YELLOW[\W]"; # working directory, pwd command show full path
+    PS1+="$BG_DEFAULT$FG_CYAN["
+    PS1+="$FG_BLUE_LIGHT\u"
+    #PS1+="@"
+    #PS1+="\h"
+    PS1+="$FG_CYAN]"
+
+    PS1+="$BG_DEFAULT$FG_BLUE_LIGHT["
+    PS1+="$BG_DEFAULT$FG_MAGENTA_LIGHT"
+    PS1+='$(echo $(dirname $(echo \w | sed "s;$HOME;~;"))/ |sed -e "s;\(/\.\?.\)[^/]*;\1;g" -e "s;/h/s;~;" -e "s;\./;;")\W'
+    PS1+="$BG_DEFAULT$FG_BLUE_LIGHT]"
 
     if [ ! -w "$PWD" ]; then
-        # Current directory is not writable
-        PS1+="$BG_DEFAULT$FG_GRAY_DARK "
+      # Current directory is not writable
+      PS1+="$BG_DEFAULT$FG_GRAY_DARK "
     fi
 
-    PS1+="$BG_CYAN$FG_BLACK$(prompt_git )$BG_DEFAULT"; # Git repository details
+    PS1+="$BG_DEFAULT$FG_YELLOW$(prompt_git)$BG_DEFAULT"; # Git repository details
 
     PS1+="$BG_DEFAULT$FG_WHITE \$ $BFG_RESET_ALL";
     PS1+="$BFG_RESET_ALL"; # reset bg and fg colors
@@ -138,87 +147,4 @@ ps1_simple(){
     export PS2;
 }
 
-# WIP
-# Heavily inspired by @abhijitvalluri simple power line:
-#   https://github.com/abhijitvalluri/bash-powerline-shell
-ps1_simple_powerline(){
-    # Como PS é modificado através de função
-    # para evitar duplicação ele precisa ser inicializado.
-    # A melhor forma é no início pois evita que seja dentro de if
-    PS1=""
-    PS2=""
-
-    # Quando for colorir  atente-se que a cor:
-    #   deve ser a mesma que o background do texto anterior
-    #   deve ser a mesma que o background da 
-    #PS1="$BG_GRAY$FG_GRAY$BG_GRAY$FG_GRAY_LIGHT \$ $BG_GREEN$FG_GRAY"
-    #      -------         --------                            -------
-
-    local NF_PWD=$(pwd | awk -F/ '{print NF-1}')
-    # number of total of directories in pwd
-    # example: /home/user/dev/javascript -> NF_PWD = 4
-
-    local DEV_DIR_PWD=$(pwd | awk -F/ '{print "/"$2"/"$3"/"$4"/"$5}')
-    if [ "$DEV_DIR_PWD" = "$HOME/dev/front" ]; then 
-        PS1+="$BG_YELLOW$FG_BLACK$FG_BOLD$FG_BLINK  $BFG_RESET_ALL"
-    fi
-    if [ "$DEV_DIR_PWD" = "$HOME/dev/python" ]; then
-        PS1+="$BG_YELLOW$FG_BLACK$FG_BOLD$FG_BLINK  $BFG_RESET_ALL"
-    fi
-    if [ "$DEV_DIR_PWD" = "$HOME/go/src" ]; then
-        PS1+="$BG_BLUE_LIGHT$FG_BLACK$FG_BOLD$FG_BLINK  $BFG_RESET_ALL"
-    fi
-    if [ "$DEV_DIR_PWD" = "$HOME/dev/php" ]; then
-        PS1+="$BG_BLUE_LIGHT$FG_BLACK$FG_BOLD$FG_BLINK  $BFG_RESET_ALL";
-    fi
-    if [ "$DEV_DIR_PWD" = "$HOME/dev/desh" ]; then
-        PS1+="$BG_GREEN$FG_BLACK$FG_BOLD$FG_BLINK ☢ $BFG_RESET_ALL";
-    fi
-
-
-    # here's a simple trick
-    #   if pwd is /home/user/dev/javascript
-    #       echo ${PWD%/*/*} will show less 2 directories in <- direction
-    #           /home/user/dev
-    #       echo ${PWD#"/home"} will show less 1 directory in -> direction
-    #           /user/dev/dev/javascript
-    #       echo ${PWD#"${PWD%/*/*}"} will cut /home/user of pwd
-    #           /dev/javascript
-    # www.gnu.org/software/bash/manual/bash.html#Controlling-the-Prompt
-    local PARENT_DIR_PWD=$(echo ${PWD#"${PWD%/*/*}"} | awk -F/ '{print $2}')
-    local CURRENT_DIR_PWD=$(echo ${PWD#"${PWD%/*}"} | awk -F/ '{print $2}')
-    if [ "$PARENT_DIR_PWD" = "" ] && ! [ "$CURRENT_DIR_PWD" = "" ] ; then
-        PS1+="$BG_BLUE_LIGHT$FG_WHITE / "
-        PS1+="$BG_BLUE$FG_BLUE_LIGHT"
-    elif ! [ "$PARENT_DIR_PWD" = "" ]; then
-        PS1+="$BG_BLUE$FG_WHITE $PARENT_DIR_PWD "
-        PS1+="$BG_BLUE$FG_BLACK"
-    fi
-    if [ "$CURRENT_DIR_PWD" = "" ]; then
-        #PS1+="$BG_BLUE$FG_GRAY_LIGHT $CURRENT_DIR_PWD "
-        PS1+="$BG_BLUE$FG_WHITE \W "
-    else
-        PS1+="$BG_BLUE$FG_WHITE $CURRENT_DIR_PWD "
-        #PS1+="$BG_BLUE$FG_GRAY_LIGHT \W "
-    fi
-
-    PS1+="$BG_RED$FG_WHITE\$(prompt_git )"; # Git repository details
-
-    if [ ! -w "$PWD" ]; then
-        # Current directory is not writable
-        PS1+="$BG_YELLOW$FG_BLACK  "
-    fi
-
-    PS1+="$BG_GRAY_DARK$FG_WHITE \$ "
-    PS1+="$BFG_RESET_ALL$FG_GRAY_DARK"
-    PS1+="$BFG_RESET_ALL "
-    export PS1;
-
-    PS2+="$BG_GRAY_DARK$FG_WHITE + "
-    PS2+="$BFG_RESET_ALL$FG_GRAY_DARK"
-    PS2+="$BFG_RESET_ALL "
-    export PS2;
-}
-
 PROMPT_COMMAND="ps1_simple; $PROMPT_COMMAND"
-#PROMPT_COMMAND="ps1_simple_powerline; $PROMPT_COMMAND"
