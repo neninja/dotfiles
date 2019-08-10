@@ -6,9 +6,9 @@
 #   https://github.com/necolas/dotfiles
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-    export TERM='gnome-256color';
+  export TERM='gnome-256color';
 elif infocmp xterm-256color >/dev/null 2>&1; then
-    export TERM='xterm-256color';
+  export TERM='xterm-256color';
 fi;
 
 # https://misc.flogisoft.com/bash/tip_colors_and_formatting
@@ -60,91 +60,90 @@ FG_GRAY_DARK="\[\e[90m\]"
 TEST_COLORS_PROMPT="$(for i in {40..47} {100..107} {30..37} {90..97} ; do echo -en "\e[${i}m # \e[0m" ; done ; echo)"
 
 prompt_git() {
-    local s='';
-    local branchName='';
+  local s='';
+  local branchName='';
 
-    # Check if the current directory is in a Git repository.
-    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+  # Check if the current directory is in a Git repository.
+  if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+    # check if the current directory is in .git before running git checks
+    if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+      # Ensure the index is up to date.
+      git update-index --really-refresh -q &>/dev/null;
 
-        # check if the current directory is in .git before running git checks
-        if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
-            # Ensure the index is up to date.
-            git update-index --really-refresh -q &>/dev/null;
+      # Check for uncommitted changes in the index.
+      if ! $(git diff --quiet --ignore-submodules --cached); then s+='+'; fi;
 
-            # Check for uncommitted changes in the index.
-            if ! $(git diff --quiet --ignore-submodules --cached); then s+='+'; fi;
+      # Check for unstaged changes.
+      if ! $(git diff-files --quiet --ignore-submodules --); then s+='!'; fi;
 
-            # Check for unstaged changes.
-            if ! $(git diff-files --quiet --ignore-submodules --); then s+='!'; fi;
+      # Check for untracked files.
+      if [ -n "$(git ls-files --others --exclude-standard)" ]; then s+='?'; fi;
 
-            # Check for untracked files.
-            if [ -n "$(git ls-files --others --exclude-standard)" ]; then s+='?'; fi;
+      # Check for stashed files.
+      if $(git rev-parse --verify refs/stash &>/dev/null); then s+='$'; fi;
+    fi;
 
-            # Check for stashed files.
-            if $(git rev-parse --verify refs/stash &>/dev/null); then s+='$'; fi;
-
-            fi;
-            # Get the short symbolic ref.
-            # If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
-            # Otherwise, just give up.
-            branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+    # Get the short symbolic ref.
+    # If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
+    # Otherwise, just give up.
+    branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
                 git rev-parse --short HEAD 2> /dev/null || \
                 echo '(unknown)')";
 
-            [ -n "${s}" ] && s=" [${s}]";
+    [ -n "${s}" ] && s=" [${s}]";
 
-            echo -e " ${1}${branchName}${s}";
-        else
-            return;
-        fi;
-    }
+    echo -e " ${1}${branchName}${s}";
+  else
+    return;
+  fi;
+}
 
 ps1_simple(){
-    # Como PS é modificado através de função
-    # para evitar duplicação ele precisa ser inicializado.
-    # A melhor forma é no início pois evita que seja dentro de if
-    PS1=""
-    PS2=""
+  # Como PS é modificado através de função
+  # para evitar duplicação ele precisa ser inicializado.
+  # A melhor forma é no início pois evita que seja dentro de if
+  PS1=""
+  PS2=""
 
-    # Highlight the user name when logged in as root.
-    if [[ "${USER}" == "root" ]]; then
-        userStyle="$FG_RED";
-    else
-        userStyle="$FG_CYAN";
-    fi;
+  # Highlight the user name when logged in as root.
+  if [[ "${USER}" == "root" ]]; then
+    userStyle="$FG_RED";
+  else
+    userStyle="$FG_CYAN";
+  fi;
 
-    # Highlight the hostname when connected via SSH.
-    if [[ "${SSH_TTY}" ]]; then
-        hostStyle="$BG_BOLD$FG_RED";
-    else
-        hostStyle="$FG_YELLOW";
-    fi;
+  # Highlight the hostname when connected via SSH.
+  if [[ "${SSH_TTY}" ]]; then
+    hostStyle="$BG_BOLD$FG_RED";
+  else
+    hostStyle="$FG_YELLOW";
+  fi;
 
-    PS1+="$BG_DEFAULT$FG_CYAN["
-    PS1+="$FG_BLUE_LIGHT\u"
-    #PS1+="@"
-    #PS1+="\h"
-    PS1+="$FG_CYAN]"
+  PS1+="$BG_DEFAULT$FG_CYAN["
+  PS1+="$FG_BLUE_LIGHT\u"
+  #PS1+="@"
+  #PS1+="\h"
+  PS1+="$FG_CYAN]"
 
-    PS1+="$BG_DEFAULT$FG_BLUE_LIGHT["
-    PS1+="$BG_DEFAULT$FG_MAGENTA_LIGHT"
-    PS1+='$(echo $(dirname $(echo \w | sed "s;$HOME;~;"))/ |sed -e "s;\(/\.\?.\)[^/]*;\1;g" -e "s;/h/s;~;" -e "s;\./;;")\W'
-    PS1+="$BG_DEFAULT$FG_BLUE_LIGHT]"
+  PS1+="$BG_DEFAULT$FG_BLUE_LIGHT["
+  PS1+="$BG_DEFAULT$FG_MAGENTA_LIGHT"
+  PS1+='$(echo $(dirname $(echo \w | sed "s;$HOME;~;"))/ |sed -e "s;\(/\.\?.\)[^/]*;\1;g" -e "s;/h/s;~;" -e "s;\./;;")\W'
+  PS1+="$BG_DEFAULT$FG_BLUE_LIGHT]"
 
-    if [ ! -w "$PWD" ]; then
-      # Current directory is not writable
-      PS1+="$BG_DEFAULT$FG_GRAY_DARK "
-    fi
+  if [ ! -w "$PWD" ]; then
+    # Current directory is not writable
+    PS1+="$BG_DEFAULT$FG_GRAY_DARK "
+  fi
 
-    PS1+="$BG_DEFAULT$FG_YELLOW$(prompt_git)$BG_DEFAULT"; # Git repository details
+  PS1+="$BG_DEFAULT$FG_YELLOW$(prompt_git)$BG_DEFAULT"; # Git repository details
 
-    PS1+="$BG_DEFAULT$FG_WHITE \$ $BFG_RESET_ALL";
-    PS1+="$BFG_RESET_ALL"; # reset bg and fg colors
-    export PS1;
+  PS1+="$BG_DEFAULT$FG_WHITE \$ $BFG_RESET_ALL";
+  PS1+="$BFG_RESET_ALL"; # reset bg and fg colors
+  export PS1;
 
-    PS2="$BG_DEFAULT$FG_YELLOW→ ";
-    PS2+="$BFG_RESET_ALL"; # reset bg and fg colors
-    export PS2;
+  PS2="$BG_DEFAULT$FG_YELLOW→ ";
+  PS2+="$BFG_RESET_ALL"; # reset bg and fg colors
+  export PS2;
 }
 
 PROMPT_COMMAND="ps1_simple; $PROMPT_COMMAND"
