@@ -1315,7 +1315,7 @@ c.tabs.position = 'top'
 ## used by prepending the search engine name to the search term, e.g.
 ## `:open google qutebrowser`.
 ## Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'yt': 'https://youtube.com/results?search_query={}', 'php': 'https://www.php.net/manual-lookup.php?pattern={}&scope=quickref', 'son': 'https://www.schoolofnet.com/cursos/busca/?qs={}'}
+c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'yt': 'https://youtube.com/results?search_query={}', 'php': 'https://www.php.net/manual-lookup.php?pattern={}&scope=quickref', 'son': 'https://www.schoolofnet.com/cursos/busca/?qs={}', 'gl': 'https://www.google.com/search?q={}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
