@@ -33,8 +33,9 @@ f(){
 
 # DESC: Servidor php
 # USE: phps 8080
+# USE: phps 8080 -t public
 phps(){
-    php -S localhost:$1
+    php -S localhost:$@
 }
 
 # DESC: Criar e entrar na pasta
