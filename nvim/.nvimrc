@@ -256,9 +256,9 @@ endfunction
 augroup go
     " Comenta
     au FileType go vnoremap // :call ComentaVisual("// ")<CR>
-    au FileType go vnoremap ;; :s/\/\/\s/<CR>:noh<CR>
+    au FileType go vnoremap /; :s/\/\/\s/<CR>:noh<CR>
     au FileType go nmap // :call ComentaNormal("// ")<esc>
-    au FileType go nmap ;; :s/\/\/\s/<CR>:noh<CR>
+    au FileType go nmap /; :s/\/\/\s/<CR>:noh<CR>
 augroup END
 
 "#########################################
@@ -310,9 +310,9 @@ augroup END
 augroup tex
     " Comenta
     au FileType tex vnoremap // :call ComentaVisual("% ")<CR>
-    au FileType tex vnoremap ;; :s/%\s/<CR>:noh<CR>
+    au FileType tex vnoremap /; :s/%\s/<CR>:noh<CR>
     au FileType tex nmap // :call ComentaNormal("% ")<esc>
-    au FileType tex nmap ;; :s/%\s/<CR>:noh<CR>
+    au FileType tex nmap /; :s/%\s/<CR>:noh<CR>
 
     " É necessário compilar duas vezes para ter certeza de atualizar a toc
     " https://tex.stackexchange.com/questions/301103/empty-table-of-contents
@@ -331,9 +331,9 @@ au BufNewFile,BufRead *.cls set filetype=tex
 augroup python
     au FileType python nmap <leader>r :vsp<CR>:terminal python3 %<CR>
     au FileType python vnoremap // :call ComentaVisual("# ")<CR>
-    au FileType python vnoremap ;; :s/#\s/<CR>:noh<CR>
+    au FileType python vnoremap /; :s/#\s/<CR>:noh<CR>
     au FileType python nmap // :call ComentaNormal("# ")<esc>
-    au FileType python nmap ;; :s/#\s/<CR>:noh<CR>
+    au FileType python nmap /; :s/#\s/<CR>:noh<CR>
 augroup END
 
 "#########################################
@@ -342,9 +342,9 @@ augroup END
 augroup python
     au FileType php nmap <leader>r :vsp<CR>:terminal php %<CR>
     au FileType php vnoremap // :call ComentaVisual("// ")<CR>
-    au FileType php vnoremap ;; :s/\/\/\s/<CR>:noh<CR>
+    au FileType php vnoremap /; :s/\/\/\s/<CR>:noh<CR>
     au FileType php nmap // :call ComentaNormal("// ")<esc>
-    au FileType php nmap ;; :s/\/\/\s/<CR>:noh<CR>
+    au FileType php nmap /; :s/\/\/\s/<CR>:noh<CR>
 augroup END
 
 "#########################################
@@ -352,9 +352,9 @@ augroup END
 "#########################################
 augroup javascript
     au FileType javascript vnoremap // :call ComentaVisual("// ")<CR>
-    au FileType javascript vnoremap ;; :s/\/\/\s/<CR>:noh<CR>
+    au FileType javascript vnoremap /; :s/\/\/\s/<CR>:noh<CR>
     au FileType javascript nmap // :call ComentaNormal("// ")<esc>
-    au FileType javascript nmap ;; :s/\/\/\s/<CR>:noh<CR>
+    au FileType javascript nmap /; :s/\/\/\s/<CR>:noh<CR>
 augroup END
 
 "#########################################
