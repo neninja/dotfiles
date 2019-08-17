@@ -56,8 +56,6 @@ Plug 'sheerun/vim-polyglot'
 " Fuzzy search
 Plug 'ctrlpvim/ctrlp.vim'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Universalizar vim/neovim com outros editores usando o mesmo arquivo de configuração
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
