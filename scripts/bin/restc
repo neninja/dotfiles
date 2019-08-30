@@ -33,12 +33,12 @@
 
 # Os arquivos de script possuem sempre a mesma estrutura, mudando apenas alguns valores de variáveis
 scriptCreate(){
-    URL=$1
-    HTTP_METHOD=$2
-    HTTP_METHOD_ABR=$3
-    TYPE_BODY=$4
+  URL=$1
+  HTTP_METHOD=$2
+  HTTP_METHOD_ABR=$3
+  TYPE_BODY=$4
 
-    REQ_NUMERO=1
+  REQ_NUMERO=1
 
     # Define nomes de arquivos
     URL_FILENAME=$(echo $URL| sed -r 's/localhost:[0-9]*//g' | sed -r 's/\//_/g') # localhost:3333/posts  ->  _posts
@@ -49,7 +49,7 @@ scriptCreate(){
 
 
     # Escreve dica de execução no script
-    echo "# sh $SCRIPT_RESTC\n" > $SCRIPT_RESTC
+    echo -e "#!/usr/bin/env bash\n# execute with: bash $SCRIPT_RESTC\n" > $SCRIPT_RESTC
 
     headerCreate $REQ_HEAD $SCRIPT_RESTC $TYPE_BODY
 
@@ -63,7 +63,7 @@ scriptCreate(){
     else
       COMANDO_CURL=$(echo curl -# -w %{content_type} -X $HTTP_METHOD -K $REQ_HEAD -o $RES_BODY $URL)
     fi
-    
+
     echo $COMANDO_CURL >> $SCRIPT_RESTC
 
     # Pula uma linha para não juntar content_type com a resposta json
@@ -74,75 +74,64 @@ scriptCreate(){
 
     # Informa o nome do arquivo gerado
     printMsg $SCRIPT_RESTC
-}
+  }
 
 headerCreate(){
-    TYPE=""
-    if [ "$3" = "json" ]; then
-        TYPE="application/json"
-    fi
-    
-    echo "# header" >> $2
-    echo "echo '
-    \n-H \"Content-Type: $TYPE\" \n-H \"Authorization: Bearer _t_o_k_e_n_\"
-    \n' > $1\n\n" >> $2
+  TYPE=""
+  if [ "$3" = "json" ]; then
+    TYPE="application/json"
+  fi
+
+  echo "# header" >> $2
+  echo -e "echo -e '
+  \n-H \"Content-Type: $TYPE\" \n-H \"Authorization: Bearer _t_o_k_e_n_\"
+  \n' > $1\n\n" >> $2
 
 }
 
 bodyCreate(){
-    if [ "$3" = "json" ]; then
-        echo "# body" >> $2
-        echoJSON $1 $2
-        echo "\n" >> $2
-    elif [ "$3" = "multiform" ]; then
-        echo "# body" >> $2
-        echoFormData $1 $2
-        echo "\n" >> $2
-    else
-        # GET
-        echo "\n" >> $1
-    fi
+  if [ "$3" = "json" ]; then
+    echo "# body" >> $2
+    echoJSON $1 $2
+    echo -e "\n" >> $2
+  elif [ "$3" = "multiform" ]; then
+    echo "# body" >> $2
+    echoFormData $1 $2
+    echo -e "\n" >> $2
+  else
+    # GET
+    echo -e "\n" >> $1
+  fi
 }
 
 echoFormData(){
-    echo "echo '
-    \n
-    \n
-    \n-F \"userid=1\"
-    \n#-F \"image=@/home/neni/test.jpg\"
-    \n
-    \n
-    \n
-    ' > $FORM_REQ" >> $SCRIPT_REQ
+  echo -e "echo '
+  \n
+  \n
+  \n-F \"userid=1\"
+  \n#-F \"image=@/home/neni/test.jpg\"
+  \n
+  \n
+  \n
+  ' > $FORM_REQ" >> $SCRIPT_REQ
 }
 
 echoJSON(){
-    # Esreve json a ser enviado no script
-    echo "echo '
-    \n{ \n\t\"id\": 1\n}
-    \n' > $1" >> $2
+  # Esreve json a ser enviado no script
+  echo -e "echo '
+  \n{ \n\t\"id\": 1\n}
+  \n' > $1" >> $2
 }
 
 formatJSON(){
   TEST_FILE="/tmp/restc-test-json.json"
-        # É possível identar o arquivo pelo vim ou nvim com:
-        #   :%!python -m json.tool
-        #   nvim -c '%!python -m json.tool' -c wq $2
-        #echo "cat $1 | python -m json.tool" >> $2
-
-     #   echo "cat $1 | jq" >> $2
-     #   echo "if [ \"\$1\" = "y" ]; then
-     #   cat $1 && echo ''
-     # else
-     #   cat $1 | jq
-     # fi" >> $2
-
-        #echo "#cat $1 && echo ''" >> $2
-        echo "cat $1 | jq '.' > $TEST_FILE; echo ''; cat \"$1\"" >> $2
+  #echo "cat $1 | jq '.' > $TEST_FILE; echo ''; cat \"$1\"" >> $2
+  echo -e "cat $1 | jq '.' > $TEST_FILE;\necho ''" >> $2
+  echo -e "if [ -s "$TEST_FILE" ]; then cat \"$1\" | jq; else cat $1; echo \"\"; fi\necho \"\"" >> $2
 }
 
 printMsg(){
-    echo "Arquivo de requisição gerado: $1"
+  echo "Arquivo de requisição gerado: $1"
 }
 
 dialogMenu(){
@@ -173,7 +162,7 @@ dialogMenu(){
 
   dialog \
     --cancel-label "Sair" \
-    --menu "Escolha ação, ou arquivo" 25 55 20 "${OPTS[@]}" 2>/tmp/req-files
+    --menu "Escolha ação ou arquivo com ↑,↓,<tab> e enter" 25 55 20 "${OPTS[@]}" 2>/tmp/req-files
 
   response=$?
   case $response in
@@ -209,7 +198,7 @@ dialogCreateURL(){
   URL_REQ=$(dialog \
     --cancel-label "Voltar" \
     --ok-label "Criar" \
-    --inputbox "Digite seu nome" 10 60 --stdout) 
+    --inputbox "Digite a URL, omita http://www." 10 60 --stdout) 
 
   # https://bash.cyberciti.biz/guide/A_yes/no_dialog_box
   # Get exit status
@@ -247,9 +236,7 @@ dialogRequest(){
       # Enviar/Salvar
       echo "$TEXT_EDITED" > $FILE_REQ
       bash $FILE_REQ
-      echo ""
       read -p "Tecle qualquer coisa para prosseguir"
-      #bash $FILE_REQ | dialog --ok-label "Voltar para requisição" --programbox 20 60
       response=$?
       case $response in
         0) dialogRequest $FILE_REQ ;;
@@ -268,62 +255,62 @@ dialogRequest(){
 }
 
 case $1 in
-    get|g)
-        URL=$2
-        scriptCreate $URL "GET" "g" ""
+  get|g)
+    URL=$2
+    scriptCreate $URL "GET" "g" ""
+    ;;
+  post|p)
+    URL=$3
+    case $2 in
+      json|j)
+        scriptCreate $URL "POST" "pj" "json"
         ;;
-    post|p)
-        URL=$3
-        case $2 in
-            json|j)
-                scriptCreate $URL "POST" "pj" "json"
-                ;;
-            form|f)
-                scriptCreate $URL "POST" "pf" "json"
-                ;;
-            *)
-                echo "POST:"
-                echo "restc post json <url> [--no-json-format]"
-                echo "restc post form <url> [--no-json-format]"
-                ;;
-        esac
+      form|f)
+        scriptCreate $URL "POST" "pf" "json"
         ;;
-    put)
-        URL=$2
-        scriptCreate $URL "PUT" "put" "json"
-        ;;
-    delete|d)
-        URL=$2
-        scriptCreate $URL "DELETE" "d" "json"
-        ;;
-    clear)
-        rm *-restc.*
-        ;;
-    gui)
-      dialogMenu
-        ;;
-    *)
-        echo "Script para a criação de templates/scripts de requisição, após criados - na mesma pasta do comando - basta executá-los com sh nomedoarquivo.sh"
-        echo "Arquivos de respostas salvos temporariamente em /tmp/ como *-res-restc.json"
-
-        echo "\nGET:"
-        echo "restc get <url> [--no-json-format]"
-
-        echo "\nPOST:"
+      *)
+        echo "POST:"
         echo "restc post json <url> [--no-json-format]"
         echo "restc post form <url> [--no-json-format]"
-
-        echo "\nPUT:"
-        echo "restc put <url> [--no-json-format]"
-
-        echo "\nDELETE:"
-        echo "restc delete form <url> [--no-json-format]"
-
-        echo "\nMISC"
-        echo "restc clear // deleta todos .sh de requisição restc"
-
-        echo "\nDICAS"
-        echo "- Utilize o comando fc caso precise modificar o script e depois executá-lo"
         ;;
+    esac
+    ;;
+  put)
+    URL=$2
+    scriptCreate $URL "PUT" "put" "json"
+    ;;
+  delete|d)
+    URL=$2
+    scriptCreate $URL "DELETE" "d" "json"
+    ;;
+  clear)
+    rm *-restc.*
+    ;;
+  gui)
+    dialogMenu
+    ;;
+  *)
+    echo "Script para a criação de templates/scripts de requisição, após criados - na mesma pasta do comando - basta executá-los com sh nomedoarquivo.sh"
+    echo "Arquivos de respostas salvos temporariamente em /tmp/ como *-res-restc.json"
+
+    echo -e "\nGET:"
+    echo "restc get <url> [--no-json-format]"
+
+    echo -e "\nPOST:"
+    echo "restc post json <url> [--no-json-format]"
+    echo "restc post form <url> [--no-json-format]"
+
+    echo -e "\nPUT:"
+    echo "restc put <url> [--no-json-format]"
+
+    echo -e "\nDELETE:"
+    echo "restc delete form <url> [--no-json-format]"
+
+    echo -e "\nMISC"
+    echo "restc clear // deleta todos .sh de requisição restc"
+
+    echo "\nDICAS"
+    echo "- Utilize o comando fc caso precise modificar o script e depois executá-lo"
+    ;;
 esac
 
