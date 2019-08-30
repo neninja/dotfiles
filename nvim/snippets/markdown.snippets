@@ -23,3 +23,11 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet hugo "hugo header" b
+---
+title: "${1:Título do post}"
+date: `!v strftime("%Y-%m-%dT%H:%M:%S-03:00")`
+draft: true
+---
+endsnippet
