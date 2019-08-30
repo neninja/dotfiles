@@ -331,6 +331,9 @@ call s:h("dotComment", { "fg": s:comment_grey })
 " Shell
 call s:h("shComment", { "fg": s:comment_grey })
 
+" Snip
+call s:h("snipComment", { "fg": s:comment_grey })
+
 " Fish Shell
 call s:h("fishKeyword", { "fg": s:purple })
 call s:h("fishConditional", { "fg": s:purple })
