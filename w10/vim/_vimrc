@@ -1,0 +1,62 @@
+" autor: nenitf
+" A partir de vim-bootstrap b0a75e4
+" motivacional: https://www.youtube.com/watch?v=XA2WjJbmmoM
+" TODO:
+"   Skeletons para .html phpunit.xml .editorconfig
+
+"*********************************************************
+" Vim-PLug core
+"*********************************************************
+" if has('vim_starting')
+"     set nocompatible               " Be iMproved
+" endif
+
+" if has('nvim')
+" 	let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+" else
+" 	let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+" endif
+
+" if !filereadable(vimplug_exists)
+" 	if !executable("curl")
+" 		echoerr "You have to install curl or first install vim-plug yourself!"
+" 		execute "q!"
+" 	endif
+" 	echo "Installing Vim-Plug..."
+" 	echo ""
+" 	if has('nvim')
+" 		silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" 	else
+" 		silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+" 	endif
+"  	let g:not_finish_vimplug = "yes"
+" 	autocmd VimEnter * PlugInstall
+" endif
+
+"*********************************************************
+" Config files
+"*********************************************************
+
+" Crédito: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+	"else
+	"echo "Não existe o arquivo:"  a:file
+  endif
+endfunction
+
+call SourceIfExists("~/dev/dotfiles/vim/.base.vim")
+call SourceIfExists("~/dev/dotfiles/vim/.plugs.vim")
+call SourceIfExists("~/dev/dotfiles/vim/.so-linux.vim")
+call SourceIfExists("~/dev/dotfiles/vim/.so-windows.vim")
+call SourceIfExists("~/.extra.vim")
+
+" win32 talvez sozinho
+""if has("win32")
+""	set pythonthreedll=/c/Users/fcsilva/AppData/Local/Programs/Python/Python37/python37.dll
+""	set pythondll=/c/Users/fcsilva/AppData/Local/Programs/Python/Python37/python37.dll
+""else
+""	set pythonthreedll=/c/Users/fcsilva/AppData/Local/Programs/Python/Python37/python37.dll
+""	set pythondll=/c/Users/fcsilva/AppData/Local/Programs/Python/Python37/python37.dll
+""endif
