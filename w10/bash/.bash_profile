@@ -1,4 +1,0 @@
-test -f ~/dev/dotfiles/bash/.bash_prompt.sh && . ~/dev/dotfiles/bash/.bash_prompt.sh
-test -f ~/dev/dotfiles/bash/.bash_aliases.sh && . ~/dev/dotfiles/bash/.bash_aliases.sh
-test -f ~/dev/dotfiles/bash/.bash_functions.sh && . ~/dev/dotfiles/bash/.bash_functions.sh
-test -f ~/dev/dotfiles/bash/.inputrc.sh && . ~/dev/dotfiles/bash/.inputrc.sh

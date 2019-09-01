@@ -6,6 +6,13 @@ wttr(){
     curl wttr.in/porto+alegre?lang=pt-br
 }
 
+# DESC: bin npm
+# USE: nb cypress open
+nb(){
+    ./node_modules/.bin/$@
+    #$(npm bin)/$@
+}
+
 # DESC: Abrir com nvim explorador de arquivos ou o arquivo
 # USE: n
 # USE: n .

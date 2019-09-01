@@ -1,0 +1,75 @@
+# https://gist.github.com/rxaviers/7360908
+# https://gitmoji.carloscuesta.me/
+# https://opensource.com/article/19/2/emoji-log-git-commit-messages
+
+# :tada:
+snippet :in "🎉 Initial commit"
+    🎉 Initial commit
+snippet initial "Initial commit"
+    Initial commit
+
+# :package:
+snippet :fe "📦 FEAT: imperative_message"
+    📦 FEAT${1:($2)}: ${0:add avatar de usuário}
+snippet fe "feat: imperative_message"
+    feat${1:($2)}: ${0:add avatar de usuário}
+
+# :bug:
+snippet :fi "🐛 FIX: imperative_message"
+    🐛 FIX${1:($2)}: ${0:add try catch para exception X}
+snippet fi "fix: imperative_message"
+    fix${1:($2)}: ${0:add try catch para exception X}
+
+# :ok_hand:
+snippet :re "👌 REFACTOR: imperative_message"
+    👌 REFACTOR${1:($2)}: ${0:remove envio de mensagem}
+snippet refactor "refactor: imperative_message"
+    refactor${1:($2)}: ${0:remove envio de mensagem}
+
+# :book:
+snippet :do "📖 DOCS: imperative_message"
+    📖 DOCS${1:(${2:readme})}: ${0:atualiza setup do projeto}
+snippet do "docs: imperative_message"
+    docs${1:(${2:readme})}: ${0:atualiza setup do projeto}
+
+# :art:
+snippet :st "🎨 STYLE: imperative_message"
+    🎨 STYLE${1:($2)}: ${0:troca aspas para apóstrofos}
+snippet st "style: imperative_message"
+    style${1:($2)}: ${0:troca aspas para apóstrofos}
+
+# :white_check_mark:
+snippet :te "✅ TEST: imperative_message"
+    ✅ TEST${1:($2)}: ${0:add testcase}
+snippet te "test: imperative_message"
+    test${1:($2)}: ${0:add testcase}
+
+# :wrench:
+snippet :ch "🔧 CHORE: IMPERATIVE_MESSAGE"
+    🔧 CHORE${1:($2)}: ${0:add script deploy}
+snippet ch "chore: IMPERATIVE_MESSAGE"
+    chore${1:($2)}: ${0:add script deploy}
+
+snippet :im "⚡️ IMPROVE: IMPERATIVE_MESSAGE"
+    ⚡️ IMPROVE${1:($2)}: ${0:add script deploy}
+snippet im "improve: IMPERATIVE_MESSAGE"
+    improve${1:($2)}: ${0:add script deploy}
+
+snippet breaking "BREAKING CHANGES"
+    BREAKING CHANGES
+    ${0:O que vai ser afetado após a mudança?}
+
+snippet commit "Padronização dos commit" b
+    $1
+    # Afeta usuário final:
+    #   FEAT: adiciona, modifica ou remove feature/funcionalidade (afeta MINOR)
+    #   FIX: corrige bug feature/funcionalidade (afeta PATCH)
+    # NÃO afeta usuário final:
+    #   IMPROVE: adiciona, modifica, remove código funcional
+    #   REFACTOR: refatora código de produção
+    #   DOCS: adiciona, modifica, remove ou estiliza item na documentação
+    #   TEST: adiciona, modifica ou remove testes
+    #   CHORE: adiciona, modifica ou remove arquivos auxiliares do ambiente dev (gulp, npm, configurações e etc)
+    #   STYLE: estiliza código de produção, teste ou de ambiente sem não afetar a lógica
+    # COMMIT_MSG.md
+

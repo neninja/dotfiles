@@ -1,4 +1,4 @@
-# credits: 
+﻿# credits: 
 #   https://gist.github.com/stephenturner/d291570e25ee797580a4
 #   https://gist.github.com/pksunkara/988716
 #   https://github.com/alikins/gitconfig/blob/master/gitconfig
@@ -7,7 +7,7 @@
   email = felipe.dacs@gmail.com
   username = nenitf
 [core]
-  editor = nvim
+  editor = vim
 [color]
   ui = true
 [color "branch"]
@@ -99,6 +99,7 @@
   #############
   f = fetch
   fo = fetch origin
+  fr = fetch --all ; git reset --hard origin/master
   fu = fetch upstream
   #############
   fp = format-patch
@@ -242,6 +243,7 @@
   behind = !git rev-list --left-only --count $(git bu)...HEAD
   ahead = !git rev-list --right-only --count $(git bu)...HEAD
   #############
+  configreset = git config --local credential.helper ""
   ours = "!f() { git checkout --ours $@ && git add $@; }; f"
   theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
   subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 master' -
@@ -253,6 +255,26 @@
   # RELEASE.
   aula = "!f() { git add -A; git commit -m \"🚀 RELEASE: Aula $@\"; git tag \"aula-$@\"; git push origin master --tags; }; f"
   release = "!f() { git tag \"$@\"; git push origin master --tags; }; f"
+
+  ## emoji
+  emo-fe = "!f() { git commit -m \"📦 FEAT: $@\"; }; f"
+  emo-fi = "!f() { git commit -m \"🐛 FIX: $@\"; };f "
+  emo-re = "!f() { git commit -m \"👌 REFACTOR: $@\"; }; f"
+  emo-do = "!f() { git commit -m \"📖 DOCS: $@\"; }; f"
+  emo-st = "!f() { git commit -m \"🎨 STYLE: $@\" }; f"
+  emo-te = "!f() { git commit -m \"✅ TEST: $@\"; }; f"
+  emo-ch = "!f() { git commit -m \"🔧 CHORE: $@\"; }; f"
+  emo-im = "!f() { git commit -m \"⚡️ IMPROVE: $@\"; }; f "
+
+  ## OAB
+  oab-fe = "!f() { git commit -m \"feat: $@\"; }; f"
+  oab-fi = "!f() { git commit -m \"fix: $@\"; }; f"
+  oab-re = "!f() { git commit -m \"refactor: $@\"; }; f"
+  oab-do = "!f() { git commit -m \"docs: $@\"; }; f"
+  oab-st = "!f() { git commit -m \"style: $@\"; }; f"
+  oab-te = "!f() { git commit -m \"test: $@\"; }; f"
+  oab-ch = "!f() { git commit -m \"chore: $@\"; }; f"
+  oab-im = "!f() { git commit -m \"improve: $@\"; }; f"
 
 [commit]
   # template = ~/.gitcommit

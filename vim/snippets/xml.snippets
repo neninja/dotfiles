@@ -1,0 +1,9 @@
+snippet phpunit "phpunit config" 
+	<?xml version="1.0" encoding="UTF-8"?>
+	<phpunit bootstrap="vendor/autoload.php"
+				colors="true"
+				verbose="false">
+		<testsuite name="tests">
+			<directory>tests</directory>
+		</testsuite>
+	</phpunit>
