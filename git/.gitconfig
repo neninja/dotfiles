@@ -257,24 +257,24 @@
   release = "!f() { git tag \"$@\"; git push origin master --tags; }; f"
 
   ## emoji
-  emo-fe = "!f() { git commit -m \"📦 FEAT: $@\"; }; f"
-  emo-fi = "!f() { git commit -m \"🐛 FIX: $@\"; };f "
-  emo-re = "!f() { git commit -m \"👌 REFACTOR: $@\"; }; f"
-  emo-do = "!f() { git commit -m \"📖 DOCS: $@\"; }; f"
-  emo-st = "!f() { git commit -m \"🎨 STYLE: $@\" }; f"
-  emo-te = "!f() { git commit -m \"✅ TEST: $@\"; }; f"
-  emo-ch = "!f() { git commit -m \"🔧 CHORE: $@\"; }; f"
-  emo-im = "!f() { git commit -m \"⚡️ IMPROVE: $@\"; }; f "
+  emo-fe = "!f() { if [ -z $2 ]; then git commit -m \"📦 FEAT: $1\"; else git commit -m \"📦 FEAT($2): $1\"; fi; }; f"
+  emo-fi = "!f() { if [ -z $2 ]; then git commit -m \"🐛 FIX: $1\"; else git commit -m \"🐛 FIX($2): $1\"; fi; };f "
+  emo-re = "!f() { if [ -z $2 ]; then git commit -m \"👌 REFACTOR: $1\"; else git commit -m \"👌 REFACTOR($2): $1\"; fi; }; f"
+  emo-do = "!f() { if [ -z $2 ]; then git commit -m \"📖 DOCS: $1\"; else git commit -m \"📖 DOCS($2): $1\"; fi; }; f"
+  emo-st = "!f() { if [ -z $2 ]; then git commit -m \"🎨 STYLE: $1\" else git commit -m \"🎨 STYLE($2): $1\"; fi; }; f"
+  emo-te = "!f() { if [ -z $2 ]; then git commit -m \"✅ TEST: $1\"; else git commit -m \"✅ TEST($2): $1\"; fi; }; f"
+  emo-ch = "!f() { if [ -z $2 ]; then git commit -m \"🔧 CHORE: $1\"; else git commit -m \"🔧 CHORE($2): $1\"; fi; }; f"
+  emo-im = "!f() { if [ -z $2 ]; then git commit -m \"⚡️ IMPROVE: $1\"; else git commit -m \"⚡️ IMPROVE($2): $1\"; fi; }; f "
 
   ## OAB
-  oab-fe = "!f() { git commit -m \"feat: $@\"; }; f"
-  oab-fi = "!f() { git commit -m \"fix: $@\"; }; f"
-  oab-re = "!f() { git commit -m \"refactor: $@\"; }; f"
-  oab-do = "!f() { git commit -m \"docs: $@\"; }; f"
-  oab-st = "!f() { git commit -m \"style: $@\"; }; f"
-  oab-te = "!f() { git commit -m \"test: $@\"; }; f"
-  oab-ch = "!f() { git commit -m \"chore: $@\"; }; f"
-  oab-im = "!f() { git commit -m \"improve: $@\"; }; f"
+  oab-fe = "!f() { if [ -z $2 ]; then git commit -m \"feat: $1\"; else git commit -m \"feat($2): $1\"; fi; }; f"
+  oab-fi = "!f() { if [ -z $2 ]; then git commit -m \"fix: $1\"; else git commit -m \"fix($2): $1\"; fi; }; f"
+  oab-re = "!f() { if [ -z $2 ]; then git commit -m \"refactor: $1\"; else git commit -m \"refactor($2): $1\"; fi; }; f"
+  oab-do = "!f() { if [ -z $2 ]; then git commit -m \"docs: $1\"; else git commit -m \"docs($2): $1\"; fi; }; f"
+  oab-st = "!f() { if [ -z $2 ]; then git commit -m \"style: $1\"; else git commit -m \"style($2): $1\"; fi; }; f"
+  oab-te = "!f() { if [ -z $2 ]; then git commit -m \"test: $1\"; else git commit -m \"test($2): $1\"; fi; }; f"
+  oab-ch = "!f() { if [ -z $2 ]; then git commit -m \"chore: $1\"; else git commit -m \"chore($2): $1\"; fi; }; f"
+  oab-im = "!f() { if [ -z $2 ]; then git commit -m \"improve: $1\"; else git commit -m \"improve($2): $1\"; fi; }; f"
 
 [commit]
   # template = ~/.gitcommit

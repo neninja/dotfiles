@@ -1,57 +1,5 @@
 " Configurações de plugins do nvim
 
-" Required:
-"call plug#begin(expand('~/.config/nvim/plugged'))
-" call plug#begin('~/vimfiles/bundle')
-
-"*********************************************************
-" Plug install packages
-"*********************************************************
-" Barra lateral que mostra variáveis, funçoes objetos e etc
-" Instalar ctags: sudo apt-get install exuberant-ctags
-" Plug 'majutsushi/tagbar'
-
-" Uteis para git
-" Plug 'tpope/vim-fugitive'       " Comandos git no vim
-" Plug 'junegunn/gv.vim'          " Commits in browser
-" Plug 'airblade/vim-gitgutter'   " Marcações + - _ ~ de git
-
-" Lint geral do vim
-" Plug 'dense-analysis/ale'
-
-" Plug 'mattn/emmet-vim'
-
-" cores com highlight no vim
-" :ColorToggle
-" Plug 'chrisbra/Colorizer'
-
-" Engine de snippets
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-" Plug 'garbas/vim-snipmate'
-
-" tree
-" Plug 'scrooloose/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" Status line colorida dependendo do modo
-" Plug 'sunaku/vim-modusline'
-
-" Apresentações
-" :Goyo ou :Goyo 80%x80%
-" Plug 'junegunn/goyo.vim'
-
-" Sintaxe de linguagens vim
-" Deve ser instalado DEPOIS do vim go
-" Plug 'sheerun/vim-polyglot'
-
-" Fuzzy search
-" Plug 'ctrlpvim/ctrlp.vim'
-
-" Universalizar vim/neovim com outros editores usando o mesmo arquivo de configuração
-"Plug 'editorconfig/editorconfig-vim'
-" call plug#end()
-
 "*********************************************************
 "" Plugins config
 "*********************************************************
@@ -259,6 +207,8 @@ let g:ctrlp_prompt_mappings = {
 "   ggVGzo
 " Fold:
 "   ggVGzc
+" Faz com que os snippets possam ser encontrados em ~/dev/dotfiles/snippets
+set rtp+=~/dev/dotfiles/vim
 
 "#########################################
 " Startify
@@ -272,10 +222,3 @@ let g:startify_bookmarks = [
 		  \ {'b': '~/dev/cypressa'},
 		  \ {'c': 'C:\HashiCorp\Phalcon4-PHP7-Ubuntu\erp'},
 		  \ ]
-
-"#########################################
-" NERDTree
-"#########################################
-"nmap <silent> <BS> :NERDTreeToggle<CR>
-"let NERDTreeShowLineNumbers=1
-"let NERDTreeShowHidden=1

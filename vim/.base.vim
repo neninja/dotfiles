@@ -51,7 +51,7 @@ set showbreak=↳\
 " Mostra os comandos no canto inferior direito
 set showcmd
 
-set rtp+=~/dev/dotfiles/vim
+
 
 "-------------------------------------------------
 " Popup
@@ -69,15 +69,15 @@ set complete=.,w,b,u,t
 "*********************************************************
 " No one is really happy until you have this shortcuts
 cnoreabbrev W! w!
-" cnoreabbrev Q! q!
+cnoreabbrev Q! q!
 cnoreabbrev Qa! qa!
 cnoreabbrev QA! qa!
 cnoreabbrev Wq wq
 cnoreabbrev Wa wa
 cnoreabbrev wQ wq
-" cnoreabbrev WQ wq
+cnoreabbrev WQ wq
 cnoreabbrev W w
-" cnoreabbrev Q q
+cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
 
@@ -389,6 +389,3 @@ nnoremap <silent> <Space>[ :bp<CR>
 nnoremap <silent> <Space>] :bn<CR>
 nnoremap <silent> [B :bp<CR>
 nnoremap <silent> ]B :bn<CR>
-
-command WQ execute ":call QuitWriteBuffOrWindow()"
-command -bang Q :call QuitBuffOrWindow("<bang>")
