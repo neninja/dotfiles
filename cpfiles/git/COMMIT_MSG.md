@@ -34,14 +34,15 @@ O **rodapé** deve especificar issues, PR ou explicitar BREAKING CHANGES. *Não 
 
 ### Cabeçalho
 #### Tipo
-Vai especificar a tipificação do commit. É constituído de: ``<emoji> <PALAVRA-EM-MAIÚSCULO>``, podendo ser:
-- 📦 FEAT: **adiciona**, **modifica** ou **remove** feature/funcionalidade para usuário final - sempre afeta [MINOR](https://semver.org/#summary) ou talvez [MAJOR](https://semver.org/#summary) se conter BREAKING CHANGE no rodapé
-- 🐛 FIX: **CORRIGE** *bug* de feature/funcionalidade para usuário final - sempre afeta [PATCH](https://semver.org/#summary) ou talvez [MAJOR](https://semver.org/#summary) se conter BREAKING CHANGE no rodapé
-- 👌 REFACTOR: **refatora** código, não afeta usuário final
-- 📖 DOCS: **adiciona**, **modifica** ou **remove** algo na documentação (usar o escopo!)
-- 🎨 STYLE: **estiliza** o código, não afeta a lógica do algoritmo
-- ✅ TEST: **adiciona**, **modifica** ou **remove** testes, não afeta usuário final
-- 🔧 CHORE: **adiciona**, **modifica** ou **remove** arquivos externos ao projeto (gulp, npm, configurações e etc), não afeta usuário final
+Vai especificar a tipificação do commit. É constituído de uma palavra com letras sem capitalização, podendo ser:
+- feat: **adiciona**, **modifica** ou **remove** feature/funcionalidade para usuário final - sempre afeta [MINOR](https://semver.org/#summary) ou talvez [MAJOR](https://semver.org/#summary) se conter BREAKING CHANGE no rodapé
+- fix: **CORRIGE** *bug* de feature/funcionalidade para usuário final - sempre afeta [PATCH](https://semver.org/#summary) ou talvez [MAJOR](https://semver.org/#summary) se conter BREAKING CHANGE no rodapé
+- refactor: **refatora** código, não afeta usuário final
+- improve: **adiciona**, **modifica** ou **remove** algo na base de código que não afeta o usuário final
+- docs: **adiciona**, **modifica** ou **remove** algo na documentação
+- style: **estiliza** o código, não afeta a lógica do algoritmo
+- test: **adiciona**, **modifica** ou **remove** testes, não afeta usuário final
+- chore: **adiciona**, **modifica** ou **remove** arquivos externos ao projeto (gulp, npm, configurações e etc), não afeta usuário final
 
 #### Escopo
 Substantivo que representa o escopo das modificações. Valor opcional, os parentêses devem ser apagados caso esteja em branco.
@@ -54,13 +55,14 @@ Substantivo que representa o escopo das modificações. Valor opcional, os paren
 #### Assunto
 - Uma frase
 - Verbos no imperativo somente
-  - 📦 FEAT: adiciona, introduz, simplifica ...
-  - 🐛 FIX: adiciona, corrige, remove ...
-  - 👌 REFACTOR: refatora, melhora, atualiza ...
-  - 📖 DOCS: adiciona, modifica, atualiza ...
-  - 🎨 STYLE: formata, estrutura, corrige ...
-  - ✅ TEST: adiciona, modifica, atualiza, remove ...
-  - 🔧 CHORE: adiciona, modifica, atualiza, remove ...
+  - feat: adiciona, introduz, simplifica ...
+  - fix: adiciona, corrige, remove ...
+  - refactor: refatora, melhora, atualiza ...
+  - improve: adiciona, modifica, atualiza, remove ...
+  - docs: adiciona, modifica, atualiza ...
+  - style: formata, estrutura, corrige ...
+  - test: adiciona, modifica, atualiza, remove ...
+  - chore: adiciona, modifica, atualiza, remove ...
 - Não capitalizar a primeira letra
 - Não usar ponto final na frase
 - Podem ser usadas abreviações cabíveis, como add (adiciona), rm (remove) e etc
@@ -76,13 +78,13 @@ Todas mudanças drásticas devem ser mencionadas, isso inclui a justificação, 
 
 ## Exemplos
 ```
-📖 DOCS(readme): add instrução de instalação
+docs(readme): add instrução de instalação
 ```
 ```
-📦 FEAT(parser): add capacidade de interpretar arrays
+feat(parser): add capacidade de interpretar arrays
 ```
 ```
-📦 FEAT(browser): add evento onUrlChange
+feat(browser): add evento onUrlChange
 
 Adiciona novo evento para $browser:
 - ..
@@ -91,23 +93,26 @@ Adiciona novo evento para $browser:
 BREAKING CHANGES $browser.onHashChange removido (use onUrlChange no lugar)
 ```
 ```
-🐛 FIX(compile): add unit tests para IE9
+fix(compile): add unit tests para IE9
 
 Antigo IEs serializa html uppercase, porém IE9 não.
 
 Close #392
 ```
 ```
-📦 FEAT(directive): rm ng:disabled, ng:checked, ng:multiple, ng:readonly, ng:selected
+feat(directive): rm ng:disabled, ng:checked, ng:multiple, ng:readonly, ng:selected
 ```
 ```
-🎨 STYLE(location): add ; esquecidos
+style(location): add ; esquecidos
 ```
 ```
-📖 DOCS(readme): atualiza how to
+improve: add método genérico de inserção no banco de dados
 ```
 ```
-📦 FEAT(compile): simplifica bindings
+docs(readme): atualiza how to
+```
+```
+feat(compile): simplifica bindings
 
 Modifica opções de parâmetros para:
   - @attr - atributo (incluindo interpolação)

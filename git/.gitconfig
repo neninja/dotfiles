@@ -253,18 +253,8 @@
   # default macros of commits/messages
   # https://github.com/ahmadawais/Emoji-Log
   # RELEASE.
-  aula = "!f() { git add -A; git commit -m \"🚀 RELEASE: Aula $@\"; git tag \"aula-$@\"; git push origin master --tags; }; f"
+  aula = "!f() { git add -A; git commit -m \"RELEASE: Aula $@\"; git tag \"aula-$@\"; git push origin master --tags; }; f"
   release = "!f() { git tag \"$@\"; git push origin master --tags; }; f"
-
-  ## emoji
-  emo-fe = "!f() { if [ -z $2 ]; then git commit -m \"📦 FEAT: $1\"; else git commit -m \"📦 FEAT($2): $1\"; fi; }; f"
-  emo-fi = "!f() { if [ -z $2 ]; then git commit -m \"🐛 FIX: $1\"; else git commit -m \"🐛 FIX($2): $1\"; fi; };f "
-  emo-re = "!f() { if [ -z $2 ]; then git commit -m \"👌 REFACTOR: $1\"; else git commit -m \"👌 REFACTOR($2): $1\"; fi; }; f"
-  emo-do = "!f() { if [ -z $2 ]; then git commit -m \"📖 DOCS: $1\"; else git commit -m \"📖 DOCS($2): $1\"; fi; }; f"
-  emo-st = "!f() { if [ -z $2 ]; then git commit -m \"🎨 STYLE: $1\" else git commit -m \"🎨 STYLE($2): $1\"; fi; }; f"
-  emo-te = "!f() { if [ -z $2 ]; then git commit -m \"✅ TEST: $1\"; else git commit -m \"✅ TEST($2): $1\"; fi; }; f"
-  emo-ch = "!f() { if [ -z $2 ]; then git commit -m \"🔧 CHORE: $1\"; else git commit -m \"🔧 CHORE($2): $1\"; fi; }; f"
-  emo-im = "!f() { if [ -z $2 ]; then git commit -m \"⚡️ IMPROVE: $1\"; else git commit -m \"⚡️ IMPROVE($2): $1\"; fi; }; f "
 
   ## OAB
   oab-fe = "!f() { if [ -z $2 ]; then git commit -m \"feat: $1\"; else git commit -m \"feat($2): $1\"; fi; }; f"
