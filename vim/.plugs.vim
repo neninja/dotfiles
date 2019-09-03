@@ -148,7 +148,6 @@ let g:modusline_colors['ic']     = '%#DiffChange#' " see :help ins-completion
 let g:modusline_colors['Rc']     = '%#DiffChange#' " see :help ins-completion
 
 set statusline=
-set statusline+=\ %{FugitiveStatusline()}	    " Branch
 set statusline+=\ %r\%m\%f\ 	                " Nome readonly, modificado e nome abreviado
 set statusline+=\%=						        " Espaço
 set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
