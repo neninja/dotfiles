@@ -51,6 +51,6 @@ git reset --hard origin/master
 ```
 
 ## Todo
-* [] Neomutt: Offline imap emails;
-* [] Neomutt: Offline imap contacts;
-* [] Neomutt: GPG com passwords;
+* [ ] Neomutt: Offline imap emails;
+* [ ] Neomutt: Offline imap contacts;
+* [ ] Neomutt: GPG com passwords;
