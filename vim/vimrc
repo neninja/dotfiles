@@ -17,6 +17,7 @@ call SourceIfExists("~/dev/dotfiles/vim/.base.vim")
 call SourceIfExists("~/dev/dotfiles/vim/.plugs.vim")
 call SourceIfExists("~/dev/dotfiles/vim/.so-linux.vim")
 call SourceIfExists("~/dev/dotfiles/vim/.so-windows.vim")
+call SourceIfExists("~/dev/dotfiles/vim/.oab.vim")
 call SourceIfExists("~/.extra.vim")
 
 " win32 talvez sozinho

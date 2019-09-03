@@ -220,5 +220,4 @@ let g:startify_lists = [
 let g:startify_bookmarks = [
 		  \ {'a': '~/dev/dotfiles'},
 		  \ {'b': '~/dev/cypressa'},
-		  \ {'c': 'C:\HashiCorp\Phalcon4-PHP7-Ubuntu\erp'},
 		  \ ]
