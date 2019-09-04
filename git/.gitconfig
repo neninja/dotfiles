@@ -39,14 +39,14 @@
   cd = commit --amend
 
   ## Semantic commits
-  cfe = "!f() { if [ -z $2 ]; then git commit -m \"feat: $1\"; else git commit -m \"feat($2): $1\"; fi; }; f"
-  cfi = "!f() { if [ -z $2 ]; then git commit -m \"fix: $1\"; else git commit -m \"fix($2): $1\"; fi; }; f"
-  cre = "!f() { if [ -z $2 ]; then git commit -m \"refactor: $1\"; else git commit -m \"refactor($2): $1\"; fi; }; f"
-  cdo = "!f() { if [ -z $2 ]; then git commit -m \"docs: $1\"; else git commit -m \"docs($2): $1\"; fi; }; f"
-  cst = "!f() { if [ -z $2 ]; then git commit -m \"style: $1\"; else git commit -m \"style($2): $1\"; fi; }; f"
-  cte = "!f() { if [ -z $2 ]; then git commit -m \"test: $1\"; else git commit -m \"test($2): $1\"; fi; }; f"
-  cch = "!f() { if [ -z $2 ]; then git commit -m \"chore: $1\"; else git commit -m \"chore($2): $1\"; fi; }; f"
-  cim = "!f() { if [ -z $2 ]; then git commit -m \"improve: $1\"; else git commit -m \"improve($2): $1\"; fi; }; f"
+  cfe = "!f() { if [ -z \"$2\" ]; then git commit -m \"feat: $1\"; else git commit -m \"feat($1): $2\"; fi; }; f"
+  cfi = "!f() { if [ -z \"$2\" ]; then git commit -m \"fix: $1\"; else git commit -m \"fix($1): $2\"; fi; }; f"
+  cre = "!f() { if [ -z \"$2\" ]; then git commit -m \"refactor: $1\"; else git commit -m \"refactor($1): $2\"; fi; }; f"
+  cdo = "!f() { if [ -z \"$2\" ]; then git commit -m \"docs: $1\"; else git commit -m \"docs($1): $2\"; fi; }; f"
+  cst = "!f() { if [ -z \"$2\" ]; then git commit -m \"style: $1\"; else git commit -m \"style($1): $2\"; fi; }; f"
+  cte = "!f() { if [ -z \"$2\" ]; then git commit -m \"test: $1\"; else git commit -m \"test($1): $2\"; fi; }; f"
+  cch = "!f() { if [ -z \"$2\" ]; then git commit -m \"chore: $1\"; else git commit -m \"chore($1): $2\"; fi; }; f"
+  cim = "!f() { if [ -z \"$2\" ]; then git commit -m \"improve: $1\"; else git commit -m \"improve($1): $2\"; fi; }; f"
 
   #############
   cl = clone
