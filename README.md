@@ -51,6 +51,8 @@ git reset --hard origin/master
 ```
 
 ## Todo
+* [ ] Windows CMD/PS: Alias para git
+* [ ] Windows CMD/PS: Output como UTF-8 para ver acentuações nos commits
 * [ ] Neomutt: Offline imap emails;
 * [ ] Neomutt: Offline imap contacts;
 * [ ] Neomutt: GPG com passwords;
