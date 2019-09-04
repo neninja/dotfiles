@@ -1,11 +1,14 @@
-" Configurações de plugins do nvim
+" Configurações de plugins do vim
+" Todos de terceiros estão clonados em start ou opt pelo path:
+"   (windows) ~/vimfiles/pack/vendor/
+"   (linux) ~/.vim/pack/vendor/
+" Plugins próprios em:
+"   (windows) ~/vimfiles/pack/nenitf/
+"   (linux) ~/.vim/pack/nenitf/
 
 "*********************************************************
-"" Plugins config
-"*********************************************************
-"-------------------------------------------------
 " Themes
-"-------------------------------------------------
+"*********************************************************
 " Ver highlight-groups
 "so $VIMRUNTIME/syntax/hitest.vim
 ""let g:onedark_terminal_italics = 1
@@ -35,42 +38,54 @@ fun AprRead()
 endfun
 command Apr call AprRead()
 
-"#########################################
+"*********************************************************
 " Polyglot
-"#########################################
+"*********************************************************
 let g:polyglot_disabled = ['go', 'latex']
 
-"#########################################
-" TagBar
-"#########################################
+"*********************************************************
+" Tagbar
+"*********************************************************
 map <leader><bs> :Tagbar<cr>
 
-"-------------------------------------------------
-" Git
-"-------------------------------------------------
-"#########################################
+"*********************************************************
 " Fugitive
-"#########################################
-" Para tirar arquivos de staged basta aprter :G
+"*********************************************************
+" Para tirar arquivos de staged basta acessar status com :Gstatus
 "   na janela de status apertar - no arquivo para add ou remover
-" :ga git add %
+"   OBS: Não funciona no windows
+" :gw git add %
 cnoreabbrev gw Gw
-" :gb ver linha a linha os commits
-cnoreabbrev gb Gblame
+
+" Unstage
+command GrestoreStaged call GitUnstageAFile()
+fun GitUnstageAFile()
+    call LimpaTerminal()
+    G restore --staged %
+    echo "Arquivo agora está unstaged"
+endfun
 " :gc git commit
 cnoreabbrev gc Gcommit
-" :gd mostra diferenças
-cnoreabbrev gd Gdiff
-" :gs mostra status de staged ou não
-cnoreabbrev gs Gstatus
-" :gvs abre em vertical split o mesmo arquivo staged ou comitado
-cnoreabbrev gvs Gvsplit
-" :gvd abre em vertical split o mesmo arquivo com as diferença de quando esteve staged ou comitado
-cnoreabbrev gvd Gvdiff
 
-"#########################################
+" Executa git status para o primeiro dir .git
+" status do vim-fugitive não funciona no windows
+nmap <leader>gs :call GitStatusManual<CR>
+fun GitStatusManual()
+    call LimpaTerminal()
+    G status
+endfun
+
+" Abre em vertical split o mesmo arquivo com as diferença de quando esteve staged ou comitado
+nmap <leader>gd :Gvdiff<CR>
+
+"*********************************************************
+" Git Messenger
+"*********************************************************
+nmap <leader>gm :GitGutterPrevHunk<CR>
+
+"*********************************************************
 " Gitgutter
-"#########################################
+"*********************************************************
 " <leader>hp -> mostra valor anterior do hunk
 " <leader>hs -> stage["git add line"] modificação, removendo chunk
 " <leader>hu -> desfaz modificação não staged no chunk
@@ -89,9 +104,9 @@ fun Gitguttettog()
     echo "Use [h ]h e <leader>hp <leader>hs <leader>hu"
 endfun
 
-"#########################################
+"*********************************************************
 " ALE
-"#########################################
+"*********************************************************
 nmap <silent> ! <Plug>(ale_next_wrap)
 
 function! LinterStatus() abort
@@ -111,9 +126,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "-------------------------------------------------
 " Misc
 "-------------------------------------------------
-"#########################################
+"*********************************************************
 " Statusline // using some plugins
-"#########################################
+"*********************************************************
 " Créditos: https://gabri.me/blog/diy-vim-statusline
 " Créditos: https://kadekillary.work/post/statusline/
 
@@ -154,9 +169,9 @@ set statusline+=\%=						        " Espaço
 set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
 set statusline+=\ %{LinterStatus()}
 
-"#########################################
+"*********************************************************
 " CtrlP
-"#########################################
+"*********************************************************
 " USOS:
 "   Escolher arquivo 			<c-p> pesquisar/escolher arquivo <enter>
 "   Criar arquivos e o path: 	<c-p> digitar arquivo ou /path/arquivo a ser criado <c-y><enter>
@@ -200,9 +215,9 @@ let g:ctrlp_prompt_mappings = {
             \ }
 
 
-"#########################################
-" snipmate
-"#########################################
+"*********************************************************
+" SnipMate
+"*********************************************************
 " Unfold:
 "   ggVGzo
 " Fold:
@@ -210,9 +225,9 @@ let g:ctrlp_prompt_mappings = {
 " Faz com que os snippets possam ser encontrados em ~/dev/dotfiles/snippets
 set rtp+=~/dev/dotfiles/vim
 
-"#########################################
+"*********************************************************
 " Startify
-"#########################################
+"*********************************************************
 let g:startify_lists = [
           \ {'type': 'bookmarks', 'header': ['Bookmarks'] },
           \ ]

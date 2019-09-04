@@ -167,6 +167,7 @@ noremap <Leader>. :pwd<CR>
 " Echo local
 noremap <leader>. :pwd<CR>
 
+
 "-------------------------------------------------
 " Netrw
 "-------------------------------------------------
@@ -208,6 +209,19 @@ nmap <C-w>j <C-w>-
 nmap <c-w>k <C-w>+
 nmap <c-w>l <C-w>>
 nmap <c-w>h <C-w><
+
+"*********************************************************
+" Global functions
+"*********************************************************
+" Função utilizada para limpar a tela do terminal
+" Dependendo do SO muda o comando...
+fun LimpaTerminal()
+    if has("win32")
+        silent !cls
+    else
+        silent !clear
+    endif
+endfun
 
 "*********************************************************
 " Visual Settings
@@ -385,7 +399,5 @@ nnoremap <silent> <leader>df :bd!<CR>
 "nnoremap <S-Tab> :bp<CR>
 nnoremap <silent> [b :bp<CR>
 nnoremap <silent> ]b :bn<CR>
-nnoremap <silent> <Space>[ :bp<CR>
-nnoremap <silent> <Space>] :bn<CR>
 nnoremap <silent> [B :bp<CR>
 nnoremap <silent> ]B :bn<CR>
