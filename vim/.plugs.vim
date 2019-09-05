@@ -69,7 +69,7 @@ cnoreabbrev gc Gcommit
 
 " Executa git status para o primeiro dir .git
 " status do vim-fugitive não funciona no windows
-nmap <leader>gs :call GitStatusManual<CR>
+nmap <leader>gs :call GitStatusManual()<CR>
 fun GitStatusManual()
     call LimpaTerminal()
     G status
