@@ -401,3 +401,16 @@ nnoremap <silent> [b :bp<CR>
 nnoremap <silent> ]b :bn<CR>
 nnoremap <silent> [B :bp<CR>
 nnoremap <silent> ]B :bn<CR>
+
+"######################################################
+"# Netrw
+"######################################################
+" Como não criar NetrwTreeListing e .netrwhist?
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mappings
+"let g:netrw_banner=0        " disable annoying banner
+"let g:netrw_browse_split=4  " open in prior window
+"let g:netrw_liststyle=3     " tree view
+
+
