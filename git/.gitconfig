@@ -1,4 +1,4 @@
-# credits: 
+﻿# credits: 
 #   https://gist.github.com/stephenturner/d291570e25ee797580a4
 #   https://gist.github.com/pksunkara/988716
 #   https://github.com/alikins/gitconfig/blob/master/gitconfig
@@ -51,6 +51,8 @@
     #############
     cl = clone
     #############
+    d = diff
+    #############
     f = fetch
     fo = fetch origin
     fr = fetch --all ; git reset --hard origin/master
@@ -79,8 +81,10 @@
     #############
     plo = pull origin
     pbo = pull --rebase origin
+    plo = pull origin develop
+    pbo = pull --rebase origin
     plom = pull origin master
-    pbom = pull --rebase origin master
+    pbom = pull --rebase origin develop
     #############
     plu = pull upstream
     plum = pull upstream master
