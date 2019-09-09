@@ -45,9 +45,6 @@ set clipboard=unnamed
 noremap <leader>y V"+y:echo "Copiado!!"<CR>
 vnoremap <leader>y "+y:echo "Copiado!!"<CR>
 
-" Quebra de linha com simbolo
-set showbreak=↳\
-
 " Mostra os comandos no canto inferior direito
 set showcmd
 
