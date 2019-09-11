@@ -1,0 +1,8 @@
+" Color
+highlight Normal guifg=white guibg=black
+set guifont=Consolas:h11
+
+" gui
+set guioptions-=T  "toolbar
+" set guioptions-=m  "menu bar
+" set guioptions-=r  "scrollbar
