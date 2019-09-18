@@ -29,6 +29,9 @@ repos=(
     "https://github.com/neoclide/vim-easygit.git"
     "https://github.com/rhysd/git-messenger.vim.git" # visualiza msg de commit da linha com :GitMessenger
     #"https://github.com/juneedahamed/vc.vim.git"
+
+    ####### PHP
+    "https://github.com/adoy/vim-php-refactoring-toolbox.git"
 )
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
