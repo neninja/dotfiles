@@ -44,9 +44,7 @@ mkdir -p $HOME/.config
 DIRDF=$HOME/dev/dotfiles
 
 # bash
-ln -vsf $DIRDF/bash/.bashrc $HOME/.bashrc
-ln -vsf $DIRDF/bash/.inputrc $HOME/.inputrc
-ln -vsf $DIRDF/bash/.profile $HOME/.profile
+ln -vsf $DIRDF/bash/.bash_profile $HOME/.bashrc
 touch $HOME/.extra
 
 # x
@@ -81,8 +79,7 @@ ln -vsf $DIRDF/mpv ~/.config
 ln -vsf $DIRDF/git/.gitconfig $HOME/.gitconfig
 
 # nvim
-echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.config/nvim/init.vim
-echo 'source ~/dev/dotfiles/nvim/.nvimrc' > ~/.vimrc
+ln -vsf $DIRDF/vim/vimrc $HOME/.vimrc
 
 # dialog
 ln -vsf $DIRDF/x/.dialogrc $HOME/.dialogrc
