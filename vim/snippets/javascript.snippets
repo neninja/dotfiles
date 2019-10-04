@@ -1,3 +1,7 @@
+snippet listener "alvo.addEventListener(type,listener[, options])"
+	${1:document}.addEventListener('${2:click}', ${3:function});
+snippet selector "document.querySelector('#id')"
+	${1:document}.querySelector('${2:#id}');
 snippet constm "const { ... } = module" 
 	const { $0 } = $1;
 
@@ -16,13 +20,16 @@ snippet function "function (){...}"
 		${0:// ...}
 	}
 
-snippet "^if" "if() { ... }" rbA
+snippet if "if() { ... }" rbA
 	if (${1:condition}) {
 		${0:// ...}
 	}
 
 snippet log "console.log(...)"
 	console.log(${1});
+
+snippet assert "console.assert(...)"
+	console.assert(${1}, ${2});
 
 snippet req "require('...')"
 	require('$0');
