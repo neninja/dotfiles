@@ -88,15 +88,15 @@ cnoreabbrev nocul set nocul
 " Fechar automaticamente
 " Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
 " Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
-inoremap {<Tab> {}<left><CR><CR><up><tab>
+inoremap {<CR> {}<left><CR><Esc>O
 inoremap {<space> {}<left><space><space><left>
 inoremap { {}<left>
 
-inoremap (<Tab> ()<left><CR><CR><up><tab>
+inoremap (<CR> ()<left><CR><Esc>O
 inoremap (<space> ()<left><space><space><left>
 inoremap ( ()<left>
 
-inoremap [<Tab> []<left><CR><CR><up><tab>
+inoremap [<CR> []<left><CR><Esc>O
 inoremap [<space> []<left><space><space><left>
 inoremap [ []<left>
 
