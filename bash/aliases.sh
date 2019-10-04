@@ -20,6 +20,7 @@ alias ff='fff'
 alias g="git"
 alias nm='neomutt'
 alias p='pandoc'
+alias v='vim'
 alias z='zathura'
 alias docker='sudo docker'
 alias docker-compose='sudo docker-compose'

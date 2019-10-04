@@ -26,7 +26,7 @@ if [ ! -z $TIPO_DE_PESQUISA ]; then
         DEVCOMP='/dev/'
         PATH_CORRETO=$HOME$DEVCOMP$CONFIG_ESCOLHIDA
         if [ -f $PATH_CORRETO ]; then
-          st -e nvim -c 'cd %:p:h' $PATH_CORRETO
+          st -e vim -c 'cd %:p:h' $PATH_CORRETO
         elif [ -d $PATH_CORRETO ]; then
           cd $PATH_CORRETO
           st
