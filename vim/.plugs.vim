@@ -26,17 +26,17 @@ so ~/dev/dotfiles/vim/thenfeite.vim
 "-------------------------------------------------
 " Dev and Apresentation mode
 "-------------------------------------------------
-fun DevRead()
-    Goyo!
-    set background=dark
-endfun
-command Dev call DevRead()
-
-fun AprRead()
-    Goyo
-    set background=light
-endfun
-command Apr call AprRead()
+""fun DevRead()
+""    Goyo!
+""    set background=dark
+""endfun
+""command Dev call DevRead()
+""
+""fun AprRead()
+""    Goyo
+""    set background=light
+""endfun
+""command Apr call AprRead()
 
 "*********************************************************
 " Polyglot
@@ -46,82 +46,82 @@ let g:polyglot_disabled = ['go', 'latex']
 "*********************************************************
 " Tagbar
 "*********************************************************
-map <leader><bs> :Tagbar<cr>
+""map <leader><bs> :Tagbar<cr>
 
 "*********************************************************
 " Fugitive
 "*********************************************************
-" Para tirar arquivos de staged basta acessar status com :Gstatus
-"   na janela de status apertar - no arquivo para add ou remover
-"   OBS: Não funciona no windows
-" :gw git add %
-cnoreabbrev gw Gw
-
-" Unstage
-command GrestoreStaged call GitUnstageAFile()
-fun GitUnstageAFile()
-    call LimpaTerminal()
-    G restore --staged %
-    echo "Arquivo agora está unstaged"
-endfun
-" :gc git commit
-cnoreabbrev gc Gcommit
-
-" Executa git status para o primeiro dir .git
-" status do vim-fugitive não funciona no windows
-nmap <leader>gs :call GitStatusManual()<CR>
-fun GitStatusManual()
-    call LimpaTerminal()
-    G status
-endfun
-
-" Abre em vertical split o mesmo arquivo com as diferença de quando esteve staged ou comitado
-nmap <leader>gd :Gvdiff<CR>
+""" Para tirar arquivos de staged basta acessar status com :Gstatus
+"""   na janela de status apertar - no arquivo para add ou remover
+"""   OBS: Não funciona no windows
+""" :gw git add %
+""cnoreabbrev gw Gw
+""
+""" Unstage
+""command GrestoreStaged call GitUnstageAFile()
+""fun GitUnstageAFile()
+""    call LimpaTerminal()
+""    G restore --staged %
+""    echo "Arquivo agora está unstaged"
+""endfun
+""" :gc git commit
+""cnoreabbrev gc Gcommit
+""
+""" Executa git status para o primeiro dir .git
+""" status do vim-fugitive não funciona no windows
+""nmap <leader>gs :call GitStatusManual()<CR>
+""fun GitStatusManual()
+""    call LimpaTerminal()
+""    G status
+""endfun
+""
+""" Abre em vertical split o mesmo arquivo com as diferença de quando esteve staged ou comitado
+""nmap <leader>gd :Gvdiff<CR>
 
 "*********************************************************
 " Git Messenger
 "*********************************************************
-nmap <leader>gm :GitGutterPrevHunk<CR>
+""nmap <leader>gm :GitGutterPrevHunk<CR>
 
 "*********************************************************
 " Gitgutter
 "*********************************************************
-" <leader>hp -> mostra valor anterior do hunk
-" <leader>hs -> stage["git add line"] modificação, removendo chunk
-" <leader>hu -> desfaz modificação não staged no chunk
-nmap [h <Plug>GitGutterPrevHunk
-nmap ]h <Plug>GitGutterNextHunk
-
-" atualização mais rápida
-set updatetime=100
-
-":GitGutterEnable
-let g:gitgutter_enabled=0
-cnoreabbrev ggt call Gitguttettog()
-
-fun Gitguttettog()
-    GitGutterToggle
-    echo "Use [h ]h e <leader>hp <leader>hs <leader>hu"
-endfun
+""" <leader>hp -> mostra valor anterior do hunk
+""" <leader>hs -> stage["git add line"] modificação, removendo chunk
+""" <leader>hu -> desfaz modificação não staged no chunk
+""nmap [h <Plug>GitGutterPrevHunk
+""nmap ]h <Plug>GitGutterNextHunk
+""
+""" atualização mais rápida
+""set updatetime=100
+""
+""":GitGutterEnable
+""let g:gitgutter_enabled=0
+""cnoreabbrev ggt call Gitguttettog()
+""
+""fun Gitguttettog()
+""    GitGutterToggle
+""    echo "Use [h ]h e <leader>hp <leader>hs <leader>hu"
+""endfun
 
 "*********************************************************
 " ALE
 "*********************************************************
-nmap <silent> ! <Plug>(ale_next_wrap)
-
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? 'OK' : printf(
-                \   '%dW %dE',
-                \   all_non_errors,
-                \   all_errors
-                \)
-endfunction
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+""nmap <silent> ! <Plug>(ale_next_wrap)
+""
+""function! LinterStatus() abort
+""    let l:counts = ale#statusline#Count(bufnr(''))
+""    let l:all_errors = l:counts.error + l:counts.style_error
+""    let l:all_non_errors = l:counts.total - l:all_errors
+""    return l:counts.total == 0 ? 'OK' : printf(
+""                \   '%dW %dE',
+""                \   all_non_errors,
+""                \   all_errors
+""                \)
+""endfunction
+""let g:ale_echo_msg_error_str = 'E'
+""let g:ale_echo_msg_warning_str = 'W'
+""let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 "-------------------------------------------------
 " Misc
@@ -163,11 +163,11 @@ let g:modusline_colors['ic']     = '%#DiffChange#' " see :help ins-completion
 let g:modusline_colors['Rc']     = '%#DiffChange#' " see :help ins-completion
 
 set statusline=
-set statusline+=\ %{FugitiveStatusline()}	    " Branch
+""set statusline+=\ %{FugitiveStatusline()}	    " Branch
 set statusline+=\ %r\%m\%f\ 	                " Nome readonly, modificado e nome abreviado
 set statusline+=\%=						        " Espaço
 set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
-set statusline+=\ %{LinterStatus()}
+""set statusline+=\ %{LinterStatus()}
 
 "*********************************************************
 " CtrlP
