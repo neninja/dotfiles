@@ -225,6 +225,14 @@ let g:ctrlp_prompt_mappings = {
 " Faz com que os snippets possam ser encontrados em ~/dev/dotfiles/snippets
 set rtp+=~/dev/dotfiles/vim
 
+"-------------------------------------------------
+" Escopos
+"-------------------------------------------------
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['html'] = 'html'
+let g:snipMate.scope_aliases['php'] = 'php,html'
+
 "*********************************************************
 " Startify
 "*********************************************************
