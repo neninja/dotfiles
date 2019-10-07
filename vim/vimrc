@@ -14,6 +14,7 @@ function! SourceIfExists(file)
 endfunction
 
 call SourceIfExists("~/dev/dotfiles/vim/.base.vim")
+call SourceIfExists("~/dev/dotfiles/vim/.macros.vim")
 call SourceIfExists("~/dev/dotfiles/vim/.plugs.vim")
 call SourceIfExists("~/dev/dotfiles/vim/.so-linux.vim")
 call SourceIfExists("~/dev/dotfiles/vim/.so-windows.vim")
