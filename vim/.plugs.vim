@@ -185,7 +185,7 @@ set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
 "   Escrito em vimscript
 "   É possível criar arquivos diretamente
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git\|dist\|vendor'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git\|dist\|vendor\|tags'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_show_hidden = 1
 
