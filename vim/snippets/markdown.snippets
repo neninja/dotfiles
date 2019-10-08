@@ -1,6 +1,84 @@
-snippet hugo "hugo header"
-    ---
-    title: "${1:Título do post}"
-    date: `strftime("%Y-%m-%dT%H:%M:%S-03:00")`
-    draft: true
-    ---
+# hugo SSG
+snippet ht "hugo header"
+	---
+	title: "${1:Título do post}"
+	date: `strftime("%Y-%m-%dT%H:%M:%S-03:00")`
+	draft: true
+	---
+
+# The suffix `c` stands for "Clipboard".
+
+# links
+snippet [
+	[${1:text}](http://${2:address})
+snippet [*
+	[${1:link}](${2:`@*`})
+snippet [c
+	[${1:link}](${2:`@+`})
+snippet ["
+	[${1:text}](http://${2:address} "${3:title}")
+snippet ["*
+	[${1:link}](${2:`@*`} "${3:title}")
+snippet ["c
+	[${1:link}](${2:`@+`} "${3:title}")
+snippet [:
+	[${1:id}]: http://${2:url}
+snippet [:*
+	[${1:id}]: ${2:`@*`}
+snippet [:c
+	[${1:id}]: ${2:`@+`}
+snippet [:"
+	[${1:id}]: http://${2:url} "${3:title}"
+snippet [:"*
+	[${1:id}]: ${2:`@*`} "${3:title}"
+snippet [:"c
+	[${1:id}]: ${2:`@+`} "${3:title}"
+
+# imagens
+snippet ![
+	![${1:alttext}](${2:/images/image.jpg})
+snippet ![*
+	![${1:alt}](${2:`@*`})
+snippet ![c
+	![${1:alt}](${2:`@+`})
+snippet !["
+	![${1:alttext}](${2:/images/image.jpg} "${3:title}")
+snippet !["*
+	![${1:alt}](${2:`@*`} "${3:title}")
+snippet !["c
+	![${1:alt}](${2:`@+`} "${3:title}")
+snippet ![:
+	![${1:id}]: ${2:url}
+snippet ![:*
+	![${1:id}]: ${2:`@*`}
+snippet ![:"
+	![${1:id}]: ${2:url} "${3:title}"
+snippet ![:"*
+	![${1:id}]: ${2:`@*`} "${3:title}"
+snippet ![:"c
+	![${1:id}]: ${2:`@+`} "${3:title}"
+snippet <
+	<http://${1:url}>
+snippet <*
+	<`@*`>
+snippet <c
+	<`@+`>
+
+# estilização de texto
+snippet **
+	**${1:bold}**
+snippet __
+	__${1:bold}__
+snippet ===
+	`repeat('=', strlen(getline(line('.') - 3)))`
+
+	${0}
+snippet ---
+	`repeat('-', strlen(getline(line('.') - 3)))`
+
+	${0}
+
+snippet ```
+	\`\`\`${1:language}
+	${0:code}
+	\`\`\`

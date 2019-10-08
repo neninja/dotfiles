@@ -1,20 +1,33 @@
+# Alguns atalhos seguirão uma convenção de prefixos
+# Créditos: https://github.com/honza/vim-snippets/blob/master/snippets/cs.snippets
+#
+# Prefixos de acesso (poo)
+# ----------------------------
+# + = public
+# # = protected
+# - = private
+#
+# Prefixos de tipificação do snippet (específicos)
+# ----------------------------
+# % = bloco de código específico para uma situação
+# ! = esqueleto de um arquivo completo
 # .phtml
-snippet ?>
+snippet ?> "<?php ... ?>"
 	<?php
 	${0:// ...}
 	?>
-snippet ?=
+snippet ?= "<?=...=>"
 	<?=${0}?>
-snippet ?f
-	<?php foreach ($${1:vars} as $${2:$var}): ?>
+snippet ?f "<?php foreach ($values as $value): ?> ... <?php endforeach ?>"
+	<?php foreach($${1:values} as $${2:value}): ?>
 	${0:<!-- ... -->}
 	<?php endforeach ?>
-snippet ?fk
-	<?php foreach ($${1:variable} as $${2:key} => $${3:value}): ?>
-		${0:<!-- html... -->}
-	<?php endforeach; ?>
-snippet ?i
-	<?php if ($${1:var}): ?>
+snippet ?fk "<?php foreach ($values as $key => $value): ?> ... <?php endforeach ?>"
+	<?php foreach($${1:values} as $${2:key} => $${3:value}): ?>
+	${0:<!-- ... -->}
+	<?php endforeach ?>
+snippet ?i "<?php if(condition): ?> ... <?php endif ?>"
+	<?php if(${1:condition}): ?>
 	${0:<!-- ... -->}
 	<?php endif ?>
 snippet ?e
@@ -22,120 +35,45 @@ snippet ?e
 	${0:<!-- ... -->}
 
 
-# .php
-snippet ?
+# geral
+snippet ? "<?php ..."
 	<?php
 
 	${0:// ...} 
-snippet dst "declare(strict_types=1)"
-	declare(strict_types=${1:1});
-snippet ec
+snippet ec "echo value;"
 	echo ${0:value};
-snippet ns
-	namespace ${1:Foo\Bar\Baz};
-snippet c
-	<?php
-	/**
-	 * @author ${1}
-	 */
-
-	class ${1:`Filename()`}
-	{
-		${0:// ...}
-	}
-snippet i
-	interface ${1:`Filename()`}
-	{
-		${0:// ...}
-	}
-snippet t
-	$this->
-snippet f
-	function ${1:funcName}(${2:param})
-	{
-		${0:// ...}
-	}
-# method
-snippet puf "public function() { ... }"
-	public function ${1:functionName}(${2:params})
-	{
-		${0:// ...}
-	}
-
-snippet prf "private function() { ... }"
-	private function ${1:functionName}(${2:params})
-	{
-		${0:// ...}
-	}
-
-snippet ptf "protected function() { ... }"
-	protected function ${1:functionName}(${2:params})
-	{
-		${0:// ...}
-	}
-
-# namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
-snippet sm "PHP Class Setter"
-	public function set$1($1)
-	{
-		$this->${1:prop} = $$1;
-	}
-snippet gm "PHP Class Getter Setter"
-	public function get$1()
-	{
-		return $this->${1:prop};
-	}
-#setter
-snippet $s
-	${1:$foo}->set${2:bar}(${0});
-#getter
-snippet $g
-	${1:$foo}->get${0:bar}();
-# Tertiary conditional
-snippet =?:
-	$${1:foo} = ${2:true} ? ${3:return a} : ${4:return b};
-snippet ?:
-	${1:true} ? ${2:do a} : ${3:do b}
-snippet t "$retVal = (condition) ? a : b"
-	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};
-# Predefined variables
-snippet C
-	$_COOKIE['${1:variable}']
-snippet E
-	$_ENV['${1:variable}']
-snippet F
-	$_FILES['${1:variable}']
-snippet G "_GET array"
-	$_GET['${1:variable}']
-snippet P "_POST array"
-	$_POST['${1:variable}']
-snippet R
-	$_REQUEST['${1:variable}']
-snippet S
-	$_SERVER['${1:variable}']
-snippet SS
-	$_SESSION['${1:variable}']
-# the following are old ones
-snippet inc
+snippet inc "include '...'"
 	include '${1:file}';
-snippet inc1
+snippet inc1 "include_once '...'"
 	include_once '${1:file}';
-snippet req
+snippet req require '...'
 	require '${1:file}';
-snippet req1
+snippet req1 "require_once '...'"
 	require_once '${1:file}';
-# Start Docblock
-snippet /*
+snippet ns "namespace ..."
+	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
+snippet t "$this->..."
+	$this->
+snippet f "function funcName(...) { ... }"
+	function ${1:funcName}(${2:type }$${2:param})
+	{
+		${0:// ...}
+	}
+snippet $? "$foo = condition ? return a : return b"
+	$${1:foo} = ${2:condition} ? ${3:return a} : ${4:return b};
+snippet ?: "condition ? do a : do b"
+	${1:condition} ? ${2:do a} : ${3:do b};
+snippet dd "var_dump( ... );die;"
+	var_dump(${1}); die(${0:});
+snippet /* "/** * */"
 	/**
 	 * ${0}
 	 */
 snippet def "define('VARIABLE_NAME', 'definition')"
 	define('${1:VARIABLE_NAME}', ${2:'definition'});
-snippet def?
-	${1}defined('${2}')
 snippet wh "while (condition) { ... }"
 	while (${1:true}) {
-		${0:// ...}}
+		${0:// ...}
 	}
 snippet do "do { ... } while (condition)"
 	do {
@@ -145,9 +83,11 @@ snippet if "if (condition) { ... }"
 	if (${1:true}) {
 		${0:// ...}
 	}
-snippet el "else { ... }"
-	else {
+snippet ife "if (condition) { ... } else { ... }"
+	if (${1:true}) {
 		${0:// ...}
+	} else {
+
 	}
 snippet elif "elseif(condition) { ... }"
 	elseif (${1:true}) {
@@ -167,169 +107,194 @@ snippet case "case 'value': ... break"
 		${0:// ...}
 		break;
 snippet for "for ($i = 0; $i < $count; $i++) { ... }"
-	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
+	for($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
 		${0:// ...}
 	}
 snippet foreach "foreach ($var as $value) { .. }"
-	foreach ($${1:variable} as $${2:value}) {
+	foreach($${1:variable} as $${2:value}) {
 		${0:// ...}
 	}
 snippet foreachk "foreach ($var as $key => $value) { .. }"
-	foreach ($${1:variable} as $${2:key} => $${3:value}) {
-		${0:// ...}}
+	foreach($${1:variable} as $${2:key} => $${3:value}) {
+		${0:// ...}
 	}
 snippet try "try { ... } catch (Exception $e) { ... }"
 	try {
-		${0:// ...}}
-	} catch (${1:Exception} $e) {
+		${1:// ...}
+	} catch (${2:Exception} $e) {
+		${2:// ...}
 	}
-# lambda with closure
-snippet lambda
-	${1:static }function (${2:args}) use (${3:&$x, $y /*put vars in scope (closure) */}) {
-		${0}
-	};
-snippet vdd
-	var_dump(${1}); die(${0:});
-snippet json
-	$data = /** whatever you're serializing **/;
-	header('Content-Type: application/json');
-	echo json_encode($data);
-# Getters & Setters
-snippet gs "PHP Class Getter Setter"
-	/**
-	 * Gets the value of ${1:foo}
-	 *
-	 * @return ${2:string}
-	 */
-	public function get${3:$1}()
-	{
-		return $this->${4:$1};
-	}
-
-	/**
-	 * Sets the value of $1
-	 *
-	 * @param $2 $$1 ${5:description}
-	 *
-	 * @return ${6:`vim_snippets#Filename()`}
-	 */
-	public function set$3(${7:$2 }$$1)
-	{
-		$this->$4 = $$1;
-		return $this;
-	}
-# anotation, get, and set, useful for doctrine
-snippet ags
-	/**
-	 * ${1:description}
-	 *
-	 * @${0}
-	 */
-	${2:protected} $${3:foo};
-
-	public function get${4:$3}()
-	{
-		return $this->$3;
-	}
-
-	public function set$4(${5:$4 }$${6:$3})
-	{
-		$this->$3 = $$6;
-		return $this;
-	}
-snippet rett
+snippet rett "return true"
 	return true;
-snippet retf
+snippet retf "return false"
 	return false;
-# phpunit
-snippet ase "$this->assertEquals($a, $b)"
-	$this->assertEquals(${1:$expected}, ${2:$actual});
-snippet asne "$this->assertNotEquals($a, $b)"
-	$this->assertNotEquals(${1:$expected}, ${2:$actual});
-snippet asf "$this->assertFalse($a)"
-	$this->assertFalse(${1});
-snippet ast "$this->assertTrue($a)"
-	$this->assertTrue(${1});
-snippet asfex "$this->assertFileExists('path/to/file')"
-	$this->assertFileExists(${1:'path/to/file'});
-snippet asfnex "$this->assertFileNotExists('path/to/file')"
-	$this->assertFileNotExists(${1:'path/to/file'});
-snippet ascon "$this->assertContains($needle, $haystack)"
-	$this->assertContains(${1:$needle}, ${2:$haystack});
-snippet asncon "$this->assertNotContains($needle, $haystack)"
-	$this->assertNotContains(${1:$needle}, ${2:$haystack});
-snippet ascono "$this->assertContainsOnly($needle, $haystack)"
-	$this->assertContainsOnly(${1:$needle}, ${2:$haystack});
-snippet asconoi "$this->assertContainsOnlyInstancesOf(Example::class, $haystack)"
-	$this->assertContainsOnlyInstancesOf(${1:Example}::class, ${2:$haystack});
-snippet ashk "$this->assertArrayHasKey($key, $array)"
-	$this->assertArrayHasKey(${1:$key}, ${2:$array});
-snippet asnhk "$this->assertArrayNotHasKey($key, $array)"
-	this->assertArrayNotHasKey(${1:$key}, ${2:$array});
-snippet ascha "$this->assertClassHasAttribute($name, Example::class)"
-	$this->assertClassHasAttribute(${1:$attributeName}, ${2:Example}::class);
-snippet asi "$this->assertInstanceOf(Example::class, $actual)"
-	$this->assertInstanceOf(${1:Example}::class, ${2:$actual});
-snippet asit "$this->assertInternalType('string', $actual)"
-	$this->assertInternalType(${1:'string'}, ${2:actual});
-snippet asco "$this->assertCount($count, $haystack)"
-	$this->assertCount(${1:$expectedCount}, ${2:$haystack});
-snippet asnco "$this->assertNotCount($count, $haystack)"
-	$this->assertNotCount(${1:$count}, ${2:$haystack});
-snippet assub "$this->assertArraySubset($subset, $array)"
-	$this->assertArraySubset(${1:$subset}, ${2:$array});
-snippet asnu "$this->assertNull($a)"
-	$this->assertNull(${1});
-snippet asnnu "$this->assertNotNull($a)"
-	$this->assertNotNull(${1});
-snippet test "public function testXYZ() { ... }"
-	public function test${1}()
-	{
-		${0:${VISUAL}}
-	}
-snippet setup "protected function setUp() { ... }"
-	protected function setUp()
-	{
-		${0:${VISUAL}}
-	}
-snippet teardown "protected function tearDown() { ... }"
-	protected function tearDown()
-	{
-		${0:${VISUAL}}
-	}
-snippet proph "$observer = $this->prophesize(SomeClass::class);"
-	$${1:observer} = $this->prophesize(${2:SomeClass}::class);
-snippet mock "$mock = $this->createMock(SomeClass::class);"
-	$${1:mock} = $this->createMock(${2:SomeClass}::class);
-snippet exp "phpunit expects"
-	expects($this->${1:once}())
-		->method('${2}')
-		->with(${3})
-		->willReturn(${4});
-snippet testcmt "phpunit comment with group"
-	/**
-	* @group ${1}
-	*/
-snippet fail "$this->fail()"
-	$this->fail(${1});
-snippet marki "$this->markTestIncomplete()"
-	$this->markTestIncomplete(${1});
-snippet marks "$this->markTestSkipped()"
-	$this->markTestSkipped(${1});
-# end of phpunit snippets
 snippet te "throw new Exception()"
 	throw new ${1:Exception}("${2:Error Processing Request}");
-snippet fpc "file_put_contents" b
-	file_put_contents(${1:file}, ${2:content}${3:, FILE_APPEND});$0
-snippet sr "str_replace"
-	str_replace(${1:search}, ${2:replace}, ${3:subject})$0
-snippet ia "in_array"
-	in_array(${1:needle}, ${2:haystack})$0
-snippet is "isset"
-	isset(${1:var});
-snippet in "is_null"
-	is_null($${1:var})$0
-snippet fe "file_exists"
-	file_exists(${1:file})$0
-snippet id "is_dir"
-	is_dir(${1:path})$0
+snippet fpc "file_put_contents(file, content, FILE_APPEND)"
+	file_put_contents(${1:file}, ${2:content}${3:, FILE_APPEND});
+snippet sr "str_replace(search, replace, subject)"
+	str_replace(${1:search}, ${2:replace}, ${3:subject});
+snippet ina "in_array($needle, $ar)"
+	in_array(${1:needle}, $${2:ar})
+snippet iss "isset($var)"
+	isset(${1:var})
+snippet isn "is_null($var)"
+	is_null($${1:var})
+snippet fe "file_exists($file)"
+	file_exists(${1:file})
+snippet id "is_dir('path')"
+	is_dir(${1:path})
+
+# poo
+snippet + "private $property"
+	public $${0:propertyName};
+snippet - "private $property"
+	private $${0:propertyName};
+snippet # "private $property"
+	protected $${0:propertyName};
+snippet +f "public function() { ... }"
+	public function ${1:functionName}(${2:params})
+	{
+		${0:// ...}
+	}
+
+snippet -f "private function() { ... }"
+	private function ${1:functionName}(${2:params})
+	{
+		${0:// ...}
+	}
+snippet #f "protected function() { ... }"
+	protected function ${1:functionName}(${2:params})
+	{
+		${0:// ...}
+	}
+snippet gs "Getter and Setter"
+	public function get${2:$1}()
+	{
+		return $this->${1:p};
+	}
+
+	public function set$2(${3:type }$$1)
+	{
+		$this->$1 = $$1;
+	}
+
+	${0:// ...}
+snippet $g "$var->get...(...)"
+	$${1:foo}->get${0:Property}();
+snippet $s "$var->set...(...)"
+	$${1:foo}->set${2:Property}(${0});
+
+# skeletons
+snippet !c "class skeleton"
+	<?php
+
+	namespace ${1:Foo\Bar\Baz};
+
+	class ${2:`Filename()`}
+	{
+		${0:// ...}
+	}
+snippet !i "interface skeleton"
+	<?php
+
+	namespace ${1:Foo\Bar\Baz};
+
+	interface ${1:`Filename()`}
+	{
+		${0:// ...}
+	}
+snippet !t "trait skeleton"
+	<?php
+
+	namespace ${1:Foo\Bar\Baz};
+
+	trait ${1:`Filename()`}
+	{
+		${0:// ...}
+	}
+
+# Predefined variables
+snippet C "$_COOKIE['...']"
+	$_COOKIE['${1:variable}']
+snippet E "$_ENV['...']"
+	$_ENV['${1:variable}']
+snippet F "$_FILES['...']"
+	$_FILES['${1:variable}']
+snippet G "$_GET['...']"
+	$_GET['${1:variable}']
+snippet P "$_POST['...']"
+	$_POST['${1:variable}']
+snippet R "$_REQUEST['...']"
+	$_REQUEST['${1:variable}']
+snippet S "$_SERVER['...']"
+	$_SERVER['${1:variable}']
+snippet SS "$_SESSION['...']"
+	$_SESSION['${1:variable}']
+
+# block codes
+snippet json "header('Content-Type: application/json'); return json_encode(...);"
+	$data = /** whatever you're serializing **/;
+	header('Content-Type: application/json');
+	return json_encode($data);
+
+#################################################### TDD
+# kahlan
+snippet !d "describe('Desc', function() {...})"
+	describe("${1:Teste de X}", function(){
+		${0:// ...}
+	})
+snippet !i "it('Deve', function() {...})"
+	it("${1:Deve ...}", function(){
+		${0:// ...}
+	})
+
+# phpunit
+snippet !ae "$this->assertEquals($a, $b)"
+	$this->assertEquals(${1:$expected}, ${2:$actual});
+snippet !ane "$this->assertNotEquals($a, $b)"
+	$this->assertNotEquals(${1:$expected}, ${2:$actual});
+snippet !af "$this->assertFalse($a)"
+	$this->assertFalse(${1});
+snippet !at "$this->assertTrue($a)"
+	$this->assertTrue(${1});
+snippet !afe "$this->assertFileExists('path/to/file')"
+	$this->assertFileExists(${1:'path/to/file'});
+snippet !afne "$this->assertFileNotExists('path/to/file')"
+	$this->assertFileNotExists(${1:'path/to/file'});
+snippet !ac "$this->assertContains($needle, $haystack)"
+	$this->assertContains(${1:$needle}, ${2:$haystack});
+snippet !anc "$this->assertNotContains($needle, $haystack)"
+	$this->assertNotContains(${1:$needle}, ${2:$haystack});
+snippet !aco "$this->assertContainsOnly($needle, $haystack)"
+	$this->assertContainsOnly(${1:$needle}, ${2:$haystack});
+snippet !acoio "$this->assertContainsOnlyInstancesOf(Example::class, $haystack)"
+	$this->assertContainsOnlyInstancesOf(${1:Example}::class, ${2:$haystack});
+snippet !aahk "$this->assertArrayHasKey($key, $array)"
+	$this->assertArrayHasKey(${1:$key}, ${2:$array});
+snippet !aanhk "$this->assertArrayNotHasKey($key, $array)"
+	this->assertArrayNotHasKey(${1:$key}, ${2:$array});
+snippet !acha "$this->assertClassHasAttribute($name, Example::class)"
+	$this->assertClassHasAttribute(${1:$attributeName}, ${2:Example}::class);
+snippet !aio "$this->assertInstanceOf(Example::class, $actual)"
+	$this->assertInstanceOf(${1:Example}::class, ${2:$actual});
+snippet !ait "$this->assertInternalType('string', $actual)"
+	$this->assertInternalType(${1:'string'}, ${2:actual});
+snippet !acount "$this->assertCount($count, $haystack)"
+	$this->assertCount(${1:$expectedCount}, ${2:$haystack});
+snippet !ancount "$this->assertNotCount($count, $haystack)"
+	$this->assertNotCount(${1:$count}, ${2:$haystack});
+snippet !aas "$this->assertArraySubset($subset, $array)"
+	$this->assertArraySubset(${1:$subset}, ${2:$array});
+snippet !an "$this->assertNull($a)"
+	$this->assertNull(${1});
+snippet !ann "$this->assertNotNull($a)"
+	$this->assertNotNull(${1});
+snippet !f "public function testXYZ() { ... }"
+	public function test${1}()
+	{
+		${0:// ...}
+	}
+snippet !fail "$this->fail()"
+	$this->fail(${1});
+

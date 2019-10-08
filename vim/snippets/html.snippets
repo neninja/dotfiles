@@ -1,16 +1,55 @@
+# tags
 snippet p "<p></p>" 
-	<p>${0:${VISUAL}}</p>
-
+	<p>${0}</p>
+snippet table "<table></table>"
+	<table>${0}</table>
+snippet thead "<thead></thead>"
+	<thead>${0}</thead>
+snippet tbody "<tbody></tbody>"
+	<tbody>${0}</tbody>
+snippet th "<th></th>"
+	<th>${0}</th>
+snippet tr "<tr></tr>"
+	<tr>${0}</tr>
+snippet td "<td></td>"
+	<td>${0}</td>
 snippet strong "<strong></strong>" 
-	<strong>${0:${VISUAL}}</strong>
-
+	<strong>${0}</strong>
+snippet div "<div>...</div>"
+	<div>
+		${0}
+	</div>
+snippet ul "<ul>...</ul>"
+	<ul>
+		${0}
+	</ul>
+snippet li "<li>...</li>"
+	<li>${0}</li>
+snippet a "<a href>...</a>"
+	<a href="${1:#}">${0:texto}</a>
+snippet h "<h1>...</h1>"
+	<h${1:1}>${0}</h$1>
 snippet br "<br>" 
 	<br>
 	$0
-
 snippet input "<input type=''>"
-	<input type="$0">
+	<input type="${0}">
+snippet scripts "<script src=...></script>"
+	<script src="${0}"></script>
+snippet link "External CSS"
+	<link rel="stylesheet" type="text/css" href="${0}.css">
 
+# props
+snippet cl "class=..."
+	class="${0}"
+snippet id "id=..."
+	id="${0}"
+
+# comment
+snippet -- "<!-- -->"
+	<!-- ${0} -->
+
+# skeletons
 snippet html5 "<html></html>"
 	<!DOCTYPE html>
 	<html>
@@ -28,35 +67,3 @@ snippet html5 "<html></html>"
 	</body>
 
 	</html>
-
-snippet scripts "<script src=...></script>"
-	<script src="$0"></script>
-
-snippet linkrel "External CSS"
-	<link rel="stylesheet" type="text/css" href="$0.css">
-
-snippet cl "class=..."
-	class="$0"
-
-snippet id "id=..."
-	id="$0"
-
-snippet div "<div>...</div>"
-	<div>
-		${0:${VISUAL}}
-	</div>
-
-snippet ul "<ul>...</ul>"
-	<ul>
-		${0:${VISUAL}}
-	</ul>
-
-
-snippet li "<li>...</li>"
-	<li>${0:${VISUAL}}</li>
-
-snippet a "<a href>...</a>"
-	<a href="${1:#}">${0:texto}</a>
-
-snippet h "<h1>...</h1>"
-	<h${1:1}>${0:${VISUAL}}</h$1>
