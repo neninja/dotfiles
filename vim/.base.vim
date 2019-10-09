@@ -243,7 +243,8 @@ au FocusGained,BufEnter * :silent!<space>!
 "   more velocity
 
 " View and select buffers
-nnoremap <Tab> :ls <CR>:b<space>
+" CtrlP possui a mesma feature
+"nnoremap <Tab> :ls <CR>:b<space>
 
 " Fechar todos buffers e deixar somente um
 " Somente buffers sem conteúdo por salvar são fechados
