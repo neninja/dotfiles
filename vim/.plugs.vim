@@ -136,32 +136,42 @@ let g:polyglot_disabled = ['go', 'latex']
 " Plugin modusline
 " PROS:
 "   mode() muda a cor da statusline
+"   cor escolhida através de highlights groups
 "   statusline aparece somente nas janelas ativas em split
 " CONS:
 "   Performance?
 
-let g:modusline_colors           = {}              " see :help mode()
-let g:modusline_colors['n']      = ''              " Normal
-let g:modusline_colors['c']      = ''              " Command-line
-let g:modusline_colors['no']     = '%#DiffChange#' " Operator-pending
-let g:modusline_colors['v']      = '%#DiffText#'   " Visual by character
-let g:modusline_colors['V']      = '%#DiffText#'   " Visual by line
-let g:modusline_colors["\<C-V>"] = '%#DiffText#'   " Visual blockwise
-let g:modusline_colors['s']      = '%#WildMenu#'   " Select by character
-let g:modusline_colors['S']      = '%#WildMenu#'   " Select by line
-let g:modusline_colors["\<C-S>"] = '%#WildMenu#'   " Select blockwise
-let g:modusline_colors['i']      = '%#DiffAdd#'    " Insert
-let g:modusline_colors['R']      = '%#DiffDelete#' " Replace |R|
-let g:modusline_colors['Rv']     = '%#DiffDelete#' " Virtual Replace |gR|
-let g:modusline_colors['cv']     = '%#MatchParen#' " Vim Ex mode |gQ|
-let g:modusline_colors['ce']     = '%#MatchParen#' " Normal Ex mode |Q|
-let g:modusline_colors['r']      = '%#Todo#'       " Hit-enter prompt
-let g:modusline_colors['rm']     = '%#Todo#'       " The -- more -- prompt
-let g:modusline_colors['r?']     = '%#Todo#'       " A |:confirm| query of some sort
-let g:modusline_colors['!']      = '%#IncSearch#'  " Shell or external command is executing
-let g:modusline_colors['t']      = '%#DiffAdd#'    " Terminal mode: keys go to the job
-let g:modusline_colors['ic']     = '%#DiffChange#' " see :help ins-completion
-let g:modusline_colors['Rc']     = '%#DiffChange#' " see :help ins-completion
+" Override statusline's colors default
+highlight StatusLine term=standout ctermfg=0 ctermbg=8 guifg=bg guibg=Grey50
+highlight WildMenu term=bold,reverse cterm=bold ctermfg=0 ctermbg=75 gui=bold guifg=bg guibg=#61afef
+
+" Customs highlights
+highlight CustomStatusLineNormalMode term=standout ctermfg=188 guifg=#dcdfe4
+highlight CustomStatusLineInsertMode term=bold,reverse cterm=bold ctermfg=0 ctermbg=10 gui=bold guifg=bg guibg=LightGreen
+highlight CustomStatusLineVisualMode term=standout ctermfg=0 ctermbg=176 guifg=bg guibg=#c678dd
+
+let g:modusline_colors           = {}                               " see :help mode()
+let g:modusline_colors['n']      = '%#CustomStatusLineNormalMode#'  " Normal
+let g:modusline_colors['c']      = ''                               " Command-line
+let g:modusline_colors['no']     = '%#DiffChange#'                  " Operator-pending
+let g:modusline_colors['v']      = '%#CustomStatusLineVisualMode#'  " Visual by character
+let g:modusline_colors['V']      = '%#CustomStatusLineVisualMode#'  " Visual by line
+let g:modusline_colors["\<C-V>"] = '%#CustomStatusLineVisualMode#'  " Visual blockwise
+let g:modusline_colors['s']      = '%#WildMenu#'                    " Select by character
+let g:modusline_colors['S']      = '%#WildMenu#'                    " Select by line
+let g:modusline_colors["\<C-S>"] = '%#WildMenu#'                    " Select blockwise
+let g:modusline_colors['i']      = '%#CustomStatusLineInsertMode#'  " Insert
+let g:modusline_colors['ic']     = '%#CustomStatusLineInsertMode#'  " see :help ins-completion
+let g:modusline_colors['R']      = '%#DiffDelete#'                  " Replace |R|
+let g:modusline_colors['Rv']     = '%#DiffDelete#'                  " Virtual Replace |gR|
+let g:modusline_colors['cv']     = '%#MatchParen#'                  " Vim Ex mode |gQ|
+let g:modusline_colors['ce']     = '%#MatchParen#'                  " Normal Ex mode |Q|
+let g:modusline_colors['r']      = '%#Todo#'                        " Hit-enter prompt
+let g:modusline_colors['rm']     = '%#Todo#'                        " The -- more -- prompt
+let g:modusline_colors['r?']     = '%#Todo#'                        " A |:confirm| query of some sort
+let g:modusline_colors['!']      = '%#IncSearch#'                   " Shell or external command is executing
+let g:modusline_colors['t']      = '%#DiffAdd#'                     " Terminal mode: keys go to the job
+let g:modusline_colors['Rc']     = '%#DiffChange#'                  " see :help ins-completion
 
 set statusline=
 ""set statusline+=\ %{FugitiveStatusline()}	    " Branch
