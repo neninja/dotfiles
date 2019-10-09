@@ -57,7 +57,7 @@ set wildmenu
 set wildmode=list:full
 set completeopt=longest,menuone,preview " cool completion view
 set completeopt+=noselect               " deixar digitar
-set wildchar=<Tab>                      " (default)
+"set wildchar=<Tab>                      " (default)
 set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
 set complete=.,w,b,u,t
 
