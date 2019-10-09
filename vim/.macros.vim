@@ -118,7 +118,7 @@ augroup END
 " PHP
 "#########################################
 augroup python
-    au FileType php nmap <leader>r :vsp<CR>:terminal php %<CR>
+    au FileType php nmap <leader>r :terminal php %<CR>
     au FileType php vnoremap // :call ComentaVisual("// ", "")<CR>
     au FileType php vnoremap /; :s/\/\/\s/<CR>:noh<CR>
     au FileType php nmap // :call ComentaNormal("// ", "")<esc>
