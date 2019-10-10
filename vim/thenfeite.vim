@@ -60,7 +60,6 @@ endfun
 
 
 " User interface colors {
-call s:h("Normal", s:fg, s:bg, "")
 call s:h("NonText", s:fg, "", "")
 
 call s:h("Cursor", s:bg, s:blue, "")
@@ -214,7 +213,6 @@ hi link gitcommitUnmergedArrow gitcommitUnmergedFile
     let g:terminal_color_13 = s:purple.gui
     let g:terminal_color_14 = s:cyan.gui
     let g:terminal_color_15 = s:white.gui
-    let g:terminal_color_background = s:bg.gui
     let g:terminal_color_foreground = s:fg.gui
   endif
 " }
