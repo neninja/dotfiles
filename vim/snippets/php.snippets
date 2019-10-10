@@ -7,10 +7,11 @@
 # # = protected
 # - = private
 #
-# Prefixos de tipificação do snippet (específicos)
+# Sufixos de tipificação do snippet (específicos)
 # ----------------------------
 # % = bloco de código específico para uma situação
 # ! = esqueleto de um arquivo completo
+# ? = asssertion php test
 # .phtml
 snippet ?> "<?php ... ?>"
 	<?php
@@ -55,7 +56,7 @@ snippet ns "namespace ..."
 snippet t "$this->..."
 	$this->
 snippet f "function funcName(...) { ... }"
-	function ${1:funcName}(${2:type }$${2:param})
+	function ${1:funcName}(${2:type $param})
 	{
 		${0:// ...}
 	}
@@ -146,25 +147,31 @@ snippet id "is_dir('path')"
 	is_dir(${1:path})
 
 # poo
+snippet __c "__construct"
+	function __construct(${1:type $param})
+	{
+		${0:// ...}
+	}
+
 snippet + "private $property"
 	public $${0:propertyName};
 snippet - "private $property"
 	private $${0:propertyName};
-snippet # "private $property"
+snippet # "protected $property"
 	protected $${0:propertyName};
 snippet +f "public function() { ... }"
-	public function ${1:functionName}(${2:params})
+	public function ${1:functionName}(${2:type $param})
 	{
 		${0:// ...}
 	}
 
 snippet -f "private function() { ... }"
-	private function ${1:functionName}(${2:params})
+	private function ${1:functionName}(${2:type $param})
 	{
 		${0:// ...}
 	}
 snippet #f "protected function() { ... }"
-	protected function ${1:functionName}(${2:params})
+	protected function ${1:functionName}(${2:type $param})
 	{
 		${0:// ...}
 	}
@@ -186,7 +193,7 @@ snippet $s "$var->set...(...)"
 	$${1:foo}->set${2:Property}(${0});
 
 # skeletons
-snippet !c "class skeleton"
+snippet c! "class skeleton"
 	<?php
 
 	namespace ${1:Foo\Bar\Baz};
@@ -195,7 +202,7 @@ snippet !c "class skeleton"
 	{
 		${0:// ...}
 	}
-snippet !i "interface skeleton"
+snippet i! "interface skeleton"
 	<?php
 
 	namespace ${1:Foo\Bar\Baz};
@@ -204,7 +211,7 @@ snippet !i "interface skeleton"
 	{
 		${0:// ...}
 	}
-snippet !t "trait skeleton"
+snippet t! "trait skeleton"
 	<?php
 
 	namespace ${1:Foo\Bar\Baz};
@@ -239,62 +246,50 @@ snippet json "header('Content-Type: application/json'); return json_encode(...);
 	return json_encode($data);
 
 #################################################### TDD
-# kahlan
-snippet !d "describe('Desc', function() {...})"
-	describe("${1:Teste de X}", function(){
-		${0:// ...}
-	})
-snippet !i "it('Deve', function() {...})"
-	it("${1:Deve ...}", function(){
-		${0:// ...}
-	})
-
 # phpunit
-snippet !ae "$this->assertEquals($a, $b)"
+snippet e? "$this->assertEquals($a, $b)"
 	$this->assertEquals(${1:$expected}, ${2:$actual});
-snippet !ane "$this->assertNotEquals($a, $b)"
+snippet ne? "$this->assertNotEquals($a, $b)"
 	$this->assertNotEquals(${1:$expected}, ${2:$actual});
-snippet !af "$this->assertFalse($a)"
+snippet f? "$this->assertFalse($a)"
 	$this->assertFalse(${1});
-snippet !at "$this->assertTrue($a)"
+snippet t? "$this->assertTrue($a)"
 	$this->assertTrue(${1});
-snippet !afe "$this->assertFileExists('path/to/file')"
+snippet fe? "$this->assertFileExists('path/to/file')"
 	$this->assertFileExists(${1:'path/to/file'});
-snippet !afne "$this->assertFileNotExists('path/to/file')"
+snippet fne? "$this->assertFileNotExists('path/to/file')"
 	$this->assertFileNotExists(${1:'path/to/file'});
-snippet !ac "$this->assertContains($needle, $haystack)"
+snippet c? "$this->assertContains($needle, $haystack)"
 	$this->assertContains(${1:$needle}, ${2:$haystack});
-snippet !anc "$this->assertNotContains($needle, $haystack)"
+snippet nc? "$this->assertNotContains($needle, $haystack)"
 	$this->assertNotContains(${1:$needle}, ${2:$haystack});
-snippet !aco "$this->assertContainsOnly($needle, $haystack)"
+snippet co? "$this->assertContainsOnly($needle, $haystack)"
 	$this->assertContainsOnly(${1:$needle}, ${2:$haystack});
-snippet !acoio "$this->assertContainsOnlyInstancesOf(Example::class, $haystack)"
+snippet coio? "$this->assertContainsOnlyInstancesOf(Example::class, $haystack)"
 	$this->assertContainsOnlyInstancesOf(${1:Example}::class, ${2:$haystack});
-snippet !aahk "$this->assertArrayHasKey($key, $array)"
+snippet ahk? "$this->assertArrayHasKey($key, $array)"
 	$this->assertArrayHasKey(${1:$key}, ${2:$array});
-snippet !aanhk "$this->assertArrayNotHasKey($key, $array)"
+snippet anhk? "$this->assertArrayNotHasKey($key, $array)"
 	this->assertArrayNotHasKey(${1:$key}, ${2:$array});
-snippet !acha "$this->assertClassHasAttribute($name, Example::class)"
+snippet cha? "$this->assertClassHasAttribute($name, Example::class)"
 	$this->assertClassHasAttribute(${1:$attributeName}, ${2:Example}::class);
-snippet !aio "$this->assertInstanceOf(Example::class, $actual)"
+snippet io? "$this->assertInstanceOf(Example::class, $actual)"
 	$this->assertInstanceOf(${1:Example}::class, ${2:$actual});
-snippet !ait "$this->assertInternalType('string', $actual)"
+snippet itype? "$this->assertInternalType('string', $actual)"
 	$this->assertInternalType(${1:'string'}, ${2:actual});
-snippet !acount "$this->assertCount($count, $haystack)"
+snippet count? "$this->assertCount($count, $haystack)"
 	$this->assertCount(${1:$expectedCount}, ${2:$haystack});
-snippet !ancount "$this->assertNotCount($count, $haystack)"
+snippet ncount? "$this->assertNotCount($count, $haystack)"
 	$this->assertNotCount(${1:$count}, ${2:$haystack});
-snippet !aas "$this->assertArraySubset($subset, $array)"
+snippet as? "$this->assertArraySubset($subset, $array)"
 	$this->assertArraySubset(${1:$subset}, ${2:$array});
-snippet !an "$this->assertNull($a)"
+snippet null? "$this->assertNull($a)"
 	$this->assertNull(${1});
-snippet !ann "$this->assertNotNull($a)"
+snippet nnull? "$this->assertNotNull($a)"
 	$this->assertNotNull(${1});
-snippet !f "public function testXYZ() { ... }"
+snippet ut "public function testXYZ() { ... } // unity test"
 	public function test${1}()
 	{
 		${0:// ...}
 	}
-snippet !fail "$this->fail()"
-	$this->fail(${1});
 
