@@ -51,15 +51,15 @@ set showcmd
 
 
 "-------------------------------------------------
-" Popup
+" Popup e omni
 "-------------------------------------------------
 set wildmenu
 set wildmode=list:full
-set completeopt=longest,menuone,preview " cool completion view
-set completeopt+=noselect               " deixar digitar
+set completeopt=longest,menuone         " cool completion view
+set completeopt+=noselect,noinsert      " deixar digitar
 "set wildchar=<Tab>                      " (default)
 set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
-set complete=.,w,b,u,t
+set complete=.,w,b,u,t                  " sugestões
 
 "*********************************************************
 " Basics Abbreviations/Commands
