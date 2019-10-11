@@ -62,6 +62,7 @@ set completeopt+=noselect,noinsert      " deixar digitar
 "set wildchar=<Tab>                      " (default)
 set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
 set complete=.,w,b,u,t                  " sugestões
+inoremap <C-Space> <C-X><C-O>
 
 "*********************************************************
 " Basics Abbreviations/Commands
