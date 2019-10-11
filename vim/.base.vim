@@ -9,6 +9,7 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set bomb
 set binary
+set nrformats-=octal            " ctrl-a ctrl -x
 
 " Fix backspace indent
 set backspace=indent,eol,start
@@ -29,6 +30,7 @@ if has('nvim')
 endif
 set ignorecase
 set smartcase
+set smarttab
 
 " Directories for swp files
 set nobackup
@@ -228,7 +230,7 @@ filetype plugin indent on             " Required for plugins
 set relativenumber                    " Distancias entre a linha do cursor
 set number                            " Numero das linhas
 set showmatch                         " Mostra fechamento de {['']}
-set ai                                " Auto indentação -> ==
+set autoindent                        " Auto indentação -> ==
 set mouse=a                           " Libera uso do mouse em todos modos
 
 " Checar quando o texto for modificado
