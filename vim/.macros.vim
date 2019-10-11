@@ -131,6 +131,7 @@ augroup END
 " JAVASCRIPT
 "#########################################
 augroup javascript
+    au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
     au FileType javascript vnoremap // :call ComentaVisual("// ", "")<CR>
     au FileType javascript vnoremap /; :s/\/\/\s/<CR>:noh<CR>
     au FileType javascript nmap // :call ComentaNormal("// ", "")<esc>
