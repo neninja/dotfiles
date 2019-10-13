@@ -1,8 +1,6 @@
 " autor: nenitf
 " A partir de vim-bootstrap b0a75e4
 " motivacional: https://www.youtube.com/watch?v=XA2WjJbmmoM
-" TODO:
-"   Skeletons para .html phpunit.xml .editorconfig
 
 " Crédito: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
 function! SourceIfExists(file)
