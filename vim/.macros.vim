@@ -16,6 +16,12 @@ function ComentaVisual(carac1, carac2)
     execute "normal! A".a:carac2
 endfunction
 
+augroup skeleton
+    au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
+    au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
+    au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
+augroup END
+
 "#########################################
 " HTML
 "#########################################
