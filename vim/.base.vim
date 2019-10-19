@@ -65,7 +65,7 @@ set complete=.,w,b,u,t                  " sugestões
 inoremap <C-Space> <C-X><C-O>
 
 "*********************************************************
-" Basics Abbreviations/Commands
+" Basics Abbreviations/Commands/Maps
 "*********************************************************
 " No one is really happy until you have this shortcuts
 cnoreabbrev W! w!
@@ -80,6 +80,7 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
+noremap <leader>w :w<CR>
 
 " Cursor
 cnoreabbrev cul set cul
