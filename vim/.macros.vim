@@ -18,6 +18,7 @@ endfunction
 
 augroup skeleton
     au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
+    au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
     au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
     au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
 augroup END
