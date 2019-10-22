@@ -55,8 +55,8 @@ snippet ns "namespace ..."
 	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
 snippet t "$this->..."
 	$this->
-snippet f "function funcName(...) { ... }"
-	function ${1:funcName}(${2:type $param})
+snippet f "function funcName(...):return { ... }"
+	function ${1:funcName}(${2:type $param}):${3:typeReturn}
 	{
 		${0:// ...}
 	}
@@ -160,18 +160,18 @@ snippet - "private $property"
 snippet # "protected $property"
 	protected $${0:propertyName};
 snippet +f "public function() { ... }"
-	public function ${1:functionName}(${2:type $param})
+	public function ${1:functionName}(${2:type $param}):${3:typeReturn}
 	{
 		${0:// ...}
 	}
 
 snippet -f "private function() { ... }"
-	private function ${1:functionName}(${2:type $param})
+	private function ${1:functionName}(${2:type $param}):${3:typeReturn}
 	{
 		${0:// ...}
 	}
 snippet #f "protected function() { ... }"
-	protected function ${1:functionName}(${2:type $param})
+	protected function ${1:functionName}(${2:type $param}):${3:typeReturn}
 	{
 		${0:// ...}
 	}
