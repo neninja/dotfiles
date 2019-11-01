@@ -17,9 +17,7 @@
 " Ver highlight group da palavra sob o cursor
 " https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 " :highlight mostra as cores do grupo
-nnoremap <c-t> <ESC>:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+command Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 so ~/dev/dotfiles/vim/thenfeite.vim
 
 " set termguicolors
@@ -197,6 +195,7 @@ set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
 "   É possível criar arquivos diretamente
 
 nnoremap <Tab> :CtrlPBuffer<CR>
+nnoremap <c-t> :CtrlPTag<CR>
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git\|dist\|vendor\|tags'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_show_hidden = 1
