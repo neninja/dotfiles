@@ -69,9 +69,9 @@ call s:h("CursorLine", "", s:cursor_line, "")
 call s:h("LineNr", s:gutter_fg, "", "")
 call s:h("CursorLineNr", s:fg, "", "")
 
-call s:h("DiffAdd", s:green, "", "")
-call s:h("DiffChange", s:yellow, "", "")
-call s:h("DiffDelete", s:red, "", "")
+call s:h("DiffAdd", "", s:green, "")
+call s:h("DiffChange", "", s:yellow, "")
+call s:h("DiffDelete", "", s:red, "")
 call s:h("DiffText", s:blue, "", "")
 
 call s:h("IncSearch", s:bg, s:yellow, "")

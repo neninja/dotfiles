@@ -19,16 +19,6 @@
     - [ ] stage um arquivo rápido
     - [ ] diff de modifieds/stageds/untrackeds com a HEAD
     - [ ] diff de merge conflicts
-- [ ] plugins para pesquisar
-    - [ ] https://github.com/tpope/vim-git
-    - [ ] https://github.com/jreybert/vimagit
-    - [ ] https://github.com/lambdalisue/vim-gita
-    - [ ] https://github.com/lambdalisue/gina.vim
-    - [ ] https://github.com/tpope/vim-vinegar
-    - [ ] https://github.com/xolox/vim-easytags
-    - [ ] https://github.com/xolox/vim-session
-    - [ ] https://github.com/xolox/vim-reload
-    - [ ] https://github.com/xolox/vim-publish
 
 # Dicas
 - https://vim.rtorr.com/lang/pt_br

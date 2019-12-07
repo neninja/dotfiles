@@ -1,8 +1,3 @@
-" https://github.com/tpope/vim-git
-" https://github.com/tpope/vim-vinegar
-" https://github.com/xolox/vim-easytags
-" https://github.com/xolox/vim-reload
-" https://github.com/xolox/vim-publish
 "# Gerenciamento/inicialização
 ":helptags ALL
 ":helptags ~/vimfiles/pack/vendor/start/*/doc
@@ -14,6 +9,24 @@
 "   (windows) ~/vimfiles/pack/nenitf/
 "   (linux) ~/.vim/pack/nenitf/
 "# Configurações
+"## Gina
+nmap <leader>gg <Esc>:Gina status -s<CR>
+command Ga :Gina! add %
+command Gs :Gina status
+command Gc :Gina commit
+command Gd :Gina compare
+"<Return>	Edit a file
+"dd		Open a unified-diff
+"DD		Open a unified-diff (vsplit)
+"cc		Open two buffers to compare
+"CC		Open two buffers to compare (tab) -> :tabc para fechar a tab aberta
+"pp		Open three buffers to patch
+"PP		Open three buffers to patch (tab)
+"!!		Open three buffers to solve conflict
+"<<		Stage changes
+">>		Unstage changes
+"--		Toggle stage/unstage
+"==		Discard local changes
 "## CtrlP
 " USOS:
 "   Escolher arquivo <c-p> pesquisar/escolher arquivo <enter>
@@ -131,5 +144,3 @@ hi! Folded guibg=purple
 "let g:ale_echo_msg_error_str = 'E'
 "let g:ale_echo_msg_warning_str = 'W'
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"
-"
