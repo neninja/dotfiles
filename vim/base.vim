@@ -54,6 +54,12 @@ au FocusGained,BufEnter * :silent!<space>!
 " Para encontrar mais facilmente o cursor
 set cursorcolumn
 set cursorline
+
+" Remove som ao apertar multiplos ESCs
+" https://vim.fandom.com/wiki/Disable_beeping"
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
 "Obs: para o gvim editar o _gvimrc (windows) ou .gvimrc (linux)
 "## Popup e omni
 set wildmenu
