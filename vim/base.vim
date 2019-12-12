@@ -263,6 +263,11 @@ augroup html
     au FileType html nmap /; :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
 "    au FileType html :so ~/dev/dotfiles/vim/plugins/matchit.vim
 augroup END
+"## SVELTE
+augroup svelte
+    au BufReadPost *.svelte set syntax=html
+augroup END
+
 "### MARKDOWN
 "augroup markdown
 "    " Converte arquivo file.md atual em file.md.pdf
@@ -550,6 +555,7 @@ let s:snippets_js_abbreviations = {
 
 au FileType php call RegistraArraySnippets(s:snippets_php_abbreviations)
 au FileType javascript call RegistraArraySnippets(s:snippets_js_abbreviations)
+au FileType html call RegistraArraySnippets(s:snippets_js_abbreviations)
 
 "set complete+=k
 "set dictionary+=/your/dict/file
