@@ -77,15 +77,22 @@
     psf = push -f
     pst = push --tags
     #############
+    pso = push origin
+    psfo = push -f origin
+    psom = push origin master
+    psfom = push -f origin master
+    psod = push origin develop
+    psfod = push -f origin develop
+    #############
     pl = pull
     pb = pull --rebase
     #############
     plo = pull origin
     pbo = pull --rebase origin
-    plo = pull origin develop
-    pbo = pull --rebase origin
+    plod = pull origin develop
+    pbod = pull --rebase origin develop
     plom = pull origin master
-    pbom = pull --rebase origin develop
+    pbom = pull --rebase origin master
     #############
     plu = pull upstream
     plum = pull upstream master
