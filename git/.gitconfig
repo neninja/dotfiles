@@ -25,6 +25,11 @@
     added = green bold
     changed = yellow bold
     untracked = red bold
+[merge]
+	tool = vimdiff
+[difftool]
+    prompt = false
+	tool = vimdiff
 [alias]
     #############
     a = add --all
