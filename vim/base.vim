@@ -51,6 +51,9 @@ set mouse=a                           " Libera uso do mouse em todos modos
 set autoread
 au FocusGained,BufEnter * :silent!<space>!
 
+" Para encontrar mais facilmente o cursor
+set cursorcolumn
+set cursorline
 "Obs: para o gvim editar o _gvimrc (windows) ou .gvimrc (linux)
 "## Popup e omni
 set wildmenu

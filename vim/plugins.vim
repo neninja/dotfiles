@@ -115,6 +115,8 @@ let g:vimwiki_global_ext = 0
 " :highlight mostra as cores do grupo
 command Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 so ~/dev/dotfiles/vim/thenfeite.vim
+highlight CursorColumn guibg=#0a0c0f
+highlight CursorLine guibg=#0a0c0f gui=underline cterm=underline
 hi! Folded guibg=purple
 "### Dev and Apresentation mode
 "fun DevRead()
