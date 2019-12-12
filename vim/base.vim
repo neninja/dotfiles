@@ -324,6 +324,8 @@ augroup END
 " Indent all file and go back
 nnoremap <C-S> i<++><esc>gg=G/<++>/<CR>v/><CR>d==:noh<CR>
 noremap <leader>. :pwd<CR>
+" Mais fácil de teclar
+inoremap <c-f> <c-o>
 "## Write/quit rapidamente
 noremap <leader><leader> :w<CR>
 cnoreabbrev W! w!
