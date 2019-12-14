@@ -285,12 +285,12 @@ augroup END
 "    au FileType markdown nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
 "augroup END
 "## DOT GV
-"au! BufRead,BufNewFile *.gv       setfiletype dot
-"augroup dot
-"    au FileType dot nmap <leader>r <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpdf -O %<CR><CR>
-"    au FileType dot nmap <leader>i <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpng % -O<CR><CR>
-"    au FileType dot nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
-"    au FileType dot imap >> <SPACE>-><SPACE>
+au! BufRead,BufNewFile *.gv       setfiletype dot
+augroup dot
+    au FileType dot nmap <leader>r <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpdf -O %<CR><CR>
+    au FileType dot nmap <leader>i <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpng % -O<CR><CR>
+    au FileType dot nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
+    au FileType dot imap >> <SPACE>-><SPACE>
 "augroup END
 "## SHELL
 "augroup sh
