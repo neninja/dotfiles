@@ -8,12 +8,6 @@ readme.pdf
 *.csv.pdf
 *.csv.md.pdf
 
-# graphviz
-*.dot.pdf
-*.dot.png
-*.gv.pdf
-*.gv.png
-
 # latex
 *.aux
 *.bbl
