@@ -39,13 +39,14 @@ set statusline+=\ %r\%m\%f\ 	                " Nome readonly, modificado e nome 
 set statusline+=\%=						        " Espaço
 set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
 "## Visual Settings
-syntax on                             " Required for plugins
-filetype plugin indent on             " Required for plugins
-set relativenumber                    " Distancias entre a linha do cursor
-set number                            " Numero das linhas
-set showmatch                         " Mostra fechamento de {['']}
-set autoindent                        " Auto indentação -> ==
-set mouse=a                           " Libera uso do mouse em todos modos
+syntax on                               " Required for plugins
+filetype plugin indent on               " Required for plugins
+set relativenumber                      " Distancias entre a linha do cursor
+set number                              " Numero das linhas
+set showmatch                           " Mostra fechamento de {['']}
+set autoindent                          " Auto indentação -> ==
+set mouse=a                             " Libera uso do mouse em todos modos
+set linebreak                           " Quebra a linha por palavra e não por letra
 
 " Checar quando o texto for modificado
 set autoread
