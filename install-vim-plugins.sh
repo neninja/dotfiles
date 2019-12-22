@@ -28,8 +28,8 @@ vendorRepos=(
 )
 
 neniRepos=(
-    "https://github.com/nenitf/git-vim.git"
-    "https://github.com/nenitf/simplinter-vim.git"
+    # "https://github.com/nenitf/git-vim.git"
+    # "https://github.com/nenitf/simplinter-vim.git"
 )
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
