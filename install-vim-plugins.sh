@@ -33,9 +33,11 @@ neniRepos=(
 )
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    mkdir -p ~/.vim
     cd ~/.vim
     clonaRepos
 elif [[ "$OSTYPE" == "msys" ]]; then
+    mkdir -p ~/vimfiles
     cd ~/vimfiles
     clonaRepos
 fi
