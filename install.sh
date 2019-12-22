@@ -78,8 +78,9 @@ ln -vsf $DIRDF/mpv ~/.config
 # git
 ln -vsf $DIRDF/git/.gitconfig $HOME/.gitconfig
 
-# nvim
+# vim
 ln -vsf $DIRDF/vim/vimrc $HOME/.vimrc
+ln -vsf $DIRDF/vim/gvimrc $HOME/.gvimrc
 
 # dialog
 ln -vsf $DIRDF/x/.dialogrc $HOME/.dialogrc
