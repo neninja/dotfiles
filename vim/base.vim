@@ -504,15 +504,41 @@ nnoremap <c-tab> <esc>:call JumpToTag()<cr>
 function LeSnippet(root, file)
     let c = nr2char(getchar(0))
     if c == "\<tab>"
-        " Coloca o conteudo do cursor para frente em uma nova linha
-        " e a marca
-        execute "normal a\<cr>"
+        " Assim que a função é chamada o modo é trocado do insert pro normal
+        " deslocando o cursor para a direita. Caso não esteja na primeira
+        " coluna, ele não se move, afetando a escolha entre i (insert) e a
+        " (apend)
+        if col(".") == 1
+            " Coloca dois marcadores (§):
+            " O primeiro demarca o final da linha [l1] (inicio do snippet) e o
+            " segundo o inicio da ultima linha [l2] (final do snippet)
+            execute "normal i§§"
+        else
+            " Coloca dois marcadores (§):
+            " O primeiro demarca o final da linha [l1] (inicio do snippet) e o
+            " segundo o inicio da ultima linha [l2] (final do snippet)
+            execute "normal a§§"
+        endif
+        " Acessa entre os marcadores (§§) e da um enter para quebrar a linha.
+        " O marcador preservará o espaço contido antes e depois do mesmo,
+        " evitando que o J crie um espaço caso não precise ou unifique caso ja
+        " exista
+        execute "normal i\<cr>"
+
+        " Marca l2 (mark s) e sobe para a linha inicial
         normal msk
-        " Escreve o conteudo do snippet
+
+        " Escreve o conteudo do snippet logo abaixo da linha inicial
         execute "read" . a:file
-        " Retorna à linha inicial e junta com o retorno de :read
-        " Retorna à linha marcada e junta com o retorno de :read
-        normal mdkJ`skJV`d=
+
+        " - Marca a primeira linha do snippet lido (mark d)
+        " - Unifica l1 com a primeira do snippet
+        " - Move para esquerda e apaga o espaço gerado pelo J e o marcador (§)
+        " - Retorna à l2
+        " - Unifica l2 com a ultima do snippet
+        " - Apaga o espaço gerado pelo J e o marcador (§) restante
+        " - Seleciona de l2 unificada até l1 unificada com o snippet e identa
+        normal mdkJhxx`skJxxV`d=
         call JumpToTag()
     elseif c == " " || c == '.' || c == ',' || c == ';'
         " a:root . c vai tornar recursiva a função.
