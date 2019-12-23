@@ -6,15 +6,9 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 
 ## Programas
 * bash
-* cmus
 * dialog
 * feh
 * git
-* mpv
-* neomutt
-* newsboat
-* npp
-* qutebrowser
 * vim
 * x
 * zathura
@@ -53,6 +47,3 @@ git reset --hard origin/master
 ## Todo
 * [ ] Windows CMD/PS: Alias para git
 * [ ] Windows CMD/PS: Output como UTF-8 para ver acentuações nos commits
-* [ ] Neomutt: Offline imap emails;
-* [ ] Neomutt: Offline imap contacts;
-* [ ] Neomutt: GPG com passwords;

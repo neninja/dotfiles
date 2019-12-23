@@ -51,29 +51,8 @@ touch $HOME/.extra
 ln -vsf $DIRDF/x/.xinitrc $HOME/.xinitrc
 ln -vsf $DIRDF/x/.Xdefaults $HOME/.Xdefaults
 
-# cmus
-mkdir -p $HOME/.config/cmus
-ln -vsf $DIRDF/cmus/rc $HOME/.config/cmus/rc
-
-# feh
-mkdir -p ~/.config/feh
-ln -vsf $DIRDF/feh/.fehbg $HOME/.fehbg
-ln -vsf $DIRDF/feh/keys $HOME/.config/feh/keys
-
-# neomutt
-# links simbolicos para diretórios devem possuir caminhos absolutos, sem pwd
-# Create a folder on directory .config, so dont type a name of folder you want
-ln -vsf $DIRDF/neomutt ~/.config
-
-# newsboat
-rm -rf ~/.newsboat
-ln -vsf $DIRDF/newsboat ~/.newsboat
-
 # zathura
 ln -vsf $DIRDF/zathura ~/.config
-
-# mpv
-ln -vsf $DIRDF/mpv ~/.config
 
 # git
 ln -vsf $DIRDF/git/.gitconfig $HOME/.gitconfig
@@ -84,8 +63,3 @@ ln -vsf $DIRDF/vim/gvimrc $HOME/.gvimrc
 
 # dialog
 ln -vsf $DIRDF/x/.dialogrc $HOME/.dialogrc
-
-# qutebrowser
-mkdir -p ~/.config/qutebrowser/bookmarks
-ln -vsf $DIRDF/qutebrowser/urls $HOME/.config/qutebrowser/bookmarks/urls
-ln -vsf $DIRDF/qutebrowser/config.py $HOME/.config/qutebrowser/config.py

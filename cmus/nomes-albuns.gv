@@ -1,4 +1,0 @@
-digraph D {
-    // Modificar artista, album etc
-    "Apagar ~/.config/cache" -> "Usar comando id3v2 na musica escolhida"  
-}
