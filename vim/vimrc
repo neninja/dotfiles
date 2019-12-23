@@ -1,8 +1,4 @@
-" autor: nenitf
-" A partir de vim-bootstrap b0a75e4
-" motivacional: https://www.youtube.com/watch?v=XA2WjJbmmoM
-
-" Crédito: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
+" Créditos: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
 function! SourceIfExists(file)
   if filereadable(expand(a:file))
     exe 'source' a:file
