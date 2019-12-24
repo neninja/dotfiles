@@ -210,8 +210,14 @@ fun LimpaTerminal()
         silent !clear
     endif
 endfun
+
+"## Dicionários
+"set complete+=k
+let g:dict_dir = "~/dev/dotfiles/vim/dicionarios/"
+
 "# Linguagens de programação
-"### shared
+"## shared
+
 " Créditos: https://stackoverflow.com/a/24046914
 let s:comment_map = { 
     \   "c": '\/\/',
@@ -329,6 +335,10 @@ augroup php
     au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
     au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
     au FileType php nmap <leader>r :terminal php %<CR>
+
+    " Dicionarios (c-x c-k) pois o ctags ainda é meio bugado
+    let dict_phpunit = g:dict_dir . "phpunit.txt"
+    au BufRead *test.php execute "setlocal dictionary+=".dict_phpunit
 augroup END
 "## JAVASCRIPT
 "augroup javascript
@@ -593,7 +603,5 @@ au FileType php call RegistraArraySnippets(s:snippets_php_abbreviations)
 au FileType javascript call RegistraArraySnippets(s:snippets_js_abbreviations)
 au FileType html call RegistraArraySnippets(s:snippets_js_abbreviations)
 
-"set complete+=k
-"set dictionary+=/your/dict/file
 
 
