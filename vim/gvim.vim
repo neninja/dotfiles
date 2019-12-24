@@ -1,4 +1,3 @@
-" Color
 highlight Normal guifg=white guibg=black
 
 set guioptions-=T  " tool bar
@@ -6,6 +5,7 @@ set guioptions-=m  " menu bar
 set guioptions-=r  " scroll bar direita
 set guioptions-=L  " scroll bar esquerda quando a janela possuir split vertical
 
+" Alerts
 au GUIEnter * simalt ~x
 
 " Colocar em ~/.extra.gvim.vim, pois varia de sistema operacional ...
