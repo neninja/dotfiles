@@ -384,7 +384,8 @@ nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
 " Somente buffers sem conteúdo por salvar são fechados
 " Créditos: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
 " nnoremap <c-n> :%bd | e # | b # | q<CR>
-command! BufOnly execute '%bdelete|e #|b#|bd%|normal `"'
+command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
+
 
 " Leave a buffer even without save
 set hidden
