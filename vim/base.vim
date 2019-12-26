@@ -386,6 +386,10 @@ nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
 " nnoremap <c-n> :%bd | e # | b # | q<CR>
 command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
+" Créditos: https://stackoverflow.com/a/38082196
+command! TerminalGitRoot exec 'cd' fnameescape(fnamemodify(finddir('.git',
+    \ escape(expand('%:p:h'), ' ') . ';'), ':h'))
+    \ '|term'
 
 " Leave a buffer even without save
 set hidden
