@@ -92,6 +92,8 @@
     pl = pull
     pb = pull --rebase
     #############
+    plt = pull --tags
+    #############
     plo = pull origin
     pbo = pull --rebase origin
     plod = pull origin develop
