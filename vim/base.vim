@@ -67,7 +67,7 @@ autocmd GUIEnter * set visualbell t_vb=
 "## Popup e omni
 set wildmenu
 set wildmode=list:full
-set completeopt=longest,menuone         " cool completion view
+set completeopt=menuone                 " mostrar menu de opções
 "set completeopt+=noselect,noinsert      " Não selecionar nem aceitar instantaneamente o texto (c-n apenas abre opções)
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
