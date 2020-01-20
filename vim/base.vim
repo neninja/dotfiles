@@ -19,6 +19,8 @@
 " sob o cursor   |  za ou zo/zc     |  zA ou zO/zC
 " 
 "
+hi link phpErrorComma Error
+"
 " Dica: Usar K (:h K em cima da configuração para consultar manual)
 " mksession? Usar para substituir bookmarks
 " Ver esses plugins
@@ -270,7 +272,7 @@ vnoremap gcc :call ToggleComment()<cr>
 "## HTML
 augroup html
     " Créditos: https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/drwd5lx/
-    au FileType html inoremap <buffer> <c-k> </<c-x><c-o><c-n><cr><esc>==gi
+    au FileType html inoremap <buffer> <c-k> </<c-x><c-o><c-n><esc>==gi
     " Comenta
     au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
     au FileType html vnoremap // I<!--<esc>A--><CR>
