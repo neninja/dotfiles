@@ -8,5 +8,6 @@ function! SourceIfExists(file)
 endfunction
 
 call SourceIfExists("~/dev/dotfiles/vim/base.vim")
+call SourceIfExists("~/dev/dotfiles/vim/base-dotfiles.vim")
 call SourceIfExists("~/dev/dotfiles/vim/plugins.vim")
 call SourceIfExists("~/.extra.vim")

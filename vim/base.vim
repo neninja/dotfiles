@@ -1,3 +1,7 @@
+"# Base vimrc
+" Arquivo de configurações básicas do vim, podendo ser adicionado
+" de maneira independente do repo dotfiles
+"
 " Este arquivo utiliza os folds do vim, abaixo um resumo de como usar (:h folds)
 "
 " https://vim.fandom.com/wiki/Folding
@@ -22,20 +26,21 @@
 "
 " Dica: Usar K (:h K em cima da configuração para consultar manual)
 " dotfiles tpope: https://github.com/tpope/tpope || https://github.com/woliveiras/dotfiles/blob/master/bin/system-settings/.vimrc
-"# Configurações de variáveis
+"
+"## Configurações de variáveis
 let mapleader="\<space>"
-"## Modeline
+"### Modeline
 set modeline
 set modelines=4
 " Exemplo de modeline:
 " vim: set fdm=marker:
-"## Statusline
+"### Statusline
 set laststatus=2
 set statusline=
 set statusline+=\ %r\%m\%f\ 	                " Nome readonly, modificado e nome abreviado
 set statusline+=\%=						        " Espaço
 set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
-"## Visual Settings
+"### Visual Settings
 syntax on                               " Required for plugins
 filetype plugin indent on               " Required for plugins
 set relativenumber                      " Distancias entre a linha do cursor
@@ -44,6 +49,10 @@ set showmatch                           " Mostra fechamento de {['']}
 set autoindent                          " Auto indentação -> ==
 set mouse=a                             " Libera uso do mouse em todos modos
 set linebreak                           " Quebra a linha por palavra e não por letra
+
+" theme
+set background=dark
+colorscheme slate
 
 " Checar quando o texto for modificado
 set autoread
@@ -59,7 +68,7 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 "Obs: para o gvim editar o _gvimrc (windows) ou .gvimrc (linux)
-"## Popup e omni
+"### Popup e omni
 set wildmenu
 set wildmode=list:full
 set completeopt=menuone                 " mostrar menu de opções
@@ -69,9 +78,9 @@ set belloff+=ctrlg " If Vim beeps during completion
 """set wildchar=<Tab>                      " (default)
 set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
 set complete=.,w,b,u,t                  " sugestões
-"## Sistema Operacional
-"### Linux
-"### Windows
+"### Sistema Operacional
+"#### Linux
+"#### Windows
 " Créditos: https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
 fun! Dos2unix()
     " Don't strip on these filetypes
@@ -83,7 +92,7 @@ fun! Dos2unix()
 endfun
 
 ""autocmd BufRead * call Dos2unix()
-"## Encoding
+"### Encoding
 set encoding=utf-8
 "set fileencoding=utf-8 "?
 "set fileencodings=utf-8 "?
@@ -131,40 +140,40 @@ set showcmd
 "### Markdown
 function! FoldMarkdown()
     if getline(v:lnum) =~ '^## .*$'
-        return ">2"
+        return ">1"
     endif
     if getline(v:lnum) =~ '^### .*$'
-        return ">3"
+        return ">2"
     endif
     if getline(v:lnum) =~ '^#### .*$'
-        return ">4"
+        return ">3"
     endif
     if getline(v:lnum) =~ '^##### .*$'
-        return ">5"
+        return ">4"
     endif
     if getline(v:lnum) =~ '^###### .*$'
-        return ">6"
+        return ">5"
     endif
     return "=" 
 endfunction
 au FileType markdown set foldexpr=FoldMarkdown()  
 set foldmethod=expr
-"### VimScript
+"#### VimScript
 function! FoldVimScript()
     if getline(v:lnum) =~ '^"## .*$'
-        return ">2"
+        return ">1"
     endif
     if getline(v:lnum) =~ '^"### .*$'
-        return ">3"
+        return ">2"
     endif
     if getline(v:lnum) =~ '^"#### .*$'
-        return ">4"
+        return ">3"
     endif
     if getline(v:lnum) =~ '^"##### .*$'
-        return ">5"
+        return ">4"
     endif
     if getline(v:lnum) =~ '^"###### .*$'
-        return ">6"
+        return ">5"
     endif
     return "=" 
 endfunction
@@ -183,7 +192,7 @@ au FileType vim set foldexpr=FoldVimScript()
 au FileType vim set foldmethod=expr
 "au FileType vim set foldexpr=FoldVimScript()
 set foldtext=FoldTextVimScript()
-"## Netrw
+"### Netrw
 " Como não criar NetrwTreeListing e .netrwhist?
 " - :edit a folder to open a file browser
 " - <CR>/v/t to open in an h-split/v-split/tab
@@ -191,7 +200,7 @@ set foldtext=FoldTextVimScript()
 "let g:netrw_banner=0        " disable annoying banner
 "let g:netrw_browse_split=4  " open in prior window
 "let g:netrw_liststyle=3     " tree view
-"## Funções
+"### Funções
 " Função utilizada para limpar a tela do terminal
 " Dependendo do SO muda o comando...
 fun LimpaTerminal()
@@ -202,12 +211,8 @@ fun LimpaTerminal()
     endif
 endfun
 
-"## Dicionários
-"set complete+=k
-let g:dict_dir = "~/dev/dotfiles/vim/dicionarios/"
-
-"# Linguagens de programação
-"## shared
+"## Linguagens de programação
+"### shared
 
 " Créditos: https://stackoverflow.com/a/24046914
 let s:comment_map = { 
@@ -258,19 +263,17 @@ endfunction
 nnoremap gcc :call ToggleComment()<cr>
 vnoremap gcc :call ToggleComment()<cr>
 
-"## HTML
+"### HTML
 augroup html
     " Créditos: https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/drwd5lx/
     au FileType html inoremap <buffer> <c-k> </<c-x><c-o><c-n><esc>==gi
     " Comenta
-    au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
     au FileType html vnoremap // I<!--<esc>A--><CR>
     au FileType html vnoremap /; :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
     au FileType html nmap // I<!--<esc>A--><CR>
     au FileType html nmap /; :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
-"    au FileType html :so ~/dev/dotfiles/vim/plugins/matchit.vim
 augroup END
-"## SVELTE
+"### SVELTE
 augroup svelte
     au BufReadPost *.svelte set syntax=html
 augroup END
@@ -282,7 +285,7 @@ augroup END
 "    " Abre file.md.pdf com comando comando $PDFVIEWER
 "    au FileType markdown nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
 "augroup END
-"## DOT GV
+"### DOT GV
 au! BufRead,BufNewFile *.gv       setfiletype dot
 augroup dot
     au FileType dot nmap <leader>r <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpdf -O %<CR><CR>
@@ -290,12 +293,11 @@ augroup dot
     au FileType dot nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
     au FileType dot imap >> <SPACE>-><SPACE>
 augroup END
-"## SHELL
+"### SHELL
 "augroup sh
-"    au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
 "    au FileType sh nmap <leader>r <Esc>:w<CR>:!clear;chmod +x % ; ./%<CR>
 "augroup END
-"## LATEX
+"### LATEX
 "augroup tex
 "    " Comenta
 "    " É necessário compilar duas vezes para ter certeza de atualizar a toc
@@ -308,7 +310,7 @@ augroup END
 "
 "" Reconhecer classes com syntax de latex
 "au BufNewFile,BufRead *.cls set filetype=tex
-"## PYTHON
+"### PYTHON
 augroup python
     au FileType python nmap <leader>r :vsp<CR>:terminal python3 %<CR>
 "    au FileType python vnoremap // :call ComentaVisual("# ", "")<CR>
@@ -316,33 +318,27 @@ augroup python
 "    au FileType python nmap // :call ComentaNormal("# ", "")<esc>
 "    au FileType python nmap /; :s/#\s/<CR>:noh<CR>
 augroup END
-"## PHP
+"### PHP
 augroup php
     " https://vim.fandom.com/wiki/Runtime_syntax_check_for_php
     "au QuickFixCmdPre make w
     au FileType php compiler php
     "au BufWritePost *.php make %
     au FileType php set errorformat=%m\
-    au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
-    au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
     au FileType php nmap <leader>r :terminal php %<CR>
-
-    " Dicionarios (c-x c-k) pois o ctags ainda é meio bugado
-    let dict_phpunit = g:dict_dir . "phpunit.txt"
-    au BufRead *test.php execute "setlocal dictionary+=".dict_phpunit
 augroup END
-"## JAVASCRIPT
+"### JAVASCRIPT
 "augroup javascript
 "    au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "augroup END
-"# Mapeamentos/Comandos e abreviações de comandos
+"## Mapeamentos/Comandos e abreviações de comandos
 ":map -> lista todos mapeamentos para o arquivo
 " Indent all file and go back
 nnoremap <C-S> i<++><esc>gg=G/<++>/<CR>v/><CR>d==:noh<CR>
 noremap <leader>. :pwd<CR>
 " Mais fácil de teclar
 inoremap <c-f> <c-o>
-"## Write/quit rapidamente
+"### Write/quit rapidamente
 noremap <leader><leader> :w<CR>
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
@@ -356,11 +352,11 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
-"## Undo/redo
+"### Undo/redo
 nnoremap <C-Z> u
 nnoremap <C-z> u
 " re do with <C-R> built-in
-"## Fold
+"### Fold
 nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
 "## Buffers
 " Use buffers instead tabs
@@ -400,10 +396,10 @@ nnoremap <silent> [b :bp<CR>
 nnoremap <silent> ]b :bn<CR>
 nnoremap <silent> [B :bp<CR>
 nnoremap <silent> ]B :bn<CR>
-"## Cursor
+"### Cursor
 cnoreabbrev cul set cul
 cnoreabbrev nocul set nocul
-"## Fechar automaticamente [ { ( " ' ' " ) } ]
+"### Fechar automaticamente [ { ( " ' ' " ) } ]
 " Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
 " Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
 inoremap {<CR> {}<left><CR><Esc>O
@@ -420,7 +416,7 @@ inoremap [ []<left>
 
 inoremap " ""<left>
 inoremap ' ''<left>
-"## surround
+"### surround
 "xnoremap ( xi()<ESC>P
 "xnoremap { xi{}<ESC>P
 "xnoremap [ xi[]<ESC>P
@@ -431,13 +427,13 @@ vnoremap <silent> " c"<c-r>""
 vnoremap <silent> ( c(<c-r>")
 vnoremap <silent> { c{<c-r>"}
 vnoremap <silent> [ c[<c-r>"]
-"## Pesquisa no arquivo
+"### Pesquisa no arquivo
 " Centralizar resultados
 nnoremap n nzzzv
 nnoremap N Nzzzv
 " Clean search (highlight)
 nnoremap <leader>/ :noh<cr>
-"## Remove utilização de setas
+"### Remove utilização de setas
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -446,25 +442,25 @@ noremap <up> <nop>
 noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
-"## Git greps
+"### Git greps
 " créditos: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
 "":lvimgrep /\[ \]/ % | lw
 command Tasks !git grep -EIn "TODO|FIXME"'
-"## Netrw
+"### Netrw
 " Netrw no lugar do nerdtree
 " Toggle diretórios à esquerda
 "noremap <leader><CR> :Lexplore<CR>
 
 " Configura para apagar o buffer vazio deixado pelo :Lexplore, thanks tpope
 au Filetype netrw setl bufhidden=delete
-"## CTAGS
+"### CTAGS
 " Necessario instalar ctags ou universal ctags
 " Att ctags
 command Ctags !ctags -R .<CR>
 
 " Goto definition
 nnoremap <leader>t :tn <c-r><c-w><CR>
-"## Split
+"### Split
 " Open the same file
 noremap <leader>h :<C-u>split<CR>
 noremap <leader>v :<C-u>vsplit<CR>
@@ -485,119 +481,3 @@ nmap <c-w>h <C-w><
 
 " Close all splits
 noremap <Leader>e :on<CR>
-"## Snippets
-" :ia
-highlight link NeniTagJump DiffAdd
-match NeniTagJump /<++>/
-
-function JumpToTag()
-    " search retorna a linha onde o parametro foi encontrado
-    if search("<++>",'nw') > 0
-        " posiciona o cursor sob o padrão da marcação
-        call search("<++>",'w')
-        " Caso a marcação esteja na ultima coluna da linha, o :startinsert
-        " recua uma coluna a mais. Como seria muito complexo calcular essa
-        " situação, é mais fácil entrar no modo de insert e apagar o numero
-        " de letras (4 para <++>)
-        call feedkeys("i\<del>\<del>\<del>\<del>")
-    endif
-endfun
-inoremap <c-tab> <esc>:call JumpToTag()<cr>
-nnoremap <c-tab> <esc>:call JumpToTag()<cr>
-
-" Cancela autotrigger snippet com qualquer "non-keyword"
-" Créditos: https://stackoverflow.com/questions/36702371/understand-iabbrev-buffer-iff-ifleft
-function LeSnippet(root, file)
-    let c = nr2char(getchar(0))
-    if c == "\<tab>"
-        " Assim que a função é chamada o modo é trocado do insert pro normal
-        " deslocando o cursor para a direita. Caso não esteja na primeira
-        " coluna, ele não se move, afetando a escolha entre i (insert) e a
-        " (apend)
-        if col(".") == 1
-            " Coloca dois marcadores (§):
-            " O primeiro demarca o final da linha [l1] (inicio do snippet) e o
-            " segundo o inicio da ultima linha [l2] (final do snippet)
-            execute "normal i§§"
-        else
-            " Coloca dois marcadores (§):
-            " O primeiro demarca o final da linha [l1] (inicio do snippet) e o
-            " segundo o inicio da ultima linha [l2] (final do snippet)
-            execute "normal a§§"
-        endif
-        " Acessa entre os marcadores (§§) e da um enter para quebrar a linha.
-        " O marcador preservará o espaço contido antes e depois do mesmo,
-        " evitando que o J crie um espaço caso não precise ou unifique caso ja
-        " exista
-        execute "normal i\<cr>"
-
-        " Marca l2 (mark s) e sobe para a linha inicial
-        normal msk
-
-        " Escreve o conteudo do snippet logo abaixo da linha inicial
-        execute "read" . a:file
-
-        " - Marca a primeira linha do snippet lido (mark d)
-        " - Unifica l1 com a primeira do snippet
-        " - Move para esquerda e apaga o espaço gerado pelo J e o marcador (§)
-        " - Retorna à l2
-        " - Unifica l2 com a ultima do snippet
-        " - Apaga o espaço gerado pelo J e o marcador (§) restante
-        " - Seleciona de l2 unificada até l1 unificada com o snippet e identa
-        normal mdkJhxx`skJxxV`d=
-        call JumpToTag()
-    elseif c == " " || c == '.' || c == ',' || c == ';'
-        " a:root . c vai tornar recursiva a função.
-        " É necessário colocar uma letra que não seja non-keyword para depois
-        " apagá-la
-        execute "normal i" . a:root . 'c' . c
-        execute "normal hx"
-        startinsert
-        call cursor( line('.'), col('.') + 1)
-    else
-        " a:root . c vai tornar recursiva a função.
-        " É necessário colocar uma letra que não seja non-keyword para depois
-        " apagá-la
-        execute "normal i" . a:root . 'a'
-        execute "normal x"
-    endif
-endfunction
-
-function! CriaSnippet(root, good)
-    execute "iabbr <buffer> " . a:root . " <esc>:call LeSnippet(\"" . a:root . "\", \"" . a:good . "\")<cr>"
-endfunction
-
-function! RegistraArraySnippets(snippet)
-    for key in keys(a:snippet)
-        execute CriaSnippet(key, a:snippet[key])
-    endfor
-endfunction
-
-let s:snippetsDir = '~/dev/dotfiles/vim/snippets/'
-let s:snippetsDirPHP = s:snippetsDir . 'php/'
-let s:snippets_php_abbreviations = {
-            \ 'for': s:snippetsDirPHP.'for.php',
-            \ 'fore': s:snippetsDirPHP.'foreach.php',
-            \ 'fun': s:snippetsDirPHP.'function.php',
-            \ 'if': s:snippetsDirPHP.'if.php',
-            \ '-': s:snippetsDirPHP.'private.php',
-            \ '#': s:snippetsDirPHP.'protected.php',
-            \ '+': s:snippetsDirPHP.'public.php',
-            \ 't': s:snippetsDirPHP.'this.php',
-            \ 'dd': s:snippetsDirPHP.'var_dump.php',
-            \ 'e': s:snippetsDirPHP.'echo.php',
-            \ }
-let s:snippetsDirJS = s:snippetsDir . 'js/'
-let s:snippets_js_abbreviations = {
-            \ 'for': s:snippetsDirJS.'for.js',
-            \ 'fun': s:snippetsDirJS.'function.js',
-            \ 'if': s:snippetsDirJS.'if.js',
-            \ 'log': s:snippetsDirJS.'log.js',
-            \ }
-
-au FileType php call RegistraArraySnippets(s:snippets_php_abbreviations)
-au FileType javascript call RegistraArraySnippets(s:snippets_js_abbreviations)
-au FileType html call RegistraArraySnippets(s:snippets_js_abbreviations)
-
-
-
