@@ -293,7 +293,7 @@ augroup dot
     au FileType dot nmap <leader>i <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpng % -O<CR><CR>
     au FileType dot nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
     au FileType dot imap >> <SPACE>-><SPACE>
-"augroup END
+augroup END
 "## SHELL
 "augroup sh
 "    au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
