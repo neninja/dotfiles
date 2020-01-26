@@ -126,7 +126,7 @@ augroup html
     au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
 "    au FileType html :so ~/dev/dotfiles/vim/plugins/matchit.vim
 augroup END
-## PHP
+"## PHP
 augroup php
     au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
     au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
