@@ -134,9 +134,6 @@ set showcmd
 "":lvimgrep /^"#/ % | lw
 "### Markdown
 function! FoldMarkdown()
-    if getline(v:lnum) =~ '^# .*$'
-        return ">1"
-    endif
     if getline(v:lnum) =~ '^## .*$'
         return ">2"
     endif
@@ -158,9 +155,6 @@ au FileType markdown set foldexpr=FoldMarkdown()
 set foldmethod=expr
 "### VimScript
 function! FoldVimScript()
-    if getline(v:lnum) =~ '^"# .*$'
-        return ">1"
-    endif
     if getline(v:lnum) =~ '^"## .*$'
         return ">2"
     endif
