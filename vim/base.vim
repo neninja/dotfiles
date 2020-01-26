@@ -41,32 +41,26 @@ set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
 set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 "### Visual Settings
-syntax on                   " required for plugins
-filetype plugin indent on   " required for plugins
-set relativenumber          " distancias entre a linha do cursor
-set number                  " numero das linhas
-set showmatch               " mostra fechamento de {['']}
-set autoindent              " auto indentação -> ==
+syntax on                   " muda syntax do arquivo de acordo com o filetype (necessário para plugins tbm)
+filetype plugin indent on   " carrega ftplugin.vim e indent.vim do runtimepath (necessário para plugins tbm)
+set background=dark         " ajusta cores para um fundo escuro
+colorscheme slate           " escolhe paleta de cores slate (vem junto na instalação do vim) para syntax
+set number relativenumber   " exibe régua com o numero relativo das linhas (distancia entre linha corrente)
+set showmatch               " mostra fechamento de {[()]}
+set autoindent              " auto indentação
 set mouse=a                 " libera uso do mouse em todos modos
 set linebreak               " quebra a linha por palavra e não por letra
-
-" theme
-set background=dark
-colorscheme slate
+set cursorcolumn cursorline " marca colunha e linha do cursor
 
 " Checar quando o texto for modificado
 set autoread
 au FocusGained,BufEnter * :silent!<space>!
 
-" Para encontrar mais facilmente o cursor
-set cursorcolumn
-set cursorline
-
+"#### Som
 " Remove som ao apertar multiplos ESCs
 " https://vim.fandom.com/wiki/Disable_beeping"
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
-
 "Obs: para o gvim editar o _gvimrc (windows) ou .gvimrc (linux)
 "### Popup e omni
 set wildmenu
