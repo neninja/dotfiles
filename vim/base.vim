@@ -30,8 +30,8 @@
 "## Configurações de variáveis
 let mapleader="\<space>"
 "### Modeline
-set modeline
-set modelines=4
+set modeline        " habilita uso da modeline
+set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
 " Exemplo de modeline:
 " vim: set fdm=marker:
 "### Statusline
