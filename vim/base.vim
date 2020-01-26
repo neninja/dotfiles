@@ -19,7 +19,6 @@
 " sob o cursor   |  za ou zo/zc     |  zA ou zO/zC
 " 
 "
-hi link phpErrorComma Error
 "
 " Dica: Usar K (:h K em cima da configuração para consultar manual)
 " mksession? Usar para substituir bookmarks
