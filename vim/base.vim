@@ -21,11 +21,7 @@
 "
 "
 " Dica: Usar K (:h K em cima da configuração para consultar manual)
-" mksession? Usar para substituir bookmarks
-" Ver esses plugins
 " dotfiles tpope: https://github.com/tpope/tpope || https://github.com/woliveiras/dotfiles/blob/master/bin/system-settings/.vimrc
-" nnoremap ,html :-1read $HOMEPATH/.vim/skeleton/html<CR>3jwf>a
-" https://stackoverflow.com/questions/3828606/vim-markdown-folding
 "# Configurações de variáveis
 let mapleader="\<space>"
 "## Modeline
