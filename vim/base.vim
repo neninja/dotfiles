@@ -35,20 +35,20 @@ set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
 " Exemplo de modeline:
 " vim: set fdm=marker:
 "### Statusline
-set laststatus=2
-set statusline=
-set statusline+=\ %r\%m\%f\ 	                " Nome readonly, modificado e nome abreviado
-set statusline+=\%=						        " Espaço
-set statusline+=\ %p%%\ %l:\%c                  " Rownumber, total e percentual
+set laststatus=2                " habilita statusline
+set statusline=                 " reseta statusline
+set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
+set statusline+=\%=				" espaço
+set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 "### Visual Settings
-syntax on                               " Required for plugins
-filetype plugin indent on               " Required for plugins
-set relativenumber                      " Distancias entre a linha do cursor
-set number                              " Numero das linhas
-set showmatch                           " Mostra fechamento de {['']}
-set autoindent                          " Auto indentação -> ==
-set mouse=a                             " Libera uso do mouse em todos modos
-set linebreak                           " Quebra a linha por palavra e não por letra
+syntax on                   " required for plugins
+filetype plugin indent on   " required for plugins
+set relativenumber          " distancias entre a linha do cursor
+set number                  " numero das linhas
+set showmatch               " mostra fechamento de {['']}
+set autoindent              " auto indentação -> ==
+set mouse=a                 " libera uso do mouse em todos modos
+set linebreak               " quebra a linha por palavra e não por letra
 
 " theme
 set background=dark
@@ -72,10 +72,10 @@ autocmd GUIEnter * set visualbell t_vb=
 set wildmenu
 set wildmode=list:full
 set completeopt=menuone                 " mostrar menu de opções
-"set completeopt+=noselect,noinsert      " Não selecionar nem aceitar instantaneamente o texto (c-n apenas abre opções)
-set shortmess+=c   " Shut off completion messages
-set belloff+=ctrlg " If Vim beeps during completion
-"""set wildchar=<Tab>                      " (default)
+"set completeopt+=noselect,noinsert      " não selecionar nem aceitar instantaneamente o texto (c-n apenas abre opções)
+set shortmess+=c                        " shut off completion messages
+set belloff+=ctrlg                      " if Vim beeps during completion
+"""set wildchar=<Tab>                   " (default)
 set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
 set complete=.,w,b,u,t                  " sugestões
 "### Sistema Operacional
@@ -110,8 +110,8 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 "## Searching
-set hlsearch " Colore os matches
-set incsearch " Vai colorindo a pesquisa durante a digitação
+set hlsearch                    " colore os matches
+set incsearch                   " vai colorindo a pesquisa durante a digitação
 set ignorecase
 "set smartcase
 set smarttab
