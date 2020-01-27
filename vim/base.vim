@@ -16,10 +16,11 @@
 "
 " zj zk pulo de fold
 " [z ]z gg G de um fold aberto
+"
 "|             | primeiro nivel |  recursivo  |
 "|-------------|----------------|-------------|
 "|todo arquivo |     zr/zm      |  zR/zM (F2) |
-"|             |   reduce/more  | Reduce/More |
+"|             |   reduce/more  | reduce/more |
 "|-------------|----------------|-------------|
 "|sob o cursor |   zo/zc ou za  | zO/zC ou zA |
 "
