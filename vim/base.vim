@@ -391,7 +391,7 @@ vnoremap gcc :call ToggleComment()<cr>
 "### HTML
 augroup html
     " Créditos: https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/drwd5lx/
-    au FileType html inoremap <buffer> <c-k> </<c-x><c-o><c-n><esc>==gi
+    au FileType html inoremap <buffer> <c-k> </<c-x><c-o><esc>==gi
     " Comenta
     au FileType html vnoremap // I<!--<esc>A--><CR>
     au FileType html vnoremap /; :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
