@@ -35,19 +35,25 @@
 "   - O mesmo arquivo não é aberto duas vezes
 "   - Mais velocidade pois a janela não precisa ser redesenhada
 
-set hidden " mantêm o arquivo disponível ao sair dele, porém escondido (mesmo modificado e não salvo)
+set hidden " mantêm o arquivo disponível ao sair dele (mesmo modificado)
+" :ls lista os buffers
 "## Aparência e som
-syntax on                   " muda syntax do arquivo de acordo com o filetype (necessário para plugins tbm)
-filetype plugin indent on   " carrega ftplugin.vim e indent.vim do runtimepath (necessário para plugins tbm)
+syntax on                   " syntax de acordo com o filetype
+filetype plugin indent on   " carrega ftplugin.vim e indent.vim do runtimepath (plugins)
 set background=dark         " ajusta cores para um fundo escuro
-colorscheme slate           " escolhe paleta de cores slate (vem junto na instalação do vim) para syntax
-set number relativenumber   " exibe régua com o numero relativo das linhas (distancia entre linha corrente)
+colorscheme slate           " tema de cores slate (junto com vim) para syntax
+set number relativenumber   " exibe régua com o numero relativo das linhas
 set showmatch               " mostra fechamento de {[()]}
 set autoindent              " auto indentação
 set mouse=a                 " libera uso do mouse em todos modos
 set linebreak               " quebra a linha por palavra e não por letra
 set cursorcolumn cursorline " marca colunha e linha do cursor
 set showcmd                 " mostra os comandos no canto inferior direito
+
+" Limite de coluna
+set textwidth=80            " define largura da linha de texto
+set formatoptions+=t        " quebra a linha na coluna textwidth (Vgq)
+set colorcolumn=+1          " marca coluna 81
 
 " Remove som ao apertar multiplos ESCs
 " https://vim.fandom.com/wiki/Disable_beeping"
@@ -68,10 +74,10 @@ set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 "## Popup de sugestão
 set wildmenu                            " habilita menu
-set completeopt=menuone                 " mostrar menu de opções
-set shortmess+=c                        " remove mensagem 'match 1 of x' quando abre o wildmenu
-set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o de acordo com o filetype do buffer aberto
-set complete=.,w,b,u,t                  " add sugetsão do buffer atual, outras janelas, outros buffers e tags
+set completeopt=menuone                 " mostra menu de opções
+set shortmess+=c                        " remove mensagens inúteis do wildmenu
+set omnifunc=syntaxcomplete#Complete    " c-x c-o pelo filetype do buffer aberto
+set complete=.,w,b,u,t                  " add sugestão do wildmenu
 "## Conteúdo do buffer aberto
 set encoding=utf-8
 "set fileencoding=utf-8 "?
@@ -258,8 +264,6 @@ nnoremap <silent> ]B :bn<CR>
 cnoreabbrev cul set cul
 cnoreabbrev nocul set nocul
 "### Fechar automaticamente [{("''")}]
-" Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
-" Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
 inoremap {<CR> {}<left><CR><Esc>O
 inoremap {<space> {}<left><space><space><left>
 inoremap { {}<left>
@@ -297,7 +301,7 @@ noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
 "### Git greps
-" créditos: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
+" Créditos: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
 "":lvimgrep /\[ \]/ % | lw
 command Tasks !git grep -EIn "TODO|FIXME"'
 "### CTAGS
