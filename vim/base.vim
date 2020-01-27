@@ -1,46 +1,42 @@
-"# Base vimrc
 " Arquivo de configurações básicas do vim, podendo ser adicionado
-" de maneira independente do repo dotfiles
+" de maneira independente do repo dotfiles. Basta copiar o conteúdo para
+" o arquivo %userprofile%\_vimrc no Windows ou em $HOME/.vimrc no Linux.
+" - https://raw.githubusercontent.com/nenitf/dotfiles/master/vim/base.vim
 "
-" Este arquivo utiliza os folds do vim, abaixo um resumo de como usar (:h folds)
+" Livros abertos sobre vim:
+" - https://vimbook.gitbook.io/vimbook/
+" - https://sedilson.github.io/vimparanoobs/index.html
 "
-" https://vim.fandom.com/wiki/Folding
-" https://pt.wikibooks.org/wiki/Vim/Usando_folders
-" https://www.linux.com/tutorials/vim-tips-folding-fun/
-"
-" https://vimbook.gitbook.io/vimbook/
-" https://sedilson.github.io/vimparanoobs/index.html
+" Este arquivo utiliza os folds do vim, abaixo um resumo de como usar (:h folds):
+" - https://vim.fandom.com/wiki/Folding
+" - https://pt.wikibooks.org/wiki/Vim/Usando_folders
+" - https://www.linux.com/tutorials/vim-tips-folding-fun/
 "
 " zj zk pulo de fold
 " [z ]z gg G de um fold aberto
+"|             | primeiro nivel |  recursivo  |
+"|-------------|----------------|-------------|
+"|todo arquivo |     zr/zm      |  zR/zM (F2) |
+"|             |   reduce/more  | Reduce/More |
+"|-------------|----------------|-------------|
+"|sob o cursor |   zo/zc ou za  | zO/zC ou zA |
 "
-"                ABRE/FECHA ou TOGGLE
-"                | primeiro nivel    | recursivo
-" ----------------------------------------------------
-" todo arquivo   |       zr/zm       | zR/zM (F2)
-"                |    reduce/more    | Reduce/More
-" ----------------------------------------------------
-" sob o cursor   |  za ou zo/zc     |  zA ou zO/zC
-" 
+" dotfiles interessantes:
+" - https://github.com/tpope/tpope
+" - https://github.com/woliveiras/dotfiles/blob/master/bin/system-settings/.vimrc
 "
+" DICAS:
+"   - Usar K (:h K) em cima da palavra da configuração para consultar manual
+"   - propriedades que são setadas podem voltar ao seu valor inicial com &,
+"   por exemplo set wildmenu&
 "
-" Dica: Usar K (:h K em cima da configuração para consultar manual)
-" dotfiles tpope: https://github.com/tpope/tpope || https://github.com/woliveiras/dotfiles/blob/master/bin/system-settings/.vimrc
-"
-"## Configurações de variáveis
-let mapleader="\<space>"
-"### Modeline
-set modeline        " habilita uso da modeline
-set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
-" Exemplo de modeline:
-" vim: set fdm=marker:
-"### Statusline
-set laststatus=2                " habilita statusline
-set statusline=                 " reseta statusline
-set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
-set statusline+=\%=				" espaço
-set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
-"### Visual Settings
+"## Buffers
+" Motivos para usar buffer ao invés de tabs:
+"   - O mesmo arquivo não é aberto duas vezes
+"   - Mais velocidade pois a janela não precisa ser redesenhada
+
+set hidden " mantêm o arquivo disponível ao sair dele, porém escondido (mesmo modificado e não salvo)
+"## Aparência e som
 syntax on                   " muda syntax do arquivo de acordo com o filetype (necessário para plugins tbm)
 filetype plugin indent on   " carrega ftplugin.vim e indent.vim do runtimepath (necessário para plugins tbm)
 set background=dark         " ajusta cores para um fundo escuro
@@ -51,86 +47,74 @@ set autoindent              " auto indentação
 set mouse=a                 " libera uso do mouse em todos modos
 set linebreak               " quebra a linha por palavra e não por letra
 set cursorcolumn cursorline " marca colunha e linha do cursor
+set showcmd                 " mostra os comandos no canto inferior direito
+
+" Remove som ao apertar multiplos ESCs
+" https://vim.fandom.com/wiki/Disable_beeping"
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+set belloff+=ctrlg                      " if Vim beeps during completion
+"Obs: para o gvim editar o _gvimrc (windows) ou .gvimrc (linux)
+"## Modeline
+set modeline        " habilita uso da modeline
+set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
+" Exemplo de modeline:
+" vim: set fdm=marker:
+"## Statusline
+set laststatus=2                " habilita statusline
+set statusline=                 " reseta statusline
+set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
+set statusline+=\%=				" espaço
+set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
+"## Popup de sugestão
+set wildmenu                            " habilita menu
+set completeopt=menuone                 " mostrar menu de opções
+set shortmess+=c                        " remove mensagem 'match 1 of x' quando abre o wildmenu
+set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o de acordo com o filetype do buffer aberto
+set complete=.,w,b,u,t                  " add sugetsão do buffer atual, outras janelas, outros buffers e tags
+"## Conteúdo do buffer aberto
+set encoding=utf-8
+"set fileencoding=utf-8 "?
+"set fileencodings=utf-8 "?
+set fileformats=unix,dos,mac
+"set bomb "?
+"set binary "?
+set nrformats-=octal            " ctrl-a ctrl -x
+
+set nobackup    " para não criar arquivo de bkp
+set noswapfile  " para não criar arquivo swap
 
 " Checar quando o texto for modificado
 set autoread
 au FocusGained,BufEnter * :silent!<space>!
 
-"#### Som
-" Remove som ao apertar multiplos ESCs
-" https://vim.fandom.com/wiki/Disable_beeping"
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-"Obs: para o gvim editar o _gvimrc (windows) ou .gvimrc (linux)
-"### Popup e omni
-set wildmenu
-set wildmode=list:full
-set completeopt=menuone                 " mostrar menu de opções
-"set completeopt+=noselect,noinsert      " não selecionar nem aceitar instantaneamente o texto (c-n apenas abre opções)
-set shortmess+=c                        " shut off completion messages
-set belloff+=ctrlg                      " if Vim beeps during completion
-"""set wildchar=<Tab>                   " (default)
-set omnifunc=syntaxcomplete#Complete    " ctrl-x ctrl-o
-set complete=.,w,b,u,t                  " sugestões
-"### Sistema Operacional
-"#### Linux
-"#### Windows
-" Créditos: https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
-fun! Dos2unix()
-    " Don't strip on these filetypes
-    " :echo &ft
-    if &ft =~ 'startify\|nerdtree'
-        return
-    endif
-    :e ++ff=dos
-endfun
-
-""autocmd BufRead * call Dos2unix()
-"### Encoding
-set encoding=utf-8
-"set fileencoding=utf-8 "?
-"set fileencodings=utf-8 "?
-"set bomb "?
-"set binary "?
-set nrformats-=octal            " ctrl-a ctrl -x
-
 " Permite usar <bs> mesmo indo contra auto-intent, eol e inicio da linha
 " https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
 set backspace=indent,eol,start
-"## Tabs
+"### Tabs/espaços
 " https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
-"## Searching
-set hlsearch                    " colore os matches
-set incsearch                   " vai colorindo a pesquisa durante a digitação
-set ignorecase
-"set smartcase
 set smarttab
-" Directories for swp files
-set nobackup
-set noswapfile
-set fileformats=unix,dos,mac
-
-" Delay entre atalhos
-"set ttimeout
-"set ttimeoutlen=100
-"set timeoutlen=3000
+set expandtab
+"## Pesquisa no buffer aberto
+set hlsearch    " colore os matches
+set incsearch   " vai colorindo a pesquisa durante a digitação
+set ignorecase  " ignora case sensitive na busca
 "## Copy paste
 set clipboard=unnamed
-noremap <leader>y V"+y:echo "Copiado!!"<CR>
+noremap <leader>y my^vg_"+y:echo "Copiado!!"<CR>
 vnoremap <leader>y "+y:echo "Copiado!!"<CR>
-" Mostra os comandos no canto inferior direito
-set showcmd
 "## Fold
-" Retem folds
-" Causa erro no windows caso a view não exista
-"autocmd BufWinLeave *.* mkview
-"autocmd BufWinEnter *.* silent loadview
-" https://stackoverflow.com/questions/3828606/vim-markdown-folding
-"":lvimgrep /^"#/ % | lw
+function! FoldTextHashtag()
+    let nl = v:foldend - v:foldstart + 1
+    let titulo = substitute(getline(v:foldstart),"^\"#*","",'g')
+    let titulo = substitute(getline(v:foldstart),"^\"","",'g')
+    "let txt = '+ (' . nl . ')' . titulo . ' '
+    let txt = titulo . ' (' . nl . ') '
+    return txt
+endfunction
 "### Markdown
 function! FoldMarkdown()
     if getline(v:lnum) =~ '^## .*$'
@@ -150,9 +134,12 @@ function! FoldMarkdown()
     endif
     return "=" 
 endfunction
+
 au FileType markdown set foldexpr=FoldMarkdown()  
-set foldmethod=expr
-"#### VimScript
+au FileType markdown set foldmethod=expr
+au FileType markdown set foldtext=FoldTextHashtag()
+"":lvimgrep /^"#/ % | lw
+"### VimScript
 function! FoldVimScript()
     if getline(v:lnum) =~ '^"## .*$'
         return ">1"
@@ -173,20 +160,11 @@ function! FoldVimScript()
 endfunction
 " https://stackoverflow.com/questions/5983396/change-the-text-in-folds
 " https://jdhao.github.io/2019/08/16/nvim_config_folding/
-function! FoldTextVimScript()
-    let nl = v:foldend - v:foldstart + 1
-    let titulo = substitute(getline(v:foldstart),"^\"#*","",'g')
-    let titulo = substitute(getline(v:foldstart),"^\"","",'g')
-    "let txt = '+ (' . nl . ')' . titulo . ' '
-    let txt = titulo . ' (' . nl . ') '
-    return txt
-endfunction
 
 au FileType vim set foldexpr=FoldVimScript()
 au FileType vim set foldmethod=expr
-"au FileType vim set foldexpr=FoldVimScript()
-set foldtext=FoldTextVimScript()
-"### Netrw
+au FileType vim set foldtext=FoldTextHashtag()
+"## Netrw
 " Como não criar NetrwTreeListing e .netrwhist?
 " - :edit a folder to open a file browser
 " - <CR>/v/t to open in an h-split/v-split/tab
@@ -194,7 +172,17 @@ set foldtext=FoldTextVimScript()
 "let g:netrw_banner=0        " disable annoying banner
 "let g:netrw_browse_split=4  " open in prior window
 "let g:netrw_liststyle=3     " tree view
-"### Funções
+"## Declaração de funções (macros)
+" Créditos: https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
+fun! Dos2unix()
+    " Don't strip on these filetypes
+    " :echo &ft
+    if &ft =~ 'startify\|nerdtree'
+        return
+    endif
+    :e ++ff=dos
+endfun
+
 " Função utilizada para limpar a tela do terminal
 " Dependendo do SO muda o comando...
 fun LimpaTerminal()
@@ -204,37 +192,173 @@ fun LimpaTerminal()
         silent !clear
     endif
 endfun
+"## Mapeamentos/Comandos e abreviações (macros)
+":map -> lista todos mapeamentos para o arquivo
 
-"## Linguagens de programação
-"### shared
+let mapleader="\<space>"
 
+" Identa todo arquivo e volta ao ponto de partida
+nnoremap <C-S> mi<esc>gg=G`i
+
+" Mostra o diretório corrente, raiz para acessar arquivos com :e
+noremap <leader>. :pwd<CR>
+
+" Mais ergonômico
+inoremap <c-f> <c-o>
+"### Salvar/sair rapidamente
+noremap <leader><leader> :w<CR>
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qa! qa!
+cnoreabbrev QA! qa!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev QA qa
+"### Undo/redo
+nnoremap <c-z> u
+" re do with <C-R> built-in
+"### Fold
+" reduz/mostra conteudo dos folds
+nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
+"### Buffers
+" View and select buffers
+" CtrlP possui a mesma feature
+"nnoremap <Tab> :ls <CR>:b<space>
+
+" Fechar (sem forçar) todos buffers e deixar somente um
+" Créditos: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
+command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
+
+" Créditos: https://stackoverflow.com/a/38082196
+command! TerminalGitRoot exec 'cd' fnameescape(fnamemodify(finddir('.git',
+            \ escape(expand('%:p:h'), ' ') . ';'), ':h'))
+            \ '|term'
+
+" Open new file in buffer
+" Atualmente é mais eficar usar ctrlp, mas o truque é top
+" nnoremap <c-n> :e **/*
+
+" Deleção de buffers
+nnoremap <silent> <leader>dd :bd<CR>
+nnoremap <silent> <leader>df :bd!<CR>
+
+" Troca de buffers
+"nnoremap <Tab> :bn<CR>
+"nnoremap <S-Tab> :bp<CR>
+nnoremap <silent> [b :bp<CR>
+nnoremap <silent> ]b :bn<CR>
+nnoremap <silent> [B :bp<CR>
+nnoremap <silent> ]B :bn<CR>
+"### Cursor
+cnoreabbrev cul set cul
+cnoreabbrev nocul set nocul
+"### Fechar automaticamente [{("''")}]
+" Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
+" Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
+inoremap {<CR> {}<left><CR><Esc>O
+inoremap {<space> {}<left><space><space><left>
+inoremap { {}<left>
+
+inoremap (<CR> ()<left><CR><Esc>O
+inoremap (<space> ()<left><space><space><left>
+inoremap ( ()<left>
+
+inoremap [<CR> []<left><CR><Esc>O
+inoremap [<space> []<left><space><space><left>
+inoremap [ []<left>
+
+inoremap " ""<left>
+inoremap ' ''<left>
+"### Surround
+vnoremap <silent> ' c'<c-r>"'
+vnoremap <silent> " c"<c-r>""
+vnoremap <silent> ( c(<c-r>")
+vnoremap <silent> { c{<c-r>"}
+vnoremap <silent> [ c[<c-r>"]
+"### Pesquisa no arquivo
+" Centralizar resultados
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Limpa highlight da pesquisa
+nnoremap <leader>/ :noh<cr>
+"### Remove utilização de setas
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+"### Git greps
+" créditos: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
+"":lvimgrep /\[ \]/ % | lw
+command Tasks !git grep -EIn "TODO|FIXME"'
+"### CTAGS
+" Necessario instalar ctags ou universal ctags
+" Att ctags
+command Ctags !ctags -R .<CR>
+
+" Goto definition
+nnoremap <leader>t :tn <c-r><c-w><CR>
+"### Split
+" Open the same file
+noremap <leader>h :<C-u>split<CR>
+noremap <leader>v :<C-u>vsplit<CR>
+" Search an file
+noremap <leader>l :<C-u>vsp
+noremap <leader>j :<C-u>sp
+
+" Switching windows
+"   Igual ao dwm
+noremap <c-j> <C-w>w
+noremap <c-k> <C-w>W
+
+" Resize
+nmap <C-w>j <C-w>-
+nmap <c-w>k <C-w>+
+nmap <c-w>l <C-w>>
+nmap <c-w>h <C-w><
+
+" Close all splits
+noremap <Leader>e :on<CR>
+"## Configuração específicas de sistema operacional
+""autocmd BufRead * call Dos2unix()
+"## Comandos/configurações específicas do buffer aberto
 " Créditos: https://stackoverflow.com/a/24046914
 let s:comment_map = { 
-    \   "c": '\/\/',
-    \   "cpp": '\/\/',
-    \   "go": '\/\/',
-    \   "java": '\/\/',
-    \   "javascript": '\/\/',
-    \   "lua": '--',
-    \   "scala": '\/\/',
-    \   "php": '\/\/',
-    \   "python": '#',
-    \   "ruby": '#',
-    \   "rust": '\/\/',
-    \   "sh": '#',
-    \   "desktop": '#',
-    \   "fstab": '#',
-    \   "conf": '#',
-    \   "profile": '#',
-    \   "bashrc": '#',
-    \   "bash_profile": '#',
-    \   "mail": '>',
-    \   "eml": '>',
-    \   "bat": 'REM',
-    \   "ahk": ';',
-    \   "vim": '"',
-    \   "tex": '%',
-    \ }
+            \   "c": '\/\/',
+            \   "cpp": '\/\/',
+            \   "dot": '\/\/',
+            \   "go": '\/\/',
+            \   "java": '\/\/',
+            \   "javascript": '\/\/',
+            \   "lua": '--',
+            \   "scala": '\/\/',
+            \   "php": '\/\/',
+            \   "python": '#',
+            \   "ruby": '#',
+            \   "rust": '\/\/',
+            \   "sh": '#',
+            \   "desktop": '#',
+            \   "fstab": '#',
+            \   "conf": '#',
+            \   "profile": '#',
+            \   "bashrc": '#',
+            \   "bash_profile": '#',
+            \   "mail": '>',
+            \   "eml": '>',
+            \   "bat": 'REM',
+            \   "ahk": ';',
+            \   "vim": '"',
+            \   "tex": '%',
+            \ }
 
 function! ToggleComment()
     if has_key(s:comment_map, &filetype)
@@ -274,22 +398,15 @@ augroup END
 
 "### MARKDOWN
 "augroup markdown
-"    " Converte arquivo file.md atual em file.md.pdf
-"    au FileType markdown nmap <leader>r <Esc>:w<CR>:!clear;pandoc % -o %.pdf<CR><CR>
-"    " Abre file.md.pdf com comando comando $PDFVIEWER
-"    au FileType markdown nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
 "augroup END
 "### DOT GV
-au! BufRead,BufNewFile *.gv       setfiletype dot
+au! BufRead,BufNewFile *.gv setfiletype dot
 augroup dot
     au FileType dot nmap <leader>r <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpdf -O %<CR><CR>
     au FileType dot nmap <leader>i <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpng % -O<CR><CR>
-    au FileType dot nmap <leader>e <Esc>:w<CR>:!clear;$PDFVIEWER %.pdf &<CR><CR>
-    au FileType dot imap >> <SPACE>-><SPACE>
 augroup END
 "### SHELL
 "augroup sh
-"    au FileType sh nmap <leader>r <Esc>:w<CR>:!clear;chmod +x % ; ./%<CR>
 "augroup END
 "### LATEX
 "augroup tex
@@ -307,139 +424,19 @@ augroup END
 "### PYTHON
 augroup python
     au FileType python nmap <leader>r :vsp<CR>:terminal python3 %<CR>
-"    au FileType python vnoremap // :call ComentaVisual("# ", "")<CR>
-"    au FileType python vnoremap /; :s/#\s/<CR>:noh<CR>
-"    au FileType python nmap // :call ComentaNormal("# ", "")<esc>
-"    au FileType python nmap /; :s/#\s/<CR>:noh<CR>
 augroup END
 "### PHP
 augroup php
     " https://vim.fandom.com/wiki/Runtime_syntax_check_for_php
-    "au QuickFixCmdPre make w
+    " Para usar o :make % e ver erro de syntax
     au FileType php compiler php
-    "au BufWritePost *.php make %
     au FileType php set errorformat=%m\
+
     au FileType php nmap <leader>r :terminal php %<CR>
 augroup END
 "### JAVASCRIPT
 "augroup javascript
-"    au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "augroup END
-"## Mapeamentos/Comandos e abreviações de comandos
-":map -> lista todos mapeamentos para o arquivo
-" Indent all file and go back
-nnoremap <C-S> i<++><esc>gg=G/<++>/<CR>v/><CR>d==:noh<CR>
-noremap <leader>. :pwd<CR>
-" Mais fácil de teclar
-inoremap <c-f> <c-o>
-"### Write/quit rapidamente
-noremap <leader><leader> :w<CR>
-cnoreabbrev W! w!
-cnoreabbrev Q! q!
-cnoreabbrev Qa! qa!
-cnoreabbrev QA! qa!
-cnoreabbrev Wq wq
-cnoreabbrev Wa wa
-cnoreabbrev wQ wq
-cnoreabbrev WQ wq
-cnoreabbrev W w
-cnoreabbrev Q q
-cnoreabbrev Qa qa
-cnoreabbrev QA qa
-"### Undo/redo
-nnoremap <C-Z> u
-nnoremap <C-z> u
-" re do with <C-R> built-in
-"### Fold
-nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
-"## Buffers
-" Use buffers instead tabs
-"   the same file dont open twice
-"   more velocity
-
-" View and select buffers
-" CtrlP possui a mesma feature
-"nnoremap <Tab> :ls <CR>:b<space>
-
-" Fechar todos buffers e deixar somente um
-" Somente buffers sem conteúdo por salvar são fechados
-" Créditos: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
-" nnoremap <c-n> :%bd | e # | b # | q<CR>
-command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
-
-" Créditos: https://stackoverflow.com/a/38082196
-command! TerminalGitRoot exec 'cd' fnameescape(fnamemodify(finddir('.git',
-    \ escape(expand('%:p:h'), ' ') . ';'), ':h'))
-    \ '|term'
-
-" Leave a buffer even without save
-set hidden
-
-" Open new file in buffer
-" Atualmente é mais eficar usar ctrlp, mas o truque é top
-" nnoremap <c-n> :e **/*
-
-" Deleção de buffers
-nnoremap <silent> <leader>dd :bd<CR>
-nnoremap <silent> <leader>df :bd!<CR>
-
-" Troca debuffers
-"nnoremap <Tab> :bn<CR>
-"nnoremap <S-Tab> :bp<CR>
-nnoremap <silent> [b :bp<CR>
-nnoremap <silent> ]b :bn<CR>
-nnoremap <silent> [B :bp<CR>
-nnoremap <silent> ]B :bn<CR>
-"### Cursor
-cnoreabbrev cul set cul
-cnoreabbrev nocul set nocul
-"### Fechar automaticamente [ { ( " ' ' " ) } ]
-" Melhorar o <left><left>......, vimrc não reconhece comando de leader para {~~}
-" Muito cansativo usar a regra de quebrar linha no {} e rever em outros para não fazer
-inoremap {<CR> {}<left><CR><Esc>O
-inoremap {<space> {}<left><space><space><left>
-inoremap { {}<left>
-
-inoremap (<CR> ()<left><CR><Esc>O
-inoremap (<space> ()<left><space><space><left>
-inoremap ( ()<left>
-
-inoremap [<CR> []<left><CR><Esc>O
-inoremap [<space> []<left><space><space><left>
-inoremap [ []<left>
-
-inoremap " ""<left>
-inoremap ' ''<left>
-"### surround
-"xnoremap ( xi()<ESC>P
-"xnoremap { xi{}<ESC>P
-"xnoremap [ xi[]<ESC>P
-"xnoremap " xi""<ESC>P
-"xnoremap ' xi''<ESC>P
-vnoremap <silent> ' c'<c-r>"'
-vnoremap <silent> " c"<c-r>""
-vnoremap <silent> ( c(<c-r>")
-vnoremap <silent> { c{<c-r>"}
-vnoremap <silent> [ c[<c-r>"]
-"### Pesquisa no arquivo
-" Centralizar resultados
-nnoremap n nzzzv
-nnoremap N Nzzzv
-" Clean search (highlight)
-nnoremap <leader>/ :noh<cr>
-"### Remove utilização de setas
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-"### Git greps
-" créditos: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
-"":lvimgrep /\[ \]/ % | lw
-command Tasks !git grep -EIn "TODO|FIXME"'
 "### Netrw
 " Netrw no lugar do nerdtree
 " Toggle diretórios à esquerda
@@ -447,31 +444,3 @@ command Tasks !git grep -EIn "TODO|FIXME"'
 
 " Configura para apagar o buffer vazio deixado pelo :Lexplore, thanks tpope
 au Filetype netrw setl bufhidden=delete
-"### CTAGS
-" Necessario instalar ctags ou universal ctags
-" Att ctags
-command Ctags !ctags -R .<CR>
-
-" Goto definition
-nnoremap <leader>t :tn <c-r><c-w><CR>
-"### Split
-" Open the same file
-noremap <leader>h :<C-u>split<CR>
-noremap <leader>v :<C-u>vsplit<CR>
-" Search an file
-noremap <leader>l :<C-u>vsp
-noremap <leader>j :<C-u>sp
-
-" Switching windows
-"   Igual ao dwm
-noremap <c-j> <C-w>w
-noremap <c-k> <C-w>W
-
-" Resize
-nmap <C-w>j <C-w>-
-nmap <c-w>k <C-w>+
-nmap <c-w>l <C-w>>
-nmap <c-w>h <C-w><
-
-" Close all splits
-noremap <Leader>e :on<CR>

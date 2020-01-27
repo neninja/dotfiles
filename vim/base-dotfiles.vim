@@ -1,4 +1,3 @@
-"# Base dotfiles
 " Arquivo complementar ao base.vim e total dependente do repo dotfiles
 "
 "## Dicionários
@@ -120,13 +119,13 @@ au FileType javascript call RegistraArraySnippets(s:snippets_js_abbreviations)
 au FileType html call RegistraArraySnippets(s:snippets_js_abbreviations)
 
 
-"# Linguagens de programação
-"## HTML
+"## Comandos/configurações específicas do buffer aberto (linguagens de programação comumente)
+"### HTML
 augroup html
     au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
 "    au FileType html :so ~/dev/dotfiles/vim/plugins/matchit.vim
 augroup END
-"## PHP
+"### PHP
 augroup php
     au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
     au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
@@ -136,7 +135,7 @@ augroup php
     let dict_phpunit = g:dict_dir . "phpunit.txt"
     au BufRead *test.php execute "setlocal dictionary+=".dict_phpunit
 augroup END
-"## SHELL
+"### SHELL
 "augroup sh
 "    au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
 "augroup END
