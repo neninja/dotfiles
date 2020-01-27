@@ -1,3 +1,5 @@
+" vim: set fo+=t:
+"
 " Arquivo de configurações básicas do vim, podendo ser adicionado
 " de maneira independente do repo dotfiles. Basta copiar o conteúdo para
 " o arquivo %userprofile%\_vimrc no Windows ou em $HOME/.vimrc no Linux.
@@ -52,7 +54,7 @@ set showcmd                 " mostra os comandos no canto inferior direito
 
 " Limite de coluna
 set textwidth=80            " define largura da linha de texto
-set formatoptions+=t        " quebra a linha na coluna textwidth (Vgq)
+" set formatoptions+=t        " quebra a linha na coluna textwidth (Vgq)
 set colorcolumn=+1          " marca coluna 81
 
 " Remove som ao apertar multiplos ESCs
