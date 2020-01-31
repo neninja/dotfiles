@@ -298,14 +298,18 @@ nnoremap N Nzzzv
 " Limpa highlight da pesquisa
 nnoremap <leader>/ :noh<cr>
 "### Remove utilização de setas
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+inoremap <c-k> <up>
+inoremap <c-j> <down>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
 "### Git greps
 " Créditos: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
 "":lvimgrep /\[ \]/ % | lw
@@ -394,7 +398,7 @@ vnoremap gcc :call ToggleComment()<cr>
 "### HTML
 augroup html
     " Créditos: https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/drwd5lx/
-    au FileType html inoremap <buffer> <c-k> </<c-x><c-o><esc>==gi
+    au FileType html inoremap <buffer> <c-t> </<c-x><c-o><esc>==gi
     " Comenta
     au FileType html vnoremap // I<!--<esc>A--><CR>
     au FileType html vnoremap /; :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
