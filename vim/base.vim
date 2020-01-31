@@ -214,6 +214,9 @@ noremap <leader>. :pwd<CR>
 
 " Mais ergonômico
 inoremap <c-f> <c-o>
+inoremap kj <esc>
+autocmd InsertEnter * set timeoutlen=200
+autocmd InsertLeave * set timeoutlen=1000
 "### Salvar/sair rapidamente
 noremap <leader><leader> :w<CR>
 cnoreabbrev W! w!
