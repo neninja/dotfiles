@@ -31,9 +31,10 @@ readme.pdf
 # python
 __pycache__/
 
-# npm
+# npm/yarn/frontend
 .DS_Store
 node_modules
+yarn.lock
 /dist
 /tests/e2e/reports/
 selenium-debug.log
