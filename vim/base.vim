@@ -53,10 +53,10 @@ set linebreak               " quebra a linha por palavra e não por letra
 set cursorcolumn cursorline " marca colunha e linha do cursor
 set showcmd                 " mostra os comandos no canto inferior direito
 
-" Limite de coluna
-set textwidth=80            " define largura da linha de texto
+" Limite de coluna, comentado para ser posto em modelines específicas
+" set textwidth=80            " define largura da linha de texto
 " set formatoptions+=t        " quebra a linha na coluna textwidth (Vgq)
-set colorcolumn=+1          " marca coluna 81
+set colorcolumn=81          " marca coluna 81
 
 " Remove som ao apertar multiplos ESCs
 " https://vim.fandom.com/wiki/Disable_beeping"
