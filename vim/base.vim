@@ -446,6 +446,10 @@ augroup php
     au FileType php compiler php
     au FileType php set errorformat=%m\
 
+    " Map para executar comando de teste do composer
+    " echo "<?php system('composer test');" > neni-composer-test.php
+    au FileType php nmap <leader>ct :terminal php neni-composer-test.php<CR>
+
     au FileType php nmap <leader>r :terminal php %<CR>
 augroup END
 "### JAVASCRIPT
