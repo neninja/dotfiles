@@ -65,7 +65,13 @@ function LeSnippet(root, file)
         " - Seleciona de l2 unificada até l1 unificada com o snippet e identa
         normal mdkJhxx`skJxxV`d=
         call JumpToTag()
-    elseif c == " " || c == '.' || c == ',' || c == ';'
+    elseif c == "\<esc>"
+        " a:root . c vai tornar recursiva a função.
+        " É necessário colocar uma letra que não seja non-keyword para depois
+        " apagá-la
+        execute "normal i" . a:root . 'a'
+        execute "normal x"
+    else
         " a:root . c vai tornar recursiva a função.
         " É necessário colocar uma letra que não seja non-keyword para depois
         " apagá-la
@@ -73,12 +79,6 @@ function LeSnippet(root, file)
         execute "normal hx"
         startinsert
         call cursor( line('.'), col('.') + 1)
-    else
-        " a:root . c vai tornar recursiva a função.
-        " É necessário colocar uma letra que não seja non-keyword para depois
-        " apagá-la
-        execute "normal i" . a:root . 'a'
-        execute "normal x"
     endif
 endfunction
 
