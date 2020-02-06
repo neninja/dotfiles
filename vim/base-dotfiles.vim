@@ -131,6 +131,10 @@ augroup php
     au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
     au FileType php nmap <leader>r :terminal php %<CR>
 
+    " Map para executar comando de teste do composer
+    " echo "<?php system('composer test');" > neni-composer-test.php
+    au FileType php nmap <leader>ct :terminal php neni-composer-test.php<CR>
+
     " Dicionarios (c-x c-k) pois o ctags ainda é meio bugado
     let dict_phpunit = g:dict_dir . "phpunit.txt"
     au BufRead *test.php execute "setlocal dictionary+=".dict_phpunit
