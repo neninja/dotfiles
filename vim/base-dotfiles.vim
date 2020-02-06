@@ -69,7 +69,7 @@ function LeSnippet(root, file)
         " a:root . c vai tornar recursiva a função.
         " É necessário colocar uma letra que não seja non-keyword para depois
         " apagá-la
-        execute "normal i" . a:root . 'a'
+        execute "normal a" . a:root . 'a'
         execute "normal x"
     else
         " a:root . c vai tornar recursiva a função.
