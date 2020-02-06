@@ -75,7 +75,7 @@ function LeSnippet(root, file)
         " a:root . c vai tornar recursiva a função.
         " É necessário colocar uma letra que não seja non-keyword para depois
         " apagá-la
-        execute "normal i" . a:root . 'c' . c
+        execute "normal a" . a:root . 'c' . c
         execute "normal hx"
         startinsert
         call cursor( line('.'), col('.') + 1)
