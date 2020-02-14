@@ -43,7 +43,11 @@ command Gd :Gina compare
 
 nnoremap <Tab> :CtrlPBuffer<CR>
 nnoremap <c-t> :CtrlPTag<CR>
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git\|dist\|vendor\|tags'
+let g:ctrlp_custom_ignore = {
+            \ 'dir':  'node_modules\|DS_Store\|\.git\|dist\|vendor\|_site\|.jekyll-cache',
+            \ 'file': 'tags',
+            \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+            \ }
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_show_hidden = 1
 
