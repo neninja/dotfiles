@@ -113,10 +113,15 @@ let s:snippets_js_abbreviations = {
             \ 'if': s:snippetsDirJS.'if.js',
             \ 'log': s:snippetsDirJS.'log.js',
             \ }
+let s:snippetsDirHTML = s:snippetsDir . 'html/'
+let s:snippets_html_abbreviations = {
+            \ 'div': s:snippetsDirHTML.'div.html',
+            \ }
 
 au FileType php call RegistraArraySnippets(s:snippets_php_abbreviations)
 au FileType javascript call RegistraArraySnippets(s:snippets_js_abbreviations)
 au FileType html call RegistraArraySnippets(s:snippets_js_abbreviations)
+au FileType html call RegistraArraySnippets(s:snippets_html_abbreviations)
 
 
 "## Comandos/configurações específicas do buffer aberto (linguagens de programação comumente)
