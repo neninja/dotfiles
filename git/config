@@ -155,7 +155,8 @@
     #############
     # Macros
     # RELEASE.
-    aula = "!f() { git add -A; git commit -m \"release: add aula $@\"; git tag \"aula-$@\"; git push origin master --tags; }; f"
+    # aula = "!f() { git add -A; git commit -m \"release: add aula $@\"; git tag \"aula-$@\"; git push origin master --tags; }; f"
+    aula = "!f() { git add -A; git commit -m \"release: add aula $@\"; }; f"
     release = "!f() { git tag \"$@\"; git push origin master --tags; }; f"
 [commit]
     # template = ~/.gitcommit
