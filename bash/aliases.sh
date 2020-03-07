@@ -24,6 +24,7 @@ alias v='vim'
 alias z='zathura'
 alias docker='sudo docker'
 alias docker-compose='sudo docker-compose'
+alias dc='sudo docker-compose'
 alias xcb='tr -d "\n" | xclip -selection clipboard'
 alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
 
