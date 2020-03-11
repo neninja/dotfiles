@@ -180,7 +180,10 @@ au FileType vim set foldtext=FoldTextHashtag()
 " - check |netrw-browse-maps| for more mappings
 "let g:netrw_banner=0        " disable annoying banner
 "let g:netrw_browse_split=4  " open in prior window
-"let g:netrw_liststyle=3     " tree view
+let g:netrw_liststyle=3     " tree view
+
+"https://stackoverflow.com/a/8731175
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 "## Declaração de funções (macros)
 " Créditos: https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
 fun! Dos2unix()
