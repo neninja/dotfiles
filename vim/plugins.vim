@@ -9,24 +9,6 @@
 "   (windows) ~/vimfiles/pack/nenitf/
 "   (linux) ~/.vim/pack/nenitf/
 "# Configurações
-"## Gina
-nmap <leader>gg <Esc>:Gina status -s<CR>
-command Ga :Gina! add %
-command Gs :Gina status
-command Gc :Gina commit
-command Gd :Gina compare
-"<Return>	Edit a file
-"dd		Open a unified-diff
-"DD		Open a unified-diff (vsplit)
-"cc		Open two buffers to compare
-"CC		Open two buffers to compare (tab) -> :tabc para fechar a tab aberta
-"pp		Open three buffers to patch
-"PP		Open three buffers to patch (tab)
-"!!		Open three buffers to solve conflict
-"<<		Stage changes
-">>		Unstage changes
-"--		Toggle stage/unstage
-"==		Discard local changes
 "## CtrlP
 " USOS:
 "   Escolher arquivo <c-p> pesquisar/escolher arquivo <enter>
@@ -150,3 +132,67 @@ hi! Folded guibg=purple
 "let g:ale_echo_msg_error_str = 'E'
 "let g:ale_echo_msg_warning_str = 'W'
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"## vim-auto-popmenu
+" para habilitar <c-h>
+let g:AutoPairsMapCh = 0
+
+" enable this plugin for filetypes, '*' for all files.
+let g:apc_enable_ft = {'*':1}
+
+"## vim-dict
+" não selecionar o primeiro item automaticamente
+set completeopt+=noselect
+
+" desabilita tab/shift-tab pois utilizo como trigger de snippet"
+let g:apc_enable_tab=0
+
+" filetype: dicionarios
+let g:vim_dict_config = {
+            \ 'html':'html,javascript,css',
+            \ 'markdown':'text',
+            \ 'javascript':'javascript',
+            \ 'php':'php,phpunit'
+            \ }
+
+" dicionarios pessoais
+let g:vim_dict_dict = [
+    \ '~/dev/dotfiles/vim/dicionarios'
+    \ ]
+
+"## Gitgutter
+" <leader>hp -> mostra valor anterior do hunk
+" <leader>hs -> stage["git add line"] modificação, removendo chunk
+" <leader>hu -> desfaz modificação não staged no chunk
+nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+
+" atualização mais rápida
+set updatetime=100
+
+":GitGutterEnable
+let g:gitgutter_enabled=0
+cnoreabbrev ggt call Gitguttettog()
+
+fun Gitguttettog()
+    GitGutterToggle
+    echo "Use [h ]h e <leader>hp <leader>hs <leader>hu"
+endfun
+
+"## Fugitive
+" Para tirar arquivos de staged basta aperter :G
+"   na janela de status apertar - no arquivo para add ou remover
+
+" :ga git add %
+cnoreabbrev gw Gw
+" :gb ver linha a linha os commits
+cnoreabbrev gb Gblame
+" :gc git commit
+cnoreabbrev gc Gcommit
+" :gd mostra diferenças
+cnoreabbrev gd Gdiff
+" :gs mostra status de staged ou não
+cnoreabbrev gs Gstatus
+" :gvs abre em vertical split o mesmo arquivo staged ou comitado
+cnoreabbrev gvs Gvsplit
+" :gvd abre em vertical split o mesmo arquivo com as diferença de quando esteve staged ou comitado
+cnoreabbrev gvd Gvdiff

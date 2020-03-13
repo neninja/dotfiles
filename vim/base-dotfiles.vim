@@ -1,8 +1,4 @@
 " Arquivo complementar ao base.vim e total dependente do repo dotfiles
-"
-"## Dicionários
-"set complete+=k
-let g:dict_dir = "~/dev/dotfiles/vim/dicionarios/"
 
 "## Snippets
 " :ia
@@ -131,16 +127,17 @@ augroup html
 "    au FileType html :so ~/dev/dotfiles/vim/plugins/matchit.vim
 augroup END
 "### PHP
+let g:dict_dir = "~/dev/dotfiles/vim/dicionarios/"
 augroup php
     au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
     au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
     au FileType php nmap <leader>r :terminal php %<CR>
+au BufRead *test.php execute "setlocal dictionary+=".g:dict_dir."phpunit.dict"
 
-    " Dicionarios (c-x c-k) pois o ctags ainda é meio bugado
-    let dict_phpunit = g:dict_dir . "phpunit.txt"
-    au BufRead *test.php execute "setlocal dictionary+=".dict_phpunit
 augroup END
 "### SHELL
 "augroup sh
 "    au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
 "augroup END
+
+

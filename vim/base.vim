@@ -80,7 +80,7 @@ set wildmenu                            " habilita menu
 set completeopt=menuone                 " mostra menu de opções
 set shortmess+=c                        " remove mensagens inúteis do wildmenu
 set omnifunc=syntaxcomplete#Complete    " c-x c-o pelo filetype do buffer aberto
-set complete=.,w,b,u,t                  " add sugestão do wildmenu
+set complete=.,k,w,b                    " add sugestão do wildmenu, tags pesam muito
 "## Conteúdo do buffer aberto
 set encoding=utf-8
 "set fileencoding=utf-8 "?
@@ -272,27 +272,6 @@ nnoremap <silent> ]B :bn<CR>
 "### Cursor
 cnoreabbrev cul set cul
 cnoreabbrev nocul set nocul
-"### Fechar automaticamente [{("''")}]
-inoremap {<CR> {}<left><CR><Esc>O
-inoremap {<space> {}<left><space><space><left>
-inoremap { {}<left>
-
-inoremap (<CR> ()<left><CR><Esc>O
-inoremap (<space> ()<left><space><space><left>
-inoremap ( ()<left>
-
-inoremap [<CR> []<left><CR><Esc>O
-inoremap [<space> []<left><space><space><left>
-inoremap [ []<left>
-
-inoremap " ""<left>
-inoremap ' ''<left>
-"### Surround
-vnoremap <silent> ' c'<c-r>"'
-vnoremap <silent> " c"<c-r>""
-vnoremap <silent> ( c(<c-r>")
-vnoremap <silent> { c{<c-r>"}
-vnoremap <silent> [ c[<c-r>"]
 "### Pesquisa no arquivo
 " Centralizar resultados
 nnoremap n nzzzv
@@ -401,7 +380,8 @@ vnoremap gcc :call ToggleComment()<cr>
 "### HTML
 augroup html
     " Créditos: https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/drwd5lx/
-    au FileType html inoremap <buffer> <c-t> </<c-x><c-o><esc>==gi
+    " <c-n> é necessário quando complete opt possui noselect
+    au FileType html inoremap <buffer> <c-t> </<c-x><c-o><c-n><esc>==gi
     " Comenta
     au FileType html vnoremap // I<!--<esc>A--><CR>
     au FileType html vnoremap /; :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>

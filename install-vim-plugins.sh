@@ -20,11 +20,19 @@ vendorRepos=(
     "https://github.com/ctrlpvim/ctrlp.vim.git" # fuzzy finder
     "https://github.com/mhinz/vim-startify.git" # tela inicial com projetos
     "https://github.com/diepm/vim-rest-console.git" # rest client
-    "https://github.com/vimwiki/vimwiki.git" #todo
-    "https://github.com/lambdalisue/gina.vim.git" # comandos do git
+    "https://github.com/vimwiki/vimwiki.git" # todo
+    "https://github.com/jiangmiao/auto-pairs.git" # funcionalidades de "'{[()]}'"
+    
+    ####### Auto complete
+    "https://github.com/skywind3000/vim-auto-popmenu.git" # sugestões de complete
+    "https://github.com/skywind3000/vim-dict.git" # configuração de cadastro de dicionários
+    
+    ####### GIT
+    "https://github.com/tpope/vim-fugitive.git" # comandos
+    "https://github.com/airblade/vim-gitgutter" # exibição de + - ~ _
 
     ####### PHP
-    "https://github.com/adoy/vim-php-refactoring-toolbox.git"
+    "https://github.com/adoy/vim-php-refactoring-toolbox.git" # macros uteis
 )
 
 neniRepos=(
