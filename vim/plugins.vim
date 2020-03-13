@@ -163,8 +163,8 @@ let g:vim_dict_dict = [
 " <leader>hp -> mostra valor anterior do hunk
 " <leader>hs -> stage["git add line"] modificação, removendo chunk
 " <leader>hu -> desfaz modificação não staged no chunk
-nmap [h <Plug>GitGutterPrevHunk
-nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
 
 " atualização mais rápida
 set updatetime=100
