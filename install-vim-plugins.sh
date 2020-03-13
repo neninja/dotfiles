@@ -29,7 +29,8 @@ vendorRepos=(
     
     ####### GIT
     "https://github.com/tpope/vim-fugitive.git" # comandos
-    "https://github.com/airblade/vim-gitgutter" # exibição de + - ~ _
+    "https://github.com/airblade/vim-gitgutter.git" # exibição de + - ~ _
+    "https://github.com/junegunn/gv.vim.git" # log
 
     ####### PHP
     "https://github.com/adoy/vim-php-refactoring-toolbox.git" # macros uteis
