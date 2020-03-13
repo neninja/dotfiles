@@ -6,7 +6,10 @@ set guioptions-=r  " scroll bar direita
 set guioptions-=L  " scroll bar esquerda quando a janela possuir split vertical
 
 " Alerts
-au GUIEnter * simalt ~x
+" http://vimdoc.sourceforge.net/htmldoc/gui_w32.html
+if has("win32")
+    au GUIEnter * simalt ~x
+endif
 
 " Colocar em ~/.extra.gvim.vim, pois varia de sistema operacional ...
 " set guifont=UbuntuMono\ NF:h11
