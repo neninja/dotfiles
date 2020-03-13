@@ -63,3 +63,8 @@ ln -vsf $DIRDF/vim/gvimrc $HOME/.gvimrc
 
 # dialog
 ln -vsf $DIRDF/x/.dialogrc $HOME/.dialogrc
+
+# feh
+mkdir -p ~/.config/feh
+ln -vsf $DIRDF/feh/.fehbg $HOME/.fehbg
+ln -vsf $DIRDF/feh/keys $HOME/.config/feh/keys
