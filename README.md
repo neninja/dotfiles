@@ -92,6 +92,8 @@ git clone https://github.com/nenitf/dotfiles.git
 cd dotfiles
 chmod +x install.sh
 ./install.sh
+chmod +x install-vim-plugins.sh
+./install-vim-plugins.sh
 ```
 
 ### Completa no windows
@@ -105,6 +107,7 @@ git clone https://github.com/nenitf/dotfiles.git
 cd dotfiles
 ./install.bat
 ```
+> É necessário possuir bash para executar a instalação dos plugins do vim
 
 ## Atualização forçada
 
