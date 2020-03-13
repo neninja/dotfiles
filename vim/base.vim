@@ -118,10 +118,11 @@ vnoremap <leader>y "+y:echo "Copiado!!"<CR>
 "## Fold
 function! FoldTextHashtag()
     let nl = v:foldend - v:foldstart + 1
-    let titulo = substitute(getline(v:foldstart),"^\"#*","",'g')
-    let titulo = substitute(getline(v:foldstart),"^\"","",'g')
+    let titulo = substitute(getline(v:foldstart),"^\""," ",'g')
+    let titulo = substitute(titulo,"\ ","",'')
+    let titulo = substitute(titulo,"\#","\ ",'g')
     "let txt = '+ (' . nl . ')' . titulo . ' '
-    let txt = titulo . ' (' . nl . ') '
+    let txt = '+' . titulo . ' (' . nl . ') '
     return txt
 endfunction
 "### Markdown

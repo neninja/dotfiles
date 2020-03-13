@@ -34,6 +34,10 @@ vendorRepos=(
 
     ####### PHP
     "https://github.com/adoy/vim-php-refactoring-toolbox.git" # macros uteis
+
+    ####### Desnecessários
+    "https://github.com/thanthese/Tortoise-Typing.git" # treino de digitação
+    "https://github.com/gyim/vim-boxdraw.git" # desenho de diagramas ascii
 )
 
 neniRepos=(

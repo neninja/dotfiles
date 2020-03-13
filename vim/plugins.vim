@@ -86,7 +86,7 @@ let wiki_2.path = '~/aniversarios/' " wiki versionada (privada)
 let wiki_2.syntax = 'markdown'
 let wiki_2.ext = '.md'
 let g:vimwiki_list = [wiki_1, wiki_2]
-let g:vimwiki_folding='expr'
+let g:vimwiki_folding='custom'
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_global_ext = 0
 
@@ -132,9 +132,13 @@ hi! Folded guibg=purple
 "let g:ale_echo_msg_error_str = 'E'
 "let g:ale_echo_msg_warning_str = 'W'
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"## vim-auto-popmenu
-" para habilitar <c-h>
+"
+"## auto-pairs.vim
+"" para habilitar <c-h>
 let g:AutoPairsMapCh = 0
+let g:AutoPairsMoveCharacter=""
+
+"## vim-auto-popmenu
 
 " enable this plugin for filetypes, '*' for all files.
 let g:apc_enable_ft = {'*':1}
@@ -196,3 +200,11 @@ cnoreabbrev gs Gstatus
 cnoreabbrev gvs Gvsplit
 " :gvd abre em vertical split o mesmo arquivo com as diferença de quando esteve staged ou comitado
 cnoreabbrev gvd Gvdiff
+
+"### Statusline
+set statusline=                 " reseta statusline
+set statusline+=%{FugitiveStatusline()}                 " reseta statusline
+set statusline+=\%=				" espaço
+set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
+set statusline+=\%=				" espaço
+set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
