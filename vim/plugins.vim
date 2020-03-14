@@ -23,8 +23,10 @@
 "   Escrito em vimscript
 "   É possível criar arquivos diretamente
 
-nnoremap <Tab> :CtrlPBuffer<CR>
+nnoremap <c-p> :CtrlP<CR>
+nnoremap <c-m> :CtrlPMRUFiles<CR>
 nnoremap <c-t> :CtrlPTag<CR>
+
 let g:ctrlp_custom_ignore = {
             \ 'dir':  'node_modules\|DS_Store\|\.git\|dist\|vendor\|_site\|.jekyll-cache',
             \ 'file': 'tags',
@@ -33,10 +35,9 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_show_hidden = 1
 
-" Exibe mesmo os buffers abertos!
-""let g:ctrlp_match_current_file = 1
-
 let g:ctrlp_open_multiple_files = 'i'
+
+let g:ctrlp_types = ['fil', 'buf', 'mru']
 
 let g:ctrlp_prompt_mappings = {
             \ 'CreateNewFile()':      ['<c-y>'],
@@ -47,11 +48,13 @@ let g:ctrlp_prompt_mappings = {
             \ 'PrtCurLeft()':         [''],
             \ 'AcceptSelection("h")': ['<c-h>', '<c-cr>', '<c-s>'],
             \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
-            \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
+            \ 'PrtHistory(1)':        ['<c-up>'],
+            \ 'ToggleType(1)':        ['<c-p>'],
             \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
             \ 'MarkToOpen()':         ['<c-z>'],
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
+
 "## PHPToolBox
 " disable the default mapping
 "let g:vim_php_refactoring_use_default_mapping = 0
@@ -89,6 +92,9 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 let g:vimwiki_folding='custom'
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_global_ext = 0
+
+" sobescreve tab do vimwiki
+nmap <Leader>wn <Plug>VimwikiNextLink
 
 "<c-space> toggle X
 "## Themes

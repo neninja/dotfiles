@@ -235,6 +235,7 @@ cnoreabbrev QA qa
 nnoremap <c-z> u
 " re do with <C-R> built-in
 "### Fold
+nnoremap <silent> <tab> za
 " reduz/mostra conteudo dos folds
 nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
 "### Buffers
