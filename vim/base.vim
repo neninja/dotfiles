@@ -111,10 +111,6 @@ set expandtab
 set hlsearch    " colore os matches
 set incsearch   " vai colorindo a pesquisa durante a digitação
 set ignorecase  " ignora case sensitive na busca
-"## Copy paste
-set clipboard=unnamed
-noremap <leader>y my^vg_"+y:echo "Copiado!!"<CR>
-vnoremap <leader>y "+y:echo "Copiado!!"<CR>
 "## Fold
 function! FoldTextHashtag()
     let nl = v:foldend - v:foldstart + 1
@@ -325,6 +321,10 @@ nmap <c-w>h <C-w><
 
 " Close all splits
 noremap <Leader>e :on<CR>
+"## Copy paste
+set clipboard=unnamed
+noremap <leader>y my^vg_"+y:echo "Copiado!!"<CR>
+vnoremap <leader>y "+y:echo "Copiado!!"<CR>
 "## Configuração específicas de sistema operacional
 ""autocmd BufRead * call Dos2unix()
 "## Comandos/configurações específicas do buffer aberto
