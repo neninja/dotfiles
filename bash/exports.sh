@@ -1,13 +1,10 @@
-export NODE_PATH="/usr/local/lib/node_modules:$NODE_PATH"
-export GIT_MERGE_AUTOEDIT='no'
+export GOPATH=$HOME/go
+PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
-export VISUAL=nvim
+export VISUAL=vim
 export EDITOR=$VISUAL
-export BROWSER=qutebrowser
-
-export FILEMANAGER=fff
-export PDFVIEWER=zathura
-export IMGVIEWER=feh
 
 export DF=$HOME/dev/dotfiles
 export IS=$HOME/dev/is
+
+export PATH="$HOME/dev/dotfiles/scripts/bin:$HOME/bin:/usr/local/go/bin:$GOPATH/bin:$PATH";

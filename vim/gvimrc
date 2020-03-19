@@ -1,9 +1,0 @@
-" Créditos: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
-function! SourceIfExists(file)
-  if filereadable(expand(a:file))
-    exe 'source' a:file
-  endif
-endfunction
-
-call SourceIfExists("~/dev/dotfiles/vim/gvim.vim")
-call SourceIfExists("~/.extra-gvim.vim")

@@ -1,10 +1,10 @@
 # Aliases
 # =====================
 # CD
+alias cdf="cd $HOME/dev/dotfiles"
 alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard\n-> to clean: rm -rf * .*"'
 alias cgh='cd ~/go/src/github.com/nenitf'
 alias cgl='cd ~/go/src/gitlab.com/nenitf'
-alias iss='cd ~/dev/is/tmp/suckless'
 alias .b='. ~/.bashrc'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -12,8 +12,8 @@ alias ....='cd ../../..'
 
 # LS
 alias ll='ls -alF --color'
-alias l='ls -XF --color'
-alias lm='ls -lS --block-size=M'
+alias l='ls -aXF --color'
+alias lm='ls -alS --block-size=M'
 
 # programs
 alias ff='fff'
@@ -32,9 +32,6 @@ alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
 alias op='xdg-open .'
 alias mci='sudo make clean install'
 alias snc='sudo $EDITOR config.h'
-
-# scripts
-alias nn="bash ~/dev/dotfiles/scripts/ninjanotes.sh"
 
 # VAGRANT
 alias vg='vagrant'

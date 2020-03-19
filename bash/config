@@ -1,0 +1,25 @@
+#test -f ~/dev/dotfiles/bash/prompt.sh && . ~/dev/dotfiles/bash/prompt.sh
+#test -f ~/dev/dotfiles/bash/aliases.sh && . ~/dev/dotfiles/bash/aliases.sh
+#test -f ~/dev/dotfiles/bash/functions.sh && . ~/dev/dotfiles/bash/functions.sh
+#test -f ~/dev/dotfiles/bash/exports.sh && . ~/dev/dotfiles/bash/exports.sh
+#test -f ~/.extra-bashrc.sh && . ~/.extra-bashrc.sh
+#. ~/.extra-bashrc.sh
+#test -f ~/dev/dotfiles/bash/.inputrc.sh && . ~/dev/dotfiles/bash/.inputrc.sh
+#
+#
+
+files=(
+    "$HOME/dev/dotfiles/bash/prompt.sh"
+    "$HOME/dev/dotfiles/bash/aliases.sh"
+    "$HOME/dev/dotfiles/bash/functions.sh"
+    "$HOME/dev/dotfiles/bash/exports.sh"
+    "$HOME/.extra-bashrc.sh"
+    # "~/dev/dotfiles/bash/.inputrc.sh"
+)
+
+for file in "${files[@]}"
+do
+    test -f $file && . $file
+done
+
+# vim: ft=sh

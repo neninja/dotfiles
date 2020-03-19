@@ -32,34 +32,27 @@
 
 # -------------------------- MAIN -------------------------- #
 mkdir -p ~/dev/desh
-mkdir -p ~/dev/php
-mkdir -p ~/dev/front
-mkdir -p ~/go/src/github.com/nenitf
-mkdir -p ~/go/src/gitlab.com/nenitf
-mkdir -p ~/dev/tex
-mkdir -p ~/dev/python
 
 mkdir -p $HOME/.config
 
 DIRDF=$HOME/dev/dotfiles
 
 # bash
-ln -vsf $DIRDF/bash/.bash_profile $HOME/.bashrc
-touch $HOME/.extra
-
-# x
-ln -vsf $DIRDF/x/.xinitrc $HOME/.xinitrc
-ln -vsf $DIRDF/x/.Xdefaults $HOME/.Xdefaults
+cp --remove-destination -v $DIRDF/bash/config $HOME/.bashrc
 
 # zathura
-ln -vsf $DIRDF/zathura ~/.config
+mkdir -p $HOME/.config/zathura
+cp --remove-destination -v $DIRDF/zathura/zathurarc ~/.config/zathura/zathurarc
 
 # git
-ln -vsf $DIRDF/git/.gitconfig $HOME/.gitconfig
+mkdir -p $HOME/.config/zathura
+cp --remove-destination -v $DIRDF/git/include $HOME/.gitconfig
 
 # vim
-ln -vsf $DIRDF/vim/vimrc $HOME/.vimrc
-ln -vsf $DIRDF/vim/gvimrc $HOME/.gvimrc
-
-# dialog
-ln -vsf $DIRDF/x/.dialogrc $HOME/.dialogrc
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    cp --remove-destination -v $DIRDF/vim/source.vim $HOME/.vimrc
+    cp --remove-destination -v $DIRDF/gvim/source.vim $HOME/.gvimrc
+elif [[ "$OSTYPE" == "msys" ]]; then
+    cp --remove-destination -v $DIRDF/vim/source.vim $HOME/_vimrc
+    cp --remove-destination -v $DIRDF/gvim/source.vim $HOME/_gvimrc
+fi

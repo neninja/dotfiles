@@ -7,7 +7,8 @@ function clonaRepos {
         git clone $i
     done
 
-    mkdir -p pack/neni/start
+    cd ../..
+    mkdir -p neni/start
     cd pack/neni/start
     for i in "${neniRepos[@]}"
     do

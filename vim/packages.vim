@@ -97,31 +97,6 @@ let g:vimwiki_global_ext = 0
 nmap <Leader>wn <Plug>VimwikiNextLink
 
 "<c-space> toggle X
-"## Themes
-" Ver highlight-groups
-"so $VIMRUNTIME/syntax/hitest.vim
-""let g:onedark_terminal_italics = 1
-" onedark adaptado
-" Ver highlight group da palavra sob o cursor
-" https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
-" :highlight mostra as cores do grupo
-command Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
-so ~/dev/dotfiles/vim/thenfeite.vim
-highlight CursorColumn guibg=#0a0c0f
-highlight CursorLine guibg=#0a0c0f gui=underline cterm=underline
-hi! Folded guibg=purple
-"### Dev and Apresentation mode
-"fun DevRead()
-"    Goyo!
-"    set background=dark
-"endfun
-"command Dev call DevRead()
-"
-"fun AprRead()
-"    Goyo
-"    set background=light
-"endfun
-"command Apr call AprRead()
 "## ALE
 "nmap <silent> ! <Plug>(ale_next_wrap)
 "
