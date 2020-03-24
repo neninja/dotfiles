@@ -56,3 +56,4 @@ elif [[ "$OSTYPE" == "msys" ]]; then
     cp --remove-destination -v $DIRDF/vim/source.vim $HOME/_vimrc
     cp --remove-destination -v $DIRDF/gvim/source.vim $HOME/_gvimrc
 fi
+./vim/clone-packages.sh

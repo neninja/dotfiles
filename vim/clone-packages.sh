@@ -1,14 +1,15 @@
 #!/bin/bash
-function clonaRepos {
+function clonaVendorRepos {
     mkdir -p pack/vendor/start
     cd pack/vendor/start
     for i in "${vendorRepos[@]}"
     do
         git clone $i
     done
+}
 
-    cd ../..
-    mkdir -p neni/start
+function clonaNeniRepos {
+    mkdir -p pack/neni/start
     cd pack/neni/start
     for i in "${neniRepos[@]}"
     do
@@ -49,9 +50,13 @@ neniRepos=(
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     mkdir -p ~/.vim
     cd ~/.vim
-    clonaRepos
+    clonaVendorRepos
+    cd ~/.vim
+    clonaNeniRepos
 elif [[ "$OSTYPE" == "msys" ]]; then
     mkdir -p ~/vimfiles
     cd ~/vimfiles
-    clonaRepos
+    clonaVendorRepos
+    cd ~/vimfiles
+    clonaNeniRepos
 fi
