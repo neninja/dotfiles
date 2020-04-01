@@ -157,7 +157,7 @@ set updatetime=100
 let g:gitgutter_enabled=0
 cnoreabbrev ggt call Gitguttettog()
 
-fun Gitguttettog()
+fun! Gitguttettog()
     GitGutterToggle
     echo "Use [h ]h e <leader>hp <leader>hs <leader>hu"
 endfun
