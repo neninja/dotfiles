@@ -25,6 +25,7 @@ vendorRepos=(
     "https://github.com/vimwiki/vimwiki.git" # todo
     "https://github.com/jiangmiao/auto-pairs.git" # funcionalidades de "'{[()]}'"
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
+    "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
     
     ####### Auto complete
     "https://github.com/skywind3000/vim-auto-popmenu.git" # sugestões de complete
