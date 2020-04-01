@@ -37,6 +37,7 @@ vendorRepos=(
 
     ####### PHP
     "https://github.com/adoy/vim-php-refactoring-toolbox.git" # macros uteis
+    "https://github.com/alvan/vim-closetag.git" # fecha tags html, semelhante a </CTRL-X-CTRL-O
 
     ####### Desnecessários
     "https://github.com/thanthese/Tortoise-Typing.git" # treino de digitação
