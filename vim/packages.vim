@@ -188,3 +188,7 @@ set statusline+=\%=				" espaço
 set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
 set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
+
+"## choose win
+nmap  -  <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
