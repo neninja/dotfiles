@@ -24,6 +24,7 @@ vendorRepos=(
     "https://github.com/diepm/vim-rest-console.git" # rest client
     "https://github.com/vimwiki/vimwiki.git" # todo
     "https://github.com/jiangmiao/auto-pairs.git" # funcionalidades de "'{[()]}'"
+    "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     
     ####### Auto complete
     "https://github.com/skywind3000/vim-auto-popmenu.git" # sugestões de complete
