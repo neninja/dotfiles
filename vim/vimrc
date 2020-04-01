@@ -504,22 +504,22 @@ function LeSnippet(root, file)
         " - Move para esquerda e apaga o espaço gerado pelo J e o marcador (§)
         " - Retorna à l2
         " - Unifica l2 com a ultima do snippet
-        " - Apaga o espaço gerado pelo J e o marcador (§) restante
+        " - Apaga o espaço gerado pelo J e o marcador (§) restante mantendo o y
         " - Seleciona de l2 unificada até l1 unificada com o snippet e identa
-        normal mdkJhxx`skJxxV`d=
+        normal mdkJh"_x"_x`skJ"_x"_xV`d=
         call JumpToTag()
     elseif c == "\<esc>"
         " a:root . c vai tornar recursiva a função.
         " É necessário colocar uma letra que não seja non-keyword para depois
         " apagá-la
         execute "normal a" . a:root . 'a'
-        execute "normal x"
+        execute 'normal "_x'
     else
         " a:root . c vai tornar recursiva a função.
         " É necessário colocar uma letra que não seja non-keyword para depois
         " apagá-la
-        execute "normal a" . a:root . 'c' . c
-        execute "normal hx"
+        execute "normal a" . a:root . '"_c' . c
+        execute 'normal h"_x'
         startinsert
         call cursor( line('.'), col('.') + 1)
     endif
