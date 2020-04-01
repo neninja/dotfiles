@@ -26,6 +26,8 @@ vendorRepos=(
     "https://github.com/jiangmiao/auto-pairs.git" # funcionalidades de "'{[()]}'"
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
+    "https://github.com/terryma/vim-multiple-cursors.git" # multiplos cursores
+    "https://github.com/t9md/vim-choosewin.git" # troca/swap rapido de split
     
     ####### Auto complete
     "https://github.com/skywind3000/vim-auto-popmenu.git" # sugestões de complete
@@ -51,15 +53,31 @@ neniRepos=(
 )
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    mkdir -p ~/.vim
-    cd ~/.vim
+    # vim
+    # mkdir -p ~/.vim
+    # cd ~/.vim
+    # clonaVendorRepos
+    # cd ~/.vim
+    # clonaNeniRepos
+
+    # nvim
+    mkdir -p ~/.config/nvim/
+    cd ~/.config/nvim
     clonaVendorRepos
-    cd ~/.vim
+    cd ~/.config/nvim
     clonaNeniRepos
 elif [[ "$OSTYPE" == "msys" ]]; then
-    mkdir -p ~/vimfiles
-    cd ~/vimfiles
+    # vim
+    # mkdir -p ~/vimfiles
+    # cd ~/vimfiles
+    # clonaVendorRepos
+    # cd ~/vimfiles
+    # clonaNeniRepos
+
+    # nvim
+    mkdir -p ~/AppData/Local/nvim
+    cd ~/AppData/Local/nvim
     clonaVendorRepos
-    cd ~/vimfiles
+    cd ~/AppData/Local/nvim
     clonaNeniRepos
 fi

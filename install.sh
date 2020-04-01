@@ -50,10 +50,19 @@ cp --remove-destination -v $DIRDF/git/include $HOME/.gitconfig
 
 # vim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    cp --remove-destination -v $DIRDF/vim/source.vim $HOME/.vimrc
-    cp --remove-destination -v $DIRDF/gvim/source.vim $HOME/.gvimrc
+    # vim
+    # cp --remove-destination -v $DIRDF/vim/source.vim $HOME/.vimrc
+    # cp --remove-destination -v $DIRDF/gvim/source.vim $HOME/.gvimrc
+
+    # nvim
+    cp --remove-destination -v $DIRDF/vim/source.vim $HOME/.config/nvim
 elif [[ "$OSTYPE" == "msys" ]]; then
-    cp --remove-destination -v $DIRDF/vim/source.vim $HOME/_vimrc
-    cp --remove-destination -v $DIRDF/gvim/source.vim $HOME/_gvimrc
+    # vim
+    # cp --remove-destination -v $DIRDF/vim/source.vim $HOME/_vimrc
+    # cp --remove-destination -v $DIRDF/gvim/source.vim $HOME/_gvimrc
+
+    # nvim
+    mkdir -p $HOME/AppData/Local/nvim
+    cp --remove-destination -v $DIRDF/vim/source.vim $HOME/AppData/Local/nvim
 fi
 ./vim/clone-packages.sh
