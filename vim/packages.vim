@@ -24,7 +24,6 @@
 "   É possível criar arquivos diretamente
 
 nnoremap <c-p> :CtrlP<CR>
-nnoremap <c-m> :CtrlPMRUFiles<CR>
 nnoremap <c-t> :CtrlPTag<CR>
 
 let g:ctrlp_custom_ignore = {
