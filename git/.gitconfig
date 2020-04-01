@@ -7,7 +7,7 @@
     email = felipe.dacs@gmail.com
     username = nenitf
 [core]
-    editor = nvim
+    editor = vim
     excludesfile = ~/dev/dotfiles/cpfiles/git/.gitignore
 [color]
     ui = true

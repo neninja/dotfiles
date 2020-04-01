@@ -54,30 +54,30 @@ neniRepos=(
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # vim
-    # mkdir -p ~/.vim
-    # cd ~/.vim
-    # clonaVendorRepos
-    # cd ~/.vim
-    # clonaNeniRepos
+    mkdir -p ~/.vim
+    cd ~/.vim
+    clonaVendorRepos
+    cd ~/.vim
+    clonaNeniRepos
 
     # nvim
-    mkdir -p ~/.config/nvim/
-    cd ~/.config/nvim
-    clonaVendorRepos
-    cd ~/.config/nvim
-    clonaNeniRepos
+    # mkdir -p ~/.config/nvim/
+    # cd ~/.config/nvim
+    # clonaVendorRepos
+    # cd ~/.config/nvim
+    # clonaNeniRepos
 elif [[ "$OSTYPE" == "msys" ]]; then
     # vim
-    # mkdir -p ~/vimfiles
-    # cd ~/vimfiles
-    # clonaVendorRepos
-    # cd ~/vimfiles
-    # clonaNeniRepos
+    mkdir -p ~/vimfiles
+    cd ~/vimfiles
+    clonaVendorRepos
+    cd ~/vimfiles
+    clonaNeniRepos
 
     # nvim
-    mkdir -p ~/AppData/Local/nvim
-    cd ~/AppData/Local/nvim
-    clonaVendorRepos
-    cd ~/AppData/Local/nvim
-    clonaNeniRepos
+    # mkdir -p ~/AppData/Local/nvim
+    # cd ~/AppData/Local/nvim
+    # clonaVendorRepos
+    # cd ~/AppData/Local/nvim
+    # clonaNeniRepos
 fi
