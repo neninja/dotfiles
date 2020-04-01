@@ -21,6 +21,38 @@
     - [ ] diff de merge conflicts
 - [ ] melhorar thenfeite (desacoplar definição de cores de temas)
 
+## Necessidades como editor dev
+### MVP
+- [X] Leve e rápido
+- [X] Instalável em Windows e diversas distros Linux
+- [X] [Customizável (temas, highlights, shortcuts, comportamentos)](vim/rc.md)
+- [X] [Configurável através de dotfiles](vim/dotfiles)
+- [X] Numerar linhas
+- [X] Detectar diferentes filetypes
+- [X] Auto identar e comando de identação para diversos filetypes
+- [X] [Fuzzy finder](vim/fuzzy.md)
+- [X] Snippets
+- [ ] Linter
+- [X] Integração de formatação por ferramentas
+- [ ] Intelisense (go to definition)
+- [ ] Autocomplete (variaveis usadas, metodos de classe da variavel)
+- [ ] [Integração com o git](vim/git.md)
+- [X] Criação de paineis
+- [X] Comentar e descomentar trecho de código ou linha
+- [X] Search e search/replace no arquivo
+- [ ] Search em todo o projeto
+- [ ] Criar, mover/renomear e deletar arquivos/diretórios
+- [X] Atualizar o arquivo aberto caso seja modificado por outro editor/comando
+- [X] Folds
+
+### Bonus
+- [ ] Debug
+- [ ] Exibir output da execução do arquivo
+- [ ] Exibir output de trechos do arquivo
+- [X] Ser acessível pelo terminal
+- [X] Gravar macros de edição de texto
+- [ ] Suporte a emojis
+
 ## Dicas
 - https://vim.rtorr.com/lang/pt_br
 - https://vimways.org/2018/
