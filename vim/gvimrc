@@ -1,0 +1,33 @@
+" highlight Normal guifg=white guibg=black
+highlight SpellBad term=underline gui=undercurl guisp=Orange
+
+"Note: When the GUI starts, 't_vb' is reset to its default value.
+"You might want to set it again in your gvimrc.
+"THANKS: https://stackoverflow.com/a/18589653
+au! GUIEnter * set visualbell t_vb=
+
+" remove componentes da interface
+set guioptions-=T  " tool bar
+set guioptions-=m  " menu bar
+set guioptions-=r  " scroll bar direita
+set guioptions-=L  " scroll bar esquerda (janela com split vertical)
+
+if has("win32")
+    set guifont=Consolas:h11
+
+    " Alertas
+    " http://vimdoc.sourceforge.net/htmldoc/gui_w32.html
+    au! GUIEnter * simalt ~x
+else
+    set guifont=UbuntuMono\ NF:h11
+endif
+
+" config da GUI não verionada
+if filereadable(expand("~/.extra-gvimrc.vim"))
+    source ~/.extra-gvimrc.vim
+    " Colocar font em ~/.extra-gvimrc.vim, pois varia de sistema operacional ...
+    " set guifont=UbuntuMono\ NF:h11
+    " set guifont=Fira\ Code:h10
+    " set guifont=Consolas:h11
+    " Para ver as opções de font: set guifont=*
+endif

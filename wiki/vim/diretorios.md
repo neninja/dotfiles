@@ -1,0 +1,4 @@
+# Diretórios
+
+## Sem plugins
+<!-- netrw -->

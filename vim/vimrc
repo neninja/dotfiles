@@ -1,127 +1,293 @@
-" vim: set fo+=t:
+" vim: set formatoptions+=t:
 "
-" Arquivo de configurações básicas do vim, podendo ser adicionado
-" de maneira independente do repo dotfiles. Basta copiar o conteúdo para
-" o arquivo %userprofile%\_vimrc no Windows ou em $HOME/.vimrc no Linux.
-" - https://raw.githubusercontent.com/nenitf/dotfiles/master/vim/base.vim
+" Arquivo de configurações básicas do vim, podendo ser adicionado de maneira
+" independente do repo dotfiles. Basta copiar o conteúdo para o
+" %userprofile%\_vimrc no Windows ou $HOME/.vimrc no Linux.
+" Também pode testar essas configurações com:
+"   - vim -u <path/to/vimrc>
 "
-" Livros abertos sobre vim:
-" - https://vimbook.gitbook.io/vimbook/
-" - https://sedilson.github.io/vimparanoobs/index.html
+" AUTHOR: Neni @nenitf <http://neni.dev/hub>
+" SOURCE: https://raw.githubusercontent.com/nenitf/dotfiles/master/vim/vimrc
 "
-" Este arquivo utiliza os folds do vim, abaixo um resumo de como usar (:h folds):
-" - https://vim.fandom.com/wiki/Folding
-" - https://pt.wikibooks.org/wiki/Vim/Usando_folders
-" - https://www.linux.com/tutorials/vim-tips-folding-fun/
+" INCENTIVO:    │
+"               ├(+) simplicidade
+"               ├(-) manutenção
+"               ├(+) performance
+"               ├(+) flow
+"               ├(+) entusiamo
+"               ├(+) estudo
+"               ├(+) qualidade de código
+"               ├(-) bug em produção
+"               └(+) 🎉🎉🎉
 "
-" zj zk pulo de fold
-" [z ]z gg G de um fold aberto
+" PRECEITOS:
+"   - Focar em perf windows e linux
+"   - Organizar o trecho de código no fold correto
+"   - Manter o KISS, não reescrever o vim! Lembrar que:
+"       - A configuração será usada crossplatform (windows x linux)
+"       - De boa usar terminal ao lado do vim, nem tudo tem que ser como emacs
+"   - Manter compatibilidade entre vim e nvim
+"   - Evitar trocar comandos default do teclado
+"   - Comentar/documentar bastante o código (respeitando a largura de coluna)
+"       - Configurações antigas, novas e defaults
 "
-"|             | primeiro nivel |  recursivo  |
-"|-------------|----------------|-------------|
-"|todo arquivo |     zr/zm      |  zR/zM (F2) |
-"|             |   reduce/more  | reduce/more |
-"|-------------|----------------|-------------|
-"|sob o cursor |   zo/zc ou za  | zO/zC ou zA |
-"
-" dotfiles interessantes:
-" - https://github.com/tpope/tpope
-" - https://github.com/woliveiras/dotfiles/blob/master/bin/system-settings/.vimrc
+" UPGRADES: Ver arquivo wiki/vim.md
 "
 " DICAS:
 "   - Usar K (:h K) em cima da palavra da configuração para consultar manual
-"   - propriedades que são setadas podem voltar ao seu valor inicial com &,
+"   - Nos folds:
+"       - zR e zM abre e fecha recursivamente todo arquivo (map: <f2>)
+"       - za abre e fecha (toggle) um folder (map: <tab>)
+"       - [z ]z gg G de um fold aberto
+"       - zj zk pulo de fold
+"   - Propriedades que são setadas podem voltar ao seu valor inicial com &,
 "   por exemplo set wildmenu&
+"   - Formatar largura dos comentários com Vgq (por causa do formatoptions+=t)
 "
-"## Buffers
-" Motivos para usar buffer ao invés de tabs:
-"   - O mesmo arquivo não é aberto duas vezes
-"   - Mais velocidade pois a janela não precisa ser redesenhada
+"## Básico
+" Mínimas configurações para usar o vim
 
-set hidden " mantêm o arquivo disponível ao sair dele (mesmo modificado)
-" :ls lista os buffers
-"## Aparência e som
-syntax on                   " syntax de acordo com o filetype
-filetype plugin indent on   " carrega ftplugin.vim e indent.vim do runtimepath (plugins)
-set background=dark         " ajusta cores para um fundo escuro
-colorscheme slate           " tema de cores slate (junto com vim) para syntax
-set number relativenumber   " exibe régua com o numero relativo das linhas
-set showmatch               " mostra fechamento de {[()]}
+" quebra compatibilidade com vi
+" evita erros bizarros como de interpretação de dicionários e etc
+set nocompatible
+
+"### Conteúdo
+set encoding=utf-8
+"TODO: entender configs abaixo:
+"set fileencoding=utf-8 "?
+"set fileencodings=utf-8 "?
+
+set fileformats=unix,dos,mac "?
+"TODO: entender configs abaixo:
+"set bomb "?
+"set binary "?
+
+" ^M, não sei como resolvi ainda!
+" THANKS: https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
+"fun! Dos2unix()
+"    " Don't strip on these filetypes
+"    " :echo &ft
+"    if &ft =~ 'startify\|nerdtree'
+"        return
+"    endif
+"    :e ++ff=dos
+"endfun
+" autocmd BufRead * call Dos2unix()
+
+"### Vim não-bloqueante
+" checar/atualizar quando o texto for modificado (ocorre mt com o git)
+set autoread
+au FocusGained,BufEnter * :silent!<space>!
+" au FocusGained,BufEnter * checktime
+
+"### RuntimePaths
+" Deve vir antes das definições de filetype
+" carrega ftdetect, para definir extensões a filetypes
+set rtp+=~/dev/dotfiles/vim
+" evita autocmd de highligh (syntax/) e específicas do filetype (ftplugin/)
+set rtp+=~/dev/dotfiles/vim/after
+
+" O vim utilizado pelo git para commitar no Windows é diferente do que fica
+" instalado no sistema. Portanto o mesmo não procura em ~/vimfiles/pack/ os
+" packages (plugins), mas sim em ~/.vim (padrão Linux).
+" Como solução basta adicionar manualmente, aparentemente não tem problema em
+" em escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés
+" de commitar por exemplo). Ao invés de setar o runtinme de todos snippets,
+" bode ser usado o packpath (:h packpath)
+" THANKS: https://superuser.com/a/1466466
+"set rtp+=~/vimfiles/pack/*/start/*
+set pp+=~/vimfiles
+
+"### Syntax e identação
+" syntax de acordo com o filetype
+syntax on
+
+" carrega ftplugin.vim e indent.vim do runtimepath (plugins)
+filetype plugin indent on
+
+" permite usar <bs> mesmo indo contra auto-intent, eol e inicio da linha
+" https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
+set backspace=indent,eol,start
+
+"### Aparência e som
+" colorscheme default, sobescrito com plugins
+colorscheme slate
+" ajusta cores para um fundo escuro
+set background=dark
+" força uso de 256 cores, permitindo highlight hexadecimal, com guibg e guifg
+" ao invés de somente ctermbg e ctermfg
+set t_Co=256
+
+" Remove som ao apertar multiplos ESCs
+" https://vim.fandom.com/wiki/Disable_beeping"
+set noerrorbells novisualbell t_vb=
+set belloff=all " cancela vários beeps, incluindo <esc><esc>
+
+"## Comportamento
+
+set showmatch               " exibe fechamento de {[()]}
+set showmode                " exibe mode no canto inferior esquerdo
+set showcmd                 " exibe os comandos no canto inferior direito
 set autoindent              " auto indentação
 set mouse=a                 " libera uso do mouse em todos modos
 set linebreak               " quebra a linha por palavra e não por letra
 set cursorcolumn cursorline " marca colunha e linha do cursor
-set showcmd                 " mostra os comandos no canto inferior direito
+set number relativenumber   " exibe régua com o numero relativo das linhas
+set nrformats-=octal        " ctrl-a ctrl -x
+set clipboard+=unnamed      " acessa/altera copy do so
+set lazyredraw              " Não redesenha a tela durante macro (+ perf)
+
+"set splitbelow              " cria split horizontal abaixo
+"set splitright              " cria split vertical abaixo
+
+set nobackup                " para não criar arquivo de bkp
+set noswapfile              " para não criar arquivo swap (?)
+
+set scrolloff=3             " mantêm 3 linhas acima/abaixo do cursor em scroll
 
 " Limite de coluna, comentado para ser posto em modelines específicas
 " set textwidth=80            " define largura da linha de texto
 " set formatoptions+=t        " quebra a linha na coluna textwidth (Vgq)
-set colorcolumn=81          " marca coluna 81
+set colorcolumn=81          " marca coluna 81, ideal para impressão com :ha
 
-" Remove som ao apertar multiplos ESCs
-" https://vim.fandom.com/wiki/Disable_beeping"
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-set belloff+=ctrlg                      " if Vim beeps during completion
-"Obs: para o gvim editar o _gvimrc (windows) ou .gvimrc (linux)
+" motivos para usar buffers em segundo plano ao invés de tabs:
+"   - o mesmo arquivo não é aberto duas vezes
+"   - mais velocidade pois a janela não precisa ser redesenhada
+set hidden " mantêm o arquivo disponível ao sair dele (mesmo modificado)
+" :ls lista, :b <numero><tab> acessa buffers
+
+set hlsearch    " colore os matches de search (* / %s)
+set incsearch   " vai colorindo a pesquisa durante a digitação
+set ignorecase  " ignora case sensitive na busca
+
+" renderização de emojis
+"if has("directx")
+"    " renderiza emojis, afeta perf
+"    " Para ativar basta usar :call NN_ToggleEmoji
+"    set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
+"    set emoji " ??? noemoji
+"endif
+set emoji
+set renderoptions=
+
+" título da janela
+"set title
+"set titlestring=%<%F
+
 "## Modeline
+
+" Exemplo de modeline (pode ser em comentário):
+" vim: set fdm=marker:
+
 set modeline        " habilita uso da modeline
 set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
-" Exemplo de modeline:
-" vim: set fdm=marker:
+
 "## Statusline
+
 set laststatus=2                " habilita statusline
 set statusline=                 " reseta statusline
 set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
 set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
+set statusline+=\ %y            " filetype
+
 "## Popup de sugestão
-set wildmenu                            " habilita menu
-set completeopt=menuone                 " mostra menu de opções
-set shortmess+=c                        " remove mensagens inúteis do wildmenu
-set omnifunc=syntaxcomplete#Complete    " c-x c-o pelo filetype do buffer aberto
-set complete=.,k,w,b                    " add sugestão do wildmenu, tags pesam muito
-"## Conteúdo do buffer aberto
-set encoding=utf-8
-"set fileencoding=utf-8 "?
-"set fileencodings=utf-8 "?
-set fileformats=unix,dos,mac
-"set bomb "?
-"set binary "?
-set nrformats-=octal            " ctrl-a ctrl -x
 
-set nobackup    " para não criar arquivo de bkp
-set noswapfile  " para não criar arquivo swap
+set wildmenu                " habilita menu
+" https://vi.stackexchange.com/questions/5029/key-mapping-that-will-invoke-the-wildmenu
+set wildcharm=<tab>         " char para chamar wildmenu de um map
+set completeopt=menuone     " mostra menu de opções
+set shortmess+=c            " remove mensagens inúteis do wildmenu
 
-" Checar quando o texto for modificado
-set autoread
-au FocusGained,BufEnter * :silent!<space>!
+" Remove das sugestões arquivos/diretorios (lvimgrep tb)
+set wildignore=node_modules/*
+set wildignore+=dist/*
+set wildignore+=vim/dicionarios/*
+set wildignore+=vendor/*
+set wildignore+=_site/*
 
-" Permite usar <bs> mesmo indo contra auto-intent, eol e inicio da linha
-" https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
-set backspace=indent,eol,start
+":h ins-completion
+" origem das palavras do wildmenu:
+"   - buffer corrente
+"   - buffers escondidos
+"   - dicinários
+"   - de outras janelas (splits)
+set complete=.,b,k,w
+" tags no wildmenu afetam perf
+
+" escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
+set omnifunc=syntaxcomplete#Complete    " <c-x><c-o>
+
 "### Tabs/espaços
+
 " https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
-"## Pesquisa no buffer aberto
-set hlsearch    " colore os matches
-set incsearch   " vai colorindo a pesquisa durante a digitação
-set ignorecase  " ignora case sensitive na busca
+
 "## Fold
+
+" método padrão de fold
+set foldmethod=marker
+set foldtext=FoldTextMarker()
+
+" :h digraph-table-mbyte
+set fillchars=vert:\|,fold:─
+
+" retorna título dos folds padrão markdown
+" THANKS: https://dhruvasagar.com/2013/03/28/vim-better-foldtext
 function! FoldTextHashtag()
-    let nl = v:foldend - v:foldstart + 1
-    let titulo = substitute(getline(v:foldstart),"^\""," ",'g')
-    let titulo = substitute(titulo,"\ ","",'')
-    let titulo = substitute(titulo,"\#","\ ",'g')
-    "let txt = '+ (' . nl . ')' . titulo . ' '
-    let txt = '+' . titulo . ' (' . nl . ') '
-    return txt
+  let lines_count = v:foldend - v:foldstart + 1
+
+  " :h digraph-table-mbyte
+  let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+
+  " substitui " por espaço (comentário vim)
+  let titulo = substitute(getline(v:foldstart),"^\""," ",'g')
+
+  " remove hashtags
+  let titulo = substitute(titulo,"\#","",'g')
+
+  " cria + de acordo com # (foldlevel)
+  let foldtextstart = repeat('+', v:foldlevel + 1) . titulo
+
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
+
+" retorna título dos folds padrão marker com {{{}}}
+" THANKS: https://dhruvasagar.com/2013/03/28/vim-better-foldtext
+function! FoldTextMarker()
+  let lines_count = v:foldend - v:foldstart + 1
+
+  " :h digraph-table-mbyte
+  let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+
+    " remove marcação de comentários # // /* <!--
+    let titulo = substitute(getline(v:foldstart),"^[#*{\/ \"<!--]*","",'g')
+
+    " remove marcação de comentários */
+    let titulo = substitute(titulo,"\*\/*$","",'g')
+    " remove marcação de comentários -->
+    let titulo = substitute(titulo,"\-\-\>*$","",'g')
+    " remove espaços que sobraram ao final da linha
+    let titulo = substitute(titulo,"\ *$","",'g')
+
+  " cria + de acordo com # (foldlevel)
+  let foldtextstart = repeat('+', v:foldlevel) . ' ' . titulo
+
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+
 "### Markdown
+
 function! FoldMarkdown()
     if getline(v:lnum) =~ '^## .*$'
         return ">1"
@@ -141,11 +307,13 @@ function! FoldMarkdown()
     return "=" 
 endfunction
 
-au FileType markdown set foldexpr=FoldMarkdown()  
-au FileType markdown set foldmethod=expr
-au FileType markdown set foldtext=FoldTextHashtag()
-"":lvimgrep /^"#/ % | lw
+au FileType markdown setlocal foldmethod=expr
+au FileType markdown setlocal foldexpr=FoldMarkdown()  
+au FileType markdown setlocal foldtext=FoldTextHashtag()
+":lvimgrep /^"#/ % | lw
+
 "### VimScript
+
 function! FoldVimScript()
     if getline(v:lnum) =~ '^"## .*$'
         return ">1"
@@ -167,30 +335,131 @@ endfunction
 " https://stackoverflow.com/questions/5983396/change-the-text-in-folds
 " https://jdhao.github.io/2019/08/16/nvim_config_folding/
 
-au FileType vim set foldexpr=FoldVimScript()
-au FileType vim set foldmethod=expr
-au FileType vim set foldtext=FoldTextHashtag()
+au FileType vim setlocal foldmethod=expr
+au FileType vim setlocal foldexpr=FoldVimScript()
+au FileType vim setlocal foldtext=FoldTextHashtag()
+
 "## Netrw
-" Como não criar NetrwTreeListing e .netrwhist?
+" Netrw no lugar do nerdtree, usar :Lexplore para toggle
 " - :edit a folder to open a file browser
 " - <CR>/v/t to open in an h-split/v-split/tab
 " - check |netrw-browse-maps| for more mappings
+
+"TODO: Como não criar NetrwTreeListing (???) e .netrwhist? (???)
+
 "let g:netrw_banner=0        " disable annoying banner
 "let g:netrw_browse_split=4  " open in prior window
+" FIXME: Não funciona de primeira
 let g:netrw_liststyle=3     " tree view
 
-"https://stackoverflow.com/a/8731175
+" Exibe numeros (ruler)
+" THANKS: https://stackoverflow.com/a/8731175
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-"## Declaração de funções (macros)
-" Créditos: https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
-fun! Dos2unix()
-    " Don't strip on these filetypes
-    " :echo &ft
-    if &ft =~ 'startify\|nerdtree'
-        return
+
+"## Funções
+"### NN_
+" Funções que são usadas com frequencia não tão alta para serem comandos ou
+" maps, padrão NN_ para ficar fácil achar com :call NN_<tab>
+" Funções muito usadas porém não tanto a ponto de virarem comandos ou maps
+" O padrão NN_ serve para ficar fácil achar com :call NN_<tab>
+
+" habilita e desabilita emojis, ideal para perf
+function! NN_EmojiToggle()
+    if &renderoptions == ""
+        set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
+    else
+        set renderoptions=
     endif
-    :e ++ff=dos
 endfun
+
+" recarrega vimrc
+" FIXME: buga tudo!
+function! NN_SourceVIMRC()
+    source $MYVIMRC
+endfun
+
+" atualiza diretório atual (:pwd) com dir do projeto, com raiz .git
+" THANKS: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
+function! NN_SetGitDir()
+    " Change working dir to the current file
+    cd %:p:h
+    " Set 'gitdir' to be the folder containing .git
+    let gitdir=system("git rev-parse --show-toplevel")
+    " See if the command output starts with 'fatal' (if it does, not in a git repo)
+    let isnotgitdir=matchstr(gitdir, '^fatal:.*')
+    " If it empty, there was no error. Let's cd
+    if empty(isnotgitdir)
+        cd `=gitdir`
+    endif
+endfunction
+
+" abre :Lexplorer com pwd como do git
+" THANKS: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
+function! NN_Lexplorer()
+    call NN_SetGitDir()
+    Lexplore
+endfunction
+
+" lista todos e fixmes tags
+" THANKS: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
+fun! NN_Tasks()
+    call NN_SetGitDir()
+    "silent !git grep -EIn "TODO|FIXME"
+    lvimgrep /TODO:\|FIXME:/j **
+    lopen
+endfun
+
+"#### Git
+function NN_Git_add()
+    echo "não implementado!"
+endfun
+
+"### Private (script)
+" Funções privadas que são usadas unicamente no vimrc
+
+" carrega arquivo se ele existe
+" THANKS: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
+function! s:sourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+	"else
+	"echo "Não existe o arquivo:"  a:file
+  endif
+endfunction
+
+"### Shared
+" Funções que são mapeadas, portanto não devem ficar com NN_
+
+" https://stackoverflow.com/questions/20933836/what-is-the-difference-between-location-list-and-quickfix-list-in-vim
+" THANKS: https://github.com/jmharvey/vim/blob/master/vimrc#L207
+" THANKS: https://vimrcfu.com/snippet/104
+" FIXME: Ativa gitguttertoggle
+fun! Grep(grepword)
+    call NN_SetGitDir()
+    if len(a:grepword) == 0
+        let s:grepword = input("Grep: ")        
+    else
+        let s:grepword = a:grepword
+    endif
+    "exec "silent !git grep -EIn \"" . grepword . "\""
+    " exec "vimgrep /".s:kwd."/ %"|" No arquivo
+    exec "lvimgrep /\\<" . s:grepword . "\\>/j **"
+    lopen
+endfun
+
+" THANKS: https://github.com/nvie/vimrc/blob/master/vimrc
+let g:quickfix_is_open = 0
+function! s:QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
 
 " Função utilizada para limpar a tela do terminal
 " Dependendo do SO muda o comando...
@@ -201,27 +470,111 @@ fun! LimpaTerminal()
         silent !clear
     endif
 endfun
-"## Mapeamentos/Comandos e abreviações (macros)
+
+"## Comandos
+
+" fechar (sem forçar) todos buffers e deixar somente um
+" THANKS: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
+command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
+
+" abre terminal em split, ideal para o gvim
+" FIXME: não funciona corretamente no linux
+" THANKS: https://stackoverflow.com/a/38082196
+command! TerminalGitRoot exec 'cd' fnameescape(fnamemodify(finddir('.git',
+            \ escape(expand('%:p:h'), ' ') . ';'), ':h'))
+            \ '|term'
+
+" Necessario instalar ctags ou universal ctags
+" Att ctags
+command! Ctags !ctags -R .<CR>
+
+command! Grep :call Grep("")<cr>
+
+" Ver highlight-groups
+"   :so $VIMRUNTIME/syntax/hitest.vim
+" Ver highlight group da palavra sob o cursor
+" https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+" :highlight mostra as cores do grupo
+command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+
+"## Mapeamentos
+
 ":map -> lista todos mapeamentos para o arquivo
 
+" TODO: ver funcionamento do localleader (:h maplocalleader)
 let mapleader="\<space>"
 
-" reload $VIMRC
-command! Sov :source $MYVIMRC
+noremap     <leader><leader>    :w<CR>
+noremap     <leader><cr>        :call NN_Lexplorer()<cr>
+nnoremap    <leader>/           :noh<cr>
+noremap     <leader>.           :pwd<CR>
+nnoremap    <leader>dd          :bd<CR>
+nnoremap    <leader>df          :bd!<CR>
+noremap     <leader>e           :on<CR>| " Close all splits
+noremap     <leader>h           :<C-u>split<CR>
+noremap     <leader>j           :<C-u>sp
+noremap     <leader>l           :<C-u>vsp
+nnoremap    <leader>t           :tn <c-r><c-w><CR>| " Goto definition (ctags)
+noremap     <leader>v           :<C-u>vsplit<CR>
+noremap     <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
+vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
 
-" Identa todo arquivo e volta ao ponto de partida
-nnoremap <C-S> mi<esc>gg=G`i
+nnoremap    #           :b #<CR>|" pula buffer anterior
+vnoremap    <           <gv|" mantêm select após indentação
+vnoremap    >           >gv|" mantêm select após indentação
+inoremap    "           ""<left>|"autoclose
+inoremap    '           ''<left>|"autoclose
+inoremap    {           {}<left>|"autoclose
+inoremap    {<CR>       {}<left><CR><Esc>O|"autoclose
+inoremap    {<space>    {}<left><space><space><left>|"autoclose
+inoremap    (           ()<left>|"autoclose
+inoremap    (<CR>       ()<left><CR><Esc>O|"autoclose
+inoremap    (<space>    ()<left><space><space><left>|"autoclose
+inoremap    [           []<left>|"autoclose
+inoremap    [<CR>       []<left><CR><Esc>O|"autoclose
+inoremap    [<space>    []<left><space><space><left>|"autoclose
+vnoremap    a'          c'<c-r>"'|" surround match
+vnoremap    a"          c"<c-r>""|" surround match
+vnoremap    a(          c(<c-r>")|" surround match
+vnoremap    a{          c{<c-r>"}|" surround match
+vnoremap    a[          c[<c-r>"]|" surround match
+vnoremap    J           :m '>+1<CR>gv=gv| " move seleção pra baixo
+vnoremap    K           :m '<-2<CR>gv=gv| " move seleção pra cima
+inoremap    kj          <esc>|" esc mais fácil
+nnoremap    n           nzzzv|" centraliza match do search
+nnoremap    N           Nzzzv|" centraliza match do search
+nnoremap    Q           @q|" executa macro em 'q' (letra que mais gravo)
+nnoremap    <tab>       za|" toggle fold
+nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'| " Toggle fold todo arquivo
+noremap     <up>        <nop>|" força hjkl
+noremap     <down>      <nop>|" força hjkl
+noremap     <left>      <nop>|" força hjkl
+noremap     <right>     <nop>|" força hjkl
+inoremap    <up>        <nop>|" força hjkl
+inoremap    <down>      <nop>|" força hjkl
+inoremap    <left>      <nop>|" força hjkl
+inoremap    <right>     <nop>|" força hjkl
+inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
+inoremap    <c-f>       <c-o>|" pulo mais ergonomico
+nmap        <c-f>       :call NN_<tab><left>| " funções pessoais
+nnoremap    <c-g>       viwy:call Grep("<c-r>0")<cr>|" grep palavra do cursor
+vnoremap    <c-g>       y:call Grep("<c-r>0")<cr>|" grep da seleção
+inoremap    <c-h>       <left>|" força hjkl
+inoremap    <c-j>       <down>|" força hjkl
+noremap     <c-j>       <C-w>w| " estilo DWM
+inoremap    <c-k>       <up>|" força hjkl
+noremap     <c-k>       <C-w>W| " estilo DWM
+inoremap    <c-l>       <right>|" força hjkl
+nnoremap    <C-q>       :call <SID>QuickfixToggle()<cr>
+nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
+nnoremap    <c-z>       u|" remove comportamento <c-z>
 
-" Mostra o diretório corrente, raiz para acessar arquivos com :e
-noremap <leader>. :pwd<CR>
+"## Abreviações
+"### Command
 
-" Mais ergonômico
-inoremap <c-f> <c-o>
-inoremap kj <esc>
-autocmd InsertEnter * set timeoutlen=200
-autocmd InsertLeave * set timeoutlen=1000
-"### Salvar/sair rapidamente
-noremap <leader><leader> :w<CR>
+cnoreabbrev cul set cul
+cnoreabbrev nocul set nocul
+
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qa! qa!
@@ -234,105 +587,88 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
-"### Undo/redo
-nnoremap <c-z> u
-" re do with <C-R> built-in
-"### Fold
-nnoremap <silent> <tab> za
-" reduz/mostra conteudo dos folds
-nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
-"### Buffers
-" View and select buffers
-" CtrlP possui a mesma feature
-"nnoremap <Tab> :ls <CR>:b<space>
 
-" Fechar (sem forçar) todos buffers e deixar somente um
-" Créditos: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
-command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
+" THANKS: https://vim.fandom.com/wiki/Find_in_files_within_Vim
+cabbrev lvim
+      \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
+      \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
+      \ <Bar> lw
+      \ <C-Left><C-Left><C-Left>
 
-" Créditos: https://stackoverflow.com/a/38082196
-command! TerminalGitRoot exec 'cd' fnameescape(fnamemodify(finddir('.git',
-            \ escape(expand('%:p:h'), ' ') . ';'), ':h'))
-            \ '|term'
+"## AutoCmds
 
-" Open new file in buffer
-" Atualmente é mais eficar usar ctrlp, mas o truque é top
-" nnoremap <c-n> :e **/*
+"https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
+augroup tempos
+    autocmd InsertEnter * set timeoutlen=200
+    autocmd InsertLeave * set timeoutlen=1000
+augroup END
 
-" Deleção de buffers
-nnoremap <silent> <leader>dd :bd<CR>
-nnoremap <silent> <leader>df :bd!<CR>
+"### ftdetect
 
-" Troca de buffers
-"nnoremap <Tab> :bn<CR>
-"nnoremap <S-Tab> :bp<CR>
-nnoremap <silent> [b :bp<CR>
-nnoremap <silent> ]b :bn<CR>
-nnoremap <silent> [B :bp<CR>
-nnoremap <silent> ]B :bn<CR>
-"### Cursor
-cnoreabbrev cul set cul
-cnoreabbrev nocul set nocul
-"### Pesquisa no arquivo
-" Centralizar resultados
-nnoremap n nzzzv
-nnoremap N Nzzzv
+"https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
+"FIXME: Como colocar definição de filetype em ftdetect?
+augroup skeletons
+    au!
+    au BufRead,BufNewFile *.gv setfiletype dot
+augroup END
 
-" Limpa highlight da pesquisa
-nnoremap <leader>/ :noh<cr>
-"### Remove utilização de setas
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-inoremap <c-k> <up>
-inoremap <c-j> <down>
-inoremap <c-h> <left>
-inoremap <c-l> <right>
-"### Git greps
-" Créditos: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
-"":lvimgrep /\[ \]/ % | lw
-command! Tasks !git grep -EIn "TODO|FIXME"'
-"### CTAGS
-" Necessario instalar ctags ou universal ctags
-" Att ctags
-command! Ctags !ctags -R .<CR>
+"### PHP
 
-" Goto definition
-nnoremap <leader>t :tn <c-r><c-w><CR>
-"### Split
-" Open the same file
-noremap <leader>h :<C-u>split<CR>
-noremap <leader>v :<C-u>vsplit<CR>
-" Search an file
-noremap <leader>l :<C-u>vsp
-noremap <leader>j :<C-u>sp
+let g:dict_dir = "~/dev/dotfiles/vim/dicionarios/"
+augroup php
+    au BufRead *test.php execute "setlocal dictionary+=".g:dict_dir."phpunit.dict"
+augroup END
 
-" Switching windows
-"   Igual ao dwm
-noremap <c-j> <C-w>w
-noremap <c-k> <C-w>W
+"## packs pessoais
+" Funcionalidades que podem virar mini packages/plugins.
+" Alguns podem estar em packages.vim
+"### Highlight Word
+" Colore palavras (como se fosse o search)
+" Antes do pack: 
+" nnoremap    <kMultiply> *N| "https://stackoverflow.com/a/24537701
+" THANKS: https://bitbucket.org/sjl/dotfiles/raw/d8f861e3276a89c0f98637725006da658adcda90/vim/vimrc
 
-" Resize
-nmap <C-w>j <C-w>-
-nmap <c-w>k <C-w>+
-nmap <c-w>l <C-w>>
-nmap <c-w>h <C-w><
+function! HiInterestingWord(n)
+    " Definição do highlight, por algum motivo pelo vimrc não ocorre
+    hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+    hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+    hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+    hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+    hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+    hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
-" Close all splits
-noremap <Leader>e :on<CR>
-"## Copy paste
-set clipboard=unnamed
-noremap <leader>y my^vg_"+y:echo "Copiado!!"<CR>
-vnoremap <leader>y "+y:echo "Copiado!!"<CR>
-"## Configuração específicas de sistema operacional
-""autocmd BufRead * call Dos2unix()
-"## Comandos/configurações específicas do buffer aberto
-" Créditos: https://stackoverflow.com/a/24046914
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction
+
+" TODO: remover/resetar um ou todos highlights
+nnoremap <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <leader>6 :call HiInterestingWord(6)<cr>
+
+"### Comentário
+" THANKS: https://stackoverflow.com/a/24046914
 let s:comment_map = { 
             \   "c": '\/\/',
             \   "cpp": '\/\/',
@@ -382,441 +718,8 @@ endfunction
 nnoremap gcc :call ToggleComment()<cr>
 vnoremap gcc :call ToggleComment()<cr>
 
-"### HTML
-augroup html
-    " Comenta
-    au FileType html vnoremap // I<!--<esc>A--><CR>
-    au FileType html vnoremap /; :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
-    au FileType html nmap // I<!--<esc>A--><CR>
-    au FileType html nmap /; :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
-augroup END
-"### SVELTE
-augroup svelte
-    au BufReadPost *.svelte set syntax=html
-augroup END
-
-"### MARKDOWN
-"augroup markdown
-"augroup END
-"### DOT GV
-au! BufRead,BufNewFile *.gv setfiletype dot
-augroup dot
-    au FileType dot nmap <leader>r <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpdf -O %<CR><CR>
-    au FileType dot nmap <leader>i <Esc>:w<CR>:call LimpaTerminal()<CR>:!dot -Tpng % -O<CR><CR>
-augroup END
-"### SHELL
-"augroup sh
-"augroup END
-"### LATEX
-"augroup tex
-"    " Comenta
-"    " É necessário compilar duas vezes para ter certeza de atualizar a toc
-"    " https://tex.stackexchange.com/questions/301103/empty-table-of-contents
-"    " Também compilar bibliografia e mais uma vez a toc
-"    " Erros salvos em log
-"    au FileType tex nmap <leader>r <Esc>:w<CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;bibtex '%:r' > bibtex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>:!clear;pdflatex '%:r' > pdflatex.log<CR><CR>
-"    au FileType tex nmap <leader>e <Esc>:!clear;$PDFVIEWER '%:r'.pdf &<CR><CR>
-"augroup END
-"
-"" Reconhecer classes com syntax de latex
-"au BufNewFile,BufRead *.cls set filetype=tex
-"### PYTHON
-augroup python
-    au FileType python nmap <leader>r :vsp<CR>:terminal python3 %<CR>
-augroup END
-"### PHP
-augroup php
-    " https://vim.fandom.com/wiki/Runtime_syntax_check_for_php
-    " Para usar o :make % e ver erro de syntax
-    au FileType php compiler php
-    au FileType php set errorformat=%m\
-
-    " Map para executar comando de teste do composer
-    " echo "<?php system('composer test');" > neni-composer-test.php
-    au FileType php nmap <leader>ct :terminal php neni-composer-test.php<CR>
-
-    au FileType php nmap <leader>r :terminal php %<CR>
-augroup END
-"### JAVASCRIPT
-"augroup javascript
-"augroup END
-"### Netrw
-" Netrw no lugar do nerdtree
-" Toggle diretórios à esquerda
-"noremap <leader><CR> :Lexplore<CR>
-
-" Configura para apagar o buffer vazio deixado pelo :Lexplore, thanks tpope
-au Filetype netrw setl bufhidden=delete
-"## Snippets
-" :ia
-highlight link NeniTagJump DiffAdd
-match NeniTagJump /<++>/
-
-function! JumpToTag()
-    " search retorna a linha onde o parametro foi encontrado
-    if search("<++>",'nw') > 0
-        " posiciona o cursor sob o padrão da marcação
-        call search("<++>",'w')
-        " Caso a marcação esteja na ultima coluna da linha, o :startinsert
-        " recua uma coluna a mais. Como seria muito complexo calcular essa
-        " situação, é mais fácil entrar no modo de insert e apagar o numero
-        " de letras (4 para <++>)
-        call feedkeys("i\<del>\<del>\<del>\<del>")
-    endif
-endfun
-inoremap <c-tab> <esc>:call JumpToTag()<cr>
-nnoremap <c-tab> <esc>:call JumpToTag()<cr>
-
-" Cancela autotrigger snippet com qualquer "non-keyword"
-" Créditos: https://stackoverflow.com/questions/36702371/understand-iabbrev-buffer-iff-ifleft
-function! LeSnippet(root, file)
-    let c = nr2char(getchar(0))
-    if c == "\<tab>"
-        " Assim que a função é chamada o modo é trocado do insert pro normal
-        " deslocando o cursor para a direita. Caso não esteja na primeira
-        " coluna, ele não se move, afetando a escolha entre i (insert) e a
-        " (apend)
-        if col(".") == 1
-            " Coloca dois marcadores (§):
-            " O primeiro demarca o final da linha [l1] (inicio do snippet) e o
-            " segundo o inicio da ultima linha [l2] (final do snippet)
-            execute "normal i§§"
-        else
-            " Coloca dois marcadores (§):
-            " O primeiro demarca o final da linha [l1] (inicio do snippet) e o
-            " segundo o inicio da ultima linha [l2] (final do snippet)
-            execute "normal a§§"
-        endif
-        " Acessa entre os marcadores (§§) e da um enter para quebrar a linha.
-        " O marcador preservará o espaço contido antes e depois do mesmo,
-        " evitando que o J crie um espaço caso não precise ou unifique caso ja
-        " exista
-        execute "normal i\<cr>"
-
-        " Marca l2 (mark s) e sobe para a linha inicial
-        normal msk
-
-        " Escreve o conteudo do snippet logo abaixo da linha inicial
-        execute "read" . a:file
-
-        " - Marca a primeira linha do snippet lido (mark d)
-        " - Unifica l1 com a primeira do snippet
-        " - Move para esquerda e apaga o espaço gerado pelo J e o marcador (§)
-        " - Retorna à l2
-        " - Unifica l2 com a ultima do snippet
-        " - Apaga o espaço gerado pelo J e o marcador (§) restante mantendo o y
-        " - Seleciona de l2 unificada até l1 unificada com o snippet e identa
-        normal mdkJh"_x"_x`skJ"_x"_xV`d=
-        call JumpToTag()
-    elseif c == "\<esc>"
-        " a:root . c vai tornar recursiva a função.
-        " É necessário colocar uma letra que não seja non-keyword para depois
-        " apagá-la
-        execute "normal a" . a:root . 'a'
-        execute 'normal "_x'
-    else
-        " a:root . c vai tornar recursiva a função.
-        " É necessário colocar uma letra que não seja non-keyword para depois
-        " apagá-la
-        execute "normal a" . a:root . '"_c' . c
-        execute 'normal h"_x'
-        startinsert
-        call cursor( line('.'), col('.') + 1)
-    endif
-endfunction
-
-function! CriaSnippet(root, good)
-    execute "iabbr <buffer> " . a:root . " <esc>:call LeSnippet(\"" . a:root . "\", \"" . a:good . "\")<cr>"
-endfunction
-
-function! RegistraArraySnippets(snippet)
-    for key in keys(a:snippet)
-        execute CriaSnippet(key, a:snippet[key])
-    endfor
-endfunction
-
-let s:snippetsDir = '~/dev/dotfiles/vim/snippets/'
-let s:snippetsDirPHP = s:snippetsDir . 'php/'
-let s:snippets_php_abbreviations = {
-            \ 'for': s:snippetsDirPHP.'for.php',
-            \ 'fore': s:snippetsDirPHP.'foreach.php',
-            \ 'fun': s:snippetsDirPHP.'function.php',
-            \ 'if': s:snippetsDirPHP.'if.php',
-            \ '-': s:snippetsDirPHP.'private.php',
-            \ '#': s:snippetsDirPHP.'protected.php',
-            \ '+': s:snippetsDirPHP.'public.php',
-            \ 't': s:snippetsDirPHP.'this.php',
-            \ 'dd': s:snippetsDirPHP.'var_dump.php',
-            \ 'e': s:snippetsDirPHP.'echo.php',
-            \ }
-let s:snippetsDirJS = s:snippetsDir . 'js/'
-let s:snippets_js_abbreviations = {
-            \ 'for': s:snippetsDirJS.'for.js',
-            \ 'fun': s:snippetsDirJS.'function.js',
-            \ 'if': s:snippetsDirJS.'if.js',
-            \ 'log': s:snippetsDirJS.'log.js',
-            \ }
-let s:snippetsDirHTML = s:snippetsDir . 'html/'
-let s:snippets_html_abbreviations = {
-            \ 'div': s:snippetsDirHTML.'div.html',
-            \ }
-
-au FileType php call RegistraArraySnippets(s:snippets_php_abbreviations)
-au FileType javascript call RegistraArraySnippets(s:snippets_js_abbreviations)
-au FileType html call RegistraArraySnippets(s:snippets_js_abbreviations)
-au FileType html call RegistraArraySnippets(s:snippets_html_abbreviations)
-
-
-"## Comandos/configurações específicas do buffer aberto (linguagens de programação comumente)
-"### HTML
-augroup html
-    au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
-"    au FileType html :so ~/dev/dotfiles/vim/plugins/matchit.vim
-augroup END
-"### PHP
-let g:dict_dir = "~/dev/dotfiles/vim/dicionarios/"
-augroup php
-    au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
-    au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
-    au FileType php nmap <leader>r :terminal php %<CR>
-au BufRead *test.php execute "setlocal dictionary+=".g:dict_dir."phpunit.dict"
-
-augroup END
-"### SHELL
-"augroup sh
-"    au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
-"augroup END
-"## colorscheme/syntax
-" Ver highlight-groups
-"so $VIMRUNTIME/syntax/hitest.vim
-""let g:onedark_terminal_italics = 1
-" onedark adaptado
-" Ver highlight group da palavra sob o cursor
-" https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
-" :highlight mostra as cores do grupo
-command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
-highlight CursorColumn guibg=#0a0c0f
-highlight CursorLine guibg=#0a0c0f gui=underline cterm=underline
-hi! Folded guibg=purple
-"command Apr call AprRead()
-" ==============================================================================
-"   Name:        One Half Dark
-"   Author:      Son A. Pham <sp@sonpham.me>
-"   Url:         https://github.com/sonph/onehalf
-"   License:     The MIT License (MIT)
-"
-"   A dark vim color scheme based on Atom's One. See github.com/sonph/onehalf
-"   for installation instructions, a light color scheme, versions for other
-"   editors/terminals, and a matching theme for vim-airline.
-" ==============================================================================
-
-set background=dark
-highlight clear
-syntax reset
-
-let g:colors_name="darkblue"
-let colors_name="darkblue"
-"let g:colors_name="onehalfdark"
-"let colors_name="onehalfdark"
-
-
-let s:black       = { "gui": "#282c34", "cterm": "236" }
-let s:red         = { "gui": "#e06c75", "cterm": "168" }
-let s:green       = { "gui": "#98c379", "cterm": "114" }
-let s:yellow      = { "gui": "#e5c07b", "cterm": "180" }
-let s:blue        = { "gui": "#61afef", "cterm": "75"  }
-let s:purple      = { "gui": "#c678dd", "cterm": "176" }
-let s:cyan        = { "gui": "#56b6c2", "cterm": "73"  }
-let s:white       = { "gui": "#dcdfe4", "cterm": "188" }
-
-let s:fg          = s:white
-let s:bg          = s:black
-
-let s:comment_fg  = { "gui": "#5c6370", "cterm": "241" }
-let s:gutter_bg   = { "gui": "#282c34", "cterm": "236" }
-let s:gutter_fg   = { "gui": "#919baa", "cterm": "247" }
-
-let s:cursor_line = { "gui": "#313640", "cterm": "237" }
-let s:color_col   = { "gui": "#313640", "cterm": "237" }
-
-let s:selection   = { "gui": "#474e5d", "cterm": "239" }
-let s:vertsplit   = { "gui": "#313640", "cterm": "237" }
-
-
-function! s:h(group, fg, bg, attr)
-  if type(a:fg) == type({})
-    exec "hi " . a:group . " guifg=" . a:fg.gui . " ctermfg=" . a:fg.cterm
-  else
-    exec "hi " . a:group . " guifg=NONE cterm=NONE"
-  endif
-  if type(a:bg) == type({})
-    exec "hi " . a:group . " guibg=" . a:bg.gui . " ctermbg=" . a:bg.cterm
-  else
-    exec "hi " . a:group . " guibg=NONE ctermbg=NONE"
-  endif
-  if a:attr != ""
-    exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
-  else
-    exec "hi " . a:group . " gui=NONE cterm=NONE"
-  endif
-endfun
-
-
-" User interface colors {
-call s:h("NonText", s:fg, "", "")
-
-call s:h("Cursor", s:bg, s:blue, "")
-call s:h("CursorColumn", "", s:cursor_line, "")
-call s:h("CursorLine", "", s:cursor_line, "")
-
-call s:h("LineNr", s:gutter_fg, "", "")
-call s:h("CursorLineNr", s:fg, "", "")
-
-call s:h("DiffAdd", "", s:green, "")
-call s:h("DiffChange", "", s:yellow, "")
-call s:h("DiffDelete", "", s:red, "")
-call s:h("DiffText", s:blue, "", "")
-
-call s:h("IncSearch", s:bg, s:yellow, "")
-call s:h("Search", s:bg, s:yellow, "")
-
-call s:h("ErrorMsg", s:fg, "", "")
-call s:h("ModeMsg", s:fg, "", "")
-call s:h("MoreMsg", s:fg, "", "")
-call s:h("WarningMsg", s:red, "", "")
-call s:h("Question", s:purple, "", "")
-
-call s:h("Pmenu", s:bg, s:fg, "")
-call s:h("PmenuSel", s:fg, s:blue, "")
-call s:h("PmenuSbar", "", s:selection, "")
-call s:h("PmenuThumb", "", s:fg, "")
-
-call s:h("SpellBad", s:red, "", "")
-call s:h("SpellCap", s:yellow, "", "")
-call s:h("SpellLocal", s:yellow, "", "")
-call s:h("SpellRare", s:yellow, "", "")
-
-call s:h("StatusLine", s:blue, s:cursor_line, "")
-call s:h("StatusLineNC", s:comment_fg, s:cursor_line, "")
-call s:h("TabLine", s:comment_fg, s:cursor_line, "")
-call s:h("TabLineFill", s:comment_fg, s:cursor_line, "")
-call s:h("TabLineSel", s:fg, s:bg, "")
-
-call s:h("Visual", "", s:selection, "")
-call s:h("VisualNOS", "", s:selection, "")
-
-call s:h("ColorColumn", "", s:color_col, "")
-call s:h("Conceal", s:fg, "", "")
-call s:h("Directory", s:blue, "", "")
-call s:h("VertSplit", s:vertsplit, s:vertsplit, "")
-call s:h("Folded", s:fg, "", "")
-call s:h("FoldColumn", s:fg, "", "")
-call s:h("SignColumn", s:fg, "", "")
-
-call s:h("MatchParen", s:blue, "", "underline")
-call s:h("SpecialKey", s:fg, "", "")
-call s:h("Title", s:green, "", "")
-call s:h("WildMenu", s:fg, "", "")
-" }
-
-
-" Syntax colors {
-call s:h("Comment", s:comment_fg, "", "")
-call s:h("Constant", s:cyan, "", "")
-call s:h("String", s:green, "", "")
-call s:h("Character", s:green, "", "")
-call s:h("Number", s:yellow, "", "")
-call s:h("Boolean", s:yellow, "", "")
-call s:h("Float", s:yellow, "", "")
-
-call s:h("Identifier", s:red, "", "")
-call s:h("Function", s:blue, "", "")
-call s:h("Statement", s:purple, "", "")
-
-call s:h("Conditional", s:purple, "", "")
-call s:h("Repeat", s:purple, "", "")
-call s:h("Label", s:purple, "", "")
-call s:h("Operator", s:fg, "", "")
-call s:h("Keyword", s:red, "", "")
-call s:h("Exception", s:purple, "", "")
-
-call s:h("PreProc", s:yellow, "", "")
-call s:h("Include", s:blue, "", "")
-call s:h("Define", s:purple, "", "")
-call s:h("Macro", s:purple, "", "")
-call s:h("PreCondit", s:yellow, "", "")
-
-call s:h("Type", s:yellow, "", "")
-call s:h("StorageClass", s:yellow, "", "")
-call s:h("Structure", s:yellow, "", "")
-call s:h("Typedef", s:yellow, "", "")
-
-call s:h("Special", s:blue, "", "")
-call s:h("SpecialChar", s:fg, "", "")
-call s:h("Tag", s:fg, "", "")
-call s:h("Delimiter", s:fg, "", "")
-call s:h("SpecialComment", s:fg, "", "")
-call s:h("Debug", s:fg, "", "")
-call s:h("Underlined", s:fg, "", "")
-call s:h("Ignore", s:fg, "", "")
-call s:h("Error", s:red, s:gutter_bg, "")
-call s:h("Todo", s:purple, "", "")
-" }
-
-
-" Plugins {
-" GitGutter
-call s:h("GitGutterAdd", s:green, s:gutter_bg, "")
-call s:h("GitGutterDelete", s:red, s:gutter_bg, "")
-call s:h("GitGutterChange", s:yellow, s:gutter_bg, "")
-call s:h("GitGutterChangeDelete", s:red, s:gutter_bg, "")
-" Fugitive
-call s:h("diffAdded", s:green, "", "")
-call s:h("diffRemoved", s:red, "", "")
-" }
-
-
-" Git {
-call s:h("gitcommitComment", s:comment_fg, "", "")
-call s:h("gitcommitUnmerged", s:red, "", "")
-call s:h("gitcommitOnBranch", s:fg, "", "")
-call s:h("gitcommitBranch", s:purple, "", "")
-call s:h("gitcommitDiscardedType", s:red, "", "")
-call s:h("gitcommitSelectedType", s:green, "", "")
-call s:h("gitcommitHeader", s:fg, "", "")
-call s:h("gitcommitUntrackedFile", s:cyan, "", "")
-call s:h("gitcommitDiscardedFile", s:red, "", "")
-call s:h("gitcommitSelectedFile", s:green, "", "")
-call s:h("gitcommitUnmergedFile", s:yellow, "", "")
-call s:h("gitcommitFile", s:fg, "", "")
-hi link gitcommitNoBranch gitcommitBranch
-hi link gitcommitUntracked gitcommitComment
-hi link gitcommitDiscarded gitcommitComment
-hi link gitcommitSelected gitcommitComment
-hi link gitcommitDiscardedArrow gitcommitDiscardedFile
-hi link gitcommitSelectedArrow gitcommitSelectedFile
-hi link gitcommitUnmergedArrow gitcommitUnmergedFile
-" }
-
-" Fix colors in neovim terminal buffers {
-  if has('nvim')
-    let g:terminal_color_0 = s:black.gui
-    let g:terminal_color_1 = s:red.gui
-    let g:terminal_color_2 = s:green.gui
-    let g:terminal_color_3 = s:yellow.gui
-    let g:terminal_color_4 = s:blue.gui
-    let g:terminal_color_5 = s:purple.gui
-    let g:terminal_color_6 = s:cyan.gui
-    let g:terminal_color_7 = s:white.gui
-    let g:terminal_color_8 = s:black.gui
-    let g:terminal_color_9 = s:red.gui
-    let g:terminal_color_10 = s:green.gui
-    let g:terminal_color_11 = s:yellow.gui
-    let g:terminal_color_12 = s:blue.gui
-    let g:terminal_color_13 = s:purple.gui
-    let g:terminal_color_14 = s:cyan.gui
-    let g:terminal_color_15 = s:white.gui
-    let g:terminal_color_foreground = s:fg.gui
-  endif
-" }
+"## sources
+call s:sourceIfExists("~/.extra-vimrc.vim")
+call s:sourceIfExists("~/dev/dotfiles/vim/dotfiles.vim")
+call s:sourceIfExists("~/dev/dotfiles/vim/packages.vim")
 

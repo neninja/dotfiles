@@ -23,7 +23,6 @@ vendorRepos=(
     "https://github.com/mhinz/vim-startify.git" # tela inicial com projetos
     "https://github.com/diepm/vim-rest-console.git" # rest client
     "https://github.com/vimwiki/vimwiki.git" # todo
-    "https://github.com/jiangmiao/auto-pairs.git" # funcionalidades de "'{[()]}'"
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
     "https://github.com/terryma/vim-multiple-cursors.git" # multiplos cursores
@@ -40,11 +39,6 @@ vendorRepos=(
 
     ####### PHP
     "https://github.com/adoy/vim-php-refactoring-toolbox.git" # macros uteis
-    "https://github.com/alvan/vim-closetag.git" # fecha tags html, semelhante a </CTRL-X-CTRL-O
-
-    ####### Desnecessários
-    "https://github.com/thanthese/Tortoise-Typing.git" # treino de digitação
-    "https://github.com/gyim/vim-boxdraw.git" # desenho de diagramas ascii
 )
 
 neniRepos=(

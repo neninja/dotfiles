@@ -41,7 +41,8 @@
     bdd = branch -D
     #############
     c = commit
-    ca = commit --amend
+    ca = commit --amend --no-edit
+    cam = commit --amend
     cm = commit -m
 
     ## Semantic commits
