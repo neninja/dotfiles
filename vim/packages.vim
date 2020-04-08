@@ -136,9 +136,43 @@ nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
 "## Fugitive
 " https://github.com/tpope/vim-fugitive
 
-" Para tirar arquivos de staged basta aperter :G
-"   na janela de status apertar - no arquivo para add ou remover
+" Maps de :Gstatus/:G/<f3> (:h fugitive-maps ou g?)
+"   - Navegação:
+"       - [[ ]] navega entre commits e arquivos
+"       - (( )) navega entre commits, arquivos e hunks
+"       - <cr> abre arquivo
+"   - Stage:
+"      - U unstage all
+"      - X descarta alterações
+"      - - toggle stage unstage arquivo ou hunk
+"   - Diff:
+"       - = toggle diff inline
+"       - dv vertical diff split
+"   - Commits:
+"       - cc abre janeja de mensagem de commit
+"       - ca add staged ao ultimo commit e abre janela mensagem de commit
+"       - ce add staged ao ultimo commit sem editá-lo
+"       - cvc commita com detalhes diffs que não vão (ver commit -v)
+"   - Stash:
 
+"THANKS: https://gist.github.com/actionshrimp/6493611
+function! ToggleGStatus()
+    if buflisted(bufname('.git/index'))
+        bd .git/index
+    else
+        Gstatus
+    endif
+endfunction
+command ToggleGStatus :call ToggleGStatus()
+
+"TODO: trocar map para ser usado como troca de janelas tbm
+nmap <F3> :ToggleGStatus<CR>
+
+"TODO: melhorar stage de hunks
+"   - - já usado para trocar de tela
+"   - -  é mt longe de v, j e k, os responsaveis por marcar o hunk
+"   - descobrir se tem como dar stage sem gitgutter
+"https://vi.stackexchange.com/questions/10368/git-fugitive-how-to-git-add-a-visually-selected-chunk-of-code
 
 "### Statusline
 set statusline=                 " reseta statusline
