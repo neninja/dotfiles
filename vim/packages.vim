@@ -12,7 +12,7 @@
 "      (linux) ~/.vim/pack/nenitf/
 
 "# Configurações e instruções
-"## 🌟 CtrlP
+"## CtrlP
 " https://github.com/ctrlpvim/ctrlp.vim
 
 " USOS:
@@ -61,7 +61,7 @@ let g:ctrlp_prompt_mappings = {
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
 
-"## 🌟 Quick Scope
+"## Quick Scope
 " https://github.com/unblevable/quick-scope
 
 " :QuickScopeToggle
@@ -76,13 +76,13 @@ augroup END
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " let g:qs_lazy_highlight = 1
-"## 🌟 Vim PHP Refactoring Toolbox
+"## Vim PHP Refactoring Toolbox
 " https://github.com/adoy/vim-php-refactoring-toolbox
 
 " disable the default mapping
 "let g:vim_php_refactoring_use_default_mapping = 0
 
-"## 🌟 Vim Startify
+"## Vim Startify
 " https://github.com/mhinz/vim-startify
 
 let g:startify_custom_header_quotes = [
@@ -110,7 +110,7 @@ let g:startify_bookmarks = [
 ":SSave[!]    save a session    |startify-:SSave|
 ":SDelete[!]  delete a session  |startify-:SDelete|
 ":SClose      close a session   |startify-:SClose|
-"## 🌟 VimWiki
+"## VimWiki
 " https://github.com/vimwiki/vimwiki
 
 " <leader>ws
@@ -133,7 +133,7 @@ nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
 
 " ver: lvimgrep /\[ \]/ % | lw
 
-"## 🌟 Fugitive
+"## Fugitive
 " https://github.com/tpope/vim-fugitive
 
 " Para tirar arquivos de staged basta aperter :G
@@ -163,7 +163,7 @@ set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 set statusline+=\ %y            " filetype
 
-"## 🌟 Vim GitGutter
+"## Vim GitGutter
 " https://github.com/airblade/vim-gitgutter
 
 " <leader>hp -> mostra valor anterior do hunk
