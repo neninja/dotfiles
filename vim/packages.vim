@@ -236,13 +236,16 @@ let g:vim_dict_dict = [
 nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
-"## Gruvbox
-" https://github.com/morhetz/gruvbox
+"## Colorscheme
+" https://github.com/danilo-augusto/vim-afterglow
 
-colorscheme gruvbox
+colorscheme afterglow
 set background=dark         " :set bg=light
 
-let g:gruvbox_contrast_dark="hard"
+"### Opniões
+"   - Gruvbox é lento e não permite edições quando usado como package
+"   - Onehalfdark no gvim fica com fundo branco
+
 
 "## EditorConfig Vim
 " https://github.com/editorconfig/editorconfig-vim
