@@ -33,16 +33,16 @@ echo "[include]
 # vim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # vim
-    echo "source $DIRDF_FROM_HOME/vim/vimrc" > $HOME/.vimrc
-    echo "source $DIRDF_FROM_HOME/vim/gvimrc" > $HOME/.gvimrc
+    echo "source ~/$DIRDF_FROM_HOME/vim/vimrc" > $HOME/.vimrc
+    echo "source ~/$DIRDF_FROM_HOME/vim/gvimrc" > $HOME/.gvimrc
 
     # nvim
     # mkdir -p $HOME/.config/nvim
     # cp --remove-destination -v $DIRDF/vim/source.vim $HOME/.config/nvim/init.vim
 elif [[ "$OSTYPE" == "msys" ]]; then
     # vim
-    echo "source $DIRDF_FROM_HOME/vim/vimrc" > $HOME/_vimrc
-    echo "source $DIRDF_FROM_HOME/vim/gvimrc" > $HOME/_gvimrc
+    echo "source ~/$DIRDF_FROM_HOME/vim/vimrc" > $HOME/_vimrc
+    echo "source ~/$DIRDF_FROM_HOME/vim/gvimrc" > $HOME/_gvimrc
 
     # nvim
     # mkdir -p $HOME/AppData/Local/nvim
