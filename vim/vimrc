@@ -719,7 +719,7 @@ nnoremap gcc :call ToggleComment()<cr>
 vnoremap gcc :call ToggleComment()<cr>
 
 "## sources
-call s:sourceIfExists("~/.extra-vimrc.vim")
 call s:sourceIfExists("~/dev/dotfiles/vim/dotfiles.vim")
 call s:sourceIfExists("~/dev/dotfiles/vim/packages.vim")
+call s:sourceIfExists("~/.extra-vimrc.vim")
 
