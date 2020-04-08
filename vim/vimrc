@@ -28,6 +28,7 @@
 "       - De boa usar terminal ao lado do vim, nem tudo tem que ser como emacs
 "   - Manter compatibilidade entre vim e nvim
 "   - Evitar trocar comandos default do teclado
+"   - Usar/configurar a menor quantidade de plugins possível
 "   - Comentar/documentar bastante o código (respeitando a largura de coluna)
 "       - Configurações antigas, novas e defaults
 "
@@ -132,7 +133,7 @@ set showcmd                 " exibe os comandos no canto inferior direito
 set autoindent              " auto indentação
 set mouse=a                 " libera uso do mouse em todos modos
 set linebreak               " quebra a linha por palavra e não por letra
-set cursorcolumn cursorline " marca colunha e linha do cursor
+"set cursorcolumn cursorline " marca colunha e linha do cursor
 set number relativenumber   " exibe régua com o numero relativo das linhas
 set nrformats-=octal        " ctrl-a ctrl -x
 set clipboard+=unnamed      " acessa/altera copy do so
@@ -571,6 +572,9 @@ nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
 nnoremap    <c-z>       u|" remove comportamento <c-z>
 
 "## Abreviações
+" Evitar ...
+"cnoreabbrev cul set cul
+"cnoreabbrev nocul set nocul
 
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
