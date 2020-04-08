@@ -49,3 +49,6 @@ elif [[ "$OSTYPE" == "msys" ]]; then
     # cp --remove-destination -v $DIRDF/vim/source.vim $HOME/AppData/Local/nvim/init.vim
 fi
 ./vim/clone-packages.sh
+
+# less command
+read -p "Aperte enter para fechar"
