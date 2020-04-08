@@ -237,15 +237,15 @@ nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
 "## Colorscheme
+" https://github.com/joshdick/onedark.vim
+
+" colorscheme afterglow " outro tema muito bom
 " https://github.com/danilo-augusto/vim-afterglow
 
-colorscheme afterglow
-set background=dark         " :set bg=light
+"THANKS: https://github.com/joshdick/onedark.vim/issues/110#issuecomment-345599864
+packadd! onedark.vim
 
-"### Opniões
-"   - Gruvbox é lento e não permite edições quando usado como package
-"   - Onehalfdark no gvim fica com fundo branco
-
+colorscheme onedark
 
 "## EditorConfig Vim
 " https://github.com/editorconfig/editorconfig-vim

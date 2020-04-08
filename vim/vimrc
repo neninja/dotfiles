@@ -117,6 +117,7 @@ set background=dark
 " força uso de 256 cores, permitindo highlight hexadecimal, com guibg e guifg
 " ao invés de somente ctermbg e ctermfg
 set t_Co=256
+set termguicolors
 
 " Remove som ao apertar multiplos ESCs
 " https://vim.fandom.com/wiki/Disable_beeping"

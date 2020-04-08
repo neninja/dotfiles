@@ -27,7 +27,7 @@ vendorRepos=(
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
     "https://github.com/terryma/vim-multiple-cursors.git" # multiplos cursores
     "https://github.com/t9md/vim-choosewin.git" # troca/swap rapido de split
-    "https://github.com/danilo-augusto/vim-afterglow" # colorscheme
+    "https://github.com/joshdick/onedark.vim.git" # colorscheme
     
     ####### Auto complete
     "https://github.com/skywind3000/vim-auto-popmenu.git" # sugestões de complete
