@@ -139,20 +139,6 @@ nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
 " Para tirar arquivos de staged basta aperter :G
 "   na janela de status apertar - no arquivo para add ou remover
 
-" :ga git add %
-cnoreabbrev gw Gw
-" :gb ver linha a linha os commits
-cnoreabbrev gb Gblame
-" :gc git commit
-cnoreabbrev gc Gcommit
-" :gd mostra diferenças
-cnoreabbrev gd Gdiff
-" :gs mostra status de staged ou não
-cnoreabbrev gs Gstatus
-" :gvs abre em vertical split o mesmo arquivo staged ou comitado
-cnoreabbrev gvs Gvsplit
-" :gvd abre em vertical split o mesmo arquivo com as diferença de quando esteve staged ou comitado
-cnoreabbrev gvd Gvdiff
 
 "### Statusline
 set statusline=                 " reseta statusline
