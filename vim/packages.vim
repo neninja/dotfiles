@@ -96,6 +96,8 @@ let g:startify_custom_header_quotes = [
             \ ['Oooh! I burned my moooovie! 🔥', '- Miena 2020'],
             \ ['Se um passarinho sujar você,', 'não reclame. Agradeça que as', 'vacas não voam', '- Miena 2020'],
             \ ['Para quem só sabe usar martelo,', 'todo problema é um prego.', '- Abraham Maslow'],
+            \ ['Sua única limitação é você mesmo', '- Rocketseat GoStack11'],
+            \ ['Não espere para plantar, apenas', 'tenha paciência para colher', '- Rocketseat GoStack11'],
             \ ]
 let g:startify_lists = [
             \ { 'type': 'sessions', 'header': ['sessões'] },
