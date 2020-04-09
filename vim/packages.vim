@@ -102,12 +102,20 @@ let g:startify_custom_header_quotes = [
 let g:startify_lists = [
             \ { 'type': 'sessions', 'header': ['sessões'] },
             \ ]
+            "\ { 'type': 'commands', 'header': ['comandos'] },
             "\ { 'type': 'bookmarks', 'header': ['bookmarks'] },
             "\ { 'type': 'files',     'header': ['recentes'] },
 let g:startify_files_number = 5
 let g:startify_bookmarks = [
             \ {'d': '~/dev/dotfiles'},
             \ ]
+"let g:startify_commands = [
+"            \ ':help reference',
+"            \ ['Vim Reference', 'h ref'],
+"            \ {'h': 'h ref'},
+"            \ {'m': ['My magical function', 'call Magic()']},
+"            \ ]
+
 ":SLoad       load a session    |startify-:SLoad|
 ":SSave[!]    save a session    |startify-:SSave|
 ":SDelete[!]  delete a session  |startify-:SDelete|
