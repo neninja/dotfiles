@@ -348,6 +348,8 @@ au FileType vim setlocal foldtext=FoldTextHashtag()
 " - check |netrw-browse-maps| for more mappings
 
 "TODO: Como não criar NetrwTreeListing (???) e .netrwhist? (???)
+" https://github.com/tpope/vim-vinegar/issues/13
+" autocmd FileType netrw setlocal bufhidden=delete
 
 "let g:netrw_banner=0        " disable annoying banner
 "let g:netrw_browse_split=4  " open in prior window
