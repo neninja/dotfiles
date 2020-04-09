@@ -409,7 +409,7 @@ endfunction
 fun! NN_Tasks()
     call NN_SetGitDir()
     "silent !git grep -EIn "TODO|FIXME"
-    lvimgrep /TODO:\|FIXME:/j **
+    lvimgrep /\C\<TODO\>\|\C\<FIXME\>/j **
     lopen
 endfun
 
