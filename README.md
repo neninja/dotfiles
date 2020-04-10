@@ -13,7 +13,7 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 
 ## Estrutura do repositório
 - [bash/](/bash): arquivos relacionados a comandos/configurações do bash
-    - [.inputrc](/bash/.inputrc)<!-- TODO: rever -->
+    - [.inputrc](/bash/.inputrc)<!-- TODO rever -->
     - [aliases.sh](/bash/aliases.sh): apelidos de comandos
     - [config](/bash/aliases.sh): importação de todas configurações
     - [exports.sh](/bash/exports.sh): variáveis globais
@@ -55,9 +55,9 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
     - [linux.md](/wiki/linux.md): anotações sobre o ambiente linux
     - [vim.md](/wiki/vim.md):  anotações sobre o vim
 - [x/](/x):
-    - [.Xdefaults](/x/.Xdefaults): <!-- TODO: rever -->
-    - [.xinitrc](/x/.xinitrc): <!-- TODO: rever -->
-    - [.Xresources](/x/.Xresources): <!-- TODO: rever -->
+    - [.Xdefaults](/x/.Xdefaults): <!-- TODO rever -->
+    - [.xinitrc](/x/.xinitrc): <!-- TODO rever -->
+    - [.Xresources](/x/.Xresources): <!-- TODO rever -->
 - [zathurarc/](/zathurarc): configurações [zathura](https://wiki.archlinux.org/index.php/Zathura)
 - [UNLICENSE](UNLICENSE): licença do repositório
 - [index.html](index.html): redirecionamento do github-pages para o script de instalação
@@ -109,7 +109,7 @@ git fetch --all
 git reset --hard origin/master
 ```
 
-## TODO:
+## TODO
 * [ ] Windows CMD/PS: Alias para git
 * [ ] Windows CMD/PS: Output como UTF-8 para ver acentuações nos commits
 * [ ] Tornar local dos dotfiles mais dinâmico

@@ -1,6 +1,6 @@
 "https://vimhelp.org/repeat.txt.html#packages
 "# Gerenciamento/inicialização
-"TODO: criar packager manager como vim-plug, para substituir script de clone
+"TODO criar packager manager como vim-plug, para substituir script de clone
 "   :helptags ALL
 "   :helptags ~/vimfiles/pack/vendor/start/*/doc
 "    Configurações de plugins do vim
@@ -175,10 +175,10 @@ function! ToggleGStatus()
 endfunction
 command ToggleGStatus :call ToggleGStatus()
 
-"TODO: trocar map para ser usado como troca de janelas tbm
+"TODO trocar map para ser usado como troca de janelas tbm
 nmap <F3> :ToggleGStatus<CR>
 
-"TODO: melhorar stage de hunks
+"TODO melhorar stage de hunks
 "   - - já usado para trocar de tela
 "   - -  é mt longe de v, j e k, os responsaveis por marcar o hunk
 "   - descobrir se tem como dar stage sem gitgutter

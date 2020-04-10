@@ -1,5 +1,6 @@
 # Vim
-## TODO: configuração desejada
+## Configuração desejada
+<!-- TODO finalizar checks -->
 Configurações que planejo fazer no vim (em ordem)
 
 - [X] folding
@@ -35,7 +36,8 @@ Configurações que planejo fazer no vim (em ordem)
 - [X] renderizar emojis corretamente
 - [ ] Ver syntax/highlight estranha de markdown ou começo a usar o vimwiki
 
-## TODO: aprender sobre o vim
+## Aprender sobre o vim
+<!-- TODO finalizar checks -->
 Lista de comandos, teclas ou funcionalidades para aprender
 
 - [ ] lvim, [:make](https://gist.github.com/ajh17/a8f5f194079818b99199) e [quickfix](http://vimdoc.sourceforge.net/htmldoc/quickfix.html#quickfix)

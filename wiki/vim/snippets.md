@@ -148,6 +148,6 @@ au FileType html call RegistraArraySnippets(s:snippets_html_abbreviations)
 - Cons:
 - Uso ideal:
 
-<!-- TODO: Abreviação + Trigger + <++> -->
+<!-- TODO Abreviação + Trigger + <++> -->
 ## Plugins
 - ultisnips

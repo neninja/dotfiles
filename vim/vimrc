@@ -54,12 +54,12 @@ set nocompatible
 
 "### Conteúdo
 set encoding=utf-8
-"TODO: entender configs abaixo:
+"TODO entender configs abaixo:
 "set fileencoding=utf-8 "?
 "set fileencodings=utf-8 "?
 
 set fileformats=unix,dos,mac "?
-"TODO: entender configs abaixo:
+"TODO entender configs abaixo:
 "set bomb "?
 "set binary "?
 
@@ -347,13 +347,13 @@ au FileType vim setlocal foldtext=FoldTextHashtag()
 " - <CR>/v/t to open in an h-split/v-split/tab
 " - check |netrw-browse-maps| for more mappings
 
-"TODO: Como não criar NetrwTreeListing (???) e .netrwhist? (???)
+"TODO Como não criar NetrwTreeListing (???) e .netrwhist? (???)
 " https://github.com/tpope/vim-vinegar/issues/13
 " autocmd FileType netrw setlocal bufhidden=delete
 
 "let g:netrw_banner=0        " disable annoying banner
 "let g:netrw_browse_split=4  " open in prior window
-" FIXME: Não funciona de primeira
+" FIXME Não funciona de primeira
 let g:netrw_liststyle=3     " tree view
 
 " Exibe numeros (ruler)
@@ -377,7 +377,7 @@ function! NN_EmojiToggle()
 endfun
 
 " recarrega vimrc
-" FIXME: buga tudo!
+" FIXME buga tudo!
 function! NN_SourceVIMRC()
     source $MYVIMRC
 endfun
@@ -437,7 +437,7 @@ endfunction
 " https://stackoverflow.com/questions/20933836/what-is-the-difference-between-location-list-and-quickfix-list-in-vim
 " THANKS: https://github.com/jmharvey/vim/blob/master/vimrc#L207
 " THANKS: https://vimrcfu.com/snippet/104
-" FIXME: Ativa gitguttertoggle
+" FIXME Ativa gitguttertoggle
 fun! Grep(grepword)
     call NN_SetGitDir()
     if len(a:grepword) == 0
@@ -482,7 +482,7 @@ endfun
 command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
 " abre terminal em split, ideal para o gvim
-" FIXME: não funciona corretamente no linux
+" FIXME não funciona corretamente no linux
 " THANKS: https://stackoverflow.com/a/38082196
 command! TerminalGitRoot exec 'cd' fnameescape(fnamemodify(finddir('.git',
             \ escape(expand('%:p:h'), ' ') . ';'), ':h'))
@@ -505,7 +505,7 @@ command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 
 ":map -> lista todos mapeamentos para o arquivo
 
-" TODO: ver funcionamento do localleader (:h maplocalleader)
+" TODO ver funcionamento do localleader (:h maplocalleader)
 let mapleader="\<space>"
 
 noremap     <leader><leader>    :w<CR>
@@ -609,7 +609,7 @@ augroup END
 "### ftdetect
 
 "https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
-"FIXME: Como colocar definição de filetype em ftdetect?
+"FIXME Como colocar definição de filetype em ftdetect?
 augroup skeletons
     au!
     au BufRead,BufNewFile *.gv setfiletype dot
@@ -662,7 +662,7 @@ function! HiInterestingWord(n)
     normal! `z
 endfunction
 
-" TODO: remover/resetar um ou todos highlights
+" TODO remover/resetar um ou todos highlights
 nnoremap <leader>1 :call HiInterestingWord(1)<cr>
 nnoremap <leader>2 :call HiInterestingWord(2)<cr>
 nnoremap <leader>3 :call HiInterestingWord(3)<cr>
