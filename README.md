@@ -60,11 +60,11 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
     - [.Xresources](/x/.Xresources): <!-- TODO rever -->
 - [zathurarc/](/zathurarc): configurações [zathura](https://wiki.archlinux.org/index.php/Zathura)
 - [UNLICENSE](UNLICENSE): licença do repositório
-- [index.html](index.html): redirecionamento do github-pages para o script de instalação
-- [install.sh](install.bat): "instalação" dos arquivos de configuração no Linux e Windows
-- [lazy.sh](install.bat): "instalação" completa (incluindo o git) usando apenas wget
+- [index.html](index.html): redirecionamento do github-pages para o script de download
+- [install.sh](install.sh): "instalação" dos arquivos de configuração no Linux e Windows
+- [lazy.sh](install.sh): "instalação" completa para Ubuntu (incluindo o git) usando apenas wget
 
-## Instalação
+## Download
 ### Parcial do vim
 Caso queira somente a configuração básica do vim, basta copiar o conteúdo de [vimrc](/vim/vimrc) e [gvimrc](/vim/gvimrc) para respectivamente:
 - `%userprofile%\_vimrc` e `%userprofile%\_gvimrc` no Windows
