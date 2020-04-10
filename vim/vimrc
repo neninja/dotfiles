@@ -508,6 +508,7 @@ inoremap    kj          <esc>|" esc mais fácil
 nnoremap    n           nzzzv|" centraliza match do search
 nnoremap    N           Nzzzv|" centraliza match do search
 nnoremap    Q           @q|" executa macro em 'q' (letra que mais gravo)
+tnoremap    <esc>       <C-\><C-n>
 nnoremap    <tab>       za|" toggle fold
 nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'| " Toggle fold todo arquivo
 noremap     <up>        <nop>|" força hjkl
@@ -529,9 +530,12 @@ noremap     <c-j>       <C-w>w| " estilo DWM
 inoremap    <c-k>       <up>|" força hjkl
 noremap     <c-k>       <C-w>W| " estilo DWM
 inoremap    <c-l>       <right>|" força hjkl
+tnoremap    <c-l>       cls<cr>
 nnoremap    <C-q>       :call <SID>QuickfixToggle()<cr>
 nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
 nnoremap    <c-z>       u|" remove comportamento <c-z>
+tnoremap    <s-insert>  <c-w>""
+tnoremap    <c-s-v>     <c-w>""
 
 "## Abreviações
 " Evitar ...
