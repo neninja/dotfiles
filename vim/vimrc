@@ -202,9 +202,9 @@ set completeopt=menuone     " mostra menu de opções
 set shortmess+=c            " remove mensagens inúteis do wildmenu
 
 " Remove das sugestões arquivos/diretorios (lvimgrep tb)
+" THANKS: https://stackoverflow.com/questions/1898987/how-to-exclude-file-patterns-in-vimgrep
 set wildignore=node_modules/*
 set wildignore+=dist/*
-set wildignore+=vim/dicionarios/*
 set wildignore+=vendor/*
 set wildignore+=_site/*
 
@@ -423,7 +423,7 @@ endfun
 
 " carrega arquivo se ele existe
 " THANKS: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
-function! s:sourceIfExists(file)
+function! SourceIfExists(file)
   if filereadable(expand(a:file))
     exe 'source' a:file
 	"else
@@ -722,7 +722,18 @@ nnoremap gcc :call ToggleComment()<cr>
 vnoremap gcc :call ToggleComment()<cr>
 
 "## sources
-call s:sourceIfExists("~/dev/dotfiles/vim/dotfiles.vim")
-call s:sourceIfExists("~/dev/dotfiles/vim/packages.vim")
-call s:sourceIfExists("~/.extra-vimrc.vim")
+call SourceIfExists("~/dev/dotfiles/vim/dotfiles.vim")
+call SourceIfExists("~/dev/dotfiles/vim/packages.vim")
+call SourceIfExists("~/.extra-vimrc.vim")
+
+" carrega vimrc se existente em no work dir (:h :pwd :h 'getcwd()')
+" ideal para setar wildignore para remover pesquisa de paths de libs
+" TODO remover source quando outro .exrc for carregado
+au DirChanged * :call SourceIfExists(fnamemodify('.exrc', ":p"))
+" exrc não resolve o problema pois ele só carrega o .vimrc .exrc _vimrc ou
+" _exrc no momento que o vim é aberto no diretório, ou seja, o startify não da
+" o gatilho, mas é uma opção legal
+"set exrc
+"set secure
+" THANKS: https://superuser.com/a/532673
 
