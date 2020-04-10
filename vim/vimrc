@@ -410,9 +410,8 @@ command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 " abre terminal em split, ideal para o gvim
 " FIXME não funciona corretamente no linux
 " THANKS: https://stackoverflow.com/a/38082196
-command! TerminalGitRoot exec 'cd' fnameescape(fnamemodify(finddir('.git',
-            \ escape(expand('%:p:h'), ' ') . ';'), ':h'))
-            \ '|term'
+command! TerminalGitRootVertical exec 'call NN_SetGitDir() | vert term ++kill=term'
+command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
 
 " Necessario instalar ctags ou universal ctags
 " Att ctags
