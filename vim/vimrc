@@ -302,12 +302,6 @@ function! NN_EmojiToggle()
     endif
 endfun
 
-" recarrega vimrc
-" FIXME buga tudo!
-function! NN_SourceVIMRC()
-    source $MYVIMRC
-endfun
-
 " atualiza diretório atual (:pwd) com dir do projeto, com raiz .git
 " THANKS: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
 function! NN_SetGitDir()
@@ -404,6 +398,10 @@ fun! LimpaTerminal()
 endfun
 
 "## Comandos
+
+" recarrega vimrc com trigger para o filetype
+" THANKS: https://vi.stackexchange.com/questions/9338/why-cannot-i-source-vimrc-for-the-current-file-being-editing
+command! Sov source $MYVIMRC | e %
 
 " fechar (sem forçar) todos buffers e deixar somente um
 " THANKS: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
