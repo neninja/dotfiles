@@ -397,6 +397,38 @@ fun! LimpaTerminal()
     endif
 endfun
 
+highlight link NeniTagJump DiffAdd
+match NeniTagJump /<++>/
+function! JumpToTag()
+    " search retorna a linha onde o parametro foi encontrado
+    if search("<++>",'nw') > 0
+        " posiciona o cursor sob o padrão da marcação
+        call search("<++>",'w')
+        " Caso a marcação esteja na ultima coluna da linha, o :startinsert
+        " recua uma coluna a mais. Como seria muito complexo calcular essa
+        " situação, é mais fácil entrar no modo de insert e apagar o numero
+        " de letras (4 para <++>)
+        call feedkeys("i\<del>\<del>\<del>\<del>")
+    endif
+endfun
+
+fun! TestaTriggerSnippet(root, func1)
+    let c = nr2char(getchar(0))
+    if c == "\<tab>"
+        let s:snippetfunc = function(a:func1)
+        let @x = s:snippetfunc()
+    elseif c == "\<esc>"
+        execute "normal! a" . a:root . 'a'
+        execute 'normal! "_x'
+    else
+        " execute "normal a".a:root.c
+        execute "normal! a" . a:root . '"' . c
+        execute 'normal! h"_x'
+        startinsert
+        call cursor( line('.'), col('.') + 1)
+    endif
+endfun
+
 "## Comandos
 
 " recarrega vimrc com trigger para o filetype
@@ -435,6 +467,8 @@ let mapleader="\<space>"
 
 noremap     <leader><leader>    :w<CR>
 noremap     <leader><cr>        :call NN_Lexplorer()<cr>
+inoremap    <leader><tab>       <esc>:call JumpToTag()<cr>| " <++>
+nnoremap    <leader><tab>       <esc>:call JumpToTag()<cr>| " <++>
 nnoremap    <leader>/           :noh<cr>
 noremap     <leader>.           :pwd<CR>
 nnoremap    <leader>dd          :bd<CR>
