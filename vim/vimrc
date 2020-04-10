@@ -523,7 +523,7 @@ noremap     <leader>v           :<C-u>vsplit<CR>
 noremap     <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
 vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
 
-nnoremap    #           :b #<CR>|" pula buffer anterior
+nnoremap    #           :b #<CR>|" FIXME volta para unlisted buffer tbm
 vnoremap    <           <gv|" mantêm select após indentação
 vnoremap    >           >gv|" mantêm select após indentação
 inoremap    "           ""<left>|"autoclose
