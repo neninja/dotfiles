@@ -496,11 +496,11 @@ inoremap    (<space>    ()<left><space><space><left>|"autoclose
 inoremap    [           []<left>|"autoclose
 inoremap    [<CR>       []<left><CR><Esc>O|"autoclose
 inoremap    [<space>    []<left><space><space><left>|"autoclose
-vnoremap    a'          c'<c-r>"'|" surround match
-vnoremap    a"          c"<c-r>""|" surround match
-vnoremap    a(          c(<c-r>")|" surround match
-vnoremap    a{          c{<c-r>"}|" surround match
-vnoremap    a[          c[<c-r>"]|" surround match
+vnoremap    o'          c'<c-r>"'|" surround match
+vnoremap    o"          c"<c-r>""|" surround match
+vnoremap    o(          c(<c-r>")|" surround match
+vnoremap    o{          c{<c-r>"}|" surround match
+vnoremap    o[          c[<c-r>"]|" surround match
 vnoremap    J           :m '>+1<CR>gv=gv| " move seleção pra baixo
 vnoremap    K           :m '<-2<CR>gv=gv| " move seleção pra cima
 inoremap    kj          <esc>|" esc mais fácil
