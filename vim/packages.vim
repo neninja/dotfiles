@@ -124,18 +124,24 @@ let g:startify_bookmarks = [
 " https://github.com/vimwiki/vimwiki
 
 " <leader>ws
-let wiki_1 = {}
-let wiki_1.path = '~/dev/dotfiles/wiki/' " wiki versionada (pública)
-let wiki_1.syntax = 'markdown'
-let wiki_1.ext = '.md'
-let wiki_2 = {}
-let wiki_2.path = '~/aniversarios/' " wiki versionada (privada)
-let wiki_2.syntax = 'markdown'
-let wiki_2.ext = '.md'
+let wiki_1 = {
+            \ 'path': '~/dev/dotfiles/wiki/',
+            \ 'syntax': 'markdown',
+            \ 'ext': '.md'
+            \ }
+let wiki_2 = {
+            \ 'path': '~/aniversarios',
+            \ 'syntax': 'markdown',
+            \ 'ext': '.md'
+            \ }
 let g:vimwiki_list = [wiki_1, wiki_2]
+
 let g:vimwiki_folding='custom'
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_global_ext = 0
+
+"let g:vimwiki_listsyms = ' .oOX' " default
+let g:vimwiki_listsyms = ' x' " compatibilidade github
 
 " sobescreve tab do vimwiki :h *vimwiki-local-mappings
 nmap <Leader>wn <Plug>VimwikiNextLink |" liberar tab

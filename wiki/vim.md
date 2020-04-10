@@ -3,17 +3,17 @@
 <!-- TODO finalizar checks -->
 Configurações que planejo fazer no vim (em ordem)
 
-- [X] folding
-    - [X] usar foldmark de markdown (#) semelhante ao org-mode
-    - [X] teclas de atalho
+- [x] folding
+    - [x] usar foldmark de markdown (#) semelhante ao org-mode
+    - [x] teclas de atalho
 - [ ] reload vimrc
 - [ ] gerenciamento de packages
     - [ ] tentar instalar/remover packages automaticamente sem bash
     - [ ] gerar helptags ``:helptags ALL`` e ``vim -u NONE -c "helptags fugitive/doc" -c q``
-- [.] snippets
-    - [X] trigger opcional
+- [ ] snippets
+    - [ ] trigger opcional
     - [ ] devem aparecer em popup ([ideia #1](https://vi.stackexchange.com/questions/7750/how-do-i-manage-and-remember-many-abbreviations-in-my-vimrc))
-    - [X] labels com highlight
+    - [ ] labels com highlight
     - [ ] labels com valores padrão
     - [ ] identar corretamente
     - [ ] transformar em package
@@ -33,7 +33,7 @@ Configurações que planejo fazer no vim (em ordem)
     - [ ] definir cores facilmente
     - [ ] definir perfil de cores (light e dark)
     - [ ] definir syntaxes (?)
-- [X] renderizar emojis corretamente
+- [ ] renderizar emojis corretamente
 - [ ] Ver syntax/highlight estranha de markdown ou começo a usar o vimwiki
 
 ## Aprender sobre o vim
@@ -50,32 +50,32 @@ Lista de comandos, teclas ou funcionalidades para aprender
 Checklist de necessidades básicas/interessantes que o editor deve suprir
 
 ### MVP
-- [X] [Leve e rápido](vim/leve-e-rapido.md)
-- [X] [Instalável em Windows e diversas distros Linux](vim/install.md)
-- [X] [Customizável (temas, highlights, shortcuts, comportamentos)](vim/rc.md)
-- [X] [Configurável através de dotfiles](vim/dotfiles)
-- [X] [Numerar linhas](vim/numero-linha.md)
-- [X] [Detectar diferentes filetypes](vim/filetypes.md)
-- [X] [Auto indentar e comando de indentação](vim/indent.md)
-- [X] [Fuzzy finder](vim/fuzzy.md)
-- [X] [Snippets](vim/snippets.md)
+- [x] [Leve e rápido](vim/leve-e-rapido.md)
+- [x] [Instalável em Windows e diversas distros Linux](vim/install.md)
+- [x] [Customizável (temas, highlights, shortcuts, comportamentos)](vim/rc.md)
+- [x] [Configurável através de dotfiles](vim/dotfiles)
+- [x] [Numerar linhas](vim/numero-linha.md)
+- [x] [Detectar diferentes filetypes](vim/filetypes.md)
+- [x] [Auto indentar e comando de indentação](vim/indent.md)
+- [x] [Fuzzy finder](vim/fuzzy.md)
+- [x] [Snippets](vim/snippets.md)
 - [ ] [Linter](vim/linter.md)
 - [ ] [Intelisense (go to definition)](vim/intelisense.md)
 - [ ] [Autocomplete (variaveis usadas, metodos de classe da variavel)](vim/autocomplete.md)
 - [ ] [Integração com o git](vim/git.md)
-- [X] [Criação de paineis](vim/split.md)
-- [X] [Comentar e descomentar trecho ou linha](vim/comment.md)
+- [ ] [Criação de paineis](vim/split.md)
+- [ ] [Comentar e descomentar trecho ou linha](vim/comment.md)
 - [ ] [Search e search/replace no arquivo](vim/search-replace.md)
 - [ ] [Search em todo o projeto](vim/search-replace-project.md)
 - [ ] [Criar, mover/renomear e deletar arquivos/diretórios](vim/diretorios.md)
-- [X] [Atualizar se modificado em outro lugar](vim/atualizar-arquivo.md)
+- [x] [Atualizar se modificado em outro lugar](vim/atualizar-arquivo.md)
 
 ### Bonus
 - [ ] Debug
 - [ ] Exibir output da execução do arquivo (ideal para scripts e tdd)
 - [ ] Exibir output de trechos do arquivo (repl)
-- [X] Ser acessível pelo terminal
-- [X] Gravar macros de edição de texto
+- [x] Ser acessível pelo terminal
+- [x] Gravar macros de edição de texto
 - [ ] [Suporte a emojis](vim/emojis)
 
 ## Vim x Neovim
