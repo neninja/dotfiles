@@ -219,6 +219,9 @@ fun! NN_Gitguttettog()
     echo "Use [h ]h e <leader>hp <leader>hs <leader>hu"
 endfun
 
+"## Goyo
+" https://github.com/junegunn/goyo.vim
+
 "## ALE
 " https://github.com/dense-analysis/ale
 
