@@ -238,30 +238,9 @@ set foldtext=FoldTextMarker()
 " :h digraph-table-mbyte
 set fillchars=vert:\|,fold:─
 
-" retorna título dos folds padrão markdown
-" THANKS: https://dhruvasagar.com/2013/03/28/vim-better-foldtext
-function! FoldTextHashtag()
-  let lines_count = v:foldend - v:foldstart + 1
-
-  " :h digraph-table-mbyte
-  let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
-
-  " substitui " por espaço (comentário vim)
-  let titulo = substitute(getline(v:foldstart),"^\""," ",'g')
-
-  " remove hashtags
-  let titulo = substitute(titulo,"\#","",'g')
-
-  " cria + de acordo com # (foldlevel)
-  let foldtextstart = repeat('+', v:foldlevel + 1) . titulo
-
-  let foldtextend = lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
-
 " retorna título dos folds padrão marker com {{{}}}
+" THANKS: https://stackoverflow.com/questions/5983396/change-the-text-in-folds
+" THANKS: https://jdhao.github.io/2019/08/16/nvim_config_folding/
 " THANKS: https://dhruvasagar.com/2013/03/28/vim-better-foldtext
 function! FoldTextMarker()
   let lines_count = v:foldend - v:foldstart + 1
@@ -287,59 +266,6 @@ function! FoldTextMarker()
   let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
   return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
-
-"### Markdown
-
-function! FoldMarkdown()
-    if getline(v:lnum) =~ '^## .*$'
-        return ">1"
-    endif
-    if getline(v:lnum) =~ '^### .*$'
-        return ">2"
-    endif
-    if getline(v:lnum) =~ '^#### .*$'
-        return ">3"
-    endif
-    if getline(v:lnum) =~ '^##### .*$'
-        return ">4"
-    endif
-    if getline(v:lnum) =~ '^###### .*$'
-        return ">5"
-    endif
-    return "=" 
-endfunction
-
-au FileType markdown setlocal foldmethod=expr
-au FileType markdown setlocal foldexpr=FoldMarkdown()  
-au FileType markdown setlocal foldtext=FoldTextHashtag()
-":lvimgrep /^"#/ % | lw
-
-"### VimScript
-
-function! FoldVimScript()
-    if getline(v:lnum) =~ '^"## .*$'
-        return ">1"
-    endif
-    if getline(v:lnum) =~ '^"### .*$'
-        return ">2"
-    endif
-    if getline(v:lnum) =~ '^"#### .*$'
-        return ">3"
-    endif
-    if getline(v:lnum) =~ '^"##### .*$'
-        return ">4"
-    endif
-    if getline(v:lnum) =~ '^"###### .*$'
-        return ">5"
-    endif
-    return "=" 
-endfunction
-" https://stackoverflow.com/questions/5983396/change-the-text-in-folds
-" https://jdhao.github.io/2019/08/16/nvim_config_folding/
-
-au FileType vim setlocal foldmethod=expr
-au FileType vim setlocal foldexpr=FoldVimScript()
-au FileType vim setlocal foldtext=FoldTextHashtag()
 
 "## Netrw
 " Netrw no lugar do nerdtree, usar :Lexplore para toggle
