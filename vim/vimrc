@@ -48,6 +48,8 @@
 "## Básico
 " Mínimas configurações para usar o vim
 
+let g:dotfiles_dir = "~/dev/dotfiles"
+
 " quebra compatibilidade com vi
 " evita erros bizarros como de interpretação de dicionários e etc
 set nocompatible
@@ -193,13 +195,18 @@ set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 set statusline+=\ %y            " filetype
 
-"## Popup de sugestão
+"## Autocomplete
 
-set wildmenu                " habilita menu
+set wildmenu                        " habilita menu
 " https://vi.stackexchange.com/questions/5029/key-mapping-that-will-invoke-the-wildmenu
-set wildcharm=<tab>         " char para chamar wildmenu de um map
-set completeopt=menuone     " mostra menu de opções
-set shortmess+=c            " remove mensagens inúteis do wildmenu
+set wildcharm=<tab>                 " char para chamar wildmenu de um map
+" set completeopt=menuone,noselect,noinsert    " mostra menu de opções
+" set completeopt=menu,menuone,noinsert
+set completeopt=menuone,noinsert,noselect
+" menuone: menu com uma ou mais de uma sugestão
+" noinsert: não insere texto selecionado automaticamente
+" noselect: não seleciona o texto automaticamente
+set shortmess+=c                    " remove mensagens inúteis do wildmenu
 
 " Remove das sugestões arquivos/diretorios (lvimgrep tb)
 " THANKS: https://stackoverflow.com/questions/1898987/how-to-exclude-file-patterns-in-vimgrep
@@ -217,7 +224,56 @@ set wildignore+=_site/*
 set complete=.,b,k,w
 " tags no wildmenu afetam perf
 
+" evitar o bug de macro/função para completar snippets
+" pois as sugestões aparecem e magicamente o texto é selecionado
+let g:opencomplete = 1
+
+" Fake auto complete
+"THANKS: https://github.com/skywind3000/vim-auto-popmenu
+" THANKS: https://stackoverflow.com/a/47967462/9881278
+"function! OpenCompletion()
+"    " if !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z')) && g:opencomplete
+"    if !pumvisible() && g:opencomplete
+"        " call feedkeys("\<C-x>\<C-o>", "n")
+"        call feedkeys("\<C-n>")
+"    endif
+"endfunction
+
+" autocmd InsertCharPre * call OpenCompletion()
+" Minimalist-AutoCompletePop-Plugin
+" THANKS: https://vi.stackexchange.com/a/8902/28875
+" THANKS: https://www.reddit.com/r/vim/comments/4tu844/vim_completion_without_plugin/
+" THANKS: https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
+" inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+" quando for dado enter cria uma nova linha ao invés
+" de somente remover o popup
+inoremap <expr> <CR> pumvisible() ? "\<esc>o" : "\<CR>"
+
+autocmd InsertCharPre * call AutoComplete()
+fun! AutoComplete()
+    " TODO add omnifunc nas sugestões
+    " FIXME remover dependência da variável
+    if v:char =~ '\K' && g:opencomplete
+        \ && getline('.')[col('.') - 4] !~ '\K'
+        \ && getline('.')[col('.') - 3] =~ '\K'
+        \ && getline('.')[col('.') - 2] =~ '\K' " last char
+        \ && getline('.')[col('.') - 1] !~ '\K'
+
+        call feedkeys("\<C-N>", 'n')
+    end
+endfun
+" opção de usar <tab>, prefiro manter o padrão <c-n>
+"inoremap <expr> <Tab> TabComplete()
+"fun! TabComplete()
+"    if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
+"        return "\<C-P>"
+"    else
+"        return "\<Tab>"
+"    endif
+"endfun
+
 " escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
+" https://github.com/vim-scripts/SyntaxComplete
 set omnifunc=syntaxcomplete#Complete    " <c-x><c-o>
 
 "### Tabs/espaços
@@ -415,8 +471,13 @@ endfun
 fun! TestaTriggerSnippet(root, func1)
     let c = nr2char(getchar(0))
     if c == "\<tab>"
+        " FIXME remover dependência da variável
+        " g:opencomplete desativa autocomplete do InsertCharPre
+        let g:opencomplete = 0
         let s:snippetfunc = function(a:func1)
         let @x = s:snippetfunc()
+        let g:opencomplete = 1
+        " execute "call " . a:func1 ."()"
     elseif c == "\<esc>"
         execute "normal! a" . a:root . 'a'
         execute 'normal! "_x'
@@ -427,6 +488,11 @@ fun! TestaTriggerSnippet(root, func1)
         startinsert
         call cursor( line('.'), col('.') + 1)
     endif
+endfun
+
+fun! AddDict(arquivo)
+    let s:dict_dir = g:dotfiles_dir. "/vim/dicionarios"
+    execute "setl dictionary+=".s:dict_dir."/".a:arquivo.".dict"
 endfun
 
 "## Comandos
@@ -467,8 +533,8 @@ let mapleader="\<space>"
 
 noremap     <leader><leader>    :w<CR>
 noremap     <leader><cr>        :call NN_Lexplorer()<cr>
-inoremap    <leader><tab>       <esc>:call JumpToTag()<cr>| " <++>
-nnoremap    <leader><tab>       <esc>:call JumpToTag()<cr>| " <++>
+inoremap    <c-q>               <esc>:call JumpToTag()<cr>| " <++>
+nnoremap    <c-q>               <esc>:call JumpToTag()<cr>| " <++>
 nnoremap    <leader>/           :noh<cr>
 noremap     <leader>.           :pwd<CR>
 nnoremap    <leader>dd          :bd<CR>
@@ -519,6 +585,7 @@ inoremap    <up>        <nop>|" força hjkl
 inoremap    <down>      <nop>|" força hjkl
 inoremap    <left>      <nop>|" força hjkl
 inoremap    <right>     <nop>|" força hjkl
+inoremap    <c-space>   <c-x><c-o>
 inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
 inoremap    <c-f>       <c-o>|" pulo mais ergonomico
 nmap        <c-f>       :call NN_<tab><left>| " funções pessoais
@@ -565,9 +632,10 @@ cabbrev lvim
 "## AutoCmds
 
 "https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
-augroup tempos
-    autocmd InsertEnter * set timeoutlen=200
-    autocmd InsertLeave * set timeoutlen=1000
+" THANKS: https://github.com/skywind3000/vim-dict
+augroup dicionarios
+    " DICA: para organizar alfabeticamente, selecione as linhas e :sort
+    au BufEnter * call AddDict(&ft)
 augroup END
 
 "### ftdetect

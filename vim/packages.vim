@@ -241,40 +241,6 @@ endfun
 "let g:ale_echo_msg_warning_str = 'W'
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "
-"## Vim Auto Popmenu
-" https://github.com/skywind3000/vim-auto-popmenu
-
-" enable this plugin for filetypes, '*' for all files.
-let g:apc_enable_ft = {'*':1}
-
-"## Vim Dict
-" https://github.com/skywind3000/vim-dict
-
-" não selecionar o primeiro item automaticamente
-set completeopt+=noselect
-
-" desabilita tab/shift-tab pois utilizo como trigger de snippet"
-let g:apc_enable_tab=0
-
-" filetype: dicionarios
-let g:vim_dict_config = {
-            \ 'html':'html,javascript,css',
-            \ 'markdown':'text',
-            \ 'javascript':'javascript',
-            \ 'php':'php,phpunit'
-            \ }
-
-" dicionarios pessoais
-let g:vim_dict_dict = [
-    \ '~/dev/dotfiles/vim/dicionarios'
-    \ ]
-
-"## Vim ChooseWin
-" https://github.com/t9md/vim-choosewin
-
-nmap  -  <Plug>(choosewin)
-let g:choosewin_overlay_enable = 1
-
 "## Colorscheme
 " https://github.com/joshdick/onedark.vim
 

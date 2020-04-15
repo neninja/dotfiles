@@ -26,12 +26,7 @@ vendorRepos=(
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
     "https://github.com/terryma/vim-multiple-cursors.git" # multiplos cursores
-    "https://github.com/t9md/vim-choosewin.git" # troca/swap rapido de split
     "https://github.com/joshdick/onedark.vim.git" # colorscheme
-    
-    ####### Auto complete
-    "https://github.com/skywind3000/vim-auto-popmenu.git" # sugestões de complete
-    "https://github.com/skywind3000/vim-dict.git" # configuração de cadastro de dicionários
     
     ####### GIT
     "https://github.com/tpope/vim-fugitive.git" # comandos
