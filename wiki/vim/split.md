@@ -10,10 +10,13 @@
 :vsp <file>     " abre <file> verticalmente
 
 " Movimentação
-<c-w><c-h> " vai para a split da esquerda
-<c-w><c-j> " vai para a split de baixo
-<c-w><c-k> " vai para a split de cima
-<c-w><c-l> " vai para a split da direita
+<c-w>h " vai para a split da esquerda
+<c-w>j " vai para a split de baixo
+<c-w>k " vai para a split de cima
+<c-w>l " vai para a split da direita
+<c-w>w " vai para a próxima split
+<c-w>W " vai para a split anterior
+<c-w><c-r> " rotarionasplit
 
 " Redimentionamento
 <c-w>-  " diminui altura
@@ -27,8 +30,10 @@
 
 ### Maps (sugestões)
 ```vim
-noremap     <c-j>       <C-w>w| " estilo DWM
-noremap     <c-k>       <C-w>W| " estilo DWM
+nnoremap    <c-h>       <c-w>h
+nnoremap    <c-j>       <c-w>j
+nnoremap    <c-k>       <c-w>k
+nnoremap    <c-l>       <c-w>l
 ```
 
 ## Com plugins
@@ -38,7 +43,6 @@ noremap     <c-k>       <C-w>W| " estilo DWM
     - `<c-v>` ou `<c-h>` no arquivo com [ctrlp](https://github.com/ctrlpvim/ctrlp.vim)
 ## Configurações (sugestões)
 ```vim
-" Criação das splits
-set splitbelow
-set splitright
+set splitbelow  " cria split horizontal abaixo
+set splitright  " cria split vertical abaixo
 ```

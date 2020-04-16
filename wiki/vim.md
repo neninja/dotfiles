@@ -6,44 +6,47 @@ Configurações que planejo fazer no vim (em ordem)
 - [x] folding
     - [x] usar foldmark de markdown (#) semelhante ao org-mode
     - [x] teclas de atalho
-- [ ] reload vimrc
+- [x] reload vimrc
+- [ ] auto popup vim (plugin buga as vezes...)
+- [ ] spellcheck inglês e português
+- [ ] ver syntax/highlight estranha de markdown ou começo a usar o vimwiki
 - [ ] gerenciamento de packages
     - [ ] tentar instalar/remover packages automaticamente sem bash
-    - [ ] gerar helptags ``:helptags ALL`` e ``vim -u NONE -c "helptags fugitive/doc" -c q``
+    - [ ] gerar helptags
 - [ ] snippets
-    - [ ] trigger opcional
+    - [x] trigger opcional
     - [ ] devem aparecer em popup ([ideia #1](https://vi.stackexchange.com/questions/7750/how-do-i-manage-and-remember-many-abbreviations-in-my-vimrc))
     - [ ] labels com highlight
     - [ ] labels com valores padrão
-    - [ ] identar corretamente
-    - [ ] transformar em package
+    - [x] identar corretamente
 - [ ] [git (com e sem plugin)](vim/git.md)
     - [ ] não ser afetado ao salvar um arquivo no vim e alterar `^M`
-    - [ ] stage/unstage facilmente
-    - [ ] commit rápido
-    - [ ] stage um arquivo rápido
-    - [ ] diff de modifieds/stageds/untrackeds com a HEAD
-    - [ ] diff de merge conflicts
+    - [x] stage/unstage facilmente
+    - [x] commit rápido
+    - [x] stage um arquivo rápido
+    - [x] diff de modifieds/stageds/untrackeds com a HEAD
+    - [x] diff de merge conflicts
 - [ ] netrw
     - [ ] copiar, mover, deletar, renomear um arquivo
     - [ ] copiar, mover, deletar, renomear multiplos arquivos
     - [ ] bookmarks
+    - [ ] corrigir netrwtreelisting
+- [ ] renderizar emojis corretamente
 - [ ] criar tema próprio (thenfeite)
     - [ ] desacoplar configuração para package
     - [ ] definir cores facilmente
     - [ ] definir perfil de cores (light e dark)
     - [ ] definir syntaxes (?)
-- [ ] renderizar emojis corretamente
-- [ ] Ver syntax/highlight estranha de markdown ou começo a usar o vimwiki
 
 ## Aprender sobre o vim
 <!-- TODO finalizar checks -->
 Lista de comandos, teclas ou funcionalidades para aprender
 
 - [ ] lvim, [:make](https://gist.github.com/ajh17/a8f5f194079818b99199) e [quickfix](http://vimdoc.sourceforge.net/htmldoc/quickfix.html#quickfix)
+- [ ] lw, cw do quickfix
 - [ ] go to definition (ctags)
 - [ ] funcionamento de highlight e syntax
-- [ ] comandos :diff
+- [ ] [comandos :diff](vim/diff.md)
 - [ ] Ver sobre spellcheck
 
 ## Vim como editor principal
@@ -62,9 +65,9 @@ Checklist de necessidades básicas/interessantes que o editor deve suprir
 - [ ] [Linter](vim/linter.md)
 - [ ] [Intelisense (go to definition)](vim/intelisense.md)
 - [ ] [Autocomplete (variaveis usadas, metodos de classe da variavel)](vim/autocomplete.md)
-- [ ] [Integração com o git](vim/git.md)
-- [ ] [Criação de paineis](vim/split.md)
-- [ ] [Comentar e descomentar trecho ou linha](vim/comment.md)
+- [x] [Integração com o git](vim/git.md)
+- [x] [Criação de paineis](vim/split.md)
+- [x] [Comentar e descomentar trecho ou linha](vim/comment.md)
 - [ ] [Search e search/replace no arquivo](vim/search-replace.md)
 - [ ] [Search em todo o projeto](vim/search-replace-project.md)
 - [ ] [Criar, mover/renomear e deletar arquivos/diretórios](vim/diretorios.md)
@@ -77,6 +80,7 @@ Checklist de necessidades básicas/interessantes que o editor deve suprir
 - [x] Ser acessível pelo terminal
 - [x] Gravar macros de edição de texto
 - [ ] [Suporte a emojis](vim/emojis)
+- [ ] Integração com o terminal
 
 ## Vim x Neovim
 Lista de problemas em ambos editores
@@ -103,6 +107,7 @@ Lista de problemas em ambos editores
 - [Vimscript Hardway](https://learnvimscriptthehardway.stevelosh.com/)
 - [Vimbook](https://vimbook.gitbook.io/vimbook/)
 - [VimParaNoobs](https://sedilson.github.io/vimparanoobs/index.html)
+- [The patient vimmer](http://romainl.github.io/the-patient-vimmer/1.html)
 
 ## Configurações legais
 - https://github.com/webpro/awesome-dotfiles

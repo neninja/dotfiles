@@ -3,6 +3,7 @@
 "TODO criar packager manager como vim-plug, para substituir script de clone
 "   :helptags ALL
 "   :helptags ~/vimfiles/pack/vendor/start/*/doc
+"   vim -u NONE -c "helptags fugitive/doc" -c q
 "    Configurações de plugins do vim
 "    Todos de terceiros estão clonados em start ou opt pelo path:
 "      (windows) ~/vimfiles/pack/vendor/
@@ -14,6 +15,20 @@
 "# Configurações e instruções
 "## CtrlP
 " https://github.com/ctrlpvim/ctrlp.vim
+" PROS:
+"   - Search de buffer advinhando conforme é digitado
+"   - Search de file advinhando conforme é digitado
+"   - Search de mru advinhando conforme é digitado
+"   - Search de tag advinhando conforme é digitado
+"   - se adequa ao repositorio git
+"   - abre facilmente vertical e horizontal split
+"   - criação de arquivos e folder rapidamente
+" CONS:
+"   - Não funciona as vezes TODO ver o motivo
+"   - Pode ser meio lento
+" TODO procurar solução própria do vim
+" https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/dr2qo4k?utm_source=share&utm_medium=web2x
+" https://www.vi-improved.org/recommendations/
 
 " USOS:
 "   Escolher arquivo <c-p> pesquisar/escolher arquivo <enter>
@@ -23,10 +38,6 @@
 "
 " DICAS:
 " É possível usar tab para completar nomes de pastas
-"
-" PROS:
-"   Escrito em vimscript
-"   É possível criar arquivos diretamente
 
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>f :CtrlP<CR>
@@ -63,6 +74,8 @@ let g:ctrlp_prompt_mappings = {
 
 "## Quick Scope
 " https://github.com/unblevable/quick-scope
+" PROS:
+"   - facilita com o f
 
 " :QuickScopeToggle
 
@@ -78,12 +91,18 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " let g:qs_lazy_highlight = 1
 "## Vim PHP Refactoring Toolbox
 " https://github.com/adoy/vim-php-refactoring-toolbox
+" PROS:
+"   - generate getter e setter (bugado)
+" TODO substituir por implementação própria
 
 " disable the default mapping
 "let g:vim_php_refactoring_use_default_mapping = 0
 
 "## Vim Startify
 " https://github.com/mhinz/vim-startify
+" PROS:
+"   - Gerenciamento de sessões
+"   - Comandos na tela inicial
 
 let g:startify_custom_header_quotes = [
             \ ['wtf neni?', '- Rei ????'],
@@ -120,8 +139,15 @@ let g:startify_bookmarks = [
 ":SSave[!]    save a session    |startify-:SSave|
 ":SDelete[!]  delete a session  |startify-:SDelete|
 ":SClose      close a session   |startify-:SClose|
+
 "## VimWiki
 " https://github.com/vimwiki/vimwiki
+" PROS:
+"   - Syntax md
+"   - Syntax de ```
+"   - checkbox <-space>
+"   - gf nos links diretamente
+
 
 " <leader>ws
 let wiki_1 = {
@@ -151,11 +177,17 @@ nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
 
 "## Fugitive
 " https://github.com/tpope/vim-fugitive
+" PROS:
+"   - add, commit e status rápido
+"   - comparare stage rápido
+"   - git blame
+
+"http://vimcasts.org/blog/2011/05/the-fugitive-series/
 
 " Maps de :Gstatus/:G/<f3> (:h fugitive-maps ou g?)
 "   - Navegação:
-"       - [[ ]] navega entre commits e arquivos
-"       - (( )) navega entre commits, arquivos e hunks
+"       - ]] [[ navega entre commits e arquivos
+"       - )( <c-n> <c-p> navega entre commits, arquivos e hunks
 "       - <cr> abre arquivo
 "   - Stage:
 "      - U unstage all
@@ -164,43 +196,37 @@ nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
 "   - Diff:
 "       - = toggle diff inline
 "       - dv vertical diff split
+"           - usar :diffget (stage) :diffput (unstage) na index (fugitive)
+"           - salvar e sair com ZZ
 "   - Commits:
 "       - cc abre janeja de mensagem de commit
 "       - ca add staged ao ultimo commit e abre janela mensagem de commit
 "       - ce add staged ao ultimo commit sem editá-lo
 "       - cvc commita com detalhes diffs que não vão (ver commit -v)
+"       OBS: fechar commit com ZZ ao invez de :wq
 "   - Stash:
-
-"THANKS: https://gist.github.com/actionshrimp/6493611
-function! ToggleGStatus()
-    if buflisted(bufname('.git/index'))
-        bd .git/index
-    else
-        Gstatus
-    endif
-endfunction
-command ToggleGStatus :call ToggleGStatus()
-
-"TODO trocar map para ser usado como troca de janelas tbm
-nmap <F3> :ToggleGStatus<CR>
 
 "TODO melhorar stage de hunks
 "   - - já usado para trocar de tela
 "   - -  é mt longe de v, j e k, os responsaveis por marcar o hunk
-"   - descobrir se tem como dar stage sem gitgutter
-"https://vi.stackexchange.com/questions/10368/git-fugitive-how-to-git-add-a-visually-selected-chunk-of-code
 
 "### Statusline
 set statusline=                 " reseta statusline
 set statusline+=%{FugitiveStatusline()}                 " reseta statusline
 set statusline+=\%=				" espaço
-set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
+set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
 set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 set statusline+=\ %y            " filetype
 
 "## Vim GitGutter
 " https://github.com/airblade/vim-gitgutter
+" PROS:
+"   - Marcação de + ~ _
+" CONS:
+"   - Perf
+"   - Dispara sozinho com :lvim
+" TODO substituir plugin
 
 " <leader>hp -> mostra valor anterior do hunk
 " <leader>hs -> stage["git add line"] modificação, removendo chunk
@@ -222,8 +248,20 @@ endfun
 "## Goyo
 " https://github.com/junegunn/goyo.vim
 
+"## Vim JSX Pretty
+" https://github.com/MaxMEllon/vim-jsx-pretty
+" PROS:
+"   - Syntax jsx
+"   - indentação jsx
+
 "## ALE
 " https://github.com/dense-analysis/ale
+" PROS:
+"   - Auto format com eslint E prettier
+"   - mensagem de erro e aviso
+"   - marcação do texto e código do erro
+" TODO remover plugin
+"https://gist.github.com/romainl/ce55ce6fdc1659c5fbc0f4224fd6ad29
 
 "nmap <silent> ! <Plug>(ale_next_wrap)
 "
@@ -243,6 +281,11 @@ endfun
 "
 "## Colorscheme
 " https://github.com/joshdick/onedark.vim
+" PROS:
+"   - Cores agradáveis e com um constraste bom
+"   - Suporte a muitas linguagens
+" CONS:
+"   - Não possui light theme
 
 " colorscheme afterglow " outro tema muito bom
 " https://github.com/danilo-augusto/vim-afterglow
@@ -254,12 +297,45 @@ colorscheme onedark
 
 "## EditorConfig Vim
 " https://github.com/editorconfig/editorconfig-vim
+" PROS:
+"   - Integração com editorconfig
+"
+" Exemplo de .editorconfig:
+"
+" root = true
+" 
+" [*]
+" indent_style = space
+" indent_size = 2
+" charset = utf-8
+" trim_trailing_whitespace = true
+" insert_final_newline = true
+"
+"
+" OBS: insert_final_newline funciona porém não aparece no vim!
+" THANKS: https://github.com/editorconfig/editorconfig/wiki/Newline-at-End-of-File-Support#vim
 
 "## Vim Multple Cursors
 " https://github.com/terryma/vim-multiple-cursors
+" PROS:
+"   - Edição de tags
+" TODO ver utilidade real do plugin
 
 "## GV
 " https://github.com/junegunn/gv.vim
+" TODO ver utilidade real do plugin
 
 "## Vim Rest Console
 " https://github.com/diepm/vim-rest-console
+" TODO ver utilidade real do plugin
+
+" Instruções:
+"   - ]] [[ navega entre blocos de requisição
+"   - usar <c-j> no bloco da requisição
+
+" quando não indicado nas opções de curl "-i" para informar o tipo de retorno,
+" por padrão é json (afinal usarei como rest client somente)
+let g:vrc_response_default_content_type = 'application/json'
+
+" troca <c-j> pois uso com split
+let g:vrc_trigger = '<C-x>'

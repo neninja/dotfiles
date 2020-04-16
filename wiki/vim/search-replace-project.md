@@ -59,6 +59,7 @@ fun! Grep()
     lopen
 endfun
 ```
+<!-- TODO qual a difderença com :vimgrep /pattern/ ** -->
 
 <!-- https://stackoverflow.com/questions/20933836/what-is-the-difference-between-location-list-and-quickfix-list-in-vim
 
@@ -102,3 +103,9 @@ Both lists have relatively clear roles IMO: the quickfix list (and thus the quic
     In particular, if you launch vim with -q errors.txt, after putting compile errors in errors.txt (i.e. gcc -Wall *.c >errors.txt 2>&1), vim will populate the quickfix list from the list of compile errors, which is very handy. – Kevin Dec 11 '14 at 14:47
 
 -->
+
+## Com plugins
+[fugitive](https://github.com/tpope/vim-fugitive)
+```vim
+:Ggrep <word> | cw
+```
