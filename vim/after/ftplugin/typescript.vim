@@ -15,3 +15,9 @@ fun! SnippetTsExpressRoute()
     normal! `s
     startinsert
 endfun
+
+" nnoremap <buffer> <c-w>] :TsuquyomiDefinition<cr>
+" nnoremap <buffer> <c-w>[ :TsuquyomiGoBack<cr>
+" <c-]>
+nnoremap <buffer> <c-\> :TsuquyomiDefinition<cr>
+nnoremap <buffer> <c-[> :TsuquyomiGoBack<cr>
