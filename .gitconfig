@@ -8,7 +8,7 @@
     username = nenitf
 [core]
     editor = vim
-    excludesfile = ~/dev/dotfiles/cpfiles/git/.gitignore
+    # excludesfile = ~/dev/dotfiles/cpfiles/git/.gitignore
 [color]
     ui = true
 [color "branch"]

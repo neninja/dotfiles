@@ -20,15 +20,11 @@ DIRDF_FROM_HOME=dev/dotfiles # evitar $HOME no windows como /c/users/bla/
 DIRDF=$HOME/$DIRDF_FROM_HOME
 
 # bash
-echo ". $DIRDF/bash/config" > $HOME/.bashrc
-
-# zathura
-mkdir -p $HOME/.config/zathura
-cp --remove-destination -v $DIRDF/zathura/zathurarc ~/.config/zathura/zathurarc
+echo ". $DIRDF/.bashrc" > $HOME/.bashrc
 
 # git
 echo "[include]
-    path = $DIRDF_FROM_HOME/git/.gitconfig" > $HOME/.gitconfig
+    path = $DIRDF_FROM_HOME/.gitconfig" > $HOME/.gitconfig
 
 # vim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
