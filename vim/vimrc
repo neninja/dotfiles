@@ -596,10 +596,16 @@ nmap        <c-f>       :call NN_<tab><left>| " funções pessoais
 nnoremap    <c-g>       viwy:call Grep("<c-r>0")<cr>|" grep palavra do cursor
 vnoremap    <c-g>       y:call Grep("<c-r>0")<cr>|" grep da seleção
 inoremap    <c-h>       <left>|" força hjkl
+nnoremap    <c-h>       <c-w>h
+cnoremap    <c-h>       <left>
 inoremap    <c-j>       <down>|" força hjkl
-noremap     <c-j>       <C-w>w| " estilo DWM
+nnoremap    <c-j>       <c-w>j
+"nnoremap    <c-j>       <c-w>w|" estilo DWM
 inoremap    <c-k>       <up>|" força hjkl
-noremap     <c-k>       <C-w>W| " estilo DWM
+nnoremap    <c-k>       <c-w>k
+"nnoremap    <c-k>       <c-w>W|" estilo DWM
+nnoremap    <c-l>       <c-w>l
+cnoremap    <c-l>       <right>
 inoremap    <c-l>       <right>|" força hjkl
 tnoremap    <c-l>       cls<cr>
 nnoremap    <C-q>       :call <SID>QuickfixToggle()<cr>
