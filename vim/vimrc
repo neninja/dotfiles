@@ -660,7 +660,7 @@ augroup END
 
 let g:dict_dir = "~/dev/dotfiles/vim/dicionarios/"
 augroup php
-    au BufRead *test.php execute "setlocal dictionary+=".g:dict_dir."phpunit.dict"
+    au BufEnter *test.php execute "setlocal dictionary+=".g:dict_dir."phpunit.dict"
 augroup END
 
 "## packs pessoais
