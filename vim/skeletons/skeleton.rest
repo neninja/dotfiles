@@ -1,0 +1,20 @@
+# com o vim, <c-j> ou o g:vrc_trigger no método http
+# https://github.com/diepm/vim-rest-console.git
+
+# global definitions
+// default host
+http://localhost:3333
+
+// argumentos curl default
+-s # silencioso
+#-i # header com syntax dinamica
+--
+
+--
+POST /appointments
+{
+  "provider": "Felipe",
+  "date": "2020-05-07T20:34:03"
+}
+--
+GET /appointments
