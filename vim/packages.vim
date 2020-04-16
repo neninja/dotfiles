@@ -168,7 +168,7 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 
 let g:vimwiki_folding='custom'
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
-let g:vimwiki_global_ext = 0
+" let g:vimwiki_global_ext = 0
 
 "let g:vimwiki_listsyms = ' .oOX' " default
 let g:vimwiki_listsyms = ' x' " compatibilidade github
