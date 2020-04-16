@@ -493,11 +493,6 @@ fun! TestaTriggerSnippet(root, func1)
     endif
 endfun
 
-fun! AddDict(arquivo)
-    let s:dict_dir = g:dotfiles_dir. "/vim/dicionarios"
-    execute "setl dictionary+=".s:dict_dir."/".a:arquivo.".dict"
-endfun
-
 "## Comandos
 
 " recarrega vimrc com trigger para o filetype
@@ -648,12 +643,6 @@ cabbrev lvim
 "    autocmd InsertLeave * set timeoutlen=1000
 "augroup END
 
-" THANKS: https://github.com/skywind3000/vim-dict
-augroup dicionarios
-    " DICA: para organizar alfabeticamente, selecione as linhas e :sort
-    au BufEnter * call AddDict(&ft)
-augroup END
-
 "### ftdetect
 
 "https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
@@ -661,12 +650,6 @@ augroup END
 augroup filetype_detect
     au!
     au BufRead,BufNewFile *.gv setfiletype dot
-augroup END
-
-"### PHP
-
-augroup php
-    au BufEnter *test.php execute "setlocal dictionary+=".g:dict_dir."phpunit.dict"
 augroup END
 
 "## packs pessoais

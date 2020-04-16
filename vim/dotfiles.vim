@@ -4,13 +4,32 @@
 "THANKS: https://shapeshed.com/vim-templates/
 augroup skeletons
     au!
-    au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
-    au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
-    au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
-    au BufNewFile *.gv 0r ~/dev/dotfiles/vim/skeletons/skeleton.gv
-    au BufNewFile *.rest 0r ~/dev/dotfiles/vim/skeletons/skeleton.rest
-    au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
+    au BufNewFile *.html call AddSkeleton("skeleton.html")
+    au BufNewFile *.sh call AddSkeleton("skeleton.sh")
+    au BufNewFile *.php call AddSkeleton("skeleton.php")
+    au BufNewFile *.gv call AddSkeleton("skeleton.gv")
+    au BufNewFile *.rest call AddSkeleton("skeleton.rest")
+    au BufNewFile phpunit.xml call AddSkeleton("phpunit.xml")
 augroup END
+
+fun! AddSkeleton(arquivo)
+    execute "0r ".g:dotfiles_dir."/vim/skeletons/".a:arquivo
+endfun
+
+"## Dicionárioss
+" THANKS: https://github.com/skywind3000/vim-dict
+
+let g:dict_dir = g:dotfiles_dir. "/vim/dicionarios"
+augroup dicionarios
+    " DICA: para organizar alfabeticamente, selecione as linhas e :sort
+    au!
+    au BufEnter * call AddDict(&ft)
+    au BufEnter *test.php execute "setlocal dictionary+=".g:dict_dir."/phpunit.dict"
+augroup END
+
+fun! AddDict(arquivo)
+    execute "setl dictionary+=".g:dict_dir."/".a:arquivo.".dict"
+endfun
 
 "## Snippets
 " logica modificada!
