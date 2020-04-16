@@ -86,9 +86,9 @@ au FocusGained,BufEnter * :silent!<space>!
 "### RuntimePaths
 " Deve vir antes das definições de filetype
 " carrega ftdetect, para definir extensões a filetypes
-set rtp+=~/dev/dotfiles/vim
+execute "set rtp+=".g:dotfiles_dir."/vim"
 " evita autocmd de highligh (syntax/) e específicas do filetype (ftplugin/)
-set rtp+=~/dev/dotfiles/vim/after
+execute "set rtp+=".g:dotfiles_dir."/vim/after"
 
 " O vim utilizado pelo git para commitar no Windows é diferente do que fica
 " instalado no sistema. Portanto o mesmo não procura em ~/vimfiles/pack/ os
@@ -756,8 +756,8 @@ nnoremap gcc :call ToggleComment()<cr>
 vnoremap gcc :call ToggleComment()<cr>
 
 "## sources
-call SourceIfExists("~/dev/dotfiles/vim/dotfiles.vim")
-call SourceIfExists("~/dev/dotfiles/vim/packages.vim")
+call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
+call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 call SourceIfExists("~/.extra-vimrc.vim")
 
 " carrega vimrc se existente em no work dir (:h :pwd :h 'getcwd()')
