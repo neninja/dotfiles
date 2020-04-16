@@ -27,7 +27,8 @@ vendorRepos=(
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
     "https://github.com/terryma/vim-multiple-cursors.git" # multiplos cursores
     "https://github.com/joshdick/onedark.vim.git" # colorscheme
-    
+    "https://github.com/dense-analysis/ale.git" # lint
+
     ####### GIT
     "https://github.com/tpope/vim-fugitive.git" # comandos
     "https://github.com/airblade/vim-gitgutter.git" # exibição de + - ~ _
@@ -35,6 +36,11 @@ vendorRepos=(
 
     ####### PHP
     "https://github.com/adoy/vim-php-refactoring-toolbox.git" # macros uteis
+
+    ####### JS
+    "https://github.com/pangloss/vim-javascript.git" # melhora na syntax js
+    "https://github.com/MaxMEllon/vim-jsx-pretty.git" # syntax e indent jsx ts
+    "https://github.com/Quramy/tsuquyomi.git" # autocomplete e lint de ts
 )
 
 neniRepos=(

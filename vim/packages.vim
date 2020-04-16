@@ -251,6 +251,34 @@ endfun
 
 "## Goyo
 " https://github.com/junegunn/goyo.vim
+" PROS:
+"   - Leitura mais confortável da wiki
+"
+"## Vim Javascript
+" https://github.com/pangloss/vim-javascript
+" PROS:
+"   - Syntax js
+
+set conceallevel=1
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "←"
+let g:javascript_conceal_undefined            = "¿"
+" let g:javascript_conceal_NaN                  = "ℕ"
+" let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "→"
+" let g:javascript_conceal_noarg_arrow_function = "🞅"
+" let g:javascript_conceal_underscore_arrow_function = "🞅"
+
+"## Tsuquyomi
+" https://github.com/Quramy/tsuquyomi
+" PROS:
+"   - Rápido
+"   - Vimscript (out of box)
+"   - Quickfix dos erros e autocomplete do omnifunc
 
 "## Vim JSX Pretty
 " https://github.com/MaxMEllon/vim-jsx-pretty
@@ -266,6 +294,19 @@ endfun
 "   - marcação do texto e código do erro
 " TODO remover plugin
 "https://gist.github.com/romainl/ce55ce6fdc1659c5fbc0f4224fd6ad29
+
+" Set de lintes
+let g:ale_fixers = {
+            \ 'javascript': ['prettier', 'eslint'],
+            \ 'typescript': ['prettier', 'eslint']
+            \ }
+
+" Força correção de acordo com o lint ao salvar o arquivo
+let g:ale_fix_on_save = 1
+" :ALEFix caso não formate por algum motivo
+" E se não der usar cli:
+"   :!prettier --write %
+"   :!yarn eslint --fix %
 
 "nmap <silent> ! <Plug>(ale_next_wrap)
 "
