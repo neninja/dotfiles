@@ -5,6 +5,10 @@ function return
 getElementById querySelector querySelectorAll
 import from require
 let const var
+filter reduce map
+push
+this
+try catch throw Error
 
 ===e=x=p=r=e=s=s===
 json
