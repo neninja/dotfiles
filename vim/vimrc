@@ -592,7 +592,7 @@ inoremap    <right>     <nop>|" força hjkl
 inoremap    <c-space>   <c-x><c-o>
 inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
 inoremap    <c-f>       <c-o>|" pulo mais ergonomico
-nmap        <c-f>       :call NN_<tab><left>| " funções pessoais
+nnoremap    <c-f>       :call NN_<tab><left>| " funções pessoais
 nnoremap    <c-g>       viwy:call Grep("<c-r>0")<cr>|" grep palavra do cursor
 vnoremap    <c-g>       y:call Grep("<c-r>0")<cr>|" grep da seleção
 inoremap    <c-h>       <left>|" força hjkl
