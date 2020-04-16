@@ -636,6 +636,11 @@ cabbrev lvim
 "## AutoCmds
 
 "https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
+"augroup tempos
+"    autocmd InsertEnter * set timeoutlen=700
+"    autocmd InsertLeave * set timeoutlen=1000
+"augroup END
+
 " THANKS: https://github.com/skywind3000/vim-dict
 augroup dicionarios
     " DICA: para organizar alfabeticamente, selecione as linhas e :sort
