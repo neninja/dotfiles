@@ -138,8 +138,8 @@ set linebreak               " quebra a linha por palavra e não por letra
 "set cursorcolumn cursorline " marca colunha e linha do cursor
 set number relativenumber   " exibe régua com o numero relativo das linhas
 set nrformats-=octal        " ctrl-a ctrl -x
-set clipboard+=unnamed      " acessa/altera copy do so
-set lazyredraw              " Não redesenha a tela durante macro (+ perf)
+set clipboard^=unnamedplus,unnamed
+set lazyredraw              " não redesenha a tela durante macro (+ perf)
 
 "set splitbelow              " cria split horizontal abaixo
 "set splitright              " cria split vertical abaixo
