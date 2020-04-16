@@ -7,7 +7,8 @@ augroup skeletons
     au BufNewFile *.html 0r ~/dev/dotfiles/vim/skeletons/skeleton.html
     au BufNewFile *.sh 0r ~/dev/dotfiles/vim/skeletons/skeleton.sh
     au BufNewFile *.php 0r ~/dev/dotfiles/vim/skeletons/skeleton.php
-    au BufNewFile *.gv 0r ~/dev/dotfiles/vim/skeletons/graphviz.php
+    au BufNewFile *.gv 0r ~/dev/dotfiles/vim/skeletons/skeleton.gv
+    au BufNewFile *.rest 0r ~/dev/dotfiles/vim/skeletons/skeleton.rest
     au BufNewFile phpunit.xml 0r ~/dev/dotfiles/vim/skeletons/phpunit.xml
 augroup END
 
