@@ -49,10 +49,6 @@ wget https://raw.githubusercontent.com/nenitf/dotfiles/master/vim/gvimrc -O $HOM
 
 ### Completa no Linux
 ```bash
-wget -O - http://neni.dev/dotfiles/lazy.sh | sh
-```
-ou
-```bash
 cd ~
 mkdir dev
 cd dev
