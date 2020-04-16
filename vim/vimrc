@@ -605,8 +605,8 @@ tnoremap    <c-l>       cls<cr>
 nnoremap    <C-q>       :call <SID>QuickfixToggle()<cr>
 nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
 nnoremap    <c-z>       u|" remove comportamento <c-z>
-tnoremap    <s-insert>  <c-w>""
-tnoremap    <c-s-v>     <c-w>""
+tnoremap    <s-insert>  <c-w>"*
+tnoremap    <c-s-v>     <c-w>"*
 
 "## Abreviações
 " Evitar ...
