@@ -190,7 +190,7 @@ set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
 
 set laststatus=2                " habilita statusline
 set statusline=                 " reseta statusline
-set statusline+=\ %r\%m\%f\     " nome readonly, modificado e nome abreviado
+set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
 set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 set statusline+=\ %y            " filetype
