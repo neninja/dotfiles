@@ -115,8 +115,12 @@ let g:startify_custom_header_quotes = [
             \ ['Oooh! I burned my moooovie! 🔥', '- Miena 2020'],
             \ ['Se um passarinho sujar você,', 'não reclame. Agradeça que as', 'vacas não voam', '- Miena 2020'],
             \ ['Para quem só sabe usar martelo,', 'todo problema é um prego.', '- Abraham Maslow'],
-            \ ['Sua única limitação é você mesmo', '- Rocketseat GoStack11'],
-            \ ['Não espere para plantar, apenas', 'tenha paciência para colher', '- Rocketseat GoStack11'],
+            \ ['Sua única limitação é você mesmo', '- Rocketseat 🚀 GoStack11'],
+            \ ['Faça seu melhor, mas sempre com', 'prazo de entrega', '- Rocketseat 🚀 GoStack11'],
+            \ ['Não espere para plantar, apenas', 'tenha paciência para colher', '- Rocketseat 🚀 GoStack11'],
+            \ ['Sucesso não é o resultado de um ', 'jogo, mas o destino de uma jornada', '- Rocketseat 🚀 GoStack11'],
+            \ ['Para quem fica melhor a cada dia,', 'ficar pronto é utopia', '- Rocketseat 🚀 GoStack11'],
+            \ ['Só deseje as coisas as quais você', 'está disposto a lutar', 'ficar pronto é utopia', '- Rocketseat 🚀 GoStack11'],
             \ ]
 let g:startify_lists = [
             \ { 'type': 'sessions', 'header': ['sessões'] },
