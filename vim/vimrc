@@ -651,7 +651,7 @@ augroup END
 
 "https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
 "FIXME Como colocar definição de filetype em ftdetect?
-augroup skeletons
+augroup filetype_detect
     au!
     au BufRead,BufNewFile *.gv setfiletype dot
 augroup END
