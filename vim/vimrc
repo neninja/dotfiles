@@ -664,7 +664,6 @@ augroup END
 
 "### PHP
 
-let g:dict_dir = "~/dev/dotfiles/vim/dicionarios/"
 augroup php
     au BufEnter *test.php execute "setlocal dictionary+=".g:dict_dir."phpunit.dict"
 augroup END
