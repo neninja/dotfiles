@@ -211,6 +211,7 @@ set shortmess+=c                    " remove mensagens inúteis do wildmenu
 " Remove das sugestões arquivos/diretorios (lvimgrep tb)
 " THANKS: https://stackoverflow.com/questions/1898987/how-to-exclude-file-patterns-in-vimgrep
 set wildignore=node_modules/*
+set wildignore+=.git/*
 set wildignore+=dist/*
 set wildignore+=vendor/*
 set wildignore+=ios/*
