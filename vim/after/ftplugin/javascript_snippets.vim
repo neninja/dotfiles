@@ -4,7 +4,6 @@
 inorea <buffer> log <esc>:call TestaTriggerSnippet('log', 'SnippetJsLog')<cr>
 inorea <buffer> if <esc>:call TestaTriggerSnippet('if', 'SnippetJsIf')<cr>
 inorea <buffer> fun <esc>:call TestaTriggerSnippet('fun', 'SnippetJsFunction')<cr>
-inorea <buffer> fun <esc>:call TestaTriggerSnippet('fun', 'SnippetJsFunction')<cr>
 inorea <buffer> ed <esc>:call TestaTriggerSnippet('ed', 'SnippetJsExportDefault')<cr>
 inorea <buffer> im <esc>:call TestaTriggerSnippet('ed', 'SnippetJsImportFrom')<cr>
 
