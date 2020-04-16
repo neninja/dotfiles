@@ -726,6 +726,7 @@ let s:comment_map = {
             \   "go": '\/\/',
             \   "java": '\/\/',
             \   "javascript": '\/\/',
+            \   "typescript": '\/\/',
             \   "lua": '--',
             \   "scala": '\/\/',
             \   "php": '\/\/',
