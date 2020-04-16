@@ -141,7 +141,7 @@ set nrformats-=octal        " ctrl-a ctrl -x
 set clipboard^=unnamedplus,unnamed
 set lazyredraw              " não redesenha a tela durante macro (+ perf)
 
-"set splitbelow              " cria split horizontal abaixo
+"set splitbelow              " cria split horizontal abaixo (help estranho)
 "set splitright              " cria split vertical abaixo
 
 set nobackup                " para não criar arquivo de bkp
