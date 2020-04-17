@@ -227,16 +227,11 @@ set wildignore+=_site/*
 set complete=.,b,k,w
 " tags no wildmenu afetam perf
 
-" evitar o bug de macro/função para completar snippets
-" pois as sugestões aparecem e magicamente o texto é selecionado
-let g:opencomplete = 1
-
 " Fake auto complete
 "THANKS: https://github.com/skywind3000/vim-auto-popmenu
 " THANKS: https://stackoverflow.com/a/47967462/9881278
 "function! OpenCompletion()
-"    " if !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z')) && g:opencomplete
-"    if !pumvisible() && g:opencomplete
+"    " if !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
 "        " call feedkeys("\<C-x>\<C-o>", "n")
 "        call feedkeys("\<C-n>")
 "    endif
@@ -253,10 +248,11 @@ let g:opencomplete = 1
 inoremap <expr> <CR> pumvisible() ? "\<esc>o" : "\<CR>"
 
 autocmd InsertCharPre * call AutoComplete()
+
 fun! AutoComplete()
     " TODO add omnifunc nas sugestões
     " FIXME remover dependência da variável
-    if v:char =~ '\K' && g:opencomplete
+    if v:char =~ '\K'
         \ && getline('.')[col('.') - 4] !~ '\K'
         \ && getline('.')[col('.') - 3] =~ '\K'
         \ && getline('.')[col('.') - 2] =~ '\K' " last char
@@ -474,13 +470,10 @@ endfun
 fun! TestaTriggerSnippet(root, func1)
     let c = nr2char(getchar(0))
     if c == "\<tab>"
-        " FIXME remover dependência da variável
-        " g:opencomplete desativa autocomplete do InsertCharPre
-        let g:opencomplete = 0
         let s:snippetfunc = function(a:func1)
-        let @x = s:snippetfunc()
-        let g:opencomplete = 1
-        " execute "call " . a:func1 ."()"
+        noautocmd let @x = s:snippetfunc()
+        " :noautocmd cancela insertcharpre (e todos outros autocmds) para não
+        " atrapalhar eventos de autocomplete com :normal! e etc
     elseif c == "\<esc>"
         execute "normal! a" . a:root . 'a'
         execute 'normal! "_x'
