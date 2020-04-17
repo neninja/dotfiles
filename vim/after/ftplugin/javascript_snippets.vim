@@ -23,9 +23,8 @@ inorea <buffer> im <esc>:call TestaTriggerSnippet('ed', 'SnippetJsImportFrom')<c
 "   - feedkeys('S'), feedkeys('O'), feedkeys('o'), feedkeys('A') ...
 
 fun! SnippetJsIf()
-    normal! aif()
-    normal! msa{
-    normal! ==
+    normal! aif() {
+    normal! 2hms
     normal! o<++>
     normal! o}
     normal! `s
@@ -39,11 +38,8 @@ fun! SnippetJsLog()
 endfun
 
 fun! SnippetJsFunction()
-    " $ usado para deixar um espaço depois de funcion
-    normal! afunction $
-    normal! msi(<++>){
-    " apaga $ e identa a linha
-    normal! g_"_x==
+    normal! afunction (<++>) {
+    normal! 7hms
     normal! o<++>
     normal! o}
     normal! `s
