@@ -19,15 +19,15 @@ mkdir -p $HOME/.config
 DIRDF_FROM_HOME=dev/dotfiles # evitar $HOME no windows como /c/users/bla/
 DIRDF=$HOME/$DIRDF_FROM_HOME
 
-# bash
-echo ". $DIRDF/.bashrc" > $HOME/.bashrc
-
 # git
 echo "[include]
     path = $DIRDF_FROM_HOME/.gitconfig" > $HOME/.gitconfig
 
 # vim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # bash
+    echo ". $DIRDF/.bashrc" > $HOME/.bashrc
+
     # vim
     echo "source ~/$DIRDF_FROM_HOME/vim/vimrc" > $HOME/.vimrc
     echo "source ~/$DIRDF_FROM_HOME/vim/gvimrc" > $HOME/.gvimrc
