@@ -298,7 +298,9 @@ let g:javascript_conceal_arrow_function       = "→"
 " Set de lintes
 let g:ale_fixers = {
             \ 'javascript': ['prettier', 'eslint'],
-            \ 'typescript': ['prettier', 'eslint']
+            \ 'javascriptreact': ['prettier', 'eslint'],
+            \ 'typescript': ['prettier', 'eslint'],
+            \ 'typescriptreact': ['prettier', 'eslint']
             \ }
 
 " Força correção de acordo com o lint ao salvar o arquivo
