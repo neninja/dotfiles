@@ -229,7 +229,8 @@ set wildignore+=_site/*
 "   - dicinários
 "   - de outras janelas (splits)
 set complete=.,b,k,w
-" tags no wildmenu afetam perf
+" sugestão de tags afeta perf
+
 " 1. autocomplete de filename <c-x><c-f> com o arquivo aberto sendo a
 "    referencia ao invés da raiz do projeto (troca temporariamente :pwd)
 "    THANKS: https://superuser.com/a/604180
