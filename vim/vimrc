@@ -413,6 +413,19 @@ fun! NN_Tasks()
     lopen
 endfun
 
+" script para os meus commits padrões de aula
+fun! NN_GitAula()
+    vnew | 0r!git log --pretty=format:\%s
+    if search('^release: add aula')>0
+        normal! 3W
+        let s:numero_aula = expand('<cword>')+1
+        execute "!git add -A && git commit -m \"release: add aula ".s:numero_aula."\""
+    else
+        execute "!git add -A && git commit -m \"release: add aula 1\""  
+    endif
+    bdelete!
+endfun
+
 "#### Git
 function NN_Git_add()
     echo "não implementado!"
