@@ -1,4 +1,5 @@
 call AddDict("typescript")
+call AddDict("javascriptreact")
 
 " add todas configurações typescript, incluindo dicionarios adicionados
 " snippets, snippets importados e etc
