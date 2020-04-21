@@ -281,7 +281,11 @@ fun! AutoComplete()
         \ && getline('.')[col('.') - 2] =~ '\K' " last char
         \ && getline('.')[col('.') - 1] !~ '\K'
 
-        call feedkeys("\<C-N>", 'n')
+        " trecho necessário pelo bug de selecionar automaticamente se
+        " <c-x><c-o> já estiver aberto antes de 3 chars
+        if !pumvisible()
+            noa call feedkeys("\<C-n>", 'n')
+        endif
     end
 endfun
 " opção de usar <tab>, prefiro manter o padrão <c-n>
