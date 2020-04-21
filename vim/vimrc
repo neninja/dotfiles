@@ -163,7 +163,7 @@ set hidden " mantêm o arquivo disponível ao sair dele (mesmo modificado)
 set hlsearch    " colore os matches de search (* / %s)
 set incsearch   " vai colorindo a pesquisa durante a digitação
 set ignorecase  " ignora case sensitive na busca
-"set smartcase  " case sensitive se a primeira letra for maiuscula,
+set nosmartcase " case sensitive se a primeira letra for maiuscula,
 "               " ruim para autocomplete de nomes de funções
 
 " renderização de emojis
