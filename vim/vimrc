@@ -285,6 +285,7 @@ fun! AutoComplete()
     end
 endfun
 " opção de usar <tab>, prefiro manter o padrão <c-n>
+" prefiro manter o padrão vim
 "inoremap <expr> <Tab> TabComplete()
 "fun! TabComplete()
 "    if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
