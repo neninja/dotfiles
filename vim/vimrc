@@ -208,6 +208,10 @@ set completeopt=menuone,noinsert,noselect
 " noselect: não seleciona o texto automaticamente
 set shortmess+=c                    " remove mensagens inúteis do wildmenu
 
+" usa como separador de diretório '/' ao invés de '\', padrão do windows
+" muito utili para importar modulos no javascript
+set shellslash " set nossl cancela
+
 " Remove das sugestões arquivos/diretorios (lvimgrep tb)
 " THANKS: https://stackoverflow.com/questions/1898987/how-to-exclude-file-patterns-in-vimgrep
 set wildignore=node_modules/*
