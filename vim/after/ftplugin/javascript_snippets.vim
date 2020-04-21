@@ -52,9 +52,8 @@ fun! SnippetJsExportDefault()
 endfun
 
 fun! SnippetJsImportFrom()
-    normal! aimport + from '<++>'
-    normal! 12h
-    call feedkeys('s')
+    normal! aimport <++> from ''
+    startinsert
 endfun
 
 inoremap <buffer> <c-d> <esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit
