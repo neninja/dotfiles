@@ -226,6 +226,26 @@ set wildignore+=_site/*
 "   - de outras janelas (splits)
 set complete=.,b,k,w
 " tags no wildmenu afetam perf
+" 1. autocomplete de filename <c-x><c-f> com o arquivo aberto sendo a
+"    referencia ao invés da raiz do projeto (troca temporariamente :pwd)
+"    THANKS: https://superuser.com/a/604180
+" 2. quando em insertmode, as sugestões são case sensitive, fora não
+" 3. a cada caracter inserido tenta ativar autocomplete
+"    THANKS: https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
+"    OBS: pode criar multiplos bugs de funções como macros de ":normal!", para
+"    evitar é preciso osar ":noa normal!"
+augroup autocompleteOnInsert
+    au!
+    autocmd InsertEnter * 
+                \ let save_cwd = getcwd() |
+                \ set autochdir |
+                \ set noignorecase
+    autocmd InsertLeave * 
+                \ set noautochdir |
+                \ execute 'cd' fnameescape(save_cwd) |
+                \ set ignorecase
+    autocmd InsertCharPre * call AutoComplete()
+augroup END
 
 " Fake auto complete
 "THANKS: https://github.com/skywind3000/vim-auto-popmenu
@@ -247,7 +267,6 @@ set complete=.,b,k,w
 " de somente remover o popup
 inoremap <expr> <CR> pumvisible() ? "\<esc>o" : "\<CR>"
 
-autocmd InsertCharPre * call AutoComplete()
 
 fun! AutoComplete()
     " TODO add omnifunc nas sugestões
