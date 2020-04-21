@@ -748,6 +748,8 @@ vnoremap gcc :call ToggleComment()<cr>
 "## sources
 call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
+
+" ideal para importar pythonthreehome e pythonthreedll
 call SourceIfExists("~/.extra-vimrc.vim")
 
 " carrega vimrc se existente em no work dir (:h :pwd :h 'getcwd()')
