@@ -9,6 +9,7 @@ augroup skeletons
     au BufNewFile *.php call AddSkeleton("skeleton.php")
     au BufNewFile *.gv call AddSkeleton("skeleton.gv")
     au BufNewFile *.rest call AddSkeleton("skeleton.rest")
+    au BufNewFile .editorconfig call AddSkeleton("skeleton.editorconfig")
     au BufNewFile phpunit.xml call AddSkeleton("phpunit.xml")
 augroup END
 
