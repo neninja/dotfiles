@@ -274,7 +274,6 @@ inoremap <expr> <CR> pumvisible() ? "\<esc>o" : "\<CR>"
 
 fun! AutoComplete()
     " TODO add omnifunc nas sugestões
-    " FIXME remover dependência da variável
     if v:char =~ '\K'
         \ && getline('.')[col('.') - 4] !~ '\K'
         \ && getline('.')[col('.') - 3] =~ '\K'
