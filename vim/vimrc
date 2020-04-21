@@ -267,11 +267,11 @@ augroup END
 " THANKS: https://vi.stackexchange.com/a/8902/28875
 " THANKS: https://www.reddit.com/r/vim/comments/4tu844/vim_completion_without_plugin/
 " THANKS: https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
-" inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
 " quando for dado enter cria uma nova linha ao invés
 " de somente remover o popup
-inoremap <expr> <CR> pumvisible() ? "\<esc>o" : "\<CR>"
-
+inoremap <expr> <CR> pumvisible() ? "\<esc>a\<CR>" : "\<CR>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 fun! AutoComplete()
     " TODO add omnifunc nas sugestões
