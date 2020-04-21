@@ -1,7 +1,22 @@
 " https://vim.fandom.com/wiki/Runtime_syntax_check_for_php
 " Para usar o :make % e ver erro de syntax
-compiler php
-setl errorformat=%m\
+" compiler php
+setl errorformat=%m\ in\ %f\ on\ line\ %l
+"THANKS: http://blog.joncairns.com/2012/05/using-vim-as-a-php-ide/
+setl makeprg=php\ -l\ %
+" THANKS: https://pt.slideshare.net/ZendCon/vim-for-php-programmers-presentation
+fun! NN_PHPLint()
+    silent make
+    if v:shell_error
+        copen
+    else
+        clist
+    endif
+endfun
+
+fun! NN_PHPExecute()
+    !php %
+endfun
 
 nnoremap <buffer> <leader>r :terminal php %<CR>
 
