@@ -597,6 +597,8 @@ nnoremap    <c-l>       <c-w>l
 cnoremap    <c-l>       <right>
 inoremap    <c-l>       <right>|" força hjkl
 tnoremap    <c-l>       cls<cr>
+nnoremap    <c-n>       yiwV| " substitue mult cursors
+xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>| " substitue mult cursors
 nnoremap    <C-q>       :call <SID>QuickfixToggle()<cr>
 nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
 nnoremap    <c-z>       u|" remove comportamento <c-z>

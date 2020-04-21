@@ -360,12 +360,6 @@ colorscheme onedark
 " OBS: insert_final_newline funciona porém não aparece no vim!
 " THANKS: https://github.com/editorconfig/editorconfig/wiki/Newline-at-End-of-File-Support#vim
 
-"## Vim Multple Cursors
-" https://github.com/terryma/vim-multiple-cursors
-" PROS:
-"   - Edição de tags
-" TODO ver utilidade real do plugin
-
 "## GV
 " https://github.com/junegunn/gv.vim
 " TODO ver utilidade real do plugin
