@@ -74,6 +74,6 @@ endfun
 
 fun! SnippetPhpDieDump()
     normal! ivar_dump();die;
-    normal! 5h
+    normal! ==5h
     startinsert
 endfun
