@@ -237,10 +237,8 @@ set updatetime=100
 ":GitGutterEnable
 let g:gitgutter_enabled=0
 
-fun! NN_Gitguttettog()
-    GitGutterToggle
-    echo "Use [h ]h e <leader>hp <leader>hs <leader>hu"
-endfun
+" desabilita maps do gitgutter
+let g:gitgutter_map_keys = 0
 
 "## Goyo
 " https://github.com/junegunn/goyo.vim
