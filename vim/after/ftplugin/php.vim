@@ -30,6 +30,14 @@ inorea <buffer> fun <esc>:call TestaTriggerSnippet('fun', 'SnippetPhpFunction')<
 inorea <buffer> - <esc>:call TestaTriggerSnippet('-', 'SnippetPhpPrivate')<cr>
 inorea <buffer> + <esc>:call TestaTriggerSnippet('+', 'SnippetPhpPublic')<cr>
 inorea <buffer> # <esc>:call TestaTriggerSnippet('#', 'SnippetPhpProtected')<cr>
+inorea <buffer> cl <esc>:call TestaTriggerSnippet('cl', 'SnippetPhpClass')<cr>
+
+fun! SnippetPhpClass()
+    execute "normal! aclass  {"
+    execute "normal! hi\<C-R>=expand('%:r:t')\<CR>"
+    normal! o}
+    call feedkeys("O")
+endfun
 
 fun! SnippetPhpFunction()
     execute "normal! afunction (<++>) {"
