@@ -597,9 +597,7 @@ inoremap    (<space>    ()<left><space><space><left>|"autoclose
 inoremap    [           []<left>|"autoclose
 inoremap    [<CR>       []<left><CR><Esc>O|"autoclose
 inoremap    [<space>    []<left><space><space><left>|"autoclose
-nnoremap    j           gj
 vnoremap    J           :m '>+1<CR>gv=gv| " move seleção pra baixo
-nnoremap    k           gk
 vnoremap    K           :m '<-2<CR>gv=gv| " move seleção pra cima
 inoremap    kj          <esc>|" esc mais fácil
 nnoremap    n           nzzzv|" centraliza match do search
