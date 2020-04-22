@@ -40,7 +40,7 @@ fun! SnippetPhpClass()
 endfun
 
 fun! SnippetPhpFunction()
-    execute "normal! afunction (<++>) {"
+    normal! afunction (<++>) {
     normal! 7hms
     normal! o<++>
     normal! o}
