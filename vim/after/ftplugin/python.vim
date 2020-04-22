@@ -26,3 +26,9 @@ fun! NN_PythonExecute()
         clist
     endif
 endfun
+
+inorea <buffer> p <esc>:call TestaTriggerSnippet('p', 'SnippetPythonPrint')<cr>
+fun! SnippetPythonPrint()
+    normal! aprint()
+    startinsert
+endfun
