@@ -33,9 +33,6 @@ vendorRepos=(
     "https://github.com/airblade/vim-gitgutter.git" # exibição de + - ~ _
     "https://github.com/junegunn/gv.vim.git" # log
 
-    ####### PHP
-    "https://github.com/adoy/vim-php-refactoring-toolbox.git" # macros uteis
-
     ####### JS
     "https://github.com/pangloss/vim-javascript.git" # melhora na syntax js
     "https://github.com/MaxMEllon/vim-jsx-pretty.git" # syntax e indent jsx ts

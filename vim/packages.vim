@@ -89,14 +89,6 @@ augroup END
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " let g:qs_lazy_highlight = 1
-"## Vim PHP Refactoring Toolbox
-" https://github.com/adoy/vim-php-refactoring-toolbox
-" PROS:
-"   - generate getter e setter (bugado)
-" TODO substituir por implementação própria
-
-" disable the default mapping
-"let g:vim_php_refactoring_use_default_mapping = 0
 
 "## Vim Startify
 " https://github.com/mhinz/vim-startify
