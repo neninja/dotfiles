@@ -486,8 +486,8 @@ nnoremap    <leader><leader>    :w<CR>
 nnoremap    <leader><cr>        :call NN_Lexplorer()<cr>
 nnoremap    <leader>/           :noh<cr>
 nnoremap    <leader>.           :pwd<CR>
-nnoremap    <leader>dd          :bd<CR>
-nnoremap    <leader>df          :bd!<CR>
+nnoremap    <leader>dd          :call FechaSplitOuDeletaBuffer()<CR>
+nnoremap    <leader>df          :call FechaSplitOuDeletaBufferForced()<CR>
 nnoremap    <leader>e           :on<CR>| " Close all splits
 nnoremap    <leader>s           :split<CR>
 nnoremap    <leader>t           :tn <c-r><c-w><CR>| " Goto definition (ctags)
