@@ -711,6 +711,8 @@ nnoremap gcc :call ToggleComment()<cr>
 vnoremap gcc :call ToggleComment()<cr>
 
 "## sources
+":scriptnames para ver a orderm e quais scripts foram iniciados
+
 call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 
