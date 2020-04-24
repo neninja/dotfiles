@@ -455,6 +455,24 @@ fun! TestaTriggerSnippet(root, func1)
     endif
 endfun
 
+" fecha split ou deleta o buffer
+fun! FechaSplitOuDeletaBuffer()
+    if winnr('$') > 1
+        q
+    else
+        bd
+    endif
+endfun
+
+" fecha split ou deleta o buffer ignorando modificações
+fun! FechaSplitOuDeletaBufferForced()
+    if winnr('$') > 1
+        q
+    else
+        bd!
+    endif
+endfun
+
 "## Comandos
 
 " recarrega vimrc com trigger para o filetype
