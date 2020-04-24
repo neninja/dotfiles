@@ -2,13 +2,14 @@
 set number relativenumber   " exibe régua com o numero relativo das linhas
 "### Autocomplete
 ":h ins-completion
+
 " origem das palavras do wildmenu:
 "   - buffer corrente
 "   - buffers escondidos
 "   - dicinários
 "   - de outras janelas (splits)
-
 set complete=.,b,k,w
+
 " 1. autocomplete de filename <c-x><c-f> com o arquivo aberto sendo a
 "    referencia ao invés da raiz do projeto (troca temporariamente :pwd)
 "    THANKS: https://superuser.com/a/604180
