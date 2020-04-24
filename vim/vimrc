@@ -215,11 +215,12 @@ set renderoptions=
 
 "## Modeline
 
-" Exemplo de modeline (pode ser em comentário):
-" vim: set fdm=marker:
-
 set modeline        " habilita uso da modeline
 set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
+
+" Exemplo de modeline (pode ser em comentário):
+" vim: set fdm=marker:
+" vim: set fo+=t tw=80:
 
 "## Statusline
 
