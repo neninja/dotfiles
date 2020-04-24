@@ -1,4 +1,5 @@
 "## Builtin
+set number relativenumber   " exibe régua com o numero relativo das linhas
 "### Autocomplete
 ":h ins-completion
 " origem das palavras do wildmenu:
