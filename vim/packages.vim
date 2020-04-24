@@ -207,6 +207,8 @@ nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
 "   - - já usado para trocar de tela
 "   - -  é mt longe de v, j e k, os responsaveis por marcar o hunk
 
+command! GC :Gw | Gcommit
+
 "### Statusline
 set statusline=                 " reseta statusline
 set statusline+=%{FugitiveStatusline()}                 " reseta statusline
