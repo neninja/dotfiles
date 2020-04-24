@@ -134,30 +134,34 @@ set belloff=all " cancela vários beeps, incluindo <esc><esc>
 
 "## Comportamento
 
-set showmatch               " exibe fechamento de {[()]}
-set showmode                " exibe mode no canto inferior esquerdo
-set showcmd                 " exibe os comandos no canto inferior direito
-set autoindent              " auto indentação
-set mouse=a                 " libera uso do mouse em todos modos
-set linebreak               " quebra a linha por palavra e não por letra
-"set cursorcolumn cursorline " marca colunha e linha do cursor
-set number relativenumber   " exibe régua com o numero relativo das linhas
-set nrformats-=octal        " ctrl-a ctrl -x
+set showmatch                   " exibe fechamento de {[()]}
+set showmode                    " exibe mode no canto inferior esquerdo
+set showcmd                     " exibe os comandos no canto inferior direito
+set autoindent                  " auto indentação
+set mouse=a                     " libera uso do mouse em todos modos
+set linebreak                   " quebra a linha por palavra e não por letra
+set nocursorcolumn nocursorline " não marca colunha e linha do cursor (perf)
+set number norelativenumber     " exibe régua sem numero relativo (perf)
+set nrformats-=octal            " ctrl-a ctrl -x
+set lazyredraw                  " não redesenha a tela durante macro (+ perf)
+
+" utiliza clipboard do linux e windows para copiar e colar (y e p)
 set clipboard^=unnamedplus,unnamed
-set lazyredraw              " não redesenha a tela durante macro (+ perf)
 
-"set splitbelow              " cria split horizontal abaixo (help estranho)
-"set splitright              " cria split vertical abaixo
+"set splitbelow                  " cria split horizontal abaixo (help estranho)
+"set splitright                  " cria split vertical abaixo
 
-set nobackup                " para não criar arquivo de bkp
-set noswapfile              " para não criar arquivo swap (?)
+set nobackup                    " para não criar arquivo de bkp
+set noswapfile                  " para não criar arquivo swap (?)
 
-set scrolloff=3             " mantêm 3 linhas acima/abaixo do cursor em scroll
+set scrolloff=3                 " mantêm 3 linhas acima/abaixo do cursor em scroll
 
 " Limite de coluna, comentado para ser posto em modelines específicas
 " set textwidth=80            " define largura da linha de texto
 " set formatoptions+=t        " quebra a linha na coluna textwidth (Vgq)
-set colorcolumn=81          " marca coluna 81, ideal para impressão com :ha
+set colorcolumn=              " afeta perf
+" set colorcolumn=81          " marca coluna 81, ideal para impressão com :ha
+"                             " interessante deixar na modeline com cc
 
 " motivos para usar buffers em segundo plano ao invés de tabs:
 "   - o mesmo arquivo não é aberto duas vezes
