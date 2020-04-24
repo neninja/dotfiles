@@ -49,10 +49,11 @@
 "       - abrir vim no terminal com vim --startuptime tempo.txt tempo.txt
 "       - abrir vim no terminal com vim -u NONE (remove vimrc)
 "
+"## Variáveis
+let g:dotfiles_dir = "~/dev/dotfiles"
+
 "## Básico
 " Mínimas configurações para usar o vim
-
-let g:dotfiles_dir = "~/dev/dotfiles"
 
 " quebra compatibilidade com vi
 " evita erros bizarros como de interpretação de dicionários e etc
