@@ -468,7 +468,7 @@ endfun
 " fecha split ou deleta o buffer ignorando modificações
 fun! FechaSplitOuDeletaBufferForced()
     if winnr('$') > 1
-        q
+        q!
     else
         bd!
     endif
