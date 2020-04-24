@@ -44,6 +44,10 @@
 "   - Propriedades que são setadas podem voltar ao seu valor inicial com &,
 "   por exemplo set wildmenu&
 "   - Formatar largura dos comentários com Vgq (por causa do formatoptions+=t)
+"   - Comandos para testar perf:
+"       - :syntime on e :syntime report
+"       - abrir vim no terminal com vim --startuptime tempo.txt tempo.txt
+"       - abrir vim no terminal com vim -u NONE (remove vimrc)
 "
 "## Básico
 " Mínimas configurações para usar o vim
