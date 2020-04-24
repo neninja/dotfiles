@@ -159,6 +159,7 @@ set scrolloff=3                 " mantêm 3 linhas acima/abaixo do cursor em scr
 " Limite de coluna, comentado para ser posto em modelines específicas
 " set textwidth=80            " define largura da linha de texto
 " set formatoptions+=t        " quebra a linha na coluna textwidth (Vgq)
+set formatoptions+=j          " desfaz codigo de comentario ao juntar linhas
 set colorcolumn=              " afeta perf
 " set colorcolumn=81          " marca coluna 81, ideal para impressão com :ha
 "                             " interessante deixar na modeline com cc
