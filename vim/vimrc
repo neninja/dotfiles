@@ -158,11 +158,34 @@ set scrolloff=3                 " mantêm 3 linhas acima/abaixo do cursor em scr
 
 " Limite de coluna, comentado para ser posto em modelines específicas
 " set textwidth=80            " define largura da linha de texto
-" set formatoptions+=t        " quebra a linha na coluna textwidth (Vgq)
-set formatoptions+=j          " desfaz codigo de comentario ao juntar linhas
 set colorcolumn=              " afeta perf
 " set colorcolumn=81          " marca coluna 81, ideal para impressão com :ha
 "                             " interessante deixar na modeline com cc
+
+" opções de auto inserção de blocos. Alguns filetypes já possuem
+" por default diferentes configurações, portanto é mais interessante add ou
+" remover (+= e -=). Abaixo os valores possíveis (:h fo-table)
+" t     quebra automatica do texto de acordo com textwidth
+"       ideal colocar na modeline: tw=80 fo+=t
+" c     quebra automática do texto de comentários
+" r     insere marcação de comentário (:set comments?) quando usado <cr> no
+"       insert a partir de um comentário
+" o     insere marcação de comentário ao criar nova linha com 'o' no normal
+" q     permite formatação com Vgq (depende do textwidth)
+" w     TODO
+" a     TODO
+" n     add automaticamente 2) 3) 4) ...
+" v     TODO
+" b     TODO
+" l     não quebra linhas que ao entrar no insert ja passaram o textwidth
+" m     TODO
+" M     TODO
+" B     TODO
+" 1     TODO
+" j     ao juntar linhas de comentários com 'J' remove o caracter de
+"       comentário intermediário
+" p     TODO
+set formatoptions+=jro
 
 " motivos para usar buffers em segundo plano ao invés de tabs:
 "   - o mesmo arquivo não é aberto duas vezes
