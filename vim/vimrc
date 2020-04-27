@@ -99,16 +99,18 @@ execute "set rtp+=".g:dotfiles_dir."/vim/after"
 " instalado no sistema. Portanto o mesmo não procura em ~/vimfiles/pack/ os
 " packages (plugins), mas sim em ~/.vim (padrão Linux).
 " Como solução basta adicionar manualmente, aparentemente não tem problema em
-" em escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés
-" de commitar por exemplo). Ao invés de setar o runtinme de todos snippets,
-" bode ser usado o packpath (:h packpath)
+" escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés de
+" commitar por exemplo). Ao invés de setar o runtinme de todos snippets, bode
+" ser usado o packpath (:h packpath)
 " THANKS: https://superuser.com/a/1466466
 "set rtp+=~/vimfiles/pack/*/start/*
 set pp+=~/vimfiles
 
 "### Syntax e identação
 " syntax de acordo com o filetype
-syntax on
+" TODO diferença entre on e enabled
+" syntax on
+syntax enable
 
 " carrega ftplugin.vim e indent.vim do runtimepath (plugins)
 filetype plugin indent on
@@ -185,7 +187,7 @@ set colorcolumn=              " afeta perf
 " j     ao juntar linhas de comentários com 'J' remove o caracter de
 "       comentário intermediário
 " p     TODO
-set formatoptions+=jro
+set formatoptions+=jr
 
 " motivos para usar buffers em segundo plano ao invés de tabs:
 "   - o mesmo arquivo não é aberto duas vezes
@@ -262,10 +264,11 @@ set wildignore+=_site/*
 ":h ins-completion
 " origem das palavras do wildmenu:
 "   - buffer corrente
-"   - dicinários
+"   - dicionários
 "   - de outras janelas (splits)
 set complete=.,k,w
 " sugestão de tags afeta perf
+" <c-e> mantem o insert mode e fecha completeopt
 
 " escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
 " https://github.com/vim-scripts/SyntaxComplete
@@ -447,40 +450,6 @@ fun! LimpaTerminal()
     endif
 endfun
 
-highlight link NeniTagJump DiffAdd
-match NeniTagJump /<++>/
-function! JumpToTag()
-    " search retorna a linha onde o parametro foi encontrado
-    if search("<++>",'nw') > 0
-        " posiciona o cursor sob o padrão da marcação
-        call search("<++>",'w')
-        " Caso a marcação esteja na ultima coluna da linha, o :startinsert
-        " recua uma coluna a mais. Como seria muito complexo calcular essa
-        " situação, é mais fácil entrar no modo de insert e apagar o numero
-        " de letras (4 para <++>)
-        call feedkeys("i\<del>\<del>\<del>\<del>")
-    endif
-endfun
-
-fun! TestaTriggerSnippet(root, func1)
-    let c = nr2char(getchar(0))
-    if c == "\<tab>"
-        let s:snippetfunc = function(a:func1)
-        noautocmd let @x = s:snippetfunc()
-        " :noautocmd cancela insertcharpre (e todos outros autocmds) para não
-        " atrapalhar eventos de autocomplete com :normal! e etc
-    elseif c == "\<esc>"
-        execute "normal! a" . a:root . 'a'
-        execute 'normal! "_x'
-    else
-        " execute "normal a".a:root.c
-        execute "normal! a" . a:root . '"' . c
-        execute 'normal! h"_x'
-        startinsert
-        call cursor( line('.'), col('.') + 1)
-    endif
-endfun
-
 " fecha split ou deleta o buffer
 fun! FechaSplitOuDeletaBuffer()
     if winnr('$') > 1
@@ -542,6 +511,7 @@ nnoremap    <leader>.           :pwd<CR>
 nnoremap    <leader>dd          :call FechaSplitOuDeletaBuffer()<CR>
 nnoremap    <leader>df          :call FechaSplitOuDeletaBufferForced()<CR>
 nnoremap    <leader>e           :on<CR>| " Close all splits
+nnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
 nnoremap    <leader>s           :split<CR>
 nnoremap    <leader>t           :tn <c-r><c-w><CR>| " Goto definition (ctags)
 nnoremap    <leader>v           :vsplit<CR>
@@ -585,12 +555,9 @@ inoremap    <up>        <nop>|" força hjkl
 inoremap    <down>      <nop>|" força hjkl
 inoremap    <left>      <nop>|" força hjkl
 inoremap    <right>     <nop>|" força hjkl
-inoremap    <c-space>   <c-x><c-o>
 inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
-inoremap    <c-f>       <c-o>|" pulo mais ergonomico
-nnoremap    <c-f>       :call NN_<tab><left>| " funções pessoais
-nnoremap    <c-g>       viwy:call Grep("<c-r>0")<cr>|" grep palavra do cursor
-vnoremap    <c-g>       y:call Grep("<c-r>0")<cr>|" grep da seleção
+""nnoremap    <c-g>       viwy:call Grep("<c-r>0")<cr>|" grep palavra do cursor
+""vnoremap    <c-g>       y:call Grep("<c-r>0")<cr>|" grep da seleção
 inoremap    <c-h>       <left>|" força hjkl
 nnoremap    <c-h>       <c-w>h
 cnoremap    <c-h>       <left>
@@ -746,6 +713,7 @@ function! ToggleComment()
             else
                 " Comment the line
                 execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
+                " execute "silent s/^/\\1" . comment_leader . " /"
             end
         end
     end
@@ -753,6 +721,217 @@ endfunction
 
 nnoremap gcc :call ToggleComment()<cr>
 vnoremap gcc :call ToggleComment()<cr>
+
+"### Snippets
+
+" modelo de snippet
+" DEMO: snip<space> 
+inoreabbrev <expr> snip TestaTriggerSnippet('fir',
+            \ "snip(let i=0;x > 10;x++){<cr>/* codigo */<cr>}",
+            \ ['let i=0', 'x > 10', 'x++', '\/\* codigo \*\/'])
+
+fun! TestaTriggerSnippet(abbr, expansion, placeholders)
+    let g:placeholders = a:placeholders
+    let s:expansion = a:expansion.
+                \ "\<Esc>:call PlaceHolder('?')\<CR>"
+                " \ "\<Esc>g_"
+                " \ "\<C-R>=Eatchar('\s')\<CR>"
+    let c = nr2char(getchar(0))
+    if c == g:nonkw_snippet_trigger
+        return s:expansion
+    else
+        return a:abbr . c
+    endif
+endfun
+
+" impede espaço da abreviação no conteudo abreviado
+"THANKS: :h abbreviation
+""func Eatchar(pat)
+""    let c = nr2char(getchar(0))
+""    return "\<right>"
+""    " FIXME acionar somente com espaço...
+""    " return (c =~ a:pat) ? '' : c
+""endfunc
+
+inoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
+snoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
+
+" TODO tornar stateless
+let g:placeholders = []
+func! PlaceHolder(backward)
+    if get(g:placeholders, 0, '0') != '0'
+        if search(g:placeholders[0], 'nw')>0
+            let placeholder = g:placeholders[0]
+            unlet g:placeholders[0]
+
+            if get(g:placeholders, 0, '0') != '0'
+                highlight link NeniSnippetPlaceHolder DiffAdd
+                execute 'match NeniSnippetPlaceHolder /'.g:placeholders[0].'/'
+            else
+                execute "match NeniSnippetPlaceHolder //"
+            endif
+
+            execute "normal! ".a:backward.placeholder."\<cr>"
+            execute "normal! gn\<c-g>"
+        else
+            execute "normal! a".g:placeholders
+        endif
+    endif
+endfun
+
+" snippet + \
+let g:nonkw_snippet_trigger = "\<space>"
+
+" OBJETIVO: "Desabilita" abreviação.
+" Ao invés de desabilitar, se for usado <c-v> no insert-mode o próximo char
+" não ativa a abreviação
+command! AbbrevToggle if g:nonkw_snippet_trigger=="\\"
+            \|let g:nonkw_snippet_trigger="\<space>"
+            \|else|let g:nonkw_snippet_trigger="\\"|endif
+
+" OBJETIVO: Prompt de confirmação para expandir abreviação.
+" DEMO: snippet + non-keyword + <cr>
+" THANKS: Hacking Vim 7.2 (packt)
+""function! AbbrAsk(abbr,expansion)
+""    let s:expansion = a:expansion.
+""                \ "\<Esc>:call search('!cursor!','b')\<cr>cf!".
+""                \ "\<Left>\<C-R>=Eatchar('\s')\<CR>"
+""    if g:abbrevEnabled == 1
+""        let answer = confirm("Use the abbreviation '" . a:abbr . "'?", "&Yes\n&No", 1) 
+""        return answer == 1 ? s:expansion : a:abbr
+""    else
+""        return a:abbr
+""    endif
+""endfunction
+""
+""let g:abbrevEnabled = 1
+""command! AbbrevToggle :call AbbrevToggle()
+""" ao invés de desabilitar, se for usado <c-v> no insert-mode o próximo char
+""" não ativa a abreviação
+""fun! AbbrevToggle()
+""    if g:abbrevEnabled == 1
+""        let g:abbrevEnabled = 0
+""    else
+""        let g:abbrevEnabled = 1
+""    endif
+""endfun
+
+" OBJETIVO: <tab> para listar omni se houver, dicionário ou buffer complete.
+" É util mas existem situações que eu sei que a variável existe
+" e quero utilizar seu nome
+" THANKS: Hacking Vim 7.2 (packt)
+""function! s:superCleverTabOmni()
+""    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+""        return "\<Tab>" 
+""    else
+""        " do we have omni completion available
+""        if &omnifunc != '' 
+""            "use omni-completion 1. priority
+""            return "\<C-X>\<C-O>"  
+""        elseif &dictionary != '' 
+""            " no omni completion, try dictionary completio
+""            return "\<C-K>" 
+""        else
+""            "use omni completion or dictionary completion  
+""            "use known-word completion  
+""            return "\<C-N>"  
+""        endif  
+""    endif
+""endfunction
+""" bind function to the tab key
+""inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+
+" OBJETIVO: Usar <tab> quando tiver menu como <c-n>.
+" Prefiro manter o padrão vim...
+" THANKS: https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
+""inoremap <expr> <Tab> TabComplete()
+""fun! TabComplete()
+""    if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
+""        return "\<C-P>"
+""    else
+""        return "\<Tab>"
+""    endif
+""endfun
+""inoremap <expr> <Tab> TabComplete()
+    
+" TODO listagem de snippets...
+""inoremap <c-s> <c-r>=ListMonths()<CR>
+""func! ListMonths()
+""    call complete(col('.'), ['January', 'February', 'March',
+""                \ 'April', 'May', 'June', 'July', 'August', 'September',
+""                \ 'October', 'November', 'December'])
+""    return ''
+""endfunc
+"#### Listas
+" THANKS: :h complete()
+func! AutoCompleteCarinhas()
+    call complete(col('.'), [
+                \ 'ಥ_ಥ',
+                \ 'ლ(ಠ益ಠლ)',
+                \ 'ಠ╭╮ಠ',
+                \ '(╯°□°)╯︵ ʞooqǝɔɐɟ',
+                \ '(╯°□°)╯︵ ┻━┻',
+                \ '(╮°-°)╮┳━┳',
+                \ '( ͡° ͜ʖ ͡°)',
+                \ '¯\_(ツ)_/¯',
+                \ '(~˘▾˘)~',
+                \ 'ᕦ(ò_óˇ)ᕤ',
+                \])
+    return ''
+endfunc
+inoremap <c-c> <c-r>=AutoCompleteCarinhas()<CR>
+"#### snippets sem selectmode
+"inoreabbrev <expr> for AbbrAsk('for',
+"            \ "for(!cursor!;<+++>;<+++>){<cr><+++><cr>}")
+"
+" THANKS: Hacking Vim 7.2 (packt)
+" procura <+++>
+" inoremap <c-j> <ESC>/<+.\{-1,}+><cr>vf><c-g>
+" snoremap <c-j> <ESC>/<+.\{-1,}+><cr>vf><c-g>
+" snoremap <c-k> <esc>"_X"_x?<+<CR>2"_xi
+" remove laterais <+ +>
+"#### Antigo método de snippet
+" Implementação
+""inorea <buffer> dd <esc>:call TestaTriggerSnippet('dd', 'SnippetPhpDieDump')<cr>
+""fun! SnippetPhpDieDump()
+""    normal! ivar_dump();die;
+""    normal! ==5h
+""    startinsert
+""endfun
+
+" base
+""highlight link NeniTagJump DiffAdd
+""match NeniTagJump /<++>/
+""function! JumpToTag()
+""    " search retorna a linha onde o parametro foi encontrado
+""    if search("<++>",'nw') > 0
+""        " posiciona o cursor sob o padrão da marcação
+""        call search("<++>",'w')
+""        " Caso a marcação esteja na ultima coluna da linha, o :startinsert
+""        " recua uma coluna a mais. Como seria muito complexo calcular essa
+""        " situação, é mais fácil entrar no modo de insert e apagar o numero
+""        " de letras (4 para <++>)
+""        call feedkeys("i\<del>\<del>\<del>\<del>")
+""    endif
+""endfun
+""fun! TestaTriggerSnippet(root, func1)
+""    let c = nr2char(getchar(0))
+""    if c == "\<tab>"
+""        let s:snippetfunc = function(a:func1)
+""        noautocmd let @x = s:snippetfunc()
+""        " :noautocmd cancela insertcharpre (e todos outros autocmds) para não
+""        " atrapalhar eventos de autocomplete com :normal! e etc
+""    elseif c == "\<esc>"
+""        execute "normal! a" . a:root . 'a'
+""        execute 'normal! "_x'
+""    else
+""        " execute "normal a".a:root.c
+""        execute "normal! a" . a:root . '"' . c
+""        execute 'normal! h"_x'
+""        startinsert
+""        call cursor( line('.'), col('.') + 1)
+""    endif
+""endfun
 
 "## sources
 ":scriptnames para ver a orderm e quais scripts foram iniciados

@@ -27,8 +27,15 @@ fun! NN_PythonExecute()
     endif
 endfun
 
-inorea <buffer> p <esc>:call TestaTriggerSnippet('p', 'SnippetPythonPrint')<cr>
-fun! SnippetPythonPrint()
-    normal! aprint()
-    startinsert
-endfun
+inoreabbrev <buffer><expr> p TestaTriggerSnippet('p',
+            \ "print('mensagem')",
+            \ ["'mensagem'"])
+
+" abreviações para usar com espaço
+" def | => def |:
+inoreabbrev <buffer> def def:<left>
+inoreabbrev <buffer> if if:<left>
+inoreabbrev <buffer> else else:<left>
+inoreabbrev <buffer> try try:<left>
+inoreabbrev <buffer> except except:<left>
+
