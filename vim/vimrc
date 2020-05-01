@@ -1,5 +1,3 @@
-" vim: set formatoptions+=t:
-"
 " Arquivo de configurações básicas do vim, podendo ser adicionado de maneira
 " independente do repo dotfiles. Basta copiar o conteúdo para o
 " %userprofile%\_vimrc no Windows ou $HOME/.vimrc no Linux.
@@ -187,7 +185,7 @@ set colorcolumn=              " afeta perf
 " j     ao juntar linhas de comentários com 'J' remove o caracter de
 "       comentário intermediário
 " p     TODO
-set formatoptions+=jr
+set formatoptions+=jcr
 
 " motivos para usar buffers em segundo plano ao invés de tabs:
 "   - o mesmo arquivo não é aberto duas vezes
