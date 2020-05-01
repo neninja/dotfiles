@@ -19,5 +19,5 @@ inorea <buffer><expr> im TestaTriggerSnippet('im',
 
 
 inoremap <buffer> <c-d> <esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit
-inoremap <buffer> <c-d><c-s> <esc>bi<<esc>ea/><esc>
+inoremap <buffer> <c-d><c-s> <esc>bi<<esc>ea /><esc>hi
 inoremap <buffer> <c-d><c-d> <esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit<cr><esc>O
