@@ -274,6 +274,9 @@ let g:javascript_conceal_arrow_function       = "→"
 "   - Vimscript (out of box)
 "   - Quickfix dos erros e autocomplete do omnifunc
 
+packadd! tsuquyomi
+let g:tsuquyomi_disable_default_mappings = 1
+
 "## Vim JSX Pretty
 " https://github.com/MaxMEllon/vim-jsx-pretty
 " PROS:
