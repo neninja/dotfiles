@@ -9,7 +9,7 @@ inorea <buffer><expr> if TestaTriggerSnippet('if',
             \ ['true', '\/\* código \*\/'])
 inorea <buffer><expr> fun TestaTriggerSnippet('fun',
             \ "function funcName(params){<cr>/* código */<cr>}",
-            \ ['funcName', '\/\* código \*\/'])
+            \ ['funcName', 'params', '\/\* código \*\/'])
 inorea <buffer><expr> ed TestaTriggerSnippet('ed',
             \ "export default varFunc",
             \ ['default', 'varFunc'])
