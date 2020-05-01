@@ -757,6 +757,7 @@ endfun
 
 inoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
 snoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
+snoremap <bs>  i<bs>
 
 " TODO tornar stateless
 let g:placeholders = []
