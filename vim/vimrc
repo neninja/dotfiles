@@ -270,6 +270,10 @@ set complete=.,k,w
 " sugestão de tags afeta perf
 " <c-e> mantem o insert mode e fecha completeopt
 
+" sugere palavras com hífen como font-size
+" THANKS: https://stackoverflow.com/questions/25049838/make-autocomplpop-allow-hyphen-as-a-word-charcter
+set iskeyword+=-
+
 " escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
 " https://github.com/vim-scripts/SyntaxComplete
 set omnifunc=syntaxcomplete#Complete    " <c-x><c-o>
