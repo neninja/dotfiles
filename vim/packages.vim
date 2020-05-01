@@ -114,6 +114,7 @@ let g:startify_custom_header_quotes = [
             \ ['Para quem fica melhor a cada dia,', 'ficar pronto é utopia', '- Rocketseat 🚀 GoStack11'],
             \ ['Só deseje as coisas as quais você', 'está disposto a lutar', 'ficar pronto é utopia', '- Rocketseat 🚀 GoStack11'],
             \ ['Não espere resultados brilhantes', 'se suas metas não forem claras', '- Rocketseat 🚀 GoStack11'],
+            \ ['Não existe linha de chegada,', 'a vitória está em se manter correndo', '- Rocketseat 🚀 GoStack11'],
             \ ]
 let g:startify_lists = [
             \ { 'type': 'sessions', 'header': ['sessões'] },
