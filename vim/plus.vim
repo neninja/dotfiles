@@ -43,9 +43,7 @@ fun! AutoComplete2()
 
     " Encerra o if sem calculo caso ja exista um popup
     if !pumvisible()
-        if getline('.')[col('.') - 4] !~ '\K'
-                    \ && getline('.')[col('.') - 3] =~ '\K'
-                    \ && getline('.')[col('.') - 2] =~ '\K' " last char
+        if getline('.')[col('.') - 3] =~ '\K' && getline('.')[col('.') - 2] =~ '\K' " last two chars
             noa call feedkeys("\<C-n>", 'n')
         endif
     endif
