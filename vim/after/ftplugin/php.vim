@@ -30,13 +30,19 @@ inorea <buffer><expr> fun TestaTriggerSnippet('fun',
             \ "function funcName(param){<cr>/* código */<cr>}",
             \ ['funcName', 'param', '\/\* código \*\/'])
 inorea <buffer><expr> dd TestaTriggerSnippet('dd',
-            \ "var_dump('debug')",
+            \ "var_dump('debug');die;",
             \ ["'debug'"])
 inorea <buffer><expr> if TestaTriggerSnippet('if',
             \ "if(true){<cr>/* código */<cr>}",
             \ ['true', '\/\* código \*\/'])
-inorea <buffer><expr> - TestaTriggerSnippet('-',
+inorea <buffer><expr> -p TestaTriggerSnippet('-p',
             \ "private $var;",
+            \ ['$var;'])
+inorea <buffer><expr> +p TestaTriggerSnippet('+p',
+            \ "public $var;",
+            \ ['$var;'])
+inorea <buffer><expr> #p TestaTriggerSnippet('#p',
+            \ "protected $var;",
             \ ['$var;'])
 
 ""inorea <buffer><expr> cl TestaTriggerSnippet('cl',
