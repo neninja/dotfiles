@@ -162,7 +162,10 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 
 let g:vimwiki_folding='custom'
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
-" let g:vimwiki_global_ext = 0
+
+" desativa syntax do vimwiki como global
+" ela tem algumas coisas que distoam do markdown puro, como ** *** ``
+let g:vimwiki_global_ext = 0
 
 "let g:vimwiki_listsyms = ' .oOX' " default
 let g:vimwiki_listsyms = ' x' " compatibilidade github
@@ -172,6 +175,20 @@ nmap <Leader>wn <Plug>VimwikiNextLink |" liberar tab
 nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
 
 " ver: lvimgrep /\[ \]/ % | lw
+
+"## Vim Markdown
+" PROS:
+"   - Conceal de * ** *** ` `` ```ft
+"   - Tem a navegação com :Toc
+
+" desabilita folds (fica estranho com jekyll)
+let g:vim_markdown_folding_disabled = 1
+
+" desabilita maps
+let g:vim_markdown_no_default_key_mappings = 1
+
+" cabeçalho do documento, usado no jekyll
+let g:vim_markdown_frontmatter = 1
 
 "## Fugitive
 " https://github.com/tpope/vim-fugitive
