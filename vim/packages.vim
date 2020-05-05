@@ -13,8 +13,7 @@
 "      (linux) ~/.vim/pack/nenitf/
 
 "# Configurações e instruções
-"## CtrlP
-" https://github.com/ctrlpvim/ctrlp.vim
+"## ctrlpvim/ctrlp.vim
 " PROS:
 "   - Search de buffer advinhando conforme é digitado
 "   - Search de file advinhando conforme é digitado
@@ -72,8 +71,7 @@ let g:ctrlp_prompt_mappings = {
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
 
-"## Quick Scope
-" https://github.com/unblevable/quick-scope
+"## unblevable/quick-scope
 " PROS:
 "   - facilita com o f
 
@@ -90,8 +88,7 @@ augroup END
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " let g:qs_lazy_highlight = 1
 
-"## Vim Startify
-" https://github.com/mhinz/vim-startify
+"## mhinz/vim-startify
 " PROS:
 "   - Gerenciamento de sessões
 "   - Comandos na tela inicial
@@ -138,8 +135,7 @@ let g:startify_bookmarks = [
 ":SDelete[!]  delete a session  |startify-:SDelete|
 ":SClose      close a session   |startify-:SClose|
 
-"## VimWiki
-" https://github.com/vimwiki/vimwiki
+"## vimwiki/vimwiki
 " PROS:
 "   - Syntax md
 "   - Syntax de ```
@@ -176,7 +172,7 @@ nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
 
 " ver: lvimgrep /\[ \]/ % | lw
 
-"## Vim Markdown
+"## plasticboy/vim-markdown
 " PROS:
 "   - Conceal de * ** *** ` `` ```ft
 "   - Tem a navegação com :Toc
@@ -190,8 +186,7 @@ let g:vim_markdown_no_default_key_mappings = 1
 " cabeçalho do documento, usado no jekyll
 let g:vim_markdown_frontmatter = 1
 
-"## Fugitive
-" https://github.com/tpope/vim-fugitive
+"## tpope/vim-fugitive
 " PROS:
 "   - add, commit e status rápido
 "   - comparare stage rápido
@@ -236,8 +231,7 @@ set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 set statusline+=\ %y            " filetype
 
-"## Vim GitGutter
-" https://github.com/airblade/vim-gitgutter
+"## airblade/vim-gitgutter
 " PROS:
 "   - Marcação de + ~ _
 " CONS:
@@ -260,13 +254,11 @@ let g:gitgutter_enabled=0
 " desabilita maps do gitgutter
 let g:gitgutter_map_keys = 0
 
-"## Goyo
-" https://github.com/junegunn/goyo.vim
+"## junegunn/goyo.vim
 " PROS:
 "   - Leitura mais confortável da wiki
 "
-"## Vim Javascript
-" https://github.com/pangloss/vim-javascript
+"## pangloss/vim-javascript
 " PROS:
 "   - Syntax js
 
@@ -284,8 +276,7 @@ let g:javascript_conceal_arrow_function       = "→"
 " let g:javascript_conceal_noarg_arrow_function = "🞅"
 " let g:javascript_conceal_underscore_arrow_function = "🞅"
 
-"## Tsuquyomi
-" https://github.com/Quramy/tsuquyomi
+"## Quramy/tsuquyomi
 " PROS:
 "   - Rápido
 "   - Vimscript (out of box)
@@ -294,14 +285,12 @@ let g:javascript_conceal_arrow_function       = "→"
 packadd! tsuquyomi
 let g:tsuquyomi_disable_default_mappings = 1
 
-"## Vim JSX Pretty
-" https://github.com/MaxMEllon/vim-jsx-pretty
+"## MaxMEllon/vim-jsx-pretty
 " PROS:
 "   - Syntax jsx
 "   - indentação jsx
 
-"## ALE
-" https://github.com/dense-analysis/ale
+"## dense-analysis/ale
 " PROS:
 "   - Auto format com eslint E prettier
 "   - mensagem de erro e aviso
@@ -340,8 +329,7 @@ let g:ale_fix_on_save = 1
 "let g:ale_echo_msg_warning_str = 'W'
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "
-"## Colorscheme
-" https://github.com/joshdick/onedark.vim
+"## joshdick/onedark.vim
 " PROS:
 "   - Cores agradáveis e com um constraste bom
 "   - Suporte a muitas linguagens
@@ -356,8 +344,7 @@ packadd! onedark.vim
 
 colorscheme onedark
 
-"## EditorConfig Vim
-" https://github.com/editorconfig/editorconfig-vim
+"## editorconfig/editorconfig-vim
 " PROS:
 "   - Integração com editorconfig
 "
@@ -376,13 +363,16 @@ colorscheme onedark
 " OBS: insert_final_newline funciona porém não aparece no vim!
 " THANKS: https://github.com/editorconfig/editorconfig/wiki/Newline-at-End-of-File-Support#vim
 
-"## GV
-" https://github.com/junegunn/gv.vim
-" TODO ver utilidade real do plugin
+"## junegunn/gv.vim
+" PROS:
+"   - Mais facil de pesquisar pelo titulo do commit
+"   - Clicar no commit permite ver sua descrição e diff
 
-"## Vim Rest Console
-" https://github.com/diepm/vim-rest-console
-" TODO ver utilidade real do plugin
+"## diepm/vim-rest-console
+" PROS:
+"   - Falicita MUITO programar apis REST
+"   - 'Documenta' as requisições da api
+"       - TODO ver como utilizar $VARIAVEIS no Windows
 
 " Instruções:
 "   - ]] [[ navega entre blocos de requisição
