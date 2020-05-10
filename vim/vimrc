@@ -571,12 +571,15 @@ vnoremap    >           >gv|" mantêm select após indentação
 inoremap    "           ""<left>|"autoclose
 inoremap    '           ''<left>|"autoclose
 inoremap    {           {}<left>|"autoclose
+inoremap    {}          {}|"evitar {}}
 inoremap    {<CR>       {}<left><CR><Esc>O|"autoclose
 inoremap    {<space>    {}<left><space><space><left>|"autoclose
 inoremap    (           ()<left>|"autoclose
+inoremap    ()          ()|"evitar ())
 inoremap    (<CR>       ()<left><CR><Esc>O|"autoclose
 inoremap    (<space>    ()<left><space><space><left>|"autoclose
 inoremap    [           []<left>|"autoclose
+inoremap    []          []|"evitar []]
 inoremap    [<CR>       []<left><CR><Esc>O|"autoclose
 inoremap    [<space>    []<left><space><space><left>|"autoclose
 vnoremap    J           :m '>+1<CR>gv=gv| " move seleção pra baixo
