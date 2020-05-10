@@ -479,6 +479,39 @@ fun! FechaSplitOuDeletaBufferForced()
     endif
 endfun
 
+" sugestões do :OutputAssertion
+fun! ListExecutaveis(A,L,P)
+    return "python3\nnode\ngo run\nlua"
+endfun
+
+" TODO desacoplar execução com criação da tab
+fun! OutputAssertion(command)
+    execute "tabnew | 0r!".a:command." #"
+
+    " faz o vim entender que não queremo salvar esse arquivo
+    setlocal buftype=nofile
+    normal! Gdd
+    nnoremap <buffer> q :windo bd!<CR>
+    new
+
+    " deixar em cima a mensagem
+    " caso tenha: set splitbelow
+    " é o ideal
+    " wincmd r
+    normal! iUse "q" para fechar todos os buffers
+
+    " faz o vim entender que não queremo salvar esse arquivo
+    setlocal buftype=nofile
+    wincmd w
+
+    " resize o máximo
+    wincmd _
+
+    vert diffsplit outputassertion.txt
+    nnoremap <buffer> q :windo bd!<CR>
+    wincmd l
+endfun
+
 "## Comandos
 
 " recarrega vimrc com trigger para o filetype
@@ -507,6 +540,8 @@ command! Grep :call Grep("")<cr>
 " https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 " :highlight mostra as cores do grupo
 command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+
+command -complete=custom,ListExecutaveis -nargs=+ OutputAssertion :execute ":call OutputAssertion(\"<args>\")"
 
 "## Mapeamentos
 
