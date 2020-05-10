@@ -404,6 +404,15 @@ fun! NN_GitAula()
     bdelete!
 endfun
 
+" script para os meus commits padrões do exercism.io
+fun! NN_GitExercism()
+    vnew | 0r!git status --porcelain
+    normal! f"
+    normal! wv3wh"gy
+    execute "let s:desafio=\"".getreg('g')."\""
+    execute "!git add -A && git commit -m \"release: add ".s:desafio."\""
+    bdelete!
+endfun
 "#### Git
 function NN_Git_add()
     echo "não implementado!"
