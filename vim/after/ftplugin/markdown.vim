@@ -42,3 +42,4 @@ setlocal foldexpr=FoldMethodMarkdown()
 setlocal foldtext=FoldTextMarkdown()
 ":lvimgrep /^"#/ % | lw
 
+setlocal spell

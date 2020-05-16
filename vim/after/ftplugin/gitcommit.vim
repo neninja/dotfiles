@@ -3,4 +3,8 @@ inoreabbrev <buffer> xv fix(vim):
 inoreabbrev <buffer> dv docs(vim):
 inoreabbrev <buffer> sv style(vim):
 inoreabbrev <buffer> rv refactor(vim):
+
+setlocal spell
+
 startinsert
+
