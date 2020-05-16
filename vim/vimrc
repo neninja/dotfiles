@@ -585,7 +585,7 @@ nnoremap    <leader>/           :noh<cr>
 nnoremap    <leader>.           :pwd<CR>
 nnoremap    <leader>dd          :call FechaSplitOuDeletaBuffer()<CR>
 nnoremap    <leader>df          :call FechaSplitOuDeletaBufferForced()<CR>
-nnoremap    <leader>e           :on<CR>| " Close all splits
+nnoremap    <leader>ds          :on<CR>| " Close all splits
 nnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
 nnoremap    <leader>s           :split<CR>
 nnoremap    <leader>t           :tn <c-r><c-w><CR>| " Goto definition (ctags)
