@@ -138,7 +138,7 @@
     sc = stash clear
     sd = stash drop
     sl = stash list
-    ss = stash save
+    ss = stash save --include-untracked
     sw = stash show
     #############
     t = tag --sort=taggerdate
