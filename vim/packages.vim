@@ -71,6 +71,16 @@ let g:ctrlp_prompt_mappings = {
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
 
+"## junegunn/fzf.vim
+"Usar GFiles (com gitignore) ou Files
+"https://rietta.com/blog/hide-gitignored-files-fzf-vim/
+" nnoremap <expr> <leader>f (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+"nnoremap <expr> <leader>f (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
+
+" fecha split ao cancelar pesquisa
+" https://github.com/junegunn/fzf.vim/issues/544#issuecomment-457456166
+"tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+
 "## unblevable/quick-scope
 " PROS:
 "   - facilita com o f
