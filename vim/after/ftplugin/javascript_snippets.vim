@@ -17,6 +17,11 @@ inorea <buffer><expr> im TestaTriggerSnippet('im',
             \ "import lib from 'module'",
             \ ['module', 'lib'])
 
+" react snippets
+inorea <buffer><expr> constr TestaTriggerSnippet('constr',
+            \ "import React from 'react'<CR><CR>const <C-R>=expand('%:p:h:t')<CR>: React.FC = () => {<CR>/* código */<CR>}<CR><CR>export default <C-R>=expand('%:p:h:t')<CR>",
+            \ ['\/\* código \*\/'])
+
 
 inoremap <buffer> <c-d> <esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit
 inoremap <buffer> <c-d><c-s> <esc>bi<<esc>ea /><esc>hi
