@@ -339,7 +339,8 @@ let g:ale_fix_on_save = 1
 "let g:ale_echo_msg_warning_str = 'W'
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "
-"## joshdick/onedark.vim
+"## colorschemes
+"### joshdick/onedark.vim
 " PROS:
 "   - Cores agradáveis e com um constraste bom
 "   - Suporte a muitas linguagens
@@ -353,6 +354,17 @@ let g:ale_fix_on_save = 1
 packadd! onedark.vim
 
 colorscheme onedark
+
+"### andreasvc/vim-256noir
+" PROS:
+"   - Cores agradáveis e com um constraste bom
+"   - Suporte a muitas linguagens
+"   - Não distrai com multiplas cores em tela
+" CONS:
+"   - Não possui light theme
+"   - Cores de diff de adição ou remoção não são intuitivos
+
+" colorscheme 256_noir
 
 "## editorconfig/editorconfig-vim
 " PROS:
