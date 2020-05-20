@@ -672,6 +672,12 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
+cnoreabbrev Wqa wqa
+cnoreabbrev WQa wqa
+cnoreabbrev WQA wqa
+cnoreabbrev wQA wqa
+cnoreabbrev wqA wqa
+cnoreabbrev wQa wqa
 
 " THANKS: https://vim.fandom.com/wiki/Find_in_files_within_Vim
 cabbrev lvim
