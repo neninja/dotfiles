@@ -132,6 +132,28 @@ set termguicolors
 set noerrorbells novisualbell t_vb=
 set belloff=all " cancela vários beeps, incluindo <esc><esc>
 
+"#### Syntax e Highlught"
+":verbose highlight <highlightGroup>
+
+" Corrige highlights padrões
+" Caso seja necessário corrigir syntax de um plugin, deve ser feito em packages.vim
+
+function FixHighlight()
+  highlight link typescriptDOMDocProp typescriptProp
+  highlight link typescriptPaymentShippingOptionProp typescriptProp
+  highlight link typescriptDOMEventProp typescriptProp
+
+  highligh link gitcommitSummary gitcommitFirstLine
+  
+  " highlight SpellBad term=underline gui=undercurl guisp=Orange
+  highlight SpellBad guifg=#000000 guibg=#af0000 gui=bold ctermfg=black ctermbg=red
+endfun
+
+augroup override_highlights
+  autocmd!
+  autocmd ColorScheme * call FixHighlight()
+augroup END
+
 "## Comportamento
 
 set showmatch                   " exibe fechamento de {[()]}

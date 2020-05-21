@@ -340,31 +340,71 @@ let g:ale_fix_on_save = 1
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "
 "## colorschemes
+
 "### joshdick/onedark.vim
 " PROS:
-"   - Cores agradáveis e com um constraste bom
-"   - Suporte a muitas linguagens
+"   - Cores agradáveis
+"   - Baixo contraste (melhor para leitura)
+"   - Suporte a todas linguagens que utilizo
+"   - Tema popular (constantes atualizações)
 " CONS:
 "   - Não possui light theme
+"   - Possivelmente a quantidade de cores afeta perf
 
 " colorscheme afterglow " outro tema muito bom
 " https://github.com/danilo-augusto/vim-afterglow
 
 "THANKS: https://github.com/joshdick/onedark.vim/issues/110#issuecomment-345599864
-packadd! onedark.vim
-
-colorscheme onedark
+" packadd! onedark.vim
+" colorscheme onedark
 
 "### andreasvc/vim-256noir
 " PROS:
-"   - Cores agradáveis e com um constraste bom
-"   - Suporte a muitas linguagens
+"   - Cores agradáveis
 "   - Não distrai com multiplas cores em tela
 " CONS:
 "   - Não possui light theme
-"   - Cores de diff de adição ou remoção não são intuitivos
+"   - Cores de diff de adição ou remoção não são intuitivas
+"   - Tema não popular, atualização baixa
 
 " colorscheme 256_noir
+
+"### ewilazarus/preto
+" PROS:
+"   - Cores agradáveis
+"   - Não distrai com multiplas cores em tela
+" CONS:
+"   - Contraste alto
+"   - Conceal estranho
+"   - Não possui light theme
+"   - Cursor preto se perde no editor
+"   - Tema não popular, atualização baixa
+
+"### pgdouyon/vim-yin-yang
+" PROS:
+"   - Cores agradáveis e com um constraste bom
+"   - Baixo contraste (melhor para leitura)
+"   - Não distrai com multiplas cores em tela
+" CONS:
+"   - Tema não popular, atualização baixa
+"   - SpellBad com contraste estranho
+"   - Search com contraste estranho
+"   - MatchParen com contraste estranho
+"   - LineNr com background desnecessário
+
+colo yin
+
+fun! FixColorschemeYin()
+  highlight LineNr guibg=#1c1c1c ctermbg=234
+  highlight Search guibg=#eeeeee guifg=#080808 ctermbg=255 ctermfg=232 term=none
+  highlight MatchParen guibg=blue guifg=white
+endfun
+
+augroup override_highlights_yin
+  autocmd!
+  autocmd ColorScheme yin call FixColorschemeYin()
+augroup END
+call FixColorschemeYin()
 
 "## editorconfig/editorconfig-vim
 " PROS:

@@ -1,5 +1,4 @@
 " highlight Normal guifg=white guibg=black
-highlight SpellBad term=underline gui=undercurl guisp=Orange
 
 "Note: When the GUI starts, 't_vb' is reset to its default value.
 "You might want to set it again in your gvimrc.
