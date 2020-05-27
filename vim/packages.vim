@@ -196,6 +196,8 @@ let g:vim_markdown_no_default_key_mappings = 1
 " cabeçalho do documento, usado no jekyll
 let g:vim_markdown_frontmatter = 1
 
+let g:vim_markdown_new_list_item_indent = 0
+
 "## tpope/vim-fugitive
 " PROS:
 "   - add, commit e status rápido
