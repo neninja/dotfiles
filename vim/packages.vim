@@ -272,7 +272,6 @@ let g:gitgutter_map_keys = 0
 " PROS:
 "   - Syntax js
 
-set conceallevel=1
 let g:javascript_conceal_function             = "ƒ"
 let g:javascript_conceal_null                 = "ø"
 let g:javascript_conceal_this                 = "@"

@@ -132,7 +132,10 @@ set termguicolors
 set noerrorbells novisualbell t_vb=
 set belloff=all " cancela vários beeps, incluindo <esc><esc>
 
-"#### Syntax e Highlught"
+" habilita conceal
+set conceallevel=2
+
+"#### Syntax e Highlight"
 ":verbose highlight <highlightGroup>
 
 " Corrige highlights padrões
