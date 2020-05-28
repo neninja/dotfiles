@@ -25,8 +25,11 @@ vendorRepos=(
     "https://github.com/vimwiki/vimwiki.git" # todo
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
-    "https://github.com/joshdick/onedark.vim.git" # colorscheme
     "https://github.com/dense-analysis/ale.git" # lint
+
+    ####### COLORSCHEMES
+    "https://github.com/joshdick/onedark.vim.git"
+    "https://github.com/pgdouyon/vim-yin-yang.git"
 
     ####### GIT
     "https://github.com/tpope/vim-fugitive.git" # comandos
