@@ -163,7 +163,7 @@ set showmatch                   " exibe fechamento de {[()]}
 set showmode                    " exibe mode no canto inferior esquerdo
 set showcmd                     " exibe os comandos no canto inferior direito
 set autoindent                  " auto indentação
-set mouse=a                     " libera uso do mouse em todos modos
+set mouse=                      " restringe uso do mouse em todos modos ("a" libera)
 set linebreak                   " quebra a linha por palavra e não por letra
 set nocursorcolumn nocursorline " não marca colunha e linha do cursor (perf)
 set number norelativenumber     " exibe régua sem numero relativo (perf)
