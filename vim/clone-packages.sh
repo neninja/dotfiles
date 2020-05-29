@@ -40,6 +40,9 @@ vendorRepos=(
     "https://github.com/pangloss/vim-javascript.git" # melhora na syntax js
     "https://github.com/MaxMEllon/vim-jsx-pretty.git" # syntax e indent jsx ts
     "https://github.com/Quramy/tsuquyomi.git" # autocomplete e lint de ts
+
+    ###### HIGHLIGHT
+    "https://github.com/plasticboy/vim-markdown.git"
 )
 
 neniRepos=(
