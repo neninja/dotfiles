@@ -44,7 +44,7 @@ nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  'node_modules\|DS_Store\|\.git\|dist\|vendor\|_site\|.jekyll-cache\|ios\|android',
+            \ 'dir':  'node_modules\|DS_Store\|\.git\|dist\|vendor\|_site\|.jekyll-cache\|ios\|android\|.venv\|build',
             \ 'file': 'tags',
             \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
             \ }
