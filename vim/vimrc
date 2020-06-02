@@ -144,6 +144,7 @@ set conceallevel=2
 function FixHighlight()
   highlight link typescriptDOMDocProp typescriptProp
   highlight link typescriptPaymentShippingOptionProp typescriptProp
+  highlight link typescriptPaymentMethod typescriptProp
   highlight link typescriptDOMEventProp typescriptProp
 
   highligh link gitcommitSummary gitcommitFirstLine
