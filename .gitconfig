@@ -40,17 +40,15 @@
     bd = branch -d
     bdd = branch -D
     #############
-    c = commit
-    ca = commit --amend --no-edit
-    cam = commit --amend
-    cm = commit -m
+    c = commit -m
+    ca = commit --amend
+    ce = commit --amend --no-edit
+    cm = commit
 
     ## Semantic commits
     #  cfe = "!f() { if [ -z \"$2\" ]; then git commit -m \"feat: $1\"; else git commit -m \"feat($1): $2\"; fi; }; f"
     #  cfi = "!f() { if [ -z \"$2\" ]; then git commit -m \"fix: $1\"; else git commit -m \"fix($1): $2\"; fi; }; f"
-    #  cre = "!f() { if [ -z \"$2\" ]; then git commit -m \"refactor: $1\"; else git commit -m \"refactor($1): $2\"; fi; }; f"
     #  cdo = "!f() { if [ -z \"$2\" ]; then git commit -m \"docs: $1\"; else git commit -m \"docs($1): $2\"; fi; }; f"
-    #  cst = "!f() { if [ -z \"$2\" ]; then git commit -m \"style: $1\"; else git commit -m \"style($1): $2\"; fi; }; f"
     #  cte = "!f() { if [ -z \"$2\" ]; then git commit -m \"test: $1\"; else git commit -m \"test($1): $2\"; fi; }; f"
     #  cch = "!f() { if [ -z \"$2\" ]; then git commit -m \"chore: $1\"; else git commit -m \"chore($1): $2\"; fi; }; f"
     #  cim = "!f() { if [ -z \"$2\" ]; then git commit -m \"improve: $1\"; else git commit -m \"improve($1): $2\"; fi; }; f"
@@ -141,6 +139,7 @@
     ss = stash save --include-untracked
     sw = stash show
     #############
+    # para apagar tag remote => git push origin :tag
     t = tag --sort=taggerdate
     td = tag -d
     #############
