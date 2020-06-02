@@ -730,6 +730,7 @@ cabbrev lvim
 augroup filetype_detect
     au!
     au BufRead,BufNewFile *.phtml setfiletype html
+    au BufRead,BufNewFile *.hbs setfiletype html
     au BufRead,BufNewFile *.gv setfiletype dot
 augroup END
 
