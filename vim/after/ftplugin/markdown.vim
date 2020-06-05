@@ -8,10 +8,12 @@ function! FoldTextMarkdown()
   let foldchar = matchstr(&fillchars, 'fold:\zs.')
 
   " remove hashtags
-  let titulo = substitute(getline(v:foldstart),"\#","",'g')
+  " let titulo = substitute(getline(v:foldstart),"\#","",'g')
+  let titulo = substitute(getline(v:foldstart),"\#","+",'g')
 
   " cria + de acordo com # (foldlevel)
-  let foldtextstart = repeat('+', v:foldlevel + 1) . titulo
+  " let foldtextstart = repeat('+', v:foldlevel + 1) . titulo
+  let foldtextstart = titulo
 
   let foldtextend = lines_count_text . repeat(foldchar, 8)
   let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
