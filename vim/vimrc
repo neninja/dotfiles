@@ -455,9 +455,9 @@ fun! NN_GitAula()
     if search('^release: add aula')>0
         normal! 3W
         let s:numero_aula = expand('<cword>')+1
-        echom system("git add -A && git commit -m \"release: add aula ".s:numero_aula."\"")
+        echom system("git add -A && git commit -m \":tv: add aula ".s:numero_aula."\"")
     else
-        echom system("git add -A && git commit -m \"release: add aula 1\"")
+        echom system("git add -A && git commit -m \":tv: add aula 1\"")
     endif
     bdelete!
 endfun
