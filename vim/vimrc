@@ -452,7 +452,7 @@ fun! NN_GitAula()
     vnew
     put=log
     normal! gg
-    if search('^release: add aula')>0
+    if search('^:tv: add aula')>0
         normal! 3W
         let s:numero_aula = expand('<cword>')+1
         echom system("git add -A && git commit -m \":tv: add aula ".s:numero_aula."\"")
