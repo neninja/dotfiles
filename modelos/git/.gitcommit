@@ -1,11 +1,18 @@
 
-# Afeta usuário final:
-#   FEAT: adiciona, modifica ou remove feature/funcionalidade (afeta MINOR)
-#   FIX: corrige bug feature/funcionalidade (afeta PATCH)
-# NÃO afeta usuário final:
-#   REFACTOR: refatora código de produção
-#   DOCS: adiciona, modifica, remove ou estiliza item na documentação
-#   TEST: adiciona, modifica ou remove testes
-#   CHORE: adiciona, modifica ou remove arquivos auxiliares do ambiente dev (gulp, npm, configurações e etc)
-#   STYLE: estiliza código de produção, teste ou de ambiente sem não afetar a lógica
-# COMMIT_MSG.md
+## EMOJICOM
+#   :bug: corrige bug da aplicação
+#   :new: altera funcionalidades da aplicação
+#   :100: refatora, add loc, estiliza (identação e etc) ou comenta aplicação
+#   :cop: altera testes
+#   :sos: altera documentação
+#   :zzz: altera arquivos ao redor da aplciação (build, ci, docker e etc)
+#   :tv: altera projeto de acordo com instrução de livro/curso
+## CONVENTIONAL COMMIT
+#   fix: corrige bug da aplicação
+#   feat: altera funcionalidades da aplicação
+#   style: estiliza aplicação (identação, aspas, quebra de linha e etc)
+#   refactor: refatora ou comenta aplicação
+#   improve: adiciona loc sem implementação
+#   test: altera código de testes
+#   docs: altera documentação
+#   chore: altera arquivos ao redor da aplciação (build, ci, docker e etc)
