@@ -995,7 +995,7 @@ func! AutoCompleteCarinhas()
                 \])
     return ''
 endfunc
-inoremap <c-c> <c-r>=AutoCompleteCarinhas()<CR>
+inoremap <c-z> <c-r>=AutoCompleteCarinhas()<CR>
 "#### snippets sem selectmode
 "inoreabbrev <expr> for AbbrAsk('for',
 "            \ "for(!cursor!;<+++>;<+++>){<cr><+++><cr>}")
