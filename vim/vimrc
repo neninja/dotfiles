@@ -652,7 +652,7 @@ vnoremap    o{          c{<c-r>"}|" surround match
 vnoremap    o[          c[<c-r>"]|" surround match
 nnoremap    Q           @q|" executa macro em 'q' (letra que mais gravo)
 tnoremap    <esc>       <C-\><C-n>
-nnoremap    <tab>       za|" toggle fold
+noremap     \           za|" toggle fold
 nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'| " Toggle fold todo arquivo
 noremap     <up>        <nop>|" força hjkl
 noremap     <down>      <nop>|" força hjkl
