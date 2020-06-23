@@ -1,10 +1,18 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Monochrome Dark",
+    //"workbench.colorTheme": "One Dark Pro",
     "workbench.startupEditor": "newUntitledFile",
     "typescript.updateImportsOnFileMove.enabled": "never",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "javascript.updateImportsOnFileMove.enabled": "never",
+
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": false,
+
+    "diffEditor.ignoreTrimWhitespace": false,
+    "git.confirmSync": false,
+    "git.suggestSmartCommit": false
 
     "vim.incsearch": true,
     "vim.useSystemClipboard": true,
