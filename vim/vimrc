@@ -665,6 +665,7 @@ inoremap    <up>        <nop>|" força hjkl
 inoremap    <down>      <nop>|" força hjkl
 inoremap    <left>      <nop>|" força hjkl
 inoremap    <right>     <nop>|" força hjkl
+nnoremap    <c-\>       <c-]>|" teclado brasileiro <c-]> não funciona
 inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
 ""nnoremap    <c-g>       viwy:call Grep("<c-r>0")<cr>|" grep palavra do cursor
 ""vnoremap    <c-g>       y:call Grep("<c-r>0")<cr>|" grep da seleção
