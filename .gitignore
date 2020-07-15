@@ -1,4 +1,23 @@
+# gitignore do projeto e modelo geral
+
+# Específicos dos dotfiles:
 wiki/.local.md
+###########################
+
+# pessoal
+.neni-*
+neni-*
+
+# vim
+tags
+.exrc
+_exrc
+.vimrc
+_vimrc
+.vim-*
+vim-*
+*.rest
+.vrc*
 
 # pandoc
 README.md.pdf
@@ -39,35 +58,34 @@ readme.pdf
 # python
 __pycache__/
 
-# calcurse pid
-calcurse/.calcurse.pid
-calcurse/*.sav
+# php
+vendor/
+env.php
+.phpunit.result.cache
 
-# nn
-nn/apts/
-nn/todo/
-
-# newsboat
-cache.db
-cache.db.lock
-history.cmdline
-history.search
-
-# npm
+# javascript
 .DS_Store
 node_modules
 /dist
+/build
 /tests/e2e/reports/
 selenium-debug.log
-# local env files
-.env.local
-.env.*.local
-# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+coverage
+
+# env files
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # Editor directories and files
 .idea
+nbproject/
 .vscode
 *.suo
 *.ntvs*
