@@ -75,12 +75,14 @@ Checklist de necessidades básicas/interessantes que o editor deve suprir
 
 ### Bonus
 - [ ] Debug
-- [ ] Exibir output da execução do arquivo (ideal para scripts e tdd)
+- [x] Exibir output da execução do arquivo (ideal para scripts e tdd)
+    - `:!php %` executa com php (ou qualquer outro interpretador) o arquivo atual
 - [ ] Exibir output de trechos do arquivo (repl)
 - [x] Ser acessível pelo terminal
 - [x] Gravar macros de edição de texto
-- [ ] [Suporte a emojis](vim/emojis)
-- [ ] Integração com o terminal
+    - `qq` gravação até ser teclado `q`, para serem executadas com `@q`
+- [x] [Suporte a emojis](vim/emojis)
+- [x] [Spell check](vim/spell.md)
 
 ## Vim x Neovim
 Lista de problemas em ambos editores
