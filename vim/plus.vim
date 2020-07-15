@@ -23,7 +23,7 @@ augroup autocompleteOnInsert
     au!
     autocmd InsertEnter * 
                 \ let save_cwd = getcwd() |
-                \ execute "set tags=".fnameescape(save_cwd)."/tags" | " atualiza local do ctags
+                \ execute "set tags=".fnameescape(save_cwd)."/tags" |
                 \ set autochdir |
                 \ set noignorecase
     autocmd InsertLeave * 
