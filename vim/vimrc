@@ -294,6 +294,9 @@ set complete=.,k,w
 " sugestão de tags afeta perf
 " <c-e> mantem o insert mode e fecha completeopt
 
+" set tags=tags,./tags
+set tags=tags
+
 " sugere palavras com hífen como font-size
 " THANKS: https://stackoverflow.com/questions/25049838/make-autocomplpop-allow-hyphen-as-a-word-charcter
 set iskeyword+=-
