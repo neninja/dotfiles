@@ -1,4 +1,7 @@
 # dotfiles
+
+[![emojicom](https://img.shields.io/badge/emojicom-%F0%9F%90%9B%20%F0%9F%86%95%20%F0%9F%92%AF%20%F0%9F%91%AE%20%F0%9F%86%98%20%F0%9F%92%A4-%23fff)](https://gist.github.com/nenitf/1cf5182bff009974bf436f978eea1996#emojicom)
+
 ## TL;DR
 Versionamento dos meus arquivos de configuração, scripts ou templates usados no Windows e/ou Linux.
 
