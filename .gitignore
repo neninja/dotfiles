@@ -10,6 +10,7 @@ neni-*
 
 # vim
 tags
+.ctags
 .exrc
 _exrc
 .vimrc

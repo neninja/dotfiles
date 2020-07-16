@@ -407,6 +407,30 @@ execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
 " Funções muito usadas porém não tanto a ponto de virarem comandos ou maps
 " O padrão NN_ serve para ficar fácil achar com :call NN_<tab>
 
+" Att ctags
+" Necessario instalar ctags ou universal ctags
+function! NN_ctags()
+    let s:ctags_command="ctags" . 
+                  \ " -R --totals" .
+                  \ " --exclude=.git --exclude=.svn" .
+                  \ " --exclude=vendor" .
+                  \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
+                  \ " --exclude=_site" .
+                  \ " --languages=php,javascript"
+
+    " procura se existe um arquivo .ctags a mais
+    if filereadable(expand(".ctags"))
+        let s:ctags_command.=" --options=.ctags"
+    endif
+
+    " seta pasta atual como alvo do ctags
+    let s:ctags_command.=" ."
+
+    " executa o comando montado na string
+    execute "!".s:ctags_command
+endfun
+
+
 " habilita e desabilita emojis, ideal para perf
 function! NN_EmojiToggle()
     if &renderoptions == ""
@@ -588,17 +612,6 @@ command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 " THANKS: https://stackoverflow.com/a/38082196
 command! TerminalGitRootVertical exec 'call NN_SetGitDir() | vert term ++kill=term'
 command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
-
-" Necessario instalar ctags ou universal ctags
-" Att ctags
-command! Ctags !ctags
-            \ -R --totals
-            \ --exclude=.git --exclude=.svn
-            \ --exclude=vendor
-            \ --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android
-            \ --exclude=_site
-            \ --languages=php,javascript
-            \ .
 
 command! Grep :call Grep("")<cr>
 
