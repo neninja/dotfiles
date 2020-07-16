@@ -8,8 +8,6 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 * bash
 * git
 * vim
-* x
-* zathura
 
 ## Estrutura do repositório
 
@@ -23,7 +21,8 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
     - [dicionarios/](/vim/dicionarios/): dicionários usados para sugerir palavras
     - [skeletons/](/vim/skeletons/): estrutura inicial de tipos de arquivos
     - [clone-packages.sh](/vim/clone-packages.sh): download de packages (plugins)
-    - [dotfiles.vim](/vim/vimrc): configurações do vim caso este projeto seja clonado por inteiro, pois ele considera estrutura de pastas
+    - [dotfiles.vim](/vim/dotfiles.vim): configurações do vim caso este projeto seja clonado por inteiro, pois ele considera estrutura de pastas
+    - [plus.vim](/vim/plus.vim): configurações a mais que podem afetar performance do vim
     - [gvimrc](/gvim/gvimrc): configurações de interface gráfica do gvim
     - [packages.vim](/vim/packages.vim): configurações específicas de packages do vim
     - [vimrc](/vim/vimrc): configurações do vim, funciona de maneira independente do projeto
