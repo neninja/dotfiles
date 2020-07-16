@@ -591,7 +591,14 @@ command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
 
 " Necessario instalar ctags ou universal ctags
 " Att ctags
-command! Ctags !ctags -R .<CR>
+command! Ctags !ctags
+            \ -R --totals
+            \ --exclude=.git --exclude=.svn
+            \ --exclude=vendor
+            \ --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android
+            \ --exclude=_site
+            \ --languages=php,javascript
+            \ .
 
 command! Grep :call Grep("")<cr>
 
