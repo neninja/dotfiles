@@ -491,3 +491,9 @@ if has('python3')
   silent! python3 1
   packadd! vdebug
 endif
+
+" script proposto para criar a sessão do xdebug
+" #!/bin/bash
+" export XDEBUG_CONFIG="idekey=xdebug"
+" php "$@"
+
