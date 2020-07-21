@@ -447,3 +447,47 @@ let g:vrc_response_default_content_type = 'application/json'
 
 " troca <c-j> pois uso com split
 let g:vrc_trigger = '<C-x>'
+
+"## vim-vdebug/vdebug
+" PROS:
+"   - Unico debug pra vim
+"   - Suporte para multiplas linguagens
+"
+" CONS:
+"   - Necessita de Python3
+
+" XDEBUG:
+"   - Acessar: https://xdebug.org/wizard
+"   - Baixar dll ou so indicado e salvar em /path/to/php/ext ou
+"   /path/to/php/ext/ext
+"   - Adicionar no php.ini
+"   [xdebug]
+"   zend_extension="/path/to/php/ext/xdebug.so" (.so ou .dll)
+"   xdebug.remote_enable=on
+"   xdebug.remote_handler=dbgp
+"   xdebug.remote_host=localhost
+"   xdebug.remote_port=9000
+
+" COMANDOS:
+"    <F5>: inicia/vai para o proximo breakpoint
+"    <F2>: avança um passo
+"    <F3>/<F4>: entra/sai um passo
+"    <F6>: para debug (kills script)
+"    <F6><F6>: para o debug e fecha a interface do VDebug
+"    <F9>: avança até o cursor
+"    <F10>: toggle breakpoint
+"    <F11>: mostra variáveis de contexto
+"    <F12>: mostra variável abaixo do cursor
+"    :Breakpoint <type> <args>: set a breakpoint of any type (see :help VdebugBreakpoints)
+"    :VdebugEval "<code>": evaluate some code and display the result
+
+set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
+set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
+
+" Evita erro de DeprecationWarning: the imp module is deprecated in favour of
+" importlib; see the module's documentation for alternative uses
+" THANKS: https://github.com/powerline/powerline/issues/1925#issuecomment-402635097
+if has('python3')
+  silent! python3 1
+  packadd! vdebug
+endif

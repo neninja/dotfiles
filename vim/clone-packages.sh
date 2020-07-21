@@ -1,8 +1,16 @@
 #!/bin/bash
 function clonaVendorRepos {
     mkdir -p pack/vendor/start
+    mkdir -p pack/vendor/opt
+
     cd pack/vendor/start
-    for i in "${vendorRepos[@]}"
+    for i in "${vendorStartRepos[@]}"
+    do
+        git clone $i
+    done
+
+    cd ../opt
+    for i in "${vendorOptRepos[@]}"
     do
         git clone $i
     done
@@ -17,7 +25,7 @@ function clonaNeniRepos {
     done
 }
 
-vendorRepos=(
+vendorStartRepos=(
     "https://github.com/junegunn/goyo.vim.git" # melhor visualização possível
     "https://github.com/ctrlpvim/ctrlp.vim.git" # fuzzy finder
     "https://github.com/mhinz/vim-startify.git" # tela inicial com projetos
@@ -41,8 +49,15 @@ vendorRepos=(
     "https://github.com/MaxMEllon/vim-jsx-pretty.git" # syntax e indent jsx ts
     "https://github.com/Quramy/tsuquyomi.git" # autocomplete e lint de ts
 
+    ####### PHP
+    "https://github.com/alvan/vim-php-manual.git" # manual do php no vim
+
     ###### HIGHLIGHT
     "https://github.com/plasticboy/vim-markdown.git"
+)
+
+vendorOptRepos=(
+    "https://github.com/vim-vdebug/vdebug.git" # XDebug
 )
 
 neniRepos=(
