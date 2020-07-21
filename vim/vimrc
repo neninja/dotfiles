@@ -50,6 +50,13 @@
 "## Variáveis
 let g:dotfiles_dir = "~/dev/dotfiles"
 
+if filereadable(expand("~/.pre-vimrc.vim"))
+    exe 'source ~/.pre-vimrc.vim'
+    " Sugestões para o pre-vimrc.vim
+    " set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
+    " set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
+endif
+
 "## Básico
 " Mínimas configurações para usar o vim
 
@@ -1087,9 +1094,6 @@ call SourceIfExists("~/.extra-vimrc.vim")
 "
 "" configuraçãoes que afetam a perf, mistura vim builtin e plugins
 " call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
-"
-" set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
-" set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
 "
 " configuraçãoes que afetam a perf, mistura vim builtin e plugins
 " call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")

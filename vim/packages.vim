@@ -481,12 +481,12 @@ let g:vrc_trigger = '<C-x>'
 "    :Breakpoint <type> <args>: set a breakpoint of any type (see :help VdebugBreakpoints)
 "    :VdebugEval "<code>": evaluate some code and display the result
 
-set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
-set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
-
 " Evita erro de DeprecationWarning: the imp module is deprecated in favour of
 " importlib; see the module's documentation for alternative uses
 " THANKS: https://github.com/powerline/powerline/issues/1925#issuecomment-402635097
+" Necessário configurar:
+" set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
+" set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
 if has('python3')
   silent! python3 1
   packadd! vdebug
