@@ -76,6 +76,42 @@ git fetch --all
 git reset --hard origin/master
 ```
 
+## Adendos
+
+### Vim
+
+- Caso precise configurar scripts que devem rodar **antes** do `vim/vimrc`, crie o arquivo `~/.vimrc-pre.vim` (equivale `%userprofile%\.vimrc-pre.vim` no Windows). Sugestão:
+
+```vim
+set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
+set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
+```
+
+- Caso precise configurar scripts que devem rodar **depois** do `vim/vimrc`, crie o arquivo `~/.vimrc-local.vim` (equivale `%userprofile%\.vimrc-local.vim` no Windows). Sugestão:
+
+```vim
+" configuraçãoes que afetam a perf, mistura vim builtin e plugins
+call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
+
+let g:startify_lists = [
+            \ { 'type': 'sessions', 'header': ['sessões'] },
+            \ { 'type': 'commands', 'header': ['comandos'] },
+            \ ]
+
+let g:startify_commands = [
+            \ {'g': ['gostack11', 'e ~/dev/gostack11']},
+            \ ]
+```
+
+- Caso precise configurar scripts que devem rodar **depois** do `vim/gvimrc`, crie o arquivo `~/.gvimrc-local.vim` (equivale `%userprofile%\.gvimrc-local.vim` no Windows). Sugestão:
+
+```vim
+" set guifont=UbuntuMono\ NF:h11
+" set guifont=Fira\ Code:h10
+set guifont=Consolas:h11
+" Para ver as opções de font: set guifont=*
+```
+
 ## TODO
 * [ ] Windows CMD/PS: Alias para git
 * [ ] Windows CMD/PS: Output como UTF-8 para ver acentuações nos commits

@@ -50,8 +50,8 @@
 "## Variáveis
 let g:dotfiles_dir = "~/dev/dotfiles"
 
-if filereadable(expand("~/.pre-vimrc.vim"))
-    exe 'source ~/.pre-vimrc.vim'
+if filereadable(expand("~/.vimrc-pre.vim"))
+    exe 'source ~/.vimrc-pre.vim'
     " Sugestões para o pre-vimrc.vim
     " set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
     " set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
@@ -1088,14 +1088,11 @@ call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 
 "### local
 " ideal para importar pythonthreehome e pythonthreedll
-call SourceIfExists("~/.extra-vimrc.vim")
+call SourceIfExists("~/.vimrc-local.vim")
 
-"#### Sugestões para o extra-vimrc
+"#### Sugestões para o vimrc-local
 "
 "" configuraçãoes que afetam a perf, mistura vim builtin e plugins
-" call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
-"
-" configuraçãoes que afetam a perf, mistura vim builtin e plugins
 " call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
 "
 " let g:startify_lists = [
