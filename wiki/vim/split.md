@@ -26,6 +26,8 @@
 <c-w>>  " aumenta largura
 <c-w>|  " Aumenta largura da split ao máximo
 <c-w>=  " Reseta tamanhos das splits
+:set winwidth=999  " ajusta dinamicamente a largura da split para a maior possível
+:set winheight=999 " ajusta dinamicamente a altura da split para a maior possível
 ```
 
 ### Maps (sugestões)
