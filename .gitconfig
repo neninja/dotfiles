@@ -44,23 +44,15 @@
     ca = commit --amend
     ce = commit --amend --no-edit
     cm = commit
-
-    ## Semantic commits
-    #  cfe = "!f() { if [ -z \"$2\" ]; then git commit -m \"feat: $1\"; else git commit -m \"feat($1): $2\"; fi; }; f"
-    #  cfi = "!f() { if [ -z \"$2\" ]; then git commit -m \"fix: $1\"; else git commit -m \"fix($1): $2\"; fi; }; f"
-    #  cdo = "!f() { if [ -z \"$2\" ]; then git commit -m \"docs: $1\"; else git commit -m \"docs($1): $2\"; fi; }; f"
-    #  cte = "!f() { if [ -z \"$2\" ]; then git commit -m \"test: $1\"; else git commit -m \"test($1): $2\"; fi; }; f"
-    #  cch = "!f() { if [ -z \"$2\" ]; then git commit -m \"chore: $1\"; else git commit -m \"chore($1): $2\"; fi; }; f"
-    #  cim = "!f() { if [ -z \"$2\" ]; then git commit -m \"improve: $1\"; else git commit -m \"improve($1): $2\"; fi; }; f"
-
     #############
     cl = clone
+    # git clb <branch-name> <url>
+    clb = clone --single-branch --branch
     #############
     d = diff
     #############
     f = fetch
     fo = fetch origin
-    fr = fetch --all ; git reset --hard origin/master
     fu = fetch upstream
     #############
     # Para pesquisar commits usar: --grep "palavra"
@@ -75,40 +67,28 @@
     #############
     o = checkout
     ob = checkout -b
-    of = "!f() { git checkout -b \"feat/$1\"; }; f"
+    oh = checkout -- .
     #############
-    ps = push
-    psf = push -f
-    pst = push --tags
+    #ps = push
+    ps = push origin HEAD
+    psf = push -f origin HEAD
+    pst = push --tags origin HEAD
     #############
-    pso = push origin
-    psfo = push -f origin
-    psom = push origin master
-    psfom = push -f origin master
-    psod = push origin develop
-    psfod = push -f origin develop
-    #############
-    pl = pull
-    pb = pull --rebase
-    #############
-    plt = pull --tags
-    #############
+    #pl = pull
+    pl = pull origin HEAD
     plo = pull origin
-    pbo = pull --rebase origin
-    plod = pull origin develop
-    pbod = pull --rebase origin develop
     plom = pull origin master
-    pbom = pull --rebase origin master
-    #############
-    plu = pull upstream
-    plum = pull upstream master
-    pbum = pull --rebase upstream master
+    plod = pull origin develop
     #############
     rb = rebase
     rba = rebase --abort
     rbc = rebase --continue
     rbi = rebase --interactive
     rbs = rebase --skip
+    rbom = rebase origin/master
+    rbod = rebase origin/develop
+    rbum = rebase upstream/master
+    rbud = rebase upstream/develop
     #############
     re = reset
     rh = reset HEAD
@@ -143,22 +123,17 @@
     t = tag --sort=taggerdate
     td = tag -d
     #############
-    w = show
-    wp = show -p
-    wr = show -p --no-color
-    #############
+    # Macros
     commit-guide = !cat ~/dev/dotfiles/modelos/git/.gitcommit
     aliases = !git config -l | grep alias | cut -c 7-
+    aula = "!f() { git add -A; git commit -m \":tv: add aula $@\"; }; f"
+    release = "!f() { git tag \"$@\"; git push origin master --tags; }; f"
+    pr = "!f() { git fetch upstream && rebase upstream/$@; }; f" # git pr master
+    of = "!f() { git checkout -b \"feat/$1\"; }; f"
+    fetchreset = "!f() { git fetch --all; git reset --hard origin/master; }; f"
     configreset = git config --local credential.helper ""
     ours = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-
-    #############
-    # Macros
-    # RELEASE.
-    # aula = "!f() { git add -A; git commit -m \"release: add aula $@\"; git tag \"aula-$@\"; git push origin master --tags; }; f"
-    aula = "!f() { git add -A; git commit -m \":tv: add aula $@\"; }; f"
-    release = "!f() { git tag \"$@\"; git push origin master --tags; }; f"
 [commit]
     # template = ~/.gitcommit
 
