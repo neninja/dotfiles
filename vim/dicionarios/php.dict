@@ -1,3 +1,4 @@
+DIRECTORY_SEPARATOR
 AMQPConnection::__construct
 AMQPConnection::connect
 AMQPConnection::disconnect
