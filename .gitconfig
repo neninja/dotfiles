@@ -77,7 +77,8 @@
     #pl = pull
     pl = pull origin HEAD
     plo = pull origin
-    plom = pull origin master
+    plomm = pull origin master
+    plom = pull origin main
     plod = pull origin develop
     #############
     rb = rebase
@@ -85,9 +86,11 @@
     rbc = rebase --continue
     rbi = rebase --interactive
     rbs = rebase --skip
-    rbom = rebase origin/master
+    rbomm = rebase origin/master
+    rbom = rebase origin/main
     rbod = rebase origin/develop
-    rbum = rebase upstream/master
+    rbumm = rebase upstream/master
+    rbum = rebase upstream/main
     rbud = rebase upstream/develop
     #############
     re = reset
@@ -127,10 +130,10 @@
     commit-guide = !cat ~/dev/dotfiles/modelos/git/.gitcommit
     aliases = !git config -l | grep alias | cut -c 7-
     aula = "!f() { git add -A; git commit -m \":tv: add aula $@\"; }; f"
-    release = "!f() { git tag \"$@\"; git push origin master --tags; }; f"
-    pr = "!f() { git fetch upstream && rebase upstream/$@; }; f" # git pr master
+    release = "!f() { git tag \"$@\"; git push origin HEAD --tags; }; f"
+    pr = "!f() { git fetch upstream && rebase upstream/$@; }; f" # git pr main
     of = "!f() { git checkout -b \"feat/$1\"; }; f"
-    fetchreset = "!f() { git fetch --all; git reset --hard origin/master; }; f"
+    fetchreset = "!f() { git fetch --all; git reset --hard origin/main; }; f"
     configreset = git config --local credential.helper ""
     ours = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
