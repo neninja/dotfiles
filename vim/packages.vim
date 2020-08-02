@@ -122,6 +122,9 @@ let g:startify_custom_header_quotes = [
             \ ['Só deseje as coisas as quais você', 'está disposto a lutar', 'ficar pronto é utopia', '- Rocketseat 🚀 GoStack11'],
             \ ['Não espere resultados brilhantes', 'se suas metas não forem claras', '- Rocketseat 🚀 GoStack11'],
             \ ['Não existe linha de chegada,', 'a vitória está em se manter correndo', '- Rocketseat 🚀 GoStack11'],
+            \ ['Mude você e todo o resto mudará naturalmente', '- Rocketseat 🚀 GoStack11'],
+            \ ['O tempo que leva para realizar seus sonhos', 'vai passar de qualquer forma', '- Rocketseat 🚀 GoStack11'],
+            \ ['Nada no mundo supera a persistência', '- Rocketseat 🚀 GoStack11'],
             \ ]
 let g:startify_lists = [
             \ { 'type': 'sessions', 'header': ['sessões'] },
