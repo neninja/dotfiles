@@ -273,6 +273,27 @@ let g:gitgutter_map_keys = 0
 " PROS:
 "   - Leitura mais confortável da wiki
 "
+" THANKS: https://gist.github.com/davidmh/f4337f9ea9eca6789b3f8222b8333a35
+" Presentation mode
+function! s:enter_presentation()
+    setl nospell
+    setl scrolloff=0
+    normal ggzjzO
+    " nnoremap <buffer> <right> :call search("^##", 'W')<CR>zMzvzt
+    nnoremap <silent><buffer> <right> :call search("^## ", 'W')<CR>zMzOzt
+    " nnoremap <buffer> <left> :call search("^##", 'bW')<CR>zMzvzt
+    nnoremap <silent><buffer> <left> :call search("^## ", 'bW')<CR>zMzOzt
+endfunction
+
+function! s:exit_presentation()
+    set scrolloff=3
+    nunmap <buffer> <left>
+    nunmap <buffer> <right>
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>enter_presentation()
+autocmd! User GoyoLeave nested call <SID>exit_presentation()
+"
 "## pangloss/vim-javascript
 " PROS:
 "   - Syntax js
