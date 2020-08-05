@@ -245,6 +245,7 @@ set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
 set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 set statusline+=\ %y            " filetype
+set statusline+=\ {%n}          " buffer, ideal para conflitos do git com :diffget e :diffput
 
 "## airblade/vim-gitgutter
 " PROS:
