@@ -511,10 +511,10 @@ let g:vrc_trigger = '<C-x>'
 " Necessário configurar:
 " set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
 " set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
-if has('python3')
-  silent! python3 1
-  packadd! vdebug
-endif
+"if has('python3')
+"  silent! python3 1
+"  packadd! vdebug
+"endif
 
 " script proposto para criar a sessão do xdebug
 " #!/bin/bash

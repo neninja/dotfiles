@@ -57,7 +57,7 @@ vendorStartRepos=(
 )
 
 vendorOptRepos=(
-    "https://github.com/vim-vdebug/vdebug.git" # XDebug
+    #"https://github.com/vim-vdebug/vdebug.git" # XDebug
 )
 
 neniRepos=(
