@@ -9,6 +9,8 @@
 [core]
     editor = vim
     # excludesfile = ~/dev/dotfiles/cpfiles/git/.gitignore
+[init]
+    defaultBranch = main
 [color]
     ui = true
 [color "branch"]
