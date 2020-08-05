@@ -132,6 +132,26 @@ ce
 " commitar com :Gcommit ou no :G com cc, ca ou ce
 ```
 
+## Resolver conflitos
+### Sem plugins
+<!-- TODO -->
+```vim
+```
+
+### Com plugins
+[fugitive](https://github.com/tpope/vim-fugitive)
+```vim
+" THANKS: http://vimcasts.org/episodes/fugitive-vim-working-with-the-git-index/
+
+"   - :G
+"   - dv
+"   - usar na janela do meio :diffget <numero-buffer-da-direita-ou-esquerda>
+"   - ZZ (:wq)
+"
+"
+" OBS: [c ]c navega entre as modificações
+```
+
 ## Mostrar pontos de alterações no arquivo
 ### Sem plugins
 <!-- TODO -->
