@@ -11,9 +11,7 @@
 "               ├(+) simplicidade
 "               ├(-) manutenção
 "               ├(+) performance
-"               ├(+) flow
-"               ├(+) entusiamo
-"               ├(+) estudo
+"               ├(+) estudo objetivo
 "               ├(+) qualidade de código
 "               ├(-) bug em produção
 "               └(+) 🎉🎉🎉
@@ -105,7 +103,7 @@ execute "set rtp+=".g:dotfiles_dir."/vim/after"
 " packages (plugins), mas sim em ~/.vim (padrão Linux).
 " Como solução basta adicionar manualmente, aparentemente não tem problema em
 " escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés de
-" commitar por exemplo). Ao invés de setar o runtinme de todos snippets, bode
+" commitar por exemplo). Ao invés de setar o runtinme de todos snippets, pode
 " ser usado o packpath (:h packpath)
 " THANKS: https://superuser.com/a/1466466
 "set rtp+=~/vimfiles/pack/*/start/*
