@@ -40,13 +40,13 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 Caso queira somente a configuração básica do vim, basta copiar o conteúdo de [vimrc](/vim/vimrc) e [gvimrc](/vim/gvimrc) para respectivamente:
 - `%userprofile%\_vimrc` e `%userprofile%\_gvimrc` no Windows
 ```
-curl https://raw.githubusercontent.com/nenitf/dotfiles/master/vim/vimrc > %userprofile%\_vimrc
-curl https://raw.githubusercontent.com/nenitf/dotfiles/master/vim/gvimrc > %userprofile%\_gvimrc
+curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vimrc > %userprofile%\_vimrc
+curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/gvimrc > %userprofile%\_gvimrc
 ```
 - `$HOME/.vimrc` e `$HOME/.gvimrc` no Linux
 ```sh
-wget https://raw.githubusercontent.com/nenitf/dotfiles/master/vim/vimrc -O $HOME/.vimrc
-wget https://raw.githubusercontent.com/nenitf/dotfiles/master/vim/gvimrc -O $HOME/.gvimrc
+wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vimrc -O $HOME/.vimrc
+wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/gvimrc -O $HOME/.gvimrc
 ```
 
 ### Completa no Linux
@@ -73,7 +73,7 @@ cd dotfiles
 ## Atualização forçada
 ```bash
 git fetch --all
-git reset --hard origin/master
+git reset --hard origin/main
 ```
 
 ## Adendos
