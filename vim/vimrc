@@ -621,6 +621,35 @@ fun! OutputAssertion(command)
     wincmd l
 endfun
 
+" THANKS: https://github.com/vim-scripts/DrawIt/blob/master/autoload/DrawIt.vim#L2494
+fun! Boxdraw()
+    let row0   = line("'<") - 1
+    let col0   = virtcol("'<") - 1
+    let row1   = line("'>") + 1
+    let col1   = virtcol("'>") + 1
+
+    call cursor(row0, col0)
+    normal! r+
+    call cursor(row1, col0)
+    normal! r+
+    call cursor(row0, col1)
+    normal! r+
+    call cursor(row1, col1)
+    normal! r+
+
+    call cursor(row1, col0)
+    normal! lvt+r-
+
+    call cursor(row0, col0)
+    normal! lvt+r-
+
+    call cursor(row0, col0)
+    exec "normal! j\<c-v>/\\%" . col0 . "c+\<CR>kr|"
+
+    call cursor(row0, col1)
+    exec "normal! j\<c-v>/\\%" . col1 . "c+\<CR>kr|"
+endfun
+
 "## Comandos
 
 " recarrega vimrc com trigger para o filetype
@@ -673,6 +702,7 @@ nnoremap    #           :b #<CR>|" FIXME volta para unlisted buffer tbm
 nnoremap    !!          :!!<CR>
 vnoremap    <           <gv|" mantêm select após indentação
 vnoremap    >           >gv|" mantêm select após indentação
+vnoremap    -           :<c-u>call Boxdraw()<CR>
 inoremap    "           ""<left>|"autoclose
 inoremap    '           ''<left>|"autoclose
 inoremap    {           {}<left>|"autoclose
