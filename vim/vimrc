@@ -50,7 +50,7 @@ let g:dotfiles_dir = "~/dev/dotfiles"
 
 if filereadable(expand("~/.vimrc-pre.vim"))
     exe 'source ~/.vimrc-pre.vim'
-    " Sugestões para o pre-vimrc.vim
+    " Sugestões para o vimrc-pre.vim
     " set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
     " set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
 endif
@@ -1137,7 +1137,6 @@ call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 
 "### local
-" ideal para importar pythonthreehome e pythonthreedll
 call SourceIfExists("~/.vimrc-local.vim")
 
 "#### Sugestões para o vimrc-local
