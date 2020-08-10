@@ -14,6 +14,10 @@ fun! NN_PHPLint()
     endif
 endfun
 
+augroup phpau
+    au! BufEnter *.blade.php execute "set ft=html"
+augroup END
+
 fun! NN_PHPExecute()
     !php %
 endfun
