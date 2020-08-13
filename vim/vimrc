@@ -773,7 +773,7 @@ command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 
 command -complete=custom,ListExecutaveis -nargs=+ OutputAssertion :execute ":call OutputAssertion(\"<args>\")"
 
-command! TodoList exec "normal! :e ".g:todolist."DONE\<CR>:vsplit ".g:todolist."DOING\<CR>:vsplit ".g:todolist."TODO\<CR>"
+command! TodoList exec "normal! :e ".g:todolist."DONE\<CR>:vsplit ".g:todolist."DOING\<CR>:vsplit ".g:todolist."TODO\<CR>\<c-w>\<c-l>"
 
 "## Mapeamentos
 
@@ -905,16 +905,6 @@ cabbrev lvim
 "    autocmd InsertLeave * set timeoutlen=1000
 "augroup END
 
-augroup todo
-    au!
-    au BufRead,BufNewFile TODO nmap <buffer> > dd<c-w><c-l>Gp
-    au BufRead,BufNewFile TODO nmap <buffer> < dd<c-w><c-h>Gp
-    au BufRead,BufNewFile DOING nmap <buffer> > dd<c-w><c-l>Gp
-    au BufRead,BufNewFile DOING nmap <buffer> < dd<c-w><c-h>Gp
-    au BufRead,BufNewFile DONE nmap <buffer> > dd<c-w><c-l>Gp
-    au BufRead,BufNewFile DONE nmap <buffer> < dd<c-w><c-h>Gp
-augroup END
-
 "### ftdetect
 
 "https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
@@ -924,6 +914,9 @@ augroup filetype_detect
     au BufRead,BufNewFile *.phtml setfiletype html
     au BufRead,BufNewFile *.hbs setfiletype html
     au BufRead,BufNewFile *.gv setfiletype dot
+    au BufRead,BufNewFile TODO setfiletype todolist
+    au BufRead,BufNewFile DOING setfiletype todolist
+    au BufRead,BufNewFile DONE setfiletype todolist
 augroup END
 
 "## packs pessoais
