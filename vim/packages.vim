@@ -128,15 +128,18 @@ let g:startify_custom_header_quotes = [
             \ ]
 let g:startify_lists = [
             \ { 'type': 'sessions', 'header': ['sessões'] },
+            \ { 'type': 'commands', 'header': ['comandos'] },
             \ ]
-            "\ { 'type': 'commands', 'header': ['comandos'] },
             "\ { 'type': 'bookmarks', 'header': ['bookmarks'] },
             "\ { 'type': 'files',     'header': ['recentes'] },
 let g:startify_files_number = 5
-let g:startify_bookmarks = [
-            \ {'d': '~/dev/dotfiles'},
+"let g:startify_bookmarks = [
+"            \ {'d': '~/dev/dotfiles'},
+"            \ ]
+let g:startify_commands = [
+            \ {'d': ['dotfiles', ':call GoToDotfiles()']},
+            \ {'t': 'TodoList'},
             \ ]
-"let g:startify_commands = [
 "            \ ':help reference',
 "            \ ['Vim Reference', 'h ref'],
 "            \ {'h': 'h ref'},
@@ -147,6 +150,11 @@ let g:startify_bookmarks = [
 ":SSave[!]    save a session    |startify-:SSave|
 ":SDelete[!]  delete a session  |startify-:SDelete|
 ":SClose      close a session   |startify-:SClose|
+
+function! GoToDotfiles()
+    exec "cd ".g:dotfiles_dir
+    e vim/vimrc
+endfun
 
 "## vimwiki/vimwiki
 " PROS:
