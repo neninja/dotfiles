@@ -6,25 +6,23 @@ function! FoldMethodTodoList()
     endif
 endfunction
 
-nmap <silent><buffer> > :call SwapToggle('>')<CR>
-nmap <silent><buffer> < :call SwapToggle('<')<CR>
+nmap <silent><buffer> - :call SwapToggle()<CR>
 
 setlocal foldmethod=expr
 setlocal foldexpr=FoldMethodTodoList()
-setlocal tabstop=2
-setlocal softtabstop=2
-setlocal shiftwidth=2
+setlocal tabstop=1
+setlocal softtabstop=1
+setlocal shiftwidth=1
+setlocal textwidth=40 " usar Vgq é util para quebrar linhas
 
-function! SwapToggle(direction)
-    let winmove = get({ '<': "\<c-w>\<c-h>", '>': "\<c-w>\<c-l>" }, a:direction, '>')
-
+function! SwapToggle()
     try
         normal! zc
     catch
         return
     endtry
 
-    exec "normal! dd".winmove."gg"
+    exec "normal! dd\<c-w>\<c-w>gg"
 
     " THANKS: https://stackoverflow.com/a/49578026/9881278
     let emptyline = getline('.') !~ '[^\s]'
