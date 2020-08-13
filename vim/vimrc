@@ -47,6 +47,7 @@
 "
 "## Variáveis
 let g:dotfiles_dir = "~/dev/dotfiles"
+let g:todolist = "~/TODOLIST/"
 
 if filereadable(expand("~/.vimrc-pre.vim"))
     exe 'source ~/.vimrc-pre.vim'
@@ -772,6 +773,8 @@ command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 
 command -complete=custom,ListExecutaveis -nargs=+ OutputAssertion :execute ":call OutputAssertion(\"<args>\")"
 
+command! TodoList exec "normal! :e ".g:todolist."DONE\<CR>:vsplit ".g:todolist."DOING\<CR>:vsplit ".g:todolist."TODO\<CR>"
+
 "## Mapeamentos
 
 ":map -> lista todos mapeamentos para o arquivo
@@ -901,6 +904,16 @@ cabbrev lvim
 "    autocmd InsertEnter * set timeoutlen=700
 "    autocmd InsertLeave * set timeoutlen=1000
 "augroup END
+
+augroup todo
+    au!
+    au BufRead,BufNewFile TODO nmap <buffer> > dd<c-w><c-l>Gp
+    au BufRead,BufNewFile TODO nmap <buffer> < dd<c-w><c-h>Gp
+    au BufRead,BufNewFile DOING nmap <buffer> > dd<c-w><c-l>Gp
+    au BufRead,BufNewFile DOING nmap <buffer> < dd<c-w><c-h>Gp
+    au BufRead,BufNewFile DONE nmap <buffer> > dd<c-w><c-l>Gp
+    au BufRead,BufNewFile DONE nmap <buffer> < dd<c-w><c-h>Gp
+augroup END
 
 "### ftdetect
 
