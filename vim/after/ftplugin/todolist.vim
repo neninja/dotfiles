@@ -49,3 +49,5 @@ function! FoldTextTodoList()
 
     return foldtextstart  . ' ' . repeat(foldchar, winwidth(0))
 endfunction
+
+highlight Folded guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE term=bold gui=bold
