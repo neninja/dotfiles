@@ -10,9 +10,9 @@ nmap <silent><buffer> - :call SwapToggle()<CR>
 
 setlocal foldmethod=expr
 setlocal foldexpr=FoldMethodTodoList()
-setlocal tabstop=1
-setlocal softtabstop=1
-setlocal shiftwidth=1
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
 setlocal textwidth=40 " usar Vgq é util para quebrar linhas
 
 function! SwapToggle()
