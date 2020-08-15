@@ -7,8 +7,8 @@ Configurações que planejo fazer no vim (em ordem)
     - [x] usar foldmark de markdown (#) semelhante ao org-mode
     - [x] teclas de atalho
 - [x] reload vimrc
-- [ ] auto popup vim (plugin buga as vezes...)
-- [ ] spellcheck inglês e português
+- [x] auto popup vim (plugin buga as vezes...)
+- [x] spellcheck inglês e português
 - [ ] ver syntax/highlight estranha de markdown ou começo a usar o vimwiki
 - [ ] gerenciamento de packages
     - [ ] tentar instalar/remover packages automaticamente sem bash
@@ -16,8 +16,8 @@ Configurações que planejo fazer no vim (em ordem)
 - [ ] snippets
     - [x] trigger opcional
     - [ ] devem aparecer em popup ([ideia #1](https://vi.stackexchange.com/questions/7750/how-do-i-manage-and-remember-many-abbreviations-in-my-vimrc))
-    - [ ] labels com highlight
-    - [ ] labels com valores padrão
+    - [x] labels com highlight
+    - [x] labels com valores padrão
     - [x] identar corretamente
 - [ ] [git (com e sem plugin)](vim/git.md)
     - [ ] não ser afetado ao salvar um arquivo no vim e alterar `^M`
@@ -31,12 +31,7 @@ Configurações que planejo fazer no vim (em ordem)
     - [ ] copiar, mover, deletar, renomear multiplos arquivos
     - [ ] bookmarks
     - [ ] corrigir netrwtreelisting
-- [ ] renderizar emojis corretamente
-- [ ] criar tema próprio (thenfeite)
-    - [ ] desacoplar configuração para package
-    - [ ] definir cores facilmente
-    - [ ] definir perfil de cores (light e dark)
-    - [ ] definir syntaxes (?)
+- [x] renderizar emojis corretamente
 
 ## Aprender sobre o vim
 <!-- TODO finalizar checks -->
@@ -47,7 +42,7 @@ Lista de comandos, teclas ou funcionalidades para aprender
 - [ ] go to definition (ctags)
 - [ ] funcionamento de highlight e syntax
 - [ ] [comandos :diff](vim/diff.md)
-- [ ] Ver sobre spellcheck
+- [x] Ver sobre spellcheck
 
 ## Vim como editor principal
 Checklist de necessidades básicas/interessantes que o editor deve suprir
