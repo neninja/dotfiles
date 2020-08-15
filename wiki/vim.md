@@ -9,7 +9,6 @@ Configurações que planejo fazer no vim (em ordem)
 - [x] reload vimrc
 - [x] auto popup vim (plugin buga as vezes...)
 - [x] spellcheck inglês e português
-- [ ] ver syntax/highlight estranha de markdown ou começo a usar o vimwiki
 - [ ] gerenciamento de packages
     - [ ] tentar instalar/remover packages automaticamente sem bash
     - [ ] gerar helptags

@@ -48,6 +48,10 @@
 "## Variáveis
 let g:dotfiles_dir = "~/dev/dotfiles"
 let g:todolist = "~/TODOLIST"
+let g:vimwikis_dirs = [
+            \ g:dotfiles_dir."/wiki",
+            \ g:dotfiles_dir."/wiki/vim"
+            \ ]
 
 if filereadable(expand("~/.vimrc-pre.vim"))
     execute 'source ~/.vimrc-pre.vim'
@@ -896,6 +900,36 @@ endfunction
 
 vnoremap + :<c-u>call Boxdraw()<CR>
 vnoremap - :<c-u>call Connectordraw()<CR>
+
+"### Fake vimwiki
+" Replica das funções que uso do plugin vimwiki, maps e demais configurações
+" específicas de markdown em seu respectivo arquivo
+"
+" OBJETIVOS:
+"   - Acessar rapidamente uma ou mais wikis
+"   - Acessar [arquivo](arquivo) markdorn com enter, agilizando navegação
+"   - Marcar e desmarcar checkbox com <c-space> - [ ] - [x]
+
+function! s:SelecionaWiki(wiki)
+    let wiki = g:vimwikis_dirs[0]
+
+    if(a:wiki == 1)
+        " THANKS: https://learnvimscriptthehardway.stevelosh.com/chapters/39.html
+        let wikis_com_index = deepcopy(g:vimwikis_dirs)
+        call map(wikis_com_index,'v:key . ". " . v:val')
+        let index_secionado = inputlist(wikis_com_index)
+        let wiki = g:vimwikis_dirs[index_secionado]
+    endif
+    try
+        execute "cd " . wiki
+        e README.md
+    catch
+        return
+    endtry
+endfunction
+
+nnoremap <leader>ww :call <SID>SelecionaWiki(0)<CR>
+nnoremap <leader>ws :call <SID>SelecionaWiki(1)<CR>
 
 "### OutputAssertion
 " 'Frameworkk' de testes com a pegada do udebug

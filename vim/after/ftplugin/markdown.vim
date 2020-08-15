@@ -45,3 +45,37 @@ setlocal foldtext=FoldTextMarkdown()
 ":lvimgrep /^"#/ % | lw
 
 setlocal spell
+
+"## Fake vimwiki
+" Replica dos maps do vimwiki
+
+function! s:ToggleCheckbox()
+    normal ms0
+    if(search('\[\p\]', '', line('.')))
+        if(getline('.')[col('.')] == ' ')
+            normal! lrx
+        else
+            exec "normal! lr "
+        endif
+    endif
+    normal `s
+endfunction
+
+function! s:Navigate()
+    normal ms0
+    if(search('(\p*)', '', line('.')))
+        try
+            " Esconde erro de tentar sobescrever a função
+            " durante a abertura do novo buffer
+            silent! normal! lgf
+        catch
+            normal `s
+            return
+        endtry
+    endif
+endfunction
+
+nnoremap <buffer> <c-space> :call <SID>ToggleCheckbox()<CR>
+nnoremap <buffer> <cr>      :call <SID>Navigate()<CR>
+
+" ver: lvimgrep /\[ \]/ % | lw

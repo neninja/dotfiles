@@ -158,43 +158,6 @@ function! GoToDotfiles()
     e vim/vimrc
 endfunction
 
-"## vimwiki/vimwiki
-" PROS:
-"   - Syntax de ```language
-"   - Acesso rápido à wiki <leader>ww ou <leader>ws
-"   - checkbox <c-space>
-"   - gf nos links diretamente
-" CONS:
-"   - Talvbez seja substituivel por maros do vim
-
-let wiki_1 = {
-            \ 'path': '~/dev/dotfiles/wiki/',
-            \ 'syntax': 'markdown',
-            \ 'ext': '.md'
-            \ }
-let wiki_2 = {
-            \ 'path': '~/aniversarios',
-            \ 'syntax': 'markdown',
-            \ 'ext': '.md'
-            \ }
-let g:vimwiki_list = [wiki_1, wiki_2]
-
-let g:vimwiki_folding='custom'
-let g:vimwiki_ext2syntax = {'.md': 'markdown'}
-
-" desativa syntax do vimwiki como global
-" ela tem algumas coisas que distoam do markdown puro, como ** *** ``
-let g:vimwiki_global_ext = 0
-
-"let g:vimwiki_listsyms = ' .oOX' " default
-let g:vimwiki_listsyms = ' x' " compatibilidade github
-
-" sobescreve tab do vimwiki :h *vimwiki-local-mappings
-nmap <Leader>wn <Plug>VimwikiNextLink |" liberar tab
-nmap <leader>w- <Plug>VimwikiRemoveHeaderLevel |" liberar - (vim-choosewin)
-
-" ver: lvimgrep /\[ \]/ % | lw
-
 "## plasticboy/vim-markdown
 " PROS:
 "   - Conceal de * ** *** ` `` ```ft
