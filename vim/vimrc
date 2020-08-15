@@ -47,7 +47,6 @@
 "
 "## Variáveis
 let g:dotfiles_dir = "~/dev/dotfiles"
-let g:todolist = "~/TODOLIST"
 let g:vimwikis_dirs = [
             \ g:dotfiles_dir."/wiki",
             \ g:dotfiles_dir."/wiki/vim"
@@ -610,7 +609,7 @@ command! Grep :call Grep("")<cr>
 command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
 " Exibe splits para trabalhar como kanban
-command! TodoList exec ":cd ".g:todolist | e DONE | belowright vnew TODO | aboveleft vnew DOING
+command! TodoList exec ":cd ".g:todolist_dir | e DONE | belowright vnew TODO | aboveleft vnew DOING
 
 "## Mapeamentos
 ":map -> lista todos mapeamentos para o arquivo
