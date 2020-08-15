@@ -1,6 +1,9 @@
-"https://vimhelp.org/repeat.txt.html#packages
-"# Gerenciamento/inicialização
-"TODO criar packager manager como vim-plug, para substituir script de clone
+" Arquivo de configurações de plugins/packages. Seu desacoplamento do vimrc
+" serve para permitir o uso do vim em seu estado mais básico de configurações
+" sem a necessidade de baixar outros arquivos.
+" https://vimhelp.org/repeat.txt.html#packages
+"
+" TODO criar package manager como vim-plug, para substituir script de clone
 "   :helptags ALL
 "   :helptags ~/vimfiles/pack/vendor/start/*/doc
 "   vim -u NONE -c "helptags fugitive/doc" -c q
@@ -11,19 +14,18 @@
 "    Plugins próprios em:
 "      (windows) ~/vimfiles/pack/nenitf/
 "      (linux) ~/.vim/pack/nenitf/
-
-"# Configurações e instruções
+"
 "## ctrlpvim/ctrlp.vim
 " PROS:
 "   - Search de buffer advinhando conforme é digitado
 "   - Search de file advinhando conforme é digitado
 "   - Search de mru advinhando conforme é digitado
 "   - Search de tag advinhando conforme é digitado
-"   - se adequa ao repositorio git
-"   - abre facilmente vertical e horizontal split
-"   - criação de arquivos e folder rapidamente
+"   - Se adequa ao repositorio git
+"   - Abre facilmente vertical e horizontal split
+"   - Criação de arquivos e pastas rapidamente
 " CONS:
-"   - Não funciona as vezes TODO ver o motivo
+"   - Não funciona as vezes. TODO ver o motivo
 "   - Pode ser meio lento
 " TODO procurar solução própria do vim
 " https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/dr2qo4k?utm_source=share&utm_medium=web2x
@@ -154,17 +156,17 @@ let g:startify_commands = [
 function! GoToDotfiles()
     exec "cd ".g:dotfiles_dir
     e vim/vimrc
-endfun
+endfunction
 
 "## vimwiki/vimwiki
 " PROS:
-"   - Syntax md
-"   - Syntax de ```
-"   - checkbox <-space>
+"   - Syntax de ```language
+"   - Acesso rápido à wiki <leader>ww ou <leader>ws
+"   - checkbox <c-space>
 "   - gf nos links diretamente
+" CONS:
+"   - Talvbez seja substituivel por maros do vim
 
-
-" <leader>ws
 let wiki_1 = {
             \ 'path': '~/dev/dotfiles/wiki/',
             \ 'syntax': 'markdown',
@@ -231,6 +233,8 @@ let g:vim_markdown_new_list_item_indent = 0
 "       - dv vertical diff split
 "           - usar :diffget (stage) :diffput (unstage) na index (fugitive)
 "           - salvar e sair com ZZ
+"   - Conflitos:
+"       - TODO
 "   - Commits:
 "       - cc abre janeja de mensagem de commit
 "       - ca add staged ao ultimo commit e abre janela mensagem de commit
@@ -238,16 +242,14 @@ let g:vim_markdown_new_list_item_indent = 0
 "       - cvc commita com detalhes diffs que não vão (ver commit -v)
 "       OBS: fechar commit com ZZ ao invez de :wq
 "   - Stash:
+"       - TODO
 
-"TODO melhorar stage de hunks
-"   - - já usado para trocar de tela
-"   - -  é mt longe de v, j e k, os responsaveis por marcar o hunk
-
+" Commit rápido do arquivo atual + stageds se houver
 command! GC :Gw | Gcommit
 
 "### Statusline
 set statusline=                 " reseta statusline
-set statusline+=%{FugitiveStatusline()}                 " reseta statusline
+set statusline+=%{FugitiveStatusline()}
 set statusline+=\%=				" espaço
 set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
 set statusline+=\%=				" espaço
@@ -281,6 +283,7 @@ let g:gitgutter_map_keys = 0
 "## junegunn/goyo.vim
 " PROS:
 "   - Leitura mais confortável da wiki
+"   - Idel para apresentações com markdown + folds
 "
 " THANKS: https://gist.github.com/davidmh/f4337f9ea9eca6789b3f8222b8333a35
 " Presentation mode
@@ -302,7 +305,7 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>enter_presentation()
 autocmd! User GoyoLeave nested call <SID>exit_presentation()
-"
+
 "## pangloss/vim-javascript
 " PROS:
 "   - Syntax js
@@ -337,8 +340,8 @@ let g:tsuquyomi_disable_default_mappings = 1
 "## dense-analysis/ale
 " PROS:
 "   - Auto format com eslint E prettier
-"   - mensagem de erro e aviso
-"   - marcação do texto e código do erro
+"   - Mensagem de erro e aviso
+"   - Marcação do texto e código do erro
 " TODO remover plugin
 "https://gist.github.com/romainl/ce55ce6fdc1659c5fbc0f4224fd6ad29
 
@@ -372,9 +375,8 @@ let g:ale_fix_on_save = 1
 "let g:ale_echo_msg_error_str = 'E'
 "let g:ale_echo_msg_warning_str = 'W'
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"
-"## colorschemes
 
+"## colorschemes
 "### joshdick/onedark.vim
 " PROS:
 "   - Cores agradáveis
@@ -388,7 +390,7 @@ let g:ale_fix_on_save = 1
 " colorscheme afterglow " outro tema muito bom
 " https://github.com/danilo-augusto/vim-afterglow
 
-"THANKS: https://github.com/joshdick/onedark.vim/issues/110#issuecomment-345599864
+" THANKS: https://github.com/joshdick/onedark.vim/issues/110#issuecomment-345599864
 " packadd! onedark.vim
 " colorscheme onedark
 
@@ -478,7 +480,7 @@ call FixColorschemeYin()
 " por padrão é json (afinal usarei como rest client somente)
 let g:vrc_response_default_content_type = 'application/json'
 
-" troca <c-j> pois uso com split
+" troca <c-j> por <c-x> pois uso com split
 let g:vrc_trigger = '<C-x>'
 
 "## vim-vdebug/vdebug
@@ -488,6 +490,7 @@ let g:vrc_trigger = '<C-x>'
 "
 " CONS:
 "   - Necessita de Python3
+"   - Não funcionou com phpunit
 
 " XDEBUG:
 "   - Acessar: https://xdebug.org/wizard
@@ -529,4 +532,3 @@ let g:vrc_trigger = '<C-x>'
 " #!/bin/bash
 " export XDEBUG_CONFIG="idekey=xdebug"
 " php "$@"
-

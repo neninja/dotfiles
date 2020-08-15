@@ -1,14 +1,16 @@
-"## Builtin
+" Arquivo de configurações com ou sem plugins/packages que afetam a
+" performance do vimrc base.
+"
 set number relativenumber   " exibe régua com o numero relativo das linhas
-"### Autocomplete
-" Fake auto complete
-":h ins-completion
+
+"## Autocomplete
+" Fake auto complete (:h ins-completion)
 
 " origem das palavras do wildmenu:
-"   - buffer corrente
-"   - buffers escondidos
-"   - dicionários
-"   - de outras janelas (splits)
+"   - . buffer corrente
+"   - b buffers escondidos
+"   - k dicionários
+"   - w de outras janelas (splits)
 set complete=.,b,k,w
 
 " 1. autocomplete de filename <c-x><c-f> com o arquivo aberto sendo a
@@ -37,7 +39,7 @@ augroup autocompleteOnInsert
     autocmd CursorHoldI * call AutoComplete2()
 augroup END
 
-fun! AutoComplete2()
+function! AutoComplete2()
     " if !pumvisible()
         " noa call feedkeys("\<C-n>", 'n')
     " endif  
@@ -48,40 +50,45 @@ fun! AutoComplete2()
             noa call feedkeys("\<C-n>", 'n')
         endif
     endif
-endfun
+endfunction
 
-"THANKS: https://github.com/skywind3000/vim-auto-popmenu
-" THANKS: https://stackoverflow.com/a/47967462/9881278
-""function! OpenCompletion()
-""    " if !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
-""        " call feedkeys("\<C-x>\<C-o>", "n")
-""        call feedkeys("\<C-n>")
-""    endif
-""endfunction
+" Antigo
+" THANKS:
+"   - https://github.com/skywind3000/vim-auto-popmenu
+"   - https://stackoverflow.com/a/47967462/9881278
+"
+"function! OpenCompletion()
+"    " if !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
+"        " call feedkeys("\<C-x>\<C-o>", "n")
+"        call feedkeys("\<C-n>")
+"    endif
+"endfunction
 
+" Antigo
 " autocmd InsertCharPre * call AutoComplete()
 " Minimalist-AutoCompletePop-Plugin
-" THANKS: https://vi.stackexchange.com/a/8902/28875
-" THANKS: https://www.reddit.com/r/vim/comments/4tu844/vim_completion_without_plugin/
-" THANKS: https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
+" THANKS:
+"   - https://vi.stackexchange.com/a/8902/28875
+"   - https://www.reddit.com/r/vim/comments/4tu844/vim_completion_without_plugin/
+"   - https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
 
-" quando for dado enter cria uma nova linha ao invés
-" de somente remover o popup
+" Habilita quebra de linha mesmo com popup visível
 inoremap <expr> <CR> pumvisible() ? "\<esc>a\<CR>" : "\<CR>"
 " inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
-""fun! AutoComplete()
-""    " TODO add omnifunc nas sugestões
-""    if v:char =~ '\K'
-""        \ && getline('.')[col('.') - 4] !~ '\K'
-""        \ && getline('.')[col('.') - 3] =~ '\K'
-""        \ && getline('.')[col('.') - 2] =~ '\K' " last char
-""        \ && getline('.')[col('.') - 1] !~ '\K'
-""
-""        " trecho necessário pelo bug de selecionar automaticamente se
-""        " <c-x><c-o> já estiver aberto antes de 3 chars
-""        if !pumvisible()
-""            noa call feedkeys("\<C-n>", 'n')
-""        endif
-""    end
-""endfun
+" Antigo
+"fun! AutoComplete()
+"    " TODO add omnifunc nas sugestões
+"    if v:char =~ '\K'
+"        \ && getline('.')[col('.') - 4] !~ '\K'
+"        \ && getline('.')[col('.') - 3] =~ '\K'
+"        \ && getline('.')[col('.') - 2] =~ '\K' " last char
+"        \ && getline('.')[col('.') - 1] !~ '\K'
+"
+"        " trecho necessário pelo bug de selecionar automaticamente se
+"        " <c-x><c-o> já estiver aberto antes de 3 chars
+"        if !pumvisible()
+"            noa call feedkeys("\<C-n>", 'n')
+"        endif
+"    end
+"endfun

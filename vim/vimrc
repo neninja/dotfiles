@@ -20,13 +20,13 @@
 "   - Focar em perf windows e linux
 "   - Organizar o trecho de código no fold correto
 "   - Manter o KISS, não reescrever o vim! Lembrar que:
-"       - A configuração será usada crossplatform (windows x linux)
+"       - A configuração será usada crossplatform (windows e linux)
 "       - De boa usar terminal ao lado do vim, nem tudo tem que ser como emacs
 "   - Manter compatibilidade entre vim e nvim
 "   - Evitar trocar comandos default do teclado
 "   - Usar/configurar a menor quantidade de plugins possível
 "   - Comentar/documentar bastante o código (respeitando a largura de coluna)
-"       - Configurações antigas, novas e defaults
+"       - Configurações antigas, novas, defaults e explicações
 "
 " UPGRADES: Ver arquivo wiki/vim.md
 "
@@ -50,7 +50,7 @@ let g:dotfiles_dir = "~/dev/dotfiles"
 let g:todolist = "~/TODOLIST/"
 
 if filereadable(expand("~/.vimrc-pre.vim"))
-    exe 'source ~/.vimrc-pre.vim'
+    execute 'source ~/.vimrc-pre.vim'
     " Sugestões para o vimrc-pre.vim
     " set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
     " set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
@@ -65,12 +65,12 @@ set nocompatible
 
 "### Conteúdo
 set encoding=utf-8
-"TODO entender configs abaixo:
+" TODO entender configs abaixo:
 "set fileencoding=utf-8 "?
 "set fileencodings=utf-8 "?
 
 set fileformats=unix,dos,mac "?
-"TODO entender configs abaixo:
+" TODO entender configs abaixo:
 "set bomb "?
 "set binary "?
 
@@ -89,26 +89,26 @@ set fileformats=unix,dos,mac "?
 "### Vim não-bloqueante
 " checar/atualizar quando o texto for modificado (ocorre mt com o git)
 set autoread
-au FocusGained,BufEnter * :silent!<space>!
+autocmd FocusGained,BufEnter * :silent!<space>!
 " au FocusGained,BufEnter * checktime
 
 "### RuntimePaths
 " Deve vir antes das definições de filetype
-" carrega ftdetect, para definir extensões a filetypes
-execute "set rtp+=".g:dotfiles_dir."/vim"
+" carrega ftdetect, para definir extensões de tipos de arquivos
+execute "set runtimepath+=".g:dotfiles_dir."/vim"
 " evita autocmd de highligh (syntax/) e específicas do filetype (ftplugin/)
-execute "set rtp+=".g:dotfiles_dir."/vim/after"
+execute "set runtimepath+=".g:dotfiles_dir."/vim/after"
 
 " O vim utilizado pelo git para commitar no Windows é diferente do que fica
 " instalado no sistema. Portanto o mesmo não procura em ~/vimfiles/pack/ os
 " packages (plugins), mas sim em ~/.vim (padrão Linux).
-" Como solução basta adicionar manualmente, aparentemente não tem problema em
+" Como solução basta adicionar manualmente. Aparentemente não tem problema em
 " escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés de
-" commitar por exemplo). Ao invés de setar o runtinme de todos snippets, pode
-" ser usado o packpath (:h packpath)
+" commitar por exemplo).
+" Pode setar packpath ao invés do runtimepath como solução
 " THANKS: https://superuser.com/a/1466466
-"set rtp+=~/vimfiles/pack/*/start/*
-set pp+=~/vimfiles
+"set runtimepath+=~/vimfiles/pack/*/start/*
+set packpath+=~/vimfiles
 
 "### Syntax e identação
 " syntax de acordo com o filetype
@@ -156,7 +156,7 @@ function FixHighlight()
   highligh link gitcommitSummary gitcommitFirstLine
   
   " highlight SpellBad term=underline gui=undercurl guisp=Orange
-  highlight SpellBad guifg=#000000 guibg=#af0000 gui=bold ctermfg=black ctermbg=red
+  highlight SpellBad guifg=#000000 guibg=#af0000 gui=bold term=bold ctermfg=black ctermbg=red
 endfun
 
 augroup override_highlights
@@ -165,7 +165,6 @@ augroup override_highlights
 augroup END
 
 "## Comportamento
-
 set showmatch                   " exibe fechamento de {[()]}
 set showmode                    " exibe mode no canto inferior esquerdo
 set showcmd                     " exibe os comandos no canto inferior direito
@@ -175,26 +174,23 @@ set linebreak                   " quebra a linha por palavra e não por letra
 set nocursorcolumn nocursorline " não marca colunha e linha do cursor (perf)
 set number norelativenumber     " exibe régua sem numero relativo (perf)
 set nrformats-=octal            " ctrl-a ctrl -x
-set lazyredraw                  " não redesenha a tela durante macro (+ perf)
+set lazyredraw                  " não redesenha a tela durante macro (perf)
+set nobackup                    " não cria arquivo de bkp
+set noswapfile                  " não cria arquivo swap (?)
+set scrolloff=3                 " mantêm 3 linhas acima/abaixo do cursor em scroll
+"set splitbelow                  " cria split horizontal abaixo (help estranho)
+"set splitright                  " cria split vertical abaixo
 
 " utiliza clipboard do linux e windows para copiar e colar (y e p)
 set clipboard^=unnamedplus,unnamed
 
-"set splitbelow                  " cria split horizontal abaixo (help estranho)
-"set splitright                  " cria split vertical abaixo
-
-set nobackup                    " para não criar arquivo de bkp
-set noswapfile                  " para não criar arquivo swap (?)
-
-set scrolloff=3                 " mantêm 3 linhas acima/abaixo do cursor em scroll
-
 " Limite de coluna, comentado para ser posto em modelines específicas
 " set textwidth=80            " define largura da linha de texto
-set colorcolumn=              " afeta perf
+set colorcolumn=              " não marca coluna (perf)
 " set colorcolumn=81          " marca coluna 81, ideal para impressão com :ha
 "                             " interessante deixar na modeline com cc
 
-" opções de auto inserção de blocos. Alguns filetypes já possuem
+" Opções de auto inserção de blocos. Alguns filetypes já possuem
 " por default diferentes configurações, portanto é mais interessante add ou
 " remover (+= e -=). Abaixo os valores possíveis (:h fo-table)
 " t     quebra automatica do texto de acordo com textwidth
@@ -219,44 +215,44 @@ set colorcolumn=              " afeta perf
 " p     TODO
 set formatoptions+=jcr
 
-" motivos para usar buffers em segundo plano ao invés de tabs:
+" Buffers
+" Motivos para usar buffers em segundo plano ao invés de tabs:
 "   - o mesmo arquivo não é aberto duas vezes
 "   - mais velocidade pois a janela não precisa ser redesenhada
 set hidden " mantêm o arquivo disponível ao sair dele (mesmo modificado)
 " :ls lista, :b <numero><tab> acessa buffers
 
+" Pesquisa
 set hlsearch    " colore os matches de search (* / %s)
 set incsearch   " vai colorindo a pesquisa durante a digitação
 set ignorecase  " ignora case sensitive na busca
 set nosmartcase " case sensitive se a primeira letra for maiuscula,
 "               " ruim para autocomplete de nomes de funções
 
-" renderização de emojis
+" Emojis coloridos
 "if has("directx")
 "    " renderiza emojis, afeta perf
 "    " Para ativar basta usar :call NN_ToggleEmoji
 "    set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
 "    set emoji " ??? noemoji
 "endif
-set noemoji
-set renderoptions=
+set noemoji " (perf)
+set renderoptions= " (perf)
 
 " título da janela
 "set title
 "set titlestring=%<%F
 
 "## Modeline
-
 set modeline        " habilita uso da modeline
 set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
 
-" Exemplo de modeline (pode ser em comentário):
+" Exemplos de modeline (pode ser em comentário):
 " vim: set fdm=marker:
 " vim: set fo+=t tw=80:
 " vim: set sw=3 ts=3 cc=85 cuc:
 
 "## Statusline
-
 set laststatus=2                " habilita statusline
 set statusline=                 " reseta statusline
 set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
@@ -266,20 +262,21 @@ set statusline+=\ %y            " filetype
 set statusline+=\ {%n}          " buffer, ideal para conflitos do git com :diffget e :diffput
 
 "## Autocomplete
+set wildmenu         " habilita menu
+set shortmess+=c     " remove mensagens inúteis do wildmenu
 
-set wildmenu                        " habilita menu
-" https://vi.stackexchange.com/questions/5029/key-mapping-that-will-invoke-the-wildmenu
-set wildcharm=<tab>                 " char para chamar wildmenu de um map
+" THANKS: https://vi.stackexchange.com/questions/5029/key-mapping-that-will-invoke-the-wildmenu
+set wildcharm=<tab>  " char para chamar wildmenu de um map
+
+set completeopt=menuone,noinsert,noselect
 " set completeopt=menuone,noselect,noinsert    " mostra menu de opções
 " set completeopt=menu,menuone,noinsert
-set completeopt=menuone,noinsert,noselect
 " menuone: menu com uma ou mais de uma sugestão
 " noinsert: não insere texto selecionado automaticamente
 " noselect: não seleciona o texto automaticamente
-set shortmess+=c                    " remove mensagens inúteis do wildmenu
 
-" usa como separador de diretório '/' ao invés de '\', padrão do windows
-" muito utili para importar modulos no javascript
+" Usa como separador de diretório '/' ao invés de '\', padrão do windows
+" muito util para importar modulos no javascript
 set shellslash " set nossl cancela
 
 " Remove das sugestões arquivos/diretorios (lvimgrep tb)
@@ -294,26 +291,30 @@ set wildignore+=_site/*
 
 ":h ins-completion
 " origem das palavras do wildmenu:
-"   - buffer corrente
-"   - dicionários
-"   - de outras janelas (splits)
+"   - . buffer corrente
+"   - k dicionários
+"   - w de outras janelas (splits)
 set complete=.,k,w
 " sugestão de tags afeta perf
 " <c-e> mantem o insert mode e fecha completeopt
 
+" Informa aquivo de tags
 " set tags=tags,./tags
 set tags=tags
 
-" sugere palavras com hífen como font-size
+" Configura palavras-com-hifen como palavras inteiras
 " THANKS: https://stackoverflow.com/questions/25049838/make-autocomplpop-allow-hyphen-as-a-word-charcter
+" PROS:
+"   - CSS: font-size
+" CONS:
+"   - PHP: $this-> cria sugestão de $this-
 set iskeyword+=-
 
-" escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
-" https://github.com/vim-scripts/SyntaxComplete
+" Escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
+" THANKS: https://github.com/vim-scripts/SyntaxComplete
 set omnifunc=syntaxcomplete#Complete    " <c-x><c-o>
 
 "### Tabs/espaços
-
 " https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 set tabstop=4
 set softtabstop=4
@@ -322,41 +323,40 @@ set smarttab
 set expandtab
 
 "## Fold
+" Add método padrão de fold
+set foldmethod=marker " {{{ ... }}}
+set foldtext=FoldTextMarker() " Configura título do fold fechado
 
-" método padrão de fold
-set foldmethod=marker
-set foldtext=FoldTextMarker()
-
-" :h digraph-table-mbyte
+" Configura símbolos do vim (:h digraph-table-mbyte)
 set fillchars=vert:\|,fold:─
 
-" retorna título dos folds padrão marker com {{{}}}
+" Retorna título dos folds sem comentários padrões de linguagens
 " THANKS: https://stackoverflow.com/questions/5983396/change-the-text-in-folds
 " THANKS: https://jdhao.github.io/2019/08/16/nvim_config_folding/
 " THANKS: https://dhruvasagar.com/2013/03/28/vim-better-foldtext
 function! FoldTextMarker()
-  let lines_count = v:foldend - v:foldstart + 1
+    let lines_count = v:foldend - v:foldstart + 1
 
-  " :h digraph-table-mbyte
-  let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+    " :h digraph-table-mbyte
+    let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
+    let foldchar = matchstr(&fillchars, 'fold:\zs.')
 
     " remove marcação de comentários # // /* <!--
-    let titulo = substitute(getline(v:foldstart),"^[#*{\/ \"<!--]*","",'g')
+    let titulo = substitute(getline(v:foldstart), "^[#*{\/ \"<!--]*", "", 'g')
 
     " remove marcação de comentários */
-    let titulo = substitute(titulo,"\*\/*$","",'g')
+    let titulo = substitute(titulo, "\*\/*$", "", 'g')
     " remove marcação de comentários -->
-    let titulo = substitute(titulo,"\-\-\>*$","",'g')
+    let titulo = substitute(titulo, "\-\-\>*$", "", 'g')
     " remove espaços que sobraram ao final da linha
-    let titulo = substitute(titulo,"\ *$","",'g')
+    let titulo = substitute(titulo, "\ *$", "", 'g')
 
-  " cria + de acordo com # (foldlevel)
-  let foldtextstart = repeat('+', v:foldlevel) . ' ' . titulo
+    " cria + de acordo com foldlevel
+    let foldtextstart = repeat('+', v:foldlevel) . ' ' . titulo
 
-  let foldtextend = lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+    let foldtextend = lines_count_text . repeat(foldchar, 8)
+    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+    return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
 
 "## Netrw
@@ -365,7 +365,7 @@ endfunction
 " - <CR>/v/t to open in an h-split/v-split/tab
 " - check |netrw-browse-maps| for more mappings
 
-"TODO Como não criar NetrwTreeListing (???) e .netrwhist? (???)
+" TODO Como não criar NetrwTreeListing (???) e .netrwhist? (???)
 " https://github.com/tpope/vim-vinegar/issues/13
 " autocmd FileType netrw setlocal bufhidden=delete
 
@@ -402,11 +402,12 @@ set spelllang=pt_br
 "   - https://www.dicas-l.com.br/arquivo/verificacao_ortografica_com_o_editor_vim.php
 "   - https://www.vivaolinux.com.br/artigo/Corretor-Ortografico-no-Vim-Guia-definitivo
 " no momento não tenho interesse em ficar versionando a adição de palavras
-"execute "set rtp+=".g:dotfiles_dir."/vim/spell"
+"execute "set runtimepath+=".g:dotfiles_dir."/vim/spell"
 
 " arquivo que possui as adições do dicionário
 " THANKS: https://stackoverflow.com/a/27979576/9881278
 execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
+
 "## Funções
 "### NN_
 " Funções que são usadas com frequencia não tão alta para serem comandos ou
@@ -438,7 +439,7 @@ function! NN_ctags()
 endfun
 
 
-" habilita e desabilita emojis, ideal para perf
+" Habilita e desabilita emojis, ideal para perf
 function! NN_EmojiToggle()
     if &renderoptions == ""
         set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
@@ -447,7 +448,7 @@ function! NN_EmojiToggle()
     endif
 endfun
 
-" atualiza diretório atual (:pwd) com dir do projeto, com raiz .git
+" Atualiza diretório atual (:pwd) com dir do projeto, com raiz .git
 " THANKS: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
 function! NN_SetGitDir()
     " Change working dir to the current file
@@ -462,26 +463,26 @@ function! NN_SetGitDir()
     endif
 endfunction
 
-" abre :Lexplorer com pwd como do git
+" Abre :Lexplorer com pwd como do git
 " THANKS: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
 function! NN_Lexplorer()
     call NN_SetGitDir()
     Lexplore
 endfunction
 
-" lista todos e fixmes tags
+" Lista TODOS e FIXMES
 " THANKS: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
 " OBS: Irá ignorar path do wildignore https://stackoverflow.com/a/20042050
 " FIXME ativa :GitGutterToggle
-fun! NN_Tasks()
+function! NN_Tasks()
     call NN_SetGitDir()
     "silent !git grep -EIn "TODO|FIXME"
     lvimgrep /\C\<TODO\>\|\C\<FIXME\>/j **
     lopen
-endfun
+endfunction
 
-" script para os meus commits padrões de aula
-fun! NN_GitAula()
+" Commita projetos de aulas com o padrão :tv: add aula <numero>
+function! NN_GitAula()
     let log = system("git log --pretty=format:\%s")
     vnew
     put=log
@@ -494,35 +495,24 @@ fun! NN_GitAula()
         echom system("git add -A && git commit -m \":tv: add aula 1\"")
     endif
     bdelete!
-endfun
+endfunction
 
-" script para os meus commits padrões do exercism.io
-fun! NN_GitExercism()
-    vnew | 0r!git status --porcelain
-    normal! f"
-    normal! wv3wh"gy
-    execute "let s:desafio=\"".getreg('g')."\""
-    execute "!git add -A && git commit -m \"release: add ".s:desafio."\""
-    bdelete!
-endfun
-"#### Git
-function NN_Git_add()
+function! NN_Git_add()
     echo "não implementado!"
-endfun
+endfunction
 
 "### Private (script)
 " Funções privadas que são usadas unicamente no vimrc
 
-" carrega arquivo se ele existe
+" Carrega arquivo se ele existe
 " THANKS: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
 function! SourceIfExists(file)
   if filereadable(expand(a:file))
     exe 'source' a:file
-	"else
-	"echo "Não existe o arquivo:"  a:file
   endif
 endfunction
 
+" Aumenta fonte no gvim
 " THANKS: https://vi.stackexchange.com/a/3104/28875
 function! FontSizePlus ()
     let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
@@ -531,6 +521,7 @@ function! FontSizePlus ()
     let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
 endfunction
 
+" Diminui fonte no gvim
 " THANKS: https://vi.stackexchange.com/a/3104/28875
 function! FontSizeMinus ()
     let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
@@ -542,11 +533,12 @@ endfunction
 "### Shared
 " Funções que são mapeadas, portanto não devem ficar com NN_
 
+" Pesquisa palavra em todo o projeto
 " https://stackoverflow.com/questions/20933836/what-is-the-difference-between-location-list-and-quickfix-list-in-vim
 " THANKS: https://github.com/jmharvey/vim/blob/master/vimrc#L207
 " THANKS: https://vimrcfu.com/snippet/104
 " FIXME Ativa gitguttertoggle
-fun! Grep(grepword)
+function! Grep(grepword)
     call NN_SetGitDir()
     if len(a:grepword) == 0
         let s:grepword = input("Grep: ")        
@@ -557,71 +549,224 @@ fun! Grep(grepword)
     " exec "vimgrep /".s:kwd."/ %"|" No arquivo
     exec "lvimgrep /\\<" . s:grepword . "\\>/j **"
     lopen
-endfun
+endfunction
 
-" Função utilizada para limpar a tela do terminal
-" Dependendo do SO muda o comando...
-fun! LimpaTerminal()
+" Limpa a tela do terminal
+function! LimpaTerminal()
     if has("win32")
         silent !cls
     else
         silent !clear
     endif
-endfun
+endfunction
 
-" fecha split ou deleta o buffer
-fun! FechaSplitOuDeletaBuffer()
+" Fecha split ou deleta o buffer
+function! FechaSplitOuDeletaBuffer()
     if winnr('$') > 1
         q
     else
         bd
     endif
-endfun
+endfunction
 
-" fecha split ou deleta o buffer ignorando modificações
-fun! FechaSplitOuDeletaBufferForced()
+" Fecha split ou deleta o buffer ignorando modificações
+function! FechaSplitOuDeletaBufferForced()
     if winnr('$') > 1
         q!
     else
         bd!
     endif
-endfun
+endfunction
 
-" sugestões do :OutputAssertion
-fun! ListExecutaveis(A,L,P)
-    return "python3\nnode\ngo run\nlua"
-endfun
+"## Comandos
+" Recarrega vimrc com trigger para o filetype
+" THANKS: https://vi.stackexchange.com/questions/9338/why-cannot-i-source-vimrc-for-the-current-file-being-editing
+command! Sov source $MYVIMRC | e %
 
-" TODO desacoplar execução com criação da tab
-fun! OutputAssertion(command)
-    execute "tabnew | 0r!".a:command." #"
+" Fecha (sem forçar) todos buffers e deixar somente um
+" THANKS: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
+command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
-    " faz o vim entender que não queremo salvar esse arquivo
-    setlocal buftype=nofile
-    normal! Gdd
-    nnoremap <buffer> q :windo bd!<CR>
-    new
+" Abre terminal em split, ideal para o gvim
+" FIXME não funciona corretamente no linux
+" THANKS: https://stackoverflow.com/a/38082196
+command! TerminalGitRootVertical exec 'call NN_SetGitDir() | vert term ++kill=term'
+command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
 
-    " deixar em cima a mensagem
-    " caso tenha: set splitbelow
-    " é o ideal
-    " wincmd r
-    normal! iUse "q" para fechar todos os buffers
+" Procura palavra no projeto
+" :Grep<CR>
+" Grep: <palavra>
+command! Grep :call Grep("")<cr>
 
-    " faz o vim entender que não queremo salvar esse arquivo
-    setlocal buftype=nofile
-    wincmd w
+" Visualiza todos highlight-groups
+"   :so $VIMRUNTIME/syntax/hitest.vim
+" Visualiza highlight group da palavra sob o cursor
+" THANKS: https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+" :highlight mostra as cores do grupo
+command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
-    " resize o máximo
-    wincmd _
+" Exibe splits para trabalhar como kanban
+command! TodoList exec "normal! :e ".g:todolist."DONE\<CR>:vsplit ".g:todolist."DOING\<CR>:vsplit ".g:todolist."TODO\<CR>\<c-w>\<c-l>"
 
-    vert diffsplit outputassertion.txt
-    nnoremap <buffer> q :windo bd!<CR>
-    wincmd l
-endfun
+"## Mapeamentos
+":map -> lista todos mapeamentos para o arquivo
 
+" TODO ver funcionamento do localleader (:h maplocalleader)
+let mapleader="\<space>"
+
+nnoremap    <leader><leader>    :w<CR>
+nnoremap    <leader><cr>        :call NN_Lexplorer()<cr>
+nnoremap    <leader>/           :noh<cr>
+nnoremap    <leader>.           :pwd<CR>
+nnoremap    <leader>dd          :call FechaSplitOuDeletaBuffer()<CR>
+nnoremap    <leader>df          :call FechaSplitOuDeletaBufferForced()<CR>
+nnoremap    <leader>ds          :on<CR>| " Close all splits
+nnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
+nnoremap    <leader>s           :split<CR>
+nnoremap    <leader>t           :tn <c-r><c-w><CR>| " Goto definition (ctags)
+nnoremap    <leader>v           :vsplit<CR>
+nnoremap    <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
+vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
+
+nnoremap    #           :b #<CR>|" FIXME volta para unlisted buffer tbm
+nnoremap    !!          :!!<CR>
+vnoremap    <           <gv|" mantêm select após indentação
+vnoremap    >           >gv|" mantêm select após indentação
+inoremap    "           ""<left>|"autoclose
+inoremap    '           ''<left>|"autoclose
+inoremap    {           {}<left>|"autoclose
+inoremap    {}          {}|"evitar {}}
+inoremap    {<CR>       {}<left><CR><Esc>O|"autoclose
+inoremap    {<space>    {}<left><space><space><left>|"autoclose
+inoremap    (           ()<left>|"autoclose
+inoremap    ()          ()|"evitar ())
+inoremap    (<CR>       ()<left><CR><Esc>O|"autoclose
+inoremap    (<space>    ()<left><space><space><left>|"autoclose
+inoremap    [           []<left>|"autoclose
+inoremap    []          []|"evitar []]
+inoremap    [<CR>       []<left><CR><Esc>O|"autoclose
+inoremap    [<space>    []<left><space><space><left>|"autoclose
+vnoremap    J           :m '>+1<CR>gv=gv| " move seleção pra baixo
+vnoremap    K           :m '<-2<CR>gv=gv| " move seleção pra cima
+inoremap    kj          <esc>|" esc mais fácil
+nnoremap    n           nzzzv|" centraliza match do search
+nnoremap    N           Nzzzv|" centraliza match do search
+vnoremap    o'          c'<c-r>"'|" surround match
+vnoremap    o"          c"<c-r>""|" surround match
+vnoremap    o(          c(<c-r>")|" surround match
+vnoremap    o{          c{<c-r>"}|" surround match
+vnoremap    o[          c[<c-r>"]|" surround match
+nnoremap    Q           @q|" executa macro em 'q' (letra que mais gravo)
+tnoremap    <esc>       <C-\><C-n>
+noremap     \           za|" toggle fold
+nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'| " Toggle fold todo arquivo
+noremap     <up>        <nop>|" força hjkl
+noremap     <down>      <nop>|" força hjkl
+noremap     <left>      <nop>|" força hjkl
+noremap     <right>     <nop>|" força hjkl
+inoremap    <up>        <nop>|" força hjkl
+inoremap    <down>      <nop>|" força hjkl
+inoremap    <left>      <nop>|" força hjkl
+inoremap    <right>     <nop>|" força hjkl
+nnoremap    <c-\>       <c-]>|" teclado brasileiro <c-]> não funciona
+inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
+inoremap    <c-h>       <left>|" força hjkl
+" nnoremap    <c-h>       <c-w>h
+cnoremap    <c-h>       <left>
+inoremap    <c-j>       <down>|" força hjkl
+" nnoremap    <c-j>       <c-w>j
+nnoremap    <c-j>       <c-w>w|" estilo DWM
+inoremap    <c-k>       <up>|" força hjkl
+" nnoremap    <c-k>       <c-w>k
+nnoremap    <c-k>       <c-w>W|" estilo DWM
+" nnoremap    <c-l>       <c-w>l
+cnoremap    <c-l>       <right>
+inoremap    <c-l>       <right>|" força hjkl
+tnoremap    <c-l>       cls<cr>
+nnoremap    <c-n>       yiwV| " substitue mult cursors
+xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>| " substitue mult cursors
+inoremap    <c-q>       <esc>:call JumpToTag()<cr>| " <++>
+nnoremap    <c-q>       :call JumpToTag()<cr>| " <++>
+nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
+nnoremap    <c-z>       u|" remove comportamento <c-z>
+tnoremap    <s-insert>  <c-w>"*
+tnoremap    <c-s-v>     <c-w>"*
+
+if has("gui_running")
+    nmap <c-kPlus> :call FontSizePlus()<CR>
+    nmap <c-kMinus> :call FontSizeMinus()<CR>
+endif
+
+"## Abreviações
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qa! qa!
+cnoreabbrev QA! qa!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev QA qa
+cnoreabbrev Wqa wqa
+cnoreabbrev WQa wqa
+cnoreabbrev WQA wqa
+cnoreabbrev wQA wqa
+cnoreabbrev wqA wqa
+cnoreabbrev wQa wqa
+
+" THANKS: https://vim.fandom.com/wiki/Find_in_files_within_Vim
+cabbrev lvim
+      \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
+      \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
+      \ <Bar> lw
+      \ <C-Left><C-Left><C-Left>
+
+"## AutoCmds
+" THANKS: https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
+"augroup tempos
+"    autocmd InsertEnter * set timeoutlen=700
+"    autocmd InsertLeave * set timeoutlen=1000
+"augroup END
+
+"### ftdetect
+" THANKS: https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
+" FIXME Como colocar definição de filetype em ftdetect?
+augroup filetype_detect
+    au!
+    au BufRead,BufNewFile *.phtml setfiletype html
+    au BufRead,BufNewFile *.hbs setfiletype html
+    au BufRead,BufNewFile *.gv setfiletype dot
+    au BufRead,BufNewFile TODO setfiletype todolist
+    au BufRead,BufNewFile DOING setfiletype todolist
+    au BufRead,BufNewFile DONE setfiletype todolist
+augroup END
+
+"## packs pessoais
+" Funcionalidades que podem virar mini packages/plugins.
+" Alguns podem estar em packages.vim
+
+"### Diagrama ascii
+" Desenho de diagramas, útil para apresentações em markdown
+" +-----+     +-----+
+" |texto|     |texto|
+" +--+--+     +-----+
+"    |           ^
+"    |           |
+"    |        +--+--+ 
+"    +------->|texto|
+"             +-----+
+
+" Desenha caixa de texto para diagramas ascii
 " THANKS: https://github.com/vim-scripts/DrawIt/blob/master/autoload/DrawIt.vim#L2494
 fun! Boxdraw()
+    set virtualedit=all
+
+    " Cancela virtual edit
+    "set virtualedit=
+
     let row0   = line("'<") - 1
     let col0   = virtcol("'<") - 1
     let row1   = line("'>") + 1
@@ -647,9 +792,10 @@ fun! Boxdraw()
     normal! r+
     call cursor(row1, col1)
     normal! r+
-endfun
+endfunction
 
-fun! Connectordraw()
+" Desenha conectores entre caixas
+function! Connectordraw()
     " coordenadas que iniciaram ou terminaram a seleção
     let row0 = line("'<")
     let col0 = virtcol("'<")
@@ -676,6 +822,8 @@ fun! Connectordraw()
     if(rowI == 0)
         return
     endif
+
+    " TESTES: https://codepen.io/nenitf/pen/xxVwYmL?editors=0010
 
     let rowF = rowI == row0 ? row1 : row0
     let colF = colI == col0 ? col1 : col0
@@ -744,184 +892,53 @@ fun! Connectordraw()
     normal! r+
     call cursor(rowF, colF)
     exec "normal! r".arrowHead
-endfun
+endfunction
 
-"## Comandos
+vnoremap + :<c-u>call Boxdraw()<CR>
+vnoremap - :<c-u>call Connectordraw()<CR>
 
-" recarrega vimrc com trigger para o filetype
-" THANKS: https://vi.stackexchange.com/questions/9338/why-cannot-i-source-vimrc-for-the-current-file-being-editing
-command! Sov source $MYVIMRC | e %
+"### OutputAssertion
+" 'Frameworkk' de testes com a pegada do udebug
+" https://www.udebug.com/UVa/100
+" Onde é feito um diff do output de um script e
+" o arquivo 'outputassertion.txt'
 
-" fechar (sem forçar) todos buffers e deixar somente um
-" THANKS: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
-command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
+" Sugestões do :OutputAssertion <tab>
+function! ListExecutaveis(A,L,P)
+    return "python3\nnode\ngo run\nlua"
+endfunction
 
-" abre terminal em split, ideal para o gvim
-" FIXME não funciona corretamente no linux
-" THANKS: https://stackoverflow.com/a/38082196
-command! TerminalGitRootVertical exec 'call NN_SetGitDir() | vert term ++kill=term'
-command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
+" TODO desacoplar execução com criação da tab
+function! OutputAssertion(command)
+    execute "tabnew | 0r!".a:command." #"
 
-command! Grep :call Grep("")<cr>
+    " faz o vim entender que não queremo salvar esse arquivo
+    setlocal buftype=nofile
+    normal! Gdd
+    nnoremap <buffer> q :windo bd!<CR>
+    new
 
-" Ver highlight-groups
-"   :so $VIMRUNTIME/syntax/hitest.vim
-" Ver highlight group da palavra sob o cursor
-" https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
-" :highlight mostra as cores do grupo
-command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+    " deixar em cima a mensagem
+    " caso tenha: set splitbelow
+    " é o ideal
+    " wincmd r
+    normal! iUse "q" para fechar todos os buffers
 
+    " faz o vim entender que não queremo salvar esse arquivo
+    setlocal buftype=nofile
+    wincmd w
+
+    " resize o máximo
+    wincmd _
+
+    vert diffsplit outputassertion.txt
+    nnoremap <buffer> q :windo bd!<CR>
+    wincmd l
+endfunction
+
+" :OutputAssertion python
 command -complete=custom,ListExecutaveis -nargs=+ OutputAssertion :execute ":call OutputAssertion(\"<args>\")"
 
-command! TodoList exec "normal! :e ".g:todolist."DONE\<CR>:vsplit ".g:todolist."DOING\<CR>:vsplit ".g:todolist."TODO\<CR>\<c-w>\<c-l>"
-
-"## Mapeamentos
-
-":map -> lista todos mapeamentos para o arquivo
-
-" TODO ver funcionamento do localleader (:h maplocalleader)
-let mapleader="\<space>"
-
-nnoremap    <leader><leader>    :w<CR>
-nnoremap    <leader><cr>        :call NN_Lexplorer()<cr>
-nnoremap    <leader>/           :noh<cr>
-nnoremap    <leader>.           :pwd<CR>
-nnoremap    <leader>dd          :call FechaSplitOuDeletaBuffer()<CR>
-nnoremap    <leader>df          :call FechaSplitOuDeletaBufferForced()<CR>
-nnoremap    <leader>ds          :on<CR>| " Close all splits
-nnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
-nnoremap    <leader>s           :split<CR>
-nnoremap    <leader>t           :tn <c-r><c-w><CR>| " Goto definition (ctags)
-nnoremap    <leader>v           :vsplit<CR>
-nnoremap    <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
-vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
-
-nnoremap    #           :b #<CR>|" FIXME volta para unlisted buffer tbm
-nnoremap    !!          :!!<CR>
-vnoremap    <           <gv|" mantêm select após indentação
-vnoremap    >           >gv|" mantêm select após indentação
-vnoremap    +           :<c-u>call Boxdraw()<CR>
-vnoremap    -           :<c-u>call Connectordraw()<CR>
-inoremap    "           ""<left>|"autoclose
-inoremap    '           ''<left>|"autoclose
-inoremap    {           {}<left>|"autoclose
-inoremap    {}          {}|"evitar {}}
-inoremap    {<CR>       {}<left><CR><Esc>O|"autoclose
-inoremap    {<space>    {}<left><space><space><left>|"autoclose
-inoremap    (           ()<left>|"autoclose
-inoremap    ()          ()|"evitar ())
-inoremap    (<CR>       ()<left><CR><Esc>O|"autoclose
-inoremap    (<space>    ()<left><space><space><left>|"autoclose
-inoremap    [           []<left>|"autoclose
-inoremap    []          []|"evitar []]
-inoremap    [<CR>       []<left><CR><Esc>O|"autoclose
-inoremap    [<space>    []<left><space><space><left>|"autoclose
-vnoremap    J           :m '>+1<CR>gv=gv| " move seleção pra baixo
-vnoremap    K           :m '<-2<CR>gv=gv| " move seleção pra cima
-inoremap    kj          <esc>|" esc mais fácil
-nnoremap    n           nzzzv|" centraliza match do search
-nnoremap    N           Nzzzv|" centraliza match do search
-vnoremap    o'          c'<c-r>"'|" surround match
-vnoremap    o"          c"<c-r>""|" surround match
-vnoremap    o(          c(<c-r>")|" surround match
-vnoremap    o{          c{<c-r>"}|" surround match
-vnoremap    o[          c[<c-r>"]|" surround match
-nnoremap    Q           @q|" executa macro em 'q' (letra que mais gravo)
-tnoremap    <esc>       <C-\><C-n>
-noremap     \           za|" toggle fold
-nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'| " Toggle fold todo arquivo
-noremap     <up>        <nop>|" força hjkl
-noremap     <down>      <nop>|" força hjkl
-noremap     <left>      <nop>|" força hjkl
-noremap     <right>     <nop>|" força hjkl
-inoremap    <up>        <nop>|" força hjkl
-inoremap    <down>      <nop>|" força hjkl
-inoremap    <left>      <nop>|" força hjkl
-inoremap    <right>     <nop>|" força hjkl
-nnoremap    <c-\>       <c-]>|" teclado brasileiro <c-]> não funciona
-inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
-""nnoremap    <c-g>       viwy:call Grep("<c-r>0")<cr>|" grep palavra do cursor
-""vnoremap    <c-g>       y:call Grep("<c-r>0")<cr>|" grep da seleção
-inoremap    <c-h>       <left>|" força hjkl
-" nnoremap    <c-h>       <c-w>h
-cnoremap    <c-h>       <left>
-inoremap    <c-j>       <down>|" força hjkl
-" nnoremap    <c-j>       <c-w>j
-nnoremap    <c-j>       <c-w>w|" estilo DWM
-" inoremap    <c-k>       <up>|" força hjkl
-" nnoremap    <c-k>       <c-w>k
-nnoremap    <c-k>       <c-w>W|" estilo DWM
-" nnoremap    <c-l>       <c-w>l
-cnoremap    <c-l>       <right>
-inoremap    <c-l>       <right>|" força hjkl
-tnoremap    <c-l>       cls<cr>
-nnoremap    <c-n>       yiwV| " substitue mult cursors
-xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>| " substitue mult cursors
-inoremap    <c-q>       <esc>:call JumpToTag()<cr>| " <++>
-nnoremap    <c-q>       :call JumpToTag()<cr>| " <++>
-nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
-nnoremap    <c-z>       u|" remove comportamento <c-z>
-tnoremap    <s-insert>  <c-w>"*
-tnoremap    <c-s-v>     <c-w>"*
-
-if has("gui_running")
-    nmap <c-kPlus> :call FontSizePlus()<CR>
-    nmap <c-kMinus> :call FontSizeMinus()<CR>
-endif
-
-"## Abreviações
-
-cnoreabbrev W! w!
-cnoreabbrev Q! q!
-cnoreabbrev Qa! qa!
-cnoreabbrev QA! qa!
-cnoreabbrev Wq wq
-cnoreabbrev Wa wa
-cnoreabbrev wQ wq
-cnoreabbrev WQ wq
-cnoreabbrev W w
-cnoreabbrev Q q
-cnoreabbrev Qa qa
-cnoreabbrev QA qa
-cnoreabbrev Wqa wqa
-cnoreabbrev WQa wqa
-cnoreabbrev WQA wqa
-cnoreabbrev wQA wqa
-cnoreabbrev wqA wqa
-cnoreabbrev wQa wqa
-
-" THANKS: https://vim.fandom.com/wiki/Find_in_files_within_Vim
-cabbrev lvim
-      \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
-      \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
-      \ <Bar> lw
-      \ <C-Left><C-Left><C-Left>
-
-"## AutoCmds
-
-"https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
-"augroup tempos
-"    autocmd InsertEnter * set timeoutlen=700
-"    autocmd InsertLeave * set timeoutlen=1000
-"augroup END
-
-"### ftdetect
-
-"https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
-"FIXME Como colocar definição de filetype em ftdetect?
-augroup filetype_detect
-    au!
-    au BufRead,BufNewFile *.phtml setfiletype html
-    au BufRead,BufNewFile *.hbs setfiletype html
-    au BufRead,BufNewFile *.gv setfiletype dot
-    au BufRead,BufNewFile TODO setfiletype todolist
-    au BufRead,BufNewFile DOING setfiletype todolist
-    au BufRead,BufNewFile DONE setfiletype todolist
-augroup END
-
-"## packs pessoais
-" Funcionalidades que podem virar mini packages/plugins.
-" Alguns podem estar em packages.vim
 "### Highlight Word
 " Colore palavras (como se fosse o search)
 " Antes do pack: 
@@ -986,18 +1003,8 @@ let s:comment_map = {
             \   "ruby": '#',
             \   "rust": '\/\/',
             \   "sh": '#',
-            \   "desktop": '#',
-            \   "fstab": '#',
-            \   "conf": '#',
-            \   "profile": '#',
             \   "bashrc": '#',
-            \   "bash_profile": '#',
-            \   "mail": '>',
-            \   "eml": '>',
-            \   "bat": 'REM',
-            \   "ahk": ';',
             \   "vim": '"',
-            \   "tex": '%',
             \ }
 
 function! ToggleComment()
@@ -1019,18 +1026,19 @@ function! ToggleComment()
     end
 endfunction
 
-nnoremap gcc :call ToggleComment()<cr>
-vnoremap gcc :call ToggleComment()<cr>
+nnoremap gc :call ToggleComment()<cr>
+vnoremap gc :call ToggleComment()<cr>
 
 "### Snippets
+" Snippets feitos com macros
 
 " modelo de snippet
 " DEMO: snip<space> 
-inoreabbrev <expr> snip TestaTriggerSnippet('fir',
+inoreabbrev <expr> snip TestaTriggerSnippet('snip',
             \ "snip(let i=0;x > 10;x++){<cr>/* codigo */<cr>}",
             \ ['let i=0', 'x > 10', 'x++', '\/\* codigo \*\/'])
 
-fun! TestaTriggerSnippet(abbr, expansion, placeholders)
+function! TestaTriggerSnippet(abbr, expansion, placeholders)
     let g:placeholders = a:placeholders
     let s:expansion = a:expansion.
                 \ "\<Esc>:call PlaceHolder('?')\<CR>"
@@ -1042,24 +1050,16 @@ fun! TestaTriggerSnippet(abbr, expansion, placeholders)
     else
         return a:abbr . c
     endif
-endfun
-
-" impede espaço da abreviação no conteudo abreviado
-"THANKS: :h abbreviation
-""func Eatchar(pat)
-""    let c = nr2char(getchar(0))
-""    return "\<right>"
-""    " FIXME acionar somente com espaço...
-""    " return (c =~ a:pat) ? '' : c
-""endfunc
+endfunction
 
 inoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
 snoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
 snoremap <bs>  i<bs>
 
+" Marca próxima substituição
 " TODO tornar stateless
 let g:placeholders = []
-func! PlaceHolder(backward)
+function! PlaceHolder(backward)
     if get(g:placeholders, 0, '0') != '0'
         if search(g:placeholders[0], 'nw')>0
             let placeholder = g:placeholders[0]
@@ -1078,94 +1078,21 @@ func! PlaceHolder(backward)
             execute "normal! a".g:placeholders
         endif
     endif
-endfun
+endfunction
 
 " snippet + \
 let g:nonkw_snippet_trigger = "\<space>"
 
-" OBJETIVO: "Desabilita" abreviação.
+" 'Desabilita' trigger snippet
 " Ao invés de desabilitar, se for usado <c-v> no insert-mode o próximo char
 " não ativa a abreviação
 command! AbbrevToggle if g:nonkw_snippet_trigger=="\\"
             \|let g:nonkw_snippet_trigger="\<space>"
             \|else|let g:nonkw_snippet_trigger="\\"|endif
 
-" OBJETIVO: Prompt de confirmação para expandir abreviação.
-" DEMO: snippet + non-keyword + <cr>
-" THANKS: Hacking Vim 7.2 (packt)
-""function! AbbrAsk(abbr,expansion)
-""    let s:expansion = a:expansion.
-""                \ "\<Esc>:call search('!cursor!','b')\<cr>cf!".
-""                \ "\<Left>\<C-R>=Eatchar('\s')\<CR>"
-""    if g:abbrevEnabled == 1
-""        let answer = confirm("Use the abbreviation '" . a:abbr . "'?", "&Yes\n&No", 1) 
-""        return answer == 1 ? s:expansion : a:abbr
-""    else
-""        return a:abbr
-""    endif
-""endfunction
-""
-""let g:abbrevEnabled = 1
-""command! AbbrevToggle :call AbbrevToggle()
-""" ao invés de desabilitar, se for usado <c-v> no insert-mode o próximo char
-""" não ativa a abreviação
-""fun! AbbrevToggle()
-""    if g:abbrevEnabled == 1
-""        let g:abbrevEnabled = 0
-""    else
-""        let g:abbrevEnabled = 1
-""    endif
-""endfun
-
-" OBJETIVO: <tab> para listar omni se houver, dicionário ou buffer complete.
-" É util mas existem situações que eu sei que a variável existe
-" e quero utilizar seu nome
-" THANKS: Hacking Vim 7.2 (packt)
-""function! s:superCleverTabOmni()
-""    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-""        return "\<Tab>" 
-""    else
-""        " do we have omni completion available
-""        if &omnifunc != '' 
-""            "use omni-completion 1. priority
-""            return "\<C-X>\<C-O>"  
-""        elseif &dictionary != '' 
-""            " no omni completion, try dictionary completio
-""            return "\<C-K>" 
-""        else
-""            "use omni completion or dictionary completion  
-""            "use known-word completion  
-""            return "\<C-N>"  
-""        endif  
-""    endif
-""endfunction
-""" bind function to the tab key
-""inoremap <Tab> <C-R>=SuperCleverTab()<cr>
-
-" OBJETIVO: Usar <tab> quando tiver menu como <c-n>.
-" Prefiro manter o padrão vim...
-" THANKS: https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
-""inoremap <expr> <Tab> TabComplete()
-""fun! TabComplete()
-""    if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
-""        return "\<C-P>"
-""    else
-""        return "\<Tab>"
-""    endif
-""endfun
-""inoremap <expr> <Tab> TabComplete()
-    
-" TODO listagem de snippets...
-""inoremap <c-s> <c-r>=ListMonths()<CR>
-""func! ListMonths()
-""    call complete(col('.'), ['January', 'February', 'March',
-""                \ 'April', 'May', 'June', 'July', 'August', 'September',
-""                \ 'October', 'November', 'December'])
-""    return ''
-""endfunc
 "#### Listas
 " THANKS: :h complete()
-func! AutoCompleteCarinhas()
+function! AutoCompleteCarinhas()
     call complete(col('.'), [
                 \ 'ಥ_ಥ',
                 \ 'ლ(ಠ益ಠლ)',
@@ -1179,62 +1106,10 @@ func! AutoCompleteCarinhas()
                 \ 'ᕦ(ò_óˇ)ᕤ',
                 \])
     return ''
-endfunc
+endfunction
 inoremap <c-z> <c-r>=AutoCompleteCarinhas()<CR>
-"#### snippets sem selectmode
-"inoreabbrev <expr> for AbbrAsk('for',
-"            \ "for(!cursor!;<+++>;<+++>){<cr><+++><cr>}")
-"
-" THANKS: Hacking Vim 7.2 (packt)
-" procura <+++>
-" inoremap <c-j> <ESC>/<+.\{-1,}+><cr>vf><c-g>
-" snoremap <c-j> <ESC>/<+.\{-1,}+><cr>vf><c-g>
-" snoremap <c-k> <esc>"_X"_x?<+<CR>2"_xi
-" remove laterais <+ +>
-"#### Antigo método de snippet
-" Implementação
-""inorea <buffer> dd <esc>:call TestaTriggerSnippet('dd', 'SnippetPhpDieDump')<cr>
-""fun! SnippetPhpDieDump()
-""    normal! ivar_dump();die;
-""    normal! ==5h
-""    startinsert
-""endfun
 
-" base
-""highlight link NeniTagJump DiffAdd
-""match NeniTagJump /<++>/
-""function! JumpToTag()
-""    " search retorna a linha onde o parametro foi encontrado
-""    if search("<++>",'nw') > 0
-""        " posiciona o cursor sob o padrão da marcação
-""        call search("<++>",'w')
-""        " Caso a marcação esteja na ultima coluna da linha, o :startinsert
-""        " recua uma coluna a mais. Como seria muito complexo calcular essa
-""        " situação, é mais fácil entrar no modo de insert e apagar o numero
-""        " de letras (4 para <++>)
-""        call feedkeys("i\<del>\<del>\<del>\<del>")
-""    endif
-""endfun
-""fun! TestaTriggerSnippet(root, func1)
-""    let c = nr2char(getchar(0))
-""    if c == "\<tab>"
-""        let s:snippetfunc = function(a:func1)
-""        noautocmd let @x = s:snippetfunc()
-""        " :noautocmd cancela insertcharpre (e todos outros autocmds) para não
-""        " atrapalhar eventos de autocomplete com :normal! e etc
-""    elseif c == "\<esc>"
-""        execute "normal! a" . a:root . 'a'
-""        execute 'normal! "_x'
-""    else
-""        " execute "normal a".a:root.c
-""        execute "normal! a" . a:root . '"' . c
-""        execute 'normal! h"_x'
-""        startinsert
-""        call cursor( line('.'), col('.') + 1)
-""    endif
-""endfun
-
-"## sources
+"## Sources
 ":scriptnames para ver a orderm e quais scripts foram iniciados
 
 call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
@@ -1244,8 +1119,8 @@ call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 call SourceIfExists("~/.vimrc-local.vim")
 
 "#### Sugestões para o vimrc-local
+" Configurações que afetam a perf, mistura vim builtin e plugins, exemplo:
 "
-"" configuraçãoes que afetam a perf, mistura vim builtin e plugins
 " call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
 "
 " let g:startify_lists = [
@@ -1258,13 +1133,15 @@ call SourceIfExists("~/.vimrc-local.vim")
 "             \ ]
 
 "### pwd
-" carrega vimrc se existente em no work dir (:h :pwd :h 'getcwd()')
+" Carregamento de 'vimrc' existente no work dir (:h :pwd :h 'getcwd()')
 " ideal para setar wildignore para remover pesquisa de paths de libs
 " TODO remover source quando outro .exrc for carregado
 au DirChanged * :call SourceIfExists(fnamemodify('.exrc', ":p"))
+
+" OBS:
 " exrc não resolve o problema pois ele só carrega o .vimrc .exrc _vimrc ou
 " _exrc no momento que o vim é aberto no diretório, ou seja, o startify não da
-" o gatilho, mas é uma opção legal
+" o gatilho, mas é uma opção interessante caso seja usado somente no terminal
 "set exrc
 "set secure
 " THANKS: https://superuser.com/a/532673
