@@ -1141,6 +1141,8 @@ call SourceIfExists("~/.vimrc-local.vim")
 " let g:startify_commands = [
 "             \ {'g': ['gostack11', 'e ~/dev/gostack11']},
 "             \ ]
+"
+"set rtp+=~/.fzf
 
 "### pwd
 " Carregamento de 'vimrc' existente no work dir (:h :pwd :h 'getcwd()')
