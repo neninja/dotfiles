@@ -515,24 +515,6 @@ function! SourceIfExists(file)
   endif
 endfunction
 
-" Aumenta fonte no gvim
-" THANKS: https://vi.stackexchange.com/a/3104/28875
-function! FontSizePlus ()
-    let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
-    let l:gf_size_whole = l:gf_size_whole + 1
-    let l:new_font_size = ':h'.l:gf_size_whole
-    let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
-endfunction
-
-" Diminui fonte no gvim
-" THANKS: https://vi.stackexchange.com/a/3104/28875
-function! FontSizeMinus ()
-    let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
-    let l:gf_size_whole = l:gf_size_whole - 1
-    let l:new_font_size = ':h'.l:gf_size_whole
-    let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
-endfunction
-
 "### Shared
 " Funções que são mapeadas, portanto não devem ficar com NN_
 
@@ -694,11 +676,6 @@ nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
 nnoremap    <c-z>       u|" remove comportamento <c-z>
 tnoremap    <s-insert>  <c-w>"*
 tnoremap    <c-s-v>     <c-w>"*
-
-if has("gui_running")
-    nmap <c-kPlus> :call FontSizePlus()<CR>
-    nmap <c-kMinus> :call FontSizeMinus()<CR>
-endif
 
 "## Abreviações
 cnoreabbrev W! w!
