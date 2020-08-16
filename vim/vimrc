@@ -504,26 +504,15 @@ function! NN_Git_add()
     echo "não implementado!"
 endfunction
 
-"### Private (script)
-" Funções privadas que são usadas unicamente no vimrc
-
-" Carrega arquivo se ele existe
-" THANKS: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
-function! SourceIfExists(file)
-    if filereadable(expand(a:file))
-        exe 'source' a:file
-    endif
-endfunction
-
-"### Shared
-" Funções que são mapeadas, portanto não devem ficar com NN_
+"### vimrc
+" Funções que são mapeadas ou usadas como comando por arquivo
 
 " Pesquisa palavra em todo o projeto
 " https://stackoverflow.com/questions/20933836/what-is-the-difference-between-location-list-and-quickfix-list-in-vim
 " THANKS: https://github.com/jmharvey/vim/blob/master/vimrc#L207
 " THANKS: https://vimrcfu.com/snippet/104
 " FIXME Ativa gitguttertoggle
-function! Grep(grepword)
+function! s:Grep(grepword)
     call NN_SetGitDir()
     if len(a:grepword) == 0
         let s:grepword = input("Grep: ")        
@@ -536,17 +525,8 @@ function! Grep(grepword)
     lopen
 endfunction
 
-" Limpa a tela do terminal
-function! LimpaTerminal()
-    if has("win32")
-        silent !cls
-    else
-        silent !clear
-    endif
-endfunction
-
 " Fecha split ou deleta o buffer
-function! FechaSplitOuDeletaBuffer()
+function! s:FechaSplitOuDeletaBuffer()
     if winnr('$') > 1
         q
     else
@@ -555,11 +535,23 @@ function! FechaSplitOuDeletaBuffer()
 endfunction
 
 " Fecha split ou deleta o buffer ignorando modificações
-function! FechaSplitOuDeletaBufferForced()
+function! s:FechaSplitOuDeletaBufferForced()
     if winnr('$') > 1
         q!
     else
         bd!
+    endif
+endfunction
+
+"### Shared script
+" Funções privadas que são usadas entre multiplos arquivos,
+" portanto não devem ser marcadas com s:
+
+" Carrega arquivo se ele existe
+" THANKS: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
+function! SourceIfExists(file)
+    if filereadable(expand(a:file))
+        exe 'source' a:file
     endif
 endfunction
 
@@ -581,7 +573,7 @@ command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
 " Procura palavra no projeto
 " :Grep<CR>
 " Grep: <palavra>
-command! Grep :call Grep("")<cr>
+command! Grep :call <SID>Grep("")<cr>
 
 " Visualiza todos highlight-groups
 "   :so $VIMRUNTIME/syntax/hitest.vim
@@ -603,8 +595,8 @@ nnoremap    <leader><leader>    :w<CR>
 nnoremap    <leader><cr>        :call NN_Lexplorer()<cr>
 nnoremap    <leader>/           :noh<cr>
 nnoremap    <leader>.           :pwd<CR>
-nnoremap    <leader>dd          :call FechaSplitOuDeletaBuffer()<CR>
-nnoremap    <leader>df          :call FechaSplitOuDeletaBufferForced()<CR>
+nnoremap    <leader>dd          :call <SID>FechaSplitOuDeletaBuffer()<CR>
+nnoremap    <leader>df          :call <SID>FechaSplitOuDeletaBufferForced()<CR>
 nnoremap    <leader>ds          :on<CR>| " Close all splits
 nnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
 nnoremap    <leader>s           :split<CR>
