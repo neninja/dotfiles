@@ -113,7 +113,7 @@ execute "set runtimepath+=".g:dotfiles_dir."/vim/after"
 "set runtimepath+=~/vimfiles/pack/*/start/*
 set packpath+=~/vimfiles
 
-"### Syntax e identação
+"### Syntax e indentação
 " syntax de acordo com o filetype
 " TODO diferença entre on e enabled
 " syntax on
