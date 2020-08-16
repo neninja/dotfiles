@@ -91,9 +91,9 @@ let g:ctrlp_prompt_mappings = {
 
 " Deve vir antes da definição final do colorscheme
 augroup qs_colors
-  autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+    autocmd!
+    autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -394,14 +394,14 @@ let g:ale_fix_on_save = 1
 colo yin
 
 fun! FixColorschemeYin()
-  highlight LineNr guibg=#1c1c1c ctermbg=234
-  highlight Search guibg=#eeeeee guifg=#080808 ctermbg=255 ctermfg=232 term=none
-  highlight MatchParen guibg=blue guifg=white
+    highlight LineNr guibg=#1c1c1c ctermbg=234
+    highlight Search guibg=#eeeeee guifg=#080808 ctermbg=255 ctermfg=232 term=none
+    highlight MatchParen guibg=blue guifg=white
 endfun
 
 augroup override_highlights_yin
-  autocmd!
-  autocmd ColorScheme yin call FixColorschemeYin()
+    autocmd!
+    autocmd ColorScheme yin call FixColorschemeYin()
 augroup END
 call FixColorschemeYin()
 

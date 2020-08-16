@@ -41,7 +41,7 @@ augroup END
 
 function! AutoComplete2()
     " if !pumvisible()
-        " noa call feedkeys("\<C-n>", 'n')
+    " noa call feedkeys("\<C-n>", 'n')
     " endif  
 
     " Encerra o if sem calculo caso ja exista um popup

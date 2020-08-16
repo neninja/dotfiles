@@ -151,20 +151,20 @@ set conceallevel=2
 " Caso seja necessário corrigir syntax de um plugin, deve ser feito em packages.vim
 
 function FixHighlight()
-  highlight link typescriptDOMDocProp typescriptProp
-  highlight link typescriptPaymentShippingOptionProp typescriptProp
-  highlight link typescriptPaymentMethod typescriptProp
-  highlight link typescriptDOMEventProp typescriptProp
+    highlight link typescriptDOMDocProp typescriptProp
+    highlight link typescriptPaymentShippingOptionProp typescriptProp
+    highlight link typescriptPaymentMethod typescriptProp
+    highlight link typescriptDOMEventProp typescriptProp
 
-  highligh link gitcommitSummary gitcommitFirstLine
-  
-  " highlight SpellBad term=underline gui=undercurl guisp=Orange
-  highlight SpellBad guifg=#000000 guibg=#af0000 gui=bold term=bold ctermfg=black ctermbg=red
+    highligh link gitcommitSummary gitcommitFirstLine
+
+    " highlight SpellBad term=underline gui=undercurl guisp=Orange
+    highlight SpellBad guifg=#000000 guibg=#af0000 gui=bold term=bold ctermfg=black ctermbg=red
 endfun
 
 augroup override_highlights
-  autocmd!
-  autocmd ColorScheme * call FixHighlight()
+    autocmd!
+    autocmd ColorScheme * call FixHighlight()
 augroup END
 
 "## Comportamento
@@ -422,12 +422,12 @@ execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
 " Necessario instalar ctags ou universal ctags
 function! NN_ctags()
     let s:ctags_command="ctags" . 
-                  \ " -R --totals" .
-                  \ " --exclude=.git --exclude=.svn" .
-                  \ " --exclude=vendor" .
-                  \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
-                  \ " --exclude=_site" .
-                  \ " --languages=php,javascript"
+                \ " -R --totals" .
+                \ " --exclude=.git --exclude=.svn" .
+                \ " --exclude=vendor" .
+                \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
+                \ " --exclude=_site" .
+                \ " --languages=php,javascript"
 
     " procura se existe um arquivo .ctags a mais
     if filereadable(expand(".ctags"))
@@ -510,9 +510,9 @@ endfunction
 " Carrega arquivo se ele existe
 " THANKS: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
 function! SourceIfExists(file)
-  if filereadable(expand(a:file))
-    exe 'source' a:file
-  endif
+    if filereadable(expand(a:file))
+        exe 'source' a:file
+    endif
 endfunction
 
 "### Shared
@@ -699,10 +699,10 @@ cnoreabbrev wQa wqa
 
 " THANKS: https://vim.fandom.com/wiki/Find_in_files_within_Vim
 cabbrev lvim
-      \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
-      \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
-      \ <Bar> lw
-      \ <C-Left><C-Left><C-Left>
+            \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
+            \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
+            \ <Bar> lw
+            \ <C-Left><C-Left><C-Left>
 
 "## AutoCmds
 " THANKS: https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
@@ -781,7 +781,7 @@ function! Connectordraw()
     let col0 = virtcol("'<")
     let row1 = line("'>")
     let col1 = virtcol("'>")
-    
+
     let rowI = 0
     let colI = 0
 
@@ -1052,8 +1052,8 @@ function! TestaTriggerSnippet(abbr, expansion, placeholders)
     let g:placeholders = a:placeholders
     let s:expansion = a:expansion.
                 \ "\<Esc>:call PlaceHolder('?')\<CR>"
-                " \ "\<Esc>g_"
-                " \ "\<C-R>=Eatchar('\s')\<CR>"
+            " \ "\<Esc>g_"
+            " \ "\<C-R>=Eatchar('\s')\<CR>"
     let c = nr2char(getchar(0))
     if c == g:nonkw_snippet_trigger
         return s:expansion
