@@ -20,6 +20,7 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
     - [sample-dot-graph/](/modelos/sample-dot-graph): exemplos da utilização de graphviz
     - [git/](/modelos/git): arquivos usados com git ou github
 - [vim/](/vim): arquivos de configuração do [vim](https://www.vim.org/)
+    - [doc/wtf.txt](/vim/doc/wtf.txt): documentação das minhas configurações (`:h wtf`)
     - [after/](/vim/after/): [Comportamentos](/vim/after/ftplugin) e [cores](/vim/after/syntax) específicas (js, python, php ...)
     - [dicionarios/](/vim/dicionarios/): dicionários usados para sugerir palavras
     - [skeletons/](/vim/skeletons/): estrutura inicial de tipos de arquivos
@@ -57,6 +58,7 @@ cd dev
 git clone https://github.com/nenitf/dotfiles.git
 cd dotfiles
 ./install.sh
+vim -c "helptags vim/doc" -c q
 ```
 
 ### Completa no Windows
@@ -68,6 +70,7 @@ cd dev
 git clone https://github.com/nenitf/dotfiles.git
 cd dotfiles
 ./install.sh
+vim -c "helptags vim/doc" -c q
 ```
 
 ## Atualização forçada
@@ -80,37 +83,10 @@ git reset --hard origin/main
 
 ### Vim
 
-- Caso precise configurar scripts que devem rodar **antes** do `vim/vimrc`, crie o arquivo `~/.vimrc-pre.vim` (equivale `%userprofile%\.vimrc-pre.vim` no Windows). Sugestão:
-
-```vim
-set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
-set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
-```
-
-- Caso precise configurar scripts que devem rodar **depois** do `vim/vimrc`, crie o arquivo `~/.vimrc-local.vim` (equivale `%userprofile%\.vimrc-local.vim` no Windows). Sugestão:
-
-```vim
-" configuraçãoes que afetam a perf, mistura vim builtin e plugins
-call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
-
-let g:startify_lists = [
-            \ { 'type': 'sessions', 'header': ['sessões'] },
-            \ { 'type': 'commands', 'header': ['comandos'] },
-            \ ]
-
-let g:startify_commands = [
-            \ {'g': ['gostack11', 'e ~/dev/gostack11']},
-            \ ]
-```
-
-- Caso precise configurar scripts que devem rodar **depois** do `vim/gvimrc`, crie o arquivo `~/.gvimrc-local.vim` (equivale `%userprofile%\.gvimrc-local.vim` no Windows). Sugestão:
-
-```vim
-" set guifont=UbuntuMono\ NF:h11
-" set guifont=Fira\ Code:h10
-set guifont=Consolas:h11
-" Para ver as opções de font: set guifont=*
-```
+- Caso precise configurar scripts que devem rodar **antes** do `vim/vimrc`, crie o arquivo `~/.vimrc-pre.vim` (equivale `%userprofile%\.vimrc-pre.vim` no Windows).
+- Caso precise configurar scripts que devem rodar **depois** do `vim/vimrc`, crie o arquivo `~/.vimrc-local.vim` (equivale `%userprofile%\.vimrc-local.vim` no Windows).
+- Caso precise configurar scripts que devem rodar **depois** do `vim/gvimrc`, crie o arquivo `~/.gvimrc-local.vim` (equivale `%userprofile%\.gvimrc-local.vim` no Windows).
+- Utilize os helptags (`:h wtf`) gerados para saber mais sobre os detalhes das configurações (exemplo: `:h wtf-autocomplete`).
 
 ## TODO
 * [ ] Windows CMD/PS: Alias para git

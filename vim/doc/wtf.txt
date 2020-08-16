@@ -1,0 +1,1524 @@
+*wtf* *nenitf* *neniwtf* *neniwtfvim* *neniwtfvimrc*
+Neni @nenitf <http://neni.dev>
+>
+                    +----------------+
+          +-------->|manutenibilidade+-------+
+          |         +----------------+       |
+          |                                  v
+    +-----+------+                      +---------+
+    |simplicidade|                      |qualidade|
+    +-----+------+                      +---------+
+          |                                  ^
+          |            +-----------+         |
+          +----------->|performance+---------+
+                       +-----------+
+<
+|PRECEITOS|:
+  - Focar em |performance| windows e linux
+  - |Organizar| o trecho de código no fold correto
+  - Manter o |KISS|, não reescrever o vim! Lembrar que:
+      - A configuração será usada |crossplatform| (windows e linux)
+      - Cada complexidade a mais significa mais manutenção
+  - Manter |compatibilidade| entre vim e nvim
+  - |Evitar| trocar comandos default do teclado
+  - Usar/configurar poucos |plugins| possível
+  - |Documentar| o código (respeitando a largura de coluna)
+      - Configurações |antigas|, |novas|, |defaults| e |motivos|
+
+|UPGRADES|: Ver arquivo `wiki/vim.md`
+
+|DICAS|:
+  - Nos folds:
+      - `zR` e `zM` abre e fecha recursivamente todo arquivo (map: `<f2>`)
+      - `za` abre e fecha (toggle) um folder (map: `<tab>`)
+      - `[z` `]z` equivalem a `gg` `G` de um fold aberto
+      - `zj` `zk` pulo de fold
+  - Propriedades que são setadas podem voltar ao seu valor inicial com &,
+  por exemplo `set wildmenu&`
+  - Comandos para testar performance:
+      - `:syntime` on e `:syntime` report
+      - abrir vim no terminal com `vim --startuptime tempo.txt tempo.txt`
+      - abrir vim no terminal com `vim -u NONE` (remove vimrc)
+
+==============================================================================
+*wtf-usage*
+
+------------------------------------------------------------------------------
+UTILIZAÇÃO NENIWTFVIMRC
+
+- Atualizar com `vim -c "helptags vim/doc" -c q` dentro de dotfiles
+- Usar `K` (`:h K`) em cima da palavra da configuração para consultar manual
+
+------------------------------------------------------------------------------
+MANUTENÇÃO NENIWTFVIMRC
+
+- Separar seções com `=`, subseções com `-` e fim de cabeçalho com `.`
+- Usar ` para códigos inline e > < com identação para blocos
+- Usar * para tags e | para realces
+- Caso não dê para ver o conceal basta slecionar o texto
+- Evitar utilizar ponto final
+- Configurações antigas colocar `|[GOLD]|`
+- Scripts ou referências com links devem ser colocadas com `|THANKS|: <url>`
+- Formatar largura dos comentários com `Vgq`
+
+==============================================================================
+*wtf-files*
+
+- `~/.vimrc`
+- `~/_vimrc`
+- `~/.gvimrc`
+- `~/_gvimrc`
+- `~/.vimrc-pre.vim`
+- `~/.gvimrc-pre.vim`
+- `dotfiles/vim/gvimrc`
+- `dotfiles/vim/vimrc`
+- `dotfiles/vim/dotfiles.vim`
+- `dotfiles/vim/packages.vim`
+- `dotfiles/vim/plus.vim`
+- `~/.gvimrc-local.vim`
+- `~/.vimrc-local.vim`
+- `dotfiles/vim/after/syntax/*`
+- `dotfiles/vim/after/ftplugin/*`
+- `dotfiles/vim/ftdetect/*`
+
+------------------------------------------------------------------------------
+*wtf-file-vimrcpre*
+
+Arquivo de definições de variáveis e configurações da máquina.
+Deve ser criado na home com o nome `.vimrc-pre.vim`.
+
+Exemplo:
+>
+  " configuraçãoes que afetam a perf, mistura vim builtin e plugins
+  call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
+
+  let g:startify_lists = [
+              \ { 'type': 'sessions', 'header': ['sessões'] },
+              \ { 'type': 'commands', 'header': ['comandos'] },
+              \ ]
+
+  set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
+  set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
+
+  " set rtp+=~/scoop/apps/fzf
+  " set rtp+=~/.fzf/plugin
+  set rtp+=~/.fzf
+<
+------------------------------------------------------------------------------
+*wtf-file-vimrc*
+
+Arquivo de configurações básicas do vim, podendo ser adicionado de maneira
+independente do repo dotfiles.
+
+#1:
+
+Referenciar ele online
+>
+  vim -c "Ns https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vimrc"
+<
+
+#2:
+
+Salvar o arquivo e referenciar ele
+>
+  vim -u <path/to/vimrc>
+<
+
+#3:
+
+Baixar arquivo e deixá-lo em:
+  - `%userprofile%\_vimrc` no Windows
+  - `$HOME/.vimrc` no Linux.
+
+------------------------------------------------------------------------------
+*wtf-file-gvimrc*
+
+Arquivo de configurações que é referenciado se o gvim for aberto
+..............................................................................
+
+Corrige efeitos visuais e sonoros
+Note: When the GUI starts, 't_vb' is reset to its default value, you might
+want to set it again in your gvimrc.
+|THANKS|: https://stackoverflow.com/a/18589653
+|THANKS|: http://vimdoc.sourceforge.net/htmldoc/gui_w32.html
+>
+  au! GUIEnter * set visualbell t_vb=
+
+  " Complemento do Windows ¯\_(ツ)_/¯
+  au! GUIEnter * simalt ~x
+<
+
+Remove componentes da interface
+>
+  set guioptions-=T  " tool bar
+  set guioptions-=m  " menu bar
+  set guioptions-=r  " scroll bar direita
+  set guioptions-=L  " scroll bar esquerda (janela com split vertical)
+<
+
+Aumento e diminuição da fonte
+|THANKS|: https://vi.stackexchange.com/a/3104/28875
+>
+  function! FontSizePlus ()
+  function! FontSizeMinus ()
+
+  nnoremap <c-kPlus> :call FontSizePlus()<CR>
+  nnoremap <c-kMinus> :call FontSizeMinus()<CR>
+<
+------------------------------------------------------------------------------
+*wtf-file-dotfiles*
+
+Configurações que dependem da estrutura de diretórios de nenitf/dotfiles como:
+  - Esqueletos de arquivos
+    |THANKS|: https://shapeshed.com/vim-templates
+  - Dicionários
+    |THANKS|: https://github.com/skywind3000/vim-dict
+    Note para organizar alfabeticamente, selecione as linhas e :sort
+
+------------------------------------------------------------------------------
+*wtf-file-packages*
+
+Arquivo de configurações de plugins/packages. Seu desacoplamento do vimrc
+serve para permitir o uso do vim em seu estado mais básico de configurações
+sem a necessidade de baixar outros arquivos.
+..............................................................................
+ctrlpvim/ctrlp.vim
+
+|PROS|:
+  - Search de buffer advinhando conforme é digitado
+  - Search de file advinhando conforme é digitado
+  - Search de mru advinhando conforme é digitado
+  - Search de tag advinhando conforme é digitado
+  - Se adequa ao repositorio git
+  - Abre facilmente vertical e horizontal split
+  - Criação de arquivos e pastas rapidamente
+|CONS|:
+  - Não funciona as vezes. TODO ver o motivo
+  - Pode ser meio lento
+  - Pode existir solução solução própria do vim
+    https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/dr2qo4k?utm_source=share&utm_medium=web2x
+    https://www.vi-improved.org/recommendations/
+
+|USOS|:
+  - Escolher arquivo <c-p> pesquisar/escolher arquivo <enter>
+  - Criar arquivos e o path: <c-p> digitar arquivo ou /path/arquivo a ser criado <c-y><enter>
+  - Escolher arquivo em split: <c-p> pesquisar/escolher arquivo <c-h>
+  - Escolher arquivo em vsplit: <c-p> pesquisar/escolher arquivo <c-v>
+
+Note
+  - É possível usar tab para completar nomes de pastas
+
+---------------------------------------
+|[GOLD]| junegunn/fzf.vim
+
+Usa `:GFiles` (com gitignore) ou Files
+|THANKS|: https://rietta.com/blog/hide-gitignored-files-fzf-vim/
+>
+  nnoremap <expr> <leader>f (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+  nnoremap <expr> <leader>f (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
+<
+
+Fecha split ao cancelar pesquisa
+|THANKS|: https://github.com/junegunn/fzf.vim/issues/544#issuecomment-457456166
+>
+  tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+<
+---------------------------------------
+unblevable/quick-scope
+
+|PROS|:
+  - Facilita com o f
+
+|USOS|:
+  - `:QuickScopeToggle`
+
+Deve vir antes da definição final do colorscheme
+>
+  augroup qs_colors
+      autocmd!
+      autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+      autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+  augroup END
+<
+
+Trigger a highlight in the appropriate direction when pressing these keys:
+>
+  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+<
+---------------------------------------
+mhinz/vim-startify
+
+|PROS|:
+  - Gerenciamento de sessões
+  - Comandos na tela inicial
+
+|USOS|:
+  - `:SLoad` load a session
+  - `:SSave[!]` save a session
+  - `:SDelete[!]` delete a session
+  - `:SClose` close a session
+
+---------------------------------------
+plasticboy/vim-markdown
+
+|PROS|:
+  - Conceal de * ** *** ` `` ```ft
+  - Tem a navegação com `:Toc`
+
+Desabilita folds (fica estranho com jekyll)
+>
+  let g:vim_markdown_folding_disabled = 1
+<
+
+Cabeçalho do documento, usado no jekyll
+>
+  let g:vim_markdown_frontmatter = 1
+<
+---------------------------------------
+tpope/vim-fugitive
+
+|PROS|:
+  - add, commit e status rápido
+  - comparare stage rápido
+  - git blame
+
+Maps de `:Gstatus`, `:G` e `<f3>` (`:h fugitive-maps` ou `g?`)
+|THANKS|: http://vimcasts.org/blog/2011/05/the-fugitive-series/
+  - Navegação:
+      - `]]` `[[` navega entre commits e arquivos
+      - `)`, `(`, `<c-n>` e `<c-p>` navega entre commits, arquivos e hunks
+      - `<cr>` abre arquivo
+  - Stage:
+     - `U` unstage all
+     - `X` descarta alterações
+     - - toggle stage unstage arquivo ou hunk
+  - Diff:
+      - `=` toggle diff inline
+      - `dv` vertical diff split
+          - usar `:diffget` (stage) `:diffput` (unstage) na index (fugitive)
+          - salvar e sair com `ZZ`
+  - Conflitos:
+      - TODO
+  - Commits:
+      - `cc` abre janeja de mensagem de commit
+      - `ca` add staged ao ultimo commit e abre janela mensagem de commit
+      - `ce` add staged ao ultimo commit sem editá-lo
+      - `cvc` commita com detalhes diffs que não vão (ver commit -v)
+      Note Fechar commit com `ZZ` ao invez de `:wq`
+  - Stash:
+      - TODO
+
+Commit rápido do arquivo atual + stageds se houver
+>
+  command! GC :Gw | Gcommit
+<
+---------------------------------------
+airblade/vim-gitgutter
+
+|PROS|:
+  - Marcação de + ~ _
+|CONS|:
+  - Perf
+  - Dispara sozinho com :lvim
+
+|USOS|:
+  - `<leader>hp` mostra valor anterior do hunk
+  - `<leader>hs` stage["git add line"] modificação, removendo chunk
+  - `<leader>hu` desfaz modificação não staged no chunk
+
+Atualização mais rápida
+>
+  set updatetime=100
+<
+
+Desabilita por padrão, para habilitar basta usar`:GitGutterEnable`
+>
+  let g:gitgutter_enabled=0
+<
+
+Desabilita maps do gitgutter
+>
+  let g:gitgutter_map_keys=0
+<
+---------------------------------------
+junegunn/goyo.vim
+
+|PROS|:
+  - Leitura mais confortável da wiki
+  - Idel para apresentações com markdown + folds
+
+Presentation mode
+|THANKS|: https://gist.github.com/davidmh/f4337f9ea9eca6789b3f8222b8333a35
+>
+  function! s:enter_presentation()
+  function! s:exit_presentation()
+  autocmd! User GoyoEnter nested call <SID>enter_presentation()
+  autocmd! User GoyoLeave nested call <SID>exit_presentation()
+<
+---------------------------------------
+pangloss/vim-javascript
+
+|PROS|:
+  - Syntax js
+
+---------------------------------------
+Quramy/tsuquyomi
+
+|PROS|:
+  - Rápido
+  - Vimscript (out of box)
+  - Quickfix dos erros e autocomplete do omnifunc
+|CONS|:
+  - Mesmo inativando maps `<esc><esc>` é igual a `<c-t>`
+
+---------------------------------------
+MaxMEllon/vim-jsx-pretty
+
+|PROS|:
+  - Syntax jsx
+  - indentação jsx
+
+---------------------------------------
+dense-analysis/ale
+
+|PROS|:
+  - Auto format com eslint E prettier
+  - Mensagem de erro e aviso
+  - Marcação do texto e código do erro
+|CONS|:
+  - Afeta perf
+
+Note
+  - `:ALEFix` caso não formate por algum motivo
+    - ou usar cli:
+      - `:!prettier --write %`
+      - `:!yarn eslint --fix %`
+
+Set de linters
+>
+  let g:ale_fixers = {
+              \ 'javascript': ['prettier', 'eslint'],
+              \ 'javascriptreact': ['prettier', 'eslint'],
+              \ 'typescript': ['prettier', 'eslint'],
+              \ 'typescriptreact': ['prettier', 'eslint']
+              \ }
+<
+
+Força correção de acordo com o lint ao salvar o arquivo
+>
+  let g:ale_fix_on_save = 1
+<
+
+|[GOLD]|
+Ale na statusline
+>
+  function! LinterStatus() abort
+      let l:counts = ale#statusline#Count(bufnr(''))
+      let l:all_errors = l:counts.error + l:counts.style_error
+      let l:all_non_errors = l:counts.total - l:all_errors
+      return l:counts.total == 0 ? 'OK' : printf(
+                  \   '%dW %dE',
+                  \   all_non_errors,
+                  \   all_errors
+                  \)
+
+  let g:ale_echo_msg_error_str = 'E'
+  let g:ale_echo_msg_warning_str = 'W'
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+<
+---------------------------------------
+|[GOLD]| joshdick/onedark.vim
+
+|PROS|:
+  - Cores agradáveis
+  - Baixo contraste (melhor para leitura)
+  - Suporte a todas linguagens que utilizo
+  - Tema popular (constantes atualizações)
+|CONS|:
+  - Não possui light theme
+  - Possivelmente a quantidade de cores afeta perf
+
+Note afterglow outro tema interessante
+  https://github.com/danilo-augusto/vim-afterglow
+
+Configura colorscheme
+|THANKS|: https://github.com/joshdick/onedark.vim/issues/110#issuecomment-345599864
+>
+  packadd! onedark.vim
+  colorscheme onedark
+<
+---------------------------------------
+|[GOLD]| andreasvc/vim-256noir
+|PROS|:
+  - Cores agradáveis
+  - Não distrai com multiplas cores em tela
+|CONS|:
+  - Não possui light theme
+  - Cores de diff de adição ou remoção não são intuitivas
+  - Tema não popular, atualização baixa
+
+Configura colorscheme
+>
+  colorscheme 256_noir
+<
+---------------------------------------
+|[GOLD]| ewilazarus/preto
+|PROS|:
+  - Cores agradáveis
+  - Não distrai com multiplas cores em tela
+|CONS|:
+  - Contraste alto
+  - Conceal estranho
+  - Não possui light theme
+  - Cursor preto se perde no editor
+  - Tema não popular, atualização baixa
+
+---------------------------------------
+pgdouyon/vim-yin-yang
+
+|PROS|:
+  - Cores agradáveis
+  - Baixo contraste (melhor para leitura)
+  - Não distrai com multiplas cores em tela
+|CONS|:
+  - Tema não popular, atualização baixa
+  - SpellBad com contraste estranho
+  - Search com contraste estranho
+  - MatchParen com contraste estranho
+  - LineNr com background desnecessário
+
+Corrige grupos de cores específicos
+>
+  function! FixColorschemeYin()
+  augroup override_highlights_yin
+      autocmd!
+      autocmd ColorScheme yin call FixColorschemeYin()
+  augroup END
+  call FixColorschemeYin()
+<
+---------------------------------------
+editorconfig/editorconfig-vim
+
+|PROS|:
+  - Integração com editorconfig
+
+Exemplo de `.editorconfig`:
+>
+  root = true
+
+  [*]
+  indent_style = space
+  indent_size = 2
+  charset = utf-8
+  trim_trailing_whitespace = true
+  insert_final_newline = true
+<
+
+Note `insert_final_newline` funciona porém não aparece no vim!
+THANKS: https://github.com/editorconfig/editorconfig/wiki/Newline-at-End-of-File-Support#vim
+
+---------------------------------------
+junegunn/gv.vim
+
+|PROS|:
+  - Mais facil de pesquisar pelo titulo do commit
+  - Clicar no commit permite ver sua descrição e diff
+---------------------------------------
+diepm/vim-rest-console
+
+|PROS|:
+  - Falicita MUITO programar apis REST
+  - "Documenta" as requisições da api
+
+|USOS|:
+  - `]]` `[[` navega entre blocos de requisição
+  - usar `<c-j>` no bloco da requisição
+
+Assume que o filetype de retorno é json
+Note Somente quando não é indicado nas opções de curl `-i`
+>
+  let g:vrc_response_default_content_type = 'application/json'
+<
+
+Troca `<c-j>` por `<c-x>` pois já mapeei para splits
+>
+  let g:vrc_trigger = '<C-x>'
+<
+
+Exemplo de `vrc.rest`
+
+>
+  # global definitions
+  // default host
+  http://localhost:3333
+
+  // argumentos curl default
+  -s # silencioso
+  #-i # header com syntax dinamica
+  --
+
+  --
+  POST /appointments
+  {
+    "provider": "Felipe",
+    "date": "2020-05-07T20:34:03"
+  }
+  --
+  GET /appointments
+<
+---------------------------------------
+|[GOLD]| vim-vdebug/vdebug
+
+|PROS|:
+  - Unico debug pra vim
+  - Suporte para multiplas linguagens
+|CONS|:
+  - Necessita de Python3
+  - Não funcionou com phpunit
+
+XDEBUG:
+  - Acessar: https://xdebug.org/wizard
+  - Baixar `dll` ou `so` indicado e salvar em `/path/to/php/ext` ou
+  `/path/to/php/ext/ext`
+  - Adicionar no php.ini
+>
+    [xdebug]
+    zend_extension="/path/to/php/ext/xdebug.so" (.so ou .dll)
+    xdebug.remote_enable=on
+    xdebug.remote_handler=dbgp
+    xdebug.remote_host=localhost
+    xdebug.remote_port=9000
+<
+
+|USOS|:
+   `<F5>`: inicia/vai para o proximo breakpoint
+   `<F2>`: avança um passo
+   `<F3>/<F4>`: entra/sai um passo
+   `<F6>`: para debug (kills script)
+   `<F6><F6>`: para o debug e fecha a interface do VDebug
+   `<F9>`: avança até o cursor
+   `<F10>`: toggle breakpoint
+   `<F11>`: mostra variáveis de contexto
+   `<F12>`: mostra variável abaixo do cursor
+   `:Breakpoint <type> <args>`: set a breakpoint of any type (see `:help VdebugBreakpoints`)
+   `:VdebugEval "<code>"`: evaluate some code and display the result
+
+Evita erro:
+`DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses`
+|THANKS|: https://github.com/powerline/powerline/issues/1925#issuecomment-402635097
+>
+  if has('python3')
+    silent! python3 1
+    packadd! vdebug
+  endif
+<
+Note Necessário configurar:
+  - `set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32`
+  - `set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll`
+
+
+Note Script proposto para criar a sessão do xdebug
+>
+  #!/bin/bash
+  export XDEBUG_CONFIG="idekey=xdebug"
+  php "$@"
+<
+------------------------------------------------------------------------------
+*wtf-file-plus*
+
+Arquivo de configurações com ou sem plugins/packages que afetam a performance
+do vimrc base.
+..............................................................................
+
+1. Autocomplete de filename `<c-x><c-f>` com o arquivo aberto sendo a
+   referencia ao invés da raiz do projeto (troca temporariamente `:pwd`)
+   |THANKS|: https://superuser.com/a/604180
+2. Quando em insertmode, as sugestões são case sensitive, fora não
+3. A cada caracter inserido tenta ativar autocomplete
+   |THANKS|: https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
+   Note Pode criar multiplos bugs de funções como macros de `:normal!`, para
+   evitar é preciso usar `:noa normal!`
+>
+  augroup autocompleteOnInsert
+<
+
+Habilita quebra de linha mesmo com popup visível
+>
+  inoremap <expr> <CR> pumvisible() ? "\<esc>a\<CR>" : "\<CR>"
+<
+
+|[GOLD]|
+Antigo autocomplete 1:
+
+|THANKS|:
+  - https://github.com/skywind3000/vim-auto-popmenu
+  - https://stackoverflow.com/a/47967462/9881278
+>
+  function! OpenCompletion()
+      if !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
+          " call feedkeys("\<C-x>\<C-o>", "n")
+          call feedkeys("\<C-n>")
+      endif
+  endfunction
+
+  autocmd InsertCharPre * call OpenCompletion()
+<
+
+|[GOLD]|
+Antigo autocomplete 2:
+|THANKS|:
+  - https://vi.stackexchange.com/a/8902/28875
+  - https://www.reddit.com/r/vim/comments/4tu844/vim_completion_without_plugin/
+  - https://gist.github.com/maxboisvert/a63e96a67d0a83d71e9f49af73e71d93
+>
+  function! AutoComplete()
+      " TODO add omnifunc nas sugestões
+      if v:char =~ '\K'
+          \ && getline('.')[col('.') - 4] !~ '\K'
+          \ && getline('.')[col('.') - 3] =~ '\K'
+          \ && getline('.')[col('.') - 2] =~ '\K' " last char
+          \ && getline('.')[col('.') - 1] !~ '\K'
+
+          " trecho necessário pelo bug de selecionar automaticamente se
+          " <c-x><c-o> já estiver aberto antes de 3 chars
+          if !pumvisible()
+              noa call feedkeys("\<C-n>", 'n')
+          endif
+      end
+  endfunction
+
+  autocmd InsertCharPre * call AutoComplete()
+<
+
+|[GOLD]|
+Habilita escolha de opção com enter com popup visível
+>
+  inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+<
+------------------------------------------------------------------------------
+*wtf-file-vimrclocal*
+
+Arquivo de configurações de packages ou novos sources.
+Deve ser criado na home com o nome `.vimrc-local.vim`.
+
+Exemplo:
+>
+  " Configurações que afetam a perf, mistura vim builtin e plugins, exemplo:
+  call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
+
+  let g:startify_lists = [
+              \ { 'type': 'sessions', 'header': ['sessões'] },
+              \ { 'type': 'commands', 'header': ['comandos'] },
+              \ ]
+
+  let g:startify_commands = [
+              \ { 'g': ['gostack11', 'e ~/dev/gostack11']},
+              \ ]
+<
+------------------------------------------------------------------------------
+*wtf-file-gvimrclocal*
+
+Arquivo de configurações de packages ou novos sources.
+Deve ser criado na home com o nome `.vimrc-local.vim`.
+Note `set guifont=*` para ver opções de fontes
+
+Exemplo:
+>
+    set guifont=Fira\ Code:h10
+    " set guifont=UbuntuMono\ NF:h11
+    " set guifont=Consolas:h11
+>
+------------------------------------------------------------------------------
+*wtf-file-exrc*
+
+Carregamento de `vimrc` existente no work dir (`:h :pwd` e `:h 'getcwd()'`).
+Ideal para setar wildignore para remover pesquisa de paths de libs
+
+|[GOLD]|
+Note `exrc` puro não resolve o problema pois ele só carrega o `.vimrc`,
+`.exrc` `_vimrc` ou `_exrc` no momento que o vim é aberto no diretório. Por
+isso o startify não da o gatilho, mas é uma opção interessante caso seja usado
+somente no terminal. Abaixo a configuração padrão de `exrc` (`:h exrc`)
+|THANKS|: https://superuser.com/a/532673
+>
+  set exrc
+  set secure
+<
+==============================================================================
+------------------------------------------------------------------------------
+*wtf-variaveis*
+
+Variáveis globais que são utilizadas entre scripts, o ideal é que sejam
+sobescritas pelo `~/.vimrc-pre.vim` caso seja necessário
+..............................................................................
+
+Diretório dos dotfiles
+>
+  let g:dotfiles_dir = "~/dev/dotfiles"
+<
+
+Diretório das wikis
+>
+  let g:vimwikis_dirs = [
+              \ g:dotfiles_dir."/wiki",
+              \ g:dotfiles_dir."/wiki/vim"
+              \ ]
+<
+------------------------------------------------------------------------------
+*wtf-vimproved*
+
+Definições de compatibilidades
+..............................................................................
+
+- Quebra compatibilidade com vi
+- Evita erros bizarros como de interpretação de dicionários e etc
+>
+  set nocompatible
+<
+------------------------------------------------------------------------------
+*wtf-rtp*
+
+Carregamento de docs, configurações e scripts, podendo ser:
+  - helptags
+  - scripts de syntax, ftplugin e ftdetect
+
+É usado tanto para plugins quanto para arquivos específicos desse projeto,
+vale ressaltar que caso o diretório não seja encontrado não ocorre erro,
+portanto não tem problema criar acoplamento desse arquivo com outros
+|THANKS|: https://medium.com/usevim/vim-101-runtimepath-83194d411b0a
+..............................................................................
+
+- Deve vir antes das definições de filetype
+- Carrega ftdetect, para definir extensões de tipos de arquivos
+>
+  execute "set runtimepath+=".g:dotfiles_dir."/vim"
+<
+
+Evita autocmd de highligh (syntax/) e específicas do filetype (ftplugin/)
+>
+  execute "set runtimepath+=".g:dotfiles_dir."/vim/after"
+<
+
+O vim utilizado pelo git para commitar no Windows é diferente do que fica
+instalado no sistema. Portanto o mesmo não procura em ~/vimfiles/pack/ os
+packages (plugins), mas sim em ~/.vim (padrão Linux).
+Como solução basta adicionar manualmente. Aparentemente não tem problema em
+escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés de
+commitar por exemplo).
+Pode setar packpath ao invés do runtimepath como solução
+|THANKS|: https://superuser.com/a/1466466
+>
+  "set runtimepath+=~/vimfiles/pack/*/start/*
+  set packpath+=~/vimfiles
+<
+------------------------------------------------------------------------------
+*wtf-buffer*
+
+Configurações sobre conteúdo/exibição pura do buffer
+..............................................................................
+
+Buffers vs Tabs (polêmica ᕦ(ò_óˇ)ᕤ)
+  - o mesmo arquivo não é aberto duas vezes
+  - mais velocidade pois a janela não precisa ser redesenhada
+
+>
+  set hidden
+<
+Note `:ls lista`, `:b <numero><tab>` acessa buffers
+
+|[GOLD]|
+O vim pode zuar o conteudo do buffer exibindo `^M`, não sei como resolver
+ainda. Porém encontrei a função abaixo que tentava evitar o problema
+|THANKS|: https://stackoverflow.com/a/6496995/9881278
+>
+  function! Dos2unix()
+      " Don't strip on these filetypes
+      " :echo &ft
+      if &ft =~ 'startify\|nerdtree'
+          return
+      endif
+      :e ++ff=dos
+  endfunction
+  autocmd BufRead * call Dos2unix()
+<
+
+Checa/atualiza se o texto foi modificado (ocorre mt com o git)
+>
+  set autoread
+  autocmd FocusGained,BufEnter * :silent!<space>!
+  " au FocusGained,BufEnter * checktime
+<
+------------------------------------------------------------------------------
+*wtf-aparencia*
+
+Colorscheme default, sobescrito com plugins
+
+>
+  colorscheme slate
+<
+
+Ajusta cores para um fundo escuro
+>
+  set background=dark
+<
+
+Força uso de 256 cores, permitindo highlight hexadecimal, com guibg e guifg
+ao invés de somente ctermbg e ctermfg
+>
+  set t_Co=256
+  set termguicolors
+<
+
+Remove som ao apertar multiplos ESCs
+|THANKS|: https://vim.fandom.com/wiki/Disable_beeping"
+>
+  set noerrorbells novisualbell t_vb=
+  set belloff=all
+<
+
+Habilita conceal
+>
+  set conceallevel=2
+<
+------------------------------------------------------------------------------
+*wtf-syntax-highlight*
+
+Note `:verbose highlight <highlightGroup>` Exibe informações osbre grupo de
+cores
+
+
+Corrige highlights padrões. Caso seja necessário corrigir syntax de um plugin,
+deve ser feito em `packages.vim` (|wtf-file-packages|)
+>
+  function FixHighlight()
+
+  augroup override_highlights
+      autocmd!
+      autocmd ColorScheme * call FixHighlight()
+  augroup END
+<
+------------------------------------------------------------------------------
+*wtf-comportamento*
+
+Syntax de acordo com o filetype
+>
+  " syntax on
+  syntax enable
+<
+
+Carrega ftplugin.vim e indent.vim do runtimepath (plugins)
+Note Deve vir depois das definições de runtimepaths
+>
+  filetype plugin indent on
+<
+
+Exibe fechamento de {[()]}
+>
+  set showmatch                   
+<
+
+Exibe mode no canto inferior esquerdo
+>
+  set showmode                    
+<
+
+Exibe os comandos no canto inferior direito
+>
+  set showcmd                     
+<
+
+Auto indentação
+>
+  set autoindent                  
+<
+
+Restringe uso do mouse em todos modos ("a" libera)
+>
+  set mouse=                      
+<
+
+Quebra a linha por palavra e não por letra
+>
+  set linebreak                   
+<
+
+Não marca colunha e linha do cursor (perf)
+>
+  set nocursorcolumn nocursorline 
+<
+
+Exibe régua sem numero relativo (perf)
+>
+  set number norelativenumber     
+<
+
+<c-a> e <c-x>
+>
+  set nrformats-=octal            
+<
+
+Não redesenha a tela durante macro (perf)
+>
+  set lazyredraw                  
+<
+
+Não cria arquivo de bkp
+>
+  set nobackup                    
+<
+
+Não cria arquivo swap (?)
+>
+  set noswapfile                  
+<
+
+Mantêm 3 linhas acima/abaixo do cursor em scroll
+>
+  set scrolloff=3                 
+<
+
+Utiliza clipboard do linux e windows para copiar e colar (y e p)
+>
+  set clipboard^=unnamedplus,unnamed
+<
+
+Não limita a coluna (textwidth ou colorcolumn) por padrão pois afeta
+performance, mas para modelines o ideal é 80 para impressão (`:ha`).
+>
+  set colorcolumn=
+  " set textwidth=80
+  " set colorcolumn=81
+<
+
+Permite usar <bs> mesmo indo contra auto-intent, eol e inicio da linha
+|THANKS|: https://vi.stackexchange.com/a/2163/28875
+>
+  set backspace=indent,eol,start
+<
+
+Opções de auto inserção de blocos. Alguns filetypes já possuem por default
+diferentes configurações, portanto é mais interessante add ou remover (+= e
+-=). Abaixo os valores possíveis (`:h fo-table`)
+  t     quebra automatica do texto de acordo com textwidth
+        ideal colocar na modeline: tw=80 fo+=t
+  c     quebra automática do texto de comentários
+  r     insere marcação de comentário (:set comments?) quando usado <cr> no
+        insert a partir de um comentário
+  o     insere marcação de comentário ao criar nova linha com 'o' no normal
+  q     permite formatação com Vgq (depende do textwidth)
+  w     TODO
+  a     TODO
+  n     add automaticamente 2) 3) 4) ...
+  v     TODO
+  b     TODO
+  l     não quebra linhas que ao entrar no insert ja passaram o textwidth
+  m     TODO
+  M     TODO
+  B     TODO
+  1     TODO
+  j     ao juntar linhas de comentários com 'J' remove o caracter de
+        comentário intermediário
+  p     TODO
+
+>
+  set formatoptions+=jcr
+<
+
+Colore os matches de search (`* / %s`)
+>
+  set hlsearch
+<
+
+Colore a pesquisa durante a digitação
+>
+  set incsearch
+<
+
+Ignora case sensitive na busca
+>
+  set ignorecase
+<
+
+Case sensitive se a primeira letra for maiuscula,
+Note Ruim para autocomplete de nomes de funções
+>
+  set nosmartcase
+<
+
+
+Desabilita renderização de emojis pela performance
+>
+  set noemoji
+  set renderoptions=
+
+  " Emojis coloridos
+  "if has("directx")
+  "    set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
+  "    set emoji
+  "endif
+<
+
+
+Habilita modeline nas 5 primeiras/ultimas linhas para configuração individual
+de arquivos
+A linha pode ser comentada de acordo com a syntaxe do filetype do arquivo
+Note Exemplos de modeline:
+  - `vim: set fdm=marker:`
+  - `vim: set fo+=t tw=80:`
+  - `vim: set sw=3 ts=3 cc=85 cuc:`
+>
+  set modeline
+  set modelines=5
+<
+
+Configuração tabs e espaços
+|THANKS|: https://stackoverflow.com/a/1878983/9881278
+>
+  set tabstop=4
+  set softtabstop=4
+  set shiftwidth=4
+  set smarttab
+  set expandtab
+<
+
+Add método padrão de fold `{{{ ... }}}`
+>
+  set foldmethod=marker
+<
+
+Configura título do fold fechado
+>
+  set foldtext=FoldTextMarker()
+<
+
+Configura símbolos do vim (`:h digraph-table-mbyte`)
+>
+  set fillchars=vert:\|,fold:─
+<
+
+Retorna título dos folds sem comentários padrões de linguagens
+|THANKS|: https://stackoverflow.com/a/5984138/9881278
+|THANKS|: https://jdhao.github.io/2019/08/16/nvim_config_folding/
+|THANKS|: https://dhruvasagar.com/2013/03/28/vim-better-foldtext
+>
+  function! FoldTextMarker()
+<
+
+Netrw no lugar do nerdtree, usar `:Lexplore` para toggle
+  - :edit a folder to open a file browser
+  - <CR>/v/t to open in an h-split/v-split/tab
+  - check |netrw-browse-maps| for more mappings
+
+TODO Como não criar NetrwTreeListing (???) e .netrwhist? (???)
+https://github.com/tpope/vim-vinegar/issues/13
+>
+  "autocmd FileType netrw setlocal bufhidden=delete
+<
+
+Tree view
+>
+  let g:netrw_liststyle=3
+<
+
+Exibe numeros (ruler)
+|THANKS|: https://stackoverflow.com/a/8731175
+>
+  let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+<
+
+Corretor ortográfico, ideal para os filetypes: text, gitcommit e markdown
+|COMANDOS|:
+   ]s — ir para a próxima palavra errada;
+   [s — voltar para a palavra errada anterior;
+   zg — adicionar a palavra sob o cursor ao dicionário;
+   zug — desfazer a adição;
+   z= — ver sugestões de correção para esta palavra;
+
+Configura língua da checagem
+Note BR em capslock gera o aviso `Warning region not supported`
+>
+  set spelllang=pt_br
+<
+
+Local onde está o dicionário
+|THANKS|: https://github.com/vim/vim/issues/1330
+|THANKS|: https://extensions.openoffice.org/en/project/vero-brazilian-portuguese-spellchecking-dictionary-hyphenator
+|THANKS|: https://github.com/vim/vim/files/655099/pt_BR.diff.zip
+|THANKS|: https://github.com/mateusbraga/vim-spell-pt-br
+|THANKS|: https://ndvo.wordpress.com/2013/06/05/corretor-ortografico-nativo-do-vim/
+|THANKS|: https://www.dicas-l.com.br/arquivo/verificacao_ortografica_com_o_editor_vim.php
+|THANKS|: https://www.vivaolinux.com.br/artigo/Corretor-Ortografico-no-Vim-Guia-definitivo
+
+Caso tenha interesse em versionar a adição de palavras
+>
+  execute "set runtimepath+=".g:dotfiles_dir."/vim/spell"
+<
+
+Arquivo que possui as adições do dicionário
+|THANKS|: https://stackoverflow.com/a/27979576/9881278
+>
+  execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
+<
+
+Usa como separador de diretório `/` ao invés de `\`, padrão do Windows
+Note Util para importar modulos no javascript
+>
+  set shellslash
+  " set nossl cancela
+<
+------------------------------------------------------------------------------
+*wtf-autocomplete*
+
+Habilita menu
+>
+  set wildmenu
+>
+
+Remove mensagens inúteis do wildmenu
+>
+  set shortmess+=c
+<
+
+Char para chamar wildmenu de um map
+|THANKS|: https://vi.stackexchange.com/a/5030/28875
+>
+  set wildcharm=<tab>
+<
+
+Mostra menu de opções
+  - menuone: menu com uma ou mais de uma sugestão
+  - noinsert: não insere texto selecionado automaticamente
+  - noselect: não seleciona o texto automaticamente
+>
+  set completeopt=menuone,noinsert,noselect
+<
+
+Remove das sugestões arquivos/diretorios (lvimgrep tb)
+|THANKS|: https://stackoverflow.com/a/20042050/9881278
+>
+  set wildignore=node_modules/*
+<
+
+Origem das palavras do wildmenu (`:h ins-completion`)
+  . buffer corrente
+  b buffers escondidos
+  k dicionários
+  w de outras janelas (splits)
+Note Sugestão de tags afeta perf
+Note <c-e> mantem o insert mode e fecha completeopt
+>
+  set complete=.,k,w
+<
+
+Informa aquivo de tags
+Note Equivale a `set tags=tags,./tags`
+>
+  set tags=tags
+<
+
+Configura palavras-com-hifen como palavras inteiras
+|THANKS|: https://stackoverflow.com/a/25050124/9881278
+|PROS|:
+  - Coerência
+  - CSS: font-size
+|CONS|:
+  - PHP: $this-> cria sugestão de $this-
+>
+  set iskeyword+=-
+<
+
+Escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
+|THANKS|: https://github.com/vim-scripts/SyntaxComplete
+Note <c-x><c-o> para utilizar a sugestão
+>
+  set omnifunc=syntaxcomplete#Complete 
+<
+
+------------------------------------------------------------------------------
+*wtf-statusline*
+
+Escolha de informações, cujo pode ser modificada em outros arquivos
+..............................................................................
+
+Habilita e reseta statusline
+>
+  set laststatus=2
+  set statusline=
+<
+
+  %f - nome abreviado
+  %r - readonly
+  %m - modificado [+]
+  %= - espaço
+  %p - percentual percorrido do arquivo
+  %l - linhas atual
+  %c - coluna atual
+  %y - [filetype]
+  %n - {numero do buffer}
+
+------------------------------------------------------------------------------
+*wtf-funcoes*
+
+Funções tanto publicas, privadas quando usadas em maps e comandos
+..............................................................................
+
+Att ctags
+Note Necessario instalar ctags ou universal ctags
+>
+  function! NN_ctags()
+<
+
+Habilita e desabilita emojis, ideal para perf
+>
+  function! NN_EmojiToggle()
+<
+
+Atualiza diretório atual (:pwd) com dir do projeto, com raiz .git
+|THANKS|: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
+>
+  function! NN_SetGitDir()
+<
+
+Abre :Lexplorer com pwd como do git
+|THANKS|: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
+>
+  function! NN_Lexplorer()
+<
+
+Lista TODOS e FIXMES
+|THANKS|: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
+Note Irá ignorar path do wildignore https://stackoverflow.com/a/20042050
+>
+  function! NN_Tasks()
+<
+
+Commita projetos de aulas com o padrão `:tv: add aula <numero>`
+>
+  function! NN_GitAula()
+<
+
+Pesquisa palavra em todo o projeto
+|THANKS|: https://stackoverflow.com/a/20934608/9881278
+|THANKS|: https://github.com/jmharvey/vim/blob/master/vimrc#L207
+|THANKS|: https://vimrcfu.com/snippet/104
+>
+  function! s:Grep(grepword)
+<
+
+Fecha split ou deleta o buffer
+>
+  function! s:FechaSplitOuDeletaBuffer()
+<
+
+Fecha split ou deleta o buffer ignorando modificações
+>
+  function! s:FechaSplitOuDeletaBufferForced()
+<
+Carrega arquivo se ele existe
+|THANKS|: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
+>
+  function! SourceIfExists(file)
+<
+------------------------------------------------------------------------------
+*wtf-comandos*
+
+Recarrega vimrc com trigger para o filetype
+|THANKS|: https://vi.stackexchange.com/a/9339/28875
+>
+  command! Sov source $MYVIMRC | e %
+<
+
+Fecha (sem forçar) todos buffers e deixar somente um
+|THANKS|: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
+>
+  command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
+<
+
+Abre terminal em split, ideal para o gvim
+|THANKS|: https://stackoverflow.com/a/38082196
+>
+  command! TerminalGitRootVertical exec 'call NN_SetGitDir() | vert term ++kill=term'
+  command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
+<
+
+Procura palavra no projeto
+  :Grep<CR>
+  Grep: <palavra>
+>
+ command! Grep :call <SID>Grep("")<cr>
+<
+
+Visualiza highlight group da palavra sob o cursor
+|THANKS|: https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+>
+  command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+<
+Note `:highlight` mostra as cores do grupo
+Note `:so $VIMRUNTIME/syntax/hitest.vim` Visualiza todos highlight-groups
+
+
+Exibe splits para trabalhar como kanban
+>
+  command! TodoList exec ":cd ".g:todolist_dir | e DONE | belowright vnew TODO | aboveleft vnew DOING
+<
+------------------------------------------------------------------------------
+*wtf-abbr*
+
+Simplifica lvim, listando resultados da palavra sob o cursor
+|THANKS|: https://vim.fandom.com/wiki/Find_in_files_within_Vim
+>
+  cabbrev lvim
+              \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
+              \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
+              \ <Bar> lw
+              \ <C-Left><C-Left><C-Left>
+<
+Note `lvimgrep /\[ \]/ % | lw`
+
+
+------------------------------------------------------------------------------
+*wtf-autocmd*
+
+Comandos automáticos executados por eventos
+|THANKS|: https://vi.stackexchange.com/a/9459/28875
+..............................................................................
+
+|[GOLD]|
+Muda tempo de gatilho
+>
+  augroup tempos
+    autocmd InsertEnter * set timeoutlen=700
+    autocmd InsertLeave * set timeoutlen=1000
+  augroup END
+<
+
+|THANKS|: https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
+>
+  augroup filetype_detect
+      au!
+      au BufRead,BufNewFile *.extensão setfiletype html
+      au BufRead,BufNewFile nomeArquivo setfiletype js
+  augroup END
+<
+
+------------------------------------------------------------------------------
+*wtf-packs-pessoais*
+
+Funcionalidades que podem virar mini packages/plugins
+..............................................................................
+
+Diagrama ascii
+
+Desenho de diagramas, útil para apresentações em markdown
+>
+  +-----+     +-----+
+  |texto|     |texto|
+  +--+--+     +-----+
+     |           ^
+     |           |
+     |        +--+--+ 
+     +------->|texto|
+              +-----+
+<
+
+Desenha caixa de texto para diagramas ascii
+|THANKS|: https://github.com/vim-scripts/DrawIt/blob/master/autoload/DrawIt.vim#L2494
+>
+  function! Boxdraw()
+<
+
+Desenha conectores entre caixas
+>
+  function! Connectordraw()
+<
+---------------------------------------
+Fake vimwiki
+
+Replica das funções que uso do plugin vimwiki, maps e demais configurações
+específicas de markdown em seu respectivo arquivo
+
+|OBJETIVOS|:
+  - Acessar rapidamente uma ou mais wikis
+  - Acessar [arquivo](arquivo) markdorn com enter, agilizando navegação
+  - Marcar e desmarcar checkbox com <c-space> `- [ ] - [x]`
+
+---------------------------------------
+OutputAssertion
+
+'Framework' de testes com a pegada do udebug https://www.udebug.com/UVa/100
+Onde é feito um diff do output de um script e o arquivo `outputassertion.txt`
+
+Sugestões de `:OutputAssertion <tab>`
+>
+  function! ListExecutaveis(A,L,P)
+<
+
+Exemplo: `:OutputAssertion python`
+>
+  command -complete=custom,ListExecutaveis -nargs=+ OutputAssertion :execute ":call OutputAssertion(\"<args>\")"
+<
+
+---------------------------------------
+Highlight Word
+
+Colore palavras (como se fosse o search)
+|THANKS|: https://bitbucket.org/sjl/dotfiles/raw/d8f861e3276a89c0f98637725006da658adcda90/vim/vimrc
+
+---------------------------------------
+Comentário
+
+Comenta linha de acordo com filetype
+|THANKS|: https://stackoverflow.com/a/24046914
+
+---------------------------------------
+Snippets
+
+Snippets feitos com macros
+
+Exemplo de modelo de snippet
+`snip<space>`
+>
+  inoreabbrev <expr> snip TestaTriggerSnippet('snip',
+              \ "snip(let i=0;x > 10;x++){<cr>/* codigo */<cr>}",
+              \ ['let i=0', 'x > 10', 'x++', '\/\* codigo \*\/'])
+<
+
+Char trigger do snippet
+>
+  let g:nonkw_snippet_trigger = "\<space>"
+<
+
+Desabilita trigger snippet
+Note Ao invés de desabilitar, se for usado <c-v> no insert-mode o próximo char
+não ativa a abreviação
+>
+  command! AbbrevToggle if g:nonkw_snippet_trigger=="\\"
+              \|let g:nonkw_snippet_trigger="\<space>"
+              \|else|let g:nonkw_snippet_trigger="\\"|endif
+<
+---------------------------------------
+Listas
+
+Autocompletes específicos (`:h complete()`)
+
+------------------------------------------------------------------------------
+*wtf-sources*
+
+Sources de arquivos apartir de vim/vimrc
+Note `:scriptnames` para ver a orderm e quais scripts foram iniciados
+
+Ordem:
+
+- `~/.vimrc` ou `~/_vimrc` (gerado pelo `install.sh`)
+  - `~/.gvimrc` ou `~/_gvimrc` (gerado pelo `install.sh`)
+- `~/vimrc-pre.vim`
+- `dotfiles/vim/vimrc`
+  - `dotfiles/vim/gvimrc`
+- `dotfiles/vim/dotfiles.vim`
+- `dotfiles/vim/packages.vim`
+- `~/.vimrc-local.vim`
+  - Esse arquivo pode carregar `dotfiles/vim/plus.vim`
+- `projeto/.exrc`
+
+==============================================================================
+vim:tw=78:sw=2:ts=2:ft=help:

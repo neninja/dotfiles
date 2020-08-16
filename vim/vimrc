@@ -1,52 +1,9 @@
-" Arquivo de configurações básicas do vim, podendo ser adicionado de maneira
-" independente do repo dotfiles. Basta copiar o conteúdo para o
-" %userprofile%\_vimrc no Windows ou $HOME/.vimrc no Linux.
-" Também pode testar essas configurações com:
-"   - vim -u <path/to/vimrc>
-"
-" AUTHOR: Neni @nenitf <http://neni.dev>
-" SOURCE: https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vimrc
-"
-" INCENTIVO:    │
-"               ├(+) simplicidade
-"               ├(-) manutenção
-"               ├(+) performance
-"               ├(+) estudo objetivo
-"               ├(+) qualidade de código
-"               ├(-) bug em produção
-"               └(+) 🎉🎉🎉
-"
-" PRECEITOS:
-"   - Focar em perf windows e linux
-"   - Organizar o trecho de código no fold correto
-"   - Manter o KISS, não reescrever o vim! Lembrar que:
-"       - A configuração será usada crossplatform (windows e linux)
-"       - De boa usar terminal ao lado do vim, nem tudo tem que ser como emacs
-"   - Manter compatibilidade entre vim e nvim
-"   - Evitar trocar comandos default do teclado
-"   - Usar/configurar a menor quantidade de plugins possível
-"   - Comentar/documentar bastante o código (respeitando a largura de coluna)
-"       - Configurações antigas, novas, defaults e explicações
-"
-" UPGRADES: Ver arquivo wiki/vim.md
-"
-" DICAS:
-"   - Usar K (:h K) em cima da palavra da configuração para consultar manual
-"   - Nos folds:
-"       - zR e zM abre e fecha recursivamente todo arquivo (map: <f2>)
-"       - za abre e fecha (toggle) um folder (map: <tab>)
-"       - [z ]z gg G de um fold aberto
-"       - zj zk pulo de fold
-"   - Propriedades que são setadas podem voltar ao seu valor inicial com &,
-"   por exemplo set wildmenu&
-"   - Formatar largura dos comentários com Vgq (por causa do formatoptions+=t)
-"   - Comandos para testar perf:
-"       - :syntime on e :syntime report
-"       - abrir vim no terminal com vim --startuptime tempo.txt tempo.txt
-"       - abrir vim no terminal com vim -u NONE (remove vimrc)
-"
+"# wtf-file-vimrc
 "## Variáveis
+"wtf-variaveis
+
 let g:dotfiles_dir = "~/dev/dotfiles"
+let g:todolist_dir = "~/TODOLIST"
 let g:vimwikis_dirs = [
             \ g:dotfiles_dir."/wiki",
             \ g:dotfiles_dir."/wiki/vim"
@@ -54,19 +11,25 @@ let g:vimwikis_dirs = [
 
 if filereadable(expand("~/.vimrc-pre.vim"))
     execute 'source ~/.vimrc-pre.vim'
-    " Sugestões para o vimrc-pre.vim
-    " set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
-    " set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
 endif
 
-"## Básico
-" Mínimas configurações para usar o vim
+"## Vimproved
+"wtf-vimproved
 
-" quebra compatibilidade com vi
-" evita erros bizarros como de interpretação de dicionários e etc
 set nocompatible
 
-"### Conteúdo
+"## RuntimePaths
+"wtf-rtp
+
+execute "set runtimepath+=".g:dotfiles_dir."/vim"
+execute "set runtimepath+=".g:dotfiles_dir."/vim/after"
+set packpath+=~/vimfiles
+
+"## Buffer
+"wtf-buffer
+
+set hidden
+
 set encoding=utf-8
 " TODO entender configs abaixo:
 "set fileencoding=utf-8 "?
@@ -77,90 +40,31 @@ set fileformats=unix,dos,mac "?
 "set bomb "?
 "set binary "?
 
-" ^M, não sei como resolvi ainda!
-" THANKS: https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
-"fun! Dos2unix()
-"    " Don't strip on these filetypes
-"    " :echo &ft
-"    if &ft =~ 'startify\|nerdtree'
-"        return
-"    endif
-"    :e ++ff=dos
-"endfun
-" autocmd BufRead * call Dos2unix()
-
-"### Vim não-bloqueante
-" checar/atualizar quando o texto for modificado (ocorre mt com o git)
 set autoread
 autocmd FocusGained,BufEnter * :silent!<space>!
-" au FocusGained,BufEnter * checktime
 
-"### RuntimePaths
-" Deve vir antes das definições de filetype
-" carrega ftdetect, para definir extensões de tipos de arquivos
-execute "set runtimepath+=".g:dotfiles_dir."/vim"
-" evita autocmd de highligh (syntax/) e específicas do filetype (ftplugin/)
-execute "set runtimepath+=".g:dotfiles_dir."/vim/after"
+"## Aparência e som
+"wtf-aparencia
 
-" O vim utilizado pelo git para commitar no Windows é diferente do que fica
-" instalado no sistema. Portanto o mesmo não procura em ~/vimfiles/pack/ os
-" packages (plugins), mas sim em ~/.vim (padrão Linux).
-" Como solução basta adicionar manualmente. Aparentemente não tem problema em
-" escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés de
-" commitar por exemplo).
-" Pode setar packpath ao invés do runtimepath como solução
-" THANKS: https://superuser.com/a/1466466
-"set runtimepath+=~/vimfiles/pack/*/start/*
-set packpath+=~/vimfiles
-
-"### Syntax e indentação
-" syntax de acordo com o filetype
-" TODO diferença entre on e enabled
-" syntax on
-syntax enable
-
-" carrega ftplugin.vim e indent.vim do runtimepath (plugins)
-filetype plugin indent on
-
-" permite usar <bs> mesmo indo contra auto-intent, eol e inicio da linha
-" https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
-set backspace=indent,eol,start
-
-"### Aparência e som
-" colorscheme default, sobescrito com plugins
 colorscheme slate
-" ajusta cores para um fundo escuro
 set background=dark
-" força uso de 256 cores, permitindo highlight hexadecimal, com guibg e guifg
-" ao invés de somente ctermbg e ctermfg
 set t_Co=256
 set termguicolors
-
-" Remove som ao apertar multiplos ESCs
-" https://vim.fandom.com/wiki/Disable_beeping"
 set noerrorbells novisualbell t_vb=
-set belloff=all " cancela vários beeps, incluindo <esc><esc>
-
-" habilita conceal
+set belloff=all
 set conceallevel=2
 
-"#### Syntax e Highlight"
-":verbose highlight <highlightGroup>
+"## Syntax e Highlight"
+"wtf-syntax-highlight
 
-" Corrige highlights padrões
-" Caso seja necessário corrigir syntax de um plugin, deve ser feito em packages.vim
-
-function FixHighlight()
+function! FixHighlight()
     highlight link typescriptDOMDocProp typescriptProp
     highlight link typescriptPaymentShippingOptionProp typescriptProp
     highlight link typescriptPaymentMethod typescriptProp
     highlight link typescriptDOMEventProp typescriptProp
-
-    highligh link gitcommitSummary gitcommitFirstLine
-
-    " highlight SpellBad term=underline gui=undercurl guisp=Orange
+    highlight link gitcommitSummary gitcommitFirstLine
     highlight SpellBad guifg=#000000 guibg=#af0000 gui=bold term=bold ctermfg=black ctermbg=red
-endfun
+endfunction
 
 augroup override_highlights
     autocmd!
@@ -168,175 +72,46 @@ augroup override_highlights
 augroup END
 
 "## Comportamento
-set showmatch                   " exibe fechamento de {[()]}
-set showmode                    " exibe mode no canto inferior esquerdo
-set showcmd                     " exibe os comandos no canto inferior direito
-set autoindent                  " auto indentação
-set mouse=                      " restringe uso do mouse em todos modos ("a" libera)
-set linebreak                   " quebra a linha por palavra e não por letra
-set nocursorcolumn nocursorline " não marca colunha e linha do cursor (perf)
-set number norelativenumber     " exibe régua sem numero relativo (perf)
-set nrformats-=octal            " ctrl-a ctrl -x
-set lazyredraw                  " não redesenha a tela durante macro (perf)
-set nobackup                    " não cria arquivo de bkp
-set noswapfile                  " não cria arquivo swap (?)
-set scrolloff=3                 " mantêm 3 linhas acima/abaixo do cursor em scroll
-"set splitbelow                  " cria split horizontal abaixo (help estranho)
-"set splitright                  " cria split vertical abaixo
+"wtf-comportamento
+" TODO diferença entre on e enabled
+" syntax on
+syntax enable
 
-" utiliza clipboard do linux e windows para copiar e colar (y e p)
+filetype plugin indent on
+set showmatch                   
+set showmode                    
+set showcmd                     
+set autoindent                  
+set mouse=                      
+set linebreak                   
+set nocursorcolumn nocursorline 
+set number norelativenumber     
+set nrformats-=octal            
+set lazyredraw                  
+set nobackup                    
+set noswapfile                  
+set scrolloff=3                 
 set clipboard^=unnamedplus,unnamed
-
-" Limite de coluna, comentado para ser posto em modelines específicas
-" set textwidth=80            " define largura da linha de texto
-set colorcolumn=              " não marca coluna (perf)
-" set colorcolumn=81          " marca coluna 81, ideal para impressão com :ha
-"                             " interessante deixar na modeline com cc
-
-" Opções de auto inserção de blocos. Alguns filetypes já possuem
-" por default diferentes configurações, portanto é mais interessante add ou
-" remover (+= e -=). Abaixo os valores possíveis (:h fo-table)
-" t     quebra automatica do texto de acordo com textwidth
-"       ideal colocar na modeline: tw=80 fo+=t
-" c     quebra automática do texto de comentários
-" r     insere marcação de comentário (:set comments?) quando usado <cr> no
-"       insert a partir de um comentário
-" o     insere marcação de comentário ao criar nova linha com 'o' no normal
-" q     permite formatação com Vgq (depende do textwidth)
-" w     TODO
-" a     TODO
-" n     add automaticamente 2) 3) 4) ...
-" v     TODO
-" b     TODO
-" l     não quebra linhas que ao entrar no insert ja passaram o textwidth
-" m     TODO
-" M     TODO
-" B     TODO
-" 1     TODO
-" j     ao juntar linhas de comentários com 'J' remove o caracter de
-"       comentário intermediário
-" p     TODO
+set colorcolumn=
+set backspace=indent,eol,start
 set formatoptions+=jcr
-
-" Buffers
-" Motivos para usar buffers em segundo plano ao invés de tabs:
-"   - o mesmo arquivo não é aberto duas vezes
-"   - mais velocidade pois a janela não precisa ser redesenhada
-set hidden " mantêm o arquivo disponível ao sair dele (mesmo modificado)
-" :ls lista, :b <numero><tab> acessa buffers
-
-" Pesquisa
-set hlsearch    " colore os matches de search (* / %s)
-set incsearch   " vai colorindo a pesquisa durante a digitação
-set ignorecase  " ignora case sensitive na busca
-set nosmartcase " case sensitive se a primeira letra for maiuscula,
-"               " ruim para autocomplete de nomes de funções
-
-" Emojis coloridos
-"if has("directx")
-"    " renderiza emojis, afeta perf
-"    " Para ativar basta usar :call NN_ToggleEmoji
-"    set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
-"    set emoji " ??? noemoji
-"endif
-set noemoji " (perf)
-set renderoptions= " (perf)
-
-" título da janela
-"set title
-"set titlestring=%<%F
-
-"## Modeline
-set modeline        " habilita uso da modeline
-set modelines=5     " procura as 5 primeiras ou ultimas linhas do arquivo
-
-" Exemplos de modeline (pode ser em comentário):
-" vim: set fdm=marker:
-" vim: set fo+=t tw=80:
-" vim: set sw=3 ts=3 cc=85 cuc:
-
-"## Statusline
-set laststatus=2                " habilita statusline
-set statusline=                 " reseta statusline
-set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
-set statusline+=\%=				" espaço
-set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
-set statusline+=\ %y            " filetype
-set statusline+=\ {%n}          " buffer, ideal para conflitos do git com :diffget e :diffput
-
-"## Autocomplete
-set wildmenu         " habilita menu
-set shortmess+=c     " remove mensagens inúteis do wildmenu
-
-" THANKS: https://vi.stackexchange.com/questions/5029/key-mapping-that-will-invoke-the-wildmenu
-set wildcharm=<tab>  " char para chamar wildmenu de um map
-
-set completeopt=menuone,noinsert,noselect
-" set completeopt=menuone,noselect,noinsert    " mostra menu de opções
-" set completeopt=menu,menuone,noinsert
-" menuone: menu com uma ou mais de uma sugestão
-" noinsert: não insere texto selecionado automaticamente
-" noselect: não seleciona o texto automaticamente
-
-" Usa como separador de diretório '/' ao invés de '\', padrão do windows
-" muito util para importar modulos no javascript
-set shellslash " set nossl cancela
-
-" Remove das sugestões arquivos/diretorios (lvimgrep tb)
-" THANKS: https://stackoverflow.com/questions/1898987/how-to-exclude-file-patterns-in-vimgrep
-set wildignore=node_modules/*
-set wildignore+=.git/*
-set wildignore+=dist/*
-set wildignore+=vendor/*
-set wildignore+=ios/*
-set wildignore+=android/*
-set wildignore+=_site/*
-
-":h ins-completion
-" origem das palavras do wildmenu:
-"   - . buffer corrente
-"   - k dicionários
-"   - w de outras janelas (splits)
-set complete=.,k,w
-" sugestão de tags afeta perf
-" <c-e> mantem o insert mode e fecha completeopt
-
-" Informa aquivo de tags
-" set tags=tags,./tags
-set tags=tags
-
-" Configura palavras-com-hifen como palavras inteiras
-" THANKS: https://stackoverflow.com/questions/25049838/make-autocomplpop-allow-hyphen-as-a-word-charcter
-" PROS:
-"   - CSS: font-size
-" CONS:
-"   - PHP: $this-> cria sugestão de $this-
-set iskeyword+=-
-
-" Escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
-" THANKS: https://github.com/vim-scripts/SyntaxComplete
-set omnifunc=syntaxcomplete#Complete    " <c-x><c-o>
-
-"### Tabs/espaços
-" https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+set hlsearch   
+set incsearch  
+set ignorecase 
+set nosmartcase
+set noemoji
+set renderoptions=
+set modeline
+set modelines=5
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
-
-"## Fold
-" Add método padrão de fold
-set foldmethod=marker " {{{ ... }}}
-set foldtext=FoldTextMarker() " Configura título do fold fechado
-
-" Configura símbolos do vim (:h digraph-table-mbyte)
+set foldmethod=marker
+set foldtext=FoldTextMarker()
 set fillchars=vert:\|,fold:─
 
-" Retorna título dos folds sem comentários padrões de linguagens
-" THANKS: https://stackoverflow.com/questions/5983396/change-the-text-in-folds
-" THANKS: https://jdhao.github.io/2019/08/16/nvim_config_folding/
-" THANKS: https://dhruvasagar.com/2013/03/28/vim-better-foldtext
 function! FoldTextMarker()
     let lines_count = v:foldend - v:foldstart + 1
 
@@ -362,64 +137,50 @@ function! FoldTextMarker()
     return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
 
-"## Netrw
-" Netrw no lugar do nerdtree, usar :Lexplore para toggle
-" - :edit a folder to open a file browser
-" - <CR>/v/t to open in an h-split/v-split/tab
-" - check |netrw-browse-maps| for more mappings
-
-" TODO Como não criar NetrwTreeListing (???) e .netrwhist? (???)
-" https://github.com/tpope/vim-vinegar/issues/13
-" autocmd FileType netrw setlocal bufhidden=delete
-
-"let g:netrw_banner=0        " disable annoying banner
-"let g:netrw_browse_split=4  " open in prior window
-" FIXME Não funciona de primeira
-let g:netrw_liststyle=3     " tree view
-
-" Exibe numeros (ruler)
-" THANKS: https://stackoverflow.com/a/8731175
+let g:netrw_liststyle=3
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-
-"## Spell
-" Corretor ortográfico, ideal os filetypes: text, gitcommit e markdown
-
-" COMANDOS:
-"    ]s — ir para a próxima palavra errada;
-"    [s — voltar para a palavra errada anterior;
-"    zg — adicionar a palavra sob o cursor ao dicionário;
-"    zug — desfazer a adição;
-"    z= — ver sugestões de correção para esta palavra;
-
-" lingua da checagem
-" BR em capslock gera o aviso: Warning region not supported
 set spelllang=pt_br
-
-" local onde está o dicionário
-" THANKS: 
-"   - https://github.com/vim/vim/issues/1330
-"   - https://extensions.openoffice.org/en/project/vero-brazilian-portuguese-spellchecking-dictionary-hyphenator
-"   - https://github.com/vim/vim/files/655099/pt_BR.diff.zip
-"   - https://github.com/mateusbraga/vim-spell-pt-br
-"   - https://ndvo.wordpress.com/2013/06/05/corretor-ortografico-nativo-do-vim/
-"   - https://www.dicas-l.com.br/arquivo/verificacao_ortografica_com_o_editor_vim.php
-"   - https://www.vivaolinux.com.br/artigo/Corretor-Ortografico-no-Vim-Guia-definitivo
-" no momento não tenho interesse em ficar versionando a adição de palavras
-"execute "set runtimepath+=".g:dotfiles_dir."/vim/spell"
-
-" arquivo que possui as adições do dicionário
-" THANKS: https://stackoverflow.com/a/27979576/9881278
 execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
+set shellslash
+
+"### Autocomplete
+"wtf-autocomplete
+
+set wildmenu
+set shortmess+=c
+set wildcharm=<tab>
+set completeopt=menuone,noinsert,noselect
+
+set wildignore=node_modules/*
+set wildignore+=.git/*
+set wildignore+=dist/*
+set wildignore+=vendor/*
+set wildignore+=ios/*
+set wildignore+=android/*
+set wildignore+=_site/*
+
+set complete=.,k,w
+
+set tags=tags
+
+set iskeyword+=-
+
+set omnifunc=syntaxcomplete#Complete
+
+"## Statusline
+"wtf-statusline
+
+set laststatus=2
+set statusline=
+set statusline+=\ %f\ %r\%m\
+set statusline+=\%=
+set statusline+=\ %p%%\ %l:\%c
+set statusline+=\ %y
+set statusline+=\ {%n}
 
 "## Funções
-"### NN_
-" Funções que são usadas com frequencia não tão alta para serem comandos ou
-" maps, padrão NN_ para ficar fácil achar com :call NN_<tab>
-" Funções muito usadas porém não tanto a ponto de virarem comandos ou maps
-" O padrão NN_ serve para ficar fácil achar com :call NN_<tab>
+"wtf-funcoes
 
-" Att ctags
-" Necessario instalar ctags ou universal ctags
 function! NN_ctags()
     let s:ctags_command="ctags" . 
                 \ " -R --totals" .
@@ -441,8 +202,6 @@ function! NN_ctags()
     execute "!".s:ctags_command
 endfun
 
-
-" Habilita e desabilita emojis, ideal para perf
 function! NN_EmojiToggle()
     if &renderoptions == ""
         set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
@@ -451,8 +210,6 @@ function! NN_EmojiToggle()
     endif
 endfun
 
-" Atualiza diretório atual (:pwd) com dir do projeto, com raiz .git
-" THANKS: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
 function! NN_SetGitDir()
     " Change working dir to the current file
     cd %:p:h
@@ -466,16 +223,11 @@ function! NN_SetGitDir()
     endif
 endfunction
 
-" Abre :Lexplorer com pwd como do git
-" THANKS: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
 function! NN_Lexplorer()
     call NN_SetGitDir()
     Lexplore
 endfunction
 
-" Lista TODOS e FIXMES
-" THANKS: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
-" OBS: Irá ignorar path do wildignore https://stackoverflow.com/a/20042050
 " FIXME ativa :GitGutterToggle
 function! NN_Tasks()
     call NN_SetGitDir()
@@ -484,7 +236,6 @@ function! NN_Tasks()
     lopen
 endfunction
 
-" Commita projetos de aulas com o padrão :tv: add aula <numero>
 function! NN_GitAula()
     let log = system("git log --pretty=format:\%s")
     vnew
@@ -500,17 +251,6 @@ function! NN_GitAula()
     bdelete!
 endfunction
 
-function! NN_Git_add()
-    echo "não implementado!"
-endfunction
-
-"### vimrc
-" Funções que são mapeadas ou usadas como comando por arquivo
-
-" Pesquisa palavra em todo o projeto
-" https://stackoverflow.com/questions/20933836/what-is-the-difference-between-location-list-and-quickfix-list-in-vim
-" THANKS: https://github.com/jmharvey/vim/blob/master/vimrc#L207
-" THANKS: https://vimrcfu.com/snippet/104
 " FIXME Ativa gitguttertoggle
 function! s:Grep(grepword)
     call NN_SetGitDir()
@@ -525,7 +265,6 @@ function! s:Grep(grepword)
     lopen
 endfunction
 
-" Fecha split ou deleta o buffer
 function! s:FechaSplitOuDeletaBuffer()
     if winnr('$') > 1
         q
@@ -534,7 +273,6 @@ function! s:FechaSplitOuDeletaBuffer()
     endif
 endfunction
 
-" Fecha split ou deleta o buffer ignorando modificações
 function! s:FechaSplitOuDeletaBufferForced()
     if winnr('$') > 1
         q!
@@ -543,12 +281,6 @@ function! s:FechaSplitOuDeletaBufferForced()
     endif
 endfunction
 
-"### Shared script
-" Funções privadas que são usadas entre multiplos arquivos,
-" portanto não devem ser marcadas com s:
-
-" Carrega arquivo se ele existe
-" THANKS: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
 function! SourceIfExists(file)
     if filereadable(expand(a:file))
         exe 'source' a:file
@@ -556,33 +288,18 @@ function! SourceIfExists(file)
 endfunction
 
 "## Comandos
-" Recarrega vimrc com trigger para o filetype
-" THANKS: https://vi.stackexchange.com/questions/9338/why-cannot-i-source-vimrc-for-the-current-file-being-editing
 command! Sov source $MYVIMRC | e %
 
-" Fecha (sem forçar) todos buffers e deixar somente um
-" THANKS: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
 command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
-" Abre terminal em split, ideal para o gvim
 " FIXME não funciona corretamente no linux
-" THANKS: https://stackoverflow.com/a/38082196
 command! TerminalGitRootVertical exec 'call NN_SetGitDir() | vert term ++kill=term'
 command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
 
-" Procura palavra no projeto
-" :Grep<CR>
-" Grep: <palavra>
 command! Grep :call <SID>Grep("")<cr>
 
-" Visualiza todos highlight-groups
-"   :so $VIMRUNTIME/syntax/hitest.vim
-" Visualiza highlight group da palavra sob o cursor
-" THANKS: https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
-" :highlight mostra as cores do grupo
 command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
-" Exibe splits para trabalhar como kanban
 command! TodoList exec ":cd ".g:todolist_dir | e DONE | belowright vnew TODO | aboveleft vnew DOING
 
 "## Mapeamentos
@@ -670,6 +387,7 @@ tnoremap    <s-insert>  <c-w>"*
 tnoremap    <c-s-v>     <c-w>"*
 
 "## Abreviações
+"wtf-abbr
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qa! qa!
@@ -689,9 +407,6 @@ cnoreabbrev wQA wqa
 cnoreabbrev wqA wqa
 cnoreabbrev wQa wqa
 
-" Simplificação do lvim:
-" Lista resultados da palavra sob o cursor
-" THANKS: https://vim.fandom.com/wiki/Find_in_files_within_Vim
 cabbrev lvim
             \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
             \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
@@ -699,43 +414,22 @@ cabbrev lvim
             \ <C-Left><C-Left><C-Left>
 
 "## AutoCmds
-" THANKS: https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
-"augroup tempos
-"    autocmd InsertEnter * set timeoutlen=700
-"    autocmd InsertLeave * set timeoutlen=1000
-"augroup END
+"wtf-autocmd
 
-"### ftdetect
-" THANKS: https://www.reddit.com/r/vim/wiki/where_to_put_filetype_specific_stuff
 " FIXME Como colocar definição de filetype em ftdetect?
 augroup filetype_detect
     au!
     au BufRead,BufNewFile *.phtml setfiletype html
-    au BufRead,BufNewFile *.hbs setfiletype html
     au BufRead,BufNewFile *.gv setfiletype dot
     au BufRead,BufNewFile TODO setfiletype todolist
     au BufRead,BufNewFile DOING setfiletype todolist
     au BufRead,BufNewFile DONE setfiletype todolist
 augroup END
 
-"## packs pessoais
-" Funcionalidades que podem virar mini packages/plugins.
-" Alguns podem estar em packages.vim
-
+"## Packs pessoais
+"wtf-packs-pessoais
 "### Diagrama ascii
-" Desenho de diagramas, útil para apresentações em markdown
-" +-----+     +-----+
-" |texto|     |texto|
-" +--+--+     +-----+
-"    |           ^
-"    |           |
-"    |        +--+--+ 
-"    +------->|texto|
-"             +-----+
-
-" Desenha caixa de texto para diagramas ascii
-" THANKS: https://github.com/vim-scripts/DrawIt/blob/master/autoload/DrawIt.vim#L2494
-fun! Boxdraw()
+function! Boxdraw()
     set virtualedit=all
 
     " Cancela virtual edit
@@ -768,7 +462,6 @@ fun! Boxdraw()
     normal! r+
 endfunction
 
-" Desenha conectores entre caixas
 function! Connectordraw()
     " coordenadas que iniciaram ou terminaram a seleção
     let row0 = line("'<")
@@ -872,14 +565,6 @@ vnoremap + :<c-u>call Boxdraw()<CR>
 vnoremap - :<c-u>call Connectordraw()<CR>
 
 "### Fake vimwiki
-" Replica das funções que uso do plugin vimwiki, maps e demais configurações
-" específicas de markdown em seu respectivo arquivo
-"
-" OBJETIVOS:
-"   - Acessar rapidamente uma ou mais wikis
-"   - Acessar [arquivo](arquivo) markdorn com enter, agilizando navegação
-"   - Marcar e desmarcar checkbox com <c-space> - [ ] - [x]
-
 function! s:SelecionaWiki(wiki)
     let wiki = g:vimwikis_dirs[0]
 
@@ -902,12 +587,6 @@ nnoremap <leader>ww :call <SID>SelecionaWiki(0)<CR>
 nnoremap <leader>ws :call <SID>SelecionaWiki(1)<CR>
 
 "### OutputAssertion
-" 'Frameworkk' de testes com a pegada do udebug
-" https://www.udebug.com/UVa/100
-" Onde é feito um diff do output de um script e
-" o arquivo 'outputassertion.txt'
-
-" Sugestões do :OutputAssertion <tab>
 function! ListExecutaveis(A,L,P)
     return "python3\nnode\ngo run\nlua"
 endfunction
@@ -940,15 +619,9 @@ function! OutputAssertion(command)
     wincmd l
 endfunction
 
-" :OutputAssertion python
 command -complete=custom,ListExecutaveis -nargs=+ OutputAssertion :execute ":call OutputAssertion(\"<args>\")"
 
 "### Highlight Word
-" Colore palavras (como se fosse o search)
-" Antes do pack: 
-" nnoremap    <kMultiply> *N| "https://stackoverflow.com/a/24537701
-" THANKS: https://bitbucket.org/sjl/dotfiles/raw/d8f861e3276a89c0f98637725006da658adcda90/vim/vimrc
-
 function! HiInterestingWord(n)
     " Definição do highlight, por algum motivo pelo vimrc não ocorre
     hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
@@ -989,7 +662,6 @@ nnoremap <leader>5 :call HiInterestingWord(5)<cr>
 nnoremap <leader>6 :call HiInterestingWord(6)<cr>
 
 "### Comentário
-" THANKS: https://stackoverflow.com/a/24046914
 let s:comment_map = { 
             \   "c": '\/\/',
             \   "cpp": '\/\/',
@@ -1034,14 +706,6 @@ nnoremap gc :call ToggleComment()<cr>
 vnoremap gc :call ToggleComment()<cr>
 
 "### Snippets
-" Snippets feitos com macros
-
-" modelo de snippet
-" DEMO: snip<space> 
-inoreabbrev <expr> snip TestaTriggerSnippet('snip',
-            \ "snip(let i=0;x > 10;x++){<cr>/* codigo */<cr>}",
-            \ ['let i=0', 'x > 10', 'x++', '\/\* codigo \*\/'])
-
 function! TestaTriggerSnippet(abbr, expansion, placeholders)
     let g:placeholders = a:placeholders
     let s:expansion = a:expansion.
@@ -1060,7 +724,6 @@ inoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
 snoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
 snoremap <bs>  i<bs>
 
-" Marca próxima substituição
 " TODO tornar stateless
 let g:placeholders = []
 function! PlaceHolder(backward)
@@ -1084,18 +747,13 @@ function! PlaceHolder(backward)
     endif
 endfunction
 
-" snippet + \
 let g:nonkw_snippet_trigger = "\<space>"
 
-" 'Desabilita' trigger snippet
-" Ao invés de desabilitar, se for usado <c-v> no insert-mode o próximo char
-" não ativa a abreviação
 command! AbbrevToggle if g:nonkw_snippet_trigger=="\\"
             \|let g:nonkw_snippet_trigger="\<space>"
             \|else|let g:nonkw_snippet_trigger="\\"|endif
 
 "#### Listas
-" THANKS: :h complete()
 function! AutoCompleteCarinhas()
     call complete(col('.'), [
                 \ 'ಥ_ಥ',
@@ -1114,40 +772,10 @@ endfunction
 inoremap <c-z> <c-r>=AutoCompleteCarinhas()<CR>
 
 "## Sources
-":scriptnames para ver a orderm e quais scripts foram iniciados
-
+"wtf-sources
 call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
-
-"### local
 call SourceIfExists("~/.vimrc-local.vim")
 
-"#### Sugestões para o vimrc-local
-" Configurações que afetam a perf, mistura vim builtin e plugins, exemplo:
-"
-" call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
-"
-" let g:startify_lists = [
-"             \ { 'type': 'sessions', 'header': ['sessões'] },
-"             \ { 'type': 'commands', 'header': ['comandos'] },
-"             \ ]
-" 
-" let g:startify_commands = [
-"             \ {'g': ['gostack11', 'e ~/dev/gostack11']},
-"             \ ]
-"
-"set rtp+=~/.fzf
-
-"### pwd
-" Carregamento de 'vimrc' existente no work dir (:h :pwd :h 'getcwd()')
-" ideal para setar wildignore para remover pesquisa de paths de libs
 " TODO remover source quando outro .exrc for carregado
 au DirChanged * :call SourceIfExists(fnamemodify('.exrc', ":p"))
-
-" OBS:
-" exrc não resolve o problema pois ele só carrega o .vimrc .exrc _vimrc ou
-" _exrc no momento que o vim é aberto no diretório, ou seja, o startify não da
-" o gatilho, mas é uma opção interessante caso seja usado somente no terminal
-"set exrc
-"set secure
-" THANKS: https://superuser.com/a/532673

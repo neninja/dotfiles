@@ -1,7 +1,4 @@
-" Configurações que dependem da estrutura de diretórios desse projeto
-"## Esqueletos
-
-" THANKS: https://shapeshed.com/vim-templates/
+"# wtf-file-dotfiles
 augroup skeletons
     au!
     au BufNewFile *.html call AddSkeleton("skeleton.html")
@@ -17,12 +14,8 @@ function! AddSkeleton(arquivo)
     execute "0r ".g:dotfiles_dir."/vim/skeletons/".a:arquivo
 endfunction
 
-"## Dicionárioss
-" THANKS: https://github.com/skywind3000/vim-dict
-
 let g:dict_dir = g:dotfiles_dir. "/vim/dicionarios"
 augroup dicionarios
-    " DICA: para organizar alfabeticamente, selecione as linhas e :sort
     au!
     au BufEnter * call AddDict(&ft)
     au BufEnter *test.php execute "setlocal dictionary+=".g:dict_dir."/phpunit.dict"

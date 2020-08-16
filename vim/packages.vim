@@ -1,45 +1,5 @@
-" Arquivo de configurações de plugins/packages. Seu desacoplamento do vimrc
-" serve para permitir o uso do vim em seu estado mais básico de configurações
-" sem a necessidade de baixar outros arquivos.
-" https://vimhelp.org/repeat.txt.html#packages
-"
-" TODO criar package manager como vim-plug, para substituir script de clone
-"   :helptags ALL
-"   :helptags ~/vimfiles/pack/vendor/start/*/doc
-"   vim -u NONE -c "helptags fugitive/doc" -c q
-"    Configurações de plugins do vim
-"    Todos de terceiros estão clonados em start ou opt pelo path:
-"      (windows) ~/vimfiles/pack/vendor/
-"      (linux) ~/.vim/pack/vendor/
-"    Plugins próprios em:
-"      (windows) ~/vimfiles/pack/nenitf/
-"      (linux) ~/.vim/pack/nenitf/
-"
+"# wtf-packages
 "## ctrlpvim/ctrlp.vim
-" PROS:
-"   - Search de buffer advinhando conforme é digitado
-"   - Search de file advinhando conforme é digitado
-"   - Search de mru advinhando conforme é digitado
-"   - Search de tag advinhando conforme é digitado
-"   - Se adequa ao repositorio git
-"   - Abre facilmente vertical e horizontal split
-"   - Criação de arquivos e pastas rapidamente
-" CONS:
-"   - Não funciona as vezes. TODO ver o motivo
-"   - Pode ser meio lento
-" TODO procurar solução própria do vim
-" https://www.reddit.com/r/vim/comments/7iy03o/you_aint_gonna_need_it_your_replacement_for/dr2qo4k?utm_source=share&utm_medium=web2x
-" https://www.vi-improved.org/recommendations/
-
-" USOS:
-"   Escolher arquivo <c-p> pesquisar/escolher arquivo <enter>
-"   Criar arquivos e o path: <c-p> digitar arquivo ou /path/arquivo a ser criado <c-y><enter>
-"   Escolher arquivo em split: <c-p> pesquisar/escolher arquivo <c-h>
-"   Escolher arquivo em vsplit: <c-p> pesquisar/escolher arquivo <c-v>
-"
-" DICAS:
-" É possível usar tab para completar nomes de pastas
-
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
@@ -73,23 +33,7 @@ let g:ctrlp_prompt_mappings = {
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
 
-"## junegunn/fzf.vim
-"Usar GFiles (com gitignore) ou Files
-"https://rietta.com/blog/hide-gitignored-files-fzf-vim/
-" nnoremap <expr> <leader>f (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
-"nnoremap <expr> <leader>f (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
-
-" fecha split ao cancelar pesquisa
-" https://github.com/junegunn/fzf.vim/issues/544#issuecomment-457456166
-"tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-
 "## unblevable/quick-scope
-" PROS:
-"   - facilita com o f
-
-" :QuickScopeToggle
-
-" Deve vir antes da definição final do colorscheme
 augroup qs_colors
     autocmd!
     autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
@@ -98,13 +42,8 @@ augroup END
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-" let g:qs_lazy_highlight = 1
 
 "## mhinz/vim-startify
-" PROS:
-"   - Gerenciamento de sessões
-"   - Comandos na tela inicial
-
 let g:startify_custom_header_quotes = [
             \ ['wtf neni?', '- Rei ????'],
             \ ['Bom trabalho meu amorzinho, te amo mto', '- Luizi 2020'],
@@ -132,26 +71,11 @@ let g:startify_lists = [
             \ { 'type': 'sessions', 'header': ['sessões'] },
             \ { 'type': 'commands', 'header': ['comandos'] },
             \ ]
-            "\ { 'type': 'bookmarks', 'header': ['bookmarks'] },
-            "\ { 'type': 'files',     'header': ['recentes'] },
 let g:startify_files_number = 5
-"let g:startify_bookmarks = [
-"            \ {'d': '~/dev/dotfiles'},
-"            \ ]
 let g:startify_commands = [
             \ {'d': ['dotfiles', ':call GoToDotfiles()']},
             \ {'t': 'TodoList'},
             \ ]
-"            \ ':help reference',
-"            \ ['Vim Reference', 'h ref'],
-"            \ {'h': 'h ref'},
-"            \ {'m': ['My magical function', 'call Magic()']},
-"            \ ]
-
-":SLoad       load a session    |startify-:SLoad|
-":SSave[!]    save a session    |startify-:SSave|
-":SDelete[!]  delete a session  |startify-:SDelete|
-":SClose      close a session   |startify-:SClose|
 
 function! GoToDotfiles()
     exec "cd ".g:dotfiles_dir
@@ -159,55 +83,12 @@ function! GoToDotfiles()
 endfunction
 
 "## plasticboy/vim-markdown
-" PROS:
-"   - Conceal de * ** *** ` `` ```ft
-"   - Tem a navegação com :Toc
-
-" desabilita folds (fica estranho com jekyll)
 let g:vim_markdown_folding_disabled = 1
-
-" desabilita maps
-let g:vim_markdown_no_default_key_mappings = 1
-
-" cabeçalho do documento, usado no jekyll
 let g:vim_markdown_frontmatter = 1
-
+let g:vim_markdown_no_default_key_mappings = 1
 let g:vim_markdown_new_list_item_indent = 0
 
 "## tpope/vim-fugitive
-" PROS:
-"   - add, commit e status rápido
-"   - comparare stage rápido
-"   - git blame
-
-"http://vimcasts.org/blog/2011/05/the-fugitive-series/
-
-" Maps de :Gstatus/:G/<f3> (:h fugitive-maps ou g?)
-"   - Navegação:
-"       - ]] [[ navega entre commits e arquivos
-"       - )( <c-n> <c-p> navega entre commits, arquivos e hunks
-"       - <cr> abre arquivo
-"   - Stage:
-"      - U unstage all
-"      - X descarta alterações
-"      - - toggle stage unstage arquivo ou hunk
-"   - Diff:
-"       - = toggle diff inline
-"       - dv vertical diff split
-"           - usar :diffget (stage) :diffput (unstage) na index (fugitive)
-"           - salvar e sair com ZZ
-"   - Conflitos:
-"       - TODO
-"   - Commits:
-"       - cc abre janeja de mensagem de commit
-"       - ca add staged ao ultimo commit e abre janela mensagem de commit
-"       - ce add staged ao ultimo commit sem editá-lo
-"       - cvc commita com detalhes diffs que não vão (ver commit -v)
-"       OBS: fechar commit com ZZ ao invez de :wq
-"   - Stash:
-"       - TODO
-
-" Commit rápido do arquivo atual + stageds se houver
 command! GC :Gw | Gcommit
 
 "### Statusline
@@ -221,35 +102,15 @@ set statusline+=\ %y            " filetype
 set statusline+=\ {%n}          " buffer, ideal para conflitos do git com :diffget e :diffput
 
 "## airblade/vim-gitgutter
-" PROS:
-"   - Marcação de + ~ _
-" CONS:
-"   - Perf
-"   - Dispara sozinho com :lvim
 " TODO substituir plugin
-
-" <leader>hp -> mostra valor anterior do hunk
-" <leader>hs -> stage["git add line"] modificação, removendo chunk
-" <leader>hu -> desfaz modificação não staged no chunk
 nmap [h <Plug>(GitGutterPrevHunk)
 nmap ]h <Plug>(GitGutterNextHunk)
 
-" atualização mais rápida
 set updatetime=100
-
-":GitGutterEnable
 let g:gitgutter_enabled=0
-
-" desabilita maps do gitgutter
-let g:gitgutter_map_keys = 0
+let g:gitgutter_map_keys=0
 
 "## junegunn/goyo.vim
-" PROS:
-"   - Leitura mais confortável da wiki
-"   - Idel para apresentações com markdown + folds
-"
-" THANKS: https://gist.github.com/davidmh/f4337f9ea9eca6789b3f8222b8333a35
-" Presentation mode
 function! s:enter_presentation()
     setl nospell
     setl scrolloff=0
@@ -270,45 +131,26 @@ autocmd! User GoyoEnter nested call <SID>enter_presentation()
 autocmd! User GoyoLeave nested call <SID>exit_presentation()
 
 "## pangloss/vim-javascript
-" PROS:
-"   - Syntax js
-
 let g:javascript_conceal_function             = "ƒ"
 let g:javascript_conceal_null                 = "ø"
 let g:javascript_conceal_this                 = "@"
 let g:javascript_conceal_return               = "←"
 let g:javascript_conceal_undefined            = "¿"
-" let g:javascript_conceal_NaN                  = "ℕ"
-" let g:javascript_conceal_prototype            = "¶"
 let g:javascript_conceal_static               = "•"
 let g:javascript_conceal_super                = "Ω"
 let g:javascript_conceal_arrow_function       = "→"
-" let g:javascript_conceal_noarg_arrow_function = "🞅"
-" let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 "## Quramy/tsuquyomi
-" PROS:
-"   - Rápido
-"   - Vimscript (out of box)
-"   - Quickfix dos erros e autocomplete do omnifunc
-
 packadd! tsuquyomi
 let g:tsuquyomi_disable_default_mappings = 1
 
 "## MaxMEllon/vim-jsx-pretty
-" PROS:
-"   - Syntax jsx
-"   - indentação jsx
 
 "## dense-analysis/ale
 " PROS:
-"   - Auto format com eslint E prettier
-"   - Mensagem de erro e aviso
-"   - Marcação do texto e código do erro
-" TODO remover plugin
+" TODO remover plugin, afeta perf
 "https://gist.github.com/romainl/ce55ce6fdc1659c5fbc0f4224fd6ad29
 
-" Set de lintes
 let g:ale_fixers = {
             \ 'javascript': ['prettier', 'eslint'],
             \ 'javascriptreact': ['prettier', 'eslint'],
@@ -316,82 +158,10 @@ let g:ale_fixers = {
             \ 'typescriptreact': ['prettier', 'eslint']
             \ }
 
-" Força correção de acordo com o lint ao salvar o arquivo
 let g:ale_fix_on_save = 1
-" :ALEFix caso não formate por algum motivo
-" E se não der usar cli:
-"   :!prettier --write %
-"   :!yarn eslint --fix %
 
-"nmap <silent> ! <Plug>(ale_next_wrap)
-"
-"function! LinterStatus() abort
-"    let l:counts = ale#statusline#Count(bufnr(''))
-"    let l:all_errors = l:counts.error + l:counts.style_error
-"    let l:all_non_errors = l:counts.total - l:all_errors
-"    return l:counts.total == 0 ? 'OK' : printf(
-"                \   '%dW %dE',
-"                \   all_non_errors,
-"                \   all_errors
-"                \)
-"endfunction
-"let g:ale_echo_msg_error_str = 'E'
-"let g:ale_echo_msg_warning_str = 'W'
-"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-"## colorschemes
-"### joshdick/onedark.vim
-" PROS:
-"   - Cores agradáveis
-"   - Baixo contraste (melhor para leitura)
-"   - Suporte a todas linguagens que utilizo
-"   - Tema popular (constantes atualizações)
-" CONS:
-"   - Não possui light theme
-"   - Possivelmente a quantidade de cores afeta perf
-
-" colorscheme afterglow " outro tema muito bom
-" https://github.com/danilo-augusto/vim-afterglow
-
-" THANKS: https://github.com/joshdick/onedark.vim/issues/110#issuecomment-345599864
-" packadd! onedark.vim
-" colorscheme onedark
-
-"### andreasvc/vim-256noir
-" PROS:
-"   - Cores agradáveis
-"   - Não distrai com multiplas cores em tela
-" CONS:
-"   - Não possui light theme
-"   - Cores de diff de adição ou remoção não são intuitivas
-"   - Tema não popular, atualização baixa
-
-" colorscheme 256_noir
-
-"### ewilazarus/preto
-" PROS:
-"   - Cores agradáveis
-"   - Não distrai com multiplas cores em tela
-" CONS:
-"   - Contraste alto
-"   - Conceal estranho
-"   - Não possui light theme
-"   - Cursor preto se perde no editor
-"   - Tema não popular, atualização baixa
-
-"### pgdouyon/vim-yin-yang
-" PROS:
-"   - Cores agradáveis e com um constraste bom
-"   - Baixo contraste (melhor para leitura)
-"   - Não distrai com multiplas cores em tela
-" CONS:
-"   - Tema não popular, atualização baixa
-"   - SpellBad com contraste estranho
-"   - Search com contraste estranho
-"   - MatchParen com contraste estranho
-"   - LineNr com background desnecessário
-
-colo yin
+"## pgdouyon/vim-yin-yang
+colorscheme yin
 
 fun! FixColorschemeYin()
     highlight LineNr guibg=#1c1c1c ctermbg=234
@@ -405,93 +175,8 @@ augroup override_highlights_yin
 augroup END
 call FixColorschemeYin()
 
-"## editorconfig/editorconfig-vim
-" PROS:
-"   - Integração com editorconfig
-"
-" Exemplo de .editorconfig:
-"
-" root = true
-" 
-" [*]
-" indent_style = space
-" indent_size = 2
-" charset = utf-8
-" trim_trailing_whitespace = true
-" insert_final_newline = true
-"
-"
-" OBS: insert_final_newline funciona porém não aparece no vim!
-" THANKS: https://github.com/editorconfig/editorconfig/wiki/Newline-at-End-of-File-Support#vim
-
-"## junegunn/gv.vim
-" PROS:
-"   - Mais facil de pesquisar pelo titulo do commit
-"   - Clicar no commit permite ver sua descrição e diff
-
 "## diepm/vim-rest-console
-" PROS:
-"   - Falicita MUITO programar apis REST
-"   - 'Documenta' as requisições da api
-"       - TODO ver como utilizar $VARIAVEIS no Windows
-
-" Instruções:
-"   - ]] [[ navega entre blocos de requisição
-"   - usar <c-j> no bloco da requisição
-
-" quando não indicado nas opções de curl "-i" para informar o tipo de retorno,
-" por padrão é json (afinal usarei como rest client somente)
+" TODO ver como utilizar $VARIAVEIS no Windows
 let g:vrc_response_default_content_type = 'application/json'
 
-" troca <c-j> por <c-x> pois uso com split
 let g:vrc_trigger = '<C-x>'
-
-"## vim-vdebug/vdebug
-" PROS:
-"   - Unico debug pra vim
-"   - Suporte para multiplas linguagens
-"
-" CONS:
-"   - Necessita de Python3
-"   - Não funcionou com phpunit
-
-" XDEBUG:
-"   - Acessar: https://xdebug.org/wizard
-"   - Baixar dll ou so indicado e salvar em /path/to/php/ext ou
-"   /path/to/php/ext/ext
-"   - Adicionar no php.ini
-"   [xdebug]
-"   zend_extension="/path/to/php/ext/xdebug.so" (.so ou .dll)
-"   xdebug.remote_enable=on
-"   xdebug.remote_handler=dbgp
-"   xdebug.remote_host=localhost
-"   xdebug.remote_port=9000
-
-" COMANDOS:
-"    <F5>: inicia/vai para o proximo breakpoint
-"    <F2>: avança um passo
-"    <F3>/<F4>: entra/sai um passo
-"    <F6>: para debug (kills script)
-"    <F6><F6>: para o debug e fecha a interface do VDebug
-"    <F9>: avança até o cursor
-"    <F10>: toggle breakpoint
-"    <F11>: mostra variáveis de contexto
-"    <F12>: mostra variável abaixo do cursor
-"    :Breakpoint <type> <args>: set a breakpoint of any type (see :help VdebugBreakpoints)
-"    :VdebugEval "<code>": evaluate some code and display the result
-
-" Evita erro de DeprecationWarning: the imp module is deprecated in favour of
-" importlib; see the module's documentation for alternative uses
-" THANKS: https://github.com/powerline/powerline/issues/1925#issuecomment-402635097
-" Necessário configurar:
-" set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
-" set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
-"if has('python3')
-"  silent! python3 1
-"  packadd! vdebug
-"endif
-
-" script proposto para criar a sessão do xdebug
-" #!/bin/bash
-" export XDEBUG_CONFIG="idekey=xdebug"
-" php "$@"

@@ -9,7 +9,7 @@ Configurações que planejo fazer no vim (em ordem)
 - [x] reload vimrc
 - [x] auto popup vim (plugin buga as vezes...)
 - [x] spellcheck inglês e português
-- [ ] gerenciamento de packages
+- [ ] [gerenciamento de packages](vim/packages.md)
     - [ ] tentar instalar/remover packages automaticamente sem bash
     - [ ] gerar helptags
 - [ ] snippets
@@ -82,7 +82,7 @@ Checklist de necessidades básicas/interessantes que o editor deve suprir
 Lista de problemas em ambos editores
 
 - [ ] Vim issues
-    - [ ] Erro com colorsheme com `:source $MYVIMRC`
+    - [ ] Erro com colorscheme com `:source $MYVIMRC`
 - [ ] Nvim Issues
     - [ ] Autopopup estranho/pequeno/feio e lento
     - [ ] Instalação no windows precisa do scoop

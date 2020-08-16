@@ -1,38 +1,24 @@
+"# wtf-file-gvimrc
 " highlight Normal guifg=white guibg=black
 
-"Note: When the GUI starts, 't_vb' is reset to its default value.
-"You might want to set it again in your gvimrc.
-"THANKS: https://stackoverflow.com/a/18589653
 au! GUIEnter * set visualbell t_vb=
-
-" remove componentes da interface
-set guioptions-=T  " tool bar
-set guioptions-=m  " menu bar
-set guioptions-=r  " scroll bar direita
-set guioptions-=L  " scroll bar esquerda (janela com split vertical)
 
 if has("win32")
     set guifont=Consolas:h11
-
-    " Alertas
-    " http://vimdoc.sourceforge.net/htmldoc/gui_w32.html
     au! GUIEnter * simalt ~x
 else
     set guifont=UbuntuMono\ NF:h11
 endif
 
-" config da GUI não verionada
+set guioptions-=T
+set guioptions-=m
+set guioptions-=r
+set guioptions-=L
+
 if filereadable(expand("~/.gvimrc-local.vim"))
     source ~/.gvimrc-local.vim
-    " Colocar font em ~/.gvimrc-local.vim, pois varia de sistema operacional ...
-    " set guifont=UbuntuMono\ NF:h11
-    " set guifont=Fira\ Code:h10
-    " set guifont=Consolas:h11
-    " Para ver as opções de font: set guifont=*
 endif
 
-" Aumenta fonte
-" THANKS: https://vi.stackexchange.com/a/3104/28875
 function! FontSizePlus ()
     let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
     let l:gf_size_whole = l:gf_size_whole + 1
@@ -40,8 +26,6 @@ function! FontSizePlus ()
     let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
 endfunction
 
-" Diminui fonte
-" THANKS: https://vi.stackexchange.com/a/3104/28875
 function! FontSizeMinus ()
     let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
     let l:gf_size_whole = l:gf_size_whole - 1
