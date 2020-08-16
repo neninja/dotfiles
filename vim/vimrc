@@ -689,6 +689,8 @@ cnoreabbrev wQA wqa
 cnoreabbrev wqA wqa
 cnoreabbrev wQa wqa
 
+" Simplificação do lvim:
+" Lista resultados da palavra sob o cursor
 " THANKS: https://vim.fandom.com/wiki/Find_in_files_within_Vim
 cabbrev lvim
             \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
