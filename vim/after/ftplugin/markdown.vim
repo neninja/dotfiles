@@ -65,9 +65,11 @@ function! s:Navigate()
     normal ms0
     if(search('(\p*)', '', line('.')))
         try
+            let save_cwd = getcwd()
             " Esconde erro de tentar sobescrever a função
             " durante a abertura do novo buffer
             silent! normal! lgf
+            execute 'cd' fnameescape(save_cwd)
         catch
             normal `s
             return
@@ -77,5 +79,3 @@ endfunction
 
 nnoremap <buffer> <c-space> :call <SID>ToggleCheckbox()<CR>
 nnoremap <buffer> <cr>      :call <SID>Navigate()<CR>
-
-" ver: lvimgrep /\[ \]/ % | lw
