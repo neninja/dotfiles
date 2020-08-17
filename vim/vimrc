@@ -287,24 +287,6 @@ function! SourceIfExists(file)
     endif
 endfunction
 
-function! ToggleCheckbox()
-    normal! ms0
-    if(search('-\s\[\p\]', 'c', line('.')))
-        if(getline('.')[col('.') + 2] == ' ')
-            normal! 3lrx
-        else
-            exec "normal! 3lr "
-        endif
-    else
-        if(search('^.*-\s', 'c', line('.')))
-            exec "normal! ^la[ ] "
-        else
-            exec "normal! I- [ ] "
-        endif
-    endif
-    normal `s
-endfunction
-
 "## Comandos
 command! Sov source $MYVIMRC | e %
 
@@ -599,6 +581,24 @@ function! s:SelecionaWiki(wiki)
     catch
         return
     endtry
+endfunction
+
+function! ToggleCheckbox()
+    normal! ms0
+    if(search('-\s\[\p\]', 'c', line('.')))
+        if(getline('.')[col('.') + 2] == ' ')
+            normal! 3lrx
+        else
+            exec "normal! 3lr "
+        endif
+    else
+        if(search('^.*-\s', 'c', line('.')))
+            exec "normal! ^la[ ] "
+        else
+            exec "normal! I- [ ] "
+        endif
+    endif
+    normal `s
 endfunction
 
 nnoremap <leader>ww :call <SID>SelecionaWiki(0)<CR>

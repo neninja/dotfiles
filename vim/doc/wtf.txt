@@ -1320,15 +1320,6 @@ Carrega arquivo se ele existe
 >
   function! SourceIfExists(file)
 <
-
-Cria checkbox ou preenche existente, usado em todolist e markdown
-  * lorem           ->      - [ ] lorem
-  * - lorem         ->      - [ ] lorem
-  * - [ ] lorem     ->      - [x] lorem
-  * - [x] lorem     ->      - [ ] lorem
->
-  function! ToggleCheckbox()
-<
 ------------------------------------------------------------------------------
 *wtf-comandos*
 
@@ -1452,6 +1443,20 @@ específicas de markdown em seu respectivo arquivo
   - Acessar [arquivo](arquivo) markdorn com enter, agilizando navegação
   - Marcar e desmarcar checkbox com <c-space> `- [ ] - [x]`
 
+
+Lista e aguarda escolha para redirecionamento para a wiki/README
+>
+  function! s:SelecionaWiki(wiki)
+<
+
+Cria checkbox ou preenche existente, usado em todolist e markdown
+  * lorem           ->      - [ ] lorem
+  * - lorem         ->      - [ ] lorem
+  * - [ ] lorem     ->      - [x] lorem
+  * - [x] lorem     ->      - [ ] lorem
+>
+  function! ToggleCheckbox()
+<
 ---------------------------------------
 OutputAssertion
 
