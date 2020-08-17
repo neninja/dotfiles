@@ -1298,9 +1298,10 @@ Commita projetos de aulas com o padrão `:tv: add aula <numero>`
 <
 
 Pesquisa palavra em todo o projeto
-|THANKS|: https://stackoverflow.com/a/20934608/9881278
-|THANKS|: https://github.com/jmharvey/vim/blob/master/vimrc#L207
-|THANKS|: https://vimrcfu.com/snippet/104
+|THANKS|
+  - https://stackoverflow.com/a/20934608/9881278
+  - https://github.com/jmharvey/vim/blob/master/vimrc#L207
+  - https://vimrcfu.com/snippet/104
 >
   function! s:Grep(grepword)
 <
@@ -1318,6 +1319,15 @@ Carrega arquivo se ele existe
 |THANKS|: https://devel.tech/snippets/n/vIIMz8vZ/load-vim-source-files-only-if-they-exist/
 >
   function! SourceIfExists(file)
+<
+
+Cria checkbox ou preenche existente, usado em todolist e markdown
+  * lorem           ->      - [ ] lorem
+  * - lorem         ->      - [ ] lorem
+  * - [ ] lorem     ->      - [x] lorem
+  * - [x] lorem     ->      - [ ] lorem
+>
+  function! ToggleCheckbox()
 <
 ------------------------------------------------------------------------------
 *wtf-comandos*

@@ -43,3 +43,5 @@ syn match todoListCardTitle '^\S.*$' containedin=ALL
 syn match todoListCardBody '^\s.*$' containedin=ALL
 hi link todoListCardTitle Todo
 hi link todoListCardBody PreProc
+
+nnoremap <buffer> <c-space> :call ToggleCheckbox()<CR>
