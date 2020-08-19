@@ -46,7 +46,7 @@ Neni @nenitf <http://neni.dev>
 ------------------------------------------------------------------------------
 UTILIZAÇÃO NENIWTFVIMRC
 
-- Atualizar com `vim -c "helptags vim/doc" -c q` dentro de dotfiles
+- Atualizar com `:helptags vim/doc` dentro de dotfiles
 - Usar `K` (`:h K`) em cima da palavra da configuração para consultar manual
 
 ------------------------------------------------------------------------------
