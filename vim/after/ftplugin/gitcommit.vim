@@ -15,6 +15,9 @@ inoreabbrev <buffer> bv :bug:(vim)
 inoreabbrev <buffer> nv :new:(vim)
 inoreabbrev <buffer> 1v :100:(vim)
 
+" att helptags
+inoreabbrev <buffer> sv :sos:(vim)
+
 inoreabbrev <buffer> bg :bug:(git)
 inoreabbrev <buffer> ng :new:(git)
 inoreabbrev <buffer> 1g :100:(git)
