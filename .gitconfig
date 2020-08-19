@@ -32,6 +32,8 @@
 [difftool]
     prompt = false
 	tool = vimdiff
+[push]
+    followTags = true
 [alias]
     #############
     a = add --all
@@ -74,7 +76,6 @@
     #ps = push
     ps = push origin HEAD
     psf = push -f origin HEAD
-    pst = push --tags origin HEAD
     #############
     #pl = pull
     pl = pull origin HEAD
