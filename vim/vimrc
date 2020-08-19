@@ -419,7 +419,6 @@ cabbrev lvim
 " FIXME Como colocar definição de filetype em ftdetect?
 augroup filetype_detect
     au!
-    au BufRead wtf.txt set ma | set noro
     au BufRead,BufNewFile *.phtml setfiletype html
     au BufRead,BufNewFile *.gv setfiletype dot
     au BufRead,BufNewFile TODO setfiletype todolist
