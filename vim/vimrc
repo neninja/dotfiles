@@ -300,7 +300,7 @@ command! Grep :call <SID>Grep("")<cr>
 
 command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
-command! TodoList exec ":cd ".g:todolist_dir | e TODO | belowright vnew DONE | aboveleft vnew DOING
+command! TodoList exec ":cd ".g:todolist_dir | e TODO | belowright vnew DOING | tabnew DONE | tabnext
 
 "## Mapeamentos
 ":map -> lista todos mapeamentos para o arquivo
