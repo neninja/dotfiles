@@ -407,10 +407,16 @@ cnoreabbrev wQA wqa
 cnoreabbrev wqA wqa
 cnoreabbrev wQa wqa
 
-cabbrev lvim
-            \ noautocmd lvim /\<lt><C-R><C-W>\>/gj
+cabbrev cvimgrep
+            \ noautocmd vim /\<lt><C-R><C-W>\>/g
             \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
-            \ <Bar> lw
+            \ <Bar> cope
+            \ <C-Left><C-Left><C-Left>
+
+cabbrev clvimgrep
+            \ noautocmd lvim /\<lt><C-R><C-W>\>/g
+            \ <C-R>=(expand("%"))<CR>
+            \ <Bar> lop
             \ <C-Left><C-Left><C-Left>
 
 "## AutoCmds
