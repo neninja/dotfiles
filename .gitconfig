@@ -115,7 +115,7 @@
     rro = remote remove origin
     rru = remote remove upstream
     #############
-    s = status
+    s = status -s
     sb = status -s -b
     #############
     sa = stash apply
