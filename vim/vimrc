@@ -288,7 +288,7 @@ function! SourceIfExists(file)
 endfunction
 
 "## Comandos
-command! Sov source $MYVIMRC | e %
+command! Sov w | source $MYVIMRC | e %
 
 command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
