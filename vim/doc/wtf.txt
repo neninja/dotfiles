@@ -1407,7 +1407,11 @@ Muda tempo de gatilho
 
 Funcionalidades que podem virar mini packages/plugins
 ..............................................................................
+DankDebug
 
+Criação da location list com base em "padrões de debug"
+
+---------------------------------------
 Diagrama ascii
 
 Desenho de diagramas, útil para apresentações em markdown
