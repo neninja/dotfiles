@@ -444,7 +444,7 @@ let g:print_debug_pattern = {
             \   'typescriptreact':  '^\s*console.log(\p*)',
             \ }
 
-command! DankDebug exe "noautocmd lvimgrep /".g:print_debug_pattern[&filetype]."/g ".expand("%") | lop
+command! DankDebug exe "noautocmd vimgrep /".g:print_debug_pattern[&filetype]."/g ".expand("%") | cope
 
 "### Diagrama ascii
 function! Boxdraw()
