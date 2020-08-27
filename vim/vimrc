@@ -623,13 +623,29 @@ nnoremap <leader>ww :call <SID>SelecionaWiki(0)<CR>
 nnoremap <leader>ws :call <SID>SelecionaWiki(1)<CR>
 
 "### OutputAssertion
-function! ListExecutaveis(A,L,P)
-    return "python3\nnode\ngo run\nlua"
-endfunction
+"
+let s:executaveisPorExtensao = {
+            \ 'lua': 'lua',
+            \ 'go': 'go run',
+            \ 'py': 'python3',
+            \ 'js': 'node'
+            \}
 
-" TODO desacoplar execução com criação da tab
-function! OutputAssertion(command)
-    execute "tabnew | 0r!".a:command." #"
+function! s:OutputAssertion()
+    try
+        let command = s:executaveisPorExtensao[expand('%:e')]
+    catch
+        echo "Extensão não mapeada"
+        return
+    endtry
+
+    execute "tabnew | 0r!".command." #"
+
+    if(v:shell_error > 0)
+        q!
+        echo "Executável não encontrado"
+        return
+    endif
 
     " faz o vim entender que não queremo salvar esse arquivo
     setlocal buftype=nofile
@@ -655,7 +671,7 @@ function! OutputAssertion(command)
     wincmd l
 endfunction
 
-command -complete=custom,ListExecutaveis -nargs=+ OutputAssertion :execute ":call OutputAssertion(\"<args>\")"
+command OutputAssertion :call <SID>OutputAssertion()
 
 "### Highlight Word
 function! HiInterestingWord(n)
