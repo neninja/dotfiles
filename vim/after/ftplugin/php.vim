@@ -18,17 +18,7 @@ augroup phpau
     au! BufEnter *.blade.php execute "set ft=html"
 augroup END
 
-fun! NN_PHPExecute()
-    !php %
-endfun
-
-nnoremap <buffer> <leader>r :terminal php %<CR>
-
-" Map para executar comando de teste do composer
-" echo "<?php system('composer test');" > neni-composer-test.php
-nnoremap <buffer> <leader>ct :terminal php neni-composer-test.php<CR>
-
-
+"## Snippets
 " FIXME syntax do php buga com !cursor! como nome de função temporariamente
 inorea <buffer><expr> fun TestaTriggerSnippet('fun',
             \ "function funcName(param)<cr>{<cr>/* código */<cr>}",
