@@ -734,6 +734,13 @@ Exemplo:
 Carregamento de `vimrc` existente no work dir (`:h :pwd` e `:h 'getcwd()'`).
 Ideal para setar wildignore para remover pesquisa de paths de libs
 
+Exemplo de arquivo:
+>
+  set wildignore+=tests/_reports/*
+  let g:ctrlp_custom_ignore.dir .= '\|_reports'
+  nnoremap !! :!composer test<CR>
+<
+
 |[GOLD]|
 Note `exrc` puro não resolve o problema pois ele só carrega o `.vimrc`,
 `.exrc` `_vimrc` ou `_exrc` no momento que o vim é aberto no diretório. Por

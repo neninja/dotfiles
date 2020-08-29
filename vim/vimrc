@@ -846,4 +846,5 @@ call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 call SourceIfExists("~/.vimrc-local.vim")
 
 " TODO remover source quando outro .exrc for carregado
-au DirChanged * :call SourceIfExists(fnamemodify('.exrc', ":p"))
+call SourceIfExists(".exrc")
+au DirChanged * :call SourceIfExists(".exrc")
