@@ -44,7 +44,7 @@ inorea <buffer><expr> cl TestaTriggerSnippet('cl',
             \ ['#code'])
 fun! SnippetPhpClass()
     noa execute "normal! aclass  {"
-    noa execute "normal! hi\<C-R>=expand('%:r:t')\<CR>"
+    noa execute "normal! hi\<C-R>=expand('%:t:r')\<CR>"
     noa normal! o}
     noa normal! O #code
 endfun
