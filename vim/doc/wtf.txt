@@ -182,7 +182,7 @@ Arquivo de configurações de plugins/packages. Seu desacoplamento do vimrc
 serve para permitir o uso do vim em seu estado mais básico de configurações
 sem a necessidade de baixar outros arquivos.
 ..............................................................................
-ctrlpvim/ctrlp.vim
+[GOLD]| ctrlpvim/ctrlp.vim
 
 |PROS|:
   - Search de buffer advinhando conforme é digitado
@@ -209,13 +209,11 @@ Note
   - É possível usar tab para completar nomes de pastas
 
 ---------------------------------------
-|[GOLD]| junegunn/fzf.vim
+junegunn/fzf.vim
 
-Usa `:GFiles` (com gitignore) ou Files
-|THANKS|: https://rietta.com/blog/hide-gitignored-files-fzf-vim/
+|[GOLD]| Usar `:GFiles` produz erro do bash
 >
-  nnoremap <expr> <leader>f (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
-  nnoremap <expr> <leader>f (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
+  nnoremap <silent> <leader>f :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '40%'})<CR>
 <
 
 Fecha split ao cancelar pesquisa
