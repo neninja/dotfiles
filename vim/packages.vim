@@ -1,7 +1,5 @@
 "# wtf-packages
 "## ctrlpvim/ctrlp.vim
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 
@@ -32,6 +30,13 @@ let g:ctrlp_prompt_mappings = {
             \ 'MarkToOpen()':         ['<c-z>'],
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
+
+"## junegunn/fzf.vim
+
+nnoremap <silent> <leader>f :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '40%'})<CR>
+nnoremap <leader>b :Buffers<CR>
+
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
 "## unblevable/quick-scope
 augroup qs_colors
