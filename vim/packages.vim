@@ -91,6 +91,9 @@ let g:vim_markdown_new_list_item_indent = 0
 "## tpope/vim-fugitive
 command! GC :Gw | Gcommit
 
+nmap <leader>gj :diffget //3<CR>
+nmap <leader>gf :diffget //2<CR>
+
 "### Statusline
 set statusline=                 " reseta statusline
 set statusline+=%{FugitiveStatusline()}
@@ -99,7 +102,6 @@ set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
 set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 set statusline+=\ %y            " filetype
-set statusline+=\ {%n}          " buffer, ideal para conflitos do git com :diffget e :diffput
 
 "## airblade/vim-gitgutter
 " TODO substituir plugin

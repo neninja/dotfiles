@@ -176,7 +176,6 @@ set statusline+=\ %f\ %r\%m\
 set statusline+=\%=
 set statusline+=\ %p%%\ %l:\%c
 set statusline+=\ %y
-set statusline+=\ {%n}
 
 "## Funções
 "wtf-funcoes
