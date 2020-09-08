@@ -113,7 +113,6 @@ set foldtext=FoldTextMarker()
 set fillchars=vert:\|,fold:─
 
 let g:html_dynamic_folds=1
-let g:html_hover_unfold = 1
 let g:html_prevent_copy = "fntd"
 
 function! FoldTextMarker()
