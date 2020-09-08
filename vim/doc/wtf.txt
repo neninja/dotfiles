@@ -832,20 +832,8 @@ Buffers vs Tabs (polêmica ᕦ(ò_óˇ)ᕤ)
 Note `:ls lista`, `:b <numero><tab>` acessa buffers
 
 |[GOLD]|
-O vim pode zuar o conteudo do buffer exibindo `^M`, não sei como resolver
-ainda. Porém encontrei a função abaixo que tentava evitar o problema
-|THANKS|: https://stackoverflow.com/a/6496995/9881278
->
-  function! Dos2unix()
-      " Don't strip on these filetypes
-      " :echo &ft
-      if &ft =~ 'startify\|nerdtree'
-          return
-      endif
-      :e ++ff=dos
-  endfunction
-  autocmd BufRead * call Dos2unix()
-<
+O vim escolhe automaticamente `ff` e `ffs` de acordo com o sistema
+operacional.
 
 Checa/atualiza se o texto foi modificado (ocorre mt com o git)
 >
@@ -907,8 +895,8 @@ deve ser feito em `packages.vim` (|wtf-file-packages|)
 
 Syntax de acordo com o filetype
 >
-  " syntax on
-  syntax enable
+  syntax enable     " por algum motivo a syntax some com o tempo
+  syntax on         " não some com o tempo
 <
 
 Carrega ftplugin.vim e indent.vim do runtimepath (plugins)

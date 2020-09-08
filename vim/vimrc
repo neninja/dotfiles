@@ -35,7 +35,6 @@ set encoding=utf-8
 "set fileencoding=utf-8 "?
 "set fileencodings=utf-8 "?
 
-set fileformats=unix,dos,mac "?
 " TODO entender configs abaixo:
 "set bomb "?
 "set binary "?
@@ -73,9 +72,7 @@ augroup END
 
 "## Comportamento
 "wtf-comportamento
-" TODO diferença entre on e enabled
-" syntax on
-syntax enable
+syntax on
 
 filetype plugin indent on
 set showmatch                   
