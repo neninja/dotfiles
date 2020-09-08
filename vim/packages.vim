@@ -3,7 +3,6 @@
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
-nnoremap <leader>t :CtrlPTag<CR>
 
 let g:ctrlp_custom_ignore = {
             \ 'dir':  'node_modules\|DS_Store\|\.git\|dist\|vendor\|_site\|.jekyll-cache\|ios\|android\|.venv\|build',

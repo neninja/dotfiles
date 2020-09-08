@@ -14,6 +14,9 @@ fun! NN_PHPLint()
     endif
 endfun
 
+setlocal suffixesadd=.php
+setlocal path=**
+
 augroup phpau
     au! BufEnter *.blade.php execute "set ft=html"
 augroup END

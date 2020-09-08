@@ -188,7 +188,7 @@ function! NN_ctags()
     let s:ctags_command="ctags" . 
                 \ " -R --totals" .
                 \ " --exclude=.git --exclude=.svn" .
-                \ " --exclude=vendor" .
+                \ " --exclude=vendor --exclude=_*" .
                 \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
                 \ " --exclude=_site" .
                 \ " --languages=php,javascript"
@@ -321,7 +321,7 @@ nnoremap    <leader>ds          :on<CR>| " Close all splits
 nnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
 vnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
 nnoremap    <leader>s           :split<CR>
-nnoremap    <leader>t           :tn <c-r><c-w><CR>| " Goto definition (ctags)
+nnoremap    <leader>t           :tj <c-r><c-w><CR>| " Goto definition (ctags)
 nnoremap    <leader>v           :vsplit<CR>
 nnoremap    <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
 vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
