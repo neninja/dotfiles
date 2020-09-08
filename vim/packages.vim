@@ -170,9 +170,11 @@ let g:ale_fix_on_save = 1
 colorscheme yin
 
 fun! FixColorschemeYin()
-    highlight LineNr guibg=#1c1c1c ctermbg=234
-    highlight Search guibg=#eeeeee guifg=#080808 ctermbg=255 ctermfg=232 term=none
-    highlight MatchParen guibg=blue guifg=white
+    highlight LineNr        term=none ctermbg=NONE ctermfg=11 guibg=NONE guifg=#585858
+    highlight Folded        term=none ctermbg=NONE ctermfg=11 guibg=NONE guifg=#585858
+    highlight FoldColumn    term=none ctermbg=NONE ctermfg=11 guibg=NONE guifg=#585858
+    highlight Search        term=none ctermbg=255 ctermfg=232 guibg=#eeeeee guifg=#080808
+    highlight MatchParen    term=none guibg=blue guifg=white
 endfun
 
 augroup override_highlights_yin
