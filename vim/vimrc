@@ -686,7 +686,7 @@ function! s:ExecuteCurrentBufferFile()
 endfunction
 
 command OutputAssertion :call <SID>OutputAssertion()
-nnoremap !! :call <SID>ExecuteCurrentBufferFile()<CR>
+nnoremap <leader>r :call <SID>ExecuteCurrentBufferFile()<CR>
 
 "### Highlight Word
 function! HiInterestingWord(n)
