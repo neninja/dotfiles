@@ -30,6 +30,9 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
     - [gvimrc](/gvim/gvimrc): configurações de interface gráfica do gvim
     - [packages.vim](/vim/packages.vim): configurações específicas de packages do vim
     - [vimrc](/vim/vimrc): configurações do vim, funciona de maneira independente do projeto
+    - [vi](/vim/vi): configurações do vi, usado em servidores sem vim. Deve ser posto em `.vimrc`
+        - `curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi > $HOME/.vimrc`
+        - `wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi -O $HOME/.vimrc`
 - [wiki/](/wiki): anotações pessoais
 - [.bashrc](bash.rc): configurações bash (alias, path, functions, ps e etc).
 - [.gitconfig](/git/config): configuração do git
@@ -40,7 +43,7 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 ### Parcial do vim
 Caso queira somente a configuração básica do vim, basta copiar o conteúdo de [vimrc](/vim/vimrc) e [gvimrc](/vim/gvimrc) para respectivamente:
 - `%userprofile%\_vimrc` e `%userprofile%\_gvimrc` no Windows
-```
+```sh
 curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vimrc > %userprofile%\_vimrc
 curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/gvimrc > %userprofile%\_gvimrc
 ```

@@ -1,0 +1,70 @@
+" vim: set filetype=vim:
+
+colorscheme slate
+set background=dark
+
+set hidden
+
+set incsearch
+set ignorecase 
+set nosmartcase
+
+set showmatch                   
+set showmode                    
+set showcmd                     
+set autoindent                  
+
+"## Statusline
+
+set laststatus=2
+set statusline=
+set statusline+=\ %f\ %r\%m\
+set statusline+=\%=
+set statusline+=\ %p%%\ %l:\%c
+set statusline+=\ %y
+
+"## Autocomplete
+
+set wildmenu
+set shortmess+=c
+set wildcharm=<tab>
+
+set wildignore=node_modules/*
+set wildignore+=.git/*
+set wildignore+=dist/*
+set wildignore+=vendor/*
+set wildignore+=ios/*
+set wildignore+=android/*
+set wildignore+=_site/*
+
+set wildignorecase
+
+set complete=.,k,w
+
+set tags=tags
+
+set iskeyword+=-
+
+set omnifunc=syntaxcomplete#Complete
+
+"## Maps
+
+nnoremap    <c-j>           <c-w>w
+nnoremap    <c-k>           <c-w>W
+nnoremap    <space><space>  :w<CR>
+nnoremap    <space>b        :b <c-d>
+nnoremap    <space>f        :e **/*
+nnoremap    <space>df       :q!<CR>
+nnoremap    <space>dd       :q<CR>
+nnoremap    <space>ds       :on<CR>
+nnoremap    <space>/        :noh<CR>
+nnoremap    #               :b#<CR>
+nnoremap    n               nzzzv
+nnoremap    N               Nzzzv
+
+inoremap    <c-h>           <left>
+inoremap    <c-j>           <down>
+inoremap    <c-k>           <up>
+inoremap    <c-l>           <right>
+inoremap    dd              var_dump(<cr><cr>);die;<up>,<left>
+inoremap    kj              <esc>
