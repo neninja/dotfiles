@@ -1,10 +1,20 @@
-" https://vim.fandom.com/wiki/Runtime_syntax_check_for_php
-" Para usar o :make % e ver erro de syntax
-" compiler php
-setl errorformat=%m\ in\ %f\ on\ line\ %l
-"THANKS: http://blog.joncairns.com/2012/05/using-vim-as-a-php-ide/
-setl makeprg=php\ -l\ %
-" THANKS: https://pt.slideshare.net/ZendCon/vim-for-php-programmers-presentation
+setlocal suffixesadd=.php
+setlocal path=**
+
+augroup phpau
+    au! BufEnter *.blade.php execute "set ft=html"
+augroup END
+
+"## Compiler
+" :make|cw e ver erro de syntax
+" THANKS: https://stackoverflow.com/a/7272248/9881278
+" THANKS: https://stackoverflow.com/a/7193830/9881278
+" THANKS: https://vim.fandom.com/wiki/Runtime_syntax_check_for_php
+" setl errorformat=%m\ in\ %f\ on\ line\ %l,%-GErrors\ parsing\ %f,%-G
+setl errorformat=Parse\ error:\ %m\ in\ %f\ on\ line\ %l,%-GErrors\ parsing\ %f,%-G%.%#
+" setl errorformat=PHP\ Parse\ error:\ %m\ in\ %f\ on\ line\ %l,%-GErrors\ parsing\ %f,%-G%.%#
+setl makeprg=php\ -ln\ %
+
 fun! NN_PHPLint()
     silent make
     if v:shell_error
@@ -13,13 +23,6 @@ fun! NN_PHPLint()
         clist
     endif
 endfun
-
-setlocal suffixesadd=.php
-setlocal path=**
-
-augroup phpau
-    au! BufEnter *.blade.php execute "set ft=html"
-augroup END
 
 "## Snippets
 " FIXME syntax do php buga com !cursor! como nome de função temporariamente

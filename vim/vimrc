@@ -22,7 +22,6 @@ set nocompatible
 "wtf-rtp
 
 execute "set runtimepath+=".g:dotfiles_dir."/vim"
-execute "set runtimepath+=".g:dotfiles_dir."/vim/after"
 set packpath+=~/vimfiles
 
 "## Buffer

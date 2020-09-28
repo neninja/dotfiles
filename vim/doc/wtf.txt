@@ -77,8 +77,8 @@ MANUTENÇÃO NENIWTFVIMRC
 - `dotfiles/vim/plus.vim`
 - `~/.gvimrc-local.vim`
 - `~/.vimrc-local.vim`
-- `dotfiles/vim/after/syntax/*`
-- `dotfiles/vim/after/ftplugin/*`
+- `dotfiles/vim/syntax/*`
+- `dotfiles/vim/ftplugin/*`
 - `dotfiles/vim/ftdetect/*`
 
 ------------------------------------------------------------------------------
@@ -89,20 +89,8 @@ Deve ser criado na home com o nome `.vimrc-pre.vim`.
 
 Exemplo:
 >
-  " configuraçãoes que afetam a perf, mistura vim builtin e plugins
-  call SourceIfExists(g:dotfiles_dir."/vim/plus.vim")
-
-  let g:startify_lists = [
-              \ { 'type': 'sessions', 'header': ['sessões'] },
-              \ { 'type': 'commands', 'header': ['comandos'] },
-              \ ]
-
   set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32
   set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
-
-  " set rtp+=~/scoop/apps/fzf
-  " set rtp+=~/.fzf/plugin
-  set rtp+=~/.fzf
 <
 ------------------------------------------------------------------------------
 *wtf-file-vimrc*
@@ -712,6 +700,16 @@ Exemplo:
   let g:startify_commands = [
               \ { 'g': ['gostack11', 'e ~/dev/gostack11']},
               \ ]
+
+  let g:vimwikis_dirs = [
+              \ '~/.oab/wiki',
+              \ g:dotfiles_dir."/wiki",
+              \ g:dotfiles_dir."/wiki/vim"
+              \ ]
+
+  " set rtp+=~/scoop/apps/fzf
+  " set rtp+=~/.fzf/plugin
+  set rtp+=~/.fzf
 <
 ------------------------------------------------------------------------------
 *wtf-file-gvimrclocal*
@@ -794,14 +792,9 @@ portanto não tem problema criar acoplamento desse arquivo com outros
 ..............................................................................
 
 - Deve vir antes das definições de filetype
-- Carrega ftdetect, para definir extensões de tipos de arquivos
+- Carrega ftdetect, syntax e ftplugin, para extensões de tipos de arquivos
 >
   execute "set runtimepath+=".g:dotfiles_dir."/vim"
-<
-
-Evita autocmd de highligh (syntax/) e específicas do filetype (ftplugin/)
->
-  execute "set runtimepath+=".g:dotfiles_dir."/vim/after"
 <
 
 O vim utilizado pelo git para commitar no Windows é diferente do que fica

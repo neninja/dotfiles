@@ -21,7 +21,8 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
     - [git/](/modelos/git): arquivos usados com git ou github
 - [vim/](/vim): arquivos de configuração do [vim](https://www.vim.org/)
     - [doc/wtf.txt](/vim/doc/wtf.txt): documentação das minhas configurações (`:h wtf`)
-    - [after/](/vim/after/): [Comportamentos](/vim/after/ftplugin) e [cores](/vim/after/syntax) específicas (js, python, php ...)
+    - [ftplugin/](/vim/ftplugin): especificações de `filetypes`
+    - [syntax/](/vim/syntax): sintaxes específicas de `filetypes`
     - [dicionarios/](/vim/dicionarios/): dicionários usados para sugerir palavras
     - [skeletons/](/vim/skeletons/): estrutura inicial de tipos de arquivos
     - [clone-packages.sh](/vim/clone-packages.sh): download de packages (plugins)
