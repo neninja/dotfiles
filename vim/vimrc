@@ -774,6 +774,9 @@ nnoremap gc :call ToggleComment()<cr>
 vnoremap gc :call ToggleComment()<cr>
 
 "### Snippets
+
+let g:nonkw_snippet_trigger = "\<tab>"
+
 function! TestaTriggerSnippet(abbr, expansion, placeholders)
     let g:placeholders = a:placeholders
     let s:expansion = a:expansion.
@@ -814,12 +817,6 @@ function! PlaceHolder(backward)
         endif
     endif
 endfunction
-
-let g:nonkw_snippet_trigger = "\<space>"
-
-command! AbbrevToggle if g:nonkw_snippet_trigger=="\\"
-            \|let g:nonkw_snippet_trigger="\<space>"
-            \|else|let g:nonkw_snippet_trigger="\\"|endif
 
 "#### Listas
 function! AutoCompleteCarinhas()
