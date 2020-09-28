@@ -1,28 +1,17 @@
+"## gf
+" Facilita gf pois nomes de classes normalmente são os nomes dos arquivos"
 setlocal suffixesadd=.php
 setlocal path=**
 
+"## AutoCmds
 augroup phpau
     au! BufEnter *.blade.php execute "set ft=html"
 augroup END
 
 "## Compiler
-" :make|cw e ver erro de syntax
-" THANKS: https://stackoverflow.com/a/7272248/9881278
-" THANKS: https://stackoverflow.com/a/7193830/9881278
-" THANKS: https://vim.fandom.com/wiki/Runtime_syntax_check_for_php
-" setl errorformat=%m\ in\ %f\ on\ line\ %l,%-GErrors\ parsing\ %f,%-G
-setl errorformat=Parse\ error:\ %m\ in\ %f\ on\ line\ %l,%-GErrors\ parsing\ %f,%-G%.%#
-" setl errorformat=PHP\ Parse\ error:\ %m\ in\ %f\ on\ line\ %l,%-GErrors\ parsing\ %f,%-G%.%#
-setl makeprg=php\ -ln\ %
+compiler phplint
 
-fun! NN_PHPLint()
-    silent make
-    if v:shell_error
-        copen
-    else
-        clist
-    endif
-endfun
+nnoremap <buffer> <leader>r :silent make\|cw<CR>
 
 "## Snippets
 " FIXME syntax do php buga com !cursor! como nome de função temporariamente
@@ -55,7 +44,8 @@ fun! SnippetPhpClass()
     noa normal! O #code
 endfun
 
-"## Getters e Setters
+"## FunçõeS
+"### Getters e Setters
 fun! NN_PHPCreateGettersSetters()
     let propName = <SID>GetProp()
     call <SID>CommandGetterSetter(propName, 'CreateGetter')

@@ -1,3 +1,4 @@
+"## Comandos
 command! -nargs=1 GoDoc !go doc <args>
 " interpreta package.Fun como um nome de arquivo
 nnoremap K :GoDoc <c-r><c-f><cr>
@@ -6,109 +7,15 @@ nnoremap K :GoDoc <c-r><c-f><cr>
 command! GoFmt silent !goimports -w %
 " command! GoFmt !gofmt -w %
 
+"## AutoCmds
 augroup goau
     autocmd! BufWritePost *.go GoFmt
 augroup END
 
 "## Compiler
-" let current_compiler = 'gotest'
 compiler gotest
-"
-" :make|cw
-" THANKS: https://vi.stackexchange.com/a/4808/28875
-"
-" set errorformat=%-G#%.%#
-" set errorformat+=%-G%.%#panic:\ %m
-" set errorformat+=%-GFAIL%.%#
-" set errorformat+=%-Gexit%.%#
-" set errorformat+=%-GPASS%.%#
-" set errorformat+=%-Gok%.%#
-" set errorformat+=%Acan\'t\ load\ package:\ %m
-" set errorformat+=%+A---\ FAIL:\ Example%.%#
-" set errorformat+=%A%.%#---\ FAIL:%.%#
-" set errorformat+=%Z%f:%l:%c:\ %m
-" set errorformat+=%Z%f:%l:\ %m
-" set errorformat+=%*\\s%f:%l\ %m
-" set errorformat+=%C%m
 
-" melhor
-" set errorformat=%-G#%.%#
-" set errorformat+=%-G%.%#panic:\ %m
-" set errorformat+=%-GFAIL%.%#
-" set errorformat+=%-Gexit%.%#
-" set errorformat+=%-GPASS%.%#
-" set errorformat+=%-Gok%.%#
-" set errorformat+=can\'t\ load\ package:\ %m
-" set errorformat+=%f:%l:%c:\ %m
-" set errorformat+=%f:%l:\ %m
-" set errorformat+=%*\\s%f:%l\ %m
-" set errorformat+=%+A---\ FAIL:\ Example%.%#
-" set errorformat+=%C%m
-
-
-
-" set errorformat+=%.%#---\ FAIL:\ %s\ (%.%#)
-" set errorformat+=%+G---\ FAIL:%.%#
-" set errorformat+=%E%+G---\ FAIL:%.%#
-" set errorformat+=%P\\s%#%f:%.%#%r
-" set errorformat+=\\s%#%f.go%.%#
-" set errorformat+=%+O%\\s%#%f%r
-" set errorformat+=%A%f:%l:\ %m
-" set errorformat+=%+G---\ FAIL:\ Example%.%#
-" set errorformat+=%+G%.%#---\ FAIL:%s
-" set errorformat+=%.%#---\ FAIL:\ %s\ (%.%#)
-" set errorformat+=%-G---%.%#
-" set errorformat+=%-GFAIL%.%#
-" set errorformat+=%-Gexit%.%#
-" set errorformat+=%-Q%.%#---\ FAIL:%s
-
-" set errorformat+=%E%.%#---\ FAIL:%s
-" set errorformat+=%-P%f
-
-" set errorformat+=%A%f:%l:\ %m
-""setl errorformat=%-G#\ %.%#                    " Ignore lines beginning with "#" ("# command-line-arguments" line sometimes appears?)
-""setl errorformat+=%-G%.%#panic:\ %m            " Ignore lines containing "panic: message"
-""setl errorformat+=%Ecan\'t\ load\ package:\ %m " Start of multiline error string is "can't load package: message"
-""setl errorformat+=%A%f:%l:%c:\ %m              " Start of multiline unspecified string is "filename:linenumber:columnnumber: message"
-""setl errorformat+=%A%f:%l:\ %m                 " Start of multiline unspecified string is "filename:linenumber: message"
-""setl errorformat+=%C%*\\s%m                    " Continuation of multiline error message is indented
-""" setl errorformat+=%*\\s%f:%l\ %m               " Runtimeerror "filename:linenumber: message"
-""setl errorformat+=%E---\ FAIL:,%C*\\s%f:%l\ %m               " Runtimeerror "filename:linenumber: message"
-""
-""setl errorformat+=%C%*\\s%m                    " Continuation of multiline error message is indented
-""setl errorformat+=%E---\ FAIL:\ %m
-""" setl errorformat+=%E---\ FAIL:\ Example%m,%C%m,%ZFAIL\ %m
-""" setl errorformat+=%-G%.%#                      " All lines not matching any of the above patterns are ignored
-
-" set errorformat=
-" setl errorformat=%-G#\ %.%#
-" setl errorformat+=%-G%.%#panic:\ %m
-" setl errorformat+=%E%f:%l:%c:\ %m
-" setl errorformat+=%E%f:%l:\ %m
-" setl errorformat+=%*\\s%f:%l\ %m
-" setl errorformat+=%E---\ FAIL:,%C*\\s%f:%l\ %m
-
-" setl errorformat+=%C%*\\s%m
-" setl errorformat+=%E---\ FAIL:\ %m
-" setl errorformat+=%E---\ FAIL:\ %m,%C%f%lFAIL\ %m
-" setl errorformat+=%E---\ FAIL:\ %m,%C%m,%ZFAIL\ %m
-
-" set errorformat+=%E---\ FAIL:\ %m,%E%f%l\ %m
-" set errorformat+=%E%.%#---\ FAIL:%.%#
-" set errorformat+=%E%f:%l:\ %m
-" set errorformat+=%C%m
-" set errorformat+=%Z%.%#FAIL
-" set errorformat+=%E%.%#---\ FAIL:\ %m:%.%#
-" set errorformat+=%-G%.%#
-
-" https://github.com/wincent/wincent/blob/b38dc93bb5/roles/dotfiles/files/.vim/after/compiler/README.md
-
-" :make ./... testa recursivamente todo o projeto
-" porém o quickfix não vai redirecionar para nenhum arquivo
-" setl makeprg=go\ test
-" setl makeprg=go\ run\ %
-
-nnoremap <leader>r :call NN_GoTest()<CR>
+nnoremap <buffer> <leader>r :call NN_GoTest()<CR>
 
 function! NN_GoTest()
     " Exemplo de falha em go:
