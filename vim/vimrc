@@ -158,6 +158,8 @@ set wildignore+=ios/*
 set wildignore+=android/*
 set wildignore+=_site/*
 
+set wildignorecase
+
 set complete=.,k,w
 
 set tags=tags
