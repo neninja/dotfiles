@@ -672,8 +672,6 @@ function! s:OutputAssertion()
 endfunction
 
 let g:current_filetype=""
-" Caso seja um script que exiga input as ferramentas são piores...
-let g:inputscript=0
 let g:current_terminal=0
 
 function! s:ExecuteCurrentBufferFile()
@@ -693,10 +691,6 @@ function! s:ExecuteCurrentBufferFile()
     cclose
 
     let g:current_filetype=&filetype
-    if(g:inputscript)
-        call term_start(command." ".expand('%'), {'exit_cb':'FinishedTerm'})
-        let g:current_terminal = bufnr()
-    else
         new
         execute "set filetype=".g:current_filetype
         set buftype=terminal
@@ -706,21 +700,11 @@ function! s:ExecuteCurrentBufferFile()
         execute "b ".g:current_terminal
         set filetype=txt
         cw
-    endif
-endfunction
-
-function! FinishedTerm(job, status)
-    if a:status
-        execute "set filetype=".g:current_filetype
-        " mesmo com o callback sendo chamado, não necessariamente o buffer é
-        " atualizado com o conteudo do output
-        sleep 100m
-        silent cgetbuffer | cw
-    endif
 endfunction
 
 command OutputAssertion :call <SID>OutputAssertion()
-nnoremap <leader>r :call <SID>ExecuteCurrentBufferFile()<CR>
+command DumpScript :call <SID>ExecuteCurrentBufferFile()
+nnoremap <leader>r :DumpScript<CR>
 
 "### Highlight Word
 function! HiInterestingWord(n)
