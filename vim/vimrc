@@ -671,19 +671,52 @@ function! s:OutputAssertion()
     wincmd l
 endfunction
 
-function! s:ExecuteCurrentBufferFile()
-    try
-        !!
-    catch
-        try
-            let command = s:executaveisPorExtensao[expand('%:e')]
-        catch
-            echo "Extensão não mapeada"
-            return
-        endtry
+let g:current_filetype=""
+" Caso seja um script que exiga input as ferramentas são piores...
+let g:inputscript=0
+let g:current_terminal=0
 
-        execute "!".command." %"
+function! s:ExecuteCurrentBufferFile()
+    if g:current_terminal
+        " ocorre erro caso o buffer não exista mais
+        try
+            execute "bd! ".g:current_terminal
+        catch
+        endtry
+    endif
+    try
+        let command = s:executaveisPorExtensao[expand('%:e')]
+    catch
+        echo "Extensão não mapeada"
+        return
     endtry
+    cclose
+
+    let g:current_filetype=&filetype
+    if(g:inputscript)
+        call term_start(command." ".expand('%'), {'exit_cb':'FinishedTerm'})
+        let g:current_terminal = bufnr()
+    else
+        new
+        execute "set filetype=".g:current_filetype
+        set buftype=terminal
+        execute "silent 0r!".command." #"
+        let g:current_terminal = bufnr()
+        silent cgetbuffer
+        execute "b ".g:current_terminal
+        set filetype=txt
+        cw
+    endif
+endfunction
+
+function! FinishedTerm(job, status)
+    if a:status
+        execute "set filetype=".g:current_filetype
+        " mesmo com o callback sendo chamado, não necessariamente o buffer é
+        " atualizado com o conteudo do output
+        sleep 100m
+        silent cgetbuffer | cw
+    endif
 endfunction
 
 command OutputAssertion :call <SID>OutputAssertion()
