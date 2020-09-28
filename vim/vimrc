@@ -834,6 +834,7 @@ function! AutoCompleteCarinhas()
                 \ '¯\_(ツ)_/¯',
                 \ '(~˘▾˘)~',
                 \ 'ᕦ(ò_óˇ)ᕤ',
+                \ '༼ つ ◕_◕ ༽つ',
                 \])
     return ''
 endfunction
