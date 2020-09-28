@@ -315,8 +315,8 @@ nnoremap    <leader>.           :pwd<CR>
 nnoremap    <leader>dd          :call <SID>FechaSplitOuDeletaBuffer()<CR>
 nnoremap    <leader>df          :call <SID>FechaSplitOuDeletaBufferForced()<CR>
 nnoremap    <leader>ds          :on<CR>| " Close all splits
-nnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
-vnoremap    <leader>n           :call NN_<tab><left>| " funções pessoais
+nnoremap    <leader>n           :call NN_<c-d>| " funções pessoais
+vnoremap    <leader>n           :call NN_<c-d>| " funções pessoais
 nnoremap    <leader>s           :split<CR>
 nnoremap    <leader>t           :tj <c-r><c-w><CR>| " Goto definition (ctags)
 nnoremap    <leader>v           :vsplit<CR>
