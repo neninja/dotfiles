@@ -99,7 +99,7 @@ endfun
 
 fun! s:CreateGetter(propName, finalLine, commandInsert)
     let funcName = 'get'.toupper(a:propName[0]).a:propName[1:]
-    if(search('\s*public function '.funcName))
+    if(search('\s*public function '.funcName.'('))
         return
     endif
 
@@ -110,7 +110,7 @@ endfun
 
 fun! s:CreateSetter(propName, finalLine, commandInsert)
     let funcName = 'set'.toupper(a:propName[0]).a:propName[1:]
-    if(search('\s*public function '.funcName))
+    if(search('\s*public function '.funcName.'('))
         return
     endif
 
