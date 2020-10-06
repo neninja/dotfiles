@@ -409,7 +409,7 @@ cnoreabbrev wQa wqa
 
 cabbrev cvimgrep
             \ noautocmd vim /\<lt><C-R><C-W>\>/g
-            \ **<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
+            \ **/*<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
             \ <Bar> cope
             \ <C-Left><C-Left><C-Left>
 
