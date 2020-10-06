@@ -33,7 +33,7 @@ function! NN_GoTest()
     execute "cd ".expand('%:h')
 
     " usar setl makeprg=go\ test
-    silent make | cw
+    silent make! | cw
 
     " THANKS: https://stackoverflow.com/a/1553008/9881278
     if(!len(getqflist()))
