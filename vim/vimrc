@@ -261,8 +261,8 @@ function! s:Grep(grepword)
     endif
     "exec "silent !git grep -EIn \"" . grepword . "\""
     " exec "vimgrep /".s:kwd."/ %"|" No arquivo
-    exec "lvimgrep /\\<" . s:grepword . "\\>/j **"
-    lopen
+    silent exec "noa vimgrep /\\<" . s:grepword . "\\>/j **"
+    copen
 endfunction
 
 function! s:FechaSplitOuDeletaBuffer()
