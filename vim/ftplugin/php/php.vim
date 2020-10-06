@@ -6,12 +6,13 @@ setlocal path=**
 "## AutoCmds
 augroup phpau
     au! BufEnter *.blade.php execute "set ft=html"
+    au! BufEnter *Test.php compiler phpunit
 augroup END
 
 "## Compiler
 compiler phplint
 
-nnoremap <buffer> <leader>r :silent make\|cw<CR>
+nnoremap <buffer> <leader>r :silent make!\|cw<CR>
 
 "## Snippets
 " FIXME syntax do php buga com !cursor! como nome de função temporariamente
@@ -35,11 +36,17 @@ inorea <buffer><expr> #p TestaTriggerSnippet('#p',
             \ ['$var;'])
 
 inorea <buffer><expr> cl TestaTriggerSnippet('cl',
-            \ "<esc>:call SnippetPhpClass()<cr>",
+            \ "<esc>:call SnippetPhpClassInterface('class')<cr>",
             \ ['#code'])
-fun! SnippetPhpClass()
-    noa execute "normal! aclass  {"
-    noa execute "normal! hi\<C-R>=expand('%:t:r')\<CR>"
+
+inorea <buffer><expr> i TestaTriggerSnippet('i',
+            \ "<esc>:call SnippetPhpClassInterface('interface')<cr>",
+            \ ['#code'])
+
+fun! SnippetPhpClassInterface(kw)
+    noa execute "normal! a".a:kw
+    noa execute "normal! A \<C-R>=expand('%:t:r')\<CR>"
+    noa normal! o{
     noa normal! o}
     noa normal! O #code
 endfun
