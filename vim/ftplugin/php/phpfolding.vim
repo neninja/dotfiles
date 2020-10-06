@@ -624,7 +624,7 @@ function! PHPFoldText() " {{{
 	endif
 
 	" Return the foldtext
-	return "+--".lines." lines: " . lineString
+	return "    " . lineString
 endfunction
 " }}}
 function! SkipMatch() " {{{
