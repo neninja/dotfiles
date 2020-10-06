@@ -4,11 +4,6 @@ nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
 
-let g:ctrlp_custom_ignore = {
-            \ 'dir':  'node_modules\|DS_Store\|\.git\|dist\|vendor\|_site\|.jekyll-cache\|ios\|android\|.venv\|build',
-            \ 'file': 'tags',
-            \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-            \ }
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_show_hidden = 1
 
