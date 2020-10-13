@@ -46,5 +46,19 @@ elif [[ "$OSTYPE" == "msys" ]]; then
 fi
 ./vim/clone-packages.sh
 
+# emacs
+# THANKS: https://earvingad.github.io/posts/doom_emacs_windows/
+#echo "Requisitos do emacs e doom:
+#    - rg: https://github.com/BurntSushi/ripgrep/releases (windows-gnu)
+#    - fd: https://github.com/sharkdp/fd/releases (windows-gnu)
+#    - doom:
+#        git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+#        ~/.emacs.d/bin/doom install
+#    - Add às váriavei de ambiente do SO:
+#        - \$HOME, \$DOOMDIR (/path/to/dotfiles/emacs/doom), emacs
+#    - Instale as fontes com:
+#        - M-x package-install RET all-the-icons RET
+#        - M-x all-the-icons-install-fonts"
+
 # less command
 read -p "Aperte enter para fechar"

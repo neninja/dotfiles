@@ -11,6 +11,7 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 * bash
 * git
 * vim
+* emacs/doom
 
 ## Estrutura do repositório
 
@@ -19,6 +20,9 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
     - [latex/](/modelos/latex): templates/classes latex
     - [sample-dot-graph/](/modelos/sample-dot-graph): exemplos da utilização de graphviz
     - [git/](/modelos/git): arquivos usados com git ou github
+- [emacs/](/emacs): arquivos de configuração do [emacs](https://www.gnu.org/software/emacs/) com o [doom](https://github.com/hlissner/doom-emacs)
+    - [doom/](/emacs/doom): configurações do doom
+    - [org/](/emacs/org): anotações com [org mode](https://orgmode.org/)
 - [vim/](/vim): arquivos de configuração do [vim](https://www.vim.org/)
     - [doc/wtf.txt](/vim/doc/wtf.txt): documentação das minhas configurações (`:h wtf`)
     - [ftplugin/](/vim/ftplugin): especificações de `filetypes`
