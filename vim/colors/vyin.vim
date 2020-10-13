@@ -123,7 +123,7 @@ call s:hi('Special', s:palette.gray05, [], '')
 call s:hi('SpecialComment', s:palette.comments, [], 'bold')
 
 call s:hi('Title', s:palette.gray07, [], 'bold')
-call s:hi('Todo', s:palette.purple, s:palette.black, '')
+call s:hi('Todo', s:palette.purple, s:palette.black, 'bold')
 if has("nvim") || has("gui_running")
     call s:hi('Comment', s:palette.comments, [], 'italic')
 else
