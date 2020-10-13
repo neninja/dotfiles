@@ -137,7 +137,7 @@ call s:hi('CursorLine', [], s:palette.gray01, 'none')
 call s:hi('CursorLineNr', s:palette.gray14, s:palette.gray01, 'none')
 
 call s:hi('Visual', s:palette.black, s:palette.gray06, '')
-call s:hi('Search', s:palette.gray07, s:palette.white, 'none')
+call s:hi('Search', s:palette.gray01, s:palette.white, 'none')
 " call s:hi('Search', s:palette.gray01, s:palette.gray11, 'none')
 call s:hi('IncSearch', s:palette.black, s:palette.gray07, 'bold')
 
