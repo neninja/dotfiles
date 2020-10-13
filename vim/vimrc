@@ -3,7 +3,6 @@
 "wtf-variaveis
 
 let g:dotfiles_dir = "~/dev/dotfiles"
-let g:todolist_dir = "~/TODOLIST"
 let g:vimwikis_dirs = [
             \ g:dotfiles_dir."/wiki",
             \ g:dotfiles_dir."/wiki/vim"
@@ -308,8 +307,6 @@ command! Grep :call <SID>Grep("")<cr>
 
 command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
-command! TodoList exec ":cd ".g:todolist_dir | e TODO | belowright vnew DOING | tabnew DONE | tabnext
-
 "## Mapeamentos
 ":map -> lista todos mapeamentos para o arquivo
 
@@ -435,9 +432,6 @@ augroup filetype_detect
     au!
     au BufRead,BufNewFile *.phtml setfiletype html
     au BufRead,BufNewFile *.gv setfiletype dot
-    au BufRead,BufNewFile TODO setfiletype todolist
-    au BufRead,BufNewFile DOING setfiletype todolist
-    au BufRead,BufNewFile DONE setfiletype todolist
 augroup END
 
 "## Packs pessoais
@@ -864,8 +858,8 @@ inoremap <c-z> <c-r>=AutoCompleteCarinhas()<CR>
 
 "## Sources
 "wtf-sources
-call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
+call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
 call SourceIfExists("~/.vimrc-local.vim")
 
 " TODO remover source quando outro .exrc for carregado

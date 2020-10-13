@@ -1,4 +1,5 @@
 "# wtf-file-dotfiles
+"## Templates
 augroup skeletons
     au!
     au BufNewFile *.html call AddSkeleton("skeleton.html")
@@ -31,6 +32,7 @@ function! AddSkeleton(arquivo)
     execute "0r ".g:dotfiles_dir."/vim/skeletons/".a:arquivo
 endfunction
 
+"## Dicionários
 let g:dict_dir = g:dotfiles_dir. "/vim/dicionarios"
 augroup dicionarios
     au!
@@ -41,3 +43,23 @@ augroup END
 function! AddDict(arquivo)
     execute "setl dictionary+=".g:dict_dir."/".a:arquivo.".dict"
 endfunction
+
+"## Todolist
+" Um colorscheme diferente é necessário para grupos que são modificados
+" somente no todolist, como o Folded
+let first_colorscheme = g:colors_name
+augroup filetype_detect
+    au BufEnter,BufNewFile * execute "colorscheme ".first_colorscheme
+    au BufEnter,BufNewFile BACKLOG,TODO,DOING,WAITING,DONE setfiletype todolist
+    au BufEnter,BufNewFile BACKLOG,TODO,DOING,WAITING,DONE colorscheme todolist
+augroup END
+
+let g:todolist_dir = "~/TODOLIST"
+" command! DOING execute "lvim! /.*/ ".g:todolist_dir."/DOING" | llist!
+" command! DOING execute "laddfile ".g:todolist_dir."/DOING" | llist!
+" command! DOING execute "lvim! /.*/ ".g:todolist_dir."/DOING" | lopen
+command! DOING execute "lgetfile ".g:todolist_dir."/DOING" | llist!
+
+" command! DOING filter! /.*/ execute "noautocmd lvim! /.*/ ".g:todolist_dir."/DOING"
+" command! DOING execute "echo '".g:todolist_dir."/DOING"."'"
+command! TodoList silent exec ":cd ".g:todolist_dir | tabnew BACKLOG | belowright vnew DOING | belowright split WAITING | sb BACKLOG | belowright split TODO | sb DOING
