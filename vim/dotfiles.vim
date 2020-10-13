@@ -55,11 +55,5 @@ augroup filetype_detect
 augroup END
 
 let g:todolist_dir = "~/TODOLIST"
-" command! DOING execute "lvim! /.*/ ".g:todolist_dir."/DOING" | llist!
-" command! DOING execute "laddfile ".g:todolist_dir."/DOING" | llist!
-" command! DOING execute "lvim! /.*/ ".g:todolist_dir."/DOING" | lopen
 command! DOING execute "lgetfile ".g:todolist_dir."/DOING" | llist!
-
-" command! DOING filter! /.*/ execute "noautocmd lvim! /.*/ ".g:todolist_dir."/DOING"
-" command! DOING execute "echo '".g:todolist_dir."/DOING"."'"
 command! TodoList silent exec ":cd ".g:todolist_dir | tabnew BACKLOG | belowright vnew DOING | belowright split WAITING | sb BACKLOG | belowright split TODO | sb DOING
