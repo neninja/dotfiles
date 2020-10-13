@@ -5,7 +5,7 @@ setlocal path=**
 
 "## maps
 
-nnoremap <buffer> <leader><tab> :noa lvim /\sfunction\s/g  % \| cw<CR>
+nnoremap <buffer> <leader><tab> :noa lvim /\sfunction\s/g  % \| lw<CR>
 
 "## AutoCmds
 augroup phpau
