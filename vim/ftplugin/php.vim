@@ -3,6 +3,10 @@
 setlocal suffixesadd=.php
 setlocal path=**
 
+"## maps
+
+nnoremap <buffer> <leader><tab> :noa vim /\sfunction\s/g  % \| cw<CR>
+
 "## AutoCmds
 augroup phpau
     au! BufEnter *.blade.php execute "set ft=html"
@@ -51,7 +55,7 @@ fun! SnippetPhpClassInterface(kw)
     noa normal! O #code
 endfun
 
-"## FunçõeS
+"## Funções
 "### Getters e Setters
 fun! NN_PHPCreateGettersSetters()
     let propName = <SID>GetProp()
