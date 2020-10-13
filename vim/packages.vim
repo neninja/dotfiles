@@ -163,21 +163,7 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 "## pgdouyon/vim-yin-yang
-colorscheme yin
-
-fun! FixColorschemeYin()
-    highlight LineNr        term=none ctermbg=NONE ctermfg=11 guibg=NONE guifg=#585858
-    highlight Folded        term=none ctermbg=NONE ctermfg=11 guibg=NONE guifg=#585858
-    highlight FoldColumn    term=none ctermbg=NONE ctermfg=11 guibg=NONE guifg=#585858
-    highlight Search        term=none ctermbg=255 ctermfg=232 guibg=#eeeeee guifg=#080808
-    highlight MatchParen    term=none guibg=blue guifg=white
-endfun
-
-augroup override_highlights_yin
-    autocmd!
-    autocmd ColorScheme yin call FixColorschemeYin()
-augroup END
-call FixColorschemeYin()
+colorscheme vyin
 
 "## diepm/vim-rest-console
 " TODO ver como utilizar $VARIAVEIS no Windows
