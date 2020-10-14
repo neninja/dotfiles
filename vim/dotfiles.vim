@@ -50,24 +50,43 @@ augroup filetype_detect
 augroup END
 
 let g:todolist_dir = "~/TODOLIST"
-command! TodoGrep execute "e ".g:todolist_dir."/TODO" | silent noa lvimgrep /\\C\\<TODO\\>/ % | lw
-command! Todo call TodoGrep('\C\<TODO\>')
-command! Wait call TodoGrep('\C\<WAIT\>')
-function TodoGrep(regex)
+command! Do2 call TodoQuick('\C\<TODO\>') | cli | call feedkeys(":cw | :silent cc ")
+command! TodoSimpleGrep execute "silent noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
+command! Todo call <SID>SearchInTodo('\C\<TODO\>')
+command! Wait call <SID>SearchInTodo('\C\<WAIT\>')
+
+function! TodoQuick(regex)
+    cclose
+    try
+        execute "split ".g:todolist_dir."/TODO"
+        execute "silent vimgrep /".a:regex."/ %"
+    catch
+        close!
+        return
+    endtry
+    cfirst
+    call setqflist(<SID>SetDict(getqflist()))
+    close!
+endfunction
+
+function! s:SearchInTodo(regex)
     cclose
     try
         execute "e ".g:todolist_dir."/TODO"
-        execute "silent lvimgrep /"a:regex."/ %"
+        execute "silent vimgrep /".a:regex."/ %"
     catch
         return
     endtry
-    lfirst
-    let qf = getloclist(0)
-    for d in qf
+    cfirst
+    call setqflist(<SID>SetDict(getqflist()))
+    cw
+endfunction
+
+function! s:SetDict(dict)
+    for d in a:dict
         exec d.lnum
         call search('^\S', 'b')
         let d.module = getline('.')
     endfor
-    call setloclist(0, qf)
-    lw
+    return a:dict
 endfunction
