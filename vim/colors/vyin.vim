@@ -93,6 +93,8 @@ function! s:hi(group, fg_color, bg_color, style)
     if !empty(a:bg_color)
         let [ctermbg, guibg] = a:bg_color
         call add(highlight_command, printf('ctermbg=%d guibg=%s', ctermbg, guibg))
+    else
+        call add(highlight_command, 'ctermbg=NONE guibg=NONE')
     endif
     if !empty(a:style)
         call add(highlight_command, printf('cterm=%s gui=%s', a:style, a:style))
@@ -137,7 +139,7 @@ call s:hi('CursorLine', [], s:palette.gray01, 'none')
 call s:hi('CursorLineNr', s:palette.gray14, s:palette.gray01, 'none')
 
 call s:hi('Visual', s:palette.black, s:palette.gray06, '')
-call s:hi('Search', s:palette.gray01, s:palette.white, 'none')
+call s:hi('Search', s:palette.gray01, s:palette.gray07, 'none')
 " call s:hi('Search', s:palette.gray01, s:palette.gray11, 'none')
 call s:hi('IncSearch', s:palette.black, s:palette.gray07, 'bold')
 
@@ -152,7 +154,7 @@ call s:hi('WarningMsg', s:palette.brown, s:palette.black, '')
 call s:hi('ModeMsg', s:palette.gray10, [], '')
 call s:hi('MoreMsg', s:palette.gray10, [], '')
 
-call s:hi('MatchParen', s:palette.blue, s:palette.black, '')
+call s:hi('MatchParen', s:palette.blue, [], '')
 " call s:hi('MatchParen', s:palette.magenta, s:palette.black, '')
 
 call s:hi('Cursor', [], s:palette.gray12, '')
