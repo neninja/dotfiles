@@ -4,10 +4,6 @@ setlocal shiftwidth=2
 setlocal textwidth=81 " usar Vgq é util para quebrar linhas
 setlocal norelativenumber nonumber
 
-" Permite trocar de window pelo nome do buffer com :sb
-" THANKS: https://stackoverflow.com/a/9440501/9881278
-setlocal switchbuf=useopen
-
 "## Maps
 nnoremap <silent><buffer>   =           :silent! call <SID>DoneTask()<CR>
 nnoremap <silent><buffer>   <CR>        :call <SID>HandleURL()<CR>

@@ -46,14 +46,13 @@ endfunction
 
 "## Todolist
 augroup filetype_detect
-    au BufEnter,BufNewFile BACKLOG,TODO,DOING,WAITING,DONE setfiletype todolist
+    au BufEnter,BufNewFile TODO,DONE setfiletype todolist
 augroup END
 
 let g:todolist_dir = "~/TODOLIST"
-command! TodoGrep cclose | silent execute "noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
+command! TodoGrep silent execute "noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
 command! Todo call TodoGrep('\C\<TODO\>')
 command! Wait call TodoGrep('\C\<WAIT\>')
-
 function TodoGrep(regex)
     cclose
     try
