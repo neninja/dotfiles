@@ -6,8 +6,8 @@ syn match todoListBegginingList /^\s*-/ contained containedin=todoListCardBody
 syn match todoListBegginingCheckbox /^\s*-\s\[\p\]/ contained containedin=todoListCardBody
 syn match todoListURL /[http|https]*:\/\/[^ >,;]*/ contained containedin=todoListCardBody
 syn match todoListWtf /????/ contained containedin=todoListCardBody
-syn match todoListWait /WAIT/ contained containedin=todoListCardBody
-syn match todoListWait /TODO/ contained containedin=todoListCardBody
+syn match todoListWait /WAIT/ contained containedin=todoListCardBody,todoListCardTitle
+syn match todoListWait /TODO/ contained containedin=todoListCardBody,todoListCardTitle
 
 syn match Conceal /^\s.*$/ containedin=ALL
 syn match todoListBullet /-/ contained containedin=todoListBegginingList conceal cchar=•

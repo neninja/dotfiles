@@ -13,7 +13,6 @@ nnoremap <silent><buffer>   =           :silent! call <SID>DoneTask()<CR>
 nnoremap <silent><buffer>   <CR>        :call <SID>HandleURL()<CR>
 nnoremap <buffer>           <c-space>   :call ToggleCheckbox()<CR>
 
-
 function! s:DoneTask()
     try
         normal! zc
@@ -30,6 +29,7 @@ function! s:DoneTask()
     b #
     w
 endfunction
+
 function! s:SwapTask(wcmd)
     try
         normal! zc
