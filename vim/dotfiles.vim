@@ -45,15 +45,30 @@ function! AddDict(arquivo)
 endfunction
 
 "## Todolist
-" Um colorscheme diferente é necessário para grupos que são modificados
-" somente no todolist, como o Folded
-let first_colorscheme = g:colors_name
 augroup filetype_detect
-    au BufEnter,BufNewFile * execute "colorscheme ".first_colorscheme
     au BufEnter,BufNewFile BACKLOG,TODO,DOING,WAITING,DONE setfiletype todolist
-    au BufEnter,BufNewFile BACKLOG,TODO,DOING,WAITING,DONE colorscheme todolist
 augroup END
 
 let g:todolist_dir = "~/TODOLIST"
-command! DOING execute "lgetfile ".g:todolist_dir."/DOING" | llist!
-command! TodoList silent exec ":cd ".g:todolist_dir | tabnew BACKLOG | belowright vnew DOING | belowright split WAITING | sb BACKLOG | belowright split TODO | sb DOING
+command! Todo call TodoGrep('\C\<TODO\>')
+command! Wait call TodoGrep('\C\<WAIT\>')
+" command! Todo silent execute "noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
+function TodoGrep(regex)
+    cclose
+    try
+        silent execute "vimgrep /"a:regex."/ ".g:todolist_dir."/TODO"
+    catch
+        return
+    endtry
+    cfirst
+    let qf = getqflist()
+    for d in qf
+        exec d.lnum
+        call search('^\S', 'b')
+        let modulo = getline('.')
+        let d.module = modulo
+        " echo bufname(d.bufnr) ':' d.lnum '=' d.text '->' modulo
+    endfor
+    call setqflist(qf)
+    cw
+endfunction

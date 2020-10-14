@@ -72,16 +72,10 @@ let g:startify_lists = [
 let g:startify_files_number = 5
 let g:startify_commands = [
             \ {'d': ['dotfiles', ':call GoToDotfiles()']},
-            \ {'t': ['todolist', ':call StartifyTodoList()']},
+            \ {'t': ['todolist', ':Todo']},
             \ {'g': ['go projects', ':e ~/go/src/github.com/nenitf']},
             \ {'p': ['php projects', ':e ~/dev/php']},
             \ ]
-
-function! StartifyTodoList()
-    TodoList
-    tabnext
-    tabclose
-endfunction
 
 function! GoToDotfiles()
     exec "cd ".g:dotfiles_dir

@@ -9,11 +9,10 @@ setlocal norelativenumber nonumber
 setlocal switchbuf=useopen
 
 "## Maps
-nnoremap <silent><buffer>   <leader>j   :silent! call <SID>SwapTask('w')<CR>
-nnoremap <silent><buffer>   <leader>k   :silent! call <SID>SwapTask('W')<CR>
 nnoremap <silent><buffer>   =           :silent! call <SID>DoneTask()<CR>
 nnoremap <silent><buffer>   <CR>        :call <SID>HandleURL()<CR>
 nnoremap <buffer>           <c-space>   :call ToggleCheckbox()<CR>
+
 
 function! s:DoneTask()
     try
@@ -23,7 +22,7 @@ function! s:DoneTask()
     endtry
 
     normal! V"sx
-    e DONE
+    execute "e ".g:todolist_dir."/DONE"
 
     call <SID>AddTaskFirstLine()
 
