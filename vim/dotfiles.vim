@@ -50,25 +50,24 @@ augroup filetype_detect
 augroup END
 
 let g:todolist_dir = "~/TODOLIST"
-command! TodoGrep silent execute "noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
+command! TodoGrep execute "e ".g:todolist_dir."/TODO" | silent noa lvimgrep /\\C\\<TODO\\>/ % | lw
 command! Todo call TodoGrep('\C\<TODO\>')
 command! Wait call TodoGrep('\C\<WAIT\>')
 function TodoGrep(regex)
     cclose
     try
-        silent execute "vimgrep /"a:regex."/ ".g:todolist_dir."/TODO"
+        execute "e ".g:todolist_dir."/TODO"
+        execute "silent lvimgrep /"a:regex."/ %"
     catch
         return
     endtry
-    cfirst
-    let qf = getqflist()
+    lfirst
+    let qf = getloclist(0)
     for d in qf
         exec d.lnum
         call search('^\S', 'b')
-        let modulo = getline('.')
-        let d.module = modulo
-        " echo bufname(d.bufnr) ':' d.lnum '=' d.text '->' modulo
+        let d.module = getline('.')
     endfor
-    call setqflist(qf)
-    cw
+    call setloclist(0, qf)
+    lw
 endfunction
