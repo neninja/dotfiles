@@ -55,6 +55,7 @@ let g:todolist_dir = "~/TODOLIST"
 command! TodoSimpleGrep execute "silent noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
 command! -complete=customlist,TodoListCC -nargs=1 DoToo cw | silent cc <args>
 command! TodoList call <SID>TodoQuick('\(\C\<TODO\>\|\C\<WAIT\>\)') | cli | call feedkeys(":DoToo <c-d>")
+command! TodoListFile execute "e ".g:todolist_dir."/TODO"
 
 function! TodoListCC(ArgLead, CmdLine, CursorPos)
     return map(range(1, len(getqflist())), 'string(v:val)')
