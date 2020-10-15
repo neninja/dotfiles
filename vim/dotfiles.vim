@@ -57,21 +57,24 @@ command! TodoSimpleGrep execute "silent noa vimgrep /\\C\\<TODO\\>/j ".g:todolis
 
 function! TodoQuick(regex)
     cclose
-    try
-        execute "split ".g:todolist_dir."/TODO"
-        execute "silent vimgrep /".a:regex."/ %"
-    catch
-        close!
-        return
-    endtry
-    cfirst
+
+    let todo = []
+    let current_title = ''
+
+    let todofile = g:todolist_dir . "/TODO"
+    execute "silent vimgrep /".a:regex."/j ".todofile
+
     let qf = getqflist()
-    for d in qf
-        exec d.lnum
-        call search('^\S', 'b')
-        let d.module = getline('.')
+    let file = readfile(glob(todofile))
+    for line in qf
+        let lnum = line.lnum
+        for pastline_nr in reverse(range(0, lnum))
+            if(match(file[pastline_nr], '\S') == 0)
+                let line.module = file[pastline_nr]
+                break
+            endif
+        endfor
     endfor
 
     call setqflist(qf)
-    close!
 endfunction
