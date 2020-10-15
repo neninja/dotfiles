@@ -4,6 +4,27 @@ setlocal shiftwidth=2
 setlocal textwidth=81 " usar Vgq é util para quebrar linhas
 setlocal norelativenumber nonumber
 
+command! -buffer Todo call <SID>SearchInTodo('\C\<TODO\>')
+command! -buffer Wait call <SID>SearchInTodo('\C\<WAIT\>')
+
+function! s:SearchInTodo(regex)
+    cclose
+    try
+        execute "silent vimgrep /".a:regex."/ ".g:todolist_dir."/TODO"
+    catch
+        return
+    endtry
+    cfirst
+    let qf = getqflist()
+    for d in qf
+        exec d.lnum
+        call search('^\S', 'b')
+        let d.module = getline('.')
+    endfor
+    call setqflist(qf)
+    cw
+endfunction
+
 "## Maps
 nnoremap <silent><buffer>   =           :silent! call <SID>DoneTask()<CR>
 nnoremap <silent><buffer>   <CR>        :call <SID>HandleURL()<CR>

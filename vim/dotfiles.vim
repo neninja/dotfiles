@@ -52,10 +52,8 @@ augroup filetype_detect
 augroup END
 
 let g:todolist_dir = "~/TODOLIST"
-command! Do2 call TodoQuick('\C\<TODO\>') | cli | call feedkeys(":cw | :silent cc ")
+command! TodoList call TodoQuick('\(\C\<TODO\>\|\C\<WAIT\>\)') | cli | call feedkeys(":cw | :silent cc ")
 command! TodoSimpleGrep execute "silent noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
-command! Todo call <SID>SearchInTodo('\C\<TODO\>')
-command! Wait call <SID>SearchInTodo('\C\<WAIT\>')
 
 function! TodoQuick(regex)
     cclose
@@ -67,28 +65,13 @@ function! TodoQuick(regex)
         return
     endtry
     cfirst
-    call setqflist(<SID>SetDict(getqflist()))
-    close!
-endfunction
-
-function! s:SearchInTodo(regex)
-    cclose
-    try
-        execute "e ".g:todolist_dir."/TODO"
-        execute "silent vimgrep /".a:regex."/ %"
-    catch
-        return
-    endtry
-    cfirst
-    call setqflist(<SID>SetDict(getqflist()))
-    cw
-endfunction
-
-function! s:SetDict(dict)
-    for d in a:dict
+    let qf = getqflist()
+    for d in qf
         exec d.lnum
         call search('^\S', 'b')
         let d.module = getline('.')
     endfor
-    return a:dict
+
+    call setqflist(qf)
+    close!
 endfunction

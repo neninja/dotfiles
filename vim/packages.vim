@@ -72,10 +72,28 @@ let g:startify_lists = [
 let g:startify_files_number = 5
 let g:startify_commands = [
             \ {'d': ['dotfiles', ':call GoToDotfiles()']},
-            \ {'t': ['todolist', ':Todo']},
+            \ {'t': ['todolist', ':TodoList']},
             \ {'g': ['go projects', ':e ~/go/src/github.com/nenitf']},
             \ {'p': ['php projects', ':e ~/dev/php']},
             \ ]
+
+packadd! vim-startify
+
+try
+    let todo = []
+    let current_title = ''
+    for entry in readfile(glob('~/TODOLIST/TODO'))
+        if(match(entry, '\S') == 0)
+            let current_title = entry
+        elseif (match(entry, '\C\<TODO\>') > -1)
+            call add(todo, current_title)
+            call add(todo, substitute(entry, '^\s*', '  ', ''))
+        endif
+    endfor
+    let g:startify_custom_header = startify#pad(todo)
+    let g:startify_custom_footer = startify#pad(startify#fortune#boxed())
+catch
+endtry
 
 function! GoToDotfiles()
     exec "cd ".g:dotfiles_dir
