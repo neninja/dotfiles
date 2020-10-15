@@ -52,10 +52,15 @@ augroup filetype_detect
 augroup END
 
 let g:todolist_dir = "~/TODOLIST"
-command! TodoList call TodoQuick('\(\C\<TODO\>\|\C\<WAIT\>\)') | cli | call feedkeys(":cw | :silent cc ")
 command! TodoSimpleGrep execute "silent noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
+command! -complete=customlist,TodoListCC -nargs=1 DoToo cw | silent cc <args>
+command! TodoList call <SID>TodoQuick('\(\C\<TODO\>\|\C\<WAIT\>\)') | cli | call feedkeys(":DoToo <c-d>")
 
-function! TodoQuick(regex)
+function! TodoListCC(ArgLead, CmdLine, CursorPos)
+    return map(range(1, len(getqflist())), 'string(v:val)')
+endfunction
+
+function! s:TodoQuick(regex)
     cclose
 
     let todo = []
