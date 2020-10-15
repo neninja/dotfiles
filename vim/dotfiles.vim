@@ -74,9 +74,10 @@ function! s:TodoQuick(regex)
     let file = readfile(glob(todofile))
     for line in qf
         let lnum = line.lnum
-        for pastline_nr in reverse(range(0, lnum))
-            if(match(file[pastline_nr], '\S') == 0)
-                let line.module = file[pastline_nr]
+        for pastline_nr in reverse(range(1, lnum))
+            let indexLine = pastline_nr - 1
+            if(match(file[indexLine], '\S') == 0)
+                let line.module = file[indexLine]
                 break
             endif
         endfor
