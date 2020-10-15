@@ -1,11 +1,10 @@
 " VyinVang - black/white color scheme
-" All credits for colors and algorithm Pierre-Guy Douyon
-" https://github.com/pgdouyon/vim-yin-yang
-
-if (&background ==# "light" && get(g:, "colors_name", "") ==# "vyin")
-    runtime! colors/vang.vim
-    finish
-endif
+" All credits of colors and algorithm Pierre-Guy Douyon
+" THANKS: https://github.com/pgdouyon/vim-yin-yang
+"
+" TOOLS:
+"   https://www.colorhexa.com
+"   https://jonasjacek.github.io/colors/
 
 highlight clear
 
@@ -14,207 +13,210 @@ if exists("syntax_on")
 endif
 let g:colors_name = "vyin"
 
+function! s:hi(group, fg, bg, style)
+    execute "hi ".a:group
+                \." guifg="  .s:NONE(a:fg[0])." ctermfg=" .s:NONE(a:fg[1])
+                \." guibg="  .s:NONE(a:bg[0])." ctermbg=" .s:NONE(a:bg[1])
+                \." gui="    .s:NONE(a:style)." cterm="   .s:NONE(a:style)
+endfunction
 
-let s:palette = {}
+function! s:NONE(attr)
+    return empty(a:attr) ? "NONE" : a:attr
+endfunction
 
-let s:palette.blackest = [232, '#080808']
-let s:palette.black = [234, '#1c1c1c']
-let s:palette.gray01 = [235, '#262626']
-let s:palette.gray02 = [238, '#444444']
-let s:palette.gray03 = [239, '#4e4e4e']
-let s:palette.gray04 = [240, '#585858']
-let s:palette.gray05 = [242, '#666666']
-let s:palette.gray06 = [243, '#767676']
-let s:palette.gray07 = [244, '#808080']
-let s:palette.gray08 = [245, '#8a8a8a']
-let s:palette.gray09 = [246, '#949494']
-let s:palette.gray10 = [247, '#9e9e9e']
-let s:palette.gray11 = [248, '#a8a8a8']
-let s:palette.gray12 = [249, '#b2b2b2']
-let s:palette.gray13 = [250, '#bcbcbc']
-let s:palette.gray14 = [251, '#c6c6c6']
-let s:palette.gray15 = [254, '#e4e4e4']
-let s:palette.white = [255, '#eeeeee']
+"## Colors
+let s:blackest  = ['#080808', 232]
+let s:black     = ['#1c1c1c', 234]
+let s:gray01    = ['#262626', 235]
+let s:gray02    = ['#444444', 238]
+let s:gray03    = ['#4e4e4e', 239]
+let s:gray04    = ['#585858', 240]
+let s:gray05    = ['#666666', 242]
+let s:gray06    = ['#767676', 243]
+let s:gray07    = ['#808080', 244]
+let s:gray08    = ['#8a8a8a', 245]
+let s:gray09    = ['#949494', 246]
+let s:gray10    = ['#9e9e9e', 247]
+let s:gray11    = ['#a8a8a8', 248]
+let s:gray12    = ['#b2b2b2', 249]
+let s:gray13    = ['#bcbcbc', 250]
+let s:gray14    = ['#c6c6c6', 251]
+let s:gray15    = ['#e4e4e4', 254]
+let s:white     = ['#eeeeee', 255]
 
-let s:palette.comments = copy(s:palette.gray03)
+let s:purple    = ['#5f5fd7', 62]
+let s:brown     = ['#875f00', 94]
+let s:blue      = ['#5f5fd7', 25]
+let s:lightblue = ['#5f9bd7', 31]
+let s:cyan      = ['#5fd7d7', 43]
+let s:green     = ['#5fd75f', 29]
+let s:red       = ['#df5757', 88]
+let s:magenta   = ['#87005f', 89]
+let s:yellow    = ['#d7d75f', 100]
 
-let s:palette.purple = [62, '#5f5fd7']
-let s:palette.brown = [94, '#875f00']
-let s:palette.blue = [24, '#005f87']
-let s:palette.lightblue = [31, '#00afff']
-let s:palette.green = [29, '#00875f']
-let s:palette.red = [88, '#870000']
-let s:palette.magenta = [89, '#87005f']
+" https://www.pantone.com/color-finder/13-1520-TCX
+" PANTONE 13-1520 TCX - Rose Quartz
+let s:rosequartz= ['#F7CACA', 133]
+
+" https://www.pantone.com/color-finder/15-3919-TCX
+" PANTONE 15-3919 TCX Serenity
+let s:serenity  = ['#93A9D1', 67]
 
 if has("nvim")
-    let g:terminal_color_0 = s:palette.gray01[1]
-    let g:terminal_color_1 = s:palette.gray06[1]
-    let g:terminal_color_2 = s:palette.gray03[1]
-    let g:terminal_color_3 = s:palette.gray11[1]
-    let g:terminal_color_4 = s:palette.gray02[1]
-    let g:terminal_color_5 = s:palette.gray08[1]
-    let g:terminal_color_6 = s:palette.gray09[1]
-    let g:terminal_color_7 = s:palette.gray13[1]
-    let g:terminal_color_8 = s:palette.gray03[1]
-    let g:terminal_color_9 = s:palette.gray10[1]
-    let g:terminal_color_10 = s:palette.gray07[1]
-    let g:terminal_color_11 = s:palette.gray15[1]
-    let g:terminal_color_12 = s:palette.gray05[1]
-    let g:terminal_color_13 = s:palette.gray12[1]
-    let g:terminal_color_14 = s:palette.gray14[1]
-    let g:terminal_color_15 = s:palette.white[1]
+    let g:terminal_color_0 = s:gray01[0]
+    let g:terminal_color_1 = s:gray06[0]
+    let g:terminal_color_2 = s:gray03[0]
+    let g:terminal_color_3 = s:gray11[0]
+    let g:terminal_color_4 = s:gray02[0]
+    let g:terminal_color_5 = s:gray08[0]
+    let g:terminal_color_6 = s:gray09[0]
+    let g:terminal_color_7 = s:gray13[0]
+    let g:terminal_color_8 = s:gray03[0]
+    let g:terminal_color_9 = s:gray10[0]
+    let g:terminal_color_10 = s:gray07[0]
+    let g:terminal_color_11 = s:gray15[0]
+    let g:terminal_color_12 = s:gray05[0]
+    let g:terminal_color_13 = s:gray12[0]
+    let g:terminal_color_14 = s:gray14[0]
+    let g:terminal_color_15 = s:white[0]
 elseif has("terminal")
     let g:terminal_ansi_colors = [
-                \ s:palette.gray01[1],
-                \ s:palette.gray06[1],
-                \ s:palette.gray03[1],
-                \ s:palette.gray11[1],
-                \ s:palette.gray02[1],
-                \ s:palette.gray08[1],
-                \ s:palette.gray09[1],
-                \ s:palette.gray13[1],
-                \ s:palette.gray03[1],
-                \ s:palette.gray10[1],
-                \ s:palette.gray07[1],
-                \ s:palette.gray15[1],
-                \ s:palette.gray05[1],
-                \ s:palette.gray12[1],
-                \ s:palette.gray14[1],
-                \ s:palette.white[1]
+                \ s:gray01[0],
+                \ s:gray06[0],
+                \ s:gray03[0],
+                \ s:gray11[0],
+                \ s:gray02[0],
+                \ s:gray08[0],
+                \ s:gray09[0],
+                \ s:gray13[0],
+                \ s:gray03[0],
+                \ s:gray10[0],
+                \ s:gray07[0],
+                \ s:gray15[0],
+                \ s:gray05[0],
+                \ s:gray12[0],
+                \ s:gray14[0],
+                \ s:white[0]
                 \ ]
 endif
 
-function! s:hi(group, fg_color, bg_color, style)
-    let highlight_command = ['hi', a:group]
-    if !empty(a:fg_color)
-        let [ctermfg, guifg] = a:fg_color
-        call add(highlight_command, printf('ctermfg=%d guifg=%s', ctermfg, guifg))
-    endif
-    if !empty(a:bg_color)
-        let [ctermbg, guibg] = a:bg_color
-        call add(highlight_command, printf('ctermbg=%d guibg=%s', ctermbg, guibg))
-    else
-        call add(highlight_command, 'ctermbg=NONE guibg=NONE')
-    endif
-    if !empty(a:style)
-        call add(highlight_command, printf('cterm=%s gui=%s', a:style, a:style))
-    endif
-    execute join(highlight_command, ' ')
-endfunction
-
-
-call s:hi('Normal', s:palette.gray13, s:palette.black, '')
+"## Defs
+call s:hi('Normal', s:gray13, s:black, '')
 set background=dark
 
-call s:hi('Constant', s:palette.gray05, [], 'bold')
-call s:hi('String', s:palette.gray10, [], '')
-call s:hi('Number', s:palette.gray06, [], '')
+call s:hi('Constant', s:gray05, '', 'bold')
+call s:hi('String', s:gray10, '', '')
+call s:hi('Number', s:gray06, '', '')
 
-call s:hi('Identifier', s:palette.gray08, [], 'none')
-call s:hi('Function', s:palette.gray08, [], '')
+call s:hi('Identifier', s:gray08, '', '')
+call s:hi('Function', s:gray08, '', '')
 
-call s:hi('Statement', s:palette.gray05, [], 'bold')
-call s:hi('Operator', s:palette.gray05, [], 'none')
-call s:hi('Keyword', s:palette.gray05, [], '')
+call s:hi('Statement', s:gray05, '', 'bold')
+call s:hi('Operator', s:gray05, '', '')
+call s:hi('Keyword', s:gray05, '', '')
 
-call s:hi('PreProc', s:palette.gray07, [], 'none')
+call s:hi('PreProc', s:gray07, '', '')
 
-call s:hi('Type', s:palette.gray05, [], 'bold')
+call s:hi('Type', s:gray05, '', 'bold')
 
-call s:hi('Special', s:palette.gray05, [], '')
-call s:hi('SpecialComment', s:palette.comments, [], 'bold')
+call s:hi('Special', s:gray05, '', '')
+call s:hi('SpecialComment', s:gray03, '', 'bold')
 
-call s:hi('Title', s:palette.gray07, [], 'bold')
-call s:hi('Todo', s:palette.purple, s:palette.black, 'bold')
+call s:hi('Title', s:gray07, '', 'bold')
+call s:hi('Todo', s:purple, s:black, 'bold')
 if has("nvim") || has("gui_running")
-    call s:hi('Comment', s:palette.comments, [], 'italic')
+    call s:hi('Comment', s:gray03, '', 'italic')
 else
-    call s:hi('Comment', s:palette.comments, [], '')
+    call s:hi('Comment', s:gray03, '', '')
 endif
 
-call s:hi('LineNr', s:palette.gray04, [], 'none')
-" call s:hi('LineNr', s:palette.gray04, s:palette.gray01, 'none')
-call s:hi('FoldColumn', s:palette.gray07, s:palette.gray01, 'none')
-call s:hi('CursorLine', [], s:palette.gray01, 'none')
-call s:hi('CursorLineNr', s:palette.gray14, s:palette.gray01, 'none')
+call s:hi('LineNr', s:gray04, '', '')
+call s:hi('FoldColumn', s:gray07, s:gray01, '')
+call s:hi('CursorLine', '', s:gray01, '')
+call s:hi('CursorLineNr', s:gray14, s:gray01, '')
 
-call s:hi('Visual', s:palette.black, s:palette.gray06, '')
-call s:hi('Search', s:palette.gray01, s:palette.gray07, 'none')
-" call s:hi('Search', s:palette.gray01, s:palette.gray11, 'none')
-call s:hi('IncSearch', s:palette.gray01, s:palette.gray07, 'none')
-" call s:hi('IncSearch', s:palette.black, s:palette.gray07, 'bold')
+call s:hi('Visual', s:black, s:gray06, '')
+call s:hi('Search', s:gray01, s:gray07, '')
+call s:hi('IncSearch', s:gray01, s:gray07, '')
 
-call s:hi('SpellBad', s:palette.red, s:palette.black, 'undercurl')
-call s:hi('SpellCap', s:palette.red, s:palette.black, 'undercurl')
-call s:hi('SpellLocal', s:palette.red, s:palette.black, 'undercurl')
-call s:hi('SpellRare', s:palette.brown, s:palette.black, 'undercurl')
+call s:hi('SpellBad', '', s:black, 'undercurl')
+call s:hi('SpellCap', s:red, s:black, 'undercurl')
+call s:hi('SpellLocal', s:red, s:black, 'undercurl')
+call s:hi('SpellRare', s:brown, s:black, 'undercurl')
 
-call s:hi('Error', s:palette.red, s:palette.black, 'bold')
-call s:hi('ErrorMsg', s:palette.red, s:palette.black, '')
-call s:hi('WarningMsg', s:palette.brown, s:palette.black, '')
-call s:hi('ModeMsg', s:palette.gray10, [], '')
-call s:hi('MoreMsg', s:palette.gray10, [], '')
+call s:hi('Error', s:red, s:black, 'bold')
+call s:hi('ErrorMsg', s:red, s:black, '')
+call s:hi('WarningMsg', s:brown, s:black, '')
+call s:hi('ModeMsg', s:gray10, '', '')
+call s:hi('MoreMsg', s:gray10, '', '')
 
-call s:hi('MatchParen', s:palette.blue, [], '')
-" call s:hi('MatchParen', s:palette.magenta, s:palette.black, '')
+call s:hi('MatchParen', s:blue, '', '')
 
-call s:hi('Cursor', [], s:palette.gray12, '')
-call s:hi('Underlined', s:palette.gray08, [], 'underline')
-call s:hi('SpecialKey', s:palette.gray04, [], '')
-call s:hi('NonText', s:palette.gray04, [], '')
-call s:hi('Directory', s:palette.gray08, [], '')
+call s:hi('Cursor', s:black, s:rosequartz, '')
+call s:hi('Underlined', s:gray08, '', 'underline')
+call s:hi('SpecialKey', s:gray04, '', '')
+call s:hi('NonText', s:gray04, '', '')
+call s:hi('Directory', s:gray08, '', '')
 
-call s:hi('Pmenu', s:palette.gray10, s:palette.gray03, 'none')
-call s:hi('PmenuSbar', s:palette.black, s:palette.gray15, 'none')
-call s:hi('PmenuSel', s:palette.gray03, s:palette.gray10, '')
-call s:hi('PmenuThumb', s:palette.gray03, s:palette.gray09, 'none')
+call s:hi('Pmenu', s:gray10, s:gray03, '')
+call s:hi('PmenuSbar', s:black, s:gray15, '')
+call s:hi('PmenuSel', s:gray03, s:gray10, '')
+call s:hi('PmenuThumb', s:gray03, s:gray09, '')
 
-call s:hi('StatusLine', s:palette.gray11, s:palette.gray03, 'none')
-call s:hi('StatusLineNC', s:palette.gray04, s:palette.gray01, 'none')
-call s:hi('WildMenu', s:palette.gray08, [], '')
-call s:hi('VertSplit', s:palette.gray03, s:palette.gray03, 'none')
+call s:hi('StatusLine', s:black, s:serenity, '')
+call s:hi('StatusLineNC', s:gray04, s:gray01, '')
+call s:hi('WildMenu', s:gray08, '', '')
+call s:hi('VertSplit', s:gray03, s:gray03, '')
 
-call s:hi('DiffAdd', s:palette.blackest, s:palette.green, '')
-call s:hi('DiffChange', s:palette.blackest, s:palette.blue, '')
-call s:hi('DiffDelete', s:palette.blackest, s:palette.red, '')
-call s:hi('DiffText', s:palette.black, s:palette.lightblue, '')
-call s:hi('DiffAdded', s:palette.green, s:palette.black, '')
-call s:hi('DiffChanged', s:palette.blue, s:palette.black, '')
-call s:hi('DiffRemoved', s:palette.red, s:palette.black, '')
+call s:hi('DiffAdd', s:blackest, s:green, '')
+call s:hi('DiffChange', s:blackest, s:blue, '')
+call s:hi('DiffDelete', s:blackest, s:red, '')
+call s:hi('DiffText', s:black, s:lightblue, '')
+call s:hi('DiffAdded', s:green, s:black, '')
+call s:hi('DiffChanged', s:blue, s:black, '')
+call s:hi('DiffRemoved', s:red, s:black, '')
 
-highlight! link Character Constant
-highlight! link Float Number
-highlight! link Boolean Number
+"## Links
+hi! link Character Constant
+hi! link Float Number
+hi! link Boolean Number
 
-highlight! link SignColumn FoldColumn
-highlight! link ColorColumn FoldColumn
-highlight! link CursorColumn CursorLine
+hi! link SignColumn FoldColumn
+hi! link ColorColumn FoldColumn
+hi! link CursorColumn CursorLine
 
-highlight! link Folded LineNr
-highlight! link Conceal Normal
-highlight! link ErrorMsg Error
+hi! link Folded LineNr
+hi! link Conceal Normal
+hi! link ErrorMsg Error
 
-highlight! link Conditional Statement
-highlight! link Repeat Statement
-highlight! link Label Statement
-highlight! link Exception Statement
+hi! link Conditional Statement
+hi! link Repeat Statement
+hi! link Label Statement
+hi! link Exception Statement
 
-highlight! link Include PreProc
-highlight! link Define PreProc
-highlight! link Macro PreProc
-highlight! link PreCondit PreProc
+hi! link Include PreProc
+hi! link Define PreProc
+hi! link Macro PreProc
+hi! link PreCondit PreProc
 
-highlight! link StorageClass Type
-highlight! link Structure Type
-highlight! link Typedef Type
+hi! link StorageClass Type
+hi! link Structure Type
+hi! link Typedef Type
 
-highlight! link SpecialChar Special
-highlight! link Tag Special
-highlight! link Delimiter Special
-highlight! link Debug Special
-highlight! link Question Special
+hi! link SpecialChar Special
+hi! link Tag Special
+hi! link Delimiter Special
+hi! link Debug Special
+hi! link Question Special
 
-highlight! link VisualNOS Visual
-highlight! link TabLine StatusLineNC
-highlight! link TabLineFill StatusLineNC
-highlight! link TabLineSel StatusLine
+hi! link VisualNOS Visual
+hi! link TabLine StatusLineNC
+hi! link TabLineFill StatusLineNC
+hi! link TabLineSel StatusLine
+
+hi! link typescriptDOMDocProp typescriptProp
+hi! link typescriptPaymentShippingOptionProp typescriptProp
+hi! link typescriptPaymentMethod typescriptProp
+hi! link typescriptDOMEventProp typescriptProp
+
+hi! link gitcommitSummary gitcommitFirstLine

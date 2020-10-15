@@ -51,23 +51,6 @@ set noerrorbells novisualbell t_vb=
 set belloff=all
 set conceallevel=2
 
-"## Syntax e Highlight"
-"wtf-syntax-highlight
-
-function! FixHighlight()
-    highlight link typescriptDOMDocProp typescriptProp
-    highlight link typescriptPaymentShippingOptionProp typescriptProp
-    highlight link typescriptPaymentMethod typescriptProp
-    highlight link typescriptDOMEventProp typescriptProp
-    highlight link gitcommitSummary gitcommitFirstLine
-    highlight SpellBad guifg=#000000 guibg=#af0000 gui=bold term=bold ctermfg=black ctermbg=red
-endfunction
-
-augroup override_highlights
-    autocmd!
-    autocmd ColorScheme * call FixHighlight()
-augroup END
-
 "## Comportamento
 "wtf-comportamento
 syntax on

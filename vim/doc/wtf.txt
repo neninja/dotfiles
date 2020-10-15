@@ -867,23 +867,6 @@ Habilita conceal
   set conceallevel=2
 <
 ------------------------------------------------------------------------------
-*wtf-syntax-highlight*
-
-Note `:verbose highlight <highlightGroup>` Exibe informações osbre grupo de
-cores
-
-
-Corrige highlights padrões. Caso seja necessário corrigir syntax de um plugin,
-deve ser feito em `packages.vim` (|wtf-file-packages|)
->
-  function FixHighlight()
-
-  augroup override_highlights
-      autocmd!
-      autocmd ColorScheme * call FixHighlight()
-  augroup END
-<
-------------------------------------------------------------------------------
 *wtf-comportamento*
 
 Syntax de acordo com o filetype

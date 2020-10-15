@@ -1,4 +1,6 @@
 "# wtf-file-dotfiles
+colorscheme vyin
+
 "## Templates
 augroup skeletons
     au!

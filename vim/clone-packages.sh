@@ -34,13 +34,8 @@ vendorStartRepos=(
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
     "https://github.com/dense-analysis/ale.git" # lint
 
-    ####### COLORSCHEMES
-    "https://github.com/joshdick/onedark.vim.git"
-    "https://github.com/pgdouyon/vim-yin-yang.git"
-
     ####### GIT
     "https://github.com/tpope/vim-fugitive.git" # comandos
-    "https://github.com/airblade/vim-gitgutter.git" # exibição de + - ~ _
     "https://github.com/junegunn/gv.vim.git" # log
 
     ####### JS

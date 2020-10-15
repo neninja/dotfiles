@@ -28,6 +28,7 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
     - [ftplugin/](/vim/ftplugin): especificações de `filetypes`
     - [syntax/](/vim/syntax): sintaxes específicas de `filetypes`
     - [dicionarios/](/vim/dicionarios/): dicionários usados para sugerir palavras
+    - [colors/](/vim/colors/): definição de cores para grupos de highlights (colorschemes)
     - [skeletons/](/vim/skeletons/): estrutura inicial de tipos de arquivos
     - [clone-packages.sh](/vim/clone-packages.sh): download de packages (plugins)
     - [dotfiles.vim](/vim/dotfiles.vim): configurações do vim caso este projeto seja clonado por inteiro, pois ele considera estrutura de pastas

@@ -162,9 +162,6 @@ let g:ale_fixers = {
 
 let g:ale_fix_on_save = 1
 
-"## pgdouyon/vim-yin-yang
-colorscheme vyin
-
 "## diepm/vim-rest-console
 " TODO ver como utilizar $VARIAVEIS no Windows
 let g:vrc_response_default_content_type = 'application/json'
