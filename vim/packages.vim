@@ -64,6 +64,7 @@ let g:startify_custom_header_quotes = [
             \ ['Mude você e todo o resto mudará naturalmente', '- Rocketseat 🚀 GoStack11'],
             \ ['O tempo que leva para realizar seus sonhos', 'vai passar de qualquer forma', '- Rocketseat 🚀 GoStack11'],
             \ ['Nada no mundo supera a persistência', '- Rocketseat 🚀 GoStack11'],
+            \ ['。　　•　 　ﾟ　　。', '　.　　　　.　　ඞ　。　　 。', '.　　 。　　　　  。 . 　　 •    •', 'nenitf was not the impostor'],
             \ ]
 let g:startify_lists = [
             \ { 'type': 'sessions', 'header': ['sessões'] },
