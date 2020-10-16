@@ -4,8 +4,8 @@ setlocal shiftwidth=2
 setlocal textwidth=81 " usar Vgq é util para quebrar linhas
 setlocal norelativenumber nonumber
 
-command! -buffer Todo call TodoListMenu({'TODO': '\C\<TODO\>'})
-command! -buffer Wait call TodoListMenu({'WAIT': '\C\<WAIT\>'})
+command! -buffer Todo call TodoListSearchStatus({'TODO': '\C\<TODO\>'})
+command! -buffer Wait call TodoListSearchStatus({'WAIT': '\C\<WAIT\>'})
 
 "## Maps
 nnoremap <silent><buffer>   =           :silent! call <SID>DoneTask()<CR>
@@ -56,6 +56,10 @@ function! s:HandleURL()
   else
     echo "No URI found in line."
   endif
+endfunction
+
+function! TodoListCommands(ArgLead, CmdLine, CursorPos)
+    return ['Todo', 'Wait', 'TodoList', 'TodoListFileBacklog', 'TodoListFileDone']
 endfunction
 
 "## Fold

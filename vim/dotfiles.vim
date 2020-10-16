@@ -55,8 +55,10 @@ let g:todolist_dir = "~/TODOLIST"
 let g:todolist_backlog = g:todolist_dir."/BACKLOG"
 let g:todolist_done = g:todolist_dir."/DONE"
 
+nnoremap <leader>o :call TodoListMenu()<CR>
+
 command! TodoListVGrep execute "silent noa lvimgrep /\\C\\<TODO\\>/j ".g:todolist_backlog | lli
-command! TodoList call TodoListMenu({'TODO':'\C\<TODO\>','WAIT':'\C\<WAIT\>'})
+command! TodoList call TodoListSearchStatus({'TODO':'\C\<TODO\>','WAIT':'\C\<WAIT\>'})
 command! TodoListFileBacklog call <SID>OpenBacklogFile()
 command! TodoListFileDone execute "e ".g:todolist_done
 
@@ -65,7 +67,7 @@ function! s:OpenBacklogFile()
     silent lvimgrep /\C\<TODO\>/j %
 endfunction
 
-function! TodoListMenu(regex)
+function! TodoListSearchStatus(regex)
     let todo = []
     let current_title = ''
 
@@ -116,4 +118,16 @@ endfunction
 
 function! TodoListll(ArgLead, CmdLine, CursorPos)
     return map(range(1, len(getloclist(0))), 'string(v:val)')
+endfunction
+
+function! TodoListCommands(ArgLead, CmdLine, CursorPos)
+    return ['TodoList', 'TodoListFileBacklog', 'TodoListFileDone']
+endfunction
+
+function! TodoListMenu()
+    let cmd = input("> ", "\<c-d>", "customlist,TodoListCommands")
+    if(cmd=='')
+        return
+    endif
+    execute cmd
 endfunction
