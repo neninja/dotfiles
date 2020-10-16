@@ -13,8 +13,15 @@ syn match Conceal /^\s.*$/ containedin=ALL
 syn match todoListBullet /-/ contained containedin=todoListBegginingList conceal cchar=•
 syn match todoListItemCheckbox /-\s\[\p\]/ contained containedin=todoListBegginingCheckbox conceal
 syn match todoListCheckbox /\[\p\]/ contained containedin=todoListItemCheckbox
-syn match todoListCheck /\s/ contained containedin=todoListCheckbox conceal cchar=□
-syn match todoListEmptyCheck /x/ contained containedin=todoListCheckbox conceal cchar=✓
+
+" https://www.nerdfonts.com/cheat-sheet
+if(g:devicons)
+    syn match todoListCheck /\s/ contained containedin=todoListCheckbox conceal cchar=
+    syn match todoListEmptyCheck /x/ contained containedin=todoListCheckbox conceal cchar=
+else
+    syn match todoListCheck /\s/ contained containedin=todoListCheckbox conceal cchar=□
+    syn match todoListEmptyCheck /x/ contained containedin=todoListCheckbox conceal cchar=✓
+endif
 
 hi link todoListCardTitle Folded
 

@@ -27,6 +27,8 @@ let g:ctrlp_prompt_mappings = {
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
 
+"## ryanoasis/vim-devicons
+let g:devicons = 1
 "## junegunn/fzf.vim
 
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
