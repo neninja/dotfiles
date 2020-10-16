@@ -67,6 +67,7 @@ function! s:OpenBacklogFile()
     try
         silent lvimgrep /\C\<TODO\>/j %
     catch
+        redraw
 		echohl WarningMsg | echo "Sem TODO" | echohl None
     endtry
 endfunction
@@ -78,6 +79,7 @@ function! TodoListSearchStatus(regex)
     try
         execute "silent lvimgrep /\\(".join(values(a:regex), '\|')."\\)/j ".g:todolist_backlog
     catch
+        redraw
         echohl WarningMsg | echo "Sem ".join(keys(a:regex), ", ") | echohl None
         return
     endtry
