@@ -45,7 +45,7 @@ let s:gray15    = ['#e4e4e4', 254]
 let s:white     = ['#eeeeee', 255]
 
 let s:purple    = ['#5f5fd7', 62]
-let s:brown     = ['#875f00', 94]
+let s:brown     = ['#d79b5f', 94]
 let s:blue      = ['#5f5fd7', 25]
 let s:lightblue = ['#5f9bd7', 31]
 let s:cyan      = ['#5fd7d7', 43]
