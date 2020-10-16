@@ -64,14 +64,23 @@ command! TodoListFileDone execute "e ".g:todolist_done
 
 function! s:OpenBacklogFile()
     execute "e ".g:todolist_backlog
-    silent lvimgrep /\C\<TODO\>/j %
+    try
+        silent lvimgrep /\C\<TODO\>/j %
+    catch
+		echohl WarningMsg | echo "Sem TODO" | echohl None
+    endtry
 endfunction
 
 function! TodoListSearchStatus(regex)
     let todo = []
     let current_title = ''
 
-    execute "silent lvimgrep /\\(".join(values(a:regex), '\|')."\\)/j ".g:todolist_backlog
+    try
+        execute "silent lvimgrep /\\(".join(values(a:regex), '\|')."\\)/j ".g:todolist_backlog
+    catch
+        echohl WarningMsg | echo "Sem ".join(keys(a:regex), ", ") | echohl None
+        return
+    endtry
 
     let qf = getloclist(0)
     let file = readfile(glob(g:todolist_backlog))
