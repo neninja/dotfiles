@@ -142,11 +142,11 @@ call s:hi('IncSearch', s:gray01, s:gray07, '')
 call s:hi('SpellBad', '', s:black, 'undercurl')
 call s:hi('SpellCap', s:red, s:black, 'undercurl')
 call s:hi('SpellLocal', s:red, s:black, 'undercurl')
-call s:hi('SpellRare', s:brown, s:black, 'undercurl')
+call s:hi('SpellRare', s:yellow, s:black, 'undercurl')
 
 call s:hi('Error', s:red, s:black, 'bold')
 call s:hi('ErrorMsg', s:red, s:black, '')
-call s:hi('WarningMsg', s:brown, s:black, '')
+call s:hi('WarningMsg', s:yellow, s:black, '')
 call s:hi('ModeMsg', s:gray10, '', '')
 call s:hi('MoreMsg', s:gray10, '', '')
 
