@@ -48,40 +48,72 @@ endfunction
 
 "## Todolist
 augroup filetype_detect
-    au BufEnter,BufNewFile TODO,DONE setfiletype todolist
+    au BufEnter,BufNewFile BACKLOG,DONE setfiletype todolist
 augroup END
 
 let g:todolist_dir = "~/TODOLIST"
-command! TodoSimpleGrep execute "silent noa vimgrep /\\C\\<TODO\\>/j ".g:todolist_dir."/TODO" | cw
-command! -complete=customlist,TodoListCC -nargs=1 DoToo cw | silent cc <args>
-command! TodoList call <SID>TodoQuick('\(\C\<TODO\>\|\C\<WAIT\>\)') | cli | call feedkeys(":DoToo <c-d>")
-command! TodoListFile execute "e ".g:todolist_dir."/TODO"
+let g:todolist_backlog = g:todolist_dir."/BACKLOG"
+let g:todolist_done = g:todolist_dir."/DONE"
 
-function! TodoListCC(ArgLead, CmdLine, CursorPos)
-    return map(range(1, len(getqflist())), 'string(v:val)')
+command! TodoListVGrep execute "silent noa lvimgrep /\\C\\<TODO\\>/j ".g:todolist_backlog | lli
+command! TodoList call TodoListMenu({'TODO':'\C\<TODO\>','WAIT':'\C\<WAIT\>'})
+command! TodoListFileBacklog call <SID>OpenBacklogFile()
+command! TodoListFileDone execute "e ".g:todolist_done
+
+function! s:OpenBacklogFile()
+    execute "e ".g:todolist_backlog
+    silent lvimgrep /\C\<TODO\>/j %
 endfunction
 
-function! s:TodoQuick(regex)
-    cclose
-
+function! TodoListMenu(regex)
     let todo = []
     let current_title = ''
 
-    let todofile = g:todolist_dir . "/TODO"
-    execute "silent vimgrep /".a:regex."/j ".todofile
+    execute "silent lvimgrep /\\(".join(values(a:regex), '\|')."\\)/j ".g:todolist_backlog
 
-    let qf = getqflist()
-    let file = readfile(glob(todofile))
+    let qf = getloclist(0)
+    let file = readfile(glob(g:todolist_backlog))
     for line in qf
         let lnum = line.lnum
-        for pastline_nr in reverse(range(1, lnum))
-            let indexLine = pastline_nr - 1
+        let line.alnum = line.lnum
+        let line.lnum = ''
+        let line.acol = line.col
+        let line.col = ''
+
+        for key in keys(a:regex)
+            if(match(line.text, a:regex[key]) > 0)
+                let line.pattern=key
+                let line.text = substitute(line.text, a:regex[key], '', '')
+                break
+            endif
+        endfor
+
+        let line.text = substitute(line.text, '^\s*', '', '')
+        let line.text = substitute(line.text, '\-\s\[\s\]\s', '', '')
+        for indexLine in reverse(range(0, lnum-1))
             if(match(file[indexLine], '\S') == 0)
                 let line.module = file[indexLine]
                 break
             endif
         endfor
     endfor
+    call setloclist(0,qf)
+    lli
 
-    call setqflist(qf)
+    for line in qf
+        let line.lnum = line.alnum
+        let line.col = line.acol
+        let line.pattern = ''
+    endfor
+    call setloclist(0,qf)
+
+    let idx = input("Item: ", "", "customlist,TodoListll")
+    if(idx>0)
+        execute "silent ll ".idx
+        normal zO
+    endif
+endfunction
+
+function! TodoListll(ArgLead, CmdLine, CursorPos)
+    return map(range(1, len(getloclist(0))), 'string(v:val)')
 endfunction

@@ -83,7 +83,7 @@ packadd! vim-startify
 try
     let todo = []
     let current_title = ''
-    for entry in readfile(glob('~/TODOLIST/TODO'))
+    for entry in readfile(glob('~/TODOLIST/BACKLOG'))
         if(match(entry, '\S') == 0)
             let current_title = entry
         elseif (match(entry, '\C\<TODO\>') > -1)

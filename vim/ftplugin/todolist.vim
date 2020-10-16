@@ -4,31 +4,15 @@ setlocal shiftwidth=2
 setlocal textwidth=81 " usar Vgq é util para quebrar linhas
 setlocal norelativenumber nonumber
 
-command! -buffer Todo call <SID>SearchInTodo('\C\<TODO\>')
-command! -buffer Wait call <SID>SearchInTodo('\C\<WAIT\>')
-
-function! s:SearchInTodo(regex)
-    cclose
-    try
-        execute "silent vimgrep /".a:regex."/ ".g:todolist_dir."/TODO"
-    catch
-        return
-    endtry
-    cfirst
-    let qf = getqflist()
-    for d in qf
-        exec d.lnum
-        call search('^\S', 'b')
-        let d.module = getline('.')
-    endfor
-    call setqflist(qf)
-    cw
-endfunction
+command! -buffer Todo call TodoListMenu({'TODO': '\C\<TODO\>'})
+command! -buffer Wait call TodoListMenu({'WAIT': '\C\<WAIT\>'})
 
 "## Maps
 nnoremap <silent><buffer>   =           :silent! call <SID>DoneTask()<CR>
 nnoremap <silent><buffer>   <CR>        :call <SID>HandleURL()<CR>
 nnoremap <buffer>           <c-space>   :call ToggleCheckbox()<CR>
+nnoremap <buffer>           <space>j    :lbelow \| normal! zO<CR>
+nnoremap <buffer>           <space>k    :labove \| normal! zO<CR>
 
 function! s:DoneTask()
     try
@@ -38,28 +22,13 @@ function! s:DoneTask()
     endtry
 
     normal! V"sx
-    execute "e ".g:todolist_dir."/DONE"
+    execute "e ".g:todolist_done
 
     call <SID>AddTaskFirstLine()
 
     w
     b #
     w
-endfunction
-
-function! s:SwapTask(wcmd)
-    try
-        normal! zc
-    catch
-        return
-    endtry
-
-    normal! V"sx
-    execute "wincmd ".a:wcmd
-
-    call <SID>AddTaskFirstLine()
-
-    wa
 endfunction
 
 function! s:AddTaskFirstLine()
@@ -89,7 +58,7 @@ function! s:HandleURL()
   endif
 endfunction
 
-"# Fold
+"## Fold
 setlocal foldmethod=expr
 setlocal foldexpr=FoldMethodTodoList()
 setlocal foldtext=FoldTodoText()
