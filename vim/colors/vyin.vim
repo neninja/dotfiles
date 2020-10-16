@@ -130,7 +130,7 @@ else
     call s:hi('Comment', s:gray03, '', '')
 endif
 
-call s:hi('LineNr', s:gray04, '', '')
+call s:hi('LineNr', s:gray05, '', '')
 call s:hi('FoldColumn', s:gray07, s:gray01, '')
 call s:hi('CursorLine', '', s:gray01, '')
 call s:hi('CursorLineNr', s:gray14, s:gray01, '')
