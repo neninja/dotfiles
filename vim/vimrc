@@ -573,18 +573,21 @@ function! s:SelecionaWiki(wiki)
     let wiki = g:vimwikis_dirs[0]
 
     if(a:wiki == 1)
-        " THANKS: https://learnvimscriptthehardway.stevelosh.com/chapters/39.html
-        let wikis_com_index = deepcopy(g:vimwikis_dirs)
-        call map(wikis_com_index,'v:key . ". " . v:val')
-        let index_secionado = inputlist(wikis_com_index)
-        let wiki = g:vimwikis_dirs[index_secionado]
+        let wiki = input("wiki: ", "\<c-d>", "customlist,WikiLists")
     endif
     try
+        if(wiki == '')
+            return
+        endif
         execute "cd " . wiki
         e README.md
     catch
         return
     endtry
+endfunction
+
+function! WikiLists(ArgLead, CmdLine, CursorPos)
+    return  g:vimwikis_dirs
 endfunction
 
 function! ToggleCheckbox()
