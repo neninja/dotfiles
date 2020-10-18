@@ -2,9 +2,9 @@
 syn match todoListCardTitle /^\S.*$/ containedin=ALL
 syn match todoListCardBody /^\s.*$/ containedin=ALL
 
-syn match todoListBegginingList /^\s*-/ contained containedin=todoListCardBody
-syn match todoListBegginingCheckbox /^\s*-\s\[\p\]/ contained containedin=todoListCardBody
-syn match todoListURL /[http|https]*:\/\/[^ >,;]*/ contained containedin=todoListCardBody
+syn match todoListBegginingList /^\s*-/ containedin=todoListCardBody
+syn match todoListBegginingCheckbox /^\s*-\s\[\p\]/ containedin=todoListBegginingList
+syn match todoListURL /[http|https]*:\/\/[^ >,;]*/ containedin=todoListCardBody
 syn match todoListWtf /????/ contained containedin=todoListCardBody
 syn match todoListWait /WAIT/ contained containedin=todoListCardBody,todoListCardTitle
 syn match todoListWait /TODO/ contained containedin=todoListCardBody,todoListCardTitle
