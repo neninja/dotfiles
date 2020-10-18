@@ -132,6 +132,10 @@ function! TodoListll(ArgLead, CmdLine, CursorPos)
 endfunction
 
 function! TodoListCommands(ArgLead, CmdLine, CursorPos)
+    let filename = expand('%:t:r')
+    if(filename == 'BACKLOG' || filename == 'DONE')
+        return ['Todo', 'Wait', 'TodoList', 'TodoListFileBacklog', 'TodoListFileDone']
+    endif
     return ['TodoList', 'TodoListFileBacklog', 'TodoListFileDone']
 endfunction
 

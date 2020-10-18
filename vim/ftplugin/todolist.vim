@@ -58,10 +58,6 @@ function! s:HandleURL()
   endif
 endfunction
 
-function! TodoListCommands(ArgLead, CmdLine, CursorPos)
-    return ['Todo', 'Wait', 'TodoList', 'TodoListFileBacklog', 'TodoListFileDone']
-endfunction
-
 "## Fold
 setlocal foldmethod=expr
 setlocal foldexpr=FoldMethodTodoList()
