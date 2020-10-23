@@ -102,7 +102,9 @@ function! TodoListSearchStatus(regex)
         endfor
 
         let line.text = substitute(line.text, '^\s*', '', '')
-        let line.text = substitute(line.text, '\-\s\[\s\]\s', '', '')
+        let line.text = substitute(line.text, '^- ', '', '')
+        let line.text = substitute(line.text, '^= ', '', '')
+        let line.text = substitute(line.text, '^+ ', '', '')
         for indexLine in reverse(range(0, lnum-1))
             if(match(file[indexLine], '\S') == 0)
                 let line.module = file[indexLine]
