@@ -2,25 +2,25 @@
 syn match todoListCardTitle /^\S.*$/ containedin=ALL
 syn match todoListCardBody /^\s.*$/ containedin=ALL
 
-syn match todoListBegginingList /^\s*-/ containedin=todoListCardBody
-syn match todoListBegginingCheckbox /^\s*-\s\[\p\]/ containedin=todoListBegginingList
 syn match todoListURL /[http|https]*:\/\/[^ >,;]*/ containedin=todoListCardBody
 syn match todoListWtf /????/ contained containedin=todoListCardBody
 syn match todoListWait /WAIT/ contained containedin=todoListCardBody,todoListCardTitle
 syn match todoListWait /TODO/ contained containedin=todoListCardBody,todoListCardTitle
 
+syn match todoListBegginingList /^\s*-/ containedin=todoListCardBody
+syn match todoListBegginingCheckboxEmpty /^\s*=/ containedin=todoListCardBody
+syn match todoListBegginingCheckboxChecked /^\s*+/ containedin=todoListCardBody
+
 syn match Conceal /^\s.*$/ containedin=ALL
 syn match todoListBullet /-/ contained containedin=todoListBegginingList conceal cchar=•
-syn match todoListItemCheckbox /-\s\[\p\]/ contained containedin=todoListBegginingCheckbox conceal
-syn match todoListCheckbox /\[\p\]/ contained containedin=todoListItemCheckbox
 
 " https://www.nerdfonts.com/cheat-sheet
 if(g:devicons)
-    syn match todoListCheck /\s/ contained containedin=todoListCheckbox conceal cchar=
-    syn match todoListEmptyCheck /x/ contained containedin=todoListCheckbox conceal cchar=
+    syn match todoListCheck /=/ contained containedin=todoListBegginingCheckboxEmpty conceal cchar=
+    syn match todoListEmptyCheck /+/ contained containedin=todoListBegginingCheckboxChecked conceal cchar=
 else
-    syn match todoListCheck /\s/ contained containedin=todoListCheckbox conceal cchar=□
-    syn match todoListEmptyCheck /x/ contained containedin=todoListCheckbox conceal cchar=✓
+    syn match todoListCheck /=/ contained containedin=todoListBegginingCheckboxEmpty conceal cchar=□
+    syn match todoListEmptyCheck /+/ contained containedin=todoListBegginingCheckboxChecked conceal cchar=✓
 endif
 
 hi link todoListCardTitle Folded

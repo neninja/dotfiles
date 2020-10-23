@@ -10,9 +10,28 @@ command! -buffer Wait call TodoListSearchStatus({'WAIT': '\C\<WAIT\>'})
 "## Maps
 nnoremap <silent><buffer>   =           :silent! call <SID>DoneTask()<CR>
 nnoremap <silent><buffer>   <CR>        :call <SID>HandleURL()<CR>
-nnoremap <buffer>           <c-space>   :call ToggleCheckbox()<CR>
+nnoremap <buffer>           <c-space>   :call <SID>ToggleCheckbox()<CR>
 nnoremap <buffer>           <space>j    :lbelow \| normal! zO<CR>
 nnoremap <buffer>           <space>k    :labove \| normal! zO<CR>
+
+" - Lista
+" = Checkbox vazio
+" + Checkbox marcado
+function! s:ToggleCheckbox()
+    normal! ms0
+    if(search('^\s*=', 'c', line('.')))
+        normal! wr+
+    elseif(search('^\s*+', 'c', line('.')))
+        normal! wr=
+    else
+        if(search('^.*-\s', 'c', line('.')))
+            normal! ^r=
+        else
+            execute "normal! I= "
+        endif
+    endif
+    normal `s
+endfunction
 
 function! s:DoneTask()
     try
