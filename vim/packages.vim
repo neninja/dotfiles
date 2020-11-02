@@ -90,7 +90,13 @@ try
             let current_title = entry
         elseif (match(entry, '\C\<TODO\>') > -1)
             call add(todo, current_title)
-            call add(todo, substitute(entry, '^\s*', '  ', ''))
+            let line = substitute(entry, '^\s*', '  ', '')
+            let line = substitute(line, '^\s*-', '  ', '')
+            let line = substitute(line, '^\s*=', '  ', '')
+            let line = substitute(line, '^\s*+', '  ', '')
+            let line = substitute(line, '\C\<TODO\>', '  ', '')
+            let line = substitute(line, '\C\<WAIT\>', '  ', '')
+            call add(todo, line)
         endif
     endfor
     let g:startify_custom_header = startify#pad(todo)
