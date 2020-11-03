@@ -1,70 +1,60 @@
 # Contribuindo
 
-- [Issues, Bugs e novas features](#issue)
-- [Submission Guidelines](#submit)
+Encontrou um erro? Quer conversar/sugerir uma nova funcionalidade? Pode enviar uma *issue* ou *Pull Request* (PR) com a sugestão.
 
 > Créditos do documento ao time do [Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md).
 
-## <a name="issue"></a> Econcontrou um Bug? Quer conversar/sugerir uma nova funcionalidade?
-Pode enviar uma [issue](#submit-issue) ou [Pull Request](#submit-pr) com a sugestão. Veja este [guia](#submit).
+## Enviando uma issue
 
-## <a name="submit"></a> Submission Guidelines
+Lembre de explicar o cenário do bug/feature.
 
-### <a name="submit-issue"></a> Enviando uma Issue
+## Enviando um PR
 
-É imprescindível o envio do cenário do bug/feature.
-
-### <a name="submit-pr"></a> Enviando um Pull Request (PR)
-Antes de enviar seu PR, considere seguir as guidelines:
-
-1. Fork o repo.
-1. Clone o repo forkado.
-1. Adicione `upstream`:
+1. *Forke* o projeto.
+2. Clone o projeto *forkado*:
     ```sh
-    git remote add upstream <url-original-do-projeto>
+    git clone <url-do-projeto-forkado>
     ```
 
-1. Faça suas mudanças em uma branch nova:
+3. Adicione o *upstream*:
+    ```sh
+    git remote add upstream <url-do-projeto-original>
+    ```
+
+4. Crie uma nova branch:
      ```sh
-     git checkout -b my-fix-branch main
+     git checkout -b my-fix-branch
      ```
 
-1. Commit suas mudanças usando a [convenção de commits](https://gist.github.com/nenitf/1cf5182bff009974bf436f978eea1996#emojicom).
-     ```sh
-     git commit -a
-     ```
-1. Atualize sua branch de acordo com o upstream, corrija conflitos se necessário.
+5. Commit suas mudanças usando a [convenção de commits](https://gist.github.com/nenitf/1cf5182bff009974bf436f978eea1996#emojicom)
+
+6. Atualize sua branch de acordo com o *upstream*, corrija conflitos se necessário.
     ```sh
     git fetch upstream
     git rebase upstream/main
     ```
 
-1. Push sua branch para Remote:
+7. Envie seu código para o *remote*:
     ```sh
-    git push origin HEAD
+    git push -f origin HEAD
     ```
 
-1. Envie o pull request para `main`.
-* Se for sugeridas mudanças então:
+8. Abra o PR para `main`.
+* Se forem sugeridas mudanças na revisão do PR então:
   * Faça-as.
-  * Rebase sua branch e force push para seu fork (isso irá atualizar o PR):
+  * *Rebase* sua branch e force *push* para seu *fork* (isso atualizará o PR):
     ```sh
     git rebase main -i
-    git push -f
+    git push -f origin HEAD
     ```
 
-#### Após PR ser mergeado
+### Após PR
 
-Após seu PR for mergeado, você pode deletar sua branch e baixar as mudanças deste repo:
+Caso queira manter o projeto para futuros PRs, pode deletar somente sua branch e baixar as mudanças deste projeto:
 
-* Deletar a branch do repositório remoto:
+* Trocar para a branch principal:
     ```sh
-    git push origin --delete my-fix-branch
-    ```
-
-* Trocar de branch para a main:
-    ```sh
-    git checkout main -f
+    git checkout main
     ```
 
 * Deletar a branch local:
@@ -72,8 +62,12 @@ Após seu PR for mergeado, você pode deletar sua branch e baixar as mudanças d
     git branch -D my-fix-branch
     ```
 
-* Atualizar a main local:
-    ```shell
-    git pull --ff upstream main
+* Deletar a branch do repositório remoto:
+    ```sh
+    git push origin --delete my-fix-branch
     ```
 
+* Atualizar a branch principal:
+    ```sh
+    git pull --ff upstream main
+    ```
