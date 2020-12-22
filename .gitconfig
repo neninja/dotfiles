@@ -75,6 +75,7 @@
     #############
     #ps = push
     ps = push origin HEAD
+    pso = push origin
     psf = push -f origin HEAD
     #############
     #pl = pull
