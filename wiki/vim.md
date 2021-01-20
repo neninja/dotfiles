@@ -85,9 +85,11 @@ Lista de problemas em ambos editores
     - [ ] Erro com colorscheme com `:source $MYVIMRC`
 - [ ] Nvim Issues
     - [ ] Autopopup estranho/pequeno/feio e lento
-    - [ ] Instalação no windows precisa do scoop
+        > Resolve com `set wildmode=list:full` mas exibe desnecessariamente todas opções
+    - [x] Instalação no windows precisa do scoop
+        > Vem zipado o qt para windows
     - [ ] Paste com <s-insert> não funciona (importante para colar `:comandos`)
-    - [ ] Tilde (`~`) não aparece com `~` + `<espaço>`, ruim para `guw` e `gUw`
+    - [ ] Tilde (`~`) não aparece com `~` + `<espaço>`, ruim para `guw` e `gUw` ([issue](https://github.com/equalsraf/neovim-qt/issues/270))
 
 ## Dicas
 - [Links (gist)](https://gist.github.com/romainl/4b9f139d2a8694612b924322de1025ce)
