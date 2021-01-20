@@ -43,6 +43,7 @@ vendorStartRepos=(
     "https://github.com/pangloss/vim-javascript.git" # melhora na syntax js
     "https://github.com/MaxMEllon/vim-jsx-pretty.git" # syntax e indent jsx ts
     "https://github.com/Quramy/tsuquyomi.git" # autocomplete e lint de ts
+    "https://github.com/posva/vim-vue" # vue
 
     ####### PHP
     "https://github.com/alvan/vim-php-manual.git" # manual do php no vim
