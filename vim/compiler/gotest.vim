@@ -23,7 +23,6 @@ CompilerSet makeprg=go\ test
 " THANKS: https://github.com/wincent/wincent/blob/b38dc93bb5/roles/dotfiles/files/.vim/after/compiler/README.md
 
 CompilerSet errorformat=%-G#%.%#
-CompilerSet errorformat+=%-G%.%#panic:\ %m
 CompilerSet errorformat+=%-GFAIL%.%#
 CompilerSet errorformat+=%-Gexit%.%#
 CompilerSet errorformat+=%-GPASS%.%#

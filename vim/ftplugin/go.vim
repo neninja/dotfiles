@@ -75,7 +75,7 @@ inorea <buffer><expr> ife TestaTriggerSnippet('ife',
             \ ['\/\* código \*\/'])
 
 inorea <buffer><expr> ift TestaTriggerSnippet('ift',
-            \ "if got != want {<cr>t.Error(\"Got\", got, \"want\", want)<cr>}",
+            \ "if got != want {<cr>t.Error(\"got:\", got, \"want:\", want)<cr>}",
             \ ['!='])
 
 inorea <buffer><expr> forr TestaTriggerSnippet('forr',
@@ -89,7 +89,7 @@ inorea <buffer><expr> fori TestaTriggerSnippet('fori',
 inorea <buffer><expr> fort TestaTriggerSnippet('fort',
             \ "var tests = []struct {<cr>in  []typeIn<cr>out typeOut<cr>}{}<cr>".
             \ "for _, test := range tests {<cr>got := testedFuncName(test.in...)<cr>".
-            \ "if got != want {<cr>t.Error(\"For\", test.in, \"want\", test.out, \"got\", got)<cr>}<cr>}",
+            \ "if got != want {<cr>t.Error(\"For\", test.in, \"got:\", got, \"want:\", test.out)<cr>}<cr>}",
             \ ['typeIn', 'typeOut', 'testedFuncName', '\.\.\.'])
 
 inorea <buffer><expr> ts TestaTriggerSnippet('ts',
@@ -99,4 +99,7 @@ inorea <buffer><expr> ts TestaTriggerSnippet('ts',
 inorea <buffer><expr> ri TestaTriggerSnippet('ri',
             \ "rand.Intn(maxRandInt)",
             \ ['maxRandInt'])
-        
+
+inorea <buffer><expr> pv TestaTriggerSnippet('pv',
+            \ "fmt.Printf(\"%+v\\n\", varName)",
+            \ ['varName'])
