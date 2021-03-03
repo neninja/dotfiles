@@ -439,10 +439,14 @@ function! Boxdraw()
     " Cancela virtual edit
     "set virtualedit=
 
-    let row0   = line("'<") - 1
-    let col0   = virtcol("'<") - 1
-    let row1   = line("'>") + 1
-    let col1   = virtcol("'>") + 1
+    let row0 = line("'<") - 1
+    let col0 = virtcol("'<") - 1
+    let row1 = line("'>") + 1
+    let col1 = virtcol("'>") + 1
+    
+    " FIXME criando quadrado de cima o baixo esquerda para direita ok,
+    " restante não. Pq?
+    " echo row0 . "-" . col0 . "-" . row1 . "-" . col1
 
     let quantidadeL = col1 - col0
     call cursor(row1, col0)
