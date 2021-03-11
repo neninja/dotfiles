@@ -19,23 +19,38 @@ compiler phplint
 nnoremap <buffer> <leader>r :silent make!\|cw<CR>
 
 "## Snippets
-" FIXME syntax do php buga com !cursor! como nome de função temporariamente
+
 inorea <buffer><expr> fun TestaTriggerSnippet('fun',
             \ "function funcName(param)<cr>{<cr>/* código */<cr>}",
             \ ['funcName', 'param', '\/\* código \*\/'])
+inorea <buffer><expr> prif TestaTriggerSnippet('prif',
+            \ "private function funcName(param)<cr>{<cr>/* código */<cr>}",
+            \ ['funcName', 'param', '\/\* código \*\/'])
+inorea <buffer><expr> pubf TestaTriggerSnippet('pubf',
+            \ "public function funcName(param)<cr>{<cr>/* código */<cr>}",
+            \ ['funcName', 'param', '\/\* código \*\/'])
+inorea <buffer><expr> prof TestaTriggerSnippet('prof',
+            \ "protected function funcName(param)<cr>{<cr>/* código */<cr>}",
+            \ ['funcName', 'param', '\/\* código \*\/'])
+inorea <buffer><expr> __c TestaTriggerSnippet('__c',
+            \ "public function __construct(param)<cr>{<cr>/* código */<cr>}",
+            \ ['param', '\/\* código \*\/'])
+inorea <buffer><expr> __ts TestaTriggerSnippet('__toString',
+            \ "public function __toString()<cr>{<cr>/* código */<cr>}",
+            \ ['\/\* código \*\/'])
 inorea <buffer><expr> dd TestaTriggerSnippet('dd',
             \ "var_dump('debug');die;",
             \ ["'debug'"])
 inorea <buffer><expr> if TestaTriggerSnippet('if',
             \ "if(true){<cr>/* código */<cr>}",
             \ ['true', '\/\* código \*\/'])
-inorea <buffer><expr> -p TestaTriggerSnippet('-p',
+inorea <buffer><expr> prip TestaTriggerSnippet('prip',
             \ "private $var;",
             \ ['$var;'])
-inorea <buffer><expr> +p TestaTriggerSnippet('+p',
+inorea <buffer><expr> pubp TestaTriggerSnippet('pubp',
             \ "public $var;",
             \ ['$var;'])
-inorea <buffer><expr> #p TestaTriggerSnippet('#p',
+inorea <buffer><expr> prop TestaTriggerSnippet('prop',
             \ "protected $var;",
             \ ['$var;'])
 
@@ -76,7 +91,7 @@ endfun
 fun! s:GetProp()
     let initialLine = line("v")
     let conteudo = getline('.')
-    let propName = matchstr(conteudo, '\(private\|protected\)\s\$\w*')
+    let propName = matchstr(conteudo, '\(private\|protected\)*\$\w*')
     let propName = matchstr(propName, '\$\w*')
     let propName = matchstr(propName, '\w*', 1)
 
