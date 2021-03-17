@@ -130,15 +130,6 @@ set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
 set statusline+=\ %y            " filetype
 
-"## airblade/vim-gitgutter
-" TODO substituir plugin
-nmap [h <Plug>(GitGutterPrevHunk)
-nmap ]h <Plug>(GitGutterNextHunk)
-
-set updatetime=100
-let g:gitgutter_enabled=0
-let g:gitgutter_map_keys=0
-
 "## junegunn/goyo.vim
 function! s:enter_presentation()
     setl nospell
