@@ -135,18 +135,30 @@ set completeopt=menuone,noinsert,noselect
 
 set wildignore=node_modules
 set wildignore+=.git
+set wildignore+=.git/**
 set wildignore+=.svn
+set wildignore+=.svn/**
 set wildignore+=.venv
 set wildignore+=dist
+set wildignore+=dist/**
 set wildignore+=target
+set wildignore+=target/**
 set wildignore+=build
+set wildignore+=build/**
 set wildignore+=vendor
+set wildignore+=vendor/**
 set wildignore+=ios
+set wildignore+=ios/**
 set wildignore+=android
+set wildignore+=android/**
 set wildignore+=_site
+set wildignore+=_site/**
 set wildignore+=*/coverage
+set wildignore+=*/coverage/**
 set wildignore+=*/_reports
+set wildignore+=*/_reports/**
 set wildignore+=DS_Store
+set wildignore+=DS_Store/**
 set wildignore+=tags
 
 set wildignorecase

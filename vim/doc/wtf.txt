@@ -1270,6 +1270,7 @@ Abre :Lexplorer com pwd como do git
 Lista TODOS e FIXMES
 |THANKS|: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
 Note Irá ignorar path do wildignore https://stackoverflow.com/a/20042050
+(possuindo /**)
 >
   function! NN_Tasks()
 <
