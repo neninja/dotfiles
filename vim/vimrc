@@ -318,6 +318,7 @@ nnoremap    <leader>df          :call <SID>FechaSplitOuDeletaBufferForced()<CR>
 nnoremap    <leader>ds          :on<CR>| " Close all splits
 nnoremap    <leader>n           :call NN_<c-d>| " funções pessoais
 vnoremap    <leader>n           :call NN_<c-d>| " funções pessoais
+nnoremap    <expr><leader>q     empty(filter(getwininfo(), 'v:val.quickfix')) ? ":cope<CR>" : ":ccl<CR>"
 nnoremap    <leader>s           :split<CR>
 nnoremap    <leader>t           :tj <c-r><c-w><CR>| " Goto definition (ctags)
 nnoremap    <leader>v           :vsplit<CR>
@@ -351,7 +352,7 @@ vnoremap    o"          c"<c-r>""|" surround match
 vnoremap    o(          c(<c-r>")|" surround match
 vnoremap    o{          c{<c-r>"}|" surround match
 vnoremap    o[          c[<c-r>"]|" surround match
-nnoremap    <expr>Q     empty(filter(getwininfo(), 'v:val.quickfix')) ? ":cope<CR>" : ":ccl<CR>"
+nnoremap    Q           @q
 tnoremap    <esc>       <C-\><C-n>
 noremap     \           za|" toggle fold
 nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'| " Toggle fold todo arquivo
