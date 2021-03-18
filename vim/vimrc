@@ -134,6 +134,7 @@ set wildcharm=<tab>
 set completeopt=menuone,noinsert,noselect
 
 set wildignore=node_modules
+set wildignore=node_modules/**
 set wildignore+=.git
 set wildignore+=.git/**
 set wildignore+=.svn
