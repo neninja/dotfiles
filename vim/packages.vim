@@ -86,9 +86,13 @@ try
     let todo = []
     let current_title = ''
     for entry in readfile(glob('~/TODOLIST/BACKLOG'))
-        if(match(entry, '\S') == 0)
+        if(match(entry, '\S') == 0 && match(entry, '\C\<TODO\>') > -1) " Titulo com tag todo
+            let line = substitute(entry, '\C\<TODO\>', '  ', '')
+            let line = substitute(line, '\C\<WAIT\>', '  ', '')
+            call add(todo, line)
+        elseif(match(entry, '\S') == 0) " Titulo sem nd
             let current_title = entry
-        elseif (match(entry, '\C\<TODO\>') > -1)
+        elseif (match(entry, '\C\<TODO\>') > -1) " Qualquer outra linha com tag todo
             call add(todo, current_title)
             let line = substitute(entry, '^\s*', '  ', '')
             let line = substitute(line, '^\s*-', '  ', '')
