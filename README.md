@@ -41,7 +41,7 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
         - `wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi -O $HOME/.vimrc`
 - [wiki/](/wiki): anotações pessoais
 - [.bashrc](bash.rc): configurações bash (alias, path, functions, ps e etc).
-- [.gitconfig](/git/config): configuração do git
+- [.gitconfig](.config): configuração do git
 - [index.html](index.html): redirecionamento do github-pages para o script de instalação
 - [install.sh](install.sh): "instalação" dos arquivos de configuração no Linux e Windows
 
