@@ -700,6 +700,55 @@ command OutputAssertion :call <SID>OutputAssertion()
 command DumpScript :call <SID>ExecuteCurrentBufferFile()
 nnoremap <leader>r :DumpScript<CR>
 
+"### RunCmd
+
+" THANKS: https://stackoverflow.com/a/10495799/9881278
+function! RunCmd(line)
+    " Precisa abrir a primeira vez a preview window para zerar o conteudo
+    silent! noautocmd botright pedit RUNCMD
+    silent! noautocmd botright pedit RUNCMD
+    noautocmd wincmd P
+    set buftype=nofile
+    exe "noautocmd r! ".a:line
+    noautocmd wincmd p
+endfunction
+
+command! -nargs=1 RunCmd :call RunCmd(<q-args>)
+
+"#### psql
+" declarar em um local não versionado
+"let g:dbs_psql = [
+"  \ { 'name': 'name_connection', 'url': '[<user>[:<password>]@][<host>[:<port>]]/[<database>]' },
+"  \ { 'name': 'db_dev', 'url': 'username:password@localhost:5432/database' },
+"  \ { 'name': 'db_prod', 'url': 'username:password@localhost:5432/database' },
+"  \ ]
+" let g:db_psql = 'name_conection'
+
+" function! g:PsqlCompleteTable(A, L, P) abort
+"     let commands = [ 
+"                 \ "users",
+"                 \]
+"     return filter(commands, 'v:val =~ "^" . a:A')
+" endfunction
+
+
+function! s:PsqlComplete(A, L, P) abort
+    let commands = [ 
+                \ "SELECT ",
+                \ "SELECT * ",
+                \ "TOP ",
+                \ "FROM ",
+                \ "WHERE ",
+                \ "LIMIT ",
+                \]
+    return filter(commands, 'v:val =~ "^" . a:A')
+endfunction
+
+" THANKS: https://github.com/tpope/vim-dadbod
+" Psql select * from table where name = 'nome'
+command! -nargs=+ -complete=customlist,s:PsqlComplete Psql exe 'RunCmd psql -w --dbname postgresql://'.g:dbs_psql[g:db_psql]["url"].' -c "'.<q-args>.'"'
+command! -nargs=1 -complete=customlist,g:PsqlCompleteTable PsqlSelectAllFrom exe 'Psql select * from '.<q-args>
+
 "### Highlight Word
 function! HiInterestingWord(n)
     " Definição do highlight, por algum motivo pelo vimrc não ocorre
@@ -857,3 +906,4 @@ call SourceIfExists("~/.vimrc-local.vim")
 " TODO remover source quando outro .exrc for carregado
 call SourceIfExists(".exrc")
 au DirChanged * :call SourceIfExists(".exrc")
+
