@@ -748,6 +748,7 @@ endfunction
 " Psql select * from table where name = 'nome'
 command! -nargs=+ -complete=customlist,s:PsqlComplete Psql exe 'RunCmd psql -w --dbname postgresql://'.g:dbs_psql[g:db_psql]["url"].' -c "'.<q-args>.'"'
 command! -nargs=1 -complete=customlist,g:PsqlCompleteTable PsqlSelectAllFrom exe 'Psql select * from '.<q-args>
+command! PsqlSelectAllTables Psql SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name
 
 "### Highlight Word
 function! HiInterestingWord(n)
