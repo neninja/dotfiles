@@ -801,6 +801,7 @@ let s:comment_map = {
             \   "javascriptreact": '\/\/',
             \   "typescript": '\/\/',
             \   "typescriptreact": '\/\/',
+            \   "vue": '\/\/',
             \   "lua": '--',
             \   "scala": '\/\/',
             \   "php": '\/\/',
