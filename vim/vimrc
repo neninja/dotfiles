@@ -148,6 +148,7 @@ set wildignore+=*/coverage,*/coverage/**
 set wildignore+=*/_reports,*/_reports/**
 set wildignore+=DS_Store,DS_Store/**
 set wildignore+=tags
+set wildignore+=.next
 
 set wildignorecase
 
