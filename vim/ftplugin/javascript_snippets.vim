@@ -18,8 +18,8 @@ inorea <buffer><expr> im TestaTriggerSnippet('im',
             \ ['module', 'lib'])
 
 " react snippets
-inorea <buffer><expr> constr TestaTriggerSnippet('constr',
-            \ "import React from 'react'<CR><CR>const <C-R>=expand('%:p:h:t')<CR>: React.FC = () => {<CR>/* código */<CR>}<CR><CR>export default <C-R>=expand('%:p:h:t')<CR>",
+inorea <buffer><expr> er TestaTriggerSnippet('er',
+            \ "export function <C-R>=expand('%:t:r')<CR>() {<CR>/* código */<CR>}",
             \ ['\/\* código \*\/'])
 
 " jest/cypress snippetsit test'
