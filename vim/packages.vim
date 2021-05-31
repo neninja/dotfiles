@@ -1,4 +1,4 @@
-"# wtf-packages
+"# wtf-file-packages
 "## ctrlpvim/ctrlp.vim
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>f :CtrlP<CR>
