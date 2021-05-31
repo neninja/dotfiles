@@ -22,6 +22,10 @@ inorea <buffer><expr> er TestaTriggerSnippet('er',
             \ "export function <C-R>=expand('%:p:h:t')<CR>() {<CR>return (<CR>/* código */<CR>)<CR>}",
             \ ['\/\* código \*\/'])
 
+inorea <buffer><expr> err TestaTriggerSnippet('err',
+            \ "import React from 'react'<CR><CR>export function <C-R>=expand('%:p:h:t')<CR>() {<CR>return (<CR>/* código */<CR>)<CR>}",
+            \ ['\/\* código \*\/'])
+
 " jest/cypress snippetsit test'
 inorea <buffer><expr> it TestaTriggerSnippet('it',
             \ "it('testdesc', () => {<CR>/* código */<CR>})",
