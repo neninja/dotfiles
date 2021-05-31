@@ -33,7 +33,7 @@ vendorStartRepos=(
     "https://github.com/diepm/vim-rest-console.git" # rest client
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
-    "https://github.com/dense-analysis/ale.git" # lint
+    "https://github.com/dense-analysis/ale.git" # lint (pode afetar muito a performance e até fechar o vim sozinho do nada)
 
     ####### GIT
     "https://github.com/tpope/vim-fugitive.git" # comandos
