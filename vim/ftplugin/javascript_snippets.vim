@@ -19,7 +19,7 @@ inorea <buffer><expr> im TestaTriggerSnippet('im',
 
 " react snippets
 inorea <buffer><expr> er TestaTriggerSnippet('er',
-            \ "export function <C-R>=expand('%:t:r')<CR>() {<CR>/* código */<CR>}",
+            \ "export function <C-R>=expand('%:p:h:t')<CR>() {<CR>/* código */<CR>}",
             \ ['\/\* código \*\/'])
 
 " jest/cypress snippetsit test'
