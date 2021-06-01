@@ -113,7 +113,8 @@
         {
             "acrylicOpacity": 0.69999999999999996,
             "padding": "20",
-            "useAcrylic": true
+            "useAcrylic": true,
+            "cursorShape": "filledBox"
         },
         "list": 
         [
