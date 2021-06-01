@@ -879,6 +879,14 @@ Habilita conceal
 >
   set conceallevel=2
 <
+
+
+Limpa tela do terminal para exibir corretamente o vim
+|THANKS|: https://github.com/microsoft/terminal/issues/832#issuecomment-493747616
+
+>
+  set t_ut=""
+<
 ------------------------------------------------------------------------------
 *wtf-comportamento*
 
