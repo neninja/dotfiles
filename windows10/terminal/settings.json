@@ -3,106 +3,47 @@
     "actions": 
     [
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "command": 
             {
                 "action": "splitPane",
-                "split": "auto",
+                "split": "vertical",
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+v"
         },
         {
-            "command" : "closePane",
-            "keys" : "ctrl+shift+w"
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "horizontal",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+h"
         },
-        {
-            "command" : "copy",
-            "keys" : "ctrl+shift+c"
-        },
-        {
-            "command" : "paste",
-            "keys" : "ctrl+shift+v"
-        },
-        {
-            "command" : "duplicateTab",
-            "keys" : "ctrl+shift+d"
-        },
-        {
-            "command" : "newTab",
-            "keys" : "ctrl+shift+t"
-        },
-        {
-            "command" : "newTabProfile0",
-            "keys" : "ctrl+shift+1"
-        },
-        {
-            "command" : "nextTab",
-            "keys" : "ctrl+tab"
-        },
-        {
-            "command" : "prevTab",
-            "keys" : "ctrl+shift+tab"
-        },
-        {
-            "command" : "openNewTabDropdown",
-            "keys" : "ctrl+shift+space"
-        },
-        {
-            "command" : "scrollDown",
-            "keys" : "ctrl+shift+down"
-        },
-        {
-            "command" : "scrollDownPage",
-            "keys" : "ctrl+shift+pgdn"
-        },
-        {
-            "command" : "scrollUp",
-            "keys" : "ctrl+shift+up"
-        },
-        {
-            "command" : "scrollUpPage",
-            "keys" : "ctrl+shift+pgup"
-        },
-        {
-            "command" : "switchToTab0",
-            "keys" : "ctrl+alt+1"
-        },
-        {
-            "command" : "switchToTab1",
-            "keys" : "ctrl+alt+2"
-        },
-        {
-            "command" : "switchToTab2",
-            "keys" : "ctrl+alt+3"
-        },
-        {
-            "command" : "switchToTab3",
-            "keys" : "ctrl+alt+4"
-        },
-        {
-            "command" : "switchToTab4",
-            "keys" : "ctrl+alt+5"
-        },
-        {
-            "command" : "switchToTab5",
-            "keys" : "ctrl+alt+6"
-        },
-        {
-            "command" : "switchToTab6",
-            "keys" : "ctrl+alt+7"
-        },
-        {
-            "command" : "switchToTab7",
-            "keys" : "ctrl+alt+8"
-        },
-        {
-            "command" : "switchToTab8",
-            "keys" : "ctrl+alt+9"
-        }
+        { "command": "closePane", "keys": "alt+shift+d" },
+        { "command": "find", "keys": "ctrl+shift+f" },
+        { "command" : "closePane", "keys" : "ctrl+shift+w" },
+        { "command" : "copy", "keys" : "ctrl+shift+c" },
+        { "command" : "paste", "keys" : "ctrl+shift+v" },
+        { "command" : "duplicateTab", "keys" : "ctrl+shift+d" },
+        { "command" : "newTab", "keys" : "ctrl+shift+t" },
+        { "command" : "newTabProfile0", "keys" : "ctrl+shift+1" },
+        { "command" : "nextTab", "keys" : "ctrl+tab" },
+        { "command" : "prevTab", "keys" : "ctrl+shift+tab" },
+        { "command" : "openNewTabDropdown", "keys" : "ctrl+shift+space" },
+        { "command" : "scrollDown", "keys" : "ctrl+shift+down" },
+        { "command" : "scrollDownPage", "keys" : "ctrl+shift+pgdn" },
+        { "command" : "scrollUp", "keys" : "ctrl+shift+up" },
+        { "command" : "scrollUpPage", "keys" : "ctrl+shift+pgup" },
+        { "command" : "switchToTab0", "keys" : "ctrl+alt+1" },
+        { "command" : "switchToTab1", "keys" : "ctrl+alt+2" },
+        { "command" : "switchToTab2", "keys" : "ctrl+alt+3" },
+        { "command" : "switchToTab3", "keys" : "ctrl+alt+4" },
+        { "command" : "switchToTab4", "keys" : "ctrl+alt+5" },
+        { "command" : "switchToTab5", "keys" : "ctrl+alt+6" },
+        { "command" : "switchToTab6", "keys" : "ctrl+alt+7" },
+        { "command" : "switchToTab7", "keys" : "ctrl+alt+8" },
+        { "command" : "switchToTab8", "keys" : "ctrl+alt+9" }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
