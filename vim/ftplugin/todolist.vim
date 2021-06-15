@@ -8,7 +8,6 @@ command! -buffer Todo call TodoListSearchStatus({'TODO': '\C\<TODO\>'})
 command! -buffer Wait call TodoListSearchStatus({'WAIT': '\C\<WAIT\>'})
 
 "## Maps
-nnoremap <silent><buffer>   =           :silent! call <SID>DoneTask()<CR>
 nnoremap <silent><buffer>   <CR>        :call <SID>HandleURL()<CR>
 nnoremap <buffer>           <c-space>   :call <SID>ToggleCheckbox()<CR>
 nnoremap <buffer>           <space>j    :lbelow \| normal! zO<CR>
@@ -31,23 +30,6 @@ function! s:ToggleCheckbox()
         endif
     endif
     normal `s
-endfunction
-
-function! s:DoneTask()
-    try
-        normal! zc
-    catch
-        return
-    endtry
-
-    normal! V"sx
-    execute "e ".g:todolist_done
-
-    call <SID>AddTaskFirstLine()
-
-    w
-    b #
-    w
 endfunction
 
 function! s:AddTaskFirstLine()
