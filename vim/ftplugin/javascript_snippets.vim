@@ -14,17 +14,34 @@ inorea <buffer><expr> ed TestaTriggerSnippet('ed',
             \ "export default varFunc",
             \ ['default', 'varFunc'])
 inorea <buffer><expr> im TestaTriggerSnippet('im',
-            \ "import lib from 'module'",
-            \ ['module', 'lib'])
+            \ "import importedLib from 'importedModule'",
+            \ ['importedModule', 'importedLib'])
 
 " react snippets
 inorea <buffer><expr> er TestaTriggerSnippet('er',
             \ "export function <C-R>=expand('%:p:h:t')<CR>() {<CR>return (<CR>/* código */<CR>)<CR>}",
             \ ['\/\* código \*\/'])
 
-inorea <buffer><expr> err TestaTriggerSnippet('err',
-            \ "import React from 'react'<CR><CR>export function <C-R>=expand('%:p:h:t')<CR>() {<CR>return (<CR>/* código */<CR>)<CR>}",
+inorea <buffer><expr> uses TestaTriggerSnippet('uses',
+            \ "<ESC>0^dawIconst [ <ESC>pi, set<ESC>pblll~elc$ ] = useState(null)",
+            \ ['null'])
+
+inorea <buffer><expr> usee TestaTriggerSnippet('usee',
+            \ "useEffect(() => {<CR>/* código */<CR>}, [])",
             \ ['\/\* código \*\/'])
+
+inorea <buffer><expr> ims TestaTriggerSnippet('ims',
+            \ "import styled from 'styled-components'",
+            \ [])
+
+" https://testing-library.com/docs/dom-testing-library/api-events/
+inorea <buffer><expr> fe TestaTriggerSnippet('fe',
+            \ "fireEvent.firedevent(gettedElementFromJsx, { target: { value: targetvalue }})",
+            \ ['firedevent', 'gettedElementFromJsx', 'targetvalue'])
+
+inorea <buffer><expr> imr TestaTriggerSnippet('imr',
+            \ "import React from 'react'",
+            \ [])
 
 " jest/cypress snippetsit test'
 inorea <buffer><expr> it TestaTriggerSnippet('it',
