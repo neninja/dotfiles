@@ -15,9 +15,24 @@ augroup END
 "## Compiler
 compiler gotest
 
-nnoremap <buffer> <leader>r :call NN_GoTest()<CR>
+nnoremap <buffer> <leader>r :call NN_GoExecute()<CR>
+
+function! NN_GoExecute()
+    let filename = expand('%:t:r')
+    if(filename == 'main')
+        call NN_GoRun()
+    else
+        call NN_GoTest()
+    endif
+endfunction
+
+function! NN_GoRun()
+    compiler gorun
+    silent make! | cope
+endfunction
 
 function! NN_GoTest()
+    compiler gotest
     " Exemplo de falha em go:
     "--- FAIL: TestOla (0.00s)
     "   ola_test.go:10: resultado 'Olá, mundo', esperado 'Olá, undo'
