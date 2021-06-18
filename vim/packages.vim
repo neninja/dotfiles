@@ -186,6 +186,10 @@ let g:ale_fix_on_save = 1
 
 "## diepm/vim-rest-console
 " TODO ver como utilizar $VARIAVEIS no Windows
+
+" Para formatar o json precisa do python instalado
 let g:vrc_response_default_content_type = 'application/json'
+"let g:vrc_debug = 1
+"let g:vrc_show_command = 1
 
 let g:vrc_trigger = '<C-x>'
