@@ -101,13 +101,19 @@ function! TodoListSearchStatus(regex)
             endif
         endfor
 
-        let line.text = substitute(line.text, '^\s*', '', '')
-        let line.text = substitute(line.text, '^- ', '', '')
-        let line.text = substitute(line.text, '^= ', '', '')
-        let line.text = substitute(line.text, '^+ ', '', '')
+        if(match(line.text, '\S') == 0)
+            let line.text = ''
+        else
+            let line.text = substitute(line.text, '^\s*', '', '')
+            let line.text = substitute(line.text, '^- ', '', '')
+            let line.text = substitute(line.text, '^= ', '', '')
+            let line.text = substitute(line.text, '^+ ', '', '')
+        endif
         for indexLine in reverse(range(0, lnum-1))
             if(match(file[indexLine], '\S') == 0)
-                let line.module = file[indexLine]
+                let module = substitute(file[indexLine], ' \C\<TODO\>', '', '')
+                let module = substitute(module, ' \C\<WAIT\>', '', '')
+                let line.module = module
                 break
             endif
         endfor
