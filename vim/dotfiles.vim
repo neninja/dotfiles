@@ -113,7 +113,11 @@ function! TodoListSearchStatus(regex)
             if(match(file[indexLine], '\S') == 0)
                 let module = substitute(file[indexLine], ' \C\<TODO\>', '', '')
                 let module = substitute(module, ' \C\<WAIT\>', '', '')
-                let line.module = module
+                if(line.pattern == 'TODO')
+                    let line.module = "= " . module
+                else
+                    let line.module = "- " . module
+                endif
                 break
             endif
         endfor
