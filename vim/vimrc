@@ -886,6 +886,7 @@ function! PlaceHolder(backward)
     endif
 endfunction
 
+" FIXME só funciona após :Sov
 inorea <buffer><expr> filen TestaTriggerSnippet('filen',
             \ "<C-R>=expand('%:t:r')<CR>",
             \ [])
