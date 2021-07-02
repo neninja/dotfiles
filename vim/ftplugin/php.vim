@@ -5,7 +5,7 @@ setlocal path=**
 
 "## maps
 
-nnoremap <buffer> <leader><tab> :noa lvim /\sfunction\s/g  % \| lw<CR>
+nnoremap <buffer> <leader><tab> :call TagTab()<CR>
 
 "## AutoCmds
 augroup phpau
@@ -71,6 +71,27 @@ fun! SnippetPhpClassInterface(kw)
 endfun
 
 "## Funções
+
+function! TagTab()
+    try
+        execute "silent lvimgrep /[public|protected|private]\\sfunction\\s/g %"
+    catch
+        redraw
+        echohl WarningMsg | echo "Erro" | echohl None
+        return
+    endtry
+
+    let qf = getloclist(0)
+    for line in qf
+        let mod = substitute(line.text, '{', '', '')
+        let mod = trim(mod)
+        let line.module = mod
+        let line.text = ''
+        let line.pattern = ''
+    endfor
+    call setloclist(0,qf)
+    lw
+endfun
 "### Getters e Setters
 fun! NN_PHPCreateGettersSetters()
     let propName = <SID>GetProp()
