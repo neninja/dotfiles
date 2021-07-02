@@ -126,7 +126,10 @@
     ss = stash save --include-untracked
     sw = stash show
     #############
-    # para apagar tag remote => git push origin :tag
+    # para apagar tag remote:
+    #   git push origin -f :refs/tags/tagname
+    #   git push origin :tagname
+    #   git push --delete origin tagname
     t = tag --sort=taggerdate
     td = tag -d
     #############
