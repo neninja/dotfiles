@@ -3,7 +3,7 @@ syn match todoListCardTitle /^\S.*$/ containedin=ALL
 syn match todoListCardBody /^\s.*$/ containedin=ALL
 
 syn match todoListURL /[http|https]*:\/\/[^ >,;]*/ containedin=todoListCardBody
-syn match todoListWtf /\C\<????\>/ contained containedin=todoListCardBody
+syn match todoListWtf /????/ contained containedin=todoListCardBody
 syn match todoListWait /\C\<WAIT\>/ contained containedin=todoListCardBody,todoListCardTitle
 syn match todoListWait /\C\<TODO\>/ contained containedin=todoListCardBody,todoListCardTitle
 
