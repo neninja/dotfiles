@@ -310,6 +310,8 @@ nnoremap    <leader>.           :pwd<CR>
 nnoremap    <leader>dd          :call <SID>FechaSplitOuDeletaBuffer()<CR>
 nnoremap    <leader>df          :call <SID>FechaSplitOuDeletaBufferForced()<CR>
 nnoremap    <leader>ds          :on<CR>| " Close all splits
+nnoremap    <leader>j           <c-w>w|" estilo DWM
+nnoremap    <leader>k           <c-w>W|" estilo DWM
 nnoremap    <leader>n           :call NN_<c-d>| " funções pessoais
 vnoremap    <leader>n           :call NN_<c-d>| " funções pessoais
 nnoremap    <expr><leader>q     empty(filter(getwininfo(), 'v:val.quickfix')) ? ":cope<CR>" : ":ccl<CR>"

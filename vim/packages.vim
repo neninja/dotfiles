@@ -122,6 +122,7 @@ let g:vim_markdown_new_list_item_indent = 0
 "## tpope/vim-fugitive
 command! GC :Gw | Gcommit
 
+nmap <leader>gg :G<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 
