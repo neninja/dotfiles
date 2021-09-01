@@ -74,12 +74,12 @@
     oh = checkout -- .
     #############
     #ps = push
-    ps = push origin HEAD
+    #ps = push origin HEAD
     pso = push origin
-    psf = push -f origin HEAD
+    psf = push -f origin
     #############
     #pl = pull
-    pl = pull origin HEAD
+    #pl = pull origin HEAD
     plo = pull origin
     plomm = pull origin master
     plom = pull origin main
@@ -139,6 +139,8 @@
     aula = "!f() { git add -A; git commit -m \":tv: add aula $@\"; }; f"
     release = "!f() { git tag \"$@\"; git push origin HEAD --tags; }; f"
     pr = "!f() { git fetch upstream && rebase upstream/$@; }; f" # git pr main
+    pl = "!f() { git pull origin $(git rev-parse --abbrev-ref HEAD); }; f" # git pr main
+    ps = "!f() { git push origin $(git rev-parse --abbrev-ref HEAD); }; f" # git pr main
     of = "!f() { git checkout -b \"feat/$1\"; }; f"
     fetchreset = "!f() { git fetch --all; git reset --hard origin/main; }; f"
     configreset = git config --local credential.helper ""
