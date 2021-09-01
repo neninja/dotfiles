@@ -1,4 +1,8 @@
 {
+    // https://github.com/VSCodeVim/Vim
+    // https://github.com/anotherglitchinthematrix/monochrome
+    // https://github.com/MicrosoftDocs/live-share
+
     "workbench.colorTheme": "Monochrome Dark",
     //"workbench.colorTheme": "One Dark Pro",
     "workbench.startupEditor": "newUntitledFile",
@@ -12,8 +16,9 @@
 
     "diffEditor.ignoreTrimWhitespace": false,
     "git.confirmSync": false,
-    "git.suggestSmartCommit": false
+    "git.suggestSmartCommit": false,
 
+    // https://code.visualstudio.com/docs/getstarted/keybindings
     "vim.incsearch": true,
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
@@ -33,6 +38,19 @@
         {
             "before": [ "Q" ],
             "after": [ "@", "q" ]
+        },
+        { // https://github.com/VSCodeVim/Vim/issues/2552#issuecomment-384401284
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen",
+                    "args": []
+                }
+            ]
         },
         {
             "before": [ "<Leader>", "s" ],
