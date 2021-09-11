@@ -20,30 +20,120 @@
             },
             "keys": "alt+shift+h"
         },
-        { "command": "closePane", "keys": "alt+shift+d" },
-        { "command": "find", "keys": "ctrl+shift+f" },
-        { "command" : "closePane", "keys" : "ctrl+shift+w" },
-        { "command" : "copy", "keys" : "ctrl+shift+c" },
-        { "command" : "paste", "keys" : "ctrl+shift+v" },
-        { "command" : "duplicateTab", "keys" : "ctrl+shift+d" },
-        { "command" : "newTab", "keys" : "ctrl+shift+t" },
-        { "command" : "newTabProfile0", "keys" : "ctrl+shift+1" },
-        { "command" : "nextTab", "keys" : "ctrl+tab" },
-        { "command" : "prevTab", "keys" : "ctrl+shift+tab" },
-        { "command" : "openNewTabDropdown", "keys" : "ctrl+shift+space" },
-        { "command" : "scrollDown", "keys" : "ctrl+shift+down" },
-        { "command" : "scrollDownPage", "keys" : "ctrl+shift+pgdn" },
-        { "command" : "scrollUp", "keys" : "ctrl+shift+up" },
-        { "command" : "scrollUpPage", "keys" : "ctrl+shift+pgup" },
-        { "command" : "switchToTab0", "keys" : "ctrl+alt+1" },
-        { "command" : "switchToTab1", "keys" : "ctrl+alt+2" },
-        { "command" : "switchToTab2", "keys" : "ctrl+alt+3" },
-        { "command" : "switchToTab3", "keys" : "ctrl+alt+4" },
-        { "command" : "switchToTab4", "keys" : "ctrl+alt+5" },
-        { "command" : "switchToTab5", "keys" : "ctrl+alt+6" },
-        { "command" : "switchToTab6", "keys" : "ctrl+alt+7" },
-        { "command" : "switchToTab7", "keys" : "ctrl+alt+8" },
-        { "command" : "switchToTab8", "keys" : "ctrl+alt+9" }
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+1"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+1"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+2"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+3"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+4"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+5"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+6"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+7"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+8"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+9"
+        },
+        {
+            "command": 
+            {
+                "action": "copy"
+            },
+            "keys": "ctrl+shift+c"
+        },
+        {
+            "command": "closePane",
+            "keys": "alt+shift+d"
+        },
+        {
+            "command": "closePane",
+            "keys": "ctrl+shift+w"
+        },
+        {
+            "command": "duplicateTab",
+            "keys": "ctrl+shift+d"
+        },
+        {
+            "command": 
+            {
+                "action": "newTab"
+            },
+            "keys": "ctrl+shift+t"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+shift+v"
+        },
+        {
+            "command": 
+            {
+                "action": "nextTab"
+            },
+            "keys": "ctrl+tab"
+        },
+        {
+            "command": 
+            {
+                "action": "prevTab"
+            },
+            "keys": "ctrl+shift+tab"
+        },
+        {
+            "command": "openNewTabDropdown",
+            "keys": "ctrl+shift+space"
+        },
+        {
+            "command": 
+            {
+                "action": "scrollDown"
+            },
+            "keys": "ctrl+shift+down"
+        },
+        {
+            "command": "scrollDownPage",
+            "keys": "ctrl+shift+pgdn"
+        },
+        {
+            "command": 
+            {
+                "action": "scrollUp"
+            },
+            "keys": "ctrl+shift+up"
+        },
+        {
+            "command": "scrollUpPage",
+            "keys": "ctrl+shift+pgup"
+        }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
@@ -53,9 +143,9 @@
         "defaults": 
         {
             "acrylicOpacity": 0.69999999999999996,
+            "cursorShape": "filledBox",
             "padding": "20",
-            "useAcrylic": true,
-            "cursorShape": "filledBox"
+            "useAcrylic": true
         },
         "list": 
         [
@@ -63,19 +153,35 @@
                 "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
-                "name": "Windows PowerShell"
+                "name": "powershell",
+                "startingDirectory": "%USERPROFILE%\\dev"
             },
             {
                 "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": false,
-                "name": "Prompt de comando"
+                "hidden": true,
+                "name": "cmd"
             },
             {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
                 "hidden": true,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": true,
+                "name": "wsl ubuntu",
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory" : "//wsl$/Ubuntu/home/nenilinux"
+            },
+            {
+                "commandline": "C:\\Program Files\\Git\\bin\\bash.exe -login -i",
+                "guid": "{73225108-7633-47ae-80c1-5d00111ef646}",
+                "hidden": false,
+                "icon": "C:\\Program Files\\Git\\mingw64\\share\\git\\git-for-windows.ico",
+                "name": "git bash",
+                "startingDirectory": "%USERPROFILE%\\dev"
             }
         ]
     },

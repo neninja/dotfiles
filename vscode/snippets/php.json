@@ -1,0 +1,8 @@
+{
+	"Dump Die": {
+		"prefix": "dd",
+		"body": [
+			"var_dump(${1:\"debug\"});die;"
+		]
+	}
+}
