@@ -27,6 +27,12 @@ let g:ctrlp_prompt_mappings = {
             \ 'OpenMulti()':          ['<c-o>'],
             \ }
 
+" somente wildignore não funciona no linux
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.svn$\|node_modules\|dist\|target$\|build\|vendor$\|ios$\|android\|site\|coverage$\|_reports\|DS_Store\|\.next',
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$\|\.venv\|tags$'
+  \ }
+
 "## ryanoasis/vim-devicons
 let g:devicons = 1
 "## junegunn/fzf.vim
