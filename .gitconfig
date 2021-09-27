@@ -33,7 +33,7 @@
     prompt = false
 	tool = vimdiff
 [push]
-    followTags = true
+    followTags = true # caso não funcione: git push origin main --tags
 [alias]
     #############
     a = add --all
@@ -76,7 +76,7 @@
     #ps = push
     #ps = push origin HEAD
     pso = push origin
-    psf = push -f origin
+    psof = push -f origin
     #############
     #pl = pull
     #pl = pull origin HEAD
@@ -126,10 +126,11 @@
     ss = stash save --include-untracked
     sw = stash show
     #############
-    # para apagar tag remote:
-    #   git push origin -f :refs/tags/tagname
-    #   git push origin :tagname
-    #   git push --delete origin tagname
+    # renomear tags (local e remote): https://gist.github.com/da-n/9998623
+    #   git tag new old
+    #   git tag -d old
+    #   git push origin main :refs/tags/old
+    #   git push origin main --tags
     t = tag --sort=taggerdate
     td = tag -d
     #############
