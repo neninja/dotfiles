@@ -71,7 +71,7 @@
     #############
     o = checkout
     ob = checkout -b
-    oh = checkout -- .
+    oh = checkout -- . # igual a: git restore .
     #############
     #ps = push
     #ps = push origin HEAD
