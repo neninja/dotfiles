@@ -1,5 +1,6 @@
 "# wtf-file-packages
 "## mhinz/vim-grepper
+nnoremap <c-f> :Grepper -tool git -side<cr>
 nnoremap <leader>ga :Grepper -tool ag<cr>
 nnoremap <leader>gs :Grepper -tool ag -side<cr>
 
@@ -143,7 +144,6 @@ command! GC :Gw | Gcommit
 nmap <leader>gg :G<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
-
 "### Statusline
 set statusline=                 " reseta statusline
 set statusline+=%{FugitiveStatusline()}
