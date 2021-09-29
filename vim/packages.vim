@@ -1,4 +1,8 @@
 "# wtf-file-packages
+"## mhinz/vim-grepper
+nnoremap <leader>ga :Grepper -tool ag<cr>
+nnoremap <leader>gs :Grepper -tool ag -side<cr>
+
 "## ctrlpvim/ctrlp.vim
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>f :CtrlP<CR>
