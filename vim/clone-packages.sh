@@ -27,13 +27,16 @@ function clonaNeniRepos {
 
 vendorStartRepos=(
     "https://github.com/junegunn/goyo.vim.git" # melhor visualização possível
-    "https://github.com/ctrlpvim/ctrlp.vim.git" # fuzzy finder
     "https://github.com/mhinz/vim-startify.git" # tela inicial com projetos
     "https://github.com/ryanoasis/vim-devicons.git" # icones para extensões com ctrlp, startify e conceal
     "https://github.com/diepm/vim-rest-console.git" # rest client
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
     "https://github.com/dense-analysis/ale.git" # lint (pode afetar muito a performance e até fechar o vim sozinho do nada)
+
+    #"https://github.com/junegunn/fzf.vim"
+    "https://github.com/ctrlpvim/ctrlp.vim.git" # fuzzy finder
+    "https://github.com/mhinz/vim-grepper" # fuzzy finder com Ag :GrepperArg
 
     ####### GIT
     "https://github.com/tpope/vim-fugitive.git" # comandos

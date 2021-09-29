@@ -39,6 +39,14 @@ let g:devicons = 1
 
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
+command! -bang -nargs=+ -complete=dir Ag 
+            \ call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-h': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 "## unblevable/quick-scope
 augroup qs_colors
     autocmd!

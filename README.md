@@ -96,6 +96,7 @@ git reset --hard origin/main
 - Caso precise configurar scripts que devem rodar **depois** do `vim/vimrc`, crie o arquivo `~/.vimrc-local.vim` (equivale `%userprofile%\.vimrc-local.vim` no Windows).
 - Caso precise configurar scripts que devem rodar **depois** do `vim/gvimrc`, crie o arquivo `~/.gvimrc-local.vim` (equivale `%userprofile%\.gvimrc-local.vim` no Windows).
 - Utilize os helptags (`:h wtf`) gerados para saber mais sobre os detalhes das configurações (exemplo: `:h wtf-autocomplete`).
+- Instale Ag para melhorar nas buscas com [`:GrepperAgP`](https://github.com/ggreer/the_silver_searcher)
 
 ## TODO
 * [ ] Windows CMD/PS: Alias para git
