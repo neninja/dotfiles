@@ -109,3 +109,9 @@ Both lists have relatively clear roles IMO: the quickfix list (and thus the quic
 ```vim
 :Ggrep <word> | cw
 ```
+
+[vim-grepper](https://github.com/mhinz/vim-grepper)
+```vim
+:Grepper -tool ag<CR><word>
+:Grepper -tool ag -side<CR><word>
+```
