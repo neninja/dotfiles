@@ -46,7 +46,7 @@ git push origin HEAD
 
 ### Após PR concluído
 
-Caso queira manter o projeto para futurar contribuições, pode deletar somente sua branch e baixar as mudanças do projeto:
+Caso queira manter o projeto para futuras contribuições, pode deletar somente sua branch e baixar as mudanças do projeto:
 
 1. Trocar para a branch principal:
 ```sh
@@ -66,5 +66,5 @@ git push origin --delete my-fix-branch
 4. Atualizar a branch principal:
 ```sh
 git fetch --all
-git reset --hard origin/main
+git reset --hard upstream/main
 ```
