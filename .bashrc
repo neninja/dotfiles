@@ -178,12 +178,7 @@ alias docker-compose='sudo docker-compose'
 alias dc='sudo docker-compose'
 alias xcb='tr -d "\n" | xclip -selection clipboard'
 alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
-#}}}
-#{{{ lazy
-alias op='xdg-open .'
-alias mci='sudo make clean install'
-alias snc='sudo $EDITOR config.h'
-#}}}
+
 #{{{ VAGRANT
 alias vg='vagrant'
 #alias vgh="vagrant ssh";
@@ -191,6 +186,12 @@ alias vgh="vagrant halt";
 alias vgr="vagrant reload";
 alias vgs="vagrant global-status";
 alias vgu="vagrant up";
+#}}}
+#}}}
+#{{{ lazy
+alias op='xdg-open .'
+alias mci='sudo make clean install'
+alias snc='sudo $EDITOR config.h'
 #}}}
 #}}}
 #{{{ Functions
@@ -249,9 +250,9 @@ mk(){
 # DESC: Arquivos basicos dos meus repositórios com git
 # USE: gi
 gi(){
-    cp ~/dev/dotfiles/cpfiles/git/UNLICENSE UNLICENSE;
+    cp ~/dev/dotfiles/modelos/git/UNLICENSE UNLICENSE;
+    cp ~/dev/dotfiles/modelos/git/CONTRIBUTING.md CONTRIBUTING.md;
     (echo -n '# '; pwd | rev | cut -d '/' -f1 | rev) >> README.md;
-    cp ~/dev/dotfiles/cpfiles/git/.gitignore .gitignore;
     echo -e "\n-> don't forget to use git init or git flow init and create branch master";
 }
 
@@ -399,7 +400,7 @@ sc(){
 }
 #}}}
 #}}}
-#{{{ exportorts
+#{{{ exports
 export GOPATH=$HOME/go
 PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
@@ -417,7 +418,4 @@ set completion-ignore-case on
 
 # Mostrar possíveis complementações
 set show-all-if-ambiguous on
-
-# escolher possíveis complementações já listadas
-"\t": menu-complete
 #}}}
