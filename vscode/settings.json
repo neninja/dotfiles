@@ -3,13 +3,14 @@
     // https://github.com/anotherglitchinthematrix/monochrome
     // https://github.com/MicrosoftDocs/live-share
 
-    "workbench.colorTheme": "Monochrome Dark",
+    "workbench.colorTheme": "Monochrome Dark", // https://marketplace.visualstudio.com/items?itemName=anotherglitchinthematrix.monochrome
     //"workbench.colorTheme": "One Dark Pro",
     "workbench.startupEditor": "newUntitledFile",
     "typescript.updateImportsOnFileMove.enabled": "never",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "javascript.updateImportsOnFileMove.enabled": "never",
+    "window.menuBarVisibility": "toggle",
 
     "window.zoomLevel": 0,
     "editor.minimap.enabled": false,
