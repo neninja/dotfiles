@@ -16,6 +16,7 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 ## Estrutura do repositório
 
 - [arquivados/](arquivados/): configurações antigas de programas que não uso
+- [awesomewm/](awesomewm/): configurações do [awesome](https://awesomewm.org)
 - [modelos/](/modelos): arquivos que frequentemente preciso ver ou copiar
     - [latex/](/modelos/latex): templates/classes latex
     - [sample-dot-graph/](/modelos/sample-dot-graph): exemplos da utilização de graphviz
@@ -42,7 +43,6 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 - [wiki/](/wiki): anotações pessoais
 - [.bashrc](.bashrc): configurações bash (alias, path, functions, ps e etc).
 - [.gitconfig](.gitconfig): configuração do git
-- [index.html](index.html): redirecionamento do github-pages para o script de instalação
 - [install.sh](install.sh): "instalação" dos arquivos de configuração no Linux e Windows
 
 ## Download
