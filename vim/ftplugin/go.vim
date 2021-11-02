@@ -3,17 +3,13 @@ command! -nargs=1 GoDoc !go doc <args>
 " interpreta package.Fun como um nome de arquivo
 nnoremap K :GoDoc <c-r><c-f><cr>
 
-" go get golang.org/x/tools/cmd/goimports
-command! GoFmt silent !goimports -w %
-" command! GoFmt !gofmt -w %
-
 "## AutoCmds
 augroup goau
-    autocmd! BufWritePost *.go GoFmt
+    autocmd! BufWritePost *.go lclose | set cmdheight=999 | lmake | set cmdheight=1 | lw
 augroup END
 
 "## Compiler
-compiler gotest
+compiler goimports
 
 nnoremap <buffer> <leader>r :call NN_GoExecute()<CR>
 
