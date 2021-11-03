@@ -5,7 +5,7 @@ nnoremap K :GoDoc <c-r><c-f><cr>
 
 "## AutoCmds
 augroup goau
-    autocmd! BufWritePost *.go lclose | set cmdheight=999 | lmake | set cmdheight=1 | lw
+    autocmd! BufWritePost *.go lclose | silent lmake | lw
 augroup END
 
 "## Compiler
