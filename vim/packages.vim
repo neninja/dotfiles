@@ -146,8 +146,6 @@ nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 "### Statusline
 set statusline=                 " reseta statusline
-set statusline+=%{FugitiveStatusline()}
-set statusline+=\%=				" espaço
 set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
 set statusline+=\%=				" espaço
 set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
