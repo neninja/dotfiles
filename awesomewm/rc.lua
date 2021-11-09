@@ -380,12 +380,12 @@ clientkeys = gears.table.join(
     --        c.minimized = true
     --    end ,
     --    {description = "minimize", group = "client"}),
-    --awful.key({ modkey,           }, "m",
-    --    function (c)
-    --        c.maximized = not c.maximized
-    --        c:raise()
-    --    end ,
-    --    {description = "(un)maximize", group = "client"}),
+    awful.key({ modkey,           }, "m",
+        function (c)
+            c.maximized = not c.maximized
+            c:raise()
+        end ,
+        {description = "(un)maximize", group = "client"}),
     --awful.key({ modkey, "Control" }, "m",
     --    function (c)
     --        c.maximized_vertical = not c.maximized_vertical
