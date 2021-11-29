@@ -718,6 +718,20 @@ Exemplo:
   " set rtp+=~/scoop/apps/fzf
   " set rtp+=~/.fzf/plugin
   set rtp+=~/.fzf
+
+  " Configurações específicas de projetos sem o .exrc
+  " corrige bug ctrlp para listagem de arquivos
+  " ocorrências:
+  "     - protected/modules/intra/views/pessoa/chamadoGestorPortal/_form.php
+  let g:initial_ctrlp_custom_ignore = g:ctrlp_custom_ignore
+
+  function! SourceIfCondominio()
+      if(getcwd() == "/home/neni/dev/winker/condominio")
+          unlet g:ctrlp_custom_ignore
+      endif
+  endfunction
+
+  au DirChanged * :call SourceIfCondominio()
 <
 ------------------------------------------------------------------------------
 *wtf-file-gvimrclocal*
