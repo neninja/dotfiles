@@ -181,10 +181,6 @@ let g:javascript_conceal_static               = "•"
 let g:javascript_conceal_super                = "Ω"
 let g:javascript_conceal_arrow_function       = "→"
 
-"## Quramy/tsuquyomi
-packadd! tsuquyomi
-let g:tsuquyomi_disable_default_mappings = 1
-
 "## MaxMEllon/vim-jsx-pretty
 
 "## dense-analysis/ale
