@@ -1267,7 +1267,7 @@ Funções tanto publicas, privadas quando usadas em maps e comandos
 ..............................................................................
 
 Att ctags
-Note Necessario instalar ctags ou universal ctags
+Note Necessario instalar universal ctags
 >
   function! NN_ctags()
 <

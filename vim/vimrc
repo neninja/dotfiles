@@ -181,11 +181,13 @@ set statusline+=\ %y
 function! NN_ctags()
     let s:ctags_command="ctags" . 
                 \ " -R --totals" .
+                \ " --kinds-python=-i" .
+                \ " --extras=+f" .
                 \ " --exclude=.git --exclude=.svn" .
                 \ " --exclude=vendor --exclude=_*" .
                 \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
                 \ " --exclude=_site" .
-                \ " --languages=php,javascript"
+                \ " --languages=php,javascript,python"
 
     " procura se existe um arquivo .ctags a mais
     if filereadable(expand(".ctags"))
