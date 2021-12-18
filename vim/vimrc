@@ -141,7 +141,7 @@ set completeopt=menuone,noinsert,noselect
 set wildignore=.git,.git/**
 set wildignore+=.svn,.svn/**
 set wildignore+=node_modules,node_modules/**
-set wildignore+=.venv
+set wildignore+=.venv,*/*_cache/*
 set wildignore+=dist,dist/**
 set wildignore+=target,target/**
 set wildignore+=build,build/**
@@ -185,6 +185,7 @@ function! NN_ctags()
                 \ " --extras=+f" .
                 \ " --exclude=.git --exclude=.svn" .
                 \ " --exclude=vendor --exclude=_*" .
+                \ " --exclude=*_cache" .
                 \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
                 \ " --exclude=_site" .
                 \ " --languages=php,javascript,python"
