@@ -31,9 +31,7 @@ vendorStartRepos=(
     "https://github.com/diepm/vim-rest-console.git" # rest client
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
-    #"https://github.com/dense-analysis/ale.git" # lint (pode afetar muito a performance e até fechar o vim sozinho do nada)
 
-    #"https://github.com/junegunn/fzf.vim"
     "https://github.com/ctrlpvim/ctrlp.vim.git" # fuzzy finder
     "https://github.com/mhinz/vim-grepper" # fuzzy finder com Ag :GrepperArg
 
@@ -44,7 +42,6 @@ vendorStartRepos=(
     ####### JS
     "https://github.com/pangloss/vim-javascript.git" # melhora na syntax js
     "https://github.com/MaxMEllon/vim-jsx-pretty.git" # syntax e indent jsx ts
-    # "https://github.com/Quramy/tsuquyomi.git" # autocomplete e lint de ts
     "https://github.com/posva/vim-vue" # vue
 
     ####### PHP
