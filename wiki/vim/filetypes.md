@@ -1,6 +1,6 @@
 # Filetype
 ## vimrc
-```
+```vim
 " Syntax de acordo com o tipo de arquivo
 syntax on
 

@@ -15,7 +15,7 @@ au FileType javascript iabbrev <buffer> fun; function(){<cr>}<esc>kf(i
     - Copiar trechos curtos que exijam processamento. Como: ``:iabbrev mdy <c-r>=strftime("%B %d, %Y")<CR>``
 
 ### Abreviações + Skeleton
-```
+```vim
 au FileType javascript iabbrev <buffer> fun; <esc>:r ~/dev/dotfiles/vim/snippets/function.js<cr>kdd
 ```
 - Prós:

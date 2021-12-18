@@ -10,12 +10,10 @@ Plugins próprios em:
 
 > THANKS :https://vimhelp.org/repeat.txt.html#packages
 
-<!-- TODO criar package manager como vim-plug, para substituir script de clone -->
+## Documentação local
 
-```vim
-:helptags ALL
-:helptags ~/vimfiles/pack/vendor/start/*/doc
+Para gerar as docs de cada pacote use `:helptags` do vim
+
 ```
-```
-vim -u NONE -c "helptags fugitive/doc" -c q
+vim -u NONE -c "helptags ~/dev/dotfiles/vim/doc" -c q
 ```

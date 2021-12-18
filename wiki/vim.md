@@ -9,10 +9,8 @@ Configurações que planejo fazer no vim (em ordem)
 - [x] reload vimrc
 - [x] auto popup vim (plugin buga as vezes...)
 - [x] spellcheck inglês e português
-- [ ] [gerenciamento de packages](vim/packages.md)
-    - [ ] tentar instalar/remover packages automaticamente sem bash
-    - [ ] gerar helptags
-- [ ] snippets
+- [x] [plugins](vim/packages.md)
+- [x] snippets
     - [x] trigger opcional
     - [ ] devem aparecer em popup ([ideia #1](https://vi.stackexchange.com/questions/7750/how-do-i-manage-and-remember-many-abbreviations-in-my-vimrc))
     - [x] labels com highlight
@@ -40,7 +38,7 @@ Lista de comandos, teclas ou funcionalidades para aprender
 - [ ] lw, cw do quickfix
 - [ ] go to definition (ctags)
 - [ ] funcionamento de highlight e syntax
-- [ ] [comandos :diff](vim/diff.md)
+- [x] [comandos :diff](vim/diff.md)
 - [x] Ver sobre spellcheck
 
 ## Vim como editor principal
