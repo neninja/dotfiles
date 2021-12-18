@@ -724,8 +724,8 @@ function! s:ExecuteCurrentBufferFile()
         cw
 endfunction
 
-command OutputAssertion :call <SID>OutputAssertion()
-command DumpScript :call <SID>ExecuteCurrentBufferFile()
+command! OutputAssertion :call <SID>OutputAssertion()
+command! DumpScript :call <SID>ExecuteCurrentBufferFile()
 nnoremap <leader>r :DumpScript<CR>
 
 "### RunCmd
