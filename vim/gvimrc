@@ -17,20 +17,3 @@ set guioptions-=L
 if filereadable(expand("~/.gvimrc-local.vim"))
     source ~/.gvimrc-local.vim
 endif
-
-function! FontSizePlus ()
-    let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
-    let l:gf_size_whole = l:gf_size_whole + 1
-    let l:new_font_size = ':h'.l:gf_size_whole
-    let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
-endfunction
-
-function! FontSizeMinus ()
-    let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
-    let l:gf_size_whole = l:gf_size_whole - 1
-    let l:new_font_size = ':h'.l:gf_size_whole
-    let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
-endfunction
-
-nnoremap <c-kPlus> :call FontSizePlus()<CR>
-nnoremap <c-kMinus> :call FontSizeMinus()<CR>
