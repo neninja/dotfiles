@@ -18,26 +18,20 @@ set cpo-=C
 if exists('g:nn_compiler_with_docker_compose')
     CompilerSet makeprg=docker-compose\ exec\ app\ pytest\ -q\ --tb=short\ --color=no\ $*
 else
-    CompilerSet makeprg=pytest\ -q\ --tb=short\ --color=no
+    CompilerSet makeprg=pytest\ -q\ --tb=short\ --color=no\ $*
 endif
 
 " THANKS: http://vimdoc.sourceforge.net/htmldoc/quickfix.html#errorformat-LaTeX
 " THANKS: https://flukus.github.io/vim-errorformat-demystified.html
 " THANKS: https://stackoverflow.com/a/29102995/9881278
 " THANKS: https://github.com/wincent/wincent/blob/b38dc93bb5/roles/dotfiles/files/.vim/after/compiler/README.md
+" THANKS: https://phelipetls.github.io/posts/vim-errorformat-for-pytest/
 
-CompilerSet errorformat=%f:%l:\ %m
-
-CompilerSet errorformat+=%-G=%.%#
-CompilerSet errorformat+=%-G_%.%#
-CompilerSet errorformat+=%-GFAILED%.%#
-CompilerSet errorformat+=%-G%.%#failed\ in\ %.%#
-CompilerSet errorformat+=%-G%.%#passed\ in\ %.%#
-CompilerSet errorformat+=%-G%.%#failed,%.%#passed\ in\ %.%#
-CompilerSet errorformat+=%-G%.%#passed,%.%#failed\ in\ %.%#
-CompilerSet errorformat+=%-G%.%#[%.%#%%]%.%#
-
-CompilerSet errorformat+=%-G\ %.%#
+CompilerSet efm=%C%f:%l:\ in\ %o,
+      \%A_%.%#\ %o\ %.%#,
+      \%C\ %.%#,
+      \%ZE\ %\\{3}%m,
+      \%-G%[%^E]%.%#,
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
