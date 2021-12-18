@@ -169,7 +169,7 @@ set omnifunc=syntaxcomplete#Complete
 
 set laststatus=2
 set statusline=
-set statusline+=\ %f\ %r\%m\
+set statusline+=\ %f\ %r\%m
 set statusline+=\%=
 set statusline+=\ %p%%\ %l:\%c
 set statusline+=\ %y
