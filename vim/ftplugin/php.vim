@@ -38,9 +38,6 @@ inorea <buffer><expr> __c TestaTriggerSnippet('__c',
 inorea <buffer><expr> __ts TestaTriggerSnippet('__toString',
             \ "public function __toString()<cr>{<cr>/* código */<cr>}",
             \ ['\/\* código \*\/'])
-inorea <buffer><expr> dd TestaTriggerSnippet('dd',
-            \ "var_dump('debug');die;",
-            \ ["'debug'"])
 inorea <buffer><expr> if TestaTriggerSnippet('if',
             \ "if(true){<cr>/* código */<cr>}",
             \ ['true', '\/\* código \*\/'])
@@ -54,6 +51,10 @@ inorea <buffer><expr> prop TestaTriggerSnippet('prop',
             \ "protected $var;",
             \ ['$var;'])
 
+inorea <buffer><expr> dd TestaTriggerSnippet('dd',
+            \ "<esc>:call SnippetPhpDumpDie()<cr>",
+            \ ["'.*DankDebug.*'"])
+
 inorea <buffer><expr> cl TestaTriggerSnippet('cl',
             \ "<esc>:call SnippetPhpClassInterface('class')<cr>",
             \ ['#code'])
@@ -61,6 +62,13 @@ inorea <buffer><expr> cl TestaTriggerSnippet('cl',
 inorea <buffer><expr> i TestaTriggerSnippet('i',
             \ "<esc>:call SnippetPhpClassInterface('interface')<cr>",
             \ ['#code'])
+
+fun! SnippetPhpDumpDie()
+    noa execute "normal! avar_dump(':DankDebug:"
+    noa execute "normal! A\<C-R>=expand('%:t:r')\<CR>"
+    noa execute "normal! A\<C-R>=strftime(':%H%M%S')\<CR>"
+    noa execute "normal! a');die;"
+endfun
 
 fun! SnippetPhpClassInterface(kw)
     noa execute "normal! a".a:kw

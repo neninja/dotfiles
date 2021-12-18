@@ -1,9 +1,6 @@
 " Scripts comuns a todos filetypes de javascript, como typescript e javascript
 " react. Para ver se o arquivo está sendo carregado use :scriptnames
 
-inorea <buffer><expr> log TestaTriggerSnippet('log',
-            \ 'console.log("debug")',
-            \ ['"debug"'])
 inorea <buffer><expr> if TestaTriggerSnippet('if',
             \ "if(true){<cr>/* código */<cr>}",
             \ ['true', '\/\* código \*\/'])
@@ -81,6 +78,18 @@ inorea <buffer><expr> eel TestaTriggerSnippet('eel', "expect(someVar).eql(someVa
 inorea <buffer><expr> cytemplate TestaTriggerSnippet('ct',
             \ "describe('Test Desc', () => {<CR>before(() => {<CR>cy.visit('localhost:8888_site')<CR>})<CR><CR>beforeEach(() => {<CR>cy.reload()<CR>})<CR><CR>it('Deve ', () => {<CR>/* código */<CR>})<CR>})",
             \ ['Test Desc', 'localhost:8888_site', 'Deve ', '\/\* código \*\/'])
+
+inorea <buffer><expr> log TestaTriggerSnippet('log',
+            \ "<esc>:call SnippetJSLog()<cr>",
+            \ ["'.*DankDebug.*'"])
+
+fun! SnippetJSLog()
+    noa execute "normal! aconsole.log(':DankDebug:"
+    noa execute "normal! A\<C-R>=expand('%:t:r')\<CR>"
+    noa execute "normal! A\<C-R>=strftime(':%H%M%S')\<CR>"
+    noa execute "normal! a')"
+endfun
+
 
 fun! NN_JS_CriaOuAcessaSpec()
     let file = expand('%:r:t') . ".spec." . expand('%:e')
