@@ -37,6 +37,7 @@ elif [[ "$OSTYPE" == "msys" ]]; then
     echo "source ~/$DIRDF_FROM_HOME/vim/gvimrc" > $HOME/_gvimrc
 fi
 ./vim/clone-packages.sh
+vim -c "helptags ~/$DIRDF_FROM_HOME/vim/doc" -c -q
 
 # less command
 read -p "Aperte enter para fechar"
