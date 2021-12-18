@@ -4,4 +4,3 @@
 - ISSUE_TEMPLATE: template do github para novas issues
 - PULL_REQUEST_TEMPLATE: template do github para PRs
 - UNLICENSE: "licença" favorita para projetos
-- deploy.sh: script de deploy para o [github-pages](https://pages.github.com/)/[gitlab-pages](https://docs.gitlab.com/ee/user/project/pages/)

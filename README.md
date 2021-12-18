@@ -3,6 +3,7 @@
 [![emojicom](https://img.shields.io/badge/emojicom-%F0%9F%90%9B%20%F0%9F%86%95%20%F0%9F%92%AF%20%F0%9F%91%AE%20%F0%9F%86%98%20%F0%9F%92%A4-%23fff)](http://neni.dev/emojicom)
 
 ## TL;DR
+
 Versionamento dos meus arquivos de configuração, scripts ou templates usados no Windows e/ou Linux.
 
 Os arquivos são guardados e referenciados principalmente através do path ``~/dev/dotfiles/``, portanto é imprescindível manter esta mesma estrutura.
@@ -15,20 +16,15 @@ Os arquivos são guardados e referenciados principalmente através do path ``~/d
 
 ## Estrutura do repositório
 
-- [arquivados/](arquivados/): configurações antigas de programas que não uso
 - [awesomewm/](awesomewm/): configurações do [awesome](https://awesomewm.org)
 - [modelos/](/modelos): arquivos que frequentemente preciso ver ou copiar
-    - [latex/](/modelos/latex): templates/classes latex
     - [sample-dot-graph/](/modelos/sample-dot-graph): exemplos da utilização de graphviz
     - [git/](/modelos/git): arquivos usados com git ou github
-- [emacs/](/emacs): arquivos de configuração do [emacs](https://www.gnu.org/software/emacs/) com o [doom](https://github.com/hlissner/doom-emacs)
-    - [doom/](/emacs/doom): configurações do doom
-    - [org/](/emacs/org): anotações com [org mode](https://orgmode.org/)
 - [vim/](/vim): arquivos de configuração do [vim](https://www.vim.org/)
     - [doc/wtf.txt](/vim/doc/wtf.txt): documentação das minhas configurações (`:h wtf`)
     - [ftplugin/](/vim/ftplugin): especificações de `filetypes`
     - [syntax/](/vim/syntax): sintaxes específicas de `filetypes`
-    - [dicionarios/](/vim/dicionarios/): dicionários usados para sugerir palavras
+    - [dicionarios/](/vim/dicionarios/): dicionários usados para sugerir palavras no vim com <kbd>CTRL</kbd><kbd>X</kbd><kbd>CTRL</kbd><kbd>K</kbd>
     - [colors/](/vim/colors/): definição de cores para grupos de highlights (colorschemes)
     - [skeletons/](/vim/skeletons/): estrutura inicial de tipos de arquivos
     - [clone-packages.sh](/vim/clone-packages.sh): download de packages (plugins)
@@ -59,27 +55,15 @@ wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vimrc -O $HOME/.
 wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/gvimrc -O $HOME/.gvimrc
 ```
 
-### Completa no Linux
-```bash
-cd ~
-mkdir dev
-cd dev
-git clone https://github.com/nenitf/dotfiles.git
-cd dotfiles
-./install.sh
-vim -c "helptags vim/doc" -c q
-```
+### Completa
 
-### Completa no Windows
 ```bash
-# no git bash
 cd ~
 mkdir dev
 cd dev
 git clone https://github.com/nenitf/dotfiles.git
 cd dotfiles
 ./install.sh
-vim -c "helptags vim/doc" -c q
 ```
 
 ## Atualização forçada
@@ -95,10 +79,5 @@ git reset --hard origin/main
 - Caso precise configurar scripts que devem rodar **antes** do `vim/vimrc`, crie o arquivo `~/.vimrc-pre.vim` (equivale `%userprofile%\.vimrc-pre.vim` no Windows).
 - Caso precise configurar scripts que devem rodar **depois** do `vim/vimrc`, crie o arquivo `~/.vimrc-local.vim` (equivale `%userprofile%\.vimrc-local.vim` no Windows).
 - Caso precise configurar scripts que devem rodar **depois** do `vim/gvimrc`, crie o arquivo `~/.gvimrc-local.vim` (equivale `%userprofile%\.gvimrc-local.vim` no Windows).
-- Utilize os helptags (`:h wtf`) gerados para saber mais sobre os detalhes das configurações (exemplo: `:h wtf-autocomplete`).
+- Utilize os helptags (`:h wtf`) gerados para saber mais sobre os detalhes das configurações (exemplo: `:h wtf-autocomplete`). Para atualizá-los utilize ``:helptags ~/dev/dotfiles/vim/doc``.
 - Instale Ag para melhorar nas buscas com [`:GrepperAgP`](https://github.com/ggreer/the_silver_searcher)
-
-## TODO
-* [ ] Windows CMD/PS: Alias para git
-* [ ] Windows CMD/PS: Output como UTF-8 para ver acentuações nos commits
-* [ ] Tornar local dos dotfiles mais dinâmico
