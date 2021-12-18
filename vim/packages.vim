@@ -142,12 +142,6 @@ command! GC :Gw | Gcommit
 nmap <leader>gg :G<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
-"### Statusline
-set statusline=                 " reseta statusline
-set statusline+=\ %f\ %r\%m\    " nome abreviado, readonly e modificado
-set statusline+=\%=				" espaço
-set statusline+=\ %p%%\ %l:\%c  " rownumber, total e percentual
-set statusline+=\ %y            " filetype
 
 "## junegunn/goyo.vim
 function! s:enter_presentation()
@@ -180,20 +174,6 @@ let g:javascript_conceal_super                = "Ω"
 let g:javascript_conceal_arrow_function       = "→"
 
 "## MaxMEllon/vim-jsx-pretty
-
-"## dense-analysis/ale
-" PROS:
-" TODO remover plugin, afeta perf
-"https://gist.github.com/romainl/ce55ce6fdc1659c5fbc0f4224fd6ad29
-
-let g:ale_fixers = {
-            \ 'javascript': ['prettier', 'eslint'],
-            \ 'javascriptreact': ['prettier', 'eslint'],
-            \ 'typescript': ['prettier', 'eslint'],
-            \ 'typescriptreact': ['prettier', 'eslint']
-            \ }
-
-let g:ale_fix_on_save = 1
 
 "## diepm/vim-rest-console
 " TODO ver como utilizar $VARIAVEIS no Windows
