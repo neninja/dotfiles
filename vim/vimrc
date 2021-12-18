@@ -305,6 +305,9 @@ endfunction
 "## Comandos
 command! Sov w | source $MYVIMRC | e %
 
+command! -nargs=* Cake make! <args> | cw
+command! -nargs=* Lake make! <args> | cw
+
 command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
 " FIXME não funciona corretamente no linux
