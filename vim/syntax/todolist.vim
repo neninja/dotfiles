@@ -14,14 +14,8 @@ syn match todoListBegginingCheckboxChecked /^\s*+/ containedin=todoListCardBody
 syn match Conceal /^\s.*$/ containedin=ALL
 syn match todoListBullet /-/ contained containedin=todoListBegginingList conceal cchar=•
 
-" https://www.nerdfonts.com/cheat-sheet
-if(g:devicons)
-    syn match todoListCheck /=/ contained containedin=todoListBegginingCheckboxEmpty conceal cchar=
-    syn match todoListEmptyCheck /+/ contained containedin=todoListBegginingCheckboxChecked conceal cchar=
-else
-    syn match todoListCheck /=/ contained containedin=todoListBegginingCheckboxEmpty conceal cchar=□
-    syn match todoListEmptyCheck /+/ contained containedin=todoListBegginingCheckboxChecked conceal cchar=✓
-endif
+syn match todoListCheck /=/ contained containedin=todoListBegginingCheckboxEmpty conceal cchar=□
+syn match todoListEmptyCheck /+/ contained containedin=todoListBegginingCheckboxChecked conceal cchar=✓
 
 hi link todoListCardTitle Folded
 

@@ -197,14 +197,6 @@ Note
   - É possível usar tab para completar nomes de pastas
 
 ---------------------------------------
-ryanoasis/vim-devicons
-
-Habilita uso de ícones, permitindo conceal mais adequado
->
-  let g:devicons = 1
-<
-
----------------------------------------
 |[GOLD]| junegunn/fzf.vim
 
 |[GOLD]| Usar `:GFiles` produz erro do bash
@@ -788,12 +780,6 @@ Diretório das wikis
               \ g:dotfiles_dir."/wiki",
               \ g:dotfiles_dir."/wiki/vim"
               \ ]
-<
-Desabilita uso de ícones, permitindo conceal padrão
->
-  " 0 ou 1
-  let g:devicons = 0
-<
 ------------------------------------------------------------------------------
 *wtf-vimproved*
 

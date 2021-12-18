@@ -38,8 +38,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.so$\|\.dat$|\.DS_Store$\|\.venv\|tags$'
   \ }
 
-"## ryanoasis/vim-devicons
-let g:devicons = 1
 "## junegunn/fzf.vim
 
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"

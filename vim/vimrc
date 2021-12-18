@@ -7,7 +7,6 @@ let g:vimwikis_dirs = [
             \ g:dotfiles_dir."/wiki",
             \ g:dotfiles_dir."/wiki/vim"
             \ ]
-let g:devicons = 0
 
 if filereadable(expand("~/.vimrc-pre.vim"))
     execute 'source ~/.vimrc-pre.vim'

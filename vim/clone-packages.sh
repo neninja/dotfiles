@@ -28,7 +28,6 @@ function clonaNeniRepos {
 vendorStartRepos=(
     "https://github.com/junegunn/goyo.vim.git" # melhor visualização possível
     "https://github.com/mhinz/vim-startify.git" # tela inicial com projetos
-    #"https://github.com/ryanoasis/vim-devicons.git" # icones para extensões com ctrlp, startify e conceal
     "https://github.com/diepm/vim-rest-console.git" # rest client
     "https://github.com/editorconfig/editorconfig-vim.git" # configurações específicas de projeto
     "https://github.com/unblevable/quick-scope.git" # highlight letras unicas das palavras para usar ftFT
