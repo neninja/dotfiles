@@ -15,24 +15,28 @@ endif
 let s:save_cpo = &cpo
 set cpo-=C
 
-CompilerSet makeprg=go\ test
+if exists('g:nn_compiler_with_docker_compose')
+    CompilerSet makeprg=docker-compose\ exec\ app\ go\ test\ $*
+else
+    CompilerSet makeprg=go\ test\ $*
+endif
 
 " THANKS: http://vimdoc.sourceforge.net/htmldoc/quickfix.html#errorformat-LaTeX
 " THANKS: https://flukus.github.io/vim-errorformat-demystified.html
 " THANKS: https://stackoverflow.com/a/29102995/9881278
 " THANKS: https://github.com/wincent/wincent/blob/b38dc93bb5/roles/dotfiles/files/.vim/after/compiler/README.md
 
-CompilerSet errorformat=%-G#%.%#
-CompilerSet errorformat+=%-GFAIL%.%#
-CompilerSet errorformat+=%-Gexit%.%#
-CompilerSet errorformat+=%-GPASS%.%#
-CompilerSet errorformat+=%-Gok%.%#
-CompilerSet errorformat+=can\'t\ load\ package:\ %m
-CompilerSet errorformat+=%f:%l:%c:\ %m
-CompilerSet errorformat+=%f:%l:\ %m
-CompilerSet errorformat+=%*\\s%f:%l\ %m
-CompilerSet errorformat+=%+A---\ FAIL:\ Example%.%#
-CompilerSet errorformat+=%C%m
+CompilerSet efm=%-G#%.%#,
+      \%-GFAIL%.%#,
+      \%-Gexit%.%#,
+      \%-GPASS%.%#,
+      \%-Gok%.%#,
+      \can\'t\ load\ package:\ %m,
+      \%f:%l:%c:\ %m,
+      \%f:%l:\ %m,
+      \%*\\s%f:%l\ %m,
+      \%+A---\ FAIL:\ Example%.%#,
+      \%C%m,
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

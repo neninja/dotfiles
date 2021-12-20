@@ -1,13 +1,3 @@
-"## Comandos
-command! -nargs=1 GoDoc !go doc <args>
-" interpreta package.Fun como um nome de arquivo
-nnoremap K :GoDoc <c-r><c-f><cr>
-
-"## AutoCmds
-augroup goau
-    autocmd! BufWritePost *.go lclose | silent lmake | lw
-augroup END
-
 "## Compiler
 compiler goimports
 
