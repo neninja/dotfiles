@@ -44,6 +44,10 @@ vendorStartRepos=(
     "https://github.com/MaxMEllon/vim-jsx-pretty.git" # syntax e indent jsx ts
     "https://github.com/posva/vim-vue" # vue
 
+    ####### TS
+    "https://github.com/leafgarland/typescript-vim"
+    "https://github.com/peitalin/vim-jsx-typescript"
+
     ####### PHP
     "https://github.com/alvan/vim-php-manual.git" # manual do php no vim
 
