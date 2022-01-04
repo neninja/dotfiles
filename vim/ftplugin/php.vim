@@ -66,7 +66,7 @@ inorea <buffer><expr> i TestaTriggerSnippet('i',
 fun! SnippetPhpDumpDie()
     noa execute "normal! avar_dump(':DankDebug:"
     noa execute "normal! A\<C-R>=expand('%:t:r')\<CR>"
-    noa execute "normal! A\<C-R>=strftime(':%H%M%S')\<CR>"
+    noa execute "normal! A\<C-R>=strftime(':%H:%M:%S')\<CR>"
     noa execute "normal! a');die;"
 endfun
 

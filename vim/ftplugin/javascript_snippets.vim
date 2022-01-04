@@ -86,7 +86,7 @@ inorea <buffer><expr> log TestaTriggerSnippet('log',
 fun! SnippetJSLog()
     noa execute "normal! aconsole.log(':DankDebug:"
     noa execute "normal! A\<C-R>=expand('%:t:r')\<CR>"
-    noa execute "normal! A\<C-R>=strftime(':%H%M%S')\<CR>"
+    noa execute "normal! A\<C-R>=strftime(':%H:%M:%S')\<CR>"
     noa execute "normal! a')"
 endfun
 
