@@ -13,19 +13,27 @@ Neni @nenitf <http://neni.dev>
           +----------->|performance+---------+
                        +-----------+
 <
-|PRECEITOS|:
-  - Focar em |performance| windows e linux
-  - |Organizar| o trecho de código no fold correto
-  - Manter o |KISS|, não reescrever o vim! Lembrar que:
-      - A configuração será usada |crossplatform| (windows e linux)
-      - Cada complexidade a mais significa mais manutenção
-  - Manter |compatibilidade| entre vim e nvim
-  - |Evitar| trocar comandos default do teclado
-  - Usar/configurar poucos |plugins| possível
-  - |Documentar| o código (respeitando a largura de coluna)
-      - Configurações |antigas|, |novas|, |defaults| e |motivos|
 
-|UPGRADES|: Ver arquivo `wiki/vim.md`
+|MANTER|:
+  - Compatibilidade entre: vim e nvim; Windows e Linux
+  - Código organizado (arquivo e fold correto)
+  - Teclas default
+  - Menos plugins possível
+  - Configurações antigas, novas e defaults documentadas com observações
+
+|DOWNLOAD|: Para baixar somente a configuração básica copie o conteúdo de `vimrc` e `gvimrc`:
+
+Windows:
+>
+  curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vimrc > %userprofile%\_vimrc
+  curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/gvimrc > %userprofile%\_gvimrc
+<
+
+Linux:
+>
+  wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vimrc -O $HOME/.vimrc
+  wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/gvimrc -O $HOME/.gvimrc
+<
 
 |DICAS|:
   - Nos folds:
@@ -40,17 +48,19 @@ Neni @nenitf <http://neni.dev>
       - abrir vim no terminal com `vim --startuptime tempo.txt tempo.txt`
       - abrir vim no terminal com `vim -u NONE` (remove vimrc)
 
+|COMPLEMENTO|:
+  - Melhore as buscas com `:GrepperAgP` instalando https://github.com/ggreer/the_silver_searcher
+
 ==============================================================================
 *wtf-usage*
 
-------------------------------------------------------------------------------
-UTILIZAÇÃO NENIWTFVIMRC
-
-- Atualizar com `:helptags vim/doc` dentro de dotfiles
 - Usar `K` (`:h K`) em cima da palavra da configuração para consultar manual
+- Duas formas de atualizar helptags:
+    - `:helptags ~/dev/dotfiles/vim/doc`
+    - `:helptags vim/doc dentro de dotfiles`
 
 ------------------------------------------------------------------------------
-MANUTENÇÃO NENIWTFVIMRC
+MANUTENÇÃO NENIWTFVIM
 
 - Separar seções com `=`, subseções com `-` e fim de cabeçalho com `.`
 - Usar ` para códigos inline e > < com identação para blocos
