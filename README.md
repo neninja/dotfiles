@@ -48,12 +48,46 @@ cd dotfiles
 
 ## Configurações locais
 
-- Vim
-    - **Antes** do `vim/vimrc`: `~/.vimrc-pre.vim`
-    - **Depois** do `vim/vimrc`: `~/.vimrc-local.vim`
-    - **Depois** do `vim/gvimrc`: `~/.gvimrc-local.vim`
-- Bash
-    - `~/.extra-bashrc`
+### Vim
+
+- **Antes** do `vim/vimrc`: `~/.vimrc-pre.vim`
+- **Depois** do `vim/vimrc`: `~/.vimrc-local.vim`
+- **Depois** do `vim/gvimrc`: `~/.gvimrc-local.vim`
+
+### Bash
+
+- Em `~/.extra-bashrc`
+
+### Git
+
+- Em `~/.gitconfig-extra`
+- Exemplo comum:
+
+```gitconfig
+# `~/.gitconfig-extra`
+[includeIf "gitdir:~/dev/trampo/projetox/"]
+    path = dev/trampo/.gitconfig-projetox
+```
+
+```gitconfig
+# `~/dev/trampo/.gitconfig-projetox`
+[include]
+    path = .gitconfig-geral-trampo
+[core]
+    excludesfile = ~/dev/winker/.gitignore-projetox
+```
+
+```gitconfig
+# `~/dev/trampo/.gitconfig-geral-trampo`
+[user]
+    name = Felipe Silva
+    email = felipe@trampo.com
+    username = felipe_silva
+[alias]
+    s = status
+    commit-guide = !cat ~/dev/dotfiles/modelos/git/.gitcommit
+    pr = "!f() { git fetch upstream && rebase upstream/$@; }; f" # git pr main
+```
 
 ## Atualização forçada
 ```bash

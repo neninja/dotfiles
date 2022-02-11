@@ -21,7 +21,8 @@ DIRDF=$HOME/$DIRDF_FROM_HOME
 
 # git
 echo "[include]
-    path = $DIRDF_FROM_HOME/.gitconfig" > $HOME/.gitconfig
+    path = $DIRDF_FROM_HOME/.gitconfig
+    path = .gitconfig-extra" > $HOME/.gitconfig
 
 # vim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
