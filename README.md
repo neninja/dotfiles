@@ -53,6 +53,7 @@ cd dotfiles
 - **Antes** do `vim/vimrc`: `~/.vimrc-pre.vim`
 - **Depois** do `vim/vimrc`: `~/.vimrc-local.vim`
 - **Depois** do `vim/gvimrc`: `~/.gvimrc-local.vim`
+- Exemplos em `vim/doc/wtf.txt`
 
 ### Bash
 
