@@ -2,7 +2,7 @@
 
 [![emojicom](https://img.shields.io/badge/emojicom-%F0%9F%90%9B%20%F0%9F%86%95%20%F0%9F%92%AF%20%F0%9F%91%AE%20%F0%9F%86%98%20%F0%9F%92%A4-%23fff)](http://neni.dev/emojicom)
 
-Versionamento dos meus arquivos de configuração scripts, instruções e templates usados no Windows e/ou Linux.
+Versionamento dos meus arquivos de configuração, scripts, instruções e templates usados no Windows e/ou Linux.
 
 > No Windows `%userprofile%` equivale `~`
 
@@ -91,6 +91,7 @@ cd dotfiles
 ```
 
 ## Atualização forçada
+
 ```bash
 git fetch --all
 git reset --hard origin/main
