@@ -75,7 +75,7 @@ cd dotfiles
 [include]
     path = .gitconfig-geral-trampo
 [core]
-    excludesfile = ~/dev/winker/.gitignore-projetox
+    excludesfile = ~/dev/trampo/.gitignore-projetox
 ```
 
 ```gitconfig
@@ -87,7 +87,7 @@ cd dotfiles
 [alias]
     s = status
     commit-guide = !cat ~/dev/dotfiles/modelos/git/.gitcommit
-    pr = "!f() { git fetch upstream && rebase upstream/$@; }; f" # git pr main
+    pr = "!f() { git fetch upstream && rebase upstream/$@; }; f"
 ```
 
 ## Atualização forçada
