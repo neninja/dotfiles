@@ -2,10 +2,10 @@
 "inoremap <buffer> <c-t> </<c-x><c-o><c-n><esc>==gi
 
 " Comenta
-vnoremap <buffer>   gc//  I<!--<esc>A--><CR>
-vnoremap <buffer>   gc/;  :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
-nnoremap <buffer>   gc//  I<!--<esc>A--><CR>
-nnoremap <buffer>   gc/;  :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
+vnoremap <buffer>   g//  I<!--<esc>A--><CR>
+vnoremap <buffer>   g/;  :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
+nnoremap <buffer>   g//  I<!--<esc>A--><CR>
+nnoremap <buffer>   g/;  :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:noh<CR>
 
 inorea <buffer><expr> html TestaTriggerSnippet('html',
             \ "<!DOCTYPE html><cr>".
