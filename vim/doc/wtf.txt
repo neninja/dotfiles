@@ -729,7 +729,9 @@ Exemplo:
 
   function! SourceIfCondominio()
       if(getcwd() == "/home/neni/dev/winker/condominio")
-          unlet g:ctrlp_custom_ignore
+          if exists("g:ctrlp_custom_ignore")
+              unlet g:ctrlp_custom_ignore
+          endif
       endif
   endfunction
 
