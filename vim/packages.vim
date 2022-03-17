@@ -38,6 +38,9 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.so$\|\.dat$|\.DS_Store$\|\.venv\|tags$'
   \ }
 
+" não limita arquivos
+let g:ctrlp_max_files=0
+
 "## unblevable/quick-scope
 augroup qs_colors
     autocmd!
