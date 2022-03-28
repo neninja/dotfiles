@@ -728,10 +728,15 @@ Exemplo:
   let g:initial_ctrlp_custom_ignore = g:ctrlp_custom_ignore
 
   function! SourceIfCondominio()
-      if(getcwd() == "/home/neni/dev/winker/condominio")
+      if(getcwd() == "/home/neni/dev/projectx")
           if exists("g:ctrlp_custom_ignore")
               unlet g:ctrlp_custom_ignore
           endif
+
+          augroup filetype_projectx
+              autocmd!
+              autocmd FileType typescript,javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4
+          augroup END
       endif
   endfunction
 
