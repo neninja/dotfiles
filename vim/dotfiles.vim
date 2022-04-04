@@ -1,5 +1,13 @@
 "# wtf-file-dotfiles
+"## RuntimePaths
+"wtf-rtp
+execute "set runtimepath+=".g:dotfiles_dir."/vim"
+set packpath+=~/vimfiles
+
 colorscheme vyin
+
+set spelllang=pt_br
+execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
 
 "## Templates
 augroup skeletons
@@ -158,3 +166,52 @@ function! TodoListMenu()
     endif
     execute cmd
 endfunction
+
+"## Fake vimwiki
+let g:vimwikis_dirs = [
+            \ g:dotfiles_dir."/wiki",
+            \ g:dotfiles_dir."/wiki/vim"
+            \ ]
+
+function! s:SelecionaWiki(wiki)
+    let wiki = g:vimwikis_dirs[0]
+
+    if(a:wiki == 1)
+        let wiki = input("wiki: ", "\<c-d>", "customlist,WikiLists")
+    endif
+    try
+        if(wiki == '')
+            return
+        endif
+        execute "cd " . wiki
+        e README.md
+    catch
+        return
+    endtry
+endfunction
+
+function! WikiLists(ArgLead, CmdLine, CursorPos)
+    return  g:vimwikis_dirs
+endfunction
+
+function! ToggleCheckbox()
+    normal! ms0
+    if(search('-\s\[\p\]', 'c', line('.')))
+        if(getline('.')[col('.') + 2] == ' ')
+            normal! 3lrx
+        else
+            exec "normal! 3lr "
+        endif
+    else
+        if(search('^.*-\s', 'c', line('.')))
+            exec "normal! ^la[ ] "
+        else
+            exec "normal! I- [ ] "
+        endif
+    endif
+    normal `s
+endfunction
+
+nnoremap <leader>ww :call <SID>SelecionaWiki(0)<CR>
+nnoremap <leader>ws :call <SID>SelecionaWiki(1)<CR>
+

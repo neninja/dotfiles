@@ -3,25 +3,19 @@
 "wtf-variaveis
 
 let g:dotfiles_dir = "~/dev/dotfiles"
-let g:vimwikis_dirs = [
-            \ g:dotfiles_dir."/wiki",
-            \ g:dotfiles_dir."/wiki/vim"
-            \ ]
 
-if filereadable(expand("~/.vimrc-pre.vim"))
-    execute 'source ~/.vimrc-pre.vim'
-endif
+function! SourceIfExists(file)
+    if filereadable(expand(a:file))
+        exe 'source' a:file
+    endif
+endfunction
+
+call SourceIfExists("~/.vimrc-pre.vim")
 
 "## Vimproved
 "wtf-vimproved
 
 set nocompatible
-
-"## RuntimePaths
-"wtf-rtp
-
-execute "set runtimepath+=".g:dotfiles_dir."/vim"
-set packpath+=~/vimfiles
 
 "## Buffer
 "wtf-buffer
@@ -125,8 +119,6 @@ endfunction
 
 let g:netrw_liststyle=3
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-set spelllang=pt_br
-execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
 set shellslash
 
 "### Autocomplete
@@ -293,12 +285,6 @@ function! s:FechaSplitOuDeletaBufferForced()
         q!
     else
         bd!
-    endif
-endfunction
-
-function! SourceIfExists(file)
-    if filereadable(expand(a:file))
-        exe 'source' a:file
     endif
 endfunction
 
@@ -604,49 +590,6 @@ endfunction
 vnoremap + :<c-u>call Boxdraw()<CR>
 vnoremap - :<c-u>call Connectordraw()<CR>
 
-"### Fake vimwiki
-function! s:SelecionaWiki(wiki)
-    let wiki = g:vimwikis_dirs[0]
-
-    if(a:wiki == 1)
-        let wiki = input("wiki: ", "\<c-d>", "customlist,WikiLists")
-    endif
-    try
-        if(wiki == '')
-            return
-        endif
-        execute "cd " . wiki
-        e README.md
-    catch
-        return
-    endtry
-endfunction
-
-function! WikiLists(ArgLead, CmdLine, CursorPos)
-    return  g:vimwikis_dirs
-endfunction
-
-function! ToggleCheckbox()
-    normal! ms0
-    if(search('-\s\[\p\]', 'c', line('.')))
-        if(getline('.')[col('.') + 2] == ' ')
-            normal! 3lrx
-        else
-            exec "normal! 3lr "
-        endif
-    else
-        if(search('^.*-\s', 'c', line('.')))
-            exec "normal! ^la[ ] "
-        else
-            exec "normal! I- [ ] "
-        endif
-    endif
-    normal `s
-endfunction
-
-nnoremap <leader>ww :call <SID>SelecionaWiki(0)<CR>
-nnoremap <leader>ws :call <SID>SelecionaWiki(1)<CR>
-
 "### Execute file and OutputAssertion
 let s:executaveisPorExtensao = {
             \ 'lua': 'lua',
@@ -746,7 +689,7 @@ endfunction
 
 command! -nargs=1 RunCmd :call RunCmd(<q-args>)
 
-"#### psql
+"### PostegreSQL
 " declarar em um local não versionado
 "let g:dbs_psql = [
 "  \ { 'name': 'name_connection', 'url': '[<user>[:<password>]@][<host>[:<port>]]/[<database>]' },
@@ -780,46 +723,6 @@ endfunction
 command! -nargs=+ -complete=customlist,s:PsqlComplete Psql exe 'RunCmd psql -w --dbname postgresql://'.g:dbs_psql[g:db_psql]["url"].' -c "'.<q-args>.'"'
 command! -nargs=1 -complete=customlist,g:PsqlCompleteTable PsqlSelectAllFrom exe 'Psql select * from '.<q-args>
 command! PsqlSelectAllTables Psql SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name
-
-"### Highlight Word
-function! HiInterestingWord(n)
-    " Definição do highlight, por algum motivo pelo vimrc não ocorre
-    hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-    hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-    hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-    hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-    hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-    hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
-
-    " Save our location.
-    normal! mz
-
-    " Yank the current word into the z register.
-    normal! "zyiw
-
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-
-    " Move back to our original location.
-    normal! `z
-endfunction
-
-" TODO remover/resetar um ou todos highlights
-nnoremap <leader>1 :call HiInterestingWord(1)<cr>
-nnoremap <leader>2 :call HiInterestingWord(2)<cr>
-nnoremap <leader>3 :call HiInterestingWord(3)<cr>
-nnoremap <leader>4 :call HiInterestingWord(4)<cr>
-nnoremap <leader>5 :call HiInterestingWord(5)<cr>
-nnoremap <leader>6 :call HiInterestingWord(6)<cr>
 
 "### Comentário
 let s:comment_map = { 
@@ -937,8 +840,8 @@ inoremap <c-z> <c-r>=AutoCompleteCarinhas()<CR>
 
 "## Sources
 "wtf-sources
-call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
+call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 call SourceIfExists("~/.vimrc-local.vim")
 
 " TODO remover source quando outro .exrc for carregado

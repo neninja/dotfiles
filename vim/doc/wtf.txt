@@ -172,7 +172,6 @@ Configurações que dependem da estrutura de diretórios de nenitf/dotfiles como
   - Dicionários
     |THANKS|: https://github.com/skywind3000/vim-dict
     Note para organizar alfabeticamente, selecione as linhas e :sort
-
 ------------------------------------------------------------------------------
 *wtf-file-packages*
 
@@ -813,37 +812,6 @@ Definições de compatibilidades
   set nocompatible
 <
 ------------------------------------------------------------------------------
-*wtf-rtp*
-
-Carregamento de docs, configurações e scripts, podendo ser:
-  - helptags
-  - scripts de syntax, ftplugin e ftdetect
-
-É usado tanto para plugins quanto para arquivos específicos desse projeto,
-vale ressaltar que caso o diretório não seja encontrado não ocorre erro,
-portanto não tem problema criar acoplamento desse arquivo com outros
-|THANKS|: https://medium.com/usevim/vim-101-runtimepath-83194d411b0a
-..............................................................................
-
-- Deve vir antes das definições de filetype
-- Carrega ftdetect, syntax e ftplugin, para extensões de tipos de arquivos
->
-  execute "set runtimepath+=".g:dotfiles_dir."/vim"
-<
-
-O vim utilizado pelo git para commitar no Windows é diferente do que fica
-instalado no sistema. Portanto o mesmo não procura em ~/vimfiles/pack/ os
-packages (plugins), mas sim em ~/.vim (padrão Linux).
-Como solução basta adicionar manualmente. Aparentemente não tem problema em
-escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés de
-commitar por exemplo).
-Pode setar packpath ao invés do runtimepath como solução
-|THANKS|: https://superuser.com/a/1466466
->
-  "set runtimepath+=~/vimfiles/pack/*/start/*
-  set packpath+=~/vimfiles
-<
-------------------------------------------------------------------------------
 *wtf-buffer*
 
 Configurações sobre conteúdo/exibição pura do buffer
@@ -1137,40 +1105,6 @@ Exibe numeros (ruler)
   let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 <
 
-Corretor ortográfico, ideal para os filetypes: text, gitcommit e markdown
-|COMANDOS|:
-   ]s — ir para a próxima palavra errada;
-   [s — voltar para a palavra errada anterior;
-   zg — adicionar a palavra sob o cursor ao dicionário;
-   zug — desfazer a adição;
-   z= — ver sugestões de correção para esta palavra;
-
-Configura língua da checagem
-Note BR em capslock gera o aviso `Warning region not supported`
->
-  set spelllang=pt_br
-<
-
-Local onde está o dicionário
-|THANKS|: https://github.com/vim/vim/issues/1330
-|THANKS|: https://extensions.openoffice.org/en/project/vero-brazilian-portuguese-spellchecking-dictionary-hyphenator
-|THANKS|: https://github.com/vim/vim/files/655099/pt_BR.diff.zip
-|THANKS|: https://github.com/mateusbraga/vim-spell-pt-br
-|THANKS|: https://ndvo.wordpress.com/2013/06/05/corretor-ortografico-nativo-do-vim/
-|THANKS|: https://www.dicas-l.com.br/arquivo/verificacao_ortografica_com_o_editor_vim.php
-|THANKS|: https://www.vivaolinux.com.br/artigo/Corretor-Ortografico-no-Vim-Guia-definitivo
-
-Caso tenha interesse em versionar a adição de palavras
->
-  execute "set runtimepath+=".g:dotfiles_dir."/vim/spell"
-<
-
-Arquivo que possui as adições do dicionário
-|THANKS|: https://stackoverflow.com/a/27979576/9881278
->
-  execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
-<
-
 Usa como separador de diretório `/` ao invés de `\`, padrão do Windows
 Note Util para importar modulos no javascript
 >
@@ -1388,6 +1322,71 @@ Simplifica lvim, listando resultados da palavra sob o cursor
 <
 Note `lvimgrep /\[ \]/ % | lw`
 
+------------------------------------------------------------------------------
+*wtf-rtp*
+
+Carregamento de docs, configurações e scripts, podendo ser:
+  - helptags
+  - scripts de syntax, ftplugin e ftdetect
+
+É usado tanto para plugins quanto para arquivos específicos desse projeto,
+vale ressaltar que caso o diretório não seja encontrado não ocorre erro,
+portanto não tem problema criar acoplamento desse arquivo com outros
+|THANKS|: https://medium.com/usevim/vim-101-runtimepath-83194d411b0a
+..............................................................................
+
+- Deve vir antes das definições de filetype
+- Carrega ftdetect, syntax e ftplugin, para extensões de tipos de arquivos
+>
+  execute "set runtimepath+=".g:dotfiles_dir."/vim"
+<
+
+O vim utilizado pelo git para commitar no Windows é diferente do que fica
+instalado no sistema. Portanto o mesmo não procura em ~/vimfiles/pack/ os
+packages (plugins), mas sim em ~/.vim (padrão Linux).
+Como solução basta adicionar manualmente. Aparentemente não tem problema em
+escolher duas vezes o mesmo diretório (caso seja aberto o gvim ao invés de
+commitar por exemplo).
+Pode setar packpath ao invés do runtimepath como solução
+|THANKS|: https://superuser.com/a/1466466
+>
+  "set runtimepath+=~/vimfiles/pack/*/start/*
+  set packpath+=~/vimfiles
+<
+
+Corretor ortográfico, ideal para os filetypes: text, gitcommit e markdown
+|COMANDOS|:
+   ]s — ir para a próxima palavra errada;
+   [s — voltar para a palavra errada anterior;
+   zg — adicionar a palavra sob o cursor ao dicionário;
+   zug — desfazer a adição;
+   z= — ver sugestões de correção para esta palavra;
+
+Configura língua da checagem
+Note BR em capslock gera o aviso `Warning region not supported`
+>
+  set spelllang=pt_br
+<
+
+Local onde está o dicionário
+|THANKS|: https://github.com/vim/vim/issues/1330
+|THANKS|: https://extensions.openoffice.org/en/project/vero-brazilian-portuguese-spellchecking-dictionary-hyphenator
+|THANKS|: https://github.com/vim/vim/files/655099/pt_BR.diff.zip
+|THANKS|: https://github.com/mateusbraga/vim-spell-pt-br
+|THANKS|: https://ndvo.wordpress.com/2013/06/05/corretor-ortografico-nativo-do-vim/
+|THANKS|: https://www.dicas-l.com.br/arquivo/verificacao_ortografica_com_o_editor_vim.php
+|THANKS|: https://www.vivaolinux.com.br/artigo/Corretor-Ortografico-no-Vim-Guia-definitivo
+
+Caso tenha interesse em versionar a adição de palavras
+>
+  execute "set runtimepath+=".g:dotfiles_dir."/vim/spell"
+<
+
+Arquivo que possui as adições do dicionário
+|THANKS|: https://stackoverflow.com/a/27979576/9881278
+>
+  execute "set spellfile=".g:dotfiles_dir."/vim/spell/pt.utf-8.add"
+<
 
 ------------------------------------------------------------------------------
 *wtf-autocmd*
@@ -1488,12 +1487,6 @@ Exemplo: `:OutputAssertion python`
 >
   command -complete=custom,ListExecutaveis -nargs=+ OutputAssertion :execute ":call OutputAssertion(\"<args>\")"
 <
-
----------------------------------------
-Highlight Word
-
-Colore palavras (como se fosse o search)
-|THANKS|: https://bitbucket.org/sjl/dotfiles/raw/d8f861e3276a89c0f98637725006da658adcda90/vim/vimrc
 
 ---------------------------------------
 Comentário
