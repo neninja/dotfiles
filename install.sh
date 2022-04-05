@@ -30,11 +30,11 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo ". $DIRDF/.bashrc" > $HOME/.bashrc
 
     # vim
-    echo "source ~/$DIRDF_FROM_HOME/vim/vimrc" > $HOME/.vimrc
+    echo "source ~/$DIRDF_FROM_HOME/vim/dotfiles.vim" > $HOME/.vimrc
     echo "source ~/$DIRDF_FROM_HOME/vim/gvimrc" > $HOME/.gvimrc
 elif [[ "$OSTYPE" == "msys" ]]; then
     # vim
-    echo "source ~/$DIRDF_FROM_HOME/vim/vimrc" > $HOME/_vimrc
+    echo "source ~/$DIRDF_FROM_HOME/vim/dotfiles.vim" > $HOME/_vimrc
     echo "source ~/$DIRDF_FROM_HOME/vim/gvimrc" > $HOME/_gvimrc
 fi
 ./vim/clone-packages.sh

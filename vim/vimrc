@@ -1,17 +1,4 @@
 "# wtf-file-vimrc
-"## Variáveis
-"wtf-variaveis
-
-let g:dotfiles_dir = "~/dev/dotfiles"
-
-function! SourceIfExists(file)
-    if filereadable(expand(a:file))
-        exe 'source' a:file
-    endif
-endfunction
-
-call SourceIfExists("~/.vimrc-pre.vim")
-
 "## Vimproved
 "wtf-vimproved
 
@@ -837,14 +824,4 @@ function! AutoCompleteCarinhas()
     return ''
 endfunction
 inoremap <c-z> <c-r>=AutoCompleteCarinhas()<CR>
-
-"## Sources
-"wtf-sources
-call SourceIfExists(g:dotfiles_dir."/vim/dotfiles.vim")
-call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
-call SourceIfExists("~/.vimrc-local.vim")
-
-" TODO remover source quando outro .exrc for carregado
-call SourceIfExists(".exrc")
-au DirChanged * :call SourceIfExists(".exrc")
 

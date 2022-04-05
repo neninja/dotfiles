@@ -783,24 +783,6 @@ somente no terminal. Abaixo a configuração padrão de `exrc` (`:h exrc`)
 <
 ==============================================================================
 ------------------------------------------------------------------------------
-*wtf-variaveis*
-
-Variáveis globais que são utilizadas entre scripts, o ideal é que sejam
-sobescritas pelo `~/.vimrc-pre.vim` caso seja necessário
-..............................................................................
-
-Diretório dos dotfiles
->
-  let g:dotfiles_dir = "~/dev/dotfiles"
-<
-
-Diretório das wikis
->
-  let g:vimwikis_dirs = [
-              \ g:dotfiles_dir."/wiki",
-              \ g:dotfiles_dir."/wiki/vim"
-              \ ]
-------------------------------------------------------------------------------
 *wtf-vimproved*
 
 Definições de compatibilidades
@@ -1528,7 +1510,7 @@ Autocompletes específicos (`:h complete()`)
 ------------------------------------------------------------------------------
 *wtf-sources*
 
-Sources de arquivos apartir de vim/vimrc
+Sources de arquivos adicionais
 Note `:scriptnames` para ver a orderm e quais scripts foram iniciados
 
 Ordem:
@@ -1536,9 +1518,9 @@ Ordem:
 - `~/.vimrc` ou `~/_vimrc` (gerado pelo `install.sh`)
   - `~/.gvimrc` ou `~/_gvimrc` (gerado pelo `install.sh`)
 - `~/vimrc-pre.vim`
+- `dotfiles/vim/dotfiles.vim`
 - `dotfiles/vim/vimrc`
   - `dotfiles/vim/gvimrc`
-- `dotfiles/vim/dotfiles.vim`
 - `dotfiles/vim/packages.vim`
 - `~/.vimrc-local.vim`
   - Esse arquivo pode carregar `dotfiles/vim/plus.vim`

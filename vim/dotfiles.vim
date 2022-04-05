@@ -1,4 +1,17 @@
 "# wtf-file-dotfiles
+
+let g:dotfiles_dir = "~/dev/dotfiles"
+
+function! SourceIfExists(file)
+    if filereadable(expand(a:file))
+        exe 'source' a:file
+    endif
+endfunction
+
+call SourceIfExists("~/.vimrc-pre.vim")
+call SourceIfExists(g:dotfiles_dir."/vim/vimrc")
+call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
+
 "## RuntimePaths
 "wtf-rtp
 execute "set runtimepath+=".g:dotfiles_dir."/vim"
@@ -214,4 +227,12 @@ endfunction
 
 nnoremap <leader>ww :call <SID>SelecionaWiki(0)<CR>
 nnoremap <leader>ws :call <SID>SelecionaWiki(1)<CR>
+
+"## Sources adicionais
+"wtf-sources
+call SourceIfExists("~/.vimrc-local.vim")
+
+" TODO remover source quando outro .exrc for carregado
+call SourceIfExists(".exrc")
+au DirChanged * :call SourceIfExists(".exrc")
 
