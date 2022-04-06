@@ -62,7 +62,7 @@ Linux:
 ------------------------------------------------------------------------------
 MANUTENÇÃO NENIWTFVIM
 
-- Separar seções com `=`, subseções com `-` e fim de cabeçalho com `.`
+- Separar seções com `=` e subseções com `-`
 - Usar ` para códigos inline e > < com identação para blocos
 - Usar * para tags e | para realces
 - Caso não dê para ver o conceal basta slecionar o texto
@@ -132,7 +132,6 @@ Baixar arquivo e deixá-lo em:
 *wtf-file-gvimrc*
 
 Arquivo de configurações que é referenciado se o gvim for aberto
-..............................................................................
 
 Corrige efeitos visuais e sonoros
 Note: When the GUI starts, 't_vb' is reset to its default value, you might
@@ -178,7 +177,7 @@ Configurações que dependem da estrutura de diretórios de nenitf/dotfiles como
 Arquivo de configurações de plugins/packages. Seu desacoplamento do vimrc
 serve para permitir o uso do vim em seu estado mais básico de configurações
 sem a necessidade de baixar outros arquivos.
-..............................................................................
+
 ctrlpvim/ctrlp.vim
 
 |PROS|:
@@ -623,7 +622,6 @@ Note Script proposto para criar a sessão do xdebug
 
 Arquivo de configurações com ou sem plugins/packages que afetam a performance
 do vimrc base.
-..............................................................................
 
 1. Autocomplete de filename `<c-x><c-f>` com o arquivo aberto sendo a
    referencia ao invés da raiz do projeto (troca temporariamente `:pwd`)
@@ -786,7 +784,6 @@ somente no terminal. Abaixo a configuração padrão de `exrc` (`:h exrc`)
 *wtf-vimproved*
 
 Definições de compatibilidades
-..............................................................................
 
 - Quebra compatibilidade com vi
 - Evita erros bizarros como de interpretação de dicionários e etc
@@ -797,7 +794,6 @@ Definições de compatibilidades
 *wtf-buffer*
 
 Configurações sobre conteúdo/exibição pura do buffer
-..............................................................................
 
 Buffers vs Tabs (polêmica ᕦ(ò_óˇ)ᕤ)
   - o mesmo arquivo não é aberto duas vezes
@@ -1165,7 +1161,6 @@ Note <c-x><c-o> para utilizar a sugestão
 *wtf-statusline*
 
 Escolha de informações, cujo pode ser modificada em outros arquivos
-..............................................................................
 
 Habilita e reseta statusline
 >
@@ -1187,7 +1182,6 @@ Habilita e reseta statusline
 *wtf-funcoes*
 
 Funções tanto publicas, privadas quando usadas em maps e comandos
-..............................................................................
 
 Att ctags
 Note Necessario instalar universal ctags
@@ -1315,7 +1309,6 @@ Carregamento de docs, configurações e scripts, podendo ser:
 vale ressaltar que caso o diretório não seja encontrado não ocorre erro,
 portanto não tem problema criar acoplamento desse arquivo com outros
 |THANKS|: https://medium.com/usevim/vim-101-runtimepath-83194d411b0a
-..............................................................................
 
 - Deve vir antes das definições de filetype
 - Carrega ftdetect, syntax e ftplugin, para extensões de tipos de arquivos
@@ -1375,7 +1368,6 @@ Arquivo que possui as adições do dicionário
 
 Comandos automáticos executados por eventos
 |THANKS|: https://vi.stackexchange.com/a/9459/28875
-..............................................................................
 
 |[GOLD]|
 Muda tempo de gatilho
@@ -1399,7 +1391,7 @@ Muda tempo de gatilho
 *wtf-packs-pessoais*
 
 Funcionalidades que podem virar mini packages/plugins
-..............................................................................
+
 DankDebug
 
 Criação da location list com base em "padrões de debug"
