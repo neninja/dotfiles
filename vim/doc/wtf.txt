@@ -1272,12 +1272,6 @@ Visualiza highlight group da palavra sob o cursor
 <
 Note `:highlight` mostra as cores do grupo
 Note `:so $VIMRUNTIME/syntax/hitest.vim` Visualiza todos highlight-groups
-
-
-Exibe splits para trabalhar como kanban
->
-  command! TodoList exec ":cd ".g:todolist_dir | e DONE | belowright vnew TODO | aboveleft vnew DOING
-<
 ------------------------------------------------------------------------------
 *wtf-abbr*
 

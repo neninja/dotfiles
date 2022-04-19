@@ -83,38 +83,11 @@ let g:startify_lists = [
 let g:startify_files_number = 5
 let g:startify_commands = [
             \ {'d': ['dotfiles', ':call GoToDotfiles()']},
-            \ {'t': ['todolist', ':TodoList']},
             \ {'g': ['go projects', ':e ~/go/src/github.com/nenitf']},
             \ {'p': ['php projects', ':e ~/dev/php']},
             \ ]
 
 packadd! vim-startify
-
-try
-    let todo = []
-    let current_title = ''
-    for entry in readfile(glob('~/TODOLIST/BACKLOG'))
-        if(match(entry, '\S') == 0 && match(entry, '\C\<TODO\>') > -1) " Titulo com tag todo
-            let line = substitute(entry, '\C\<TODO\>', '  ', '')
-            let line = substitute(line, '\C\<WAIT\>', '  ', '')
-            call add(todo, line)
-        elseif(match(entry, '\S') == 0) " Titulo sem nd
-            let current_title = entry
-        elseif (match(entry, '\C\<TODO\>') > -1) " Qualquer outra linha com tag todo
-            call add(todo, current_title)
-            let line = substitute(entry, '^\s*', '  ', '')
-            let line = substitute(line, '^\s*-', '  ', '')
-            let line = substitute(line, '^\s*=', '  ', '')
-            let line = substitute(line, '^\s*+', '  ', '')
-            let line = substitute(line, '\C\<TODO\>', '  ', '')
-            let line = substitute(line, '\C\<WAIT\>', '  ', '')
-            call add(todo, line)
-        endif
-    endfor
-    let g:startify_custom_header = startify#pad(todo)
-    let g:startify_custom_footer = startify#pad(startify#fortune#boxed())
-catch
-endtry
 
 function! GoToDotfiles()
     exec "cd ".g:dotfiles_dir
