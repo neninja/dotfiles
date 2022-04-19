@@ -708,12 +708,6 @@ Exemplo:
               \ { 'g': ['gostack11', 'e ~/dev/gostack11']},
               \ ]
 
-  let g:vimwikis_dirs = [
-              \ '~/.oab/wiki',
-              \ g:dotfiles_dir."/wiki",
-              \ g:dotfiles_dir."/wiki/vim"
-              \ ]
-
   " set rtp+=~/scoop/apps/fzf
   " set rtp+=~/.fzf/plugin
   set rtp+=~/.fzf
@@ -1420,31 +1414,6 @@ Desenha caixa de texto para diagramas ascii
 Desenha conectores entre caixas
 >
   function! Connectordraw()
-<
----------------------------------------
-Fake vimwiki
-
-Replica das funções que uso do plugin vimwiki, maps e demais configurações
-específicas de markdown em seu respectivo arquivo
-
-|OBJETIVOS|:
-  - Acessar rapidamente uma ou mais wikis
-  - Acessar [arquivo](arquivo) markdorn com enter, agilizando navegação
-  - Marcar e desmarcar checkbox com <c-space> `- [ ] - [x]`
-
-
-Lista e aguarda escolha para redirecionamento para a wiki/README
->
-  function! s:SelecionaWiki(wiki)
-<
-
-Cria checkbox ou preenche existente, usado em todolist e markdown
-  * lorem           ->      - [ ] lorem
-  * - lorem         ->      - [ ] lorem
-  * - [ ] lorem     ->      - [x] lorem
-  * - [x] lorem     ->      - [ ] lorem
->
-  function! ToggleCheckbox()
 <
 ---------------------------------------
 OutputAssertion
