@@ -28,7 +28,6 @@ Versionamento dos meus arquivos de configuração, scripts, instruções e templ
     - [vi](/vim/vi): configurações do vi, usado em servidores sem vim. Deve ser posto em `.vimrc`
         - `curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi > $HOME/.vimrc`
         - `wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi -O $HOME/.vimrc`
-- [wiki/](/wiki): anotações pessoais
 - [.bashrc](.bashrc): configurações bash (alias, path, functions, ps e etc).
 - [.gitconfig](.gitconfig): configuração do git
 - [install.sh](install.sh): "instalação" dos arquivos de configuração no Linux e Windows
