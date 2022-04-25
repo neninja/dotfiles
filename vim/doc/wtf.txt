@@ -646,18 +646,8 @@ Exemplo:
   " set rtp+=~/.fzf/plugin
   set rtp+=~/.fzf
 
-  " Configurações específicas de projetos sem o .exrc
-  " corrige bug ctrlp para listagem de arquivos
-  " ocorrências:
-  "     - protected/modules/intra/views/pessoa/chamadoGestorPortal/_form.php
-  let g:initial_ctrlp_custom_ignore = g:ctrlp_custom_ignore
-
-  function! SourceIfCondominio()
+  function! SourceIfProjectx()
       if(getcwd() == "/home/neni/dev/projectx")
-          if exists("g:ctrlp_custom_ignore")
-              unlet g:ctrlp_custom_ignore
-          endif
-
           augroup filetype_projectx
               autocmd!
               autocmd FileType typescript,javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4
@@ -665,7 +655,7 @@ Exemplo:
       endif
   endfunction
 
-  au DirChanged * :call SourceIfCondominio()
+  au DirChanged * :call SourceIfProjectx()
 <
 ------------------------------------------------------------------------------
 *wtf-file-gvimrclocal*
@@ -708,7 +698,6 @@ somente no terminal. Abaixo a configuração padrão de `exrc` (`:h exrc`)
   set secure
 <
 ==============================================================================
-------------------------------------------------------------------------------
 *wtf-vimproved*
 
 Definições de compatibilidades
