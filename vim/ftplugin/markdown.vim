@@ -46,24 +46,22 @@ setlocal foldtext=FoldTextMarkdown()
 
 setlocal spell
 
-"## Fake vimwiki
-" Replica dos maps do vimwiki
-
-function! s:Navigate()
-    normal ms0
-    if(search('(\p*)', '', line('.')))
-        try
-            let save_cwd = getcwd()
-            " Esconde erro de tentar sobescrever a função
-            " durante a abertura do novo buffer
-            silent! normal! lgf
-            execute 'cd' fnameescape(save_cwd)
-        catch
-            normal `s
-            return
-        endtry
+function! ToggleCheckbox()
+    normal! ms0
+    if(search('-\s\[\p\]', 'c', line('.')))
+        if(getline('.')[col('.') + 2] == ' ')
+            normal! 3lrx
+        else
+            exec "normal! 3lr "
+        endif
+    else
+        if(search('^.*-\s', 'c', line('.')))
+            exec "normal! ^la[ ] "
+        else
+            exec "normal! I- [ ] "
+        endif
     endif
+    normal `s
 endfunction
 
 nnoremap <buffer> <c-space> :call ToggleCheckbox()<CR>
-nnoremap <buffer> <cr>      :call <SID>Navigate()<CR>
