@@ -168,7 +168,7 @@ alias lm='ls -alS --block-size=M'
 alias g="git"
 alias xcb='tr -d "\n" | xclip -selection clipboard'
 alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
-alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'' ]'
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 #{{{ VAGRANT
 alias vg='vagrant'
