@@ -317,6 +317,7 @@ nnoremap    <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
 vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
 nnoremap    <leader>z           za
 
+nnoremap    !!          :!!<CR>
 nnoremap    #           :b #<CR>|" FIXME volta para unlisted buffer tbm
 vnoremap    <           <gv|" mantêm select após indentação
 vnoremap    >           >gv|" mantêm select após indentação
