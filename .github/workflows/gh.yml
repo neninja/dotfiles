@@ -1,0 +1,24 @@
+name: Build and Update HTML branch
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create build folder
+        run: mkdir build
+
+      - name: Create pages
+        run: vim -c "source vim/vimrc" -c TOhtml -c "w build/index.html" -c "qa!" vim/vimrc
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
