@@ -1,0 +1,867 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/work/dotfiles/dotfiles/vim/vimrc.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="vim">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Error { color: #ffffff; background-color: #ff6060; padding-bottom: 1px; font-weight: bold; }
+.Constant { color: #ff6060; }
+.Special { color: #ff40ff; }
+.Identifier { color: #00ffff; }
+.Statement { color: #ffff00; }
+.PreProc { color: #ff40ff; }
+.Type { color: #00ff00; }
+.Todo { color: #808080; background-color: #ffff00; padding-bottom: 1px; }
+.Comment { color: #8080ff; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Comment">&quot;# wtf-file-vimrc</span>
+<span class="Comment">&quot;## Vimproved</span>
+<span class="Comment">&quot;wtf-vimproved</span>
+
+<span class="Statement">set</span> <span class="PreProc">nocompatible</span>
+
+<span class="Comment">&quot;## Buffer</span>
+<span class="Comment">&quot;wtf-buffer</span>
+
+<span class="Statement">set</span> <span class="PreProc">hidden</span>
+
+<span class="Statement">set</span> <span class="PreProc">encoding</span>=utf-8
+<span class="Comment">&quot; </span><span class="Todo">TODO</span><span class="Comment"> entender configs abaixo:</span>
+<span class="Comment">&quot;set fileencoding=utf-8 &quot;?</span>
+<span class="Comment">&quot;set fileencodings=utf-8 &quot;?</span>
+
+<span class="Comment">&quot; </span><span class="Todo">TODO</span><span class="Comment"> entender configs abaixo:</span>
+<span class="Comment">&quot;set bomb &quot;?</span>
+<span class="Comment">&quot;set binary &quot;?</span>
+
+<span class="Statement">set</span> <span class="PreProc">autoread</span>
+<span class="Statement">autocmd</span> <span class="Type">FocusGained</span>,<span class="Type">BufEnter</span> * :<span class="Statement">silent</span>!<span class="Special">&lt;</span><span class="Special">space</span><span class="Special">&gt;</span>!
+
+<span class="Comment">&quot;## Aparência e som</span>
+<span class="Comment">&quot;wtf-aparencia</span>
+
+<span class="Statement">colorscheme</span> slate
+<span class="Statement">set</span> <span class="PreProc">background</span>=dark
+<span class="Statement">set</span> <span class="PreProc">t_Co</span>=256
+<span class="Statement">set</span> <span class="PreProc">termguicolors</span>
+<span class="Statement">set</span> <span class="PreProc">noerrorbells</span> <span class="PreProc">novisualbell</span> <span class="PreProc">t_vb</span>=
+<span class="Statement">set</span> <span class="PreProc">belloff</span>=all
+<span class="Statement">set</span> <span class="PreProc">conceallevel</span>=2
+
+<span class="Statement">set</span> <span class="PreProc">t_ut</span>=<span class="Constant">&quot;&quot;</span>
+<span class="Statement">if</span> <span class="Special">(</span>&amp;term <span class="Statement">=~</span> <span class="Constant">'^xterm'</span> <span class="Statement">&amp;&amp;</span> &amp;t_Co <span class="Statement">==</span> <span class="Constant">256</span><span class="Special">)</span>
+   <span class="Statement">set</span> <span class="PreProc">t_ut</span>= | set <span class="PreProc">ttyscroll</span>=1
+<span class="Statement">endif</span>
+
+<span class="Comment">&quot;## Comportamento</span>
+<span class="Comment">&quot;wtf-comportamento</span>
+<span class="Statement">syntax</span> <span class="Type">on</span>
+
+<span class="Statement">filetype</span> <span class="Type">plugin</span> <span class="Type">indent</span> <span class="Type">on</span>
+<span class="Statement">set</span> <span class="PreProc">showmatch</span>
+<span class="Statement">set</span> <span class="PreProc">showmode</span>
+<span class="Statement">set</span> <span class="PreProc">showcmd</span>
+<span class="Statement">set</span> <span class="PreProc">autoindent</span>
+<span class="Statement">set</span> <span class="PreProc">mouse</span>=
+<span class="Statement">set</span> <span class="PreProc">linebreak</span>
+<span class="Statement">set</span> <span class="PreProc">nocursorcolumn</span> <span class="PreProc">nocursorline</span>
+<span class="Statement">set</span> <span class="PreProc">number</span> <span class="PreProc">norelativenumber</span>
+<span class="Statement">set</span> <span class="PreProc">nrformats</span>-=octal
+<span class="Statement">set</span> <span class="PreProc">lazyredraw</span>
+<span class="Statement">set</span> <span class="PreProc">nobackup</span>
+<span class="Statement">set</span> <span class="PreProc">noswapfile</span>
+<span class="Statement">set</span> <span class="PreProc">scrolloff</span>=3
+<span class="Statement">set</span> <span class="PreProc">clipboard</span>^=unnamedplus<span class="Statement">,</span>unnamed
+<span class="Statement">set</span> <span class="PreProc">colorcolumn</span>=
+<span class="Statement">set</span> <span class="PreProc">backspace</span>=indent<span class="Statement">,</span>eol<span class="Statement">,</span><span class="Statement">start</span>
+<span class="Statement">set</span> <span class="PreProc">formatoptions</span>+=jcr
+<span class="Statement">set</span> <span class="PreProc">hlsearch</span>
+<span class="Statement">set</span> <span class="PreProc">incsearch</span>
+<span class="Statement">set</span> <span class="PreProc">ignorecase</span>
+<span class="Statement">set</span> <span class="PreProc">nosmartcase</span>
+<span class="Statement">set</span> <span class="PreProc">noemoji</span>
+<span class="Statement">set</span> <span class="PreProc">renderoptions</span>=
+<span class="Statement">set</span> <span class="PreProc">modeline</span>
+<span class="Statement">set</span> <span class="PreProc">modelines</span>=5
+<span class="Statement">set</span> <span class="PreProc">tabstop</span>=4
+<span class="Statement">set</span> <span class="PreProc">softtabstop</span>=4
+<span class="Statement">set</span> <span class="PreProc">shiftwidth</span>=4
+<span class="Statement">set</span> <span class="PreProc">smarttab</span>
+<span class="Statement">set</span> <span class="PreProc">expandtab</span>
+<span class="Statement">set</span> <span class="PreProc">foldmethod</span>=marker
+<span class="Statement">set</span> <span class="PreProc">foldtext</span>=FoldTextMarker()
+<span class="Statement">set</span> <span class="PreProc">fillchars</span>=vert<span class="Statement">:</span>\|,fold<span class="Statement">:</span>─
+
+<span class="Statement">let</span> <span class="Identifier">g:html_dynamic_folds</span><span class="Statement">=</span><span class="Constant">1</span>
+<span class="Statement">let</span> <span class="Identifier">g:html_prevent_copy</span> <span class="Statement">=</span> <span class="Constant">&quot;fntd&quot;</span>
+
+<span class="Statement">function</span>! FoldTextMarker<span class="Special">()</span>
+    <span class="Statement">let</span> <span class="Identifier">lines_count</span> <span class="Statement">=</span> <span class="Identifier">v:foldend</span> <span class="Statement">-</span> <span class="Identifier">v:foldstart</span> <span class="Statement">+</span> <span class="Constant">1</span>
+
+<span class="Comment">    &quot; :h digraph-table-mbyte</span>
+    <span class="Statement">let</span> <span class="Identifier">lines_count_text</span> <span class="Statement">=</span> <span class="Constant">'┤'</span> <span class="Statement">.</span> <span class="Identifier">printf</span><span class="Special">(</span><span class="Constant">&quot;%4s&quot;</span>, lines_count<span class="Special">)</span> <span class="Statement">.</span> <span class="Constant">'├'</span>
+    <span class="Statement">let</span> <span class="Identifier">foldchar</span> <span class="Statement">=</span> <span class="Identifier">matchstr</span><span class="Special">(</span>&amp;fillchars, <span class="Constant">'fold:\zs.'</span><span class="Special">)</span>
+
+<span class="Comment">    &quot; remove marcação de comentários # // /* &lt;!--</span>
+    <span class="Statement">let</span> <span class="Identifier">titulo</span> <span class="Statement">=</span> <span class="Identifier">substitute</span><span class="Special">(</span><span class="Identifier">getline</span><span class="Special">(</span>v:foldstart<span class="Special">)</span>, <span class="Constant">&quot;^[#*{\/ \&quot;&lt;!--]*&quot;</span>, <span class="Constant">&quot;&quot;</span>, <span class="Constant">'g'</span><span class="Special">)</span>
+
+<span class="Comment">    &quot; remove marcação de comentários */</span>
+    <span class="Statement">let</span> <span class="Identifier">titulo</span> <span class="Statement">=</span> <span class="Identifier">substitute</span><span class="Special">(</span>titulo, <span class="Constant">&quot;\*\/*$&quot;</span>, <span class="Constant">&quot;&quot;</span>, <span class="Constant">'g'</span><span class="Special">)</span>
+<span class="Comment">    &quot; remove marcação de comentários --&gt;</span>
+    <span class="Statement">let</span> <span class="Identifier">titulo</span> <span class="Statement">=</span> <span class="Identifier">substitute</span><span class="Special">(</span>titulo, <span class="Constant">&quot;\-\-\&gt;*$&quot;</span>, <span class="Constant">&quot;&quot;</span>, <span class="Constant">'g'</span><span class="Special">)</span>
+<span class="Comment">    &quot; remove espaços que sobraram ao final da linha</span>
+    <span class="Statement">let</span> <span class="Identifier">titulo</span> <span class="Statement">=</span> <span class="Identifier">substitute</span><span class="Special">(</span>titulo, <span class="Constant">&quot;\ *$&quot;</span>, <span class="Constant">&quot;&quot;</span>, <span class="Constant">'g'</span><span class="Special">)</span>
+
+<span class="Comment">    &quot; cria + de acordo com foldlevel</span>
+    <span class="Statement">let</span> <span class="Identifier">foldtextstart</span> <span class="Statement">=</span> <span class="Identifier">repeat</span><span class="Special">(</span><span class="Constant">'+'</span>, v:foldlevel<span class="Special">)</span> <span class="Statement">.</span> <span class="Constant">' '</span> <span class="Statement">.</span> titulo
+
+    <span class="Statement">let</span> <span class="Identifier">foldtextend</span> <span class="Statement">=</span> lines_count_text <span class="Statement">.</span> <span class="Identifier">repeat</span><span class="Special">(</span>foldchar, <span class="Constant">8</span><span class="Special">)</span>
+    <span class="Statement">let</span> <span class="Identifier">foldtextlength</span> <span class="Statement">=</span> <span class="Identifier">strlen</span><span class="Statement">(substitute</span><span class="Special">(</span>foldtextstart <span class="Statement">.</span> foldtextend, <span class="Constant">'.'</span>, <span class="Constant">'x'</span>, <span class="Constant">'g'</span><span class="Special">)</span>) <span class="Statement">+</span> &amp;foldcolumn
+    <span class="Statement">return</span> foldtextstart  <span class="Statement">.</span> <span class="Constant">' '</span> <span class="Statement">.</span> <span class="Identifier">repeat</span><span class="Special">(</span>foldchar, <span class="Identifier">winwidth</span><span class="Special">(</span><span class="Constant">0</span><span class="Special">)</span><span class="Statement">-</span>foldtextlength<span class="Special">)</span> <span class="Statement">.</span> foldtextend
+<span class="Statement">endfunction</span>
+
+<span class="Statement">let</span> <span class="Identifier">g:netrw_liststyle</span><span class="Statement">=</span><span class="Constant">3</span>
+<span class="Statement">let</span> <span class="Identifier">g:netrw_bufsettings</span> <span class="Statement">=</span> <span class="Constant">'noma nomod nu nobl nowrap ro'</span>
+<span class="Statement">set</span> <span class="PreProc">shellslash</span>
+
+<span class="Comment">&quot;### Autocomplete</span>
+<span class="Comment">&quot;wtf-autocomplete</span>
+
+<span class="Statement">set</span> <span class="PreProc">wildmenu</span>
+<span class="Statement">set</span> <span class="PreProc">shortmess</span>+=c
+<span class="Statement">set</span> <span class="PreProc">wildcharm</span>=<span class="Special">&lt;</span><span class="Special">tab</span><span class="Special">&gt;</span>
+<span class="Statement">set</span> <span class="PreProc">completeopt</span>=menuone<span class="Statement">,</span>noinsert<span class="Statement">,</span>noselect
+
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>=.git<span class="Statement">,</span>.git/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=.svn<span class="Statement">,</span>.svn/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=node_modules<span class="Statement">,</span>node_modules/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=.venv<span class="Statement">,</span>*/*_cache/*
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=dist<span class="Statement">,</span>dist/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=target<span class="Statement">,</span>target/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=build<span class="Statement">,</span>build/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=vendor<span class="Statement">,</span>vendor/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=ios<span class="Statement">,</span>ios/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=android<span class="Statement">,</span>android/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=_site<span class="Statement">,</span>_site/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=*/coverage<span class="Statement">,</span>*/coverage/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=*/_reports<span class="Statement">,</span>*/_reports/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=DS_Store<span class="Statement">,</span>DS_Store/**
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=tags
+<span class="Statement">set</span> <span class="PreProc">wildignore</span>+=.next
+
+<span class="Statement">set</span> <span class="PreProc">wildignorecase</span>
+
+<span class="Statement">set</span> <span class="PreProc">complete</span>=.<span class="Statement">,</span><span class="Statement">k</span><span class="Statement">,</span>w
+
+<span class="Statement">set</span> <span class="PreProc">tags</span>=tags
+
+<span class="Statement">set</span> <span class="PreProc">iskeyword</span>+=-
+
+<span class="Statement">set</span> <span class="PreProc">omnifunc</span>=syntaxcomplete#Complete
+
+<span class="Comment">&quot;## Statusline</span>
+<span class="Comment">&quot;wtf-statusline</span>
+
+<span class="Statement">set</span> <span class="PreProc">laststatus</span>=2
+<span class="Statement">set</span> <span class="PreProc">statusline</span>=
+<span class="Statement">set</span> <span class="PreProc">statusline</span>+=\ %f\ %r\%m
+<span class="Statement">set</span> <span class="PreProc">statusline</span>+=\%=
+<span class="Statement">set</span> <span class="PreProc">statusline</span>+=\ %p%%\ %l<span class="Statement">:</span>\%c
+<span class="Statement">set</span> <span class="PreProc">statusline</span>+=\ %y
+
+<span class="Comment">&quot;## Funções</span>
+<span class="Comment">&quot;wtf-funcoes</span>
+
+<span class="Statement">function</span>! NN_ctags<span class="Special">()</span>
+    <span class="Statement">let</span> <span class="Identifier">s:ctags_command</span><span class="Statement">=</span><span class="Constant">&quot;ctags&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; -R --totals&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; --kinds-python=-i&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; --extras=+f&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; --exclude=.git --exclude=.svn&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; --exclude=vendor --exclude=_*&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; --exclude=*_cache&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; --exclude=_site&quot;</span> <span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot; --languages=php,javascript,python&quot;</span>
+
+<span class="Comment">    &quot; procura se existe um arquivo .ctags a mais</span>
+    <span class="Statement">if</span> <span class="Identifier">filereadable</span><span class="Special">(</span><span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">&quot;.ctags&quot;</span><span class="Special">))</span>
+        <span class="Statement">let</span> <span class="Identifier">s:ctags_command</span><span class="Statement">.=</span><span class="Constant">&quot; --options=.ctags&quot;</span>
+    <span class="Statement">endif</span>
+
+<span class="Comment">    &quot; seta pasta atual como alvo do ctags</span>
+    <span class="Statement">let</span> <span class="Identifier">s:ctags_command</span><span class="Statement">.=</span><span class="Constant">&quot; .&quot;</span>
+
+<span class="Comment">    &quot; executa o comando montado na string</span>
+    <span class="Statement">execute</span> <span class="Constant">&quot;!&quot;</span><span class="Statement">.</span><span class="Identifier">s:ctags_command</span>
+<span class="Statement">endfun</span>
+
+<span class="Statement">function</span>! NN_EmojiToggle<span class="Special">()</span>
+    <span class="Statement">if</span> &amp;renderoptions <span class="Statement">==</span> <span class="Constant">&quot;&quot;</span>
+        <span class="Statement">set</span> <span class="PreProc">renderoptions</span>=type<span class="Statement">:</span>directx<span class="Statement">,</span>gamma<span class="Statement">:</span>1.0<span class="Statement">,</span>contrast<span class="Statement">:</span>0.1<span class="Statement">,</span>level<span class="Statement">:</span>1.0<span class="Statement">,</span>geom<span class="Statement">:</span>1<span class="Statement">,</span>renmode<span class="Statement">:</span>5<span class="Statement">,</span>taamode<span class="Statement">:</span>1
+    <span class="Statement">else</span>
+        <span class="Statement">set</span> <span class="PreProc">renderoptions</span>=
+    <span class="Statement">endif</span>
+<span class="Statement">endfun</span>
+
+<span class="Statement">function</span>! NN_SetGitDir<span class="Special">()</span>
+<span class="Comment">    &quot; Change working dir to the current file</span>
+    <span class="Statement">cd</span> <span class="Identifier">%</span><span class="Identifier">:p:h</span>
+<span class="Comment">    &quot; Set 'gitdir' to be the folder containing .git</span>
+    <span class="Statement">let</span> <span class="Identifier">gitdir</span><span class="Statement">=</span><span class="Identifier">system</span><span class="Special">(</span><span class="Constant">&quot;git rev-parse --show-toplevel&quot;</span><span class="Special">)</span>
+<span class="Comment">    &quot; See if the command output starts with 'fatal' (if it does, not in a git repo)</span>
+    <span class="Statement">let</span> <span class="Identifier">isnotgitdir</span><span class="Statement">=</span><span class="Identifier">matchstr</span><span class="Special">(</span>gitdir, <span class="Constant">'^fatal:.*'</span><span class="Special">)</span>
+<span class="Comment">    &quot; If it empty, there was no error. Let's cd</span>
+    <span class="Statement">if</span> <span class="Identifier">empty</span><span class="Special">(</span>isnotgitdir<span class="Special">)</span>
+        <span class="Statement">cd</span> `<span class="Statement">=</span>gitdir`
+    <span class="Statement">endif</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">function</span>! NN_Lexplorer<span class="Special">()</span>
+    <span class="Statement">call</span> NN_SetGitDir<span class="Special">()</span>
+    Lexplore
+<span class="Statement">endfunction</span>
+
+<span class="Comment">&quot; </span><span class="Todo">FIXME</span><span class="Comment"> ativa :GitGutterToggle</span>
+<span class="Statement">function</span>! NN_Tasks<span class="Special">()</span>
+    <span class="Statement">call</span> NN_SetGitDir<span class="Special">()</span>
+<span class="Comment">    &quot;silent !git grep -EIn </span><span class="Constant">&quot;TODO|FIXME&quot;</span>
+    <span class="Statement">vimgrep</span> <span class="Constant">/\C\&lt;TODO\&gt;</span><span class="Special">\|</span><span class="Constant">\C\&lt;FIXME\&gt;/</span><span class="Statement">j</span> **
+    <span class="Statement">copen</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">function</span>! NN_GitAula<span class="Special">()</span>
+    <span class="Statement">let</span> <span class="Identifier">log</span> <span class="Statement">=</span> <span class="Identifier">system</span><span class="Special">(</span><span class="Constant">&quot;git log --pretty=format:\%s&quot;</span><span class="Special">)</span>
+    <span class="Statement">vnew</span>
+    <span class="Statement">put</span><span class="Statement">=</span>log
+    <span class="Statement">normal!</span> gg
+    <span class="Statement">if</span> <span class="Identifier">search</span><span class="Special">(</span><span class="Constant">'^:tv: add aula'</span><span class="Special">)</span><span class="Statement">&gt;</span><span class="Constant">0</span>
+        <span class="Statement">normal!</span> 3W
+        <span class="Statement">let</span> <span class="Identifier">s:numero_aula</span> <span class="Statement">=</span> <span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">'&lt;cword&gt;'</span><span class="Special">)</span><span class="Statement">+</span><span class="Constant">1</span>
+        <span class="Statement">echom</span> <span class="Identifier">system</span><span class="Special">(</span><span class="Constant">&quot;git add -A &amp;&amp; git commit -m \&quot;:tv: add aula &quot;</span><span class="Statement">.</span>s:numero_aula<span class="Statement">.</span><span class="Constant">&quot;\&quot;&quot;</span><span class="Special">)</span>
+    <span class="Statement">else</span>
+        <span class="Statement">echom</span> <span class="Identifier">system</span><span class="Special">(</span><span class="Constant">&quot;git add -A &amp;&amp; git commit -m \&quot;:tv: add aula 1\&quot;&quot;</span><span class="Special">)</span>
+    <span class="Statement">endif</span>
+    <span class="Statement">bdelete</span>!
+<span class="Statement">endfunction</span>
+
+<span class="Comment">&quot; vim README.md -c </span><span class="Constant">&quot;call NN_GitAula2()&quot;</span><span class="Comment"> -c qa!</span>
+<span class="Statement">function</span>! NN_GitAula2<span class="Special">()</span>
+    <span class="Statement">let</span> <span class="Identifier">log</span> <span class="Statement">=</span> <span class="Identifier">system</span><span class="Special">(</span><span class="Constant">&quot;git log --pretty=format:\%s&quot;</span><span class="Special">)</span>
+    <span class="Statement">vnew</span>
+    <span class="Statement">put</span><span class="Statement">=</span>log
+    <span class="Statement">normal!</span> gg
+    <span class="Statement">if</span> <span class="Identifier">search</span><span class="Special">(</span><span class="Constant">'^:zap: add aula'</span><span class="Special">)</span><span class="Statement">&gt;</span><span class="Constant">0</span>
+        <span class="Statement">normal!</span> 3W
+        <span class="Statement">let</span> <span class="Identifier">s:numero_aula</span> <span class="Statement">=</span> <span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">'&lt;cword&gt;'</span><span class="Special">)</span><span class="Statement">+</span><span class="Constant">1</span>
+        <span class="Statement">echom</span> <span class="Identifier">system</span><span class="Special">(</span><span class="Constant">&quot;git add -A &amp;&amp; git commit -m \&quot;:zap: add aula &quot;</span><span class="Statement">.</span>s:numero_aula<span class="Statement">.</span><span class="Constant">&quot;\&quot;&quot;</span><span class="Special">)</span>
+    <span class="Statement">else</span>
+        <span class="Statement">echom</span> <span class="Identifier">system</span><span class="Special">(</span><span class="Constant">&quot;git add -A &amp;&amp; git commit -m \&quot;:zap: add aula 1\&quot;&quot;</span><span class="Special">)</span>
+    <span class="Statement">endif</span>
+    <span class="Statement">bdelete</span>!
+<span class="Statement">endfunction</span>
+
+<span class="Comment">&quot; </span><span class="Todo">FIXME</span><span class="Comment"> Ativa gitguttertoggle</span>
+<span class="Statement">function</span>! <span class="Special">s:</span>Grep<span class="Special">(</span>grepword<span class="Special">)</span>
+    <span class="Statement">call</span> NN_SetGitDir<span class="Special">()</span>
+    <span class="Statement">if</span> <span class="Identifier">len</span><span class="Special">(</span><span class="Identifier">a:grepword</span><span class="Special">)</span> <span class="Statement">==</span> <span class="Constant">0</span>
+        <span class="Statement">let</span> <span class="Identifier">s:grepword</span> <span class="Statement">=</span> <span class="Identifier">input</span><span class="Special">(</span><span class="Constant">&quot;Grep: &quot;</span><span class="Special">)</span>
+    <span class="Statement">else</span>
+        <span class="Statement">let</span> <span class="Identifier">s:grepword</span> <span class="Statement">=</span> <span class="Identifier">a:grepword</span>
+    <span class="Statement">endif</span>
+<span class="Comment">    &quot;exec </span><span class="Constant">&quot;silent !git grep -EIn \&quot;</span><span class="Comment">&quot; . grepword . </span><span class="Constant">&quot;\&quot;</span><span class="Comment">&quot;</span>
+<span class="Comment">    &quot; exec </span><span class="Constant">&quot;vimgrep /&quot;</span><span class="Comment">.s:kwd.&quot;/ %&quot;|&quot; No arquivo</span>
+    <span class="Statement">silent</span> <span class="Statement">exec</span> <span class="Constant">&quot;noa vimgrep /</span><span class="Constant">\\</span><span class="Constant">&lt;&quot;</span> <span class="Statement">.</span> <span class="Identifier">s:grepword</span> <span class="Statement">.</span> <span class="Constant">&quot;</span><span class="Constant">\\</span><span class="Constant">&gt;/j **&quot;</span>
+    <span class="Statement">copen</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">function</span>! <span class="Special">s:</span>FechaSplitOuDeletaBuffer<span class="Special">()</span>
+    <span class="Statement">if</span> <span class="Identifier">winnr</span><span class="Special">(</span><span class="Constant">'$'</span><span class="Special">)</span> <span class="Statement">&gt;</span> <span class="Constant">1</span>
+        <span class="Statement">q</span>
+    <span class="Statement">else</span>
+        <span class="Statement">bd</span>
+    <span class="Statement">endif</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">function</span>! <span class="Special">s:</span>FechaSplitOuDeletaBufferForced<span class="Special">()</span>
+    <span class="Statement">if</span> <span class="Identifier">winnr</span><span class="Special">(</span><span class="Constant">'$'</span><span class="Special">)</span> <span class="Statement">&gt;</span> <span class="Constant">1</span>
+        <span class="Statement">q</span>!
+    <span class="Statement">else</span>
+        <span class="Statement">bd</span>!
+    <span class="Statement">endif</span>
+<span class="Statement">endfunction</span>
+
+<span class="Comment">&quot;## Comandos</span>
+
+<span class="Statement">command</span>! Sov <span class="Statement">w</span> | <span class="Statement">source</span> $MYVIMRC | <span class="Statement">e</span> <span class="Identifier">%</span>
+
+<span class="Statement">command</span>! <span class="Statement">-</span><span class="PreProc">nargs</span><span class="Statement">=</span><span class="Type">*</span> Cake <span class="Statement">make</span>! <span class="Special">&lt;</span><span class="Special">args</span><span class="Special">&gt;</span> | <span class="Statement">cw</span>
+<span class="Statement">command</span>! <span class="Statement">-</span><span class="PreProc">nargs</span><span class="Statement">=</span><span class="Type">*</span> Lake <span class="Statement">make</span>! <span class="Special">&lt;</span><span class="Special">args</span><span class="Special">&gt;</span> | <span class="Statement">cw</span>
+
+<span class="Statement">command</span>! BufOnly <span class="Identifier">execute</span> <span class="Constant">'kb|%bdelete|e #|b#|bd%|normal `b'</span>
+
+<span class="Statement">command</span>! TerminalGitRootVertical exec <span class="Constant">'call NN_SetGitDir() | vert term ++kill=term'</span>
+<span class="Statement">command</span>! TerminalGitRootHorizontal exec <span class="Constant">'call NN_SetGitDir() | term ++kill=term'</span>
+
+<span class="Statement">command</span>! Grep <span class="Statement">:</span><span class="Statement">call</span> <span class="Special">&lt;</span><span class="Special">SID</span><span class="Special">&gt;</span>Grep(<span class="Constant">&quot;&quot;</span>)<span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>
+
+<span class="Statement">command</span>! Syntax echo <span class="Constant">&quot;hi&lt;&quot;</span> <span class="Statement">.</span> <span class="Identifier">synIDattr</span>(<span class="Identifier">synID</span>(<span class="Identifier">line</span>(<span class="Constant">&quot;.&quot;</span>),<span class="Identifier">col</span>(<span class="Constant">&quot;.&quot;</span>),<span class="Constant">1</span>),<span class="Constant">&quot;name&quot;</span>) <span class="Statement">.</span> <span class="Constant">'&gt; trans&lt;'</span> <span class="Statement">.</span> <span class="Identifier">synIDattr</span>(<span class="Identifier">synID</span>(<span class="Identifier">line</span>(<span class="Constant">&quot;.&quot;</span>),<span class="Identifier">col</span>(<span class="Constant">&quot;.&quot;</span>),<span class="Constant">0</span>),<span class="Constant">&quot;name&quot;</span>) <span class="Statement">.</span> <span class="Constant">&quot;&gt; lo&lt;&quot;</span> <span class="Statement">.</span> <span class="Identifier">synIDattr</span>(<span class="Identifier">synIDtrans</span>(<span class="Identifier">synID</span>(<span class="Identifier">line</span>(<span class="Constant">&quot;.&quot;</span>),<span class="Identifier">col</span>(<span class="Constant">&quot;.&quot;</span>),<span class="Constant">1</span>)),<span class="Constant">&quot;name&quot;</span>) <span class="Statement">.</span> <span class="Constant">&quot;&gt;&quot;</span>
+
+<span class="Comment">&quot;## Mapeamentos</span>
+<span class="Comment">&quot;:map -&gt; lista todos mapeamentos para o arquivo</span>
+
+<span class="Comment">&quot; </span><span class="Todo">TODO</span><span class="Comment"> ver funcionamento do localleader (:h maplocalleader)</span>
+<span class="Statement">let</span> <span class="Identifier">mapleader</span><span class="Statement">=</span><span class="Constant">&quot;\&lt;space&gt;&quot;</span>
+
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>    :w<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span><span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>        :call NN_Lexplorer()<span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>/           :noh<span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>.           :pwd<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>dd          :call <span class="Special">&lt;</span><span class="Special">SID</span><span class="Special">&gt;</span>FechaSplitOuDeletaBuffer()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>df          :call <span class="Special">&lt;</span><span class="Special">SID</span><span class="Special">&gt;</span>FechaSplitOuDeletaBufferForced()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>ds          :on<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>| &quot; Close all splits
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>j           <span class="Special">&lt;</span><span class="Special">c-w</span><span class="Special">&gt;</span>w|&quot; estilo DWM
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>k           <span class="Special">&lt;</span><span class="Special">c-w</span><span class="Special">&gt;</span>W|&quot; estilo DWM
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>n           :call NN_<span class="Special">&lt;</span><span class="Special">c-d</span><span class="Special">&gt;</span>| &quot; funções pessoais
+<span class="Statement">vnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>n           :call NN_<span class="Special">&lt;</span><span class="Special">c-d</span><span class="Special">&gt;</span>| &quot; funções pessoais
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">expr</span><span class="Special">&gt;&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>q     empty(filter(getwininfo(), 'v:val.quickfix')) ? &quot;:cope<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>&quot; : &quot;:ccl<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>&quot;
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">expr</span><span class="Special">&gt;&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>l     empty(filter(getwininfo(), 'v:val.loclist')) ? &quot;:lope<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>&quot; : &quot;:lcl<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>&quot;
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>s           :split<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>t           :tj <span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;&lt;</span><span class="Special">c-w</span><span class="Special">&gt;&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>| &quot; Goto definition (ctags)
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>v           :vsplit<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>y           my^vg_&quot;+y:echo &quot;Copiado!!&quot;<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">vnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>y           &quot;+y:echo &quot;Copiado!!&quot;<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>z           za
+
+<span class="Statement">nnoremap</span>    <span class="Statement">!</span>!          :!!<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    #           :b #<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>|&quot; FIXME volta para unlisted buffer tbm
+<span class="Statement">vnoremap</span>    &lt;           &lt;gv|&quot; mantêm select após indentação
+<span class="Statement">vnoremap</span>    &gt;           &gt;gv|&quot; mantêm select após indentação
+<span class="Statement">inoremap</span>    &quot;           &quot;&quot;<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot;autoclose
+<span class="Statement">inoremap</span>    '           ''<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot;autoclose
+<span class="Statement">inoremap</span>    {           {}<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot;autoclose
+<span class="Statement">inoremap</span>    {}          {}|&quot;evitar {}}
+<span class="Statement">inoremap</span>    {<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>       {}<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">Esc</span><span class="Special">&gt;</span>O|&quot;autoclose
+<span class="Statement">inoremap</span>    {<span class="Special">&lt;</span><span class="Special">space</span><span class="Special">&gt;</span>    {}<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;&lt;</span><span class="Special">space</span><span class="Special">&gt;&lt;</span><span class="Special">space</span><span class="Special">&gt;&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot;autoclose
+<span class="Statement">inoremap</span>    (           ()<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot;autoclose
+<span class="Statement">inoremap</span>    ()          ()|&quot;evitar ())
+<span class="Statement">inoremap</span>    (<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>       ()<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">Esc</span><span class="Special">&gt;</span>O|&quot;autoclose
+<span class="Statement">inoremap</span>    (<span class="Special">&lt;</span><span class="Special">space</span><span class="Special">&gt;</span>    ()<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;&lt;</span><span class="Special">space</span><span class="Special">&gt;&lt;</span><span class="Special">space</span><span class="Special">&gt;&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot;autoclose
+<span class="Statement">inoremap</span>    [           []<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot;autoclose
+<span class="Statement">inoremap</span>    []          []|&quot;evitar []]
+<span class="Statement">inoremap</span>    [<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>       []<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">Esc</span><span class="Special">&gt;</span>O|&quot;autoclose
+<span class="Statement">inoremap</span>    [<span class="Special">&lt;</span><span class="Special">space</span><span class="Special">&gt;</span>    []<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;&lt;</span><span class="Special">space</span><span class="Special">&gt;&lt;</span><span class="Special">space</span><span class="Special">&gt;&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot;autoclose
+<span class="Statement">vnoremap</span>    J           :m '&gt;+1<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>gv=gv| &quot; move seleção pra baixo
+<span class="Statement">vnoremap</span>    K           :m '&lt;-2<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>gv=gv| &quot; move seleção pra cima
+<span class="Statement">inoremap</span>    kj          <span class="Special">&lt;</span><span class="Special">esc</span><span class="Special">&gt;</span>|&quot; esc mais fácil
+<span class="Statement">nnoremap</span>    n           nzzzv|&quot; centraliza match do search
+<span class="Statement">nnoremap</span>    N           Nzzzv|&quot; centraliza match do search
+<span class="Statement">vnoremap</span>    o'          c'<span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>&quot;'|&quot; surround match
+<span class="Statement">vnoremap</span>    o&quot;          c&quot;<span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>&quot;&quot;|&quot; surround match
+<span class="Statement">vnoremap</span>    o(          c(<span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>&quot;)|&quot; surround match
+<span class="Statement">vnoremap</span>    o{          c{<span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>&quot;}|&quot; surround match
+<span class="Statement">vnoremap</span>    o[          c[<span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>&quot;]|&quot; surround match
+<span class="Statement">nnoremap</span>    Q           @q
+<span class="Statement">tnoremap</span>    <span class="Special">&lt;</span><span class="Special">esc</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">C-</span><span class="Special">\&gt;&lt;</span><span class="Special">C-n</span><span class="Special">&gt;</span>
+<span class="Statement">noremap</span>     \           za|&quot; toggle fold
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">expr</span><span class="Special">&gt;</span><span class="Special">&lt;</span><span class="Special">f2</span><span class="Special">&gt;</span>  &amp;foldlevel ? 'zM' :'zR'| &quot; Toggle fold todo arquivo
+<span class="Statement">noremap</span>     <span class="Special">&lt;</span><span class="Special">up</span><span class="Special">&gt;</span>        <span class="Special">&lt;</span><span class="Special">nop</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">noremap</span>     <span class="Special">&lt;</span><span class="Special">down</span><span class="Special">&gt;</span>      <span class="Special">&lt;</span><span class="Special">nop</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">noremap</span>     <span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>      <span class="Special">&lt;</span><span class="Special">nop</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">noremap</span>     <span class="Special">&lt;</span><span class="Special">right</span><span class="Special">&gt;</span>     <span class="Special">&lt;</span><span class="Special">nop</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">up</span><span class="Special">&gt;</span>        <span class="Special">&lt;</span><span class="Special">nop</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">down</span><span class="Special">&gt;</span>      <span class="Special">&lt;</span><span class="Special">nop</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>      <span class="Special">&lt;</span><span class="Special">nop</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">right</span><span class="Special">&gt;</span>     <span class="Special">&lt;</span><span class="Special">nop</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-</span><span class="Special">\&gt;</span>       <span class="Special">&lt;</span><span class="Special">c-]</span><span class="Special">&gt;</span>|&quot; teclado brasileiro <span class="Special">&lt;</span><span class="Special">c-]</span><span class="Special">&gt;</span> não funciona
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">c-a</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">C-O</span><span class="Special">&gt;</span>yiW<span class="Special">&lt;</span><span class="Special">End</span><span class="Special">&gt;</span>=<span class="Special">&lt;</span><span class="Special">C-R</span><span class="Special">&gt;</span>=<span class="Special">&lt;</span><span class="Special">C-R</span><span class="Special">&gt;</span>0<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>| &quot; tip 73 (vim.fandom)
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">c-h</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Comment">&quot; nnoremap    &lt;c-h&gt;       &lt;c-w&gt;h</span>
+<span class="Statement">cnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-h</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">c-j</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">down</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Comment">&quot; nnoremap    &lt;c-j&gt;       &lt;c-w&gt;j</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-j</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">c-w</span><span class="Special">&gt;</span>w|&quot; estilo DWM
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">c-k</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">up</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Comment">&quot; nnoremap    &lt;c-k&gt;       &lt;c-w&gt;k</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-k</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">c-w</span><span class="Special">&gt;</span>W|&quot; estilo DWM
+<span class="Comment">&quot; nnoremap    &lt;c-l&gt;       &lt;c-w&gt;l</span>
+<span class="Statement">cnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-l</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">right</span><span class="Special">&gt;</span>
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">c-l</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">right</span><span class="Special">&gt;</span>|&quot; força hjkl
+<span class="Statement">tnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-l</span><span class="Special">&gt;</span>       cls<span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-n</span><span class="Special">&gt;</span>       yiwV| &quot; substitue mult cursors
+<span class="Statement">xnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-n</span><span class="Special">&gt;</span>       :s/<span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;&lt;</span><span class="Special">c-*</span><span class="Special">&gt;</span>//g<span class="Special">&lt;</span><span class="Special">left</span><span class="Special">&gt;&lt;</span><span class="Special">left</span><span class="Special">&gt;</span>| &quot; substitue mult cursors
+<span class="Statement">inoremap</span>    <span class="Special">&lt;</span><span class="Special">c-q</span><span class="Special">&gt;</span>       <span class="Special">&lt;</span><span class="Special">esc</span><span class="Special">&gt;</span>:call JumpToTag()<span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>| &quot; &lt;++&gt;
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-q</span><span class="Special">&gt;</span>       :call JumpToTag()<span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>| &quot; &lt;++&gt;
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-s</span><span class="Special">&gt;</span>       mi<span class="Special">&lt;</span><span class="Special">esc</span><span class="Special">&gt;</span>gg=G`i|&quot; indenta todo o arquivo
+<span class="Statement">nnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-z</span><span class="Special">&gt;</span>       u|&quot; remove comportamento <span class="Special">&lt;</span><span class="Special">c-z</span><span class="Special">&gt;</span>
+<span class="Statement">tnoremap</span>    <span class="Special">&lt;</span><span class="Special">s-insert</span><span class="Special">&gt;</span>  <span class="Special">&lt;</span><span class="Special">c-w</span><span class="Special">&gt;</span>&quot;*
+<span class="Statement">tnoremap</span>    <span class="Special">&lt;</span><span class="Special">c-s-v</span><span class="Special">&gt;</span>     <span class="Special">&lt;</span><span class="Special">c-w</span><span class="Special">&gt;</span>&quot;*
+
+<span class="Comment">&quot;## Abreviações</span>
+<span class="Comment">&quot;wtf-abbr</span>
+<span class="Statement">cnoreabbrev</span> W! w!
+<span class="Statement">cnoreabbrev</span> Q! q!
+<span class="Statement">cnoreabbrev</span> Qa! qa!
+<span class="Statement">cnoreabbrev</span> QA! qa!
+<span class="Statement">cnoreabbrev</span> Wq wq
+<span class="Statement">cnoreabbrev</span> Wa wa
+<span class="Statement">cnoreabbrev</span> wQ wq
+<span class="Statement">cnoreabbrev</span> WQ wq
+<span class="Statement">cnoreabbrev</span> W w
+<span class="Statement">cnoreabbrev</span> Q q
+<span class="Statement">cnoreabbrev</span> Qa qa
+<span class="Statement">cnoreabbrev</span> QA qa
+<span class="Statement">cnoreabbrev</span> Wqa wqa
+<span class="Statement">cnoreabbrev</span> WQa wqa
+<span class="Statement">cnoreabbrev</span> WQA wqa
+<span class="Statement">cnoreabbrev</span> wQA wqa
+<span class="Statement">cnoreabbrev</span> wqA wqa
+<span class="Statement">cnoreabbrev</span> wQa wqa
+
+<span class="Statement">cabbrev</span> cvimgrep
+<span class="Special">            \</span> <span class="Statement">noautocmd</span> <span class="Statement">vim</span> <span class="Constant">/\&lt;lt&gt;&lt;C-R&gt;&lt;C-W&gt;\&gt;/</span><span class="Statement">g</span>
+<span class="Special">            \</span> **/*<span class="Special">&lt;</span><span class="Special">C-R</span><span class="Special">&gt;</span>=<span class="Special">(</span><span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">&quot;%:e&quot;</span><span class="Special">)</span><span class="Statement">==</span><span class="Constant">&quot;&quot;</span> ? <span class="Constant">&quot;&quot;</span> : <span class="Constant">&quot;.&quot;</span><span class="Statement">.</span><span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">&quot;%:e&quot;</span><span class="Special">))</span><span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Special">            \</span> <span class="Special">&lt;</span><span class="Special">Bar</span><span class="Special">&gt;</span> <span class="Statement">cope</span>
+<span class="Special">            \</span> <span class="Special">&lt;</span><span class="Special">C-Left</span><span class="Special">&gt;&lt;</span><span class="Special">C-Left</span><span class="Special">&gt;&lt;</span><span class="Special">C-Left</span><span class="Special">&gt;</span>
+
+<span class="Statement">cabbrev</span> clvimgrep
+<span class="Special">            \</span> <span class="Statement">noautocmd</span> <span class="Statement">lvim</span> <span class="Constant">/\&lt;lt&gt;&lt;C-R&gt;&lt;C-W&gt;\&gt;/</span><span class="Statement">g</span>
+<span class="Special">            \</span> <span class="Special">&lt;</span><span class="Special">C-R</span><span class="Special">&gt;</span>=<span class="Special">(</span><span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">&quot;%&quot;</span><span class="Special">))</span><span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Special">            \</span> <span class="Special">&lt;</span><span class="Special">Bar</span><span class="Special">&gt;</span> <span class="Statement">lop</span>
+<span class="Special">            \</span> <span class="Special">&lt;</span><span class="Special">C-Left</span><span class="Special">&gt;&lt;</span><span class="Special">C-Left</span><span class="Special">&gt;&lt;</span><span class="Special">C-Left</span><span class="Special">&gt;</span>
+
+<span class="Comment">&quot;## AutoCmds</span>
+<span class="Comment">&quot;wtf-autocmd</span>
+
+<span class="Comment">&quot; </span><span class="Todo">FIXME</span><span class="Comment"> Como colocar definição de filetype em ftdetect?</span>
+<span class="Statement">augroup</span> filetype_detect
+    <span class="Statement">au</span>!
+    <span class="Statement">au</span> <span class="Type">BufRead</span>,<span class="Type">BufNewFile</span> *.phtml <span class="Statement">setfiletype</span> html
+    <span class="Statement">au</span> <span class="Type">BufRead</span>,<span class="Type">BufNewFile</span> *.gv <span class="Statement">setfiletype</span> dot
+<span class="Statement">augroup</span> END
+
+<span class="Comment">&quot;## Packs pessoais</span>
+<span class="Comment">&quot;wtf-packs-pessoais</span>
+<span class="Comment">&quot;### DankDebug</span>
+<span class="Statement">let</span> <span class="Identifier">g:print_debug_pattern</span> <span class="Statement">=</span> <span class="Special">{</span>
+<span class="Special">            \</span>   <span class="Constant">'go'</span>:               <span class="Constant">'^\s*fmt.Println(\p*)'</span>,
+<span class="Special">            \</span>   <span class="Constant">'python'</span>:           <span class="Constant">'^\s*print(\p*)'</span>,
+<span class="Special">            \</span>   <span class="Constant">'php'</span>:              <span class="Constant">'^\s*var_dump(\p*);die;'</span>,
+<span class="Special">            \</span>   <span class="Constant">'javascript'</span>:       <span class="Constant">'^\s*console.log(\p*)'</span>,
+<span class="Special">            \</span>   <span class="Constant">'typescript'</span>:       <span class="Constant">'^\s*console.log(\p*)'</span>,
+<span class="Special">            \</span>   <span class="Constant">'typescriptreact'</span>:  <span class="Constant">'^\s*console.log(\p*)'</span>,
+<span class="Special">            \</span> <span class="Special">}</span>
+
+<span class="Statement">command</span>! DankDebug exe <span class="Constant">&quot;noautocmd vimgrep /&quot;</span><span class="Statement">.</span><span class="Statement">g</span><span class="Statement">:</span>print_debug_pattern[&amp;filetype].&quot;/g <span class="Constant">&quot;.expand(&quot;</span>%&quot;) | <span class="Statement">cope</span>
+
+<span class="Comment">&quot;### Diagrama ascii</span>
+<span class="Statement">function</span>! Boxdraw<span class="Special">()</span>
+    <span class="Statement">set</span> <span class="PreProc">virtualedit</span>=all
+
+<span class="Comment">    &quot; Cancela virtual edit</span>
+<span class="Comment">    &quot;set virtualedit=</span>
+
+    <span class="Statement">let</span> <span class="Identifier">row0</span> <span class="Statement">=</span> <span class="Identifier">line</span><span class="Special">(</span><span class="Constant">&quot;'&lt;&quot;</span><span class="Special">)</span> <span class="Statement">-</span> <span class="Constant">1</span>
+    <span class="Statement">let</span> <span class="Identifier">col0</span> <span class="Statement">=</span> <span class="Identifier">virtcol</span><span class="Special">(</span><span class="Constant">&quot;'&lt;&quot;</span><span class="Special">)</span> <span class="Statement">-</span> <span class="Constant">1</span>
+    <span class="Statement">let</span> <span class="Identifier">row1</span> <span class="Statement">=</span> <span class="Identifier">line</span><span class="Special">(</span><span class="Constant">&quot;'&gt;&quot;</span><span class="Special">)</span> <span class="Statement">+</span> <span class="Constant">1</span>
+    <span class="Statement">let</span> <span class="Identifier">col1</span> <span class="Statement">=</span> <span class="Identifier">virtcol</span><span class="Special">(</span><span class="Constant">&quot;'&gt;&quot;</span><span class="Special">)</span> <span class="Statement">+</span> <span class="Constant">1</span>
+
+<span class="Comment">    &quot; </span><span class="Todo">FIXME</span><span class="Comment"> criando quadrado de cima o baixo esquerda para direita ok,</span>
+<span class="Comment">    &quot; restante não. Pq?</span>
+<span class="Comment">    &quot; echo row0 . </span><span class="Constant">&quot;-&quot;</span><span class="Comment"> . col0 . </span><span class="Constant">&quot;-&quot;</span><span class="Comment"> . row1 . </span><span class="Constant">&quot;-&quot;</span><span class="Comment"> . col1</span>
+
+    <span class="Statement">let</span> <span class="Identifier">quantidadeL</span> <span class="Statement">=</span> col1 <span class="Statement">-</span> col0
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row1, col0<span class="Special">)</span>
+    <span class="Statement">exec</span> <span class="Constant">&quot;normal! v&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeL</span><span class="Statement">.</span><span class="Constant">&quot;lr-&quot;</span>
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row0, col0<span class="Special">)</span>
+    <span class="Statement">exec</span> <span class="Constant">&quot;normal! v&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeL</span><span class="Statement">.</span><span class="Constant">&quot;lr-&quot;</span>
+
+    <span class="Statement">let</span> <span class="Identifier">quantidadeJ</span> <span class="Statement">=</span> row1 <span class="Statement">-</span> row0
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row0, col0<span class="Special">)</span>
+    <span class="Statement">exec</span> <span class="Constant">&quot;normal! \&lt;c-v&gt;&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeJ</span><span class="Statement">.</span><span class="Constant">&quot;jr|&quot;</span>
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row0, col1<span class="Special">)</span>
+    <span class="Statement">exec</span> <span class="Constant">&quot;normal! \&lt;c-v&gt;&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeJ</span><span class="Statement">.</span><span class="Constant">&quot;jr|&quot;</span>
+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row0, col0<span class="Special">)</span>
+    <span class="Statement">normal!</span> r+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row1, col0<span class="Special">)</span>
+    <span class="Statement">normal!</span> r+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row0, col1<span class="Special">)</span>
+    <span class="Statement">normal!</span> r+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row1, col1<span class="Special">)</span>
+    <span class="Statement">normal!</span> r+
+<span class="Statement">endfunction</span>
+
+<span class="Statement">function</span>! Connectordraw<span class="Special">()</span>
+<span class="Comment">    &quot; coordenadas que iniciaram ou terminaram a seleção</span>
+    <span class="Statement">let</span> <span class="Identifier">row0</span> <span class="Statement">=</span> <span class="Identifier">line</span><span class="Special">(</span><span class="Constant">&quot;'&lt;&quot;</span><span class="Special">)</span>
+    <span class="Statement">let</span> <span class="Identifier">col0</span> <span class="Statement">=</span> <span class="Identifier">virtcol</span><span class="Special">(</span><span class="Constant">&quot;'&lt;&quot;</span><span class="Special">)</span>
+    <span class="Statement">let</span> <span class="Identifier">row1</span> <span class="Statement">=</span> <span class="Identifier">line</span><span class="Special">(</span><span class="Constant">&quot;'&gt;&quot;</span><span class="Special">)</span>
+    <span class="Statement">let</span> <span class="Identifier">col1</span> <span class="Statement">=</span> <span class="Identifier">virtcol</span><span class="Special">(</span><span class="Constant">&quot;'&gt;&quot;</span><span class="Special">)</span>
+
+    <span class="Statement">let</span> <span class="Identifier">rowI</span> <span class="Statement">=</span> <span class="Constant">0</span>
+    <span class="Statement">let</span> <span class="Identifier">colI</span> <span class="Statement">=</span> <span class="Constant">0</span>
+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row0, col0<span class="Special">)</span>
+    <span class="Statement">let</span> <span class="Identifier">conteudoPosicaoInicial</span> <span class="Statement">=</span> <span class="Identifier">getline</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>[<span class="Identifier">col</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span><span class="Statement">-</span><span class="Constant">1</span>]
+    <span class="Statement">if</span><span class="Special">(</span>conteudoPosicaoInicial <span class="Statement">==</span> <span class="Constant">'-'</span> <span class="Statement">||</span> conteudoPosicaoInicial <span class="Statement">==</span> <span class="Constant">'|'</span><span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">rowI</span> <span class="Statement">=</span> <span class="Identifier">line</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">colI</span> <span class="Statement">=</span> <span class="Identifier">virtcol</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>
+    <span class="Statement">endif</span>
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>row1, col1<span class="Special">)</span>
+    <span class="Statement">let</span> <span class="Identifier">conteudoPosicaoInicial</span> <span class="Statement">=</span> <span class="Identifier">getline</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>[<span class="Identifier">col</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span><span class="Statement">-</span><span class="Constant">1</span>]
+    <span class="Statement">if</span><span class="Special">(</span>conteudoPosicaoInicial <span class="Statement">==</span> <span class="Constant">'-'</span> <span class="Statement">||</span> conteudoPosicaoInicial <span class="Statement">==</span> <span class="Constant">'|'</span><span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">rowI</span> <span class="Statement">=</span> <span class="Identifier">line</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">colI</span> <span class="Statement">=</span> <span class="Identifier">virtcol</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>
+    <span class="Statement">endif</span>
+
+<span class="Comment">    &quot; cancela seta</span>
+    <span class="Statement">if</span><span class="Special">(</span>rowI <span class="Statement">==</span> <span class="Constant">0</span><span class="Special">)</span>
+        <span class="Statement">return</span>
+    <span class="Statement">endif</span>
+
+<span class="Comment">    &quot;</span> <span class="PreProc">TESTES:</span><span class="Comment"> <a href="https://codepen.io/nenitf/pen/xxVwYmL?editors=0010">https://codepen.io/nenitf/pen/xxVwYmL?editors=0010</a></span>
+
+    <span class="Statement">let</span> <span class="Identifier">rowF</span> <span class="Statement">=</span> rowI <span class="Statement">==</span> row0 ? row1 : row0
+    <span class="Statement">let</span> <span class="Identifier">colF</span> <span class="Statement">=</span> colI <span class="Statement">==</span> col0 ? col1 : col0
+
+    <span class="Statement">let</span> <span class="Identifier">rowM</span> <span class="Statement">=</span> col0 <span class="Statement">==</span> col1 ? rowI : rowF
+    <span class="Statement">let</span> <span class="Identifier">colM</span> <span class="Statement">=</span> row0 <span class="Statement">==</span> row1 ? colI : colF
+
+    <span class="Statement">let</span> <span class="Identifier">primeiraReta</span> <span class="Statement">=</span> <span class="Constant">0</span>
+    <span class="Statement">let</span> <span class="Identifier">segundaReta</span> <span class="Statement">=</span> <span class="Constant">0</span>
+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowI, colI<span class="Special">)</span>
+    <span class="Statement">let</span> <span class="Identifier">conteudoPosicaoInicial</span> <span class="Statement">=</span> <span class="Identifier">getline</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>[<span class="Identifier">col</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span><span class="Statement">-</span><span class="Constant">1</span>]
+    <span class="Statement">if</span><span class="Special">(</span>conteudoPosicaoInicial <span class="Statement">==</span> <span class="Constant">'-'</span><span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">primeiraReta</span> <span class="Statement">=</span> <span class="Constant">'|'</span>
+        <span class="Statement">let</span> <span class="Identifier">segundaReta</span> <span class="Statement">=</span> <span class="Constant">'-'</span>
+        <span class="Statement">let</span> <span class="Identifier">colM</span> <span class="Statement">=</span> colI
+    <span class="Statement">else</span>
+        <span class="Statement">let</span> <span class="Identifier">primeiraReta</span> <span class="Statement">=</span> <span class="Constant">'-'</span>
+        <span class="Statement">let</span> <span class="Identifier">segundaReta</span> <span class="Statement">=</span> <span class="Constant">'|'</span>
+        <span class="Statement">let</span> <span class="Identifier">rowM</span> <span class="Statement">=</span> rowI
+    <span class="Statement">endif</span>
+
+    <span class="Statement">if</span><span class="Special">(</span>rowI <span class="Statement">&gt;</span> rowM<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">quantidadeJ</span> <span class="Statement">=</span> rowI <span class="Statement">-</span> rowM
+        <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowM, colM<span class="Special">)</span>
+        <span class="Statement">exec</span> <span class="Constant">&quot;normal! \&lt;c-v&gt;&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeJ</span><span class="Statement">.</span><span class="Constant">&quot;jr|&quot;</span>
+    <span class="Statement">elseif</span><span class="Special">(</span>rowI <span class="Statement">&lt;</span> rowM<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">quantidadeJ</span> <span class="Statement">=</span> rowM <span class="Statement">-</span> rowI
+        <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowI, colI<span class="Special">)</span>
+        <span class="Statement">exec</span> <span class="Constant">&quot;normal! \&lt;c-v&gt;&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeJ</span><span class="Statement">.</span><span class="Constant">&quot;jr|&quot;</span>
+    <span class="Statement">elseif</span><span class="Special">(</span>colI <span class="Statement">&gt;</span> colM<span class="Special">)</span>
+        <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowM, colM<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">quantidadeL</span> <span class="Statement">=</span> colI <span class="Statement">-</span> colM
+        <span class="Statement">exec</span> <span class="Constant">&quot;normal! v&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeL</span><span class="Statement">.</span><span class="Constant">&quot;lr-&quot;</span>
+    <span class="Statement">elseif</span><span class="Special">(</span>colI <span class="Statement">&lt;</span> colM<span class="Special">)</span>
+        <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowI, colI<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">quantidadeL</span> <span class="Statement">=</span> colM <span class="Statement">-</span> colI
+        <span class="Statement">exec</span> <span class="Constant">&quot;normal! v&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeL</span><span class="Statement">.</span><span class="Constant">&quot;lr-&quot;</span>
+    <span class="Statement">endif</span>
+
+    <span class="Statement">if</span><span class="Special">(</span>rowM <span class="Statement">&gt;</span> rowF<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">arrowHead</span> <span class="Statement">=</span> <span class="Constant">'^'</span>
+        <span class="Statement">let</span> <span class="Identifier">quantidadeJ</span> <span class="Statement">=</span> rowM <span class="Statement">-</span> rowF
+        <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowF, colF<span class="Special">)</span>
+        <span class="Statement">exec</span> <span class="Constant">&quot;normal! \&lt;c-v&gt;&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeJ</span><span class="Statement">.</span><span class="Constant">&quot;jr|&quot;</span>
+    <span class="Statement">elseif</span><span class="Special">(</span>rowM <span class="Statement">&lt;</span> rowF<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">arrowHead</span> <span class="Statement">=</span> <span class="Constant">'v'</span>
+        <span class="Statement">let</span> <span class="Identifier">quantidadeJ</span> <span class="Statement">=</span> rowF <span class="Statement">-</span> rowM
+        <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowM, colM<span class="Special">)</span>
+        <span class="Statement">exec</span> <span class="Constant">&quot;normal! \&lt;c-v&gt;&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeJ</span><span class="Statement">.</span><span class="Constant">&quot;jr|&quot;</span>
+    <span class="Statement">elseif</span><span class="Special">(</span>colM <span class="Statement">&gt;</span> colF<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">arrowHead</span> <span class="Statement">=</span> <span class="Constant">'&lt;'</span>
+        <span class="Statement">let</span> <span class="Identifier">quantidadeL</span> <span class="Statement">=</span> colM <span class="Statement">-</span> colF
+        <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowF, colF<span class="Special">)</span>
+        <span class="Statement">exec</span> <span class="Constant">&quot;normal! v&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeL</span><span class="Statement">.</span><span class="Constant">&quot;lr-&quot;</span>
+    <span class="Statement">elseif</span><span class="Special">(</span>colM <span class="Statement">&lt;</span> colF<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">arrowHead</span> <span class="Statement">=</span> <span class="Constant">'&gt;'</span>
+        <span class="Statement">let</span> <span class="Identifier">quantidadeL</span> <span class="Statement">=</span> colF <span class="Statement">-</span> colM
+        <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowM, colM<span class="Special">)</span>
+        <span class="Statement">exec</span> <span class="Constant">&quot;normal! v&quot;</span><span class="Statement">.</span><span class="Identifier">quantidadeL</span><span class="Statement">.</span><span class="Constant">&quot;lr-&quot;</span>
+    <span class="Statement">endif</span>
+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowI, colI<span class="Special">)</span>
+    <span class="Statement">normal!</span> r+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowM, colM<span class="Special">)</span>
+    <span class="Statement">normal!</span> r+
+    <span class="Statement">call</span> <span class="Identifier">cursor</span><span class="Special">(</span>rowF, colF<span class="Special">)</span>
+    <span class="Statement">exec</span> <span class="Constant">&quot;normal! r&quot;</span><span class="Statement">.</span><span class="Identifier">arrowHead</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">vnoremap</span> + :<span class="Special">&lt;</span><span class="Special">c-u</span><span class="Special">&gt;</span>call Boxdraw()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">vnoremap</span> - :<span class="Special">&lt;</span><span class="Special">c-u</span><span class="Special">&gt;</span>call Connectordraw()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+
+<span class="Comment">&quot;### Execute file and OutputAssertion</span>
+<span class="Statement">let</span> <span class="Identifier">s:executaveisPorExtensao</span> <span class="Statement">=</span> <span class="Special">{</span>
+<span class="Special">            \</span> <span class="Constant">'lua'</span>: <span class="Constant">'lua'</span>,
+<span class="Special">            \</span> <span class="Constant">'php'</span>: <span class="Constant">'php'</span>,
+<span class="Special">            \</span> <span class="Constant">'go'</span>: <span class="Constant">'go run'</span>,
+<span class="Special">            \</span> <span class="Constant">'py'</span>: <span class="Constant">'python3'</span>,
+<span class="Special">            \</span> <span class="Constant">'js'</span>: <span class="Constant">'node'</span>
+<span class="Special">            \</span><span class="Special">}</span>
+
+<span class="Statement">function</span>! <span class="Special">s:</span>OutputAssertion<span class="Special">()</span>
+    <span class="Statement">try</span>
+        <span class="Statement">let</span> <span class="Identifier">command</span> <span class="Statement">=</span> <span class="Identifier">s:executaveisPorExtensao</span>[<span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">'%:e'</span><span class="Special">)</span>]
+    <span class="Statement">catch</span>
+        <span class="Statement">echo</span> <span class="Constant">&quot;Extensão não mapeada&quot;</span>
+        <span class="Statement">return</span>
+    <span class="Statement">endtry</span>
+
+    <span class="Statement">execute</span> <span class="Constant">&quot;tabnew | 0r!&quot;</span><span class="Statement">.</span><span class="Identifier">command</span><span class="Statement">.</span><span class="Constant">&quot; #&quot;</span>
+
+    <span class="Statement">if</span><span class="Special">(</span>v:shell_error <span class="Statement">&gt;</span> <span class="Constant">0</span><span class="Special">)</span>
+        <span class="Statement">q</span>!
+        <span class="Statement">echo</span> <span class="Constant">&quot;Executável não encontrado&quot;</span>
+        <span class="Statement">return</span>
+    <span class="Statement">endif</span>
+
+<span class="Comment">    &quot; faz o vim entender que não queremo salvar esse arquivo</span>
+    <span class="Statement">setlocal</span> <span class="PreProc">buftype</span>=nofile
+    <span class="Statement">normal!</span> Gdd
+    <span class="Statement">nnoremap</span> <span class="Special">&lt;</span><span class="Special">buffer</span><span class="Special">&gt;</span> q :windo bd!<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+    <span class="Statement">new</span>
+
+<span class="Comment">    &quot; deixar em cima a mensagem</span>
+<span class="Comment">    &quot; caso tenha: set splitbelow</span>
+<span class="Comment">    &quot; é o ideal</span>
+<span class="Comment">    &quot; wincmd r</span>
+    <span class="Statement">normal!</span> iUse &quot;q&quot; para fechar todos os buffers
+
+<span class="Comment">    &quot; faz o vim entender que não queremo salvar esse arquivo</span>
+    <span class="Statement">setlocal</span> <span class="PreProc">buftype</span>=nofile
+    <span class="Statement">wincmd</span> <span class="Statement">w</span>
+
+<span class="Comment">    &quot; resize o máximo</span>
+    <span class="Statement">wincmd</span> _
+
+    <span class="Statement">vert</span> <span class="Statement">diffsplit</span> outputassertion<span class="Statement">.</span>txt
+    <span class="Statement">nnoremap</span> <span class="Special">&lt;</span><span class="Special">buffer</span><span class="Special">&gt;</span> q :windo bd!<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+    <span class="Statement">wincmd</span> <span class="Statement">l</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">let</span> <span class="Identifier">g:current_filetype</span><span class="Statement">=</span><span class="Constant">&quot;&quot;</span>
+<span class="Statement">let</span> <span class="Identifier">g:current_terminal</span><span class="Statement">=</span><span class="Constant">0</span>
+
+<span class="Statement">function</span>! <span class="Special">s:</span>ExecuteCurrentBufferFile<span class="Special">()</span>
+    <span class="Statement">if</span> <span class="Identifier">g:current_terminal</span>
+<span class="Comment">        &quot; ocorre erro caso o buffer não exista mais</span>
+        <span class="Statement">try</span>
+            <span class="Statement">execute</span> <span class="Constant">&quot;bd! &quot;</span><span class="Statement">.</span><span class="Identifier">g:current_terminal</span>
+        <span class="Statement">catch</span>
+        <span class="Statement">endtry</span>
+    <span class="Statement">endif</span>
+    <span class="Statement">try</span>
+        <span class="Statement">let</span> <span class="Identifier">command</span> <span class="Statement">=</span> <span class="Identifier">s:executaveisPorExtensao</span>[<span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">'%:e'</span><span class="Special">)</span>]
+    <span class="Statement">catch</span>
+        <span class="Statement">echo</span> <span class="Constant">&quot;Extensão não mapeada&quot;</span>
+        <span class="Statement">return</span>
+    <span class="Statement">endtry</span>
+    <span class="Statement">cclose</span>
+
+    <span class="Statement">let</span> <span class="Identifier">g:current_filetype</span><span class="Statement">=</span>&amp;<span class="Statement">filetype</span>
+        <span class="Statement">new</span>
+        <span class="Statement">execute</span> <span class="Constant">&quot;set filetype=&quot;</span><span class="Statement">.</span><span class="Identifier">g:current_filetype</span>
+        <span class="Statement">set</span> <span class="PreProc">buftype</span>=terminal
+        <span class="Statement">execute</span> <span class="Constant">&quot;silent 0r!&quot;</span><span class="Statement">.</span><span class="Identifier">command</span><span class="Statement">.</span><span class="Constant">&quot; #&quot;</span>
+        <span class="Statement">let</span> <span class="Identifier">g:current_terminal</span> <span class="Statement">=</span> <span class="Identifier">bufnr</span><span class="Special">()</span>
+        <span class="Statement">silent</span> <span class="Statement">cgetbuffer</span>
+        <span class="Statement">execute</span> <span class="Constant">&quot;b &quot;</span><span class="Statement">.</span><span class="Identifier">g:current_terminal</span>
+        <span class="Statement">set</span> <span class="PreProc">filetype</span>=txt
+        <span class="Statement">cw</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">command</span>! OutputAssertion <span class="Statement">:</span><span class="Statement">call</span> <span class="Special">&lt;</span><span class="Special">SID</span><span class="Special">&gt;</span>OutputAssertion()
+<span class="Statement">command</span>! DumpScript <span class="Statement">:</span><span class="Statement">call</span> <span class="Special">&lt;</span><span class="Special">SID</span><span class="Special">&gt;</span>ExecuteCurrentBufferFile()
+<span class="Statement">nnoremap</span> <span class="Special">&lt;</span><span class="Special">leader</span><span class="Special">&gt;</span>r :DumpScript<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+
+<span class="Comment">&quot;### RunCmd</span>
+
+<span class="Comment">&quot;</span> <span class="PreProc">THANKS:</span><span class="Comment"> <a href="https://stackoverflow.com/a/10495799/9881278">https://stackoverflow.com/a/10495799/9881278</a></span>
+<span class="Statement">function</span>! RunCmd<span class="Special">(</span>line<span class="Special">)</span>
+<span class="Comment">    &quot; Precisa abrir a primeira vez a preview window para zerar o conteudo</span>
+    <span class="Statement">silent</span>! <span class="Statement">noautocmd</span> <span class="Statement">botright</span> <span class="Statement">pedit</span> RUNCMD
+    <span class="Statement">silent</span>! <span class="Statement">noautocmd</span> <span class="Statement">botright</span> <span class="Statement">pedit</span> RUNCMD
+    <span class="Statement">noautocmd</span> <span class="Statement">wincmd</span> P
+    <span class="Statement">set</span> <span class="PreProc">buftype</span>=nofile
+    <span class="Statement">exe</span> <span class="Constant">&quot;noautocmd r! &quot;</span><span class="Statement">.</span><span class="Identifier">a:line</span>
+    <span class="Statement">noautocmd</span> <span class="Statement">wincmd</span> <span class="Statement">p</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">command</span>! <span class="Statement">-</span><span class="PreProc">nargs</span><span class="Statement">=</span><span class="Type">1</span> RunCmd <span class="Statement">:</span><span class="Statement">call</span> RunCmd(<span class="Special">&lt;</span><span class="Special">q-args</span><span class="Special">&gt;</span>)
+
+<span class="Comment">&quot;### PostegreSQL</span>
+<span class="Comment">&quot; declarar em um local não versionado</span>
+<span class="Comment">&quot;let g:dbs_psql = [</span>
+<span class="Comment">&quot;  \ { 'name': 'name_connection', 'url': '[&lt;user&gt;[:&lt;password&gt;]@][&lt;host&gt;[:&lt;port&gt;]]/[&lt;database&gt;]' },</span>
+<span class="Comment">&quot;  \ { 'name': 'db_dev', 'url': 'username:password@localhost:5432/database' },</span>
+<span class="Comment">&quot;  \ { 'name': 'db_prod', 'url': 'username:password@localhost:5432/database' },</span>
+<span class="Comment">&quot;  \ ]</span>
+<span class="Comment">&quot; let g:db_psql = 'name_conection'</span>
+
+<span class="Comment">&quot; function! g:PsqlCompleteTable(A, L, P) abort</span>
+<span class="Comment">&quot;     let commands = [ </span>
+<span class="Comment">&quot;                 \ </span><span class="Constant">&quot;users&quot;</span><span class="Comment">,</span>
+<span class="Comment">&quot;                 \]</span>
+<span class="Comment">&quot;     return filter(commands, 'v:val =~ </span><span class="Constant">&quot;^&quot;</span><span class="Comment"> . a:A')</span>
+<span class="Comment">&quot; endfunction</span>
+
+
+<span class="Statement">function</span>! <span class="Special">s:</span>PsqlComplete<span class="Special">(</span>A, L, P<span class="Special">)</span> abort
+    <span class="Statement">let</span> <span class="Identifier">commands</span> <span class="Statement">=</span> [
+<span class="Special">                \</span> <span class="Constant">&quot;SELECT &quot;</span>,
+<span class="Special">                \</span> <span class="Constant">&quot;SELECT * &quot;</span>,
+<span class="Special">                \</span> <span class="Constant">&quot;TOP &quot;</span>,
+<span class="Special">                \</span> <span class="Constant">&quot;FROM &quot;</span>,
+<span class="Special">                \</span> <span class="Constant">&quot;WHERE &quot;</span>,
+<span class="Special">                \</span> <span class="Constant">&quot;LIMIT &quot;</span>,
+<span class="Special">                \</span>]
+    <span class="Statement">return</span> <span class="Identifier">filter</span><span class="Special">(</span>commands, <span class="Constant">'v:val =~ &quot;^&quot; . a:A'</span><span class="Special">)</span>
+<span class="Statement">endfunction</span>
+
+<span class="Comment">&quot;</span> <span class="PreProc">THANKS:</span><span class="Comment"> <a href="https://github.com/tpope/vim-dadbod">https://github.com/tpope/vim-dadbod</a></span>
+<span class="Comment">&quot; Psql select * from table where name = 'nome'</span>
+<span class="Statement">command</span>! <span class="Statement">-</span><span class="PreProc">nargs</span><span class="Statement">=+</span> <span class="Statement">-</span><span class="PreProc">complete</span><span class="Statement">=</span><span class="Type">customlist</span>,<span class="Special">s:PsqlComplete</span> Psql exe <span class="Constant">'RunCmd psql -w --dbname postgresql://'</span><span class="Statement">.</span><span class="Statement">g</span><span class="Statement">:</span>dbs_psql[g<span class="Statement">:</span>db_psql][&quot;url&quot;].' <span class="Error">-c</span> <span class="Constant">&quot;'.&lt;q-args&gt;.'&quot;</span>'
+<span class="Statement">command</span>! <span class="Statement">-</span><span class="PreProc">nargs</span><span class="Statement">=</span><span class="Type">1</span> <span class="Statement">-</span><span class="PreProc">complete</span><span class="Statement">=</span><span class="Type">customlist</span>,<span class="Special">g</span><span class="Error">:PsqlCompleteTable</span> PsqlSelectAllFrom exe <span class="Constant">'Psql select * from '</span><span class="Statement">.</span><span class="Special">&lt;</span><span class="Special">q-args</span><span class="Special">&gt;</span>
+<span class="Statement">command</span>! PsqlSelectAllTables Psql SELECT table_name FROM information_schema<span class="Statement">.</span>tables WHERE table_schema = <span class="Constant">'public'</span> ORDER BY table_name
+
+<span class="Comment">&quot;### Comentário</span>
+<span class="Statement">let</span> <span class="Identifier">s:comment_map</span> <span class="Statement">=</span> <span class="Special">{</span>
+<span class="Special">            \</span>   <span class="Constant">&quot;c&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;cpp&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;dot&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;go&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;java&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;javascript&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;javascriptreact&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;typescript&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;typescriptreact&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;vue&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;lua&quot;</span>: <span class="Constant">'--'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;scala&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;php&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;python&quot;</span>: <span class="Constant">'#'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;ruby&quot;</span>: <span class="Constant">'#'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;rust&quot;</span>: <span class="Constant">'\/\/'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;sh&quot;</span>: <span class="Constant">'#'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;bashrc&quot;</span>: <span class="Constant">'#'</span>,
+<span class="Special">            \</span>   <span class="Constant">&quot;vim&quot;</span>: <span class="Constant">'&quot;'</span>,
+<span class="Special">            \</span> <span class="Special">}</span>
+
+<span class="Statement">function</span>! ToggleComment<span class="Special">()</span>
+    <span class="Statement">if</span> <span class="Identifier">has_key</span><span class="Special">(</span>s:comment_map, &amp;filetype<span class="Special">)</span>
+        <span class="Statement">let</span> <span class="Identifier">comment_leader</span> <span class="Statement">=</span> <span class="Identifier">s:comment_map</span>[&amp;<span class="Statement">filetype</span>]
+        <span class="Statement">if</span> <span class="Identifier">getline</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span> <span class="Statement">=~</span> <span class="Constant">&quot;^</span><span class="Constant">\\</span><span class="Constant">s*&quot;</span> <span class="Statement">.</span> comment_leader <span class="Statement">.</span> <span class="Constant">&quot; &quot;</span>
+<span class="Comment">            &quot; Uncomment the line</span>
+            <span class="Statement">execute</span> <span class="Constant">&quot;silent s/^</span><span class="Constant">\\</span><span class="Constant">(</span><span class="Constant">\\</span><span class="Constant">s*</span><span class="Constant">\\</span><span class="Constant">)&quot;</span> <span class="Statement">.</span> <span class="Identifier">comment_leader</span> <span class="Statement">.</span> <span class="Constant">&quot; /</span><span class="Constant">\\</span><span class="Constant">1/&quot;</span>
+        <span class="Statement">else</span>
+            <span class="Statement">if</span> <span class="Identifier">getline</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span> <span class="Statement">=~</span> <span class="Constant">&quot;^</span><span class="Constant">\\</span><span class="Constant">s*&quot;</span> <span class="Statement">.</span> comment_leader
+<span class="Comment">                &quot; Uncomment the line</span>
+                <span class="Statement">execute</span> <span class="Constant">&quot;silent s/^</span><span class="Constant">\\</span><span class="Constant">(</span><span class="Constant">\\</span><span class="Constant">s*</span><span class="Constant">\\</span><span class="Constant">)&quot;</span> <span class="Statement">.</span> <span class="Identifier">comment_leader</span> <span class="Statement">.</span> <span class="Constant">&quot;/</span><span class="Constant">\\</span><span class="Constant">1/&quot;</span>
+            <span class="Statement">else</span>
+<span class="Comment">                &quot; Comment the line</span>
+                <span class="Statement">execute</span> <span class="Constant">&quot;silent s/^</span><span class="Constant">\\</span><span class="Constant">(</span><span class="Constant">\\</span><span class="Constant">s*</span><span class="Constant">\\</span><span class="Constant">)/</span><span class="Constant">\\</span><span class="Constant">1&quot;</span> <span class="Statement">.</span> <span class="Identifier">comment_leader</span> <span class="Statement">.</span> <span class="Constant">&quot; /&quot;</span>
+<span class="Comment">                &quot; execute </span><span class="Constant">&quot;silent s/^/\\1&quot;</span><span class="Comment"> . comment_leader . </span><span class="Constant">&quot; /&quot;</span>
+            <span class="Statement">end</span>
+        <span class="Statement">end</span>
+    <span class="Statement">end</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">nnoremap</span> gc :call ToggleComment()<span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>
+<span class="Statement">vnoremap</span> gc :call ToggleComment()<span class="Special">&lt;</span><span class="Special">cr</span><span class="Special">&gt;</span>
+
+<span class="Comment">&quot;### Snippets</span>
+
+<span class="Statement">let</span> <span class="Identifier">g:nonkw_snippet_trigger</span> <span class="Statement">=</span> <span class="Constant">&quot;\&lt;tab&gt;&quot;</span>
+
+<span class="Statement">function</span>! TestaTriggerSnippet<span class="Special">(</span>abbr, expansion, placeholders<span class="Special">)</span>
+    <span class="Statement">let</span> <span class="Identifier">g:placeholders</span> <span class="Statement">=</span> <span class="Identifier">a:placeholders</span>
+    <span class="Statement">let</span> <span class="Identifier">s:expansion</span> <span class="Statement">=</span> <span class="Identifier">a:expansion</span><span class="Statement">.</span>
+<span class="Special">                \</span> <span class="Constant">&quot;\&lt;Esc&gt;:call PlaceHolder('?')\&lt;CR&gt;&quot;</span>
+<span class="Comment">            &quot; \ </span><span class="Constant">&quot;\&lt;Esc&gt;g_&quot;</span>
+<span class="Comment">            &quot; \ </span><span class="Constant">&quot;\&lt;C-R&gt;=Eatchar('\s')\&lt;CR&gt;&quot;</span>
+    <span class="Statement">let</span> <span class="Identifier">c</span> <span class="Statement">=</span> <span class="Identifier">nr2char</span><span class="Special">(</span><span class="Identifier">getchar</span><span class="Special">(</span><span class="Constant">0</span><span class="Special">))</span>
+    <span class="Statement">if</span> <span class="Statement">c</span> <span class="Statement">==</span> <span class="Identifier">g:nonkw_snippet_trigger</span>
+        <span class="Statement">return</span> <span class="Identifier">s:expansion</span>
+    <span class="Statement">else</span>
+        <span class="Statement">return</span> <span class="Identifier">a:abbr</span> <span class="Statement">.</span> <span class="Statement">c</span>
+    <span class="Statement">endif</span>
+<span class="Statement">endfunction</span>
+
+<span class="Statement">inoremap</span> <span class="Special">&lt;</span><span class="Special">c-j</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:call PlaceHolder('/')<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">snoremap</span> <span class="Special">&lt;</span><span class="Special">c-j</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:call PlaceHolder('/')<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="Statement">snoremap</span> <span class="Special">&lt;</span><span class="Special">bs</span><span class="Special">&gt;</span>  i<span class="Special">&lt;</span><span class="Special">bs</span><span class="Special">&gt;</span>
+
+<span class="Comment">&quot; </span><span class="Todo">TODO</span><span class="Comment"> tornar stateless</span>
+<span class="Statement">let</span> <span class="Identifier">g:placeholders</span> <span class="Statement">=</span> []
+<span class="Statement">function</span>! PlaceHolder<span class="Special">(</span>backward<span class="Special">)</span>
+    <span class="Statement">if</span> <span class="Identifier">get</span><span class="Special">(</span>g:placeholders, <span class="Constant">0</span>, <span class="Constant">'0'</span><span class="Special">)</span> <span class="Statement">!=</span> <span class="Constant">'0'</span>
+        <span class="Statement">if</span> <span class="Identifier">search</span><span class="Special">(</span>g:placeholders[<span class="Constant">0</span>], <span class="Constant">'nw'</span><span class="Special">)</span><span class="Statement">&gt;</span><span class="Constant">0</span>
+            <span class="Statement">let</span> <span class="Identifier">placeholder</span> <span class="Statement">=</span> <span class="Identifier">g:placeholders</span>[<span class="Constant">0</span>]
+            <span class="Statement">unlet</span> <span class="Identifier">g:placeholders</span>[<span class="Constant">0</span>]
+
+            <span class="Statement">if</span> <span class="Identifier">get</span><span class="Special">(</span>g:placeholders, <span class="Constant">0</span>, <span class="Constant">'0'</span><span class="Special">)</span> <span class="Statement">!=</span> <span class="Constant">'0'</span>
+                <span class="Statement">highlight</span> <span class="Statement">link</span> <span class="Type">NeniSnippetPlaceHolder</span> <span class="Type">DiffAdd</span>
+                <span class="Statement">execute</span> <span class="Constant">'match NeniSnippetPlaceHolder /'</span><span class="Statement">.</span><span class="Identifier">g:placeholders</span>[0]<span class="Statement">.</span><span class="Constant">'/'</span>
+            <span class="Statement">else</span>
+                <span class="Statement">execute</span> <span class="Constant">&quot;match NeniSnippetPlaceHolder //&quot;</span>
+            <span class="Statement">endif</span>
+
+            <span class="Statement">execute</span> <span class="Constant">&quot;normal! &quot;</span><span class="Statement">.</span><span class="Identifier">a:backward</span><span class="Statement">.</span><span class="Identifier">placeholder</span><span class="Statement">.</span><span class="Constant">&quot;\&lt;cr&gt;&quot;</span>
+            <span class="Statement">execute</span> <span class="Constant">&quot;normal! gn\&lt;c-g&gt;&quot;</span>
+        <span class="Statement">else</span>
+            <span class="Statement">execute</span> <span class="Constant">&quot;normal! a&quot;</span><span class="Statement">.</span><span class="Identifier">g:placeholders</span>
+        <span class="Statement">endif</span>
+    <span class="Statement">endif</span>
+<span class="Statement">endfunction</span>
+
+<span class="Comment">&quot; </span><span class="Todo">FIXME</span><span class="Comment"> só funciona após :Sov</span>
+<span class="Statement">inorea</span> <span class="Special">&lt;</span><span class="Special">buffer</span><span class="Special">&gt;&lt;</span><span class="Special">expr</span><span class="Special">&gt;</span> filen TestaTriggerSnippet('filen',
+<span class="Special">            \</span> &quot;&lt;C-R&gt;=expand('%:t:r')&lt;CR&gt;&quot;,
+<span class="Special">            \</span> []<span class="Error">)</span>
+
+<span class="Comment">&quot;### Listas</span>
+<span class="Statement">function</span>! AutoCompleteCarinhas<span class="Special">()</span>
+    <span class="Statement">call</span> <span class="Identifier">complete</span><span class="Special">(</span><span class="Identifier">col</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>, [
+<span class="Special">                \</span> <span class="Constant">'ಥ_ಥ'</span>,
+<span class="Special">                \</span> <span class="Constant">'ლ(ಠ益ಠლ)'</span>,
+<span class="Special">                \</span> <span class="Constant">'ಠ╭╮ಠ'</span>,
+<span class="Special">                \</span> <span class="Constant">'(╯°□°)╯︵ ʞooqǝɔɐɟ'</span>,
+<span class="Special">                \</span> <span class="Constant">'(╯°□°)╯︵ ┻━┻'</span>,
+<span class="Special">                \</span> <span class="Constant">'(╮°-°)╮┳━┳'</span>,
+<span class="Special">                \</span> <span class="Constant">'( ͡° ͜ʖ ͡°)'</span>,
+<span class="Special">                \</span> <span class="Constant">'¯\_(ツ)_/¯'</span>,
+<span class="Special">                \</span> <span class="Constant">'(~˘▾˘)~'</span>,
+<span class="Special">                \</span> <span class="Constant">'ᕦ(ò_óˇ)ᕤ'</span>,
+<span class="Special">                \</span> <span class="Constant">'༼ つ ◕_◕ ༽つ'</span>,
+<span class="Special">                \</span>]<span class="Special">)</span>
+    <span class="Statement">return</span> <span class="Constant">''</span>
+<span class="Statement">endfunction</span>
+<span class="Statement">inoremap</span> <span class="Special">&lt;</span><span class="Special">c-z</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>=AutoCompleteCarinhas()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
