@@ -1,6 +1,6 @@
 "# wtf-file-dotfiles
 
-let g:dotfiles_dir = "~/dev/dotfiles"
+let g:dotfiles_dir = expand('<sfile>:p:h:h')
 
 function! SourceIfExists(file)
     if filereadable(expand(a:file))
