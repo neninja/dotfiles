@@ -24,7 +24,7 @@ Versionamento dos meus arquivos de configuração, scripts, instruções e templ
     - [plus.vim](/vim/plus.vim): configurações a mais que podem afetar performance do vim
     - [gvimrc](/gvim/gvimrc): configurações de interface gráfica do gvim
     - [packages.vim](/vim/packages.vim): configurações específicas de packages do vim
-    - [vimrc](/vim/vimrc): configurações do vim, funciona de maneira independente do projeto
+    - [vimrc](/vim/vimrc): configurações do vim, funciona de maneira independente do projeto ([prévia](http://vimrc.neni.dev))
     - [vi](/vim/vi): configurações do vi, usado em servidores sem vim. Deve ser posto em `.vimrc`
         - `curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi > $HOME/.vimrc`
         - `wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi -O $HOME/.vimrc`
