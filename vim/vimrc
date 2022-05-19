@@ -10,13 +10,6 @@ set nocompatible
 set hidden
 
 set encoding=utf-8
-" TODO entender configs abaixo:
-"set fileencoding=utf-8 "?
-"set fileencodings=utf-8 "?
-
-" TODO entender configs abaixo:
-"set bomb "?
-"set binary "?
 
 set autoread
 autocmd FocusGained,BufEnter * :silent!<space>!
@@ -39,6 +32,7 @@ endif
 
 "## Comportamento
 "wtf-comportamento
+
 syntax on
 
 filetype plugin indent on
@@ -206,10 +200,8 @@ function! NN_Lexplorer()
     Lexplore
 endfunction
 
-" FIXME ativa :GitGutterToggle
 function! NN_Tasks()
     call NN_SetGitDir()
-    "silent !git grep -EIn "TODO|FIXME"
     vimgrep /\C\<TODO\>\|\C\<FIXME\>/j **
     copen
 endfunction
@@ -229,7 +221,6 @@ function! NN_GitAula()
     bdelete!
 endfunction
 
-" vim README.md -c "call NN_GitAula2()" -c qa!
 function! NN_GitAula2()
     let log = system("git log --pretty=format:\%s")
     vnew
@@ -243,20 +234,6 @@ function! NN_GitAula2()
         echom system("git add -A && git commit -m \":zap: add aula 1\"")
     endif
     bdelete!
-endfunction
-
-" FIXME Ativa gitguttertoggle
-function! s:Grep(grepword)
-    call NN_SetGitDir()
-    if len(a:grepword) == 0
-        let s:grepword = input("Grep: ")        
-    else
-        let s:grepword = a:grepword
-    endif
-    "exec "silent !git grep -EIn \"" . grepword . "\""
-    " exec "vimgrep /".s:kwd."/ %"|" No arquivo
-    silent exec "noa vimgrep /\\<" . s:grepword . "\\>/j **"
-    copen
 endfunction
 
 function! s:FechaSplitOuDeletaBuffer()
@@ -286,8 +263,6 @@ command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
 command! TerminalGitRootVertical exec 'call NN_SetGitDir() | vert term ++kill=term'
 command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
-
-command! Grep :call <SID>Grep("")<cr>
 
 command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
@@ -360,15 +335,11 @@ inoremap    <right>     <nop>|" força hjkl
 nnoremap    <c-\>       <c-]>|" teclado brasileiro <c-]> não funciona
 inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
 inoremap    <c-h>       <left>|" força hjkl
-" nnoremap    <c-h>       <c-w>h
 cnoremap    <c-h>       <left>
 inoremap    <c-j>       <down>|" força hjkl
-" nnoremap    <c-j>       <c-w>j
 nnoremap    <c-j>       <c-w>w|" estilo DWM
 inoremap    <c-k>       <up>|" força hjkl
-" nnoremap    <c-k>       <c-w>k
 nnoremap    <c-k>       <c-w>W|" estilo DWM
-" nnoremap    <c-l>       <c-w>l
 cnoremap    <c-l>       <right>
 inoremap    <c-l>       <right>|" força hjkl
 tnoremap    <c-l>       cls<cr>
@@ -383,6 +354,7 @@ tnoremap    <c-s-v>     <c-w>"*
 
 "## Abreviações
 "wtf-abbr
+
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qa! qa!
@@ -426,7 +398,9 @@ augroup END
 
 "## Packs pessoais
 "wtf-packs-pessoais
+
 "### DankDebug
+
 let g:print_debug_pattern = {
             \   'go':               '^\s*fmt.Println(\p*)',
             \   'python':           '^\s*print(\p*)',
@@ -439,6 +413,7 @@ let g:print_debug_pattern = {
 command! DankDebug exe "noautocmd vimgrep /".g:print_debug_pattern[&filetype]."/g ".expand("%") | cope
 
 "### Diagrama ascii
+
 function! Boxdraw()
     set virtualedit=all
 
@@ -579,6 +554,7 @@ vnoremap + :<c-u>call Boxdraw()<CR>
 vnoremap - :<c-u>call Connectordraw()<CR>
 
 "### Execute file and OutputAssertion
+
 let s:executaveisPorExtensao = {
             \ 'lua': 'lua',
             \ 'php': 'php',
@@ -664,9 +640,7 @@ nnoremap <leader>r :DumpScript<CR>
 
 "### RunCmd
 
-" THANKS: https://stackoverflow.com/a/10495799/9881278
 function! RunCmd(line)
-    " Precisa abrir a primeira vez a preview window para zerar o conteudo
     silent! noautocmd botright pedit RUNCMD
     silent! noautocmd botright pedit RUNCMD
     noautocmd wincmd P
@@ -678,21 +652,6 @@ endfunction
 command! -nargs=1 RunCmd :call RunCmd(<q-args>)
 
 "### PostegreSQL
-" declarar em um local não versionado
-"let g:dbs_psql = [
-"  \ { 'name': 'name_connection', 'url': '[<user>[:<password>]@][<host>[:<port>]]/[<database>]' },
-"  \ { 'name': 'db_dev', 'url': 'username:password@localhost:5432/database' },
-"  \ { 'name': 'db_prod', 'url': 'username:password@localhost:5432/database' },
-"  \ ]
-" let g:db_psql = 'name_conection'
-
-" function! g:PsqlCompleteTable(A, L, P) abort
-"     let commands = [ 
-"                 \ "users",
-"                 \]
-"     return filter(commands, 'v:val =~ "^" . a:A')
-" endfunction
-
 
 function! s:PsqlComplete(A, L, P) abort
     let commands = [ 
@@ -706,13 +665,12 @@ function! s:PsqlComplete(A, L, P) abort
     return filter(commands, 'v:val =~ "^" . a:A')
 endfunction
 
-" THANKS: https://github.com/tpope/vim-dadbod
-" Psql select * from table where name = 'nome'
 command! -nargs=+ -complete=customlist,s:PsqlComplete Psql exe 'RunCmd psql -w --dbname postgresql://'.g:dbs_psql[g:db_psql]["url"].' -c "'.<q-args>.'"'
 command! -nargs=1 -complete=customlist,g:PsqlCompleteTable PsqlSelectAllFrom exe 'Psql select * from '.<q-args>
 command! PsqlSelectAllTables Psql SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name
 
 "### Comentário
+
 let s:comment_map = { 
             \   "c": '\/\/',
             \   "cpp": '\/\/',
@@ -730,6 +688,8 @@ let s:comment_map = {
             \   "python": '#',
             \   "ruby": '#',
             \   "rust": '\/\/',
+            \   "scss": '\/\/',
+            \   "sass": '\/\/',
             \   "sh": '#',
             \   "bashrc": '#',
             \   "vim": '"',
@@ -808,6 +768,7 @@ inorea <buffer><expr> filen TestaTriggerSnippet('filen',
             \ [])
 
 "### Listas
+
 function! AutoCompleteCarinhas()
     call complete(col('.'), [
                 \ 'ಥ_ಥ',
@@ -825,4 +786,3 @@ function! AutoCompleteCarinhas()
     return ''
 endfunction
 inoremap <c-z> <c-r>=AutoCompleteCarinhas()<CR>
-

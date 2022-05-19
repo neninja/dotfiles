@@ -1126,6 +1126,7 @@ Lista TODOS e FIXMES
 |THANKS|: https://www.commandlinefu.com/commands/view/12833/get-a-list-of-all-todofixme-tasks-left-to-be-done-in-your-project
 Note Irá ignorar path do wildignore https://stackoverflow.com/a/20042050
 (possuindo /**)
+Note Uma opção de pesquisa é com git `silent !git grep -EIn "TODO|FIXME"`
 >
   function! NN_Tasks()
 <
@@ -1135,11 +1136,22 @@ Commita projetos de aulas com o padrão `:tv: add aula <numero>`
   function! NN_GitAula()
 <
 
-Pesquisa palavra em todo o projeto
+Commita projetos de aulas com outro padrão `:zap: add aula <numero>`
+Note Usado quando é uma cópia literal da aula, portanto é util commitar
+diretamente pelo terminal com `vim README.md -c "call NN_GitAula2()" -c qa!`
+>
+  function! NN_GitAula()
+<
+
+|GOLD| Pesquisa palavra em todo o projeto
 |THANKS|
   - https://stackoverflow.com/a/20934608/9881278
   - https://github.com/jmharvey/vim/blob/master/vimrc#L207
   - https://vimrcfu.com/snippet/104
+Note Duas outras opções de pesquisa são
+  - `exec "silent !git grep -EIn \"" . grepword . "\""`
+  - `exec "vimgrep /".s:kwd."/ %"`
+Note Melhor utiliza package `vim-grepper`
 >
   function! s:Grep(grepword)
 <
@@ -1327,9 +1339,66 @@ Desenha caixa de texto para diagramas ascii
   function! Boxdraw()
 <
 
+1. `set ve=all`
+2. `<c-v>`
+3. Selecione um quadrado
+4. Aperte +
+
 Desenha conectores entre caixas
 >
   function! Connectordraw()
+<
+
+1. `set ve=all`
+2. `<c-v>`
+3. Selecione a partir de uma linha da caixa até antes do início da próxima
+4. Aperte -
+---------------------------------------
+PostegreSQL
+
+"Auto-complete" de psql. Utilização:
+
+1. Declarar em um local não versionado (pelas senhas):
+>
+  let g:dbs_psql = [
+    \ { 'name': 'name_connection', 'url': '[<user>[:<password>]@][<host>[:<port>]]/[<database>]' },
+    \ { 'name': 'db_dev', 'url': 'username:password@localhost:5432/database' },
+    \ { 'name': 'db_prod', 'url': 'username:password@localhost:5432/database' },
+    \ ]
+  let g:db_psql = 'name_conection'
+
+  function! g:PsqlCompleteTable(A, L, P) abort
+      let commands = [ 
+                  \ "users",
+                  \]
+      return filter(commands, 'v:val =~ "^" . a:A')
+  endfunction
+<
+
+2. Executar o `:Psql select * from table where name = 'nome'`
+
+
+
+Comandos disponíveis
+|THANKS|: https://github.com/tpope/vim-dadbod
+>
+  :Psql
+  :PsqlSelectAllFrom
+  :PsqlSelectAllTables
+<
+---------------------------------------
+RunCmd
+
+Execução ce comandos com output em um buffer temporario. Utilização:
+
+1. `:RunCmd echo "exemplo de comando"`
+
+
+Execução do comando
+|THANKS|: https://stackoverflow.com/a/10495799/9881278
+Note `pedit` duplicado pois precisa abrir a primeira vez a preview window para zerar o conteudo
+>
+  function! RunCmd(line)
 <
 ---------------------------------------
 OutputAssertion
