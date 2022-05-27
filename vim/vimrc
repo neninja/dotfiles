@@ -66,30 +66,10 @@ set softtabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
-set foldmethod=marker
-set foldtext=FoldTextMarker()
 set fillchars=vert:\|,fold:─
 
 let g:html_dynamic_folds=1
 let g:html_prevent_copy = "fntd"
-
-function! FoldTextMarker()
-    let lines_count = v:foldend - v:foldstart + 1
-
-    let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
-    let foldchar = matchstr(&fillchars, 'fold:\zs.')
-
-    let titulo = substitute(getline(v:foldstart), "^[#*{\/ \"<!--]*", "", 'g')
-    let titulo = substitute(titulo, "\*\/*$", "", 'g')
-    let titulo = substitute(titulo, "\-\-\>*$", "", 'g')
-    let titulo = substitute(titulo, "\ *$", "", 'g')
-
-    let foldtextstart = repeat('+', v:foldlevel) . ' ' . titulo
-
-    let foldtextend = lines_count_text . repeat(foldchar, 8)
-    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-    return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
 
 let g:netrw_liststyle=3
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
