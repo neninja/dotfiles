@@ -409,7 +409,7 @@ xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>| " substitue mult cursors
 inoremap    <c-q>       <esc>:call JumpToTag()<cr>| " <++>
 nnoremap    <c-q>       :call JumpToTag()<cr>| " <++>
 nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
-nnoremap    <c-z>       u|" remove comportamento <c-z>
+nnoremap    <c-z>       <nop>
 inoremap    <c-z>       <c-r>=<SID>AutoCompleteCarinhas()<CR>
 tnoremap    <s-insert>  <c-w>"*
 tnoremap    <c-s-v>     <c-w>"*
