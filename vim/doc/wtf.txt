@@ -1101,8 +1101,14 @@ Funções tanto publicas, privadas quando usadas em maps e comandos
 
 Att ctags
 Note Necessario instalar universal ctags
+Note Crie um `.ctags` no :pwd com parametros adicionais do ctags
 >
   function! NN_ctags()
+<
+>
+  --exclude=migrations
+  --exclude=storage
+  --languages=php
 <
 
 Habilita e desabilita emojis, ideal para perf
