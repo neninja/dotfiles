@@ -43,10 +43,11 @@ Linux:
       - `zj` `zk` pulo de fold
   - Propriedades que são setadas podem voltar ao seu valor inicial com &,
   por exemplo `set wildmenu&`
+  - `:map` lista todos mapeamentos para o arquivo
   - Comandos para testar performance:
       - `:syntime` on e `:syntime` report
       - abrir vim no terminal com `vim --startuptime tempo.txt tempo.txt`
-      - abrir vim no terminal com `vim -u NONE` (remove vimrc)
+      - abrir vim no terminal com `vim -u NONE` ou `vim --clean` (remove vimrc)
 
 |COMPLEMENTO|:
   - Melhore as buscas com `:GrepperAgP` instalando https://github.com/ggreer/the_silver_searcher
@@ -967,6 +968,11 @@ Add método padrão de fold `{{{ ... }}}`
 <
 
 Configura título do fold fechado
+Note Tratamentos a serem considerados:
+- Remoção de marcação de comentários # // /* <!--
+- Remoção de marcação de comentários -->
+- Remoção de espaços que sobraram ao final da linha
+- Criar `+` por de acordo com foldlevel
 >
   set foldtext=FoldTextMarker()
 <
@@ -1114,7 +1120,7 @@ Habilita e desabilita emojis, ideal para perf
   function! NN_EmojiToggle()
 <
 
-Atualiza diretório atual (:pwd) com dir do projeto, com raiz .git
+Atualiza diretório atual (`:pwd`) com dir raiz do `.git` caso exista
 |THANKS|: https://michaelheap.com/set-parent-git-directory-to-current-path-in-vim/
 >
   function! NN_SetGitDir()

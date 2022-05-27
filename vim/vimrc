@@ -76,21 +76,14 @@ let g:html_prevent_copy = "fntd"
 function! FoldTextMarker()
     let lines_count = v:foldend - v:foldstart + 1
 
-    " :h digraph-table-mbyte
     let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
     let foldchar = matchstr(&fillchars, 'fold:\zs.')
 
-    " remove marcação de comentários # // /* <!--
     let titulo = substitute(getline(v:foldstart), "^[#*{\/ \"<!--]*", "", 'g')
-
-    " remove marcação de comentários */
     let titulo = substitute(titulo, "\*\/*$", "", 'g')
-    " remove marcação de comentários -->
     let titulo = substitute(titulo, "\-\-\>*$", "", 'g')
-    " remove espaços que sobraram ao final da linha
     let titulo = substitute(titulo, "\ *$", "", 'g')
 
-    " cria + de acordo com foldlevel
     let foldtextstart = repeat('+', v:foldlevel) . ' ' . titulo
 
     let foldtextend = lines_count_text . repeat(foldchar, 8)
@@ -161,15 +154,12 @@ function! NN_ctags()
                 \ " --python-kinds=-i" .
                 \ " --languages=php,javascript,python"
 
-    " procura se existe um arquivo .ctags a mais
     if filereadable(expand(".ctags"))
         let s:ctags_command.=" --options=.ctags"
     endif
 
-    " seta pasta atual como alvo do ctags
     let s:ctags_command.=" ."
 
-    " executa o comando montado na string
     execute "!".s:ctags_command
 endfun
 
@@ -182,13 +172,9 @@ function! NN_EmojiToggle()
 endfun
 
 function! NN_SetGitDir()
-    " Change working dir to the current file
     cd %:p:h
-    " Set 'gitdir' to be the folder containing .git
     let gitdir=system("git rev-parse --show-toplevel")
-    " See if the command output starts with 'fatal' (if it does, not in a git repo)
     let isnotgitdir=matchstr(gitdir, '^fatal:.*')
-    " If it empty, there was no error. Let's cd
     if empty(isnotgitdir)
         cd `=gitdir`
     endif
@@ -296,14 +282,14 @@ function! s:ToggleComment()
     if has_key(s:comment_map, &filetype)
         let comment_leader = s:comment_map[&filetype]
         if getline('.') =~ "^\\s*" . comment_leader . " " 
-            " Uncomment the line
+            " Uncomment
             execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
         else 
             if getline('.') =~ "^\\s*" . comment_leader
-                " Uncomment the line
+                " Uncomment
                 execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
             else
-                " Comment the line
+                " Comment
                 execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
                 " execute "silent s/^/\\1" . comment_leader . " /"
             end
@@ -326,9 +312,7 @@ command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
 command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
 "## Mapeamentos
-":map -> lista todos mapeamentos para o arquivo
 
-" TODO ver funcionamento do localleader (:h maplocalleader)
 let mapleader="\<space>"
 
 nnoremap    <leader><leader>    :w<CR>
