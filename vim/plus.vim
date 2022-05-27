@@ -3,4 +3,4 @@
 set number relativenumber
 
 "## Autocomplete
-set complete=.,b,k,w
+set complete+=b

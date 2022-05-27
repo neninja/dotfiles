@@ -130,7 +130,7 @@ set wildignore+=.next
 
 set wildignorecase
 
-set complete=.,k,w
+set complete=.,k,w,t
 
 set tags=tags
 

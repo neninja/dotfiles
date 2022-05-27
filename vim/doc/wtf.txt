@@ -1044,10 +1044,11 @@ Origem das palavras do wildmenu (`:h ins-completion`)
   b buffers escondidos
   k dicionários
   w de outras janelas (splits)
+  t de tags (ctags)
 Note Sugestão de tags afeta perf
 Note <c-e> mantem o insert mode e fecha completeopt
 >
-  set complete=.,k,w
+  set complete=.,k,w,t
 <
 
 Informa aquivo de tags
