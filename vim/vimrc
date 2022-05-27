@@ -159,6 +159,7 @@ function! NN_ctags()
                 \ " --exclude=*_cache" .
                 \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
                 \ " --exclude=_site" .
+                \ " --php-kinds=c" .
                 \ " --extras=+f" .
                 \ " --kinds-python=-i" .
                 \ " --languages=php,javascript,python"
