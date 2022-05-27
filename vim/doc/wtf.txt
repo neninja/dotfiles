@@ -1057,17 +1057,6 @@ Note Equivale a `set tags=tags,./tags`
   set tags=tags
 <
 
-Configura palavras-com-hifen como palavras inteiras
-|THANKS|: https://stackoverflow.com/a/25050124/9881278
-|PROS|:
-  - Coerência
-  - CSS: font-size
-|CONS|:
-  - PHP: $this-> cria sugestão de $this-
->
-  set iskeyword+=-
-<
-
 Escolhe palavras do omnifunc de acordo com o filetype do buffer aberto
 |THANKS|: https://github.com/vim-scripts/SyntaxComplete
 Note <c-x><c-o> para utilizar a sugestão

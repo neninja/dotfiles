@@ -134,8 +134,6 @@ set complete=.,k,w,t
 
 set tags=tags
 
-set iskeyword+=-
-
 set omnifunc=syntaxcomplete#Complete
 
 "## Statusline

@@ -45,6 +45,7 @@ setlocal foldtext=FoldTextMarkdown()
 ":lvimgrep /^"#/ % | lw
 
 setlocal spell
+setlocal iskeyword+=-
 
 function! ToggleCheckbox()
     normal! ms0
