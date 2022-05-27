@@ -159,9 +159,8 @@ function! NN_ctags()
                 \ " --exclude=*_cache" .
                 \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
                 \ " --exclude=_site" .
-                \ " --php-kinds=c" .
-                \ " --extras=+f" .
-                \ " --kinds-python=-i" .
+                \ " --php-kinds=cfvit" .
+                \ " --python-kinds=-i" .
                 \ " --languages=php,javascript,python"
 
     " procura se existe um arquivo .ctags a mais
