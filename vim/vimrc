@@ -251,6 +251,66 @@ function! s:FechaSplitOuDeletaBufferForced()
     endif
 endfunction
 
+function! s:AutoCompleteCarinhas()
+    call complete(col('.'), [
+                \ 'ಥ_ಥ',
+                \ 'ლ(ಠ益ಠლ)',
+                \ 'ಠ╭╮ಠ',
+                \ '(╯°□°)╯︵ ʞooqǝɔɐɟ',
+                \ '(╯°□°)╯︵ ┻━┻',
+                \ '(╮°-°)╮┳━┳',
+                \ '( ͡° ͜ʖ ͡°)',
+                \ '¯\_(ツ)_/¯',
+                \ '(~˘▾˘)~',
+                \ 'ᕦ(ò_óˇ)ᕤ',
+                \ '༼ つ ◕_◕ ༽つ',
+                \])
+    return ''
+endfunction
+
+let s:comment_map = { 
+            \   "c": '\/\/',
+            \   "cpp": '\/\/',
+            \   "dot": '\/\/',
+            \   "go": '\/\/',
+            \   "java": '\/\/',
+            \   "javascript": '\/\/',
+            \   "javascriptreact": '\/\/',
+            \   "typescript": '\/\/',
+            \   "typescriptreact": '\/\/',
+            \   "vue": '\/\/',
+            \   "lua": '--',
+            \   "scala": '\/\/',
+            \   "php": '\/\/',
+            \   "python": '#',
+            \   "ruby": '#',
+            \   "rust": '\/\/',
+            \   "scss": '\/\/',
+            \   "sass": '\/\/',
+            \   "sh": '#',
+            \   "bashrc": '#',
+            \   "vim": '"',
+            \ }
+
+function! s:ToggleComment()
+    if has_key(s:comment_map, &filetype)
+        let comment_leader = s:comment_map[&filetype]
+        if getline('.') =~ "^\\s*" . comment_leader . " " 
+            " Uncomment the line
+            execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
+        else 
+            if getline('.') =~ "^\\s*" . comment_leader
+                " Uncomment the line
+                execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
+            else
+                " Comment the line
+                execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
+                " execute "silent s/^/\\1" . comment_leader . " /"
+            end
+        end
+    end
+endfunction
+
 "## Comandos
 
 command! Sov w | source $MYVIMRC | e %
@@ -309,6 +369,8 @@ inoremap    [           []<left>|"autoclose
 inoremap    []          []|"evitar []]
 inoremap    [<CR>       []<left><CR><Esc>O|"autoclose
 inoremap    [<space>    []<left><space><space><left>|"autoclose
+nnoremap    gc          :call <SID>ToggleComment()<CR>
+vnoremap    gc          :call <SID>ToggleComment()<CR>
 vnoremap    J           :m '>+1<CR>gv=gv| " move seleção pra baixo
 vnoremap    K           :m '<-2<CR>gv=gv| " move seleção pra cima
 inoremap    kj          <esc>|" esc mais fácil
@@ -348,6 +410,7 @@ inoremap    <c-q>       <esc>:call JumpToTag()<cr>| " <++>
 nnoremap    <c-q>       :call JumpToTag()<cr>| " <++>
 nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
 nnoremap    <c-z>       u|" remove comportamento <c-z>
+inoremap    <c-z>       <c-r>=<SID>AutoCompleteCarinhas()<CR>
 tnoremap    <s-insert>  <c-w>"*
 tnoremap    <c-s-v>     <c-w>"*
 
@@ -394,394 +457,3 @@ augroup filetype_detect
     au BufRead,BufNewFile *.phtml setfiletype html
     au BufRead,BufNewFile *.gv setfiletype dot
 augroup END
-
-"## Packs pessoais
-"wtf-packs-pessoais
-
-"### DankDebug
-
-let g:print_debug_pattern = {
-            \   'go':               '^\s*fmt.Println(\p*)',
-            \   'python':           '^\s*print(\p*)',
-            \   'php':              '^\s*var_dump(\p*);die;',
-            \   'javascript':       '^\s*console.log(\p*)',
-            \   'typescript':       '^\s*console.log(\p*)',
-            \   'typescriptreact':  '^\s*console.log(\p*)',
-            \ }
-
-command! DankDebug exe "noautocmd vimgrep /".g:print_debug_pattern[&filetype]."/g ".expand("%") | cope
-
-"### Diagrama ascii
-
-function! Boxdraw()
-    set virtualedit=all
-
-    " Cancela virtual edit
-    "set virtualedit=
-
-    let row0 = line("'<") - 1
-    let col0 = virtcol("'<") - 1
-    let row1 = line("'>") + 1
-    let col1 = virtcol("'>") + 1
-    
-    " FIXME criando quadrado de cima o baixo esquerda para direita ok,
-    " restante não. Pq?
-    " echo row0 . "-" . col0 . "-" . row1 . "-" . col1
-
-    let quantidadeL = col1 - col0
-    call cursor(row1, col0)
-    exec "normal! v".quantidadeL."lr-"
-    call cursor(row0, col0)
-    exec "normal! v".quantidadeL."lr-"
-
-    let quantidadeJ = row1 - row0
-    call cursor(row0, col0)
-    exec "normal! \<c-v>".quantidadeJ."jr|"
-    call cursor(row0, col1)
-    exec "normal! \<c-v>".quantidadeJ."jr|"
-
-    call cursor(row0, col0)
-    normal! r+
-    call cursor(row1, col0)
-    normal! r+
-    call cursor(row0, col1)
-    normal! r+
-    call cursor(row1, col1)
-    normal! r+
-endfunction
-
-function! Connectordraw()
-    " coordenadas que iniciaram ou terminaram a seleção
-    let row0 = line("'<")
-    let col0 = virtcol("'<")
-    let row1 = line("'>")
-    let col1 = virtcol("'>")
-
-    let rowI = 0
-    let colI = 0
-
-    call cursor(row0, col0)
-    let conteudoPosicaoInicial = getline('.')[col('.')-1]
-    if(conteudoPosicaoInicial == '-' || conteudoPosicaoInicial == '|')
-        let rowI = line('.')
-        let colI = virtcol('.')
-    endif
-    call cursor(row1, col1)
-    let conteudoPosicaoInicial = getline('.')[col('.')-1]
-    if(conteudoPosicaoInicial == '-' || conteudoPosicaoInicial == '|')
-        let rowI = line('.')
-        let colI = virtcol('.')
-    endif
-
-    " cancela seta
-    if(rowI == 0)
-        return
-    endif
-
-    " TESTES: https://codepen.io/nenitf/pen/xxVwYmL?editors=0010
-
-    let rowF = rowI == row0 ? row1 : row0
-    let colF = colI == col0 ? col1 : col0
-
-    let rowM = col0 == col1 ? rowI : rowF
-    let colM = row0 == row1 ? colI : colF
-
-    let primeiraReta = 0
-    let segundaReta = 0
-
-    call cursor(rowI, colI)
-    let conteudoPosicaoInicial = getline('.')[col('.')-1]
-    if(conteudoPosicaoInicial == '-')
-        let primeiraReta = '|'
-        let segundaReta = '-'
-        let colM = colI
-    else
-        let primeiraReta = '-'
-        let segundaReta = '|'
-        let rowM = rowI
-    endif
-
-    if(rowI > rowM)
-        let quantidadeJ = rowI - rowM
-        call cursor(rowM, colM)
-        exec "normal! \<c-v>".quantidadeJ."jr|"
-    elseif(rowI < rowM)
-        let quantidadeJ = rowM - rowI
-        call cursor(rowI, colI)
-        exec "normal! \<c-v>".quantidadeJ."jr|"
-    elseif(colI > colM)
-        call cursor(rowM, colM)
-        let quantidadeL = colI - colM
-        exec "normal! v".quantidadeL."lr-"
-    elseif(colI < colM)
-        call cursor(rowI, colI)
-        let quantidadeL = colM - colI
-        exec "normal! v".quantidadeL."lr-"
-    endif
-
-    if(rowM > rowF)
-        let arrowHead = '^'
-        let quantidadeJ = rowM - rowF
-        call cursor(rowF, colF)
-        exec "normal! \<c-v>".quantidadeJ."jr|"
-    elseif(rowM < rowF)
-        let arrowHead = 'v'
-        let quantidadeJ = rowF - rowM
-        call cursor(rowM, colM)
-        exec "normal! \<c-v>".quantidadeJ."jr|"
-    elseif(colM > colF)
-        let arrowHead = '<'
-        let quantidadeL = colM - colF
-        call cursor(rowF, colF)
-        exec "normal! v".quantidadeL."lr-"
-    elseif(colM < colF)
-        let arrowHead = '>'
-        let quantidadeL = colF - colM
-        call cursor(rowM, colM)
-        exec "normal! v".quantidadeL."lr-"
-    endif
-
-    call cursor(rowI, colI)
-    normal! r+
-    call cursor(rowM, colM)
-    normal! r+
-    call cursor(rowF, colF)
-    exec "normal! r".arrowHead
-endfunction
-
-vnoremap + :<c-u>call Boxdraw()<CR>
-vnoremap - :<c-u>call Connectordraw()<CR>
-
-"### Execute file and OutputAssertion
-
-let s:executaveisPorExtensao = {
-            \ 'lua': 'lua',
-            \ 'php': 'php',
-            \ 'go': 'go run',
-            \ 'py': 'python3',
-            \ 'js': 'node'
-            \}
-
-function! s:OutputAssertion()
-    try
-        let command = s:executaveisPorExtensao[expand('%:e')]
-    catch
-        echo "Extensão não mapeada"
-        return
-    endtry
-
-    execute "tabnew | 0r!".command." #"
-
-    if(v:shell_error > 0)
-        q!
-        echo "Executável não encontrado"
-        return
-    endif
-
-    " faz o vim entender que não queremo salvar esse arquivo
-    setlocal buftype=nofile
-    normal! Gdd
-    nnoremap <buffer> q :windo bd!<CR>
-    new
-
-    " deixar em cima a mensagem
-    " caso tenha: set splitbelow
-    " é o ideal
-    " wincmd r
-    normal! iUse "q" para fechar todos os buffers
-
-    " faz o vim entender que não queremo salvar esse arquivo
-    setlocal buftype=nofile
-    wincmd w
-
-    " resize o máximo
-    wincmd _
-
-    vert diffsplit outputassertion.txt
-    nnoremap <buffer> q :windo bd!<CR>
-    wincmd l
-endfunction
-
-let g:current_filetype=""
-let g:current_terminal=0
-
-function! s:ExecuteCurrentBufferFile()
-    if g:current_terminal
-        " ocorre erro caso o buffer não exista mais
-        try
-            execute "bd! ".g:current_terminal
-        catch
-        endtry
-    endif
-    try
-        let command = s:executaveisPorExtensao[expand('%:e')]
-    catch
-        echo "Extensão não mapeada"
-        return
-    endtry
-    cclose
-
-    let g:current_filetype=&filetype
-        new
-        execute "set filetype=".g:current_filetype
-        set buftype=terminal
-        execute "silent 0r!".command." #"
-        let g:current_terminal = bufnr()
-        silent cgetbuffer
-        execute "b ".g:current_terminal
-        set filetype=txt
-        cw
-endfunction
-
-command! OutputAssertion :call <SID>OutputAssertion()
-command! DumpScript :call <SID>ExecuteCurrentBufferFile()
-nnoremap <leader>r :DumpScript<CR>
-
-"### RunCmd
-
-function! RunCmd(line)
-    silent! noautocmd botright pedit RUNCMD
-    silent! noautocmd botright pedit RUNCMD
-    noautocmd wincmd P
-    set buftype=nofile
-    exe "noautocmd r! ".a:line
-    noautocmd wincmd p
-endfunction
-
-command! -nargs=1 RunCmd :call RunCmd(<q-args>)
-
-"### PostegreSQL
-
-function! s:PsqlComplete(A, L, P) abort
-    let commands = [ 
-                \ "SELECT ",
-                \ "SELECT * ",
-                \ "TOP ",
-                \ "FROM ",
-                \ "WHERE ",
-                \ "LIMIT ",
-                \]
-    return filter(commands, 'v:val =~ "^" . a:A')
-endfunction
-
-command! -nargs=+ -complete=customlist,s:PsqlComplete Psql exe 'RunCmd psql -w --dbname postgresql://'.g:dbs_psql[g:db_psql]["url"].' -c "'.<q-args>.'"'
-command! -nargs=1 -complete=customlist,g:PsqlCompleteTable PsqlSelectAllFrom exe 'Psql select * from '.<q-args>
-command! PsqlSelectAllTables Psql SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name
-
-"### Comentário
-
-let s:comment_map = { 
-            \   "c": '\/\/',
-            \   "cpp": '\/\/',
-            \   "dot": '\/\/',
-            \   "go": '\/\/',
-            \   "java": '\/\/',
-            \   "javascript": '\/\/',
-            \   "javascriptreact": '\/\/',
-            \   "typescript": '\/\/',
-            \   "typescriptreact": '\/\/',
-            \   "vue": '\/\/',
-            \   "lua": '--',
-            \   "scala": '\/\/',
-            \   "php": '\/\/',
-            \   "python": '#',
-            \   "ruby": '#',
-            \   "rust": '\/\/',
-            \   "scss": '\/\/',
-            \   "sass": '\/\/',
-            \   "sh": '#',
-            \   "bashrc": '#',
-            \   "vim": '"',
-            \ }
-
-function! ToggleComment()
-    if has_key(s:comment_map, &filetype)
-        let comment_leader = s:comment_map[&filetype]
-        if getline('.') =~ "^\\s*" . comment_leader . " " 
-            " Uncomment the line
-            execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
-        else 
-            if getline('.') =~ "^\\s*" . comment_leader
-                " Uncomment the line
-                execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
-            else
-                " Comment the line
-                execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
-                " execute "silent s/^/\\1" . comment_leader . " /"
-            end
-        end
-    end
-endfunction
-
-nnoremap gc :call ToggleComment()<cr>
-vnoremap gc :call ToggleComment()<cr>
-
-"### Snippets
-
-let g:nonkw_snippet_trigger = "\<tab>"
-
-function! TestaTriggerSnippet(abbr, expansion, placeholders)
-    let g:placeholders = a:placeholders
-    let s:expansion = a:expansion.
-                \ "\<Esc>:call PlaceHolder('?')\<CR>"
-            " \ "\<Esc>g_"
-            " \ "\<C-R>=Eatchar('\s')\<CR>"
-    let c = nr2char(getchar(0))
-    if c == g:nonkw_snippet_trigger
-        return s:expansion
-    else
-        return a:abbr . c
-    endif
-endfunction
-
-inoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
-snoremap <c-j> <ESC>:call PlaceHolder('/')<CR>
-snoremap <bs>  i<bs>
-
-" TODO tornar stateless
-let g:placeholders = []
-function! PlaceHolder(backward)
-    if get(g:placeholders, 0, '0') != '0'
-        if search(g:placeholders[0], 'nw')>0
-            let placeholder = g:placeholders[0]
-            unlet g:placeholders[0]
-
-            if get(g:placeholders, 0, '0') != '0'
-                highlight link NeniSnippetPlaceHolder DiffAdd
-                execute 'match NeniSnippetPlaceHolder /'.g:placeholders[0].'/'
-            else
-                execute "match NeniSnippetPlaceHolder //"
-            endif
-
-            execute "normal! ".a:backward.placeholder."\<cr>"
-            execute "normal! gn\<c-g>"
-        else
-            execute "normal! a".g:placeholders
-        endif
-    endif
-endfunction
-
-" FIXME só funciona após :Sov
-inorea <buffer><expr> filen TestaTriggerSnippet('filen',
-            \ "<C-R>=expand('%:t:r')<CR>",
-            \ [])
-
-"### Listas
-
-function! AutoCompleteCarinhas()
-    call complete(col('.'), [
-                \ 'ಥ_ಥ',
-                \ 'ლ(ಠ益ಠლ)',
-                \ 'ಠ╭╮ಠ',
-                \ '(╯°□°)╯︵ ʞooqǝɔɐɟ',
-                \ '(╯°□°)╯︵ ┻━┻',
-                \ '(╮°-°)╮┳━┳',
-                \ '( ͡° ͜ʖ ͡°)',
-                \ '¯\_(ツ)_/¯',
-                \ '(~˘▾˘)~',
-                \ 'ᕦ(ò_óˇ)ᕤ',
-                \ '༼ つ ◕_◕ ༽つ',
-                \])
-    return ''
-endfunction
-inoremap <c-z> <c-r>=AutoCompleteCarinhas()<CR>

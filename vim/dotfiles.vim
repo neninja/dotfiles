@@ -10,6 +10,9 @@ endfunction
 
 call SourceIfExists("~/.vimrc-pre.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/vimrc")
+call SourceIfExists(g:dotfiles_dir."/vim/mypacks/dia.vim")
+call SourceIfExists(g:dotfiles_dir."/vim/mypacks/showme.vim")
+call SourceIfExists(g:dotfiles_dir."/vim/mypacks/snipid.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 
 "## RuntimePaths
