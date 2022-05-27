@@ -1108,6 +1108,8 @@ Note Crie um `.ctags` no :pwd com parametros adicionais do ctags
 >
   --exclude=migrations
   --exclude=storage
+  --extras=+f
+  --php-kinds=c
   --languages=php
 <
 
