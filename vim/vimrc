@@ -316,83 +316,81 @@ command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 let mapleader="\<space>"
 
 nnoremap    <leader><leader>    :w<CR>
-nnoremap    <leader><cr>        :call NN_Lexplorer()<cr>
-nnoremap    <leader>/           :noh<cr>
+nnoremap    <leader><CR>        :call NN_Lexplorer()<CR>
+nnoremap    <leader>/           :noh<CR>
 nnoremap    <leader>.           :pwd<CR>
 nnoremap    <leader>dd          :call <SID>FechaSplitOuDeletaBuffer()<CR>
 nnoremap    <leader>df          :call <SID>FechaSplitOuDeletaBufferForced()<CR>
-nnoremap    <leader>ds          :on<CR>| " Close all splits
-nnoremap    <leader>j           <c-w>w|" estilo DWM
-nnoremap    <leader>k           <c-w>W|" estilo DWM
-nnoremap    <leader>n           :call NN_<c-d>| " funções pessoais
-vnoremap    <leader>n           :call NN_<c-d>| " funções pessoais
-nnoremap    <expr><leader>q     empty(filter(getwininfo(), 'v:val.quickfix')) ? ":cope<CR>" : ":ccl<CR>"
-nnoremap    <expr><leader>l     empty(filter(getwininfo(), 'v:val.loclist')) ? ":lope<CR>" : ":lcl<CR>"
+nnoremap    <leader>ds          :on<CR>                                                                     |" fecha todas splits exceto atual
+nnoremap    <leader>j           <c-w>w                                                                      |" estilo DWM
+nnoremap    <leader>k           <c-w>W                                                                      |" estilo DWM
+nnoremap    <leader>n           :call NN_<c-d>                                                              |" funções pessoais
+vnoremap    <leader>n           :call NN_<c-d>                                                              |" funções pessoais
+nnoremap    <expr><leader>q     empty(filter(getwininfo(), 'v:val.quickfix')) ? ":cope<CR>" : ":ccl<CR>"    |" toggle quickfix
+nnoremap    <expr><leader>l     empty(filter(getwininfo(), 'v:val.loclist')) ? ":lope<CR>" : ":lcl<CR>"     |" toggle location-list
 nnoremap    <leader>s           :split<CR>
-nnoremap    <leader>t           :tj <c-r><c-w><CR>| " Goto definition (ctags)
+nnoremap    <leader>t           :tj <c-r><c-w><CR>                                                          |" goto definition (tag jump do ctags)
 nnoremap    <leader>v           :vsplit<CR>
 nnoremap    <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
 vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
 nnoremap    <leader>z           za
 
-nnoremap    !!          :!!<CR>
-nnoremap    #           :b #<CR>|" FIXME volta para unlisted buffer tbm
-vnoremap    <           <gv|" mantêm select após indentação
-vnoremap    >           >gv|" mantêm select após indentação
-inoremap    "           ""<left>|"autoclose
-inoremap    '           ''<left>|"autoclose
-inoremap    {           {}<left>|"autoclose
-inoremap    {}          {}|"evitar {}}
-inoremap    {<CR>       {}<left><CR><Esc>O|"autoclose
-inoremap    {<space>    {}<left><space><space><left>|"autoclose
-inoremap    (           ()<left>|"autoclose
-inoremap    ()          ()|"evitar ())
-inoremap    (<CR>       ()<left><CR><Esc>O|"autoclose
-inoremap    (<space>    ()<left><space><space><left>|"autoclose
-inoremap    [           []<left>|"autoclose
-inoremap    []          []|"evitar []]
-inoremap    [<CR>       []<left><CR><Esc>O|"autoclose
-inoremap    [<space>    []<left><space><space><left>|"autoclose
+nnoremap    !!          :!!<CR>                                 |" repete ultimo :!comando
+nnoremap    #           :b #<CR>                                |" FIXME volta para unlisted buffer tbm
+vnoremap    <           <gv                                     |" mantêm select após indentação
+vnoremap    >           >gv                                     |" mantêm select após indentação
+inoremap    "           ""<left>                                |" autoclose
+inoremap    '           ''<left>                                |" autoclose
+inoremap    {           {}<left>                                |" autoclose
+inoremap    {}          {}                                      |" evita {}}
+inoremap    {<CR>       {}<left><CR><Esc>O                      |" autoclose
+inoremap    {<space>    {}<left><space><space><left>            |" autoclose
+inoremap    (           ()<left>                                |" autoclose
+inoremap    ()          ()                                      |" evita ())
+inoremap    (<CR>       ()<left><CR><Esc>O                      |" autoclose
+inoremap    (<space>    ()<left><space><space><left>            |" autoclose
+inoremap    [           []<left>                                |" autoclose
+inoremap    []          []                                      |" evita []]
+inoremap    [<CR>       []<left><CR><Esc>O                      |" autoclose
+inoremap    [<space>    []<left><space><space><left>            |" autoclose
 nnoremap    gc          :call <SID>ToggleComment()<CR>
 vnoremap    gc          :call <SID>ToggleComment()<CR>
-vnoremap    J           :m '>+1<CR>gv=gv| " move seleção pra baixo
-vnoremap    K           :m '<-2<CR>gv=gv| " move seleção pra cima
-inoremap    kj          <esc>|" esc mais fácil
-nnoremap    n           nzzzv|" centraliza match do search
-nnoremap    N           Nzzzv|" centraliza match do search
-vnoremap    a'          c'<c-r>"'|" surround match
-vnoremap    a"          c"<c-r>""|" surround match
-vnoremap    a(          c(<c-r>")|" surround match
-vnoremap    a{          c{<c-r>"}|" surround match
-vnoremap    a[          c[<c-r>"]|" surround match
+vnoremap    J           :m '>+1<CR>gv=gv                        |" move linha selecionada pra baixo
+vnoremap    K           :m '<-2<CR>gv=gv                        |" move linha selecionada pra cima
+inoremap    kj          <esc>                                   |" esc mais fácil
+nnoremap    n           nzzzv                                   |" centraliza match do search
+nnoremap    N           Nzzzv                                   |" centraliza match do search
+vnoremap    a'          c'<c-r>"'                               |" surround match
+vnoremap    a"          c"<c-r>""                               |" surround match
+vnoremap    a(          c(<c-r>")                               |" surround match
+vnoremap    a{          c{<c-r>"}                               |" surround match
+vnoremap    a[          c[<c-r>"]                               |" surround match
 nnoremap    Q           @q
 tnoremap    <esc>       <C-\><C-n>
-noremap     \           za|" toggle fold
-nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'| " Toggle fold todo arquivo
-noremap     <up>        <nop>|" força hjkl
-noremap     <down>      <nop>|" força hjkl
-noremap     <left>      <nop>|" força hjkl
-noremap     <right>     <nop>|" força hjkl
-inoremap    <up>        <nop>|" força hjkl
-inoremap    <down>      <nop>|" força hjkl
-inoremap    <left>      <nop>|" força hjkl
-inoremap    <right>     <nop>|" força hjkl
-nnoremap    <c-\>       <c-]>|" teclado brasileiro <c-]> não funciona
-inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>| " tip 73 (vim.fandom)
-inoremap    <c-h>       <left>|" força hjkl
-cnoremap    <c-h>       <left>
-inoremap    <c-j>       <down>|" força hjkl
-nnoremap    <c-j>       <c-w>w|" estilo DWM
-inoremap    <c-k>       <up>|" força hjkl
-nnoremap    <c-k>       <c-w>W|" estilo DWM
-cnoremap    <c-l>       <right>
-inoremap    <c-l>       <right>|" força hjkl
-tnoremap    <c-l>       cls<cr>
-nnoremap    <c-n>       yiwV| " substitue mult cursors
-xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>| " substitue mult cursors
-inoremap    <c-q>       <esc>:call JumpToTag()<cr>| " <++>
-nnoremap    <c-q>       :call JumpToTag()<cr>| " <++>
-nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
+noremap     \           za                                      |" toggle fold
+nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'                 |" toggle fold todo arquivo
+noremap     <up>        <nop>                                   |" força hjkl
+noremap     <down>      <nop>                                   |" força hjkl
+noremap     <left>      <nop>                                   |" força hjkl
+noremap     <right>     <nop>                                   |" força hjkl
+inoremap    <up>        <nop>                                   |" força hjkl
+inoremap    <down>      <nop>                                   |" força hjkl
+inoremap    <left>      <nop>                                   |" força hjkl
+inoremap    <right>     <nop>                                   |" força hjkl
+nnoremap    <c-\>       <c-]>                                   |" teclado brasileiro <c-]> não funciona para tag jump
+inoremap    <c-a>       <C-O>yiW<End>=<C-R>=<C-R>0<CR>          |" calculadora - tip 73 https://vim.fandom.com/wiki/Vim_Tips_Wiki:Imported_tips
+inoremap    <c-h>       <left>                                  |" força hjkl
+cnoremap    <c-h>       <left>                                  |" força hjkl
+inoremap    <c-j>       <down>                                  |" força hjkl
+nnoremap    <c-j>       <c-w>w                                  |" estilo DWM
+inoremap    <c-k>       <up>                                    |" força hjkl
+nnoremap    <c-k>       <c-w>W                                  |" estilo DWM
+cnoremap    <c-l>       <right>                                 |" força hjkl
+inoremap    <c-l>       <right>                                 |" força hjkl
+tnoremap    <c-l>       cls<CR>                                 |" limpa terminal Windows
+nnoremap    <c-n>       yiwV                                    |" substitue multi cursors
+xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>            |" substitue multi cursors
+nnoremap    <c-s>       mi<esc>gg=G`i                           |" indenta todo o arquivo
 nnoremap    <c-z>       <nop>
 inoremap    <c-z>       <c-r>=<SID>AutoCompleteCarinhas()<CR>
 tnoremap    <s-insert>  <c-w>"*
