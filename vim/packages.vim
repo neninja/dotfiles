@@ -34,7 +34,7 @@ let g:ctrlp_prompt_mappings = {
 
 " somente wildignore não funciona no linux
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.svn$\|node_modules\|dist\|target$\|build\|vendor$\|ios$\|android\|site\|coverage$\|_reports\|DS_Store\|\.next\|_cache',
+  \ 'dir':  '\.git$\|\.svn$\|node_modules\|dist\|target$\|build\|vendor$\|ios$\|android\|^site$\|coverage$\|_reports\|DS_Store\|\.next\|_cache',
   \ 'file': '\.so$\|\.dat$|\.DS_Store$\|\.venv\|tags$'
   \ }
 

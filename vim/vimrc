@@ -123,6 +123,7 @@ set wildignore+=android,android/**
 set wildignore+=_site,_site/**
 set wildignore+=*/coverage,*/coverage/**
 set wildignore+=*/_reports,*/_reports/**
+set wildignore+=*/_gen
 set wildignore+=DS_Store,DS_Store/**
 set wildignore+=tags
 set wildignore+=.next
