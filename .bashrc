@@ -268,7 +268,7 @@ export EDITOR=$VISUAL
 export DF=$HOME/dev/dotfiles
 export IS=$HOME/dev/is
 
-export PATH=$HOME/bin:/usr/local/go/bin:$GOPATH/bin:$PATH;
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/go/bin:$GOPATH/bin:$PATH;
 #}}}
 #{{{ Inputrc
 # Desabilitar case-sensitive
