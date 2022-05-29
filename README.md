@@ -40,7 +40,7 @@ Os arquivos normalmente referenciam o path `~/dev/dotfiles/`, portanto clone o p
 cd ~
 mkdir dev
 cd dev
-git clone https://github.com/nenitf/dotfiles.git
+git clone git@github.com:nenitf/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
