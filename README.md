@@ -38,7 +38,7 @@ Os arquivos normalmente referenciam o path `~/dev/dotfiles/`, portanto clone o p
 
 ```bash
 cd ~
-mkdir dev
+mkdir -p dev
 cd dev
 git clone git@github.com:nenitf/dotfiles.git
 cd dotfiles
