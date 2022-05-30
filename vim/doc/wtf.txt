@@ -1147,9 +1147,7 @@ Note Duas outras opções de pesquisa são
   - `exec "silent !git grep -EIn \"" . grepword . "\""`
   - `exec "vimgrep /".s:kwd."/ %"`
 Note Melhor utiliza package `vim-grepper`
->
-  function! s:Grep(grepword)
-<
+
 
 Fecha split ou deleta o buffer
 >
@@ -1186,13 +1184,6 @@ Abre terminal em split, ideal para o gvim
 >
   command! TerminalGitRootVertical exec 'call NN_SetGitDir() | vert term ++kill=term'
   command! TerminalGitRootHorizontal exec 'call NN_SetGitDir() | term ++kill=term'
-<
-
-Procura palavra no projeto
-  :Grep<CR>
-  Grep: <palavra>
->
- command! Grep :call <SID>Grep("")<cr>
 <
 
 Visualiza highlight group da palavra sob o cursor
