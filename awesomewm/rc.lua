@@ -361,7 +361,7 @@ clientkeys = gears.table.join(
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({modkey		  }, "space", function(c)
+    awful.key({modkey, "Shift"	   }, "Return", function(c)
 	if client.focus == awful.client.getmaster() then
 		awful.client.swap.byidx(1)
 		awful.client.focus.byidx(-1)
