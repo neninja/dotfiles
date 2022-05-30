@@ -14,9 +14,10 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
+-- Enable hotkeys help widget for other apps
 -- when client with a matching name is opened:
-require("awful.hotkeys_popup.keys")
+--require("awful.hotkeys_popup.keys")
+require("awful.hotkeys_popup.keys.vim")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
