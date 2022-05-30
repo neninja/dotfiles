@@ -93,3 +93,5 @@ elif [[ "$OSTYPE" == "msys" ]]; then
     # cd ~/AppData/Local/nvim
     # clonaNeniRepos
 fi
+
+echo "Caso queira utilizar ctags, baixe o binario universal-ctags: https://github.com/universal-ctags/ctags"
