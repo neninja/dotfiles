@@ -1,9 +1,14 @@
 {
     // https://github.com/VSCodeVim/Vim
-    // https://github.com/anotherglitchinthematrix/monochrome
-    // https://github.com/MicrosoftDocs/live-share
+    // https://marketplace.visualstudio.com/items?itemName=vscodevim.vim
 
-    "workbench.colorTheme": "Monochrome Dark", // https://marketplace.visualstudio.com/items?itemName=anotherglitchinthematrix.monochrome
+    // https://github.com/anotherglitchinthematrix/monochrome
+    // https://marketplace.visualstudio.com/items?itemName=anotherglitchinthematrix.monochrome
+
+    // https://github.com/MicrosoftDocs/live-share
+    // https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack
+
+    "workbench.colorTheme": "Monochrome Dark",
     //"workbench.colorTheme": "One Dark Pro",
     "workbench.startupEditor": "newUntitledFile",
     "typescript.updateImportsOnFileMove.enabled": "never",
