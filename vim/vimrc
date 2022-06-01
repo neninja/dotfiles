@@ -333,6 +333,8 @@ inoremap    [           []<left>|" autoclose
 inoremap    []          []|" evita []]
 inoremap    [<CR>       []<left><CR><Esc>O|" autoclose
 inoremap    [<space>    []<left><space><space><left>|" autoclose
+nnoremap    <expr>dj    &diff ? ":diffget LO<CR>" : "<nop>"
+nnoremap    <expr>dk    &diff ? ":diffget RE<CR>" : "<nop>"
 nnoremap    gc          :call <SID>ToggleComment()<CR>
 vnoremap    gc          :call <SID>ToggleComment()<CR>
 vnoremap    J           :m '>+1<CR>gv=gv|" move linha selecionada pra baixo
