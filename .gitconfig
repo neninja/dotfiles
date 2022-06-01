@@ -27,6 +27,8 @@
     added = green bold
     changed = yellow bold
     untracked = red bold
+[mergetool]
+    keepBackup = false
 [merge]
 	tool = vimdiff
 [difftool]
