@@ -69,6 +69,8 @@
     mc = merge --continue
     ms = merge --skip
     #############
+    mt = mergetool
+    #############
     o = checkout
     ob = checkout -b
     oh = checkout -- . # igual a: git restore .
