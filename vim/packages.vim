@@ -168,7 +168,7 @@ augroup PhpactorMappings
     au FileType php nmap <buffer> <Leader>tt :PhpactorTransform<CR>
     "au FileType php nmap <buffer> <Leader>cc :PhpactorClassNew<CR>
     "au FileType php nmap <buffer> <Leader>ci :PhpactorClassInflect<CR>
-    au FileType php nmap <buffer> <Leader>fr :PhpactorFindReferences<CR>
+    au FileType php nmap <buffer> <Leader>r :PhpactorFindReferences<CR>
     au FileType php nmap <buffer> <Leader>mf :PhpactorMoveFile<CR>
     "au FileType php nmap <buffer> <Leader>cf :PhpactorCopyFile<CR>
     au FileType php nmap <buffer> <silent> <Leader>ee :PhpactorExtractExpression<CR>
