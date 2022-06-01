@@ -30,7 +30,9 @@
 [mergetool]
     keepBackup = false
 [merge]
-	tool = vimdiff
+	tool = fugitive
+[mergetool "fugitive"]
+    cmd = vim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [difftool]
     prompt = false
 	tool = vimdiff
