@@ -525,6 +525,18 @@ junegunn/gv.vim
   - Mais facil de pesquisar pelo titulo do commit
   - Clicar no commit permite ver sua descrição e diff
 ---------------------------------------
+phpactor/phpactor
+
+Note: `:PhpactorStatus` utiliza como `--working-dir` o local onde o terminal
+foi aberto e não o `:pwd`. Contudo, mesmo com o `--working-dir` errado, não
+ocorre nenhum problema, somente falha no teste de git + composer
+
+- Atualiza <c-x><c-o> de `phpcomplete#CompletePHP` para o plugin
+>
+  au! FileType php setlocal omnifunc=phpactor#Complete
+<
+
+---------------------------------------
 diepm/vim-rest-console
 
 |PROS|:

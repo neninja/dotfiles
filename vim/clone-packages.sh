@@ -50,6 +50,7 @@ vendorStartRepos=(
 
     ####### PHP
     "https://github.com/alvan/vim-php-manual.git" # manual do php no vim
+    "https://github.com/phpactor/phpactor.git" # autocomplete e tools para php
 
     ###### HIGHLIGHT
     "https://github.com/plasticboy/vim-markdown.git"
@@ -94,4 +95,6 @@ elif [[ "$OSTYPE" == "msys" ]]; then
     # clonaNeniRepos
 fi
 
-echo "Caso queira utilizar ctags, baixe o binario universal-ctags: https://github.com/universal-ctags/ctags"
+echo "Notas:"
+echo -e "\tCaso queira utilizar ctags, baixe o binario universal-ctags: https://github.com/universal-ctags/ctags"
+echo -e "\tPara utilizar autocomplete do PHP acesse a pasta para onde o phpactor foi clonado (~/.vim-ou-vimfiles/pack/vendor/start/phpactor) e baixe as dependencias com Composer"
