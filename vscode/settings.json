@@ -1,15 +1,11 @@
 {
-    // https://github.com/VSCodeVim/Vim
-    // https://marketplace.visualstudio.com/items?itemName=vscodevim.vim
-
-    // https://github.com/anotherglitchinthematrix/monochrome
-    // https://marketplace.visualstudio.com/items?itemName=anotherglitchinthematrix.monochrome
+    // code --install-extension vscodevim.vim --install-extension anotherglitchinthematrix.monochrome
 
     // https://github.com/MicrosoftDocs/live-share
     // https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack
+    // opcional: code --install-extension MS-vsliveshare.vsliveshare-pack
 
     "workbench.colorTheme": "Monochrome Dark",
-    //"workbench.colorTheme": "One Dark Pro",
     "workbench.startupEditor": "newUntitledFile",
     "typescript.updateImportsOnFileMove.enabled": "never",
     "explorer.confirmDelete": false,
