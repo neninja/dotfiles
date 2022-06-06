@@ -55,6 +55,14 @@ inorea <buffer><expr> dd TestaTriggerSnippet('dd',
             \ "<esc>:call SnippetPhpDumpDie()<cr>",
             \ ["'.*DankDebug.*'"])
 
+inorea <buffer><expr> ddl TestaTriggerSnippet('ddl',
+            \ "<esc>:call SnippetPhpDumpDieLaravel()<cr>",
+            \ ["'.*DankDebug.*'"])
+
+inorea <buffer><expr> dl TestaTriggerSnippet('dl',
+            \ "<esc>:call SnippetPhpDumpLaravel()<cr>",
+            \ ["'.*DankDebug.*'"])
+
 inorea <buffer><expr> cl TestaTriggerSnippet('cl',
             \ "<esc>:call SnippetPhpClassInterface('class')<cr>",
             \ ['#code'])
@@ -68,6 +76,20 @@ fun! SnippetPhpDumpDie()
     noa execute "normal! A\<C-R>=expand('%:t:r')\<CR>"
     noa execute "normal! A\<C-R>=strftime(':%H:%M:%S')\<CR>"
     noa execute "normal! a');die;"
+endfun
+
+fun! SnippetPhpDumpDieLaravel()
+    noa execute "normal! add(':DankDebug:"
+    noa execute "normal! A\<C-R>=expand('%:t:r')\<CR>"
+    noa execute "normal! A\<C-R>=strftime(':%H:%M:%S')\<CR>"
+    noa execute "normal! a');"
+endfun
+
+fun! SnippetPhpDumpLaravel()
+    noa execute "normal! adump(':DankDebug:"
+    noa execute "normal! A\<C-R>=expand('%:t:r')\<CR>"
+    noa execute "normal! A\<C-R>=strftime(':%H:%M:%S')\<CR>"
+    noa execute "normal! a');"
 endfun
 
 fun! SnippetPhpClassInterface(kw)
