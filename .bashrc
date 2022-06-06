@@ -169,6 +169,8 @@ alias g="git"
 alias xcb='tr -d "\n" | xclip -selection clipboard'
 alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias tdd='gon -c '
+alias tdds='gon -c ./vendor/bin/sail test '
 
 #{{{ VAGRANT
 alias vg='vagrant'
