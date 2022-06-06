@@ -192,6 +192,17 @@ wttr(){
     curl wttr.in/porto+alegre?lang=pt-br
 }
 
+# DESC: Repetir X vezes o comando Y
+# USE: fori 10 echo "olha"
+fori(){
+    local FORI1=$1
+    shift 1
+
+    for i in $(seq 1 $FORI1); do
+        $@
+    done;
+}
+
 # DESC: Criar e entrar na pasta
 # USE: mk folder
 mk(){
