@@ -171,6 +171,7 @@ alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias tdd='gon -c '
 alias tdds='gon -c ./vendor/bin/sail test '
+alias tddsf='gon -c ./vendor/bin/sail test --filter '
 
 #{{{ VAGRANT
 alias vg='vagrant'
