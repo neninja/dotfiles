@@ -564,6 +564,70 @@ Sugestões de configuração:
   augroup END
 <
 ---------------------------------------
+natebosch/vim-lsc
+
+Configuração de LSP
+
+Configura as linguagens
+>
+  let g:lsc_server_commands = {'dart': 'dart_language_server'}
+<
+
+Permite maps sugeridos pelo plugin
+>
+  let g:lsc_auto_map = {'defaults': v:true}
+
+  <C-]>                   |:LSClientGoToDefinition|
+  <C-W>], <C-W><C-]>      |:LSClientGoToDefinitionSplit|
+  gr                      |:LSClientFindReferences|
+  <C-n>                   |:LSClientNextReference|
+  <C-p>                   |:LSClientPreviousReference|
+  gI                      |:LSClientFindImplementations|
+  go                      |:LSClientDocumentSymbol|
+  gS                      |:LSClientWorkspaceSymbol|
+  ga                      |:LSClientFindCodeActions|
+  gR                      |:LSClientRename|
+  gm                      |:LSClientSignatureHelp|
+  |K| (via |keywordprg|)      |:LSClientShowHover|
+<
+
+Não permite modificação em `completeopt` pois é importante demais no vimrc 
+>
+  let g:lsc_auto_completeopt = v:false
+<
+
+Não tenta adivinhar complete sem <c-x><c-o>
+Note: Aparentemente sempre precisar enviar algum caracter para o LS, portanto
+para pegar metodos/propriedades é preciso utilizar o gatilho antes do
+operador. Ex: Color<c-x><c-o>. (e então aparecem as sugestões de Color).
+>
+  let g:lsc_autocomplete_length = 0
+<
+
+Utiliza preview-window ao inves de popup
+TODO como dar scroll em popup?
+>
+  let g:lsc_hover_popup = v:false
+<
+---------------------------------------
+natebosch/vim-lsc-dart
+
+Configuração de LSP do Dart/Flutter com:
+- Autocomplete
+- Syntax dinâmica de erro
+
+TODO Corrigir autocomplete para sugerir sempre com <c-x><c-o>, e não
+<c-x><c-o> + alguma letra
+
+TODO Ver o quanto afeta performance e como diminuir
+
+Note: Caso tenha sido baixado com snap `sudo snap install snapcraft --classic`
+precisa referenciar o SDK corretamente
+|THANKS|: https://github.com/natebosch/vim-lsc-dart/issues/11#issuecomment-1094143540
+>
+  let g:lsc_dart_sdk_path = '~/snap/flutter/common/flutter/bin/cache/dart-sdk/'
+<
+---------------------------------------
 diepm/vim-rest-console
 
 |PROS|:

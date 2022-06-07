@@ -85,6 +85,7 @@ set completeopt=menuone,noinsert,noselect
 
 set wildignore=.git,.git/**
 set wildignore+=.svn,.svn/**
+set wildignore+=.idea,.idea/**
 set wildignore+=node_modules,node_modules/**
 set wildignore+=.venv,*/*_cache/*
 set wildignore+=dist,dist/**
@@ -248,6 +249,7 @@ let s:comment_map = {
             \   "lua": '--',
             \   "scala": '\/\/',
             \   "php": '\/\/',
+            \   "dart": '\/\/',
             \   "python": '#',
             \   "ruby": '#',
             \   "rust": '\/\/',

@@ -52,6 +52,11 @@ vendorStartRepos=(
     "https://github.com/alvan/vim-php-manual.git" # manual do php no vim
     "https://github.com/phpactor/phpactor.git" # autocomplete e tools para php
 
+    ###### Dart
+    "https://github.com/dart-lang/dart-vim-plugin.git"
+    "https://github.com/natebosch/vim-lsc-dart.git"
+    "https://github.com/natebosch/vim-lsc.git"
+
     ###### HIGHLIGHT
     "https://github.com/plasticboy/vim-markdown.git"
 )

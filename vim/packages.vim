@@ -34,8 +34,8 @@ let g:ctrlp_prompt_mappings = {
 
 " somente wildignore não funciona no linux
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.svn$\|node_modules\|dist\|target$\|build\|vendor$\|ios$\|android\|^site$\|coverage$\|_reports\|DS_Store\|\.next\|_cache',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$\|\.venv\|tags$'
+  \ 'dir':  '\v[\/](node_modules|target|dist|build|vendor|ios|android|windows|linux|macos|coverage|DS_Store)|(\.(git|svn|next|idea|dart_tool))|(_(cache|reports))$',
+  \ 'file':  '\v[\/](tags)|(\.(so|dat|DS_Store|venv))$'
   \ }
 
 " não limita arquivos
@@ -165,3 +165,14 @@ augroup PhpactorMappings
     au FileType php vmap <buffer> <silent> <Leader>ee :<C-u>PhpactorExtractExpression<CR>
     au FileType php vmap <buffer> <silent> <Leader>em :<C-u>PhpactorExtractMethod<CR>
 augroup END
+
+"## natebosch/vim-lsc
+
+let g:lsc_auto_map = {'defaults': v:true}
+let g:lsc_server_commands = {'dart': 'dart_language_server'}
+let g:lsc_auto_completeopt = v:false
+let g:lsc_autocomplete_length = 0
+
+"## natebosch/vim-lsc-dart
+
+let g:lsc_dart_sdk_path = '~/snap/flutter/common/flutter/bin/cache/dart-sdk/'
