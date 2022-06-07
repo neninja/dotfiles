@@ -527,6 +527,10 @@ junegunn/gv.vim
 ---------------------------------------
 phpactor/phpactor
 
+Autocomplete e utilitários para PHP.
+
+Note: Para instalá-lo baixe o composer e as dependencias do projeto do `pack`
+
 Note: `:PhpactorStatus` utiliza como `--working-dir` o local onde o terminal
 foi aberto e não o `:pwd`. Contudo, mesmo com o `--working-dir` errado, não
 ocorre nenhum problema, somente falha no teste de git + composer
@@ -536,6 +540,29 @@ ocorre nenhum problema, somente falha no teste de git + composer
   au! FileType php setlocal omnifunc=phpactor#Complete
 <
 
+Sugestões de configuração:
+>
+  augroup PhpactorMappings
+      au!
+      au FileType php setlocal omnifunc=phpactor#Complete
+      au FileType php nmap <buffer> <Leader>u :PhpactorImportClass<CR>
+      au FileType php nmap <buffer> <Leader>e :PhpactorClassExpand<CR>
+      au FileType php nmap <buffer> <Leader>ua :PhpactorImportMissingClasses<CR>
+      au FileType php nmap <buffer> <Leader>mm :PhpactorContextMenu<CR>
+      au FileType php nmap <buffer> <Leader>nn :PhpactorNavigate<CR>
+      au FileType php nmap <buffer> <Leader>o :PhpactorGotoDefinition edit<CR>
+      au FileType php nmap <buffer> <Leader>K :PhpactorHover<CR>
+      au FileType php nmap <buffer> <Leader>tt :PhpactorTransform<CR>
+      au FileType php nmap <buffer> <Leader>cc :PhpactorClassNew<CR>
+      au FileType php nmap <buffer> <Leader>ci :PhpactorClassInflect<CR>
+      au FileType php nmap <buffer> <Leader>r :PhpactorFindReferences<CR>
+      au FileType php nmap <buffer> <Leader>mf :PhpactorMoveFile<CR>
+      au FileType php nmap <buffer> <Leader>cf :PhpactorCopyFile<CR>
+      au FileType php nmap <buffer> <silent> <Leader>ee :PhpactorExtractExpression<CR>
+      au FileType php vmap <buffer> <silent> <Leader>ee :<C-u>PhpactorExtractExpression<CR>
+      au FileType php vmap <buffer> <silent> <Leader>em :<C-u>PhpactorExtractMethod<CR>
+  augroup END
+<
 ---------------------------------------
 diepm/vim-rest-console
 
