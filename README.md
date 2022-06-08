@@ -96,3 +96,6 @@ git fetch --all
 git reset --hard origin/main
 ```
 
+## Adendos
+
+- [Wiki](https://github.com/nenitf/dotfiles/wiki)
