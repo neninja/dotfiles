@@ -65,4 +65,4 @@ function! ToggleCheckbox()
     normal `s
 endfunction
 
-nnoremap <buffer> <c-space> :call ToggleCheckbox()<CR>
+nnoremap <buffer> <leader>c :call ToggleCheckbox()<CR>
