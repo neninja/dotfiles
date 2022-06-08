@@ -15,6 +15,10 @@ call SourceIfExists(g:dotfiles_dir."/vim/mypacks/showme.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/mypacks/snipid.vim")
 call SourceIfExists(g:dotfiles_dir."/vim/packages.vim")
 
+if has('nvim')
+    call SourceIfExists(g:dotfiles_dir."/vim/nvim.vim")
+endif
+
 "## RuntimePaths
 "wtf-rtp
 execute "set runtimepath+=".g:dotfiles_dir."/vim"

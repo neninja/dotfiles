@@ -58,7 +58,9 @@ set incsearch
 set ignorecase 
 set nosmartcase
 set noemoji
-set renderoptions=
+if !has('nvim')
+    set renderoptions=
+endif
 set modeline
 set modelines=5
 set tabstop=4
@@ -145,10 +147,12 @@ function! NN_ctags()
 endfun
 
 function! NN_EmojiToggle()
-    if &renderoptions == ""
-        set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
-    else
-        set renderoptions=
+    if !has('nvim')
+        if &renderoptions == ""
+            set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
+        else
+            set renderoptions=
+        endif
     endif
 endfun
 
