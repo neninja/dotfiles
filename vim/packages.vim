@@ -171,7 +171,6 @@ augroup END
 let g:lsc_auto_map = {'defaults': v:true}
 let g:lsc_server_commands = {'dart': 'dart_language_server'}
 let g:lsc_auto_completeopt = v:false
-let g:lsc_autocomplete_length = 0
 
 "## natebosch/vim-lsc-dart
 

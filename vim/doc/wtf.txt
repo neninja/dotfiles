@@ -568,6 +568,8 @@ natebosch/vim-lsc
 
 Configuração de LSP
 
+Note: Sugestão de complete é com <c-x><x-u>
+
 Configura as linguagens
 >
   let g:lsc_server_commands = {'dart': 'dart_language_server'}
@@ -594,14 +596,6 @@ Permite maps sugeridos pelo plugin
 Não permite modificação em `completeopt` pois é importante demais no vimrc 
 >
   let g:lsc_auto_completeopt = v:false
-<
-
-Não tenta adivinhar complete sem <c-x><c-o>
-Note: Aparentemente sempre precisar enviar algum caracter para o LS, portanto
-para pegar metodos/propriedades é preciso utilizar o gatilho antes do
-operador. Ex: Color<c-x><c-o>. (e então aparecem as sugestões de Color).
->
-  let g:lsc_autocomplete_length = 0
 <
 
 Utiliza preview-window ao inves de popup
