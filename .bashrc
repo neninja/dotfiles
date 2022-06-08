@@ -165,6 +165,8 @@ alias l='ls -aXF --color'
 alias lm='ls -alS --block-size=M'
 #}}}
 #{{{ programs
+alias v="vim"
+alias n="nvim"
 alias g="git"
 alias xcb='tr -d "\n" | xclip -selection clipboard'
 alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
