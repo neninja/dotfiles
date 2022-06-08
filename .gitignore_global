@@ -1,0 +1,17 @@
+# vim: set filetype=conf:
+
+# pessoal
+.neni-*
+neni-*
+
+# vim config
+.exrc
+_exrc
+
+# vim tags
+tags
+.ctags
+
+# vim rest console
+*.rest
+.vrc*

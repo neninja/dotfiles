@@ -8,7 +8,7 @@
     username = nenitf
 [core]
     editor = vim
-    # excludesfile = ~/dev/dotfiles/cpfiles/git/.gitignore
+    excludesfile = ~/dev/dotfiles/.gitignore_global
 [init]
     defaultBranch = main
 [color]
