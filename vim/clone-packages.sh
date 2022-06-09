@@ -101,5 +101,8 @@ elif [[ "$OSTYPE" == "msys" ]]; then
 fi
 
 echo "Notas:"
-echo -e "\tCaso queira utilizar ctags, baixe o binario universal-ctags: https://github.com/universal-ctags/ctags"
-echo -e "\tPara utilizar autocomplete do PHP acesse a pasta para onde o phpactor foi clonado (~/.vim-ou-vimfiles/pack/vendor/start/phpactor) e baixe as dependencias com Composer"
+echo -e "\tCtags: universal-ctags em https://github.com/universal-ctags/ctags"
+echo -e "\tPHP: 1) Acesse o phpactor clonado (~/.vim-ou-vimfiles/pack/vendor/start/phpactor) e baixe as dependencias com Composer e 2) npm install -g intelephense"
+echo -e "\tDart: basta possuir o SDK"
+echo -e "\tVim: npm install -g vim-language-server"
+echo -e "\tGo: go get golang.org/x/tools/gopls@latest"
