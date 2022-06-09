@@ -39,6 +39,7 @@ elif [[ "$OSTYPE" == "msys" ]]; then
 fi
 ./vim/clone-packages.sh
 vim -c "helptags ~/$DIRDF_FROM_HOME/vim/doc" -c -q
+vim -c "helptags ALL" -c -q
 
 # less command
 read -p "Aperte enter para fechar"
