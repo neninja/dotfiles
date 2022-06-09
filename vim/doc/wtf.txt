@@ -529,6 +529,10 @@ phpactor/phpactor
 
 Autocomplete e utilitários para PHP.
 
+- Import de classes
+- Referencias
+- Extração para variável e método
+
 Note: Para instalá-lo baixe o composer e as dependencias do projeto do `pack`
 
 Note: `:PhpactorStatus` utiliza como `--working-dir` o local onde o terminal
