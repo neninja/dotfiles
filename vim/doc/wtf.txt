@@ -536,6 +536,7 @@ foi aberto e não o `:pwd`. Contudo, mesmo com o `--working-dir` errado, não
 ocorre nenhum problema, somente falha no teste de git + composer
 
 - Atualiza <c-x><c-o> de `phpcomplete#CompletePHP` para o plugin
+Note: Optou-se por utilizar o autocomplete do lsp
 >
   au! FileType php setlocal omnifunc=phpactor#Complete
 <
@@ -570,10 +571,7 @@ Configuração de LSP
 
 Note: Sugestão de complete é com <c-x><x-u>
 
-Configura as linguagens
->
-  let g:lsc_server_commands = {'dart': 'dart_language_server'}
-<
+https://github.com/natebosch/vim-lsc/wiki/Language-Servers#php
 
 Permite maps sugeridos pelo plugin
 >

@@ -169,7 +169,27 @@ augroup END
 "## natebosch/vim-lsc
 
 let g:lsc_auto_map = {'defaults': v:true}
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
+let g:lsc_server_commands = {
+    \ 'dart': 'dart_language_server',
+    \ 'php': {
+    \    'command': 'intelephense --stdio',
+    \    'message_hooks': {
+    \        'initialize': {
+    \            'initializationOptions': {'storagePath': '/tmp/intelephense'},
+    \        },
+    \    },
+    \  },
+    \ 'vim' : {
+    \   'name': 'vim-language-server',
+    \   'command': 'vim-language-server --stdio',
+    \      'message_hooks': {
+    \          'initialize': {
+    \              'initializationOptions': { 'vimruntime': $VIMRUNTIME, 'runtimepath': &rtp },
+    \          },
+    \      },
+    \   },
+    \}
+
 let g:lsc_auto_completeopt = v:false
 
 "## natebosch/vim-lsc-dart

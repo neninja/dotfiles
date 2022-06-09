@@ -49,7 +49,7 @@ vendorStartRepos=(
     "https://github.com/peitalin/vim-jsx-typescript"
 
     ####### PHP
-    "https://github.com/alvan/vim-php-manual.git" # manual do php no vim
+    #"https://github.com/alvan/vim-php-manual.git" # manual do php no vim
     "https://github.com/phpactor/phpactor.git" # autocomplete e tools para php
 
     ###### Dart
