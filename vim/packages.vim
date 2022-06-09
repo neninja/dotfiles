@@ -157,7 +157,7 @@ let g:vrc_trigger = '<C-x>'
 
 augroup PhpactorMappings
     au!
-    au FileType php nmap <buffer> <Leader>u :PhpactorImportClass<CR>
+    au FileType php nmap <buffer> <Leader>uu :PhpactorImportClass<CR>
     au FileType php nmap <buffer> <Leader>ua :PhpactorImportMissingClasses<CR>
     au FileType php nmap <buffer> gr :PhpactorFindReferences<CR>
     au FileType php nmap <buffer> <silent> <Leader>ee :PhpactorExtractExpression<CR>
