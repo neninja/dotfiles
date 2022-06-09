@@ -569,7 +569,7 @@ natebosch/vim-lsc
 
 Configuração de LSP
 
-Note: Sugestão de complete é com <c-x><x-u>
+Note: Complete é com <c-x><x-u> porém configurável para <c-x><c-o>
 
 https://github.com/natebosch/vim-lsc/wiki/Language-Servers#php
 

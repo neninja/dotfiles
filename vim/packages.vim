@@ -168,7 +168,7 @@ augroup END
 
 "## natebosch/vim-lsc
 
-let g:lsc_auto_map = {'defaults': v:true}
+let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
 let g:lsc_server_commands = {
     \ 'dart': 'dart_language_server',
     \ 'php': {
