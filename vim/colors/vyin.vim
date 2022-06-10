@@ -176,6 +176,9 @@ call s:hi('DiffAdded', s:green, s:black, '')
 call s:hi('DiffChanged', s:blue, s:black, '')
 call s:hi('DiffRemoved', s:red, s:black, '')
 
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+
 "## Links
 hi! link Character Constant
 hi! link Float Number
