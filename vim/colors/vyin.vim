@@ -54,6 +54,9 @@ let s:red       = ['#df5757', 88]
 let s:magenta   = ['#87005f', 89]
 let s:yellow    = ['#d7d75f', 100]
 
+let s:neonyellow = ['#afff5f', 155]
+let s:neonblue   = ['#5fffff', 81]
+
 " https://www.pantone.com/color-finder/13-1520-TCX
 " PANTONE 13-1520 TCX - Rose Quartz
 let s:rosequartz= ['#F7CACA', 133]
@@ -176,8 +179,8 @@ call s:hi('DiffAdded', s:green, s:black, '')
 call s:hi('DiffChanged', s:blue, s:black, '')
 call s:hi('DiffRemoved', s:red, s:black, '')
 
-highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+call s:hi('QuickScopePrimary', s:neonyellow, '', '')
+call s:hi('QuickScopeSecondary', s:neonblue, '', '')
 
 "## Links
 hi! link Character Constant
