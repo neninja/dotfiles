@@ -56,7 +56,7 @@ cd dotfiles
 
 ### Bash
 
-- Em `~/.extra-bashrc`
+- Em `~/.extra-bashrc.sh`
 
 ### Git
 
