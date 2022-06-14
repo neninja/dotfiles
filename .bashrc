@@ -151,6 +151,10 @@ PROMPT_COMMAND="ps1_simple; $PROMPT_COMMAND"
 
 #}}}
 #{{{ Aliases
+alias g="git"
+alias xcb='tr -d "\n" | xclip -selection clipboard'
+alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
+alias op='xdg-open .'
 #{{{ CD
 alias cdf="cd $HOME/dev/dotfiles"
 alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard\n-> to clean: rm -rf * .*"'
@@ -164,28 +168,16 @@ alias ll='ls -alF --color'
 alias l='ls -aXF --color'
 alias lm='ls -alS --block-size=M'
 #}}}
-#{{{ programs
-alias v="vim"
-alias n="nvim"
-alias g="git"
-alias xcb='tr -d "\n" | xclip -selection clipboard'
-alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
+#{{{ PHP
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias tdd='gon -c '
 alias tdds='gon -c ./vendor/bin/sail test '
 alias tddsf='gon -c ./vendor/bin/sail test --filter '
-
-#{{{ VAGRANT
-alias vg='vagrant'
-#alias vgh="vagrant ssh";
-alias vgh="vagrant halt";
-alias vgr="vagrant reload";
-alias vgs="vagrant global-status";
-alias vgu="vagrant up";
 #}}}
-#}}}
-#{{{ lazy
-alias op='xdg-open .'
+#{{{ Vim
+alias n="nvim"
+alias v="nvim"
+alias vim="nvim"
 #}}}
 #}}}
 #{{{ Functions
@@ -266,7 +258,7 @@ extract() {
     fi
 }
 
-#{{{ PENDRIVES
+#{{{ Pendrives
 # DESC: Formatar pendrive
 # USE: fmtpendrive sdb1
 fmtpendrive(){
@@ -275,7 +267,7 @@ fmtpendrive(){
 }
 #}}}
 #}}}
-#{{{ exports
+#{{{ Exports
 export GOPATH=$HOME/go
 
 export VISUAL=vim
