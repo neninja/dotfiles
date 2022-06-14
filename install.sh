@@ -13,6 +13,7 @@
 #
 # ----------------------------------- MAIN -------------------------------------
 mkdir -p ~/dev/desh
+mkdir -p ~/.config/nvim
 
 mkdir -p $HOME/.config
 
@@ -24,22 +25,13 @@ echo "[include]
     path = $DIRDF_FROM_HOME/.gitconfig
     path = .gitconfig-extra" > $HOME/.gitconfig
 
-# vim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # bash
     echo ". $DIRDF/.bashrc" > $HOME/.bashrc
-
-    # vim
-    echo "source ~/$DIRDF_FROM_HOME/vim/dotfiles.vim" > $HOME/.vimrc
-    echo "source ~/$DIRDF_FROM_HOME/vim/gvimrc" > $HOME/.gvimrc
-elif [[ "$OSTYPE" == "msys" ]]; then
-    # vim
-    echo "source ~/$DIRDF_FROM_HOME/vim/dotfiles.vim" > $HOME/_vimrc
-    echo "source ~/$DIRDF_FROM_HOME/vim/gvimrc" > $HOME/_gvimrc
 fi
-./vim/clone-packages.sh
-vim -c "helptags ~/$DIRDF_FROM_HOME/vim/doc" -c -q
-vim -c "helptags ALL" -c -q
+
+# nvim
+echo "source ~/$DIRDF_FROM_HOME/vim/dotfiles.vim" > $HOME/.config/nvim
 
 # less command
 read -p "Aperte enter para fechar"

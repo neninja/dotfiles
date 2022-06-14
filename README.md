@@ -4,38 +4,29 @@
 
 Versionamento dos meus arquivos de configuração, scripts, instruções e templates usados no Windows e/ou Linux.
 
-> No Windows `%userprofile%` equivale `~`
+- Nvim e VSCode
+- Awesome
+- Bash e Git
 
-## Estrutura do repositório
-
-- [awesomewm/](awesomewm/): configurações do [awesome](https://awesomewm.org)
-- [modelos/](/modelos): arquivos que frequentemente preciso ver ou copiar
-    - [sample-dot-graph/](/modelos/sample-dot-graph): exemplos da utilização de graphviz
-    - [git/](/modelos/git): arquivos usados com git ou github
-- [vim/](/vim): arquivos de [configuração](http://vim.neni.dev) do [vim](https://www.vim.org/)
-    - [doc/wtf.txt](/vim/doc/wtf.txt): documentação (`:h wtf`)
-    - [ftplugin/](/vim/ftplugin): especificações de `filetypes`
-    - [syntax/](/vim/syntax): sintaxes específicas de `filetypes`
-    - [dicionarios/](/vim/dicionarios/): dicionários usados para sugerir palavras no vim com <kbd>CTRL</kbd><kbd>X</kbd><kbd>CTRL</kbd><kbd>K</kbd>
-    - [colors/](/vim/colors/): definição de cores para grupos de highlights (colorschemes)
-    - [skeletons/](/vim/skeletons/): estrutura inicial de tipos de arquivos
-    - [clone-packages.sh](/vim/clone-packages.sh): download de packages (plugins)
-    - [dotfiles.vim](/vim/dotfiles.vim): configurações do vim caso este projeto seja clonado por inteiro, pois ele considera estrutura de pastas
-    - [plus.vim](/vim/plus.vim): configurações a mais que podem afetar performance do vim
-    - [gvimrc](/gvim/gvimrc): configurações de interface gráfica do gvim
-    - [packages.vim](/vim/packages.vim): configurações específicas de packages do vim
-    - [vimrc](/vim/vimrc): configurações do vim, funciona de maneira independente do projeto ([prévia](http://vimrc.neni.dev))
-    - [vi](/vim/vi): configurações do vi, usado em servidores sem vim. Deve ser posto em `.vimrc`
-        - `curl https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi > $HOME/.vimrc`
-        - `wget https://raw.githubusercontent.com/nenitf/dotfiles/main/vim/vi -O $HOME/.vimrc`
-- [.bashrc](.bashrc): configurações bash (alias, path, functions, ps e etc).
-- [.gitconfig](.gitconfig): configuração do git
-- [install.sh](install.sh): "instalação" dos arquivos de configuração no Linux e Windows
+> [Vimrc](http://neni.dev/vimrc) simplificado e ["estilizado"](http://vimrc.neni.dev)
 
 ## Download
 
-Os arquivos normalmente referenciam o path `~/dev/dotfiles/`, portanto clone o projeto corretamente
+> No Windows `%userprofile%` equivale `~`
 
+- nvim
+```bash
+# Ubuntu
+curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb
+sudo apt install ./nvim-linux64.deb
+
+# instalar rg xclip node php dart gopls
+
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# instalar lsp com :LspInstallInfo e i
+```
+
+- configurar Nvim, Git e Bash
 ```bash
 cd ~
 mkdir -p dev
@@ -49,19 +40,19 @@ cd dotfiles
 
 ### Vim
 
-- **Antes** do `vim/vimrc`: `~/.vimrc-pre.vim`
-- **Depois** do `vim/vimrc`: `~/.vimrc-local.vim`
-- **Depois** do `vim/gvimrc`: `~/.gvimrc-local.vim`
-- Exemplos em `vim/doc/wtf.txt`
+- `~/.vimrc-pre.vim`
+- `~/.vimrc-local.vim`
+- `/path/do/projeto/.exvrc`
 
 ### Bash
 
-- Em `~/.extra-bashrc.sh`
+- `~/.extra-bashrc.sh`
 
 ### Git
 
-- Em `~/.gitconfig-extra`
-- Exemplo comum:
+- `~/.gitconfig-extra`
+
+#### Exemplo
 
 ```gitconfig
 # `~/.gitconfig-extra`
