@@ -60,8 +60,9 @@ set nosmartcase
 set noemoji
 if !has('nvim')
   set renderoptions=
+else
+  set modelineexpr
 endif
-set modelineexpr
 set modeline
 set modelines=5
 set tabstop=4
