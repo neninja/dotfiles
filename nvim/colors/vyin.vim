@@ -168,6 +168,11 @@ call s:hi('PmenuThumb', s:gray03, s:gray09, '')
 
 call s:hi('StatusLine', s:black, s:serenity, '')
 call s:hi('StatusLineNC', s:gray04, s:gray01, '')
+
+if has('nvim')
+  call s:hi('WinSeparator', '', '', '')
+endif
+
 call s:hi('WildMenu', s:gray08, '', '')
 call s:hi('VertSplit', s:gray03, s:gray03, '')
 

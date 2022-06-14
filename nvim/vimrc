@@ -117,7 +117,13 @@ set omnifunc=syntaxcomplete#Complete
 "## Statusline
 "wtf-statusline
 
-set laststatus=2
+
+if has('nvim')
+  set laststatus=3
+else
+  set laststatus=2
+endif
+
 set statusline=
 set statusline+=\ %f\ %r\%m
 set statusline+=\%=
