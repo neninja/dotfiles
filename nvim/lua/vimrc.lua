@@ -1,1 +1,1 @@
-vim.cmd('source '..dotfiles_fullpath_nvim..'/vimrc')
+vim.cmd('source '..dotfiles_fullpath_nvim..'vimrc')

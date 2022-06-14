@@ -27,7 +27,7 @@ set conceallevel=2
 
 set t_ut=""
 if (&term =~ '^xterm' && &t_Co == 256)
-   set t_ut= | set ttyscroll=1
+  set t_ut= | set ttyscroll=1
 endif
 
 "## Comportamento
@@ -36,31 +36,32 @@ endif
 syntax on
 
 filetype plugin indent on
-set showmatch                   
-set showmode                    
-set showcmd                     
-set autoindent                  
-set mouse=                      
-set linebreak                   
-set nocursorcolumn nocursorline 
-set number norelativenumber     
-set nrformats-=octal            
-set lazyredraw                  
-set nobackup                    
-set noswapfile                  
-set scrolloff=3                 
+set showmatch
+set showmode
+set showcmd
+set autoindent
+set mouse=
+set linebreak
+set nocursorcolumn nocursorline
+set number relativenumber
+set nrformats-=octal
+set lazyredraw
+set nobackup
+set noswapfile
+set scrolloff=3
 set clipboard^=unnamedplus,unnamed
 set colorcolumn=
 set backspace=indent,eol,start
 set formatoptions+=jcr
-set hlsearch   
-set incsearch  
-set ignorecase 
+set hlsearch
+set incsearch
+set ignorecase
 set nosmartcase
 set noemoji
 if !has('nvim')
-    set renderoptions=
+  set renderoptions=
 endif
+set modelineexpr
 set modeline
 set modelines=5
 set tabstop=4
@@ -126,162 +127,212 @@ set statusline+=\ %y
 "wtf-funcoes
 
 function! NN_ctags()
-    let s:ctags_command="ctags" . 
-                \ " -R --totals" .
-                \ " --exclude=.git --exclude=.svn" .
-                \ " --exclude=vendor --exclude=_*" .
-                \ " --exclude=*_cache" .
-                \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
-                \ " --exclude=_site" .
-                \ " --php-kinds=cfvit" .
-                \ " --python-kinds=-i" .
-                \ " --languages=php,javascript,python"
+  let s:ctags_command="ctags" .
+        \ " -R --totals" .
+        \ " --exclude=.git --exclude=.svn" .
+        \ " --exclude=vendor --exclude=_*" .
+        \ " --exclude=*_cache" .
+        \ " --exclude=node_modules --exclude=dist --exclude=build --exclude=ios --exclude=android" .
+        \ " --exclude=_site" .
+        \ " --php-kinds=cfvit" .
+        \ " --python-kinds=-i" .
+        \ " --languages=php,javascript,python"
 
-    if filereadable(expand(".ctags"))
-        let s:ctags_command.=" --options=.ctags"
-    endif
+  if filereadable(expand(".ctags"))
+    let s:ctags_command.=" --options=.ctags"
+  endif
 
-    let s:ctags_command.=" ."
+  let s:ctags_command.=" ."
 
-    execute "!".s:ctags_command
+  execute "!".s:ctags_command
 endfun
 
 function! NN_EmojiToggle()
-    if !has('nvim')
-        if &renderoptions == ""
-            set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
-        else
-            set renderoptions=
-        endif
+  if !has('nvim')
+    if &renderoptions == ""
+      set renderoptions=type:directx,gamma:1.0,contrast:0.1,level:1.0,geom:1,renmode:5,taamode:1
+    else
+      set renderoptions=
     endif
+  endif
 endfun
 
 function! NN_SetGitDir()
-    cd %:p:h
-    let gitdir=system("git rev-parse --show-toplevel")
-    let isnotgitdir=matchstr(gitdir, '^fatal:.*')
-    if empty(isnotgitdir)
-        cd `=gitdir`
-    endif
+  cd %:p:h
+  let gitdir=system("git rev-parse --show-toplevel")
+  let isnotgitdir=matchstr(gitdir, '^fatal:.*')
+  if empty(isnotgitdir)
+    cd `=gitdir`
+  endif
 endfunction
 
 function! NN_Lexplorer()
-    call NN_SetGitDir()
-    Lexplore
+  call NN_SetGitDir()
+  Lexplore
 endfunction
 
 function! NN_Tasks()
-    call NN_SetGitDir()
-    vimgrep /\C\<TODO\>\|\C\<FIXME\>/j **
-    copen
+  call NN_SetGitDir()
+  vimgrep /\C\<TODO\>\|\C\<FIXME\>/j **
+  copen
 endfunction
 
 function! NN_GitAula()
-    let log = system("git log --pretty=format:\%s")
-    vnew
-    put=log
-    normal! gg
-    if search('^:tv: add aula')>0
-        normal! 3W
-        let s:numero_aula = expand('<cword>')+1
-        echom system("git add -A && git commit -m \":tv: add aula ".s:numero_aula."\"")
-    else
-        echom system("git add -A && git commit -m \":tv: add aula 1\"")
-    endif
-    bdelete!
+  let log = system("git log --pretty=format:\%s")
+  vnew
+  put=log
+  normal! gg
+  if search('^:tv: add aula')>0
+    normal! 3W
+    let s:numero_aula = expand('<cword>')+1
+    echom system("git add -A && git commit -m \":tv: add aula ".s:numero_aula."\"")
+  else
+    echom system("git add -A && git commit -m \":tv: add aula 1\"")
+  endif
+  bdelete!
 endfunction
 
 function! NN_GitAula2()
-    let log = system("git log --pretty=format:\%s")
-    vnew
-    put=log
-    normal! gg
-    if search('^:zap: add aula')>0
-        normal! 3W
-        let s:numero_aula = expand('<cword>')+1
-        echom system("git add -A && git commit -m \":zap: add aula ".s:numero_aula."\"")
-    else
-        echom system("git add -A && git commit -m \":zap: add aula 1\"")
-    endif
-    bdelete!
+  let log = system("git log --pretty=format:\%s")
+  vnew
+  put=log
+  normal! gg
+  if search('^:zap: add aula')>0
+    normal! 3W
+    let s:numero_aula = expand('<cword>')+1
+    echom system("git add -A && git commit -m \":zap: add aula ".s:numero_aula."\"")
+  else
+    echom system("git add -A && git commit -m \":zap: add aula 1\"")
+  endif
+  bdelete!
 endfunction
 
 function! s:FechaSplitOuDeletaBuffer()
-    if winnr('$') > 1
-        q
-    else
-        bd
-    endif
+  if winnr('$') > 1
+    q
+  else
+    bd
+  endif
 endfunction
 
 function! s:FechaSplitOuDeletaBufferForced()
-    if winnr('$') > 1
-        q!
-    else
-        bd!
-    endif
+  if winnr('$') > 1
+    q!
+  else
+    bd!
+  endif
 endfunction
 
 function! s:AutoCompleteCarinhas()
-    call complete(col('.'), [
-                \ 'ಥ_ಥ',
-                \ 'ლ(ಠ益ಠლ)',
-                \ 'ಠ╭╮ಠ',
-                \ '(╯°□°)╯︵ ʞooqǝɔɐɟ',
-                \ '(╯°□°)╯︵ ┻━┻',
-                \ '(╮°-°)╮┳━┳',
-                \ '( ͡° ͜ʖ ͡°)',
-                \ '¯\_(ツ)_/¯',
-                \ '(~˘▾˘)~',
-                \ 'ᕦ(ò_óˇ)ᕤ',
-                \ '༼ つ ◕_◕ ༽つ',
-                \])
-    return ''
+  call complete(col('.'), [
+        \ 'ಥ_ಥ',
+        \ 'ლ(ಠ益ಠლ)',
+        \ 'ಠ╭╮ಠ',
+        \ '(╯°□°)╯︵ ʞooqǝɔɐɟ',
+        \ '(╯°□°)╯︵ ┻━┻',
+        \ '(╮°-°)╮┳━┳',
+        \ '( ͡° ͜ʖ ͡°)',
+        \ '¯\_(ツ)_/¯',
+        \ '(~˘▾˘)~',
+        \ 'ᕦ(ò_óˇ)ᕤ',
+        \ '༼ つ ◕_◕ ༽つ',
+        \])
+  return ''
 endfunction
 
-let s:comment_map = { 
-            \   "c": '\/\/',
-            \   "cpp": '\/\/',
-            \   "dot": '\/\/',
-            \   "go": '\/\/',
-            \   "java": '\/\/',
-            \   "javascript": '\/\/',
-            \   "javascriptreact": '\/\/',
-            \   "typescript": '\/\/',
-            \   "typescriptreact": '\/\/',
-            \   "vue": '\/\/',
-            \   "lua": '--',
-            \   "scala": '\/\/',
-            \   "php": '\/\/',
-            \   "dart": '\/\/',
-            \   "python": '#',
-            \   "ruby": '#',
-            \   "rust": '\/\/',
-            \   "scss": '\/\/',
-            \   "sass": '\/\/',
-            \   "sh": '#',
-            \   "bashrc": '#',
-            \   "vim": '"',
-            \ }
-
-function! s:ToggleComment()
-    if has_key(s:comment_map, &filetype)
-        let comment_leader = s:comment_map[&filetype]
-        if getline('.') =~ "^\\s*" . comment_leader . " " 
-            " Uncomment
-            execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
-        else 
-            if getline('.') =~ "^\\s*" . comment_leader
-                " Uncomment
-                execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
-            else
-                " Comment
-                execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
-                " execute "silent s/^/\\1" . comment_leader . " /"
-            end
-        end
-    end
+"### Fold
+function! FoldTextMarkdown()
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let titulo = substitute(getline(v:foldstart),"\#","+",'g')
+  let foldtextstart = titulo
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
+
+function! FoldExprMarkdown()
+  if getline(v:lnum) =~ '^## .*$'
+    return ">1"
+  endif
+  if getline(v:lnum) =~ '^### .*$'
+    return ">2"
+  endif
+  if getline(v:lnum) =~ '^#### .*$'
+    return ">3"
+  endif
+  if getline(v:lnum) =~ '^##### .*$'
+    return ">4"
+  endif
+  if getline(v:lnum) =~ '^###### .*$'
+    return ">5"
+  endif
+  return "="
+endfunction
+
+function! FoldTextLua()
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let titulo = substitute(getline(v:foldstart),"^\-\-","",'g')
+  let titulo = substitute(titulo,"\#","",'g')
+  let foldtextstart = repeat(foldchar, v:foldlevel + 2) . titulo
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+
+function! FoldExprLua()
+  if getline(v:lnum) =~ '^\-\-# .*$'
+    return ">1"
+  endif
+  if getline(v:lnum) =~ '^\-\-## .*$'
+    return ">2"
+  endif
+  if getline(v:lnum) =~ '^\-\-### .*$'
+    return ">3"
+  endif
+  if getline(v:lnum) =~ '^\-\-#### .*$'
+    return ">4"
+  endif
+  if getline(v:lnum) =~ '^\-\-##### .*$'
+    return ">5"
+  endif
+  return "="
+endfunction
+
+function! FoldTextVim()
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let titulo = substitute(getline(v:foldstart),"^\""," ",'g')
+  let titulo = substitute(titulo,"\#","",'g')
+  let foldtextstart = repeat('+', v:foldlevel + 1) . titulo
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+
+function! FoldExprVim()
+  if getline(v:lnum) =~ '^"## .*$'
+    return ">1"
+  endif
+  if getline(v:lnum) =~ '^"### .*$'
+    return ">2"
+  endif
+  if getline(v:lnum) =~ '^"#### .*$'
+    return ">3"
+  endif
+  if getline(v:lnum) =~ '^"##### .*$'
+    return ">4"
+  endif
+  if getline(v:lnum) =~ '^"###### .*$'
+    return ">5"
+  endif
+  return "="
+endfunction
+
 
 "## Comandos
 
@@ -336,8 +387,6 @@ inoremap    [<CR>       []<left><CR><Esc>O|" autoclose
 inoremap    [<space>    []<left><space><space><left>|" autoclose
 nnoremap    <expr>dj    &diff ? ":diffget LO<CR>" : "<nop>"
 nnoremap    <expr>dk    &diff ? ":diffget RE<CR>" : "<nop>"
-nnoremap    gc          :call <SID>ToggleComment()<CR>
-vnoremap    gc          :call <SID>ToggleComment()<CR>
 vnoremap    J           :m '>+1<CR>gv=gv|" move linha selecionada pra baixo
 vnoremap    K           :m '<-2<CR>gv=gv|" move linha selecionada pra cima
 inoremap    kj          <esc>|" esc mais fácil
@@ -349,6 +398,7 @@ vnoremap    a(          c(<c-r>")|" surround match
 vnoremap    a{          c{<c-r>"}|" surround match
 vnoremap    a[          c[<c-r>"]|" surround match
 nnoremap    Q           @q
+nnoremap    Y           Vy
 tnoremap    <esc>       <C-\><C-n>
 noremap     \           za|" toggle fold
 nnoremap    <expr><f2>  &foldlevel ? 'zM' :'zR'|" toggle fold todo arquivo
@@ -402,23 +452,23 @@ cnoreabbrev wqA wqa
 cnoreabbrev wQa wqa
 
 cabbrev cvimgrep
-            \ noautocmd vim /\<lt><C-R><C-W>\>/g
-            \ **/*<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
-            \ <Bar> cope
-            \ <C-Left><C-Left><C-Left>
+      \ noautocmd vim /\<lt><C-R><C-W>\>/g
+      \ **/*<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
+      \ <Bar> cope
+      \ <C-Left><C-Left><C-Left>
 
 cabbrev clvimgrep
-            \ noautocmd lvim /\<lt><C-R><C-W>\>/g
-            \ <C-R>=(expand("%"))<CR>
-            \ <Bar> lop
-            \ <C-Left><C-Left><C-Left>
+      \ noautocmd lvim /\<lt><C-R><C-W>\>/g
+      \ <C-R>=(expand("%"))<CR>
+      \ <Bar> lop
+      \ <C-Left><C-Left><C-Left>
 
 "## AutoCmds
 "wtf-autocmd
 
 " FIXME Como colocar definição de filetype em ftdetect?
 augroup filetype_detect
-    au!
-    au BufRead,BufNewFile *.phtml setfiletype html
-    au BufRead,BufNewFile *.gv setfiletype dot
+  au!
+  au BufRead,BufNewFile *.phtml setfiletype html
+  au BufRead,BufNewFile *.gv setfiletype dot
 augroup END
