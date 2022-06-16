@@ -62,9 +62,16 @@ local aucmd_dict = {
       end,
     },
     {
+      pattern = "vim",
+      callback = function()
+        vim.opt_local.foldmethod = 'expr'
+        vim.opt_local.foldexpr = 'FoldExprVim()'
+        vim.opt_local.foldtext = 'FoldTextVim()'
+      end,
+    },
+    {
       pattern = "markdown",
       callback = function()
-        -- TODO
         vim.opt_local.foldmethod = 'expr'
         vim.opt_local.foldexpr = 'FoldExprMarkdown()'
         vim.opt_local.foldtext = 'FoldTextMarkdown()'
