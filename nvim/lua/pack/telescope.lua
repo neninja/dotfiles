@@ -40,8 +40,8 @@ require("command_center").add({
     category = "git",
   },
   {
-    description = "commit aula `vim README.md -c \"call NN_GitAula2()\"`",
-    cmd = ":call NN_GitAula()",
+    description = "commit aula `vim README.md -c \"call NN_GitAula()\"`",
+    cmd = ":call NN_GitAula()<CR>",
     category = "git",
   },
   {
