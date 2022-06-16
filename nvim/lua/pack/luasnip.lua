@@ -21,7 +21,12 @@ local lambda = require("luasnip.extras").l
 --https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua
 --https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#loaders
 
-local function cs(trig, name, dscr, tpl, nod, opt)
+
+local function cs(trig, name, dscr, n)
+  return s({trig=trig, name=name, dscr=dscr}, n)
+end
+
+local function ts(trig, name, dscr, tpl, nod, opt)
   nod = nod or {}
   if opt==nil or opt['delimiters'] == nil then
     opt = {
@@ -59,23 +64,20 @@ local function f_filename()
   end)
 end
 
-local function d_hardebug(position)
-  return d(position, function()
-    local hardebugtxt = "\":hardebug:"..vim.fn.expand('%:t:r')..vim.fn.strftime(':%H:%M:%S').."\""
-    return sn(nil, i(position, hardebugtxt))
-  end, {})
+local function hardebugtxt(position)
+  return "\":hardebug:"..vim.fn.expand('%:t:r')..vim.fn.strftime(':%H:%M:%S').."\""
 end
 
 --# PHP
 add("php", {
-  cs("if", "condition", "if (...) {...}", [[
+  ts("if", "condition", "if (...) {...}", [[
   if (§) {
       §
   }
   ]], {
       i(1, "condition"), i(0, "/* code */")
     }),
-  cs("f", "function", "function ...(...)... {...}", [[
+  ts("f", "function", "function ...(...)... {...}", [[
     §function §(§)§
     {
         §
@@ -92,7 +94,7 @@ add("php", {
       i(4, ""),
       i(0, "/* code */"),
     }),
-  cs("c", "create class", "class ... {...}", [[
+  ts("c", "create class", "class ... {...}", [[
     class §
     {
         §
@@ -100,7 +102,7 @@ add("php", {
     ]], {
       f_filename(), i(0, "/* code */"),
     }),
-  cs("e", "create enum", "enum ... {...}", [[
+  ts("e", "create enum", "enum ... {...}", [[
     enum §
     {
         §
@@ -108,7 +110,7 @@ add("php", {
     ]], {
       f_filename(), i(0, "/* code */")
     }),
-  cs("i", "create interface", "interface ... {...}", [[
+  ts("i", "create interface", "interface ... {...}", [[
     interface §
     {
         §
@@ -116,32 +118,32 @@ add("php", {
     ]], {
       f_filename(), i(0, "/* code */"),
     }),
-  cs("t", "$this", "$this", [[
+  ts("t", "$this", "$this", [[
     $this§§;
     ]], {
       i(G, "->"), i(0),
     }),
-  cs("du", "dumper", "dump(...);", [[
-    dump(§);
-    ]], {
-      d_hardebug(1),
+  cs("du", "dumper", "dump(...);", {
+    t("dump("),
+    i(0, hardebugtxt()),
+    t(");"),
     }),
-  cs("dd", "diedumper", "dd(...);", [[
-    dd(§);
-    ]], {
-      d_hardebug(1),
+  cs("dd", "diedumper", "dd(...);", {
+		t("dd("),
+		i(0, hardebugtxt()),
+		t(");"),
     }),
-  cs("vdd", "dump and die", "var_dump(...);die;", [[
-    var_dump(§);die;
-    ]], {
-      d_hardebug(1),
+  cs("vdd", "dump and die", "var_dump(...);die;", {
+    t("var_dump("),
+    i(0, hardebugtxt()),
+    t(");die;"),
     }),
-  cs("r", "return", "return ...;", [[
+  ts("r", "return", "return ...;", [[
     return §;
     ]], {
       c(1, {t "", t "true", t "false"})
     }),
-  cs("php", "php tag", "<?php", [[
+  ts("php", "php tag", "<?php", [[
     <?php
 
     §
@@ -152,7 +154,7 @@ add("php", {
 
 --# Shell
 add("sh", {
-  cs("#", "#!", "#!/usr/bin/env bash", [[
+  ts("#", "#!", "#!/usr/bin/env bash", [[
     #!/usr/bin/env bash
 
     §
@@ -163,7 +165,7 @@ add("sh", {
 
 --# Go
 add("go", {
-  cs("ir", "condition err", "if err != nil {...}", [[
+  ts("ir", "condition err", "if err != nil {...}", [[
     if (err != nil) {
       §
     }
@@ -172,28 +174,28 @@ add("go", {
     ]], {
       i(1, "return err"), i(0)
     }),
-  cs("it", "if got != want", "if got != want {...}", [[
+  ts("it", "if got != want", "if got != want {...}", [[
     if got != want {
       §
     }
     ]], {
       i(0, 't.Error("got:", got, "want:", want)')
     }),
-  cs("forr", "for range", "for ... := range ... {...}", [[
+  ts("forr", "for range", "for ... := range ... {...}", [[
     for § := range § {
       §
     }
     ]], {
       i(1, 'varnames'), i(2, 'rangearray'), i(0),
     }),
-  cs("fori", "for i := 0", "for ... := 0; i <= ...; i++ {...}", [[
+  ts("fori", "for i := 0", "for ... := 0; i <= ...; i++ {...}", [[
     for § := 0; § <= §; §++ {
       §
     }
     ]], {
       i(1, 'i'), rep(1), i(2, 'maxCondition'), rep(1), i(0),
     }),
-  cs("fort", "test table", "var tests = []struct {...}{}", [[
+  ts("fort", "test table", "var tests = []struct {...}{}", [[
     var tests = []struct {
       in  []§
       out §
@@ -207,7 +209,7 @@ add("go", {
     ]], {
       i(1, 'typeIn'), i(2, 'typeOut'), i(3, 'testedFuncName'), i(4, '...'),
     }),
-  cs("f", "func", "func ...(...)... {...}", [[
+  ts("f", "func", "func ...(...)... {...}", [[
     func §(§)§
     {
       §
@@ -218,56 +220,56 @@ add("go", {
       i(3, ""),
       i(0, "/* code */"),
     }),
-  cs("ft", "test func", "func Test...(t *testing.T) {...}", [[
+  ts("ft", "test func", "func Test...(t *testing.T) {...}", [[
     func Test§(t *testing.T) {
       §
     }
     ]], {
       i(1, "FunctionName"), i(0, "/* code */"),
     }),
-  cs("fh", "handle http func", "func handle...(res http.ResponseWriter, req *http.Request) {...}", [[
+  ts("fh", "handle http func", "func handle...(res http.ResponseWriter, req *http.Request) {...}", [[
     func handle§(res http.ResponseWriter, req *http.Request) {
       §
     }
     ]], {
       i(1, "FunctionName"), i(0, "/* code */"),
     }),
-  cs("hf", "route handle http func", "http.HandleFunc(...)", [[
+  ts("hf", "route handle http func", "http.HandleFunc(...)", [[
     http.HandleFunc(§, §)
     ]], {
       i(1, "route"), i(0, "functionName"),
     }),
-  cs("hls", "listen and serve", "http.ListenAndServe(...)", [[
+  ts("hls", "listen and serve", "http.ListenAndServe(...)", [[
     http.ListenAndServe(§, nil)
     ]], {
       i(0, ":9090"),
     }),
-  cs("pl", "print line", "fmt.Println(...)", [[
-    fmt.Println(§)
-    ]], {
-      d_hardebug(1),
+  cs("pl", "print line", "fmt.Println(...)", {
+    t("fmt.Println("),
+    i(0, hardebugtxt()),
+    t(")"),
     }),
-  cs("ts", "time sleep", "time.Sleep(time.Millisecond * ...)", [[
+  ts("ts", "time sleep", "time.Sleep(time.Millisecond * ...)", [[
     time.Sleep(time.Millisecond * §)
     ]], {
       i(1, 'milliseconds'),
     }),
-  cs("ri", "rand int", "rand.Intn(...)", [[
+  ts("ri", "rand int", "rand.Intn(...)", [[
     rand.Intn(§)
     ]], {
       i(1, 'maxRandInt'),
     }),
-  cs("pv", "print value", 'fmt.Printf("%+v\\n", ...)', [[
+  ts("pv", "print value", 'fmt.Printf("%+v\\n", ...)', [[
     fmt.Printf("%+v\\n", §)
     ]], {
       i(1, 'varName'),
     }),
-  cs(":", ":=", "... := ...", [[
+  ts(":", ":=", "... := ...", [[
     § := §
     ]], {
       i(1), i(0),
     }),
-  cs("pmain", "package main template", "package main func main(){...}", [[
+  ts("pmain", "package main template", "package main func main(){...}", [[
     package  main
 
     func main() {
@@ -280,7 +282,7 @@ add("go", {
 
 --# HTML
 add("html", {
-  cs("html", "DOCTYPE html", "<html><head></head><body></body></html>", [[
+  ts("html", "DOCTYPE html", "<html><head></head><body></body></html>", [[
     <!DOCTYPE html>
     <html>
     <head>
