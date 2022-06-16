@@ -1,12 +1,7 @@
-"# wtf-file-vimrc
-"## Vimproved
-"wtf-vimproved
-
+"# Vimproved
 set nocompatible
 
-"## Buffer
-"wtf-buffer
-
+"# Buffer
 set hidden
 
 set encoding=utf-8
@@ -15,8 +10,6 @@ set autoread
 autocmd FocusGained,BufEnter * :silent!<space>!
 
 "## Aparência e som
-"wtf-aparencia
-
 colorscheme slate
 set background=dark
 set t_Co=256
@@ -30,9 +23,7 @@ if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1
 endif
 
-"## Comportamento
-"wtf-comportamento
-
+"# Comportamento
 syntax on
 
 filetype plugin indent on
@@ -79,9 +70,7 @@ let g:netrw_liststyle=3
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 set shellslash
 
-"### Autocomplete
-"wtf-autocomplete
-
+"## Autocomplete
 set wildmenu
 set shortmess+=c
 set wildcharm=<tab>
@@ -114,9 +103,7 @@ set tags=tags
 
 set omnifunc=syntaxcomplete#Complete
 
-"## Statusline
-"wtf-statusline
-
+"# Statusline
 set laststatus=2
 
 set statusline=
@@ -125,9 +112,7 @@ set statusline+=\%=
 set statusline+=\ %p%%\ %l:\%c
 set statusline+=\ %y
 
-"## Funções
-"wtf-funcoes
-
+"# Funções
 function! NN_ctags()
   let s:ctags_command="ctags" .
         \ " -R --totals" .
@@ -227,7 +212,7 @@ function! s:AutoCompleteCarinhas()
   return ''
 endfunction
 
-"### Fold
+"## Fold
 function! s:FoldTextLikeMarkdown(comment, qtdcharamaisquehash)
   let lines_count = v:foldend - v:foldstart + 1
   let lines_count_text = '┤' . printf("%4s", lines_count) . '├'
@@ -269,11 +254,11 @@ function! FoldExprMarkdown()
 endfunction
 
 function! FoldTextVim()
-  return s:FoldTextLikeMarkdown("^\"", 2)
+  return s:FoldTextLikeMarkdown("^\"", 1)
 endfunction
 
 function! FoldExprVim()
-  return s:FoldExprLikeMarkdown('^"##')
+  return s:FoldExprLikeMarkdown('^"#')
 endfunction
 
 function! FoldTextLua()
@@ -284,8 +269,7 @@ function! FoldExprLua()
   return s:FoldExprLikeMarkdown('^\-\-#')
 endfunction
 
-"## Comandos
-
+"# Comandos
 command! Sov w | source $MYVIMRC | e %
 
 command! -nargs=* Cake make! <args> | cw
@@ -293,8 +277,7 @@ command! -nargs=* Lake make! <args> | cw
 
 command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
-"## Mapeamentos
-
+"# Mapeamentos
 let mapleader="\<space>"
 
 nnoremap    <leader><leader>    :w<CR>
@@ -379,9 +362,7 @@ inoremap    <c-z>       <c-r>=<SID>AutoCompleteCarinhas()<CR>
 tnoremap    <s-insert>  <c-w>"*
 tnoremap    <c-s-v>     <c-w>"*
 
-"## Abreviações
-"wtf-abbr
-
+"# Abreviações
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qa! qa!
@@ -413,9 +394,7 @@ cabbrev clvimgrep
       \ <Bar> lop
       \ <C-Left><C-Left><C-Left>
 
-"## AutoCmds
-"wtf-autocmd
-
+"# AutoCmds
 " FIXME Como colocar definição de filetype em ftdetect?
 augroup filetype_detect
   au!
