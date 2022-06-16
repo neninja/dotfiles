@@ -276,6 +276,14 @@ function! FoldExprVim()
   return s:FoldExprLikeMarkdown('^"##')
 endfunction
 
+function! FoldTextLua()
+  return s:FoldTextLikeMarkdown("^\-\-", 2)
+endfunction
+
+function! FoldExprLua()
+  return s:FoldExprLikeMarkdown('^\-\-#')
+endfunction
+
 "## Comandos
 
 command! Sov w | source $MYVIMRC | e %

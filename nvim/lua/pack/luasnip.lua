@@ -1,4 +1,4 @@
--- Luasnip
+-- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
 
 local ls = require"luasnip"
 local s = ls.snippet
