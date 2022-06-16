@@ -71,6 +71,12 @@ local aucmd_dict = {
       end,
     },
     {
+      pattern = "php",
+      callback = function()
+        vim.opt_local.iskeyword:append("$")
+      end,
+    },
+    {
       pattern = "help,lspinfo,qf,startuptime",
       callback = function()
         local buf = vim.api.nvim_get_current_buf()
