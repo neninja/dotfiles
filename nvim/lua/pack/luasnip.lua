@@ -150,7 +150,7 @@ add("php", {
     }),
 })
 
---# Go
+--# Shell
 add("sh", {
   cs("#", "#!", "#!/usr/bin/env bash", [[
     #!/usr/bin/env bash
