@@ -152,6 +152,32 @@ add("php", {
     }),
 })
 
+--# Dart
+add("dart", {
+  ts("stful", "Stateful class", "class ... extends StatefulWidget { ... }", [[
+    class § extends StatefulWidget {
+      @override
+      Widget build(BuildContext context) {
+        §
+      }
+    }
+    ]], {
+      i(1, "WidgetName"),
+      i(0, '// TODO: implement build'),
+    }),
+  ts("stless", "Stateless class", "class ... extends StatelessWidget { ... }", [[
+    class § extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        §
+      }
+    }
+    ]], {
+      i(1, "WidgetName"),
+      i(0, '// TODO: implement build'),
+    }),
+})
+
 --# Shell
 add("sh", {
   ts("#", "#!", "#!/usr/bin/env bash", [[
