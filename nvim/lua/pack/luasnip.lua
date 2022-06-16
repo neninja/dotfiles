@@ -70,7 +70,7 @@ end
 add("php", {
   cs("if", "condition", "if (...) {...}", [[
   if (§) {
-    §
+      §
   }
   ]], {
       i(1, "condition"), i(0, "/* code */")
@@ -78,7 +78,7 @@ add("php", {
   cs("f", "function", "function ...(...)... {...}", [[
     §function §(§)§
     {
-      §
+        §
     }
     ]], {
       c(1, {
@@ -95,7 +95,7 @@ add("php", {
   cs("c", "create class", "class ... {...}", [[
     class §
     {
-      §
+        §
     }
     ]], {
       f_filename(), i(0, "/* code */"),
@@ -103,7 +103,7 @@ add("php", {
   cs("e", "create enum", "enum ... {...}", [[
     enum §
     {
-      §
+        §
     }
     ]], {
       f_filename(), i(0, "/* code */")
@@ -111,7 +111,7 @@ add("php", {
   cs("i", "create interface", "interface ... {...}", [[
     interface §
     {
-      §
+        §
     }
     ]], {
       f_filename(), i(0, "/* code */"),
