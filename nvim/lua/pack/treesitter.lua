@@ -12,8 +12,21 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
-vim.cmd([[
-set nofoldenable
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-]])
+local aucmd_dict = {
+  FileType = {
+    {
+      pattern = "php",
+      callback = function()
+        vim.opt_local.foldenable=false
+        vim.opt_local.foldmethod="expr"
+        vim.opt_local.foldexpr="nvim_treesitter#foldexpr()"
+      end,
+    },
+  }
+}
+
+for event, opt_tbls in pairs(aucmd_dict) do
+  for _, opt_tbl in pairs(opt_tbls) do
+    vim.api.nvim_create_autocmd(event, opt_tbl)
+  end
+end
