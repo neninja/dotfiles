@@ -1,14 +1,7 @@
 local map = vim.keymap.set
+local silent_noremap = {noremap = true, silent = true}
 
-map('n', '<leader>f', [[:Telescope find_files<CR>]], {noremap = true})
-map('n', '<leader>b', [[:Telescope buffers<CR>]], {noremap = true})
-map('n', '<leader>m', [[:Telescope oldfiles<CR>]], {noremap = true})
-map('n', '<leader>xx', [[:Telescope diagnostics<CR>]], {noremap = true})
-map('n', '<c-f>', [[:Telescope live_grep<CR>]], {})
-map('n', '<leader><cr>', [[:Telescope file_browser<CR>]], {})
-map('n', '<leader>e', [[:Telescope emoji<CR>]], {})
-map('n', '<leader>n', [[:Telescope command_palette<CR>]], {})
-map('n', '<leader><tab>', [[:Telescope luasnip<CR>]], {})
+map('n', '<leader>n', [[:Telescope command_center<CR>]], silent_noremap)
 
 local actions = require("telescope.actions")
 local fb_actions = require "telescope".extensions.file_browser.actions
@@ -37,52 +30,139 @@ require('telescope').setup{
         },
       },
     },
-    command_palette = {
-      {
-        "File",
-        { "file browser (leader-cr)", ":lua require'telescope'.extensions.file_browser.file_browser()", 1 },
-        { "search word (c-f)", ":lua require('telescope.builtin').live_grep()", 1 },
-        { "files (leader-f)",     ":lua require('telescope.builtin').find_files()", 1 },
-        { "buffers (leader-b)", ":Telescope buffers" },
-      },
-      {
-        "Coding",
-        { "LSP errors", ":Trouble document_diagnostic" }
-      },
-      {
-        "Help",
-        { "tips", ":help tips" },
-        { "cheatsheet", ":help index" },
-        { "summary", ":help summary" },
-        { "quick reference", ":help quickref" },
-        { "search help(F1)", ":lua require('telescope.builtin').help_tags()", 1 },
-      },
-      {
-        "Vim",
-        { "reload vimrc", ":Sov" },
-        { 'check health', ":checkhealth" },
-        { "commands", ":lua require('telescope.builtin').commands()" },
-        { "command history", ":lua require('telescope.builtin').command_history()" },
-        { "vim options", ":lua require('telescope.builtin').vim_options()" },
-        { "keymaps", ":lua require('telescope.builtin').keymaps()" },
-        { 'cursor line', ':set cursorline!' },
-        { 'cursor column', ':set cursorcolumn!' },
-        { "spell checker", ':set spell!' },
-      },
-      {
-        "NN",
-        { ":pwd to git dir", ":call NN_SetGitDir()" },
-        { "generate tags (ctags)", ":call NN_ctags()" },
-        { "commit aula", ":call NN_GitAula()" },
-      }
-    }
   }
 }
+
+require("command_center").add({
+  {
+    description = ":pwd to git dir",
+    cmd = ":call NN_SetGitDir()<CR>",
+    category = "git",
+  },
+  {
+    description = "commit aula `vim README.md -c \"call NN_GitAula2()\"`",
+    cmd = ":call NN_GitAula()",
+    category = "git",
+  },
+  {
+    description = "generate tags (ctags)",
+    cmd = ":call NN_ctags()<CR>",
+    category = "ctags",
+  },
+  {
+    description = "Search for a buffer",
+    cmd = ":Telescope buffers<CR>",
+    keybindings = {"n", "<leader>b", silent_noremap},
+    category = "telescope",
+  },
+  {
+    description = "Search inside current buffer",
+    cmd = ":Telescope current_buffer_fuzzy_find<CR>",
+    category = "telescope",
+  },
+  {
+    description = "Search for a file inside project (:pwd)",
+    cmd = ":Telescope find_files<CR>",
+    keybindings = {"n", "<leader>f", silent_noremap},
+    category = "telescope",
+  },
+  {
+    description = "Find recent files (MRU)",
+    cmd = ":Telescope oldfiles<CR>",
+    keybindings = {"n", "<leader>m", silent_noremap},
+    category = "telescope",
+  },
+  {
+    description = "Find word inside :pwd",
+    cmd = ":Telescope live_grep<CR>",
+    keybindings = {"n", "<c-f>", silent_noremap},
+    category = "telescope",
+  },
+  {
+    description = "Find a helptag",
+    cmd = ":Telescope help_tags<CR>",
+    category = "telescope",
+  },
+  {
+    description = "Find a man page",
+    cmd = ":Telescope man_pages<CR>",
+    category = "telescope",
+  },
+  {
+    description = "File browser",
+    cmd = ":Telescope file_browser<CR>",
+    keybindings = {"n", "<leader><cr>", silent_noremap},
+    category = "telescope",
+  },
+  {
+    description = "Find a emoji",
+    cmd = ":Telescope emoji<CR>",
+    category = "telescope",
+    keybindings = {"n", "<leader>e", silent_noremap},
+  },
+  {
+    description = "Find a snippet",
+    cmd = ":Telescope luasnip<CR>",
+    keybindings = {"n", "<leader><tab>", silent_noremap},
+    category = "telescope",
+  },
+  {
+    description = "Find a highlight",
+    cmd = ":Telescope highlights<CR>",
+    category = "telescope",
+  },
+  {
+    description = "Find a command",
+    cmd = ":Telescope commands<CR>",
+    category = "telescope",
+  },
+  {
+    description = "Show vim tips",
+    cmd = ":h tips<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Show vim cheatsheet",
+    cmd = ":h index<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Reload vimrc",
+    cmd = ":Sov<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Check health",
+    cmd = ":checkhealth<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Vim keymaps",
+    cmd = ":lua require('telescope.builtin').keymaps()<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Vim options",
+    cmd = ":lua require('telescope.builtin').vim_options()<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Check lsp diagnostic",
+    cmd = ":TroubleToggle document_diagnostics<CR>",
+    keybindings = {"n", "<leader>xx", silent_noremap},
+    category = "lsp",
+  },
+  {
+    description = "Update packages",
+    cmd = ":PackerSync<CR>",
+    category = "packages",
+  },
+})
+
 require("telescope").load_extension "emoji"
 require("telescope").load_extension "file_browser"
-require("telescope").load_extension "file_browser"
 require("telescope").load_extension "luasnip"
-require("telescope").load_extension "command_palette"
+require("telescope").load_extension "command_center"
 
 require("telescope-emoji").setup({
   action = function(emoji)

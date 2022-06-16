@@ -127,7 +127,7 @@ require('packer').startup(function(use)
       {'nvim-lua/plenary.nvim'},
       {'xiyaowong/telescope-emoji.nvim'},
       {'nvim-telescope/telescope-file-browser.nvim'},
-      {"LinArcX/telescope-command-palette.nvim" },
+      {"gfeiyou/command-center.nvim" },
       {'benfowler/telescope-luasnip.nvim'},
     },
     config = function() require("pack.telescope") end,
