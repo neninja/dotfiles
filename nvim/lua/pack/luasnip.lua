@@ -124,19 +124,13 @@ add("php", {
       i(G, "->"), i(0),
     }),
   cs("du", "dumper", "dump(...);", {
-    t("dump("),
-    i(0, hardebugtxt()),
-    t(");"),
+    t("dump("), i(0, hardebugtxt()), t(");"),
     }),
   cs("dd", "diedumper", "dd(...);", {
-		t("dd("),
-		i(0, hardebugtxt()),
-		t(");"),
+		t("dd("), i(0, hardebugtxt()), t(");"),
     }),
   cs("vdd", "dump and die", "var_dump(...);die;", {
-    t("var_dump("),
-    i(0, hardebugtxt()),
-    t(");die;"),
+    t("var_dump("), i(0, hardebugtxt()), t(");die;"),
     }),
   ts("r", "return", "return ...;", [[
     return §;
@@ -271,9 +265,7 @@ add("go", {
       i(0, ":9090"),
     }),
   cs("pl", "print line", "fmt.Println(...)", {
-    t("fmt.Println("),
-    i(0, hardebugtxt()),
-    t(")"),
+    t("fmt.Println("), i(0, hardebugtxt()), t(")"),
     }),
   ts("ts", "time sleep", "time.Sleep(time.Millisecond * ...)", [[
     time.Sleep(time.Millisecond * §)
