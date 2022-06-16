@@ -23,7 +23,7 @@ local aucmd_dict = {
       end,
     },
     {
-      pattern = "dart,lua",
+      pattern = "lua",
       callback = function()
         vim.cmd([[TSBufEnable indent]])
       end,
