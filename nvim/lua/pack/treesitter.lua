@@ -22,6 +22,12 @@ local aucmd_dict = {
         vim.opt_local.foldexpr="nvim_treesitter#foldexpr()"
       end,
     },
+    {
+      pattern = "dart",
+      callback = function()
+        vim.cmd([[TSBufEnable indent]])
+      end,
+    },
   }
 }
 
