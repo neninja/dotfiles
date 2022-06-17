@@ -57,7 +57,6 @@ local aucmd_dict = {
     {
       pattern = "markdown,txt,gitcommit",
       callback = function()
-        vim.opt_local.spell=true
         vim.opt_local.iskeyword:append("-")
       end,
     },
