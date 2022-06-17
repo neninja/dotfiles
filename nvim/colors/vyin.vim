@@ -25,45 +25,87 @@ function! s:NONE(attr)
 endfunction
 
 "## Colors
-let s:blackest  = ['#080808', 232]
-let s:black     = ['#1c1c1c', 234]
-let s:gray01    = ['#262626', 235]
-let s:gray02    = ['#444444', 238]
-let s:gray03    = ['#4e4e4e', 239]
-let s:gray04    = ['#585858', 240]
-let s:gray05    = ['#666666', 242]
-let s:gray06    = ['#767676', 243]
-let s:gray07    = ['#808080', 244]
-let s:gray08    = ['#8a8a8a', 245]
-let s:gray09    = ['#949494', 246]
-let s:gray10    = ['#9e9e9e', 247]
-let s:gray11    = ['#a8a8a8', 248]
-let s:gray12    = ['#b2b2b2', 249]
-let s:gray13    = ['#bcbcbc', 250]
-let s:gray14    = ['#c6c6c6', 251]
-let s:gray15    = ['#e4e4e4', 254]
-let s:white     = ['#eeeeee', 255]
+if &background == 'dark'
+  let s:blackest  = ['#080808', 232]
+  let s:black     = ['#1c1c1c', 234]
+  let s:gray01    = ['#262626', 235]
+  let s:gray02    = ['#444444', 238]
+  let s:gray03    = ['#4e4e4e', 239]
+  let s:gray04    = ['#585858', 240]
+  let s:gray05    = ['#666666', 242]
+  let s:gray06    = ['#767676', 243]
+  let s:gray07    = ['#808080', 244]
+  let s:gray08    = ['#8a8a8a', 245]
+  let s:gray09    = ['#949494', 246]
+  let s:gray10    = ['#9e9e9e', 247]
+  let s:gray11    = ['#a8a8a8', 248]
+  let s:gray12    = ['#b2b2b2', 249]
+  let s:gray13    = ['#bcbcbc', 250]
+  let s:gray14    = ['#c6c6c6', 251]
+  let s:gray15    = ['#e4e4e4', 254]
+  let s:white     = ['#eeeeee', 255]
 
-let s:purple    = ['#5f5fd7', 62]
-let s:brown     = ['#d79b5f', 94]
-let s:blue      = ['#5f5fd7', 25]
-let s:lightblue = ['#5f9bd7', 31]
-let s:cyan      = ['#5fd7d7', 43]
-let s:green     = ['#5fd75f', 29]
-let s:red       = ['#df5757', 88]
-let s:magenta   = ['#87005f', 89]
-let s:yellow    = ['#d7d75f', 100]
+  let s:purple    = ['#5f5fd7', 62]
+  let s:brown     = ['#d79b5f', 94]
+  let s:blue      = ['#5f5fd7', 25]
+  let s:lightblue = ['#5f9bd7', 31]
+  let s:cyan      = ['#5fd7d7', 43]
+  let s:green     = ['#5fd75f', 29]
+  let s:red       = ['#df5757', 88]
+  let s:magenta   = ['#87005f', 89]
+  let s:yellow    = ['#d7d75f', 100]
 
-let s:neonyellow = ['#afff5f', 155]
-let s:neonblue   = ['#5fffff', 81]
+  let s:neonyellow = ['#afff5f', 155]
+  let s:neonblue   = ['#5fffff', 81]
 
-" https://www.pantone.com/color-finder/13-1520-TCX
-" PANTONE 13-1520 TCX - Rose Quartz
-let s:rosequartz= ['#F7CACA', 133]
+  " https://www.pantone.com/color-finder/13-1520-TCX
+  " PANTONE 13-1520 TCX - Rose Quartz
+  let s:rosequartz= ['#F7CACA', 133]
 
-" https://www.pantone.com/color-finder/15-3919-TCX
-" PANTONE 15-3919 TCX Serenity
-let s:serenity  = ['#93A9D1', 67]
+  " https://www.pantone.com/color-finder/15-3919-TCX
+  " PANTONE 15-3919 TCX Serenity
+  let s:serenity  = ['#93A9D1', 67]
+else
+  let s:blackest  = ['#f7f7f7', 232]
+  let s:black     = ['#e3e3e3', 234]
+  let s:gray01    = ['#d9d9d9', 235]
+  let s:gray02    = ['#bbbbbb', 238]
+  let s:gray03    = ['#b1b1b1', 239]
+  let s:gray04    = ['#a7a7a7', 240]
+  let s:gray05    = ['#999999', 242]
+  let s:gray06    = ['#898989', 243]
+  let s:gray07    = ['#7f7f7f', 244]
+  let s:gray08    = ['#757575', 245]
+  let s:gray09    = ['#6b6b6b', 246]
+  let s:gray10    = ['#616161', 247]
+  let s:gray11    = ['#575757', 248]
+  let s:gray12    = ['#4d4d4d', 249]
+  let s:gray13    = ['#434343', 250]
+  let s:gray14    = ['#393939', 251]
+  let s:gray15    = ['#1b1b1b', 254]
+  let s:white     = ['#111111', 255]
+
+  let s:purple    = ['#5f5fd7', 62]
+  let s:brown     = ['#d79b5f', 94]
+  let s:blue      = ['#5f5fd7', 25]
+  let s:lightblue = ['#5f9bd7', 31]
+  let s:cyan      = ['#5fd7d7', 43]
+  let s:green     = ['#5fd75f', 29]
+  let s:red       = ['#df5757', 88]
+  let s:magenta   = ['#87005f', 89]
+  let s:yellow    = ['#d7d75f', 100]
+
+  let s:neonyellow = ['#afff5f', 155]
+  let s:neonblue   = ['#5fffff', 81]
+
+  " https://www.pantone.com/color-finder/13-1520-TCX
+  " PANTONE 13-1520 TCX - Rose Quartz
+  let s:rosequartz= ['#F7CACA', 133]
+
+  " https://www.pantone.com/color-finder/15-3919-TCX
+  " PANTONE 15-3919 TCX Serenity
+  let s:serenity  = ['#93A9D1', 67]
+endif
 
 if has("nvim")
     let g:terminal_color_0 = s:gray01[0]
@@ -105,7 +147,6 @@ endif
 
 "## Defs
 call s:hi('Normal', s:gray13, s:black, '')
-set background=dark
 
 call s:hi('Constant', s:gray05, '', 'bold')
 call s:hi('String', s:gray10, '', '')
