@@ -167,6 +167,17 @@ require("command_center").add({
     category = "nvim",
   },
   {
+    description = "Toggle dark/light colorscheme",
+    cmd = function()
+      if(vim.o.background == 'dark') then
+        vim.o.background = 'light'
+      else
+        vim.o.background = 'dark'
+      end
+    end,
+    category = "nvim",
+  },
+  {
     description = "Check lsp diagnostic",
     cmd = ":TroubleToggle document_diagnostics<CR>",
     keybindings = {"n", "<leader>xx", silent_noremap},
