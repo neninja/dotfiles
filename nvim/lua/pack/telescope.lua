@@ -137,6 +137,26 @@ require("command_center").add({
     category = "nvim",
   },
   {
+    description = "Set cursorline",
+    cmd = ":set cursorline<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Unset cursorline",
+    cmd = ":set nocursorline<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Set colorcolumn",
+    cmd = ":set colorcolumn=81<CR>",
+    category = "nvim",
+  },
+  {
+    description = "Unset colorcolumn",
+    cmd = ":set colorcolumn=<CR>",
+    category = "nvim",
+  },
+  {
     description = "Vim keymaps",
     cmd = ":lua require('telescope.builtin').keymaps()<CR>",
     category = "nvim",
