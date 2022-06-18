@@ -1,8 +1,8 @@
-require('src-pre')
-require('vimrc')
-require('packs')
-require('spells')
-require('src-pos')
+require('my.src-pre')
+require('my.vimrc')
+require('my.packs')
+require('my.spells')
+require('my.src-pos')
 
 local function settab(tabsize)
   vim.opt.tabstop=2

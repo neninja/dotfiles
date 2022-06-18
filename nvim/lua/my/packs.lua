@@ -29,7 +29,7 @@ require('packer').startup(function(use)
   use 'junegunn/goyo.vim'
   use {
     'mhinz/vim-startify',
-    config = function() require("pack.startify") end,
+    config = function() require("my.pack.startify") end,
   }
   use 'editorconfig/editorconfig-vim'
   use 'unblevable/quick-scope'
@@ -45,13 +45,13 @@ require('packer').startup(function(use)
     requires = {
       "williamboman/nvim-lsp-installer", -- Installs servers within neovim
     },
-    config = function() require("pack.lsp") end,
+    config = function() require("my.pack.lsp") end,
   }
 
   --[[use {
     'natebosch/vim-lsc',
     requires = {{'natebosch/vim-lsc-dart'}}
-    config = function() require("pack.lsc") end,
+    config = function() require("my.pack.lsc") end,
   }
   --]]
 
@@ -65,13 +65,13 @@ require('packer').startup(function(use)
       "saadparwaiz1/cmp_luasnip", -- Snippets source
       "L3MON4D3/LuaSnip",         -- Snippet engine
     },
-    config = function() require("pack.cmp") end,
+    config = function() require("my.pack.cmp") end,
   }
 
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    config = function() require("pack.treesitter") end,
+    config = function() require("my.pack.treesitter") end,
   }
 
   use {
@@ -130,7 +130,7 @@ require('packer').startup(function(use)
       {"gfeiyou/command-center.nvim" },
       {'benfowler/telescope-luasnip.nvim'},
     },
-    config = function() require("pack.telescope") end,
+    config = function() require("my.pack.telescope") end,
   }
 end)
 

@@ -4,4 +4,4 @@ fullpath = io.popen("realpath '"..fullpath.."'", 'r'):read('a'):gsub('[\n\r]*$',
 dotfiles_fullpath_nvim, _ = fullpath:match('^(.*/)([^/]-)$')
 vim.cmd('set runtimepath+='..dotfiles_fullpath_nvim)
 
-require('neni')
+require('my.init')

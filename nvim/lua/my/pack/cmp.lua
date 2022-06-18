@@ -78,4 +78,4 @@ cmp.setup({
   },
 })
 
-require("pack.luasnip")
+require("my.pack.luasnip")
