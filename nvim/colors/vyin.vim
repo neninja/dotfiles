@@ -68,22 +68,22 @@ if &background == 'dark'
 else
   let s:blackest  = ['#f7f7f7', 232]
   let s:black     = ['#e3e3e3', 234]
-  let s:gray01    = ['#d9d9d9', 235]
-  let s:gray02    = ['#bbbbbb', 238]
-  let s:gray03    = ['#b1b1b1', 239]
-  let s:gray04    = ['#a7a7a7', 240]
-  let s:gray05    = ['#999999', 242]
-  let s:gray06    = ['#898989', 243]
-  let s:gray07    = ['#7f7f7f', 244]
-  let s:gray08    = ['#757575', 245]
-  let s:gray09    = ['#6b6b6b', 246]
-  let s:gray10    = ['#616161', 247]
-  let s:gray11    = ['#575757', 248]
-  let s:gray12    = ['#4d4d4d', 249]
-  let s:gray13    = ['#434343', 250]
-  let s:gray14    = ['#393939', 251]
-  let s:gray15    = ['#1b1b1b', 254]
-  let s:white     = ['#111111', 255]
+  let s:gray01    = ['#f2f2f2', 235]
+  let s:gray02    = ['#7f7f7f', 238]
+  let s:gray03    = ['#757575', 239]
+  let s:gray04    = ['#6b6b6b', 240]
+  let s:gray05    = ['#616161', 242]
+  let s:gray06    = ['#575757', 243]
+  let s:gray07    = ['#4d4d4d', 244]
+  let s:gray08    = ['#434343', 245]
+  let s:gray09    = ['#393939', 246]
+  let s:gray10    = ['#1b1b1b', 247]
+  let s:gray11    = ['#191919', 248]
+  let s:gray12    = ['#1b1b1b', 249]
+  let s:gray13    = ['#171717', 250]
+  let s:gray14    = ['#141414', 251]
+  let s:gray15    = ['#0d0d0d', 254]
+  let s:white     = ['#000000', 255]
 
   let s:purple    = ['#5f5fd7', 62]
   let s:brown     = ['#d79b5f', 94]
@@ -95,16 +95,11 @@ else
   let s:magenta   = ['#87005f', 89]
   let s:yellow    = ['#d7d75f', 100]
 
-  let s:neonyellow = ['#afff5f', 155]
-  let s:neonblue   = ['#5fffff', 81]
-
-  " https://www.pantone.com/color-finder/13-1520-TCX
-  " PANTONE 13-1520 TCX - Rose Quartz
-  let s:rosequartz= ['#F7CACA', 133]
-
-  " https://www.pantone.com/color-finder/15-3919-TCX
-  " PANTONE 15-3919 TCX Serenity
-  let s:serenity  = ['#93A9D1', 67]
+  " Alterado para favorecer tema claro
+  let s:neonyellow = ['#9de655', 155]
+  let s:neonblue   = ['#2f8080', 81]
+  let s:rosequartz= ['#a68888', 133]
+  let s:serenity  = ['#505d73', 67]
 endif
 
 if has("nvim")
