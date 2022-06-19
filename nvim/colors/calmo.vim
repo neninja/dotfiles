@@ -230,8 +230,12 @@ call s:hi('PmenuSbar', s:bg, s:m15, '')
 call s:hi('PmenuSel', s:m03, s:m10, '')
 call s:hi('PmenuThumb', s:m03, s:m09, '')
 
-call s:hi('StatusLine', s:bg, s:serenity, '')
 call s:hi('StatusLineNC', s:m04, s:m01, '')
+if &background == 'dark'
+  call s:hi('StatusLine', s:bg, s:serenity, '')
+else
+  call s:hi('StatusLine', s:fg, s:serenity, '')
+endif
 
 if has('nvim')
   call s:hi('WinSeparator', '', '', '')
