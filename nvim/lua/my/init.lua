@@ -10,6 +10,8 @@ local function settab(tabsize)
   vim.opt.shiftwidth=2
 end
 
+vim.cmd 'colorscheme calmo'
+
 local aucmd_dict = {
   FileType = {
     {

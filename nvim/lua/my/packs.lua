@@ -136,8 +136,6 @@ end)
 
 map('n', '<leader>gg', [[:G<CR>]], {})
 
-vim.cmd 'colorscheme vyin'
-
 vim.g['qs_highlight_on_keys'] = {'f', 'F', 't', 'T'}
 
 local aucmd_dict = {
