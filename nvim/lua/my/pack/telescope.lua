@@ -67,6 +67,11 @@ require("command_center").add({
     category = "telescope",
   },
   {
+    description = "Search for a file inside project (:pwd) with hidden files",
+    cmd = ":Telescope find_files hidden=true<CR>",
+    category = "telescope",
+  },
+  {
     description = "Find recent files (MRU)",
     cmd = ":Telescope oldfiles<CR>",
     keybindings = {"n", "<leader>m", silent_noremap},
