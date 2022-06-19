@@ -38,11 +38,20 @@ cd dotfiles
 
 ## Configurações locais
 
-### Vim
+### Nvim
 
 - `~/.vimrc-pre.vim`
 - `~/.vimrc-local.vim`
 - `/path/do/projeto/.exvrc`
+
+#### Compatibilidade básica com o vim
+
+```vim
+" ~/.vimrc ou %userprofile%\_vimrc
+let g:dotfiles = "~/dev/dotfiles/"
+exe "source ".g:dotfiles."nvim/vimrc"
+exe "source ".g:dotfiles."nvim/colors/calmo.vim"
+```
 
 ### Bash
 
