@@ -400,4 +400,5 @@ augroup filetype_detect
   au!
   au BufRead,BufNewFile *.phtml setfiletype html
   au BufRead,BufNewFile *.gv setfiletype dot
+  au BufRead,BufNewFile *.todone setfiletype todone
 augroup END
