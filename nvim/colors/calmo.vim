@@ -261,7 +261,7 @@ hi! link SignColumn FoldColumn
 hi! link ColorColumn FoldColumn
 hi! link CursorColumn CursorLine
 
-hi! link Folded LineNr
+hi! link Folded Normal
 hi! link Conceal Normal
 hi! link ErrorMsg Error
 
