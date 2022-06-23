@@ -7,7 +7,13 @@ local actions = require("telescope.actions")
 local fb_actions = require "telescope".extensions.file_browser.actions
 require('telescope').setup{
   defaults = {
-    file_ignore_patterns = { "^./.git/", "^./node_modules/", "^./vendor/", "tags" },
+    file_ignore_patterns = {
+      "^.git",
+      "^android", "^linux", "^ios", "^macos", "^windows", -- flutter
+      "^node_modules",
+      "^vendor",
+      "^tags",
+    },
     mappings = {
       i = {
         ["<c-up>"] = actions.cycle_history_prev,
