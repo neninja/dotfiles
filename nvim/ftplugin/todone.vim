@@ -66,7 +66,7 @@ endfunction
 
 "## Fold
 setlocal foldmethod=expr
-setlocal foldexpr=FoldMethodTodoList()
+setlocal foldexpr=FoldMethodTodoneList()
 setlocal foldtext=FoldTodoText()
 
 function! FoldTodoText()
@@ -79,10 +79,9 @@ function! FoldTodoText()
   return titulo  . ' ' . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
 
-function! FoldMethodTodoList()
+function! FoldMethodTodoneList()
   if getline(v:lnum) =~ '^\S.*$'
     return ">1"
-  else
-    return "="
   endif
+  return "="
 endfunction
