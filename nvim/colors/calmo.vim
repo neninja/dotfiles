@@ -303,5 +303,6 @@ call s:hi('QuickScopeSecondary', s:detach02, '', '')
 
 call s:hi('TelescopeSelection', '', s:m01, '')
 hi! link TelescopeMatching QuickScopePrimary
+
 hi! link DiagnosticError Error
 hi! link DiagnosticHint Todo
