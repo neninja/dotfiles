@@ -148,6 +148,9 @@ add("php", {
 
 --# Dart
 add("dart", {
+  cs("dp", "debug print", "debugPrint(...);", {
+    t("debugPrint("), i(0, hardebugtxt()), t(");"),
+    }),
   ts("stful", "Stateful class", "class ... extends StatefulWidget { ... }", [[
     class § extends StatefulWidget {
       @override
