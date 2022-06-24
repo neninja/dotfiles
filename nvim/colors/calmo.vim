@@ -123,7 +123,7 @@ else
   let s:m14   = s:gray19
   let s:m15   = s:gray20
   let s:error = s:red01
-  let s:warn  = s:red01
+  let s:warn  = s:yellow01
   let s:hint  = s:cyan01
   let s:info  = s:purple01
   let s:detach01  = s:purple01
