@@ -4,6 +4,8 @@ syn match todoneListCardBody /^\s.*$/ containedin=ALL
 
 syn match todoneListURL /[http|https]*:\/\/[^ >,;]*/ containedin=todoneListCardBody,todoneListCardTitle
 syn match todoneListWhat "????" contained containedin=todoneListCardBody,todoneListCardTitle
+syn match todoneListGold /\C\<GOLD\>/ contained containedin=todoneListCardBody,todoneListCardTitle
+syn match todoneListNote /\C\<NOTE\>/ contained containedin=todoneListCardBody,todoneListCardTitle
 syn match todoneListWait /\C\<WAIT\>/ contained containedin=todoneListCardBody,todoneListCardTitle
 syn match todoneListDone /\C\<DONE\>/ contained containedin=todoneListCardBody,todoneListCardTitle
 syn match todoneListTodo /\C\<TODO\>/ contained containedin=todoneListCardBody,todoneListCardTitle
@@ -16,6 +18,8 @@ syn match todoneListBullet /-/ contained containedin=todoneListBegginingList con
 hi link todoneListCardTitle Folded
 
 hi link todoneListWhat DiffDelete
+hi link todoneListGold DiffText
+hi link todoneListNote DiffChange
 hi link todoneListWait DiffText
 hi link todoneListDone DiffAdd
 hi link todoneListTodo Todo

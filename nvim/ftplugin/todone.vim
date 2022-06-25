@@ -6,6 +6,7 @@ setlocal textwidth=81 " usar Vgq é util para quebrar linhas
 command! -buffer Todo call <SID>TodoneListSearchStatus({'TODO': '\C\<TODO\>'})
 command! -buffer Done call <SID>TodoneListSearchStatus({'DONE': '\C\<DONE\>'})
 command! -buffer Wait call <SID>TodoneListSearchStatus({'WAIT': '\C\<WAIT\>'})
+command! -buffer Note call <SID>TodoneListSearchStatus({'NOTE': '\C\<NOTE\>'})
 command! -buffer What call <SID>TodoneListSearchStatus({'????': '????'})
 
 nnoremap <silent><buffer> <CR>      :call <SID>HandleURL()<CR>
