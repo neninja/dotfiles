@@ -39,6 +39,11 @@ local aucmd_dict = {
         i('1n-', ':100:(nvim)')
         i('sn-', ':sos:(nvim)')
 
+        i('ba-', ':bug:(awm)')
+        i('na-', ':new:(awm)')
+        i('1a-', ':100:(awm)')
+        i('sa-', ':sos:(awm)')
+
         i('bg-', ':bug:(git)')
         i('ng-', ':new:(git)')
         i('1g-', ':100:(git)')
