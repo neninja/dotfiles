@@ -148,23 +148,25 @@ require("command_center").add({
     category = "nvim",
   },
   {
-    description = "Set cursorline",
-    cmd = ":set cursorline<CR>",
+    description = "Toggle cursorline",
+    cmd = function()
+      if(vim.o.cursorline) then
+        vim.o.cursorline = false
+      else
+        vim.o.cursorline = true
+      end
+    end,
     category = "nvim",
   },
   {
-    description = "Unset cursorline",
-    cmd = ":set nocursorline<CR>",
-    category = "nvim",
-  },
-  {
-    description = "Set colorcolumn",
-    cmd = ":set colorcolumn=81<CR>",
-    category = "nvim",
-  },
-  {
-    description = "Unset colorcolumn",
-    cmd = ":set colorcolumn=<CR>",
+    description = "Toggle colorcolumn",
+    cmd = function()
+      if(vim.o.colorcolumn == '81') then
+        vim.o.colorcolumn = ''
+      else
+        vim.o.colorcolumn = '81'
+      end
+    end,
     category = "nvim",
   },
   {
