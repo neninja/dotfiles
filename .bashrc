@@ -156,6 +156,7 @@ alias g="git"
 alias xcb='tr -d "\n" | xclip -selection clipboard'
 alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
 alias op='xdg-open .'
+alias anbox='anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity' # adb install ~/path/to/app.apk
 #{{{ CD
 alias cdf="cd $HOME/dev/dotfiles"
 alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard\n-> to clean: rm -rf * .*"'
