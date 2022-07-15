@@ -19,17 +19,6 @@ Versionamento dos meus arquivos de configuração, scripts, instruções e templ
 # Ubuntu
 curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb
 sudo apt install ./nvim-linux64.deb
-
-# instalar rg xclip
-# instalar node php dart gopls (LSP)
-
-# instalar packer:
-
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-# instalar lsp com :LspInstallInfo e i
 ```
 
 - configurar Nvim, Git e Bash
