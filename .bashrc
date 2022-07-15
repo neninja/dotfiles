@@ -151,6 +151,7 @@ PROMPT_COMMAND="ps1_simple; $PROMPT_COMMAND"
 
 #}}}
 #{{{ Aliases
+alias c="clear"
 alias m="make"
 alias g="git"
 alias xcb='tr -d "\n" | xclip -selection clipboard'
