@@ -29,6 +29,11 @@ require('telescope').setup{
   },
   pickers = {},
   extensions = {
+    emoji = {
+      action = function(emoji)
+        vim.fn.setreg("+", emoji.value)
+      end,
+    },
     file_browser = {
       mappings = {
         ["i"] = {
@@ -207,9 +212,3 @@ require("telescope").load_extension "emoji"
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "luasnip"
 require("telescope").load_extension "command_center"
-
-require("telescope-emoji").setup({
-  action = function(emoji)
-    vim.fn.setreg("+", emoji.value)
-  end,
-})
