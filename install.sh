@@ -31,7 +31,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 fi
 
 # nvim
-echo "source ~/$DIRDF_FROM_HOME/vim/dotfiles.vim" > $HOME/.config/nvim
+echo "source ~/$DIRDF_FROM_HOME/nvim/init.lua" > $HOME/.config/nvim/init.vim
 
 # less command
 read -p "Aperte enter para fechar"
