@@ -1,4 +1,4 @@
-test -f ~/.extra-bashrc.sh && . ~/.extra-bashrc.sh
+test -f ~/.bashrc-local.sh && . ~/.bashrc-local.sh
 #{{{ Prompt String
 
 # https://ss64.com/bash/syntax-prompt.html

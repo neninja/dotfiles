@@ -55,11 +55,11 @@ exe "source ".g:dotfiles."nvim/colors/calmo.vim"
 
 ### Bash
 
-- `~/.extra-bashrc.sh`
+- `~/.bashrc-local.sh`
 
 ### Git
 
-- `~/.gitconfig-extra`
+- `~/.gitconfig-local`
 
 #### Exemplo
 

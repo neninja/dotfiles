@@ -23,7 +23,7 @@ DIRDF=$HOME/$DIRDF_FROM_HOME
 # git
 echo "[include]
     path = $DIRDF_FROM_HOME/.gitconfig
-    path = .gitconfig-extra" > $HOME/.gitconfig
+    path = .gitconfig-local" > $HOME/.gitconfig
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # bash
