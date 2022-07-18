@@ -1,4 +1,4 @@
-# credits: 
+# credits:
 #   https://gist.github.com/stephenturner/d291570e25ee797580a4
 #   https://gist.github.com/pksunkara/988716
 #   https://github.com/alikins/gitconfig/blob/master/gitconfig
@@ -83,6 +83,7 @@
     #ps = push origin HEAD
     pso = push origin
     psof = push -f origin
+    psfo = push -f origin
     #############
     #pl = pull
     #pl = pull origin HEAD
