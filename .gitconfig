@@ -145,6 +145,7 @@
     commit-guide = !cat ~/dev/dotfiles/modelos/git/.gitcommit
     aliases = !git config -l | grep alias | cut -c 7-
     aula = "!f() { git add -A; git commit -m \":tv: add aula $@\"; }; f"
+    checkout-remote-b = "!f() { git fetch origin $@; git checkout -t origin/$@; }; f"
     release = "!f() { git tag \"$@\"; git push origin HEAD --tags; }; f"
     pr = "!f() { git fetch upstream && rebase upstream/$@; }; f" # git pr main
     pl = "!f() { git pull origin $(git rev-parse --abbrev-ref HEAD); }; f" # git pr main
