@@ -15,7 +15,7 @@ vim.cmd 'colorscheme calmo'
 local aucmd_dict = {
   FileType = {
     {
-      pattern = "lua,dart",
+      pattern = "lua,dart,rust",
       callback = function()
         settab(2)
       end,
