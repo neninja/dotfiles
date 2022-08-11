@@ -9,7 +9,7 @@ require('telescope').setup{
   defaults = {
     file_ignore_patterns = {
       "^.git",
-      "^android", "^linux", "^ios", "^macos", "^windows", -- flutter
+      "^android", "^linux", "^ios", "^macos", "^windows", "^build", -- flutter
       "^node_modules",
       "^vendor",
       "^tags",
