@@ -339,13 +339,6 @@ add("typescript", {
       i(0),
       i(1)
     }),
-  ts("rc", "export React component", "export function ...", [[
-    export function §() {
-      §
-    }';
-    ]], {
-      f_filename(), i(0, "/* code */"),
-    }),
 })
 
 --# jsx
@@ -372,6 +365,13 @@ add("typescriptreact", {
     ]], {
       i(0),
       i(1)
+    }),
+  ts("rc", "export React component", "export function ...", [[
+    export function §() {
+      §
+    }';
+    ]], {
+      f_filename(), i(0, "/* code */"),
     }),
 })
 
