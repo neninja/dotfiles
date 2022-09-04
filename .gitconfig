@@ -1,3 +1,4 @@
+# vim:set ff=unix ts=4 ss=4 sw=4:
 # credits:
 #   https://gist.github.com/stephenturner/d291570e25ee797580a4
 #   https://gist.github.com/pksunkara/988716
@@ -35,7 +36,7 @@
     cmd = vim -d -c \"wincmd l\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
 [difftool]
     prompt = false
-	tool = vimdiff
+    tool = vimdiff
 [push]
     followTags = true # caso não funcione: git push origin main --tags
 [alias]
