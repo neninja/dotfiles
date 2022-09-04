@@ -321,6 +321,60 @@ add("html", {
     }),
 })
 
+--# javascript
+add("javascript", {
+  ts("imp", "import from", "import ... from ...", [[
+    import § from '§';
+    ]], {
+      i(0),
+      i(1)
+    }),
+})
+
+--# typescript
+add("typescript", {
+  ts("imp", "import from", "import ... from ...", [[
+    import § from '§';
+    ]], {
+      i(0),
+      i(1)
+    }),
+  ts("rc", "export React component", "export function ...", [[
+    export function §() {
+      §
+    }';
+    ]], {
+      f_filename(), i(0, "/* code */"),
+    }),
+})
+
+--# jsx
+add("javascriptreact", {
+  ts("imp", "import from", "import ... from ...", [[
+    import § from '§';
+    ]], {
+      i(0),
+      i(1)
+    }),
+  ts("rc", "export React component", "export function ...", [[
+    export function §() {
+      §
+    }';
+    ]], {
+      f_filename(), i(0, "/* code */"),
+    }),
+})
+
+--# tsx
+add("typescriptreact", {
+  ts("imp", "import from", "import ... from ...", [[
+    import § from '§';
+    ]], {
+      i(0),
+      i(1)
+    }),
+})
+
 --# Map
 local map = vim.keymap.set
 -- map('i', '<Tab>', [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>']], {silent=true, expr=true})
