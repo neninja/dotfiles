@@ -15,9 +15,20 @@ vim.cmd 'colorscheme calmo'
 local aucmd_dict = {
   FileType = {
     {
-      pattern = "lua,dart,rust",
+      pattern = "lua,dart,rust,javascript,javascriptreact,typescript,typescriptreact",
       callback = function()
         settab(2)
+      end,
+    },
+    {
+      pattern = "javascriptreact,typescriptreact",
+      callback = function()
+        local function i(trig, cb)
+          vim.cmd("inoremap <buffer> "..trig.." "..cb)
+        end
+        i('<c-d>', '<esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit')
+        i('<c-d><c-s>', '<esc>bi<<esc>ea /><esc>hi')
+        i('<c-d><c-d>', '<esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit<cr><esc>O')
       end,
     },
     {
