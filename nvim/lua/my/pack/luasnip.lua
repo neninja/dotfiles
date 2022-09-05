@@ -352,7 +352,7 @@ add("javascriptreact", {
   ts("rc", "export React component", "export function ...", [[
     export function §() {
       §
-    }';
+    };
     ]], {
       f_filename(), i(0, "/* code */"),
     }),
@@ -369,7 +369,7 @@ add("typescriptreact", {
   ts("rc", "export React component", "export function ...", [[
     export function §() {
       §
-    }';
+    };
     ]], {
       f_filename(), i(0, "/* code */"),
     }),
