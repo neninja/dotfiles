@@ -337,13 +337,18 @@ add("javascriptreact", {
   ts("rc", "export React component", "export function ...", [[
     export function §() {
       return (
-        <>
-          §
-        </>
+        §
       );
     };
     ]], {
-      f_filename(), i(0, "/* code */"),
+      f_filename(), i(0),
+    }),
+  ts("<", "<Fragment>", "<>...</>", [[
+      <>
+        §
+      </>
+    ]], {
+      i(0),
     }),
   ts("usee", "useEffect", "useEffect(() => ...), [])", [[
     useEffect(() => {
