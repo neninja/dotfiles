@@ -64,10 +64,6 @@ local function f_filename()
   end)
 end
 
-local function hardebugtxt(position)
-  return "\":hardebug:"..vim.fn.expand('%:t:r')..vim.fn.strftime(':%H:%M:%S').."\""
-end
-
 --# PHP
 add("php", {
   ts("if", "condition", "if (...) {...}", [[
@@ -123,14 +119,14 @@ add("php", {
     ]], {
       i(G, "->"), i(0),
     }),
-  cs("du", "dumper", "dump(...);", {
-    t("dump("), i(0, hardebugtxt()), t(");"),
+  cs("d", "dumper", "dump(...);", {
+    t("dump("), i(0), t(");"),
     }),
   cs("dd", "diedumper", "dd(...);", {
-		t("dd("), i(0, hardebugtxt()), t(");"),
+		t("dd("), i(0), t(");"),
     }),
   cs("vdd", "dump and die", "var_dump(...);die;", {
-    t("var_dump("), i(0, hardebugtxt()), t(");die;"),
+    t("var_dump("), i(0), t(");die;"),
     }),
   ts("r", "return", "return ...;", [[
     return §;
@@ -149,7 +145,7 @@ add("php", {
 --# Dart
 add("dart", {
   cs("dp", "debug print", "debugPrint(...);", {
-    t("debugPrint("), i(0, hardebugtxt()), t(");"),
+    t("debugPrint("), i(0), t(");"),
     }),
   ts("stful", "Stateful class", "class ... extends StatefulWidget { ... }", [[
     class § extends StatefulWidget {
@@ -268,7 +264,7 @@ add("go", {
       i(0, ":9090"),
     }),
   cs("pl", "print line", "fmt.Println(...)", {
-    t("fmt.Println("), i(0, hardebugtxt()), t(")"),
+    t("fmt.Println("), i(0), t(")"),
     }),
   ts("ts", "time sleep", "time.Sleep(time.Millisecond * ...)", [[
     time.Sleep(time.Millisecond * §)
@@ -329,51 +325,44 @@ add("javascript", {
       i(0),
       i(1)
     }),
-})
-
---# typescript
-add("typescript", {
-  ts("imp", "import from", "import ... from ...", [[
-    import § from '§';
+  ts("log", "console.log", "console.log(...)", [[
+    console.log(§);
     ]], {
       i(0),
-      i(1)
     }),
 })
 
---# jsx
+ls.filetype_extend("javascriptreact", {"javascript"})
 add("javascriptreact", {
-  ts("imp", "import from", "import ... from ...", [[
-    import § from '§';
-    ]], {
-      i(0),
-      i(1)
-    }),
   ts("rc", "export React component", "export function ...", [[
     export function §() {
-      §
+      return (
+        <>
+          §
+        <>
+      );
     };
     ]], {
       f_filename(), i(0, "/* code */"),
+    }),
+  ts("usee", "useEffect", "useEffect(() => ...), [])", [[
+    useEffect(() => {
+      §
+    }, [§]);
+    ]], {
+      i(1), i(0, "/* code */"),
+    }),
+  ts("uses", "useEffect", "useEffect(() => ...), [])", [[
+    const [§, set§] = useState(§);
+    ]], {
+      i(1, ""),
+      lambda(lambda._1:match("[^i]*$"):gsub("^%l", string.upper), 1),
+      i(0, "null")
     }),
 })
 
---# tsx
-add("typescriptreact", {
-  ts("imp", "import from", "import ... from ...", [[
-    import § from '§';
-    ]], {
-      i(0),
-      i(1)
-    }),
-  ts("rc", "export React component", "export function ...", [[
-    export function §() {
-      §
-    };
-    ]], {
-      f_filename(), i(0, "/* code */"),
-    }),
-})
+ls.filetype_extend("typescript", {"javascript"})
+ls.filetype_extend("typescriptreact", {"javascriptreact", "javascript", "typescript"})
 
 --# Map
 local map = vim.keymap.set
