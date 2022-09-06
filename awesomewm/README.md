@@ -13,7 +13,9 @@ sudo snap refresh
 
 - Atualização do google chrome:
 ```sh
-sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O ~/Downloads/chrome.deb
+sudo dpkg -i --force-depends ~/Downloads/chrome.deb
+rm ~/Downloads/chrome.deb
 ```
 
 > <kbd>super</kbd><kbd>s</kbd> exibe comandos
