@@ -339,7 +339,7 @@ add("javascriptreact", {
       return (
         <>
           §
-        <>
+        </>
       );
     };
     ]], {
