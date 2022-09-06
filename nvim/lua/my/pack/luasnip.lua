@@ -377,12 +377,12 @@ add("typescriptreact", {
 
 --# Map
 local map = vim.keymap.set
--- map('i', '<Tab>', [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>']], {silent=true, expr=true})
--- map('s', '<Tab>', function()
---   if ls.expand_or_jumpable() then
---     ls.expand_or_jump()
---   end
--- end, {silent = true})
+map('i', '<Tab>', [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>']], {silent=true, expr=true})
+map('s', '<Tab>', function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, {silent = true})
 
 -- map({'i', 's'}, '<s-Tab>', function()
 --   ls.jump(-1)
