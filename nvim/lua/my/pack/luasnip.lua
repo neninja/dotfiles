@@ -326,7 +326,7 @@ add("javascript", {
       i(1)
     }),
   ts("log", "console.log", "console.log(...)", [[
-    console.log(§);
+    console.log(§)
     ]], {
       i(0),
     }),
