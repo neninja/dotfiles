@@ -30,6 +30,7 @@ git clone git@github.com:nenitf/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
+> [Configuração do SSH](https://gist.github.com/nenitf/433e85b49acc802479654c75535eea2c)
 
 ## Configurações locais
 
