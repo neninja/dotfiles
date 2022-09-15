@@ -53,6 +53,23 @@ exe "source ".g:dotfiles."nvim/colors/calmo.vim"
 
 - `~/.bashrc-local.sh`
 
+#### Exemplo
+
+```sh
+alias cdi='cd ~/dev/i10'
+alias cdia='cd ~/dev/i10/api'
+alias sailclear='sail artisan optimize:clear'
+. "$HOME/.cargo/env"
+
+alias toggl='flatpak run com.toggl.TogglDesktop'
+alias outline='sudo ~/bin/Outline-Client.AppImage --no-sandbox'
+alias cu='sudo ~/bin/ClickUp-3.0.6.AppImage --no-sandbox'
+
+export GPG_TTY=$(tty)
+
+export XDG_DATA_DIRS='/var/lib/flatpak/exports/share:/home/neni/.local/share/flatpak/exports/share'
+```
+
 ### Git
 
 - `~/.gitconfig-local`
