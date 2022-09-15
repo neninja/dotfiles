@@ -18,6 +18,6 @@ sudo dpkg -i --force-depends ~/Downloads/chrome.deb
 rm ~/Downloads/chrome.deb
 ```
 
-> Para "instalar"/executar `AppImage` precisa de permissão (``chmod +x ~/bin/file.AppImage``) e depois somente executar (``sudo ~/bin/file.AppImage --no-sandbox``)
+> Para "instalar"/executar `AppImage` precisa de permissão (``chmod +x ~/bin/file.AppImage``) e depois somente executar (``sudo ~/bin/file.AppImage --no-sandbox`` ou pelo awesome com <kbd>super</kbd><kbd>r</kbd> `$HOME/bin/file.AppImage`)
 
 > <kbd>super</kbd><kbd>s</kbd> exibe comandos
