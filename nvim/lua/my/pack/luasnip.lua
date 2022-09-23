@@ -339,7 +339,7 @@ add("javascriptreact", {
       return (
         §
       );
-    };
+    }
     ]], {
       f_filename(), i(0),
     }),
