@@ -77,7 +77,7 @@ export XDG_DATA_DIRS='/var/lib/flatpak/exports/share:/home/neni/.local/share/fla
 #### Exemplo
 
 ```gitconfig
-# `~/.gitconfig-extra`
+# `~/.gitconfig-local`
 [includeIf "gitdir:~/dev/trampo/projetox/"]
     path = dev/trampo/.gitconfig-projetox
 ```
