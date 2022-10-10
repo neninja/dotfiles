@@ -90,6 +90,12 @@ export XDG_DATA_DIRS='/var/lib/flatpak/exports/share:/home/neni/.local/share/fla
     excludesfile = ~/dev/trampo/.gitignore-projetox
 ```
 
+```gitignore
+# `~/dev/trampo/.gitignore-projetox`
+meumakefile
+up.sh
+```
+
 ```gitconfig
 # `~/dev/trampo/.gitconfig-geral-trampo`
 [user]

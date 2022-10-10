@@ -152,7 +152,7 @@ PROMPT_COMMAND="ps1_simple; $PROMPT_COMMAND"
 #}}}
 #{{{ Aliases
 alias c="clear"
-alias m="make"
+alias m="make -f meumakefile"
 alias g="git"
 alias xcb='tr -d "\n" | xclip -selection clipboard'
 alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
