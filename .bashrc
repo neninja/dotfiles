@@ -190,6 +190,16 @@ wttr(){
     curl wttr.in/porto+alegre?lang=pt-br
 }
 
+# DESC: Repetir um mesmo comando com Enter
+# USE: wrl echo "a"
+wrl(){
+	while $@; read line; do true; done;
+
+  # simplificação
+  # $@;
+  # while read line; do $@; done;
+}
+
 # DESC: Repetir X vezes o comando Y
 # USE: fori 10 echo "olha"
 fori(){
