@@ -34,6 +34,6 @@ vim.g['startify_commands'] = {
 }
 
 function GoToDotfiles()
-  vim.cmd('e '..dotfiles_fullpath_nvim..'vimrc | call NN_SetGitDir()')
+  vim.cmd('e '..DOTFILES_FULLPATH_NVIM..'vimrc | call NN_SetGitDir()')
 end
 

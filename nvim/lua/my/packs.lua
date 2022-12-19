@@ -107,6 +107,7 @@ require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',
     requires = {
       {'nvim-lua/plenary.nvim'},
+      {'xiyaowong/telescope-emoji.nvim'},
       {'nvim-telescope/telescope-file-browser.nvim'},
       {'gfeiyou/command-center.nvim' },
       {'benfowler/telescope-luasnip.nvim'},
