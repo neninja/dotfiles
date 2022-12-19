@@ -126,6 +126,7 @@ local aucmd_dict = {
       pattern = 'php',
       callback = function()
         local buf = vim.api.nvim_get_current_buf()
+        -- phpactor é péssimo como lsp mas ótimo como ferramental
         vim.keymap.set('n', '<leader>uu', [[<cmd>PhpactorImportClass<CR>]], { noremap=true, silent=true, buffer=buf })
       end,
     },
