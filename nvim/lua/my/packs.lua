@@ -40,10 +40,15 @@ require('packer').startup(function(use)
     run = "composer i"
   }
 
-  use{
-    "neovim/nvim-lspconfig",
+  use { -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
     requires = {
-      "williamboman/nvim-lsp-installer", -- Installs servers within neovim
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
     },
     config = function() require("my.pack.lsp") end,
   }

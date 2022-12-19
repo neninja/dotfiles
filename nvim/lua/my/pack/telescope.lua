@@ -114,7 +114,7 @@ require("command_center").add({
     description = "Find a emoji",
     cmd = ":Telescope emoji<CR>",
     category = "telescope",
-    keybindings = {"n", "<leader>e", silent_noremap},
+    keybindings = {"n", "<leader>em", silent_noremap},
   },
   {
     description = "Find a snippet",
