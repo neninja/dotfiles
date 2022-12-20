@@ -35,10 +35,6 @@ require('packer').startup(function(use)
   use 'unblevable/quick-scope'
   use 'tpope/vim-fugitive'
   use 'junegunn/gv.vim'
-  use {
-    'phpactor/phpactor',
-    run = 'composer i'
-  }
 
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -119,22 +115,3 @@ end)
 map('n', '<leader>gg', [[:G<CR>]], {})
 
 vim.g['qs_highlight_on_keys'] = {'f', 'F', 't', 'T'}
-
-local aucmd_dict = {
-  FileType = {
-    {
-      pattern = 'php',
-      callback = function()
-        local buf = vim.api.nvim_get_current_buf()
-        -- phpactor é péssimo como lsp mas ótimo como ferramental
-        vim.keymap.set('n', '<leader>uu', [[<cmd>PhpactorImportClass<CR>]], { noremap=true, silent=true, buffer=buf })
-      end,
-    },
-  },
-}
-
-for event, opt_tbls in pairs(aucmd_dict) do
-  for _, opt_tbl in pairs(opt_tbls) do
-    vim.api.nvim_create_autocmd(event, opt_tbl)
-  end
-end
