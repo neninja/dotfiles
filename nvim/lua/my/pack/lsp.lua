@@ -1,14 +1,5 @@
--- Setup mason so it can manage external tooling
-require('mason').setup()
+require('fidget').setup()
 
--- Enable the following language servers
--- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'intelephense', 'eslint', 'tsserver', 'sumneko_lua', 'gopls' }
-
--- Ensure the servers above are installed
-require('mason-lspconfig').setup {
-  ensure_installed = servers,
-}
 -- De clutter the editor by only showing diagnostic messages when the cursor is over the error
 vim.diagnostic.config({
   virtual_text = true, -- Do not show the text in front of the error
@@ -17,7 +8,11 @@ vim.diagnostic.config({
   },
 })
 
-require('fidget').setup()
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {desc="Goto prev diagnostic"})
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {desc="Goto next diagnostic"})
+vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float, {desc="Show diagnostic on float"})
+vim.keymap.set('n', '<leader>eq', vim.diagnostic.setloclist, {desc="Show diagnostic on loclist"})
 
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
@@ -66,9 +61,45 @@ local on_attach = function(_, bufnr)
   end, 'Format current buffer with LSP')
 end
 
--- nvim-cmp supports additional completion capabilities
+local servers = {
+  intelephense = {},
+  eslint = {},
+  gopls = {},
+  tsserver = {},
+  sumneko_lua = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+}
+
+-- Setup neovim lua configuration
+require('neodev').setup()
+--
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Setup mason so it can manage external tooling
+require('mason').setup()
+
+-- Ensure the servers above are installed
+local mason_lspconfig = require 'mason-lspconfig'
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
+}
+
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
+    }
+  end,
+}
 
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
@@ -76,36 +107,3 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>eq', vim.diagnostic.setloclist)
-
--- Example custom configuration for lua
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
-
-require('lspconfig').sumneko_lua.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        globals = { 'vim' },
-      },
-      workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = { enable = false },
-    },
-  },
-}
