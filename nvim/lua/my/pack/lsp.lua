@@ -3,7 +3,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'intelephense', 'phpactor', 'eslint', 'tsserver', 'sumneko_lua', 'gopls' }
+local servers = { 'intelephense', 'eslint', 'tsserver', 'sumneko_lua', 'gopls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -109,33 +109,3 @@ require('lspconfig').sumneko_lua.setup {
     },
   },
 }
-
-require('lspconfig').phpactor.setup {
-  on_attach = on_attach,
-  init_options = {
-    ["language_server_phpstan.enabled"] = false,
-    ["language_server_psalm.enabled"] = false,
-    ["language_server.diagnostics_on_update"] = false,
-    ["language_server.diagnostics_on_open"] = false,
-    ["language_server.diagnostics_on_save"] = false,
-  }
-}
-
-local aucmd_dict = {
-  FileType = {
-    {
-      pattern = 'php',
-      callback = function()
-        local buf = vim.api.nvim_get_current_buf()
-        -- phpactor é péssimo como lsp mas ótimo como ferramental
-        vim.keymap.set('n', '<leader>uu', [[<cmd>PhpactorImportClass<CR>]], { noremap=true, silent=true, buffer=buf })
-      end,
-    },
-  },
-}
-
-for event, opt_tbls in pairs(aucmd_dict) do
-  for _, opt_tbl in pairs(opt_tbls) do
-    vim.api.nvim_create_autocmd(event, opt_tbl)
-  end
-end
