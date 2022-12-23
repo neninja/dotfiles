@@ -196,12 +196,6 @@ require("command_center").add({
     category = "nvim",
   },
   {
-    description = "Check lsp diagnostic",
-    cmd = ":TroubleToggle document_diagnostics<CR>",
-    keybindings = {"n", "<leader>xx", silent_noremap},
-    category = "lsp",
-  },
-  {
     description = "Update packages",
     cmd = ":PackerSync<CR>",
     category = "packages",
