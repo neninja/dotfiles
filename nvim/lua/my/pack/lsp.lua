@@ -1,5 +1,3 @@
-require('fidget').setup()
-
 -- De clutter the editor by only showing diagnostic messages when the cursor is over the error
 vim.diagnostic.config({
   virtual_text = true, -- Do not show the text in front of the error
@@ -107,3 +105,5 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+require('fidget').setup()
