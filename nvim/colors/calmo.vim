@@ -5,6 +5,10 @@
 "   https://www.colorhexa.com
 "   https://jonasjacek.github.io/colors/
 
+command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+" THANKS: https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+":so $VIMRUNTIME/syntax/hitest.vim
+
 highlight clear
 
 if exists("syntax_on")
