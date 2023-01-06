@@ -62,7 +62,6 @@ end
 local servers = {
   intelephense = {},
   eslint = {},
-  gopls = {},
   tsserver = {},
   sumneko_lua = {
     Lua = {
