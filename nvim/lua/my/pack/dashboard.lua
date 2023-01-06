@@ -198,6 +198,7 @@ end
 
 local config = require("alpha.themes.dashboard").config
 config.layout[2] = header_color()
+config.layout[2] = header_color()
 config.layout[6] = { type = "padding", val = 4 }
 config.layout[7] = {
   type = "text",

@@ -72,11 +72,11 @@ require('packer').startup(function(use)
     config = function() require('my.pack.cmp') end,
   }
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    config = function() require('my.pack.treesitter') end,
-  }
+  -- use {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   run = ':TSUpdate',
+  --   config = function() require('my.pack.treesitter') end,
+  -- }
 
   use {
     'terrortylor/nvim-comment',
