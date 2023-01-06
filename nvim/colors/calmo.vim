@@ -373,3 +373,24 @@ hi! link TelescopeMatching QuickScopePrimary
 
 hi! link DiagnosticError Error
 hi! link DiagnosticHint Todo
+
+" http://www.colinkeany.com/blend/
+" dashboard
+hi StartLogo1 ctermfg=18 guifg=#00ebff
+hi StartLogo2 ctermfg=18 guifg=#03e9ef
+hi StartLogo3 ctermfg=18 guifg=#06e8e5
+hi StartLogo4 ctermfg=18 guifg=#0ae5d2
+hi StartLogo5 ctermfg=23 guifg=#0ae5d2
+hi StartLogo6 ctermfg=23 guifg=#0de3c2
+hi StartLogo7 ctermfg=23 guifg=#12e1ae
+hi StartLogo8 ctermfg=23 guifg=#13e0a9
+hi StartLogo9 ctermfg=23 guifg=#14dfa3
+hi StartLogo10 ctermfg=29 guifg=#16de9b
+hi StartLogo11 ctermfg=29 guifg=#17de97
+hi StartLogo12 ctermfg=29 guifg=#18dd8f
+hi StartLogo13 ctermfg=35 guifg=#19dc8c
+hi StartLogo14 ctermfg=35 guifg=#1bdb84
+hi StartLogo15 ctermfg=35 guifg=#1cdb7f
+hi StartLogo16 ctermfg=35 guifg=#1eda76
+hi StartLogo17 ctermfg=41 guifg=#20d86d
+hi StartLogo18 ctermfg=41 guifg=#25d555

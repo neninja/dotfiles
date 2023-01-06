@@ -28,8 +28,8 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'junegunn/goyo.vim'
   use {
-    'mhinz/vim-startify',
-    config = function() require('my.pack.startify') end,
+    'goolord/alpha-nvim',
+    config = function() require('my.pack.dashboard') end,
   }
   use 'editorconfig/editorconfig-vim'
   use 'unblevable/quick-scope'
