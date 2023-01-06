@@ -4,6 +4,8 @@
 
 Versionamento dos meus arquivos de configuração, scripts, instruções e templates usados no Windows e/ou Linux.
 
+<center>![neovim screenshot](./nvim/screenshot.png)</center>
+
 - Nvim e VSCode
 - Awesome
 - Bash e Git
