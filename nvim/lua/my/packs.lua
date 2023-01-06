@@ -3,9 +3,9 @@
 local map = vim.keymap.set
 
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'~/.config/nvim/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '~/.config/nvim/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
   print('Installing packer close and reopen Neovim...')
 end
 
@@ -65,9 +65,9 @@ require('packer').startup(function(use)
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp',     -- LSP source for nvim-cmp
+      'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
       'saadparwaiz1/cmp_luasnip', -- Snippets source
-      'L3MON4D3/LuaSnip',         -- Snippet engine
+      'L3MON4D3/LuaSnip', -- Snippet engine
     },
     config = function() require('my.pack.cmp') end,
   }
@@ -105,11 +105,11 @@ require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'xiyaowong/telescope-emoji.nvim'},
-      {'nvim-telescope/telescope-file-browser.nvim'},
-      {'gfeiyou/command-center.nvim' },
-      {'benfowler/telescope-luasnip.nvim'},
+      { 'nvim-lua/plenary.nvim' },
+      { 'xiyaowong/telescope-emoji.nvim' },
+      { 'nvim-telescope/telescope-file-browser.nvim' },
+      { 'gfeiyou/command-center.nvim' },
+      { 'benfowler/telescope-luasnip.nvim' },
     },
     config = function() require('my.pack.telescope') end,
   }
@@ -117,4 +117,4 @@ end)
 
 map('n', '<leader>gg', [[:G<CR>]], {})
 
-vim.g['qs_highlight_on_keys'] = {'f', 'F', 't', 'T'}
+vim.g['qs_highlight_on_keys'] = { 'f', 'F', 't', 'T' }

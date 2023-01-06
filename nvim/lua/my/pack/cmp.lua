@@ -72,11 +72,6 @@ cmp.setup({
     { name = "path" },
     { name = "buffer", keyword_length = 5 },
   },
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
 })
 
 require("my.pack.luasnip")
