@@ -5,6 +5,10 @@
 "   https://www.colorhexa.com
 "   https://jonasjacek.github.io/colors/
 
+command! Syntax echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+" THANKS: https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+":so $VIMRUNTIME/syntax/hitest.vim
+
 highlight clear
 
 if exists("syntax_on")
@@ -48,6 +52,40 @@ let s:gray19    = ['#1b1b1b', 249]
 let s:gray20    = ['#171717', 250]
 let s:gray21    = ['#141414', 251]
 let s:gray22    = ['#0d0d0d', 254]
+
+" let s:stratosphere01    = ['#f8fbfb', 254]
+" let s:stratosphere02    = ['#deeaee', 251]
+" let s:stratosphere03    = ['#c5dae0', 250]
+" let s:stratosphere04    = ['#b8d1da', 249]
+" let s:stratosphere05    = ['#abc9d3', 248]
+" let s:stratosphere06    = ['#9ec1cc', 247]
+" let s:stratosphere07    = ['#91b9c5', 246]
+" let s:stratosphere08    = ['#84b1be', 245]
+" let s:stratosphere09    = ['#77a8b8', 244]
+" let s:stratosphere10    = ['#6ba0b1', 243]
+" let s:stratosphere11    = ['#5e98aa', 242]
+" let s:stratosphere12    = ['#548ea0', 240]
+" let s:stratosphere13    = ['#477786', 239]
+" let s:stratosphere14    = ['#39606d', 238]
+" let s:stratosphere15    = ['#2c4a53', 235]
+" let s:stratosphere16    = ['#1e3339', 234]
+
+" let s:stratosphere01    = ['#eceff2', 249]
+" let s:stratosphere02    = ['#e0e5ea', 248]
+" let s:stratosphere03    = ['#d5dbe2', 247]
+" let s:stratosphere04    = ['#c9d1db', 246]
+" let s:stratosphere05    = ['#bdc7d3', 245]
+" let s:stratosphere06    = ['#b1bdcb', 244]
+" let s:stratosphere07    = ['#a6b3c3', 243]
+" let s:stratosphere08    = ['#9aaabb', 242]
+" let s:stratosphere09    = ['#8ea0b3', 240]
+" let s:stratosphere10    = ['#8296ab', 239]
+" let s:stratosphere11    = ['#778ca3', 238]
+" let s:stratosphere12    = ['#6b829b', 235]
+" let s:stratosphere13    = ['#627891', 234]
+" let s:stratosphere14    = ['#5a6e85', 234]
+" let s:stratosphere15    = ['#52657a', 234]
+" let s:stratosphere16    = ['#4a5b6e', 234]
 
 let s:black  = ['#000000', 232]
 
@@ -104,6 +142,30 @@ if &background == 'dark'
   let s:info  = s:purple01
   let s:detach01  = s:neonyellow01
   let s:detach02  = s:neonblue01
+
+  " let s:bg    = s:stratosphere16
+  " let s:fg    = s:stratosphere03
+  " let s:m01   = s:stratosphere15
+  " let s:m02   = s:stratosphere14
+  " let s:m03   = s:stratosphere12
+  " let s:m04   = s:stratosphere10
+  " let s:m05   = s:stratosphere09
+  " let s:m06   = s:stratosphere08
+  " let s:m07   = s:stratosphere07
+  " let s:m08   = s:stratosphere06
+  " let s:m09   = s:stratosphere05
+  " let s:m10   = s:stratosphere04
+  " let s:m11   = s:stratosphere03
+  " let s:m12   = s:stratosphere02
+  " let s:m13   = s:fg
+  " let s:m14   = s:stratosphere02
+  " let s:m15   = s:stratosphere01
+  " let s:error = s:red01
+  " let s:warn  = s:red01
+  " let s:hint  = s:cyan01
+  " let s:info  = s:purple01
+  " let s:detach01  = s:neonyellow01
+  " let s:detach02  = s:neonblue01
 else
   let s:bg    = s:gray01
   let s:fg    = s:gray14
@@ -311,3 +373,24 @@ hi! link TelescopeMatching QuickScopePrimary
 
 hi! link DiagnosticError Error
 hi! link DiagnosticHint Todo
+
+" http://www.colinkeany.com/blend/
+" dashboard
+hi StartLogo1 ctermfg=18 guifg=#00ebff
+hi StartLogo2 ctermfg=18 guifg=#03e9ef
+hi StartLogo3 ctermfg=18 guifg=#06e8e5
+hi StartLogo4 ctermfg=18 guifg=#0ae5d2
+hi StartLogo5 ctermfg=23 guifg=#0ae5d2
+hi StartLogo6 ctermfg=23 guifg=#0de3c2
+hi StartLogo7 ctermfg=23 guifg=#12e1ae
+hi StartLogo8 ctermfg=23 guifg=#13e0a9
+hi StartLogo9 ctermfg=23 guifg=#14dfa3
+hi StartLogo10 ctermfg=29 guifg=#16de9b
+hi StartLogo11 ctermfg=29 guifg=#17de97
+hi StartLogo12 ctermfg=29 guifg=#18dd8f
+hi StartLogo13 ctermfg=35 guifg=#19dc8c
+hi StartLogo14 ctermfg=35 guifg=#1bdb84
+hi StartLogo15 ctermfg=35 guifg=#1cdb7f
+hi StartLogo16 ctermfg=35 guifg=#1eda76
+hi StartLogo17 ctermfg=41 guifg=#20d86d
+hi StartLogo18 ctermfg=41 guifg=#25d555

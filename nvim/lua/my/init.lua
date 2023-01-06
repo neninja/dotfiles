@@ -5,9 +5,9 @@ require('my.spells')
 require('my.src-pos')
 
 local function settab(tabsize)
-  vim.bo.tabstop=2
-  vim.bo.softtabstop=2
-  vim.bo.shiftwidth=2
+  vim.bo.tabstop=tabsize
+  vim.bo.softtabstop=tabsize
+  vim.bo.shiftwidth=tabsize
 end
 
 vim.cmd 'colorscheme calmo'
@@ -34,7 +34,6 @@ local aucmd_dict = {
     {
       pattern = "gitcommit",
       callback = function()
-        local buf = vim.api.nvim_get_current_buf()
         local function i(abbr, cb)
           vim.cmd("inoreabbrev <buffer> "..abbr.." "..cb)
         end

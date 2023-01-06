@@ -114,7 +114,7 @@ require("command_center").add({
     description = "Find a emoji",
     cmd = ":Telescope emoji<CR>",
     category = "telescope",
-    keybindings = {"n", "<leader>e", silent_noremap},
+    keybindings = {"n", "<leader>em", silent_noremap},
   },
   {
     description = "Find a snippet",
@@ -194,12 +194,6 @@ require("command_center").add({
       end
     end,
     category = "nvim",
-  },
-  {
-    description = "Check lsp diagnostic",
-    cmd = ":TroubleToggle document_diagnostics<CR>",
-    keybindings = {"n", "<leader>xx", silent_noremap},
-    category = "lsp",
   },
   {
     description = "Update packages",

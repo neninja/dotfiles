@@ -45,10 +45,7 @@ nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 echo -e "OK"
 
 echo -e "\nNotas:"
-echo -e "\tNeovim 1: instalar lsp com :LspInstallInfo e i"
-echo -e "\t\t- Lsp/phpactor php exige PHP e composer"
-echo -e "\t\t- Lsp tsserver exige node 16 (use nvm com 'nvm install 16' e 'nvm use 16')"
-echo -e "\tNeovim 2: instalar xclip e ripgrep (rg)"
+echo -e "\tNeovim 1: instalar xclip e ripgrep (rg)"
 echo -e "\n"
 
 read -p "Aperte enter para fechar"
