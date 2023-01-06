@@ -181,7 +181,7 @@ local function header_color()
 end
 
 dashboard.section.buttons.val = {
-  dashboard.button("e", "🪄  new file    ", ":enew<CR>"),
+  dashboard.button("e", "🎯  new file    ", ":enew<CR>"),
   dashboard.button("d", "🧰  dotfiles ", ":lua GoToDotfiles()<CR>:Telescope find_files<CR>"),
   dashboard.button("q", "🏓  quit        ", ":qa<CR>"),
 }
@@ -193,7 +193,7 @@ end
 local function info()
   local plugins = #vim.tbl_keys(packer_plugins)
   local v = vim.version()
-  return string.format(" %d plugins on Neovim v%d.%d.%d", plugins, v.major, v.minor, v.patch)
+  return string.format(" %d plugins 🪄 Neovim v%d.%d.%d", plugins, v.major, v.minor, v.patch)
 end
 
 local config = require("alpha.themes.dashboard").config
