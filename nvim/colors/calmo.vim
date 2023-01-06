@@ -53,6 +53,40 @@ let s:gray20    = ['#171717', 250]
 let s:gray21    = ['#141414', 251]
 let s:gray22    = ['#0d0d0d', 254]
 
+" let s:stratosphere01    = ['#f8fbfb', 254]
+" let s:stratosphere02    = ['#deeaee', 251]
+" let s:stratosphere03    = ['#c5dae0', 250]
+" let s:stratosphere04    = ['#b8d1da', 249]
+" let s:stratosphere05    = ['#abc9d3', 248]
+" let s:stratosphere06    = ['#9ec1cc', 247]
+" let s:stratosphere07    = ['#91b9c5', 246]
+" let s:stratosphere08    = ['#84b1be', 245]
+" let s:stratosphere09    = ['#77a8b8', 244]
+" let s:stratosphere10    = ['#6ba0b1', 243]
+" let s:stratosphere11    = ['#5e98aa', 242]
+" let s:stratosphere12    = ['#548ea0', 240]
+" let s:stratosphere13    = ['#477786', 239]
+" let s:stratosphere14    = ['#39606d', 238]
+" let s:stratosphere15    = ['#2c4a53', 235]
+" let s:stratosphere16    = ['#1e3339', 234]
+
+" let s:stratosphere01    = ['#eceff2', 249]
+" let s:stratosphere02    = ['#e0e5ea', 248]
+" let s:stratosphere03    = ['#d5dbe2', 247]
+" let s:stratosphere04    = ['#c9d1db', 246]
+" let s:stratosphere05    = ['#bdc7d3', 245]
+" let s:stratosphere06    = ['#b1bdcb', 244]
+" let s:stratosphere07    = ['#a6b3c3', 243]
+" let s:stratosphere08    = ['#9aaabb', 242]
+" let s:stratosphere09    = ['#8ea0b3', 240]
+" let s:stratosphere10    = ['#8296ab', 239]
+" let s:stratosphere11    = ['#778ca3', 238]
+" let s:stratosphere12    = ['#6b829b', 235]
+" let s:stratosphere13    = ['#627891', 234]
+" let s:stratosphere14    = ['#5a6e85', 234]
+" let s:stratosphere15    = ['#52657a', 234]
+" let s:stratosphere16    = ['#4a5b6e', 234]
+
 let s:black  = ['#000000', 232]
 
 let s:purple01    = ['#5f5fd7', 62]
@@ -108,6 +142,30 @@ if &background == 'dark'
   let s:info  = s:purple01
   let s:detach01  = s:neonyellow01
   let s:detach02  = s:neonblue01
+
+  " let s:bg    = s:stratosphere16
+  " let s:fg    = s:stratosphere03
+  " let s:m01   = s:stratosphere15
+  " let s:m02   = s:stratosphere14
+  " let s:m03   = s:stratosphere12
+  " let s:m04   = s:stratosphere10
+  " let s:m05   = s:stratosphere09
+  " let s:m06   = s:stratosphere08
+  " let s:m07   = s:stratosphere07
+  " let s:m08   = s:stratosphere06
+  " let s:m09   = s:stratosphere05
+  " let s:m10   = s:stratosphere04
+  " let s:m11   = s:stratosphere03
+  " let s:m12   = s:stratosphere02
+  " let s:m13   = s:fg
+  " let s:m14   = s:stratosphere02
+  " let s:m15   = s:stratosphere01
+  " let s:error = s:red01
+  " let s:warn  = s:red01
+  " let s:hint  = s:cyan01
+  " let s:info  = s:purple01
+  " let s:detach01  = s:neonyellow01
+  " let s:detach02  = s:neonblue01
 else
   let s:bg    = s:gray01
   let s:fg    = s:gray14
