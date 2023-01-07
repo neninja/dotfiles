@@ -1,7 +1,5 @@
 local dashboard = require("alpha.themes.dashboard")
 
-math.randomseed(os.time())
-
 local HEADER_QUOTES = {
   { 'wtf neni?', '- Rei' },
   { 'Se deu hein', '- Pai 2019' },
@@ -15,7 +13,13 @@ local HEADER_QUOTES = {
   { '。　　•　 　ﾟ　　。', '　.　　　　.　　ඞ　。　　 。', '.　　 。　　　　  。 . 　　 •    •',
     'nenitf was not the impostor' },
 }
-dashboard.section.footer.val = HEADER_QUOTES[math.random(1, #HEADER_QUOTES)]
+
+local function footer_quote()
+  math.randomseed(os.clock())
+  return HEADER_QUOTES[math.random(1, #HEADER_QUOTES)]
+end
+
+dashboard.section.footer.val = footer_quote()
 dashboard.section.footer.opts.hl = "Comment"
 
 local status_ok, alpha = pcall(require, "alpha")
@@ -151,7 +155,7 @@ local pacman = {
 local headers = {neovim, cool, robust, uwu, idez, skulls, pacman}
 
 local function header_chars()
-  math.randomseed(os.time())
+  math.randomseed(os.clock())
   return headers[math.random(#headers)]
 end
 
