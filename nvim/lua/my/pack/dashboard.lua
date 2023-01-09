@@ -161,7 +161,29 @@ end
 
 local function header_color()
   local lines = {}
+
+  -- http://www.colinkeany.com/blend/
+  vim.highlight.create('StartLogo1', {guifg="#03e9ef"}, false)
+  vim.highlight.create('StartLogo2', {guifg="#03e9ef"}, false)
+  vim.highlight.create('StartLogo3', {guifg="#06e8e5"}, false)
+  vim.highlight.create('StartLogo4', {guifg="#0ae5d2"}, false)
+  vim.highlight.create('StartLogo5', {guifg="#0ae5d2"}, false)
+  vim.highlight.create('StartLogo6', {guifg="#0de3c2"}, false)
+  vim.highlight.create('StartLogo7', {guifg="#12e1ae"}, false)
+  vim.highlight.create('StartLogo8', {guifg="#13e0a9"}, false)
+  vim.highlight.create('StartLogo9', {guifg="#14dfa3"}, false)
+  vim.highlight.create('StartLogo10', {guifg="#16de9b"}, false)
+  vim.highlight.create('StartLogo11', {guifg="#17de97"}, false)
+  vim.highlight.create('StartLogo12', {guifg="#18dd8f"}, false)
+  vim.highlight.create('StartLogo13', {guifg="#19dc8c"}, false)
+  vim.highlight.create('StartLogo14', {guifg="#1bdb84"}, false)
+  vim.highlight.create('StartLogo15', {guifg="#1cdb7f"}, false)
+  vim.highlight.create('StartLogo16', {guifg="#1eda76"}, false)
+  vim.highlight.create('StartLogo17', {guifg="#20d86d"}, false)
+  vim.highlight.create('StartLogo18', {guifg="#25d555"}, false)
+
   for i, line_chars in pairs(header_chars()) do
+
     local hi = "StartLogo" .. i
     local line = {
       type = "text",
