@@ -331,6 +331,7 @@ vnoremap    a(          c(<c-r>")|" surround match
 vnoremap    a{          c{<c-r>"}|" surround match
 vnoremap    a[          c[<c-r>"]|" surround match
 nnoremap    Q           @q
+nnoremap    q:          <nop>|"command history é cansado
 nnoremap    Y           Vy
 tnoremap    <esc>       <C-\><C-n>
 noremap     \           za|" toggle fold
