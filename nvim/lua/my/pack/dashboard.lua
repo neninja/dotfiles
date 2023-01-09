@@ -185,9 +185,10 @@ local function header_color()
 end
 
 dashboard.section.buttons.val = {
-  dashboard.button("e", "👻  empty buffer ", ":enew<CR>"),
-  dashboard.button("d", "🧰  dotfiles     ", ":lua GoToDotfiles()<CR>:Telescope find_files<CR>"),
-  dashboard.button("q", "🏓  quit         ", ":qa<CR>"),
+  dashboard.button("e", "👻  empty buffer   ", ":enew<CR>"),
+  dashboard.button("d", "🧰  dotfiles       ", ":lua GoToDotfiles()<CR>:Telescope find_files<CR>"),
+  dashboard.button("s", "📦  plugins update ", ":PackerSync<CR>"),
+  dashboard.button("q", "🏓  quit           ", ":qa<CR>"),
 }
 
 function GoToDotfiles()
