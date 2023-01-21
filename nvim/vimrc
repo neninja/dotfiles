@@ -270,8 +270,6 @@ function! FoldExprLua()
 endfunction
 
 "# Comandos
-command! Sov w | source $MYVIMRC | e %
-
 command! -nargs=* Cake make! <args> | cw
 command! -nargs=* Lake make! <args> | cw
 

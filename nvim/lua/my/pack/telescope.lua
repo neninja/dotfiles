@@ -144,11 +144,6 @@ require("command_center").add({
     category = "nvim",
   },
   {
-    description = "Reload vimrc",
-    cmd = ":Sov<CR>",
-    category = "nvim",
-  },
-  {
     description = "Check health",
     cmd = ":checkhealth<CR>",
     category = "nvim",
