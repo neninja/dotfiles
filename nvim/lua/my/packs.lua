@@ -30,6 +30,12 @@ require('packer').startup(function(use)
   use 'unblevable/quick-scope'
   use 'tpope/vim-fugitive'
 
+  use {
+    'nvim-tree/nvim-tree.lua',
+    tag = 'nightly',
+    config = function() require('my.pack.tree') end,
+  }
+
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
