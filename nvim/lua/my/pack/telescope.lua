@@ -201,6 +201,13 @@ require("command_center").add({
     cmd = ":PackerSync<CR>",
     category = "packages",
   },
+  {
+    description = "Access dotfiles",
+    cmd = function()
+      vim.cmd('e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()')
+    end,
+    category = "packages",
+  },
 })
 
 require("telescope").load_extension "emoji"
