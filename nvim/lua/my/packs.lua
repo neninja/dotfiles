@@ -1,7 +1,5 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
 
-local map = vim.keymap.set
-
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '~/.config/nvim/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -27,8 +25,19 @@ packer.init({
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'editorconfig/editorconfig-vim'
-  use 'unblevable/quick-scope'
-  use 'tpope/vim-fugitive'
+  use {
+    'unblevable/quick-scope',
+    config = function()
+      vim.g['qs_highlight_on_keys'] = { 'f', 'F', 't', 'T' }
+    end,
+  }
+
+  use {
+    'tpope/vim-fugitive',
+    config = function()
+      vim.keymap.set('n', '<leader>gg', [[:G<CR>]], {})
+    end,
+  }
 
   use {
     'nvim-tree/nvim-tree.lua',
@@ -115,7 +124,3 @@ require('packer').startup(function(use)
     config = function() require('my.pack.telescope') end,
   }
 end)
-
-map('n', '<leader>gg', [[:G<CR>]], {})
-
-vim.g['qs_highlight_on_keys'] = { 'f', 'F', 't', 'T' }
