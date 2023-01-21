@@ -26,11 +26,9 @@ packer.init({
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'junegunn/goyo.vim'
   use 'editorconfig/editorconfig-vim'
   use 'unblevable/quick-scope'
   use 'tpope/vim-fugitive'
-  use 'junegunn/gv.vim'
 
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
