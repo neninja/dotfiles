@@ -27,10 +27,6 @@ packer.init({
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'junegunn/goyo.vim'
-  use {
-    'goolord/alpha-nvim',
-    config = function() require('my.pack.dashboard') end,
-  }
   use 'editorconfig/editorconfig-vim'
   use 'unblevable/quick-scope'
   use 'tpope/vim-fugitive'
