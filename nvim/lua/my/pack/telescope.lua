@@ -97,6 +97,7 @@ require("command_center").add({
   {
     description = "Find a helptag",
     cmd = ":Telescope help_tags<CR>",
+    keybindings = {"n", "<leader>h", silent_noremap},
     category = "telescope",
   },
   {
