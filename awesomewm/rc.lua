@@ -483,6 +483,8 @@ awful.rules.rules = {
       placement = awful.placement.no_overlap + awful.placement.no_offscreen
     }
   },
+  { rule = { class = "x-terminal-emulator" },
+    properties = { opacity = 0.75 } },
 
   -- Floating clients.
   { rule_any = {
@@ -589,5 +591,6 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+awful.util.spawn("compton")
 --beautiful.border_width = 10
 -- }}}

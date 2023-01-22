@@ -21,3 +21,19 @@ rm ~/Downloads/chrome.deb
 > Para "instalar"/executar `AppImage` precisa de permissão (``chmod +x ~/bin/file.AppImage``) e depois somente executar (``sudo ~/bin/file.AppImage --no-sandbox`` ou pelo awesome com <kbd>super</kbd><kbd>r</kbd> `$HOME/bin/file.AppImage`)
 
 > <kbd>super</kbd><kbd>s</kbd> exibe comandos
+
+- Transparência
+```sh
+sudo apt-get install compton
+# configurar terminal se necessário
+```
+
+- Executar ações do awesome via terminal
+```sh
+echo 'require("gears").wallpaper.maximized("/home/neni/dev/dotfiles/awesomewm/wallpapers/main.jpg", require("awful").screen.focused())' | awesome-client
+awesome-client '
+   naughty = require("naughty")
+   naughty.notify({
+     text="some message"})
+'
+```

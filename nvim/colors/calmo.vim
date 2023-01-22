@@ -231,7 +231,8 @@ elseif has("terminal")
 endif
 
 "## Defs
-call s:hi('Normal', s:fg, s:bg, '')
+" call s:hi('Normal', s:fg, s:bg, '')
+hi! Normal guibg=NONE ctermbg=NONE
 
 call s:hi('Constant', s:m05, '', 'bold')
 call s:hi('String', s:m10, '', '')

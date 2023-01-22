@@ -8,7 +8,11 @@ local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
-local wallpapers_path = gfs.get_configuration_dir().."wallpapers/"
+
+local wallpapers_path = debug.getinfo(1,"S").source:sub(2)
+wallpapers_path = io.popen("realpath '"..wallpapers_path.."'", 'r'):read('*all'):gsub('[\n\r]*$','')
+wallpapers_path, _ = wallpapers_path:match('^(.*/)([^/]-)$')
+wallpapers_path = wallpapers_path .. '/wallpapers/'
 
 local theme = {}
 
@@ -100,7 +104,18 @@ theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/m
 
 -- https://wallhaven.cc/
 -- https://www.reddit.com/r/wallpapers/
-theme.wallpaper = wallpapers_path.."main.jpg"
+
+local WALLPAPERS = {}
+for dir in io.popen("ls "..wallpapers_path..""):lines() do
+     table.insert(WALLPAPERS, dir)
+end
+
+local function wallpaper()
+  math.randomseed(os.clock())
+  return WALLPAPERS[math.random(1, #WALLPAPERS)]
+end
+
+theme.wallpaper = wallpapers_path..wallpaper()
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
