@@ -179,8 +179,7 @@ alias tddsf='gon -c ./vendor/bin/sail test --filter '
 #}}}
 #{{{ Vim
 alias n="nvim"
-alias v="nvim"
-alias vim="nvim"
+alias v="vim"
 #}}}
 #}}}
 #{{{ Functions
