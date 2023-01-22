@@ -25,12 +25,6 @@ packer.init({
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'editorconfig/editorconfig-vim'
-  use {
-    'unblevable/quick-scope',
-    config = function()
-      vim.g['qs_highlight_on_keys'] = { 'f', 'F', 't', 'T' }
-    end,
-  }
 
   use {
     'tpope/vim-fugitive',
