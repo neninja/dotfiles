@@ -323,11 +323,11 @@ vnoremap    K           :m '<-2<CR>gv=gv|" move linha selecionada pra cima
 inoremap    kj          <esc>|" esc mais fácil
 nnoremap    n           nzzzv|" centraliza match do search
 nnoremap    N           Nzzzv|" centraliza match do search
-vnoremap    a'          c'<c-r>"'|" surround match
-vnoremap    a"          c"<c-r>""|" surround match
-vnoremap    a(          c(<c-r>")|" surround match
-vnoremap    a{          c{<c-r>"}|" surround match
-vnoremap    a[          c[<c-r>"]|" surround match
+vnoremap    a'          "ac'<c-r>a'|" surround match
+vnoremap    a"          "ac"<c-r>a"|" surround match
+vnoremap    a(          "ac(<c-r>a)|" surround match
+vnoremap    a{          "ac{<c-r>a}|" surround match
+vnoremap    a[          "ac[<c-r>a]|" surround match
 nnoremap    Q           @q
 nnoremap    q:          <nop>|"command history é cansado
 nnoremap    Y           Vy
