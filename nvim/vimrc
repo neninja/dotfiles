@@ -9,7 +9,7 @@ set encoding=utf-8
 set autoread
 autocmd FocusGained,BufEnter * :silent!<space>!
 
-"## Aparência e som
+"# Aparência e som
 colorscheme slate
 set background=dark
 set t_Co=256
@@ -17,11 +17,6 @@ set termguicolors
 set noerrorbells novisualbell t_vb=
 set belloff=all
 set conceallevel=2
-
-set t_ut=""
-if (&term =~ '^xterm' && &t_Co == 256)
-  set t_ut= | set ttyscroll=1
-endif
 
 "# Comportamento
 syntax on
