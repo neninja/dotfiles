@@ -9,6 +9,7 @@
     username = nenitf
 [core]
     editor = vim
+    fileMode = false
     excludesfile = ~/dev/dotfiles/.gitignore_global
 [init]
     defaultBranch = main
@@ -142,7 +143,7 @@
     # renomear tags (local e remote): https://gist.github.com/da-n/9998623
     #   git tag new old
     #   git tag -d old
-    #   git push origin main :refs/tags/old
+    #   git push --delete origin old
     #   git push origin main --tags
     t = tag --sort=taggerdate
     td = tag -d
