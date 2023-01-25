@@ -7,9 +7,6 @@ local my_items = {
   { name = 'Today', action = 'VimwikiMakeDiaryNote', section = 'Wiki' },
 }
 
-vim.highlight.create('MiniStarterHeader', { guifg = "#03e9ef" }, false)
-vim.highlight.create('MiniStarterItemPrefix', { guifg = "#03e9ef" }, false)
-
 vim.cmd([[
   augroup MiniStarterJK
     au!

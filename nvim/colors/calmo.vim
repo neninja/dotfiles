@@ -374,3 +374,6 @@ hi! link TelescopeMatching QuickScopePrimary
 
 hi! link DiagnosticError Error
 hi! link DiagnosticHint Todo
+
+call s:hi('MiniStarterHeader', s:detach02, '', '')
+call s:hi('MiniStarterItemPrefix', s:detach02, '', '')
