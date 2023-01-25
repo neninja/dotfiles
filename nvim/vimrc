@@ -359,9 +359,6 @@ cnoreabbrev wQA wqa
 cnoreabbrev wqA wqa
 cnoreabbrev wQa wqa
 
-
-" vimgrep /:TODO:/j ~/vimwiki/**/** | cope
-
 "# AutoCmds
 " FIXME Como colocar definição de filetype em ftdetect?
 augroup filetype_detect
