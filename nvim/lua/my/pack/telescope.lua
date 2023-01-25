@@ -197,12 +197,16 @@ require("command_center").add({
     category = "packages",
   },
   {
-    description = "Access dotfiles",
-    cmd = function()
-      vim.cmd('e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()')
-    end,
-    category = "packages",
+    description = "Search for TODO|FIXME",
+    cmd = ":call NN_Tasks()<CR>",
+    category = "todo",
   },
+  {
+    description = "Update vimwiki index",
+    cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks TODO backlog STARTED XXX<CR>",
+    category = "vimki",
+  },
+
 })
 
 require("telescope").load_extension "emoji"

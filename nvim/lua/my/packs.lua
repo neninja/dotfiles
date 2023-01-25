@@ -1,7 +1,5 @@
--- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
-
 local fn = vim.fn
-local install_path = fn.stdpath('data') .. '~/.config/nvim/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
   print('Installing packer close and reopen Neovim...')
@@ -25,6 +23,11 @@ packer.init({
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'editorconfig/editorconfig-vim'
+  use 'vimwiki/vimwiki'
+  use {
+    'echasnovski/mini.nvim',
+    config = function() require('my.pack.mini') end,
+  }
 
   use {
     'tpope/vim-fugitive',
@@ -83,30 +86,6 @@ require('packer').startup(function(use)
   }
 
   use {
-    'terrortylor/nvim-comment',
-    config = function()
-      require('nvim_comment').setup {
-        -- Linters prefer comment and line to have a space in between markers
-        marker_padding = true,
-        -- should comment out empty or whitespace only lines
-        comment_empty = false,
-        -- trim empty comment whitespace
-        comment_empty_trim_whitespace = true,
-        -- Should key mappings be created
-        create_mappings = true,
-        -- Normal mode mapping left hand side
-        line_mapping = 'gcc',
-        -- Visual/Operator mapping left hand side
-        operator_mapping = 'gc',
-        -- text object mapping, comment chunk,,
-        comment_chunk_text_object = 'ic',
-        -- Hook function to call before commenting takes place
-        hook = nil
-      }
-    end
-  }
-
-  use {
     'nvim-telescope/telescope.nvim',
     requires = {
       { 'nvim-lua/plenary.nvim' },
@@ -118,3 +97,13 @@ require('packer').startup(function(use)
     config = function() require('my.pack.telescope') end,
   }
 end)
+
+vim.g.vimwiki_list = {
+  { name = 'my', path = '~/vimwiki/my', auto_generate_links = 1, auto_diary_index = 1, auto_tags = 1,
+    exclude_files = { 'index.wiki', './..' } },
+  { name = 'idez', path = '~/vimwiki/idez', auto_generate_links = 1, auto_diary_index = 1, auto_tags = 1,
+    exclude_files = { 'index.wiki' } },
+  { name = 'winker', path = '~/vimwiki/winker', auto_generate_links = 1, auto_diary_index = 1, auto_tags = 1,
+    exclude_files = { 'index.wiki' } },
+}
+

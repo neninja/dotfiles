@@ -302,20 +302,6 @@ nnoremap    !!          :!!<CR>|" repete ultimo :!comando
 nnoremap    #           :b #<CR>|" FIXME volta para unlisted buffer tbm
 vnoremap    <           <gv|" mantêm select após indentação
 vnoremap    >           >gv|" mantêm select após indentação
-inoremap    "           ""<left>|" autoclose
-inoremap    '           ''<left>|" autoclose
-inoremap    {           {}<left>|" autoclose
-inoremap    {}          {}|" evita {}}
-inoremap    {<CR>       {}<left><CR><Esc>O|" autoclose
-inoremap    {<space>    {}<left><space><space><left>|" autoclose
-inoremap    (           ()<left>|" autoclose
-inoremap    ()          ()|" evita ())
-inoremap    (<CR>       ()<left><CR><Esc>O|" autoclose
-inoremap    (<space>    ()<left><space><space><left>|" autoclose
-inoremap    [           []<left>|" autoclose
-inoremap    []          []|" evita []]
-inoremap    [<CR>       []<left><CR><Esc>O|" autoclose
-inoremap    [<space>    []<left><space><space><left>|" autoclose
 nnoremap    <expr>dj    &diff ? ":diffget LO<CR>" : "<nop>"
 nnoremap    <expr>dk    &diff ? ":diffget RE<CR>" : "<nop>"
 vnoremap    J           :m '>+1<CR>gv=gv|" move linha selecionada pra baixo
@@ -323,13 +309,9 @@ vnoremap    K           :m '<-2<CR>gv=gv|" move linha selecionada pra cima
 inoremap    kj          <esc>|" esc mais fácil
 nnoremap    n           nzzzv|" centraliza match do search
 nnoremap    N           Nzzzv|" centraliza match do search
-vnoremap    a'          "ac'<c-r>a'|" surround match
-vnoremap    a"          "ac"<c-r>a"|" surround match
-vnoremap    a(          "ac(<c-r>a)|" surround match
-vnoremap    a{          "ac{<c-r>a}|" surround match
-vnoremap    a[          "ac[<c-r>a]|" surround match
 nnoremap    Q           @q
-nnoremap    q:          <nop>|"command history é cansado
+nnoremap    s           <nop>
+nnoremap    S           <nop>
 nnoremap    Y           Vy
 tnoremap    <esc>       <C-\><C-n>
 noremap     \           za|" toggle fold
@@ -356,6 +338,7 @@ tnoremap    <c-l>       cls<CR>|" limpa terminal Windows
 nnoremap    <c-n>       yiwV|" substitue multi cursors
 xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>|" substitue multi cursors
 nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
+nnoremap    <c-q>       q:
 nnoremap    <c-z>       <nop>
 inoremap    <c-z>       <c-r>=<SID>AutoCompleteCarinhas()<CR>
 tnoremap    <s-insert>  <c-w>"*
@@ -381,17 +364,8 @@ cnoreabbrev wQA wqa
 cnoreabbrev wqA wqa
 cnoreabbrev wQa wqa
 
-cabbrev cvimgrep
-      \ noautocmd vim /\<lt><C-R><C-W>\>/g
-      \ **/*<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>
-      \ <Bar> cope
-      \ <C-Left><C-Left><C-Left>
 
-cabbrev clvimgrep
-      \ noautocmd lvim /\<lt><C-R><C-W>\>/g
-      \ <C-R>=(expand("%"))<CR>
-      \ <Bar> lop
-      \ <C-Left><C-Left><C-Left>
+" vimgrep /:TODO:/j ~/vimwiki/**/** | cope
 
 "# AutoCmds
 " FIXME Como colocar definição de filetype em ftdetect?
