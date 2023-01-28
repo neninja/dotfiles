@@ -111,7 +111,7 @@ for dir in io.popen("ls "..wallpapers_path..""):lines() do
 end
 
 local function wallpaper()
-  math.randomseed(os.clock())
+  math.randomseed(os.time())
   return WALLPAPERS[math.random(1, #WALLPAPERS)]
 end
 

@@ -73,7 +73,12 @@ require("command_center").add({
   },
   {
     description = "Search for a file inside project (:pwd)",
-    cmd = ":Telescope find_files<CR>",
+    cmd = function()
+      require("telescope.builtin").find_files({
+        hidden = true,
+        cwd = vim.fn.getcwd(),
+      })
+    end,
     keybindings = {"n", "<leader>f", silent_noremap},
     category = "telescope",
   },

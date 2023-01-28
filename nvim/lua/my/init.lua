@@ -3,6 +3,7 @@ require('my.vimrc')
 require('my.packs')
 require('my.spells')
 require('my.src-pos')
+require('my.emojis')
 
 local function settab(tabsize)
   vim.bo.tabstop=tabsize
@@ -95,9 +96,8 @@ local aucmd_dict = {
     },
     {
       pattern = "help,lspinfo,qf,startuptime",
-      callback = function()
-        local buf = vim.api.nvim_get_current_buf()
-        vim.keymap.set("n", "q", [[<cmd>close<CR>]], { noremap=true, silent=true, buffer=buf })
+      callback = function(opts)
+        vim.keymap.set("n", "q", [[<cmd>close<CR>]], { noremap=true, silent=true, buffer=opts.buf })
       end,
     },
   },

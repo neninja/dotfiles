@@ -30,6 +30,13 @@ require('packer').startup(function(use)
   }
 
   use {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function() require('my.pack.copilot') end,
+  }
+
+  use {
     'tpope/vim-fugitive',
     config = function()
       vim.keymap.set('n', '<leader>gg', [[:G<CR>]], {})
@@ -106,4 +113,3 @@ vim.g.vimwiki_list = {
   { name = 'winker', path = '~/vimwiki/winker', auto_generate_links = 1, auto_diary_index = 1, auto_tags = 1,
     exclude_files = { 'index.wiki' } },
 }
-

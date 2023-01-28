@@ -369,8 +369,11 @@ hi! link gitcommitSummary gitcommitFirstLine
 call s:hi('QuickScopePrimary', s:detach01, '', '')
 call s:hi('QuickScopeSecondary', s:detach02, '', '')
 
+call s:hi('TelescopeNormal', '', s:m01, '')
 call s:hi('TelescopeSelection', '', s:m01, '')
 hi! link TelescopeMatching QuickScopePrimary
+
+hi! link Pmenu TelescopeNormal
 
 hi! link DiagnosticError Error
 hi! link DiagnosticHint Todo

@@ -1,8 +1,10 @@
 local my_items = {
-  { name = 'Empty buffer', action = 'enew', section = '' },
+  { name = 'Empty buffer', action = 'enew!', section = '' },
   { name = 'Quit', action = 'q', section = '' },
   { name = 'Dotfiles', action = 'e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()', section = '' },
   { name = 'Sync plugins', action = 'PackerSync', section = '' },
+  { name = 'Git status', action = 'G', section = 'Projeto' },
+  { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
   { name = 'Yesterday', action = 'VimwikiMakeYesterdayDiaryNote', section = 'Wiki' },
   { name = 'Today', action = 'VimwikiMakeDiaryNote', section = 'Wiki' },
 }
@@ -95,7 +97,6 @@ local uwu = {
 
 
 local neovim = {
-  [[                                                     ]],
   [[  ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓ ]],
   [[  ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒ ]],
   [[ ▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░ ]],
@@ -106,7 +107,6 @@ local neovim = {
   [[    ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░    ]],
   [[          ░    ░  ░    ░ ░        ░   ░         ░    ]],
   [[                                 ░                   ]],
-  [[                                                     ]],
 }
 
 local idez = {
@@ -146,7 +146,117 @@ local pacman = {
   [[██      ██      ████      ████]],
 }
 
-local headers = { neovim, cool, rock, robust, uwu, idez, pacman }
+local konoha = {
+  [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣤⣤⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⠀⠀⠀⢀⣠⣶⣿⣿⡿⠿⠿⠿⠿⢿⣿⣿⣷⣦⣄⣀⣤⣶⣶]],
+  [[⠀⠀⠀⠀⠀⣰⣿⣿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⣿⣿⣿⠟⠋]],
+  [[⠀⠀⠀⠀⣼⣿⡿⠃⠀⢀⣤⣾⣿⣿⣿⣿⣷⣦⣄⠀⠀⠈⠉⠀⠀⠀]],
+  [[⠀⠀⠀⣸⣿⡿⠁⠀⢠⣿⣿⠟⠉⠀⠈⠉⠛⢿⣿⣷⡄⠀⠀⠀⠀⠀]],
+  [[⠀⠀⢀⣿⣿⡇⠀⠀⣾⣿⡟⠀⠀⢀⣤⣄⠀⠀⠹⣿⣿⡄⠀⠀⠀⠀]],
+  [[⠀⠀⣾⣿⣿⡇⠀⠀⢻⣿⣷⡀⠀⠘⣿⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀]],
+  [[⠀⣼⣿⡿⣿⣿⡄⠀⠈⠻⣿⣿⣷⣿⣿⡿⠃⠀⢀⣿⣿⡇⠀⠀⠀⠀]],
+  [[⣰⣿⣿⠁⠹⣿⣿⣦⡀⠀⠈⠉⠛⠋⠉⠀⠀⣠⣾⣿⡟⠀⠀⠀⠀⠀]],
+  [[⣿⣿⣧⣤⣤⣬⣿⣿⣿⣶⣦⣤⣤⣤⣴⣶⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀]],
+  [[⠙⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀]],
+}
+
+local saitama = {
+  [[⠀⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀]],
+  [[⠀⠀⠀⣴⠿⠏⠀⠀⠀⠀⠀⠀⢳⡀⠀ ⡏⠀⠀⠀⠀⢷ ]],
+  [[⠀⠀⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀⠀⠀ ⡇]],
+  [[⠀⠀⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿⠀⣸⠀⠀]] .. random_emoji() .. [[⠀ ⡇]],
+  [[⠀⠀⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀⣿⠀⢹⠀⠀⠀⠀⠀ ⡇]],
+  [[⠀⠀⠙⢿⣯⠄⠀⠀⠀⢀⡀⠀⠀⡿⠀⠀⡇⠀⠀⠀⠀⡼ ]],
+  [[⠀⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀⠀⠘⠤⣄⣠⠞⠀ ]],
+  [[⠀⠀⠀⠀⠀⢸⣷⡦⢤⡤⢤⣞⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⢀⣤⣴⣿⣏⠁⠀⠀⠸⣏⢯⣷⣖⣦⡀⠀⠀⠀⠀⠀⠀]],
+  [[⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿⠀⠀⠀⠀⠀⠀]],
+  [[⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏⠀⠀⠀⣄⢸⠀⠀⠀⠀⠀⠀]],
+  [[⣿⣿⣧⣀⣿.........⣀⣰⣏⣘⣆⣀⠀⠀ ]],
+}
+
+local shrek = {
+  [[⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆]],
+  [[⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿]],
+  [[⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀]],
+  [[⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀]],
+  [[       ⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀]],
+  [[        ⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉            ]],
+}
+
+local patrick = {
+  [[                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠤⠀⠀⠀⠀⠀⠀⠀]],
+  [[                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠁⠀⡰⠀⠀⠀⠀⠀⠀⠀]],
+  [[                ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡎⢀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀]],
+  [[                ⣀⠀⠀⠀⠀⠀⠀⡠⠬⡡⠬⡋⠀⡄⠀⠀⠀⠀⠀⠀⠀]],
+  [[                ⡀⠁⠢⡀⠀⠀⢰⠠⢷⠰⠆⡅⠀⡇⠀⠀⠀⣀⠔⠂⡂]],
+  [[                ⠱⡀⠀⠈⠒⢄⡸⡑⠊⢒⣂⣦⠄⢃⢀⠔⠈⠀⠀⡰⠁]],
+  [[                ⠀⠱⡀⠀⠀⡰⣁⣼⡿⡿⢿⠃⠠⠚⠁⠀⠀⢀⠜⠀⠀]],
+  [[                ⠀⠀⠐⢄⠜⠀⠈⠓⠒⠈⠁⠀⠀⠀⠀⠀⡰⠃⠀⠀⠀]],
+  [[                ⠀⠀⢀⠊⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠾⡀⠀⠀⠀⠀]],
+  [[                ⠀⠀⢸⣄⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡇⠀⠀⠀⠀]],
+  [[                ⠀⠀⠸⢸⣳⠦⣍⣁⣀⣀⣀⣀⣠⠴⠚⠁⠇⠀⠀⠀⠀]],
+  [[                ⠀⠀⠀⢳⣿⠄⠸⠢⠍⠉⠉⠀⠀⡠⢒⠎⠀⠀⠀⠀⠀]],
+  [[                ⠀⠀⠀⠣⣀⠁⠒⡤⠤⢤⠀⠀⠐⠙⡇⠀⠀⠀⠀⠀⠀]],
+  [[                ⠀⠀⠀⠀⠣⡀⡼⠀⠀⠈⠱⡒⠂⡸⠁⠀⠀⠀⠀⠀⠀]],
+  [[                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢒⠁⠀⠀⠀⠀⠀⠀⠀]],
+}
+
+-- local emojiwall = {
+--   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
+--   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
+--   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
+--   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
+--   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
+--   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
+--   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
+--   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
+-- }
+
+local sasuke = {
+  [[⠀⠀⠀⠀⠐⣶⣶⣦⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
+  [[⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣤⣤⣀⡀⠀⠀⠀⠀⠀]],
+  [[⠀⣠⣤⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⠀⠀⠀]],
+  [[⠈⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀]],
+  [[⠀⠀⠀⠀⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠻⠿⠋⠘⣿⣿⣿⡄⠀]],
+  [[⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⢹⡏⠀⠀⠀⠀⠀⢿⣿⣿⡇⠀]],
+  [[⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⠨⢇⡀⠀⠀⠀⡠⠜⢸⣿⣷⠀]],
+  [[⠀⠀⠉⢰⣿⣿⡿⣿⣿⣿⣿⡟⠻⣿⠖⠀⠀⠀⠺⣿⢾⣿⣿⠀]],
+  [[⠀⠀⠀⣾⣿⣿⡇⢻⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠻⠆]],
+  [[⠀⠀⠀⠋⠉⣿⣷⣼⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀]],
+  [[⠀⠀⠀⠀⠀⢻⣿⢿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⣀⣠⣿⣿⠀⠀]],
+  [[⠀⠀⠀⠀⠀⠈⠁⠀⣿⡿⣿⡿⠓⠒⠒⠒⠒⠋⠁⠙⢿⣿⠀⠀]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠀⠏⠀⠙⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠀⠀]],
+}
+
+local naruto = {
+  [[ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠡⡐⠀⠀⠀⠀⠀⠀⠀⠘⠀⢙⣀⣀⠀]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠐⠀⡀⠁⠀⠀⠀⠀⠀⠀⣠⣀⡀⠀⠠⢊⠀ ]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠐⢨⠄⠀⠀⣠⡶⣰⢃⣾⠃⠉⠙⠳⡄⡆⠉ ]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠠⢄⠄⣠⣾⣿⠿⠿⠿⢿⠦⢤⣐⠿⢱⡇⠀ ]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠀⠞⣾⢻⢃⠆⠀⠀⠸⣽⡷⠈⢨⣽⠆⠃⠀ ]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠀⡰⡽⠛⠈⠠⠄⠀⠀⠀⠀⠀⢻⠏⠀⠀⠀ ]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠀⢰⡅⡹⡆⠐⠈⠄⠀⠀⣀⠑⢨⠁⠀⠀⠀ ]],
+  [[⠀⠀⠀⠀⠀⠀⠀⠀⣾⣟⠇⠘⡦⡀⠀⠀⠀⠉⠡⠂⠀⠀⠀⠀ ]],
+  [[⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣶⣶⣥⣦⣄⠐⠁⠀⠀⠀⠀⠀ ]],
+  [[⠀⠀⠀⠀⠀⣀⣠⣿⣿⣿⣿⣿⣿⣿⣿⡏⡟⠀⠀⠀⠀⠀⠀⠀ ]],
+  [[⠀⠀⢠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀ ]],
+  [[⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣿⣿⣿⣿⣷⣄⠀⠀ ]],
+  [[⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣿⣿⣿⣿⣿⣿⡄⠀ ]],
+  [[⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⡇⠀ ]],
+  [[⣸⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⠿⢿⣿⣿⡾⣿⠿⠿⢿⣿⣇⠀ ]],
+}
+
+local headers = { neovim, cool, rock, robust, uwu, idez, pacman, konoha, shrek, saitama, patrick, sasuke, naruto }
 
 local function header_chars()
   math.randomseed(os.clock())
@@ -166,8 +276,6 @@ end
 local starter = require('mini.starter')
 
 require('mini.pairs').setup()
-require('mini.comment').setup()
-require('mini.surround').setup()
 require('mini.starter').setup({
   -- Whether to open starter buffer on VimEnter. Not opened if Neovim was
   -- started with intent to show something else.
@@ -208,5 +316,14 @@ require('mini.starter').setup({
   -- mapping overriding your global ones. Be careful to not add `:` as it
   -- allows you to go into command mode.
   query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_-.',
+})
 
+
+require('mini.comment').setup()
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'php',
+  group = vim.api.nvim_create_augroup('setcomment', { clear = true }),
+  callback = function()
+    vim.opt_local.commentstring = "# %s"
+  end,
 })

@@ -302,11 +302,16 @@ nnoremap    <expr>dk    &diff ? ":diffget RE<CR>" : "<nop>"
 vnoremap    J           :m '>+1<CR>gv=gv|" move linha selecionada pra baixo
 vnoremap    K           :m '<-2<CR>gv=gv|" move linha selecionada pra cima
 inoremap    kj          <esc>|" esc mais fácil
+vnoremap    a'          "ac'<c-r>a'|" surround match
+vnoremap    a"          "ac"<c-r>a"|" surround match
+vnoremap    a(          "ac(<c-r>a)|" surround match
+vnoremap    a{          "ac{<c-r>a}|" surround match
+vnoremap    a[          "ac[<c-r>a]|" surround match
 nnoremap    n           nzzzv|" centraliza match do search
 nnoremap    N           Nzzzv|" centraliza match do search
 nnoremap    Q           @q
-nnoremap    s           <nop>
-nnoremap    S           <nop>
+nnoremap    q:          <nop>
+nnoremap    g:          q:
 nnoremap    Y           Vy
 tnoremap    <esc>       <C-\><C-n>
 noremap     \           za|" toggle fold

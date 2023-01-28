@@ -371,7 +371,7 @@ ls.filetype_extend("typescriptreact", {"javascriptreact", "javascript", "typescr
 
 --# Map
 local map = vim.keymap.set
-map('i', '<Tab>', [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>']], {silent=true, expr=true})
+vim.cmd[[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]]
 map('s', '<Tab>', function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()
