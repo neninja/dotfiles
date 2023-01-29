@@ -164,7 +164,7 @@ local saitama = {
   [[⠀⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀]],
   [[⠀⠀⠀⣴⠿⠏⠀⠀⠀⠀⠀⠀⢳⡀⠀ ⡏⠀⠀⠀⠀⢷ ]],
   [[⠀⠀⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀⠀⠀ ⡇]],
-  [[⠀⠀⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿⠀⣸⠀⠀]] .. random_emoji() .. [[⠀ ⡇]],
+  [[⠀⠀⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿⠀⣸⠀⠀OK⠀ ⡇]],
   [[⠀⠀⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀⣿⠀⢹⠀⠀⠀⠀⠀ ⡇]],
   [[⠀⠀⠙⢿⣯⠄⠀⠀⠀⢀⡀⠀⠀⡿⠀⠀⡇⠀⠀⠀⠀⡼ ]],
   [[⠀⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀⠀⠘⠤⣄⣠⠞⠀ ]],
@@ -210,17 +210,6 @@ local patrick = {
   [[                ⠀⠀⠀⠀⠣⡀⡼⠀⠀⠈⠱⡒⠂⡸⠁⠀⠀⠀⠀⠀⠀]],
   [[                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢒⠁⠀⠀⠀⠀⠀⠀⠀]],
 }
-
--- local emojiwall = {
---   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
---   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
---   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
---   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
---   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
---   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
---   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
---   random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji()..random_emoji(),
--- }
 
 local sasuke = {
   [[⠀⠀⠀⠀⠐⣶⣶⣦⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],

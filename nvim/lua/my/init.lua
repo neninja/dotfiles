@@ -3,7 +3,6 @@ require('my.vimrc')
 require('my.packs')
 require('my.spells')
 require('my.src-pos')
-require('my.emojis')
 
 local function settab(tabsize)
   vim.bo.tabstop=tabsize
