@@ -378,9 +378,9 @@ map('s', '<Tab>', function()
   end
 end, {silent = true})
 
--- map({'i', 's'}, '<s-Tab>', function()
---   ls.jump(-1)
--- end, {silent = true})
+map({'i', 's'}, '<s-Tab>', function()
+   ls.jump(-1)
+end, {silent = true})
 
 map({ "i", "s" }, "<C-l>", function()
   if ls.choice_active() then
