@@ -214,6 +214,18 @@ require("command_center").add({
 
 })
 
+-- https://github.com/tmhedberg/SimpylFold/issues/130#issuecomment-1074049490
+-- Ao abrir um buffer cujo deveria conter folds fechados,
+-- o telescope ignora-os e na primeira modificação são acionados
+vim.api.nvim_create_autocmd('BufRead', {
+   callback = function()
+      vim.api.nvim_create_autocmd('BufWinEnter', {
+         once = true,
+         command = 'normal! zx'
+      })
+   end
+})
+
 require("telescope").load_extension "emoji"
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "luasnip"
