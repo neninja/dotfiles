@@ -253,8 +253,12 @@ local function header_chars()
 end
 
 local FOOTER_QUOTES = {
-  { 'Para quem só sabe usar martelo,', 'todo problema é um prego.', '- Abraham Maslow' },
+  { 'Para quem só sabe usar martelo,', 'todo problema é um prego.' },
   { 'Nós somos aquilo que', 'fazemos repetidamente' },
+  { 'Orgulha-te das tuas conquistas.', 'Apenas tu sabes o quanto foi difícil' },
+  { 'Feito é melhor que perfeito' },
+  { 'Memento mori' },
+  { 'Nunca ouviste passar o vento.', 'O vento só fala do vento.', 'O que lhe ouviste foi mentira,', 'E a mentira está em ti.', '- Alberto Caeiro'},
 }
 
 local function footer_quote()
