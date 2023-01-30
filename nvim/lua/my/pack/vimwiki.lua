@@ -6,3 +6,5 @@ vim.g.vimwiki_list = {
   { name = 'winker', path = '~/vimwiki/winker', auto_generate_links = 1, auto_diary_index = 1, auto_tags = 1,
     exclude_files = { 'index.wiki' } },
 }
+
+vim.g.vimwiki_folding = 'expr'
