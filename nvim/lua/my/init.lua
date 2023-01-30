@@ -1,16 +1,15 @@
+-- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
 require('my.src-pre')
 require('my.vimrc')
 require('my.packs')
 require('my.spells')
 require('my.src-pos')
-
+--# auto cmd
 local function settab(tabsize)
   vim.bo.tabstop=tabsize
   vim.bo.softtabstop=tabsize
   vim.bo.shiftwidth=tabsize
 end
-
-vim.cmd 'colorscheme calmo'
 
 local aucmd_dict = {
   FileType = {

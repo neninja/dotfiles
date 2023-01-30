@@ -1,3 +1,5 @@
+-- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
+--# Packer
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -20,10 +22,16 @@ packer.init({
   },
 })
 
+--# Packages
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'editorconfig/editorconfig-vim'
-  use 'vimwiki/vimwiki'
+
+  use {
+    'vimwiki/vimwiki',
+    config = function() require('my.pack.vimwiki') end,
+  }
+
   use {
     'echasnovski/mini.nvim',
     config = function() require('my.pack.mini') end,
@@ -49,7 +57,7 @@ require('packer').startup(function(use)
     config = function() require('my.pack.tree') end,
   }
 
-  use { -- LSP Configuration & Plugins
+  use {
     'neovim/nvim-lspconfig',
     requires = {
       -- Automatically install LSPs to stdpath for neovim
@@ -65,22 +73,15 @@ require('packer').startup(function(use)
     config = function() require('my.pack.lsp') end,
   }
 
-  --[[use {
-    'natebosch/vim-lsc',
-    requires = {{'natebosch/vim-lsc-dart'}}
-    config = function() require('my.pack.lsc') end,
-  }
-  --]]
-
   use {
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
-      'saadparwaiz1/cmp_luasnip', -- Snippets source
-      'L3MON4D3/LuaSnip', -- Snippet engine
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'L3MON4D3/LuaSnip',
     },
     config = function() require('my.pack.cmp') end,
   }
@@ -104,12 +105,3 @@ require('packer').startup(function(use)
     config = function() require('my.pack.telescope') end,
   }
 end)
-
-vim.g.vimwiki_list = {
-  { name = 'my', path = '~/vimwiki/my', auto_generate_links = 1, auto_diary_index = 1, auto_tags = 1,
-    exclude_files = { 'index.wiki', './..' } },
-  { name = 'idez', path = '~/vimwiki/idez', auto_generate_links = 1, auto_diary_index = 1, auto_tags = 1,
-    exclude_files = { 'index.wiki' } },
-  { name = 'winker', path = '~/vimwiki/winker', auto_generate_links = 1, auto_diary_index = 1, auto_tags = 1,
-    exclude_files = { 'index.wiki' } },
-}

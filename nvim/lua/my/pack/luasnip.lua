@@ -1,5 +1,5 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
-
+--# Utils
 local ls = require"luasnip"
 local s = ls.snippet
 local sn = ls.snippet_node
@@ -64,7 +64,28 @@ local function f_filename()
   end)
 end
 
---# PHP
+--# Mapeamentos
+local map = vim.keymap.set
+vim.cmd[[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]]
+map('s', '<Tab>', function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, {silent = true})
+
+map({'i', 's'}, '<s-Tab>', function()
+   ls.jump(-1)
+end, {silent = true})
+
+map({ "i", "s" }, "<C-l>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end)
+
+map('s', '<bs>', "a<bs>", {})
+--# Linguagens
+--## PHP
 add("php", {
   ts("if", "condition", "if (...) {...}", [[
   if (§) {
@@ -141,8 +162,7 @@ add("php", {
       i(0)
     }),
 })
-
---# Dart
+--## Dart
 add("dart", {
   cs("dp", "debug print", "debugPrint(...);", {
     t("debugPrint("), i(0), t(");"),
@@ -170,8 +190,7 @@ add("dart", {
       i(0, '// TODO: implement build'),
     }),
 })
-
---# Shell
+--## Shell
 add("sh", {
   ts("#", "#!", "#!/usr/bin/env bash", [[
     #!/usr/bin/env bash
@@ -181,8 +200,7 @@ add("sh", {
       i(0)
     }),
 })
-
---# Go
+--## Go
 add("go", {
   ts("ir", "condition err", "if err != nil {...}", [[
     if (err != nil) {
@@ -296,8 +314,7 @@ add("go", {
       i(0)
     }),
 })
-
---# HTML
+--## HTML
 add("html", {
   ts("html", "DOCTYPE html", "<html><head></head><body></body></html>", [[
     <!DOCTYPE html>
@@ -316,8 +333,7 @@ add("html", {
       i(0)
     }),
 })
-
---# javascript
+--## javascript
 add("javascript", {
   ts("imp", "import from", "import ... from ...", [[
     import § from '§';
@@ -368,24 +384,3 @@ add("javascriptreact", {
 
 ls.filetype_extend("typescript", {"javascript"})
 ls.filetype_extend("typescriptreact", {"javascriptreact", "javascript", "typescript"})
-
---# Map
-local map = vim.keymap.set
-vim.cmd[[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]]
-map('s', '<Tab>', function()
-  if ls.expand_or_jumpable() then
-    ls.expand_or_jump()
-  end
-end, {silent = true})
-
-map({'i', 's'}, '<s-Tab>', function()
-   ls.jump(-1)
-end, {silent = true})
-
-map({ "i", "s" }, "<C-l>", function()
-  if ls.choice_active() then
-    ls.change_choice(1)
-  end
-end)
-
-map('s', '<bs>', "a<bs>", {})

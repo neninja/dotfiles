@@ -1,7 +1,6 @@
-local cmp = require("cmp")         -- The complete engine
-local luasnip = require("luasnip") -- The snippet engine
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
--- This is almost verbatin from the Github Page
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -17,12 +16,6 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
 
-    -- Enter select the item
-    -- ["<CR>"] = cmp.mapping.confirm({
-    --   behavior = cmp.ConfirmBehavior.Replace,
-    --   select = true,
-    -- }),
-    -- Use <Tab> as the automplete trigger
     ["<c-y>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
@@ -43,7 +36,6 @@ cmp.setup({
       end,
     },
   },
-  -- Where to look for auto-complete items.
   sources = {
     { name = "luasnip" },
     { name = "nvim_lsp" },

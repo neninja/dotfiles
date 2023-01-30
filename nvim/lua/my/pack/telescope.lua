@@ -1,8 +1,5 @@
-local map = vim.keymap.set
-local silent_noremap = {noremap = true, silent = true}
-
-map('n', '<leader>n', [[:Telescope command_center<CR>]], silent_noremap)
-
+-- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
+--# Setup Telescope
 local actions = require("telescope.actions")
 local fb_actions = require "telescope".extensions.file_browser.actions
 require('telescope').setup{
@@ -44,6 +41,24 @@ require('telescope').setup{
   }
 }
 
+-- https://github.com/tmhedberg/SimpylFold/issues/130#issuecomment-1074049490
+-- Ao abrir um buffer cujo deveria conter folds fechados,
+-- o telescope ignora-os e na primeira modificação são acionados
+vim.api.nvim_create_autocmd('BufRead', {
+   callback = function()
+      vim.api.nvim_create_autocmd('BufWinEnter', {
+         once = true,
+         command = 'normal! zx'
+      })
+   end
+})
+--# Mapeamentos
+local map = vim.keymap.set
+local silent_noremap = {noremap = true, silent = true}
+
+map('n', '<leader>n', [[:Telescope command_center<CR>]], silent_noremap)
+--# Extensões
+--## Command center
 require("command_center").add({
   {
     description = ":pwd to git dir",
@@ -213,19 +228,7 @@ require("command_center").add({
   },
 
 })
-
--- https://github.com/tmhedberg/SimpylFold/issues/130#issuecomment-1074049490
--- Ao abrir um buffer cujo deveria conter folds fechados,
--- o telescope ignora-os e na primeira modificação são acionados
-vim.api.nvim_create_autocmd('BufRead', {
-   callback = function()
-      vim.api.nvim_create_autocmd('BufWinEnter', {
-         once = true,
-         command = 'normal! zx'
-      })
-   end
-})
-
+--# Carregamento de extensões
 require("telescope").load_extension "emoji"
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "luasnip"

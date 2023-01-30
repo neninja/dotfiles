@@ -1,3 +1,16 @@
+-- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
+--# Pairs
+require('mini.pairs').setup()
+--# Starter
+--## Mapeamentos
+vim.cmd([[
+  augroup MiniStarterJK
+    au!
+    au User MiniStarterOpened nmap <buffer> j <Cmd>lua MiniStarter.update_current_item('next')<CR>
+    au User MiniStarterOpened nmap <buffer> k <Cmd>lua MiniStarter.update_current_item('prev')<CR>
+  augroup END
+]])
+--## Comandos
 local my_items = {
   { name = 'Empty buffer', action = 'enew!', section = '' },
   { name = 'Quit', action = 'q', section = '' },
@@ -8,15 +21,7 @@ local my_items = {
   { name = 'Yesterday', action = 'VimwikiMakeYesterdayDiaryNote', section = 'Wiki' },
   { name = 'Today', action = 'VimwikiMakeDiaryNote', section = 'Wiki' },
 }
-
-vim.cmd([[
-  augroup MiniStarterJK
-    au!
-    au User MiniStarterOpened nmap <buffer> j <Cmd>lua MiniStarter.update_current_item('next')<CR>
-    au User MiniStarterOpened nmap <buffer> k <Cmd>lua MiniStarter.update_current_item('prev')<CR>
-  augroup END
-]])
-
+--## Header
 -- https://textkool.com/en/ascii-art-generator?hl=default&vl=default&font=ANSI%20Shadow&text=neovim
 local cool = {
   [[    ███╗   ███╗ █████╗ ██╗  ██╗███████╗   ]],
@@ -251,7 +256,7 @@ local function header_chars()
   math.randomseed(os.clock())
   return headers[math.random(#headers)]
 end
-
+--## Footer
 local FOOTER_QUOTES = {
   { 'Para quem só sabe usar martelo,', 'todo problema é um prego.' },
   { 'Nós somos aquilo que', 'fazemos repetidamente' },
@@ -265,8 +270,7 @@ local function footer_quote()
   math.randomseed(os.clock())
   return FOOTER_QUOTES[math.random(1, #FOOTER_QUOTES)]
 end
-
-require('mini.pairs').setup()
+--## Setup
 require('mini.starter').setup({
   autoopen = true,
   evaluate_single = true,
@@ -275,8 +279,7 @@ require('mini.starter').setup({
   footer = table.concat(footer_quote(), "\n"),
   query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_-.',
 })
-
-
+--# Comment
 require('mini.comment').setup()
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'php',

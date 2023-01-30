@@ -10,7 +10,12 @@ set autoread
 autocmd FocusGained,BufEnter * :silent!<space>!
 
 "# Aparência e som
-colorscheme slate
+try
+  colorscheme calmo
+catch
+  colorscheme blue
+endtry
+
 set background=dark
 set t_Co=256
 set termguicolors
