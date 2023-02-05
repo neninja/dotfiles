@@ -8,6 +8,15 @@ Versionamento dos meus arquivos de configuração, scripts, instruções e templ
 - Awesome
 - Bash e Git
 
+## Simplicidade como preceito
+```mermaid
+graph LR
+simplicidade --> manutenibilidade --> qualidade
+simplicidade --> performance --> qualidade
+
+qualidade --> t[trabalho eficiente]
+```
+
 ## Download
 
 > No Windows `%userprofile%` equivale `~`
