@@ -42,8 +42,6 @@ cd dotfiles
 <details>
 <summary>Copiar somente as configurações básicas para o Vim</summary>
 
-> http://vimrc.neni.dev
-
 - Windows:
 ```sh
 curl https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc > %userprofile%\_vimrc
