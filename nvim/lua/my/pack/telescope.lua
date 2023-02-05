@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd('BufRead', {
    callback = function()
       vim.api.nvim_create_autocmd('BufWinEnter', {
          once = true,
-         command = 'normal! zx'
+         command = 'normal! zxzR' -- zM para fechar todos folds
       })
    end
 })
