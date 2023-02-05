@@ -8,8 +8,6 @@ Versionamento dos meus arquivos de configuração, scripts, instruções e templ
 - Awesome
 - Bash e Git
 
-> [Vimrc](http://neni.dev/vimrc) simplificado e ["estilizado"](http://vimrc.neni.dev)
-
 ## Download
 
 > No Windows `%userprofile%` equivale `~`
@@ -35,6 +33,8 @@ cd dotfiles
 <details>
 <summary>Copiar somente as configurações básicas para o Vim</summary>
 
+> http://vimrc.neni.dev
+
 - Windows:
 ```sh
 curl https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc > %userprofile%\_vimrc
@@ -54,7 +54,8 @@ wget https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc -O $HOME/
 - `~/.vimrc-local.vim`
 - `/path/do/projeto/.exvrc`
 
-#### Compatibilidade básica com o vim
+<details>
+<summary>Utilização com vim</summary>
 
 ```vim
 " ~/.vimrc ou %userprofile%\_vimrc
@@ -62,12 +63,14 @@ let g:dotfiles = "~/dev/dotfiles/"
 exe "source ".g:dotfiles."nvim/vimrc"
 exe "source ".g:dotfiles."nvim/colors/calmo.vim"
 ```
+</details>
 
 ### Bash
 
 - `~/.bashrc-local.sh`
 
-#### Exemplo
+<details>
+<summary>Exemplo</summary>
 
 ```sh
 alias cdi='cd ~/dev/i10'
@@ -83,12 +86,14 @@ export GPG_TTY=$(tty)
 
 export XDG_DATA_DIRS='/var/lib/flatpak/exports/share:/home/neni/.local/share/flatpak/exports/share'
 ```
+</details>
 
 ### Git
 
 - `~/.gitconfig-local`
 
-#### Exemplo
+<details>
+<summary>Exemplo</summary>
 
 ```gitconfig
 # `~/.gitconfig-local`
@@ -121,6 +126,7 @@ up.sh
     commit-guide = !cat ~/dev/dotfiles/modelos/git/.gitcommit
     pr = "!f() { git fetch upstream && rebase upstream/$@; }; f"
 ```
+</details>
 
 ## Atualização forçada
 
@@ -132,3 +138,4 @@ git reset --hard origin/main
 ## Adendos
 
 - [Wiki](https://github.com/nenitf/dotfiles/wiki)
+- [Por que utilizar Vim?](https://wtf.neni.dev/posts/vim/motivos/)
