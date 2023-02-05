@@ -28,6 +28,14 @@ require('copilot').setup({
     },
   },
   filetypes = {
+    yaml = false,
+    markdown = true,
+    help = false,
+    gitcommit = true,
+    gitrebase = false,
+    hgcommit = false,
+    svn = false,
+    cvs = false,
     ["."] = true,
   },
   copilot_node_command = 'node', -- Node.js version must be > 16.x
