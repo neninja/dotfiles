@@ -18,6 +18,7 @@ local my_items = {
   { name = 'Sync plugins', action = 'PackerSync', section = '' },
   { name = 'Git status', action = 'G', section = 'Projeto' },
   { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
+  { name = 'Wikis', action = 'VimwikiUISelect', section = 'Wiki' },
   { name = 'Yesterday', action = 'VimwikiMakeYesterdayDiaryNote', section = 'Wiki' },
   { name = 'Today', action = 'VimwikiMakeDiaryNote', section = 'Wiki' },
 }
@@ -256,6 +257,7 @@ local function header_chars()
   math.randomseed(os.clock())
   return headers[math.random(#headers)]
 end
+
 --## Footer
 local FOOTER_QUOTES = {
   { 'Para quem só sabe usar martelo,', 'todo problema é um prego.' },
@@ -263,13 +265,16 @@ local FOOTER_QUOTES = {
   { 'Orgulha-te das tuas conquistas.', 'Apenas tu sabes o quanto foi difícil' },
   { 'Feito é melhor que perfeito' },
   { 'Memento mori' },
-  { 'Nunca ouviste passar o vento.', 'O vento só fala do vento.', 'O que lhe ouviste foi mentira,', 'E a mentira está em ti.', '- Alberto Caeiro'},
+  { 'Nunca ouviste passar o vento.', 'O vento só fala do vento.', 'O que lhe ouviste foi mentira,',
+    'E a mentira está em ti.', '- Alberto Caeiro' },
+  { 'Comunicação não é o que você fala,', 'é o que o outro entende' },
 }
 
 local function footer_quote()
   math.randomseed(os.clock())
   return FOOTER_QUOTES[math.random(1, #FOOTER_QUOTES)]
 end
+
 --## Setup
 require('mini.starter').setup({
   autoopen = true,
