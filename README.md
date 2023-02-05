@@ -32,6 +32,20 @@ cd dotfiles
 ```
 > [Configuração do SSH](https://gist.github.com/nenitf/433e85b49acc802479654c75535eea2c)
 
+<details>
+<summary>Copiar somente as configurações básicas para o Vim</summary>
+
+- Windows:
+```sh
+curl https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc > %userprofile%\_vimrc
+```
+
+- Linux:
+```sh
+wget https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc -O $HOME/.vimrc
+```
+</details>
+
 ## Configurações locais
 
 ### Nvim
