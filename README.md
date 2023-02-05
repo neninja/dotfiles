@@ -40,14 +40,21 @@ cd dotfiles
 > [Configuração do SSH](https://gist.github.com/nenitf/433e85b49acc802479654c75535eea2c)
 
 <details>
-<summary>Copiar somente as configurações básicas para o Vim</summary>
+<summary>Utilizar somente o Vim básico</summary>
 
-- Windows:
+```vim
+" ~/.vimrc ou %userprofile%\_vimrc
+let g:dotfiles = "~/dev/dotfiles/"
+exe "source ".g:dotfiles."nvim/vimrc"
+exe "source ".g:dotfiles."nvim/colors/calmo.vim"
+```
+
+- Sem tempo irmão (Windows):
 ```sh
 curl https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc > %userprofile%\_vimrc
 ```
 
-- Linux:
+- Sem tempo irmão (Linux):
 ```sh
 wget https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc -O $HOME/.vimrc
 ```
@@ -60,17 +67,6 @@ wget https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc -O $HOME/
 - `~/.vimrc-pre.vim`
 - `~/.vimrc-local.vim`
 - `/path/do/projeto/.exvrc`
-
-<details>
-<summary>Utilização com vim</summary>
-
-```vim
-" ~/.vimrc ou %userprofile%\_vimrc
-let g:dotfiles = "~/dev/dotfiles/"
-exe "source ".g:dotfiles."nvim/vimrc"
-exe "source ".g:dotfiles."nvim/colors/calmo.vim"
-```
-</details>
 
 ### Bash
 
