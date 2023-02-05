@@ -261,13 +261,13 @@ else
 endif
 
 call s:hi('LineNr', s:m05, '', '')
-call s:hi('FoldColumn', s:m07, s:m01, '')
+call s:hi('LineNrAbove', s:m02, '', '')
 call s:hi('CursorLine', '', s:m01, '')
 call s:hi('CursorLineNr', s:m14, s:m01, '')
 
-call s:hi('Visual', s:bg, s:m06, '')
-call s:hi('Search', s:m01, s:m07, '')
-call s:hi('IncSearch', s:m01, s:m07, '')
+call s:hi('Visual', s:bg, s:neonblue01, '')
+call s:hi('Search', s:m01, s:neonyellow01, '')
+call s:hi('IncSearch', s:m01, s:neonyellow01, '')
 
 call s:hi('SpellBad', '', '', 'undercurl')
 call s:hi('SpellCap', s:red01, '', 'undercurl')
@@ -330,6 +330,8 @@ hi! link ColorColumn FoldColumn
 hi! link CursorColumn CursorLine
 
 hi! link Folded Normal
+hi! link FoldColumn Normal
+hi! link LineNrBelow LineNrAbove
 hi! link Conceal Normal
 hi! link ErrorMsg Error
 
