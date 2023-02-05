@@ -9,6 +9,7 @@ Versionamento dos meus arquivos de configuração, scripts, instruções e templ
 - Bash e Git
 
 ## Simplicidade como preceito
+
 ```mermaid
 graph LR
 simplicidade --> manutenibilidade --> qualidade
@@ -17,18 +18,8 @@ simplicidade --> performance --> qualidade
 qualidade --> t[trabalho eficiente]
 ```
 
-## Download
+## Utilização
 
-> No Windows `%userprofile%` equivale `~`
-
-- nvim
-```bash
-# Ubuntu
-curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb
-sudo apt install ./nvim-linux64.deb
-```
-
-- configurar Nvim, Git e Bash
 ```bash
 cd ~
 mkdir -p dev
@@ -38,6 +29,16 @@ cd dotfiles
 ./install.sh
 ```
 > [Configuração do SSH](https://gist.github.com/nenitf/433e85b49acc802479654c75535eea2c)
+
+<details>
+<summary>Baixar Nvim</summary>
+
+```bash
+# Ubuntu
+curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb
+sudo apt install ./nvim-linux64.deb
+```
+</details>
 
 <details>
 <summary>Utilizar somente o Vim básico</summary>
