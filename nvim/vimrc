@@ -316,7 +316,6 @@ nnoremap    n           nzzzv|" centraliza match do search
 nnoremap    N           Nzzzv|" centraliza match do search
 nnoremap    Q           @q
 nnoremap    q:          <nop>
-nnoremap    g:          q:
 nnoremap    Y           Vy
 tnoremap    <esc>       <C-\><C-n>
 noremap     \           za|" toggle fold
