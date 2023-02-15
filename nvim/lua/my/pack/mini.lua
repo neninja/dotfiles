@@ -16,7 +16,7 @@ local my_items = {
   { name = 'Quit', action = 'q', section = '' },
   { name = 'Dotfiles', action = 'e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()', section = '' },
   { name = 'Sync plugins', action = 'PackerSync', section = '' },
-  { name = 'Git status', action = 'G', section = 'Projeto' },
+  { name = 'Git status', action = 'Gedit :', section = 'Projeto' },
   { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
   { name = 'Wikis', action = 'VimwikiUISelect', section = 'Wiki' },
   { name = 'Yesterday', action = 'VimwikiMakeYesterdayDiaryNote', section = 'Wiki' },
