@@ -266,8 +266,8 @@ call s:hi('CursorLine', '', s:m01, '')
 call s:hi('CursorLineNr', s:m14, s:m01, '')
 
 call s:hi('Visual', s:bg, s:neonblue01, '')
-call s:hi('Search', s:m01, s:neonyellow01, '')
-call s:hi('IncSearch', s:m01, s:neonyellow01, '')
+call s:hi('Search', s:m01, s:m07, '')
+call s:hi('IncSearch', s:m01, s:m07, '')
 
 call s:hi('SpellBad', '', '', 'undercurl')
 call s:hi('SpellCap', s:red01, '', 'undercurl')
