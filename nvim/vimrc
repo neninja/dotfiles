@@ -63,6 +63,8 @@ set smarttab
 set expandtab
 set fillchars=vert:│,fold:─
 
+set foldlevelstart=99
+
 let g:html_dynamic_folds=1
 let g:html_prevent_copy = "fntd"
 
