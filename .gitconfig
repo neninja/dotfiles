@@ -139,6 +139,7 @@
     sp = stash pop
     ss = stash save --include-untracked
     sw = stash show
+    swp = stash show -p
     #############
     # renomear tags (local e remote): https://gist.github.com/da-n/9998623
     #   git tag new old
