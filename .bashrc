@@ -160,6 +160,7 @@ alias op='xdg-open .'
 alias anbox='anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity' # adb install ~/path/to/app.apk
 #{{{ CD
 alias cdf="cd $HOME/dev/dotfiles"
+alias cdev="cd $HOME/dev"
 alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard\n-> to clean: rm -rf * .*"'
 alias .b='. ~/.bashrc'
 alias ..='cd ..'
