@@ -238,7 +238,7 @@ add("php", {
     } catch (§) {
     }
     ]], {
-    i(0), i(1, "\\Throwable $th")
+    i(0), i(1, "\\Throwable $e")
   }),
   -- PHPUnit
   ts("dataprovider", "phpunit data provider", "function { yield ... }", [[
