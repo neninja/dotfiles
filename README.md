@@ -67,7 +67,7 @@ wget https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc -O $HOME/
 
 - `~/.vimrc-pre.vim`
 - `~/.vimrc-local.vim`
-- `/path/do/projeto/.exvrc`
+- `/path/do/projeto/.exvrc`, `/path/do/projeto/.exrc`, `/path/do/projeto/.nvim.lua` ou `.rgignore` (rg)
 
 ### Bash
 

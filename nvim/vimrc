@@ -87,9 +87,11 @@ set wildignore+=dist,dist/**
 set wildignore+=target,target/**
 set wildignore+=build,build/**
 set wildignore+=vendor,vendor/**
+set wildignore+=assets,assets/**
 set wildignore+=ios,ios/**
 set wildignore+=android,android/**
 set wildignore+=_site,_site/**
+set wildignore+=public,public/**
 set wildignore+=*/coverage,*/coverage/**
 set wildignore+=*/_reports,*/_reports/**
 set wildignore+=*/_gen
@@ -377,4 +379,4 @@ augroup filetype_detect
   au BufRead,BufNewFile *.phtml setfiletype html
   au BufRead,BufNewFile *.gv setfiletype dot
   au BufRead,BufNewFile *.todone setfiletype todone
-augroup END
+augrou END

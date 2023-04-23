@@ -8,6 +8,7 @@ require('telescope').setup{
       "^.git",
       "^android", "^linux", "^ios", "^macos", "^windows", "^build", -- flutter
       "^node_modules",
+      "^assets",
       "^vendor",
       "^tags",
     },
