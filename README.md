@@ -4,9 +4,11 @@
 
 Versionamento dos meus arquivos de configuração, scripts, instruções e templates usados no Windows e/ou Linux.
 
-- Nvim e VSCode
-- Awesome
-- Bash e Git
+- Nvim
+- VSCode
+- AwesomeWM
+- Bash
+- Git
 
 ## Simplicidade como preceito
 
@@ -41,8 +43,9 @@ sudo apt install ./nvim-linux64.deb
 </details>
 
 <details>
-<summary>Utilizar somente o Vim básico</summary>
+<summary>Suporte ao Vim (sem plugins)</summary>
 
+- Com todos vimscripts
 ```vim
 " ~/.vimrc ou %userprofile%\_vimrc
 let g:dotfiles = "~/dev/dotfiles/"
@@ -50,12 +53,12 @@ exe "source ".g:dotfiles."nvim/vimrc"
 exe "source ".g:dotfiles."nvim/colors/calmo.vim"
 ```
 
-- Sem tempo irmão (Windows):
+- O mais simples possível (Windows):
 ```sh
 curl https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc > %userprofile%\_vimrc
 ```
 
-- Sem tempo irmão (Linux):
+- O mais simples possível (Linux):
 ```sh
 wget https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc -O $HOME/.vimrc
 ```
@@ -65,9 +68,9 @@ wget https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc -O $HOME/
 
 ### Nvim
 
-- `~/.vimrc-pre.vim`
-- `~/.vimrc-local.vim`
-- `/path/do/projeto/.exvrc`, `/path/do/projeto/.exrc`, `/path/do/projeto/.nvim.lua` ou `.rgignore` (rg)
+- `~/.vimrc-pre.vim`: **antes** do carregamento de vários módulos
+- `~/.vimrc-local.vim`: **depois** do carregamento completo
+- `/path/do/projeto/.exvrc`, `/path/do/projeto/.exrc`, `/path/do/projeto/.nvim.lua` ou `.rgignore` (rg): **depois** do carregamento completo, somente no projeto aberto
 
 ### Bash
 
