@@ -63,8 +63,6 @@ require('packer').startup(function(use)
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
-      -- 'mfussenegger/nvim-dap',
-
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
