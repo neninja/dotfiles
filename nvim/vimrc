@@ -185,6 +185,23 @@ endfunction
 
 function! s:FechaSplitOuDeletaBuffer()
   if winnr('$') > 1
+function! s:ToggleComment()
+  if getline('.') =~ "^\\s*$"
+    return
+  endif
+
+  let [comment_leader1, comment_leader2] = split(&commentstring, '%s', 1)
+  if getline('.') =~ "^\\s*" . comment_leader1
+    " Uncomment
+    execute "silent s/^\\(\\s*\\)" . comment_leader1 . "/\\1/"
+    execute "silent s/" . comment_leader2 . "\\(\\s*\\)$/\\1/"
+  else
+    " Comment
+    execute "silent s/^\\(\\s*\\)/\\1" . comment_leader1 . "/"
+    execute "silent s/$/\\1" . comment_leader2 . "/"
+  end
+endfunction
+
     q
   else
     bd
@@ -308,6 +325,8 @@ vnoremap    <           <gv|" mantêm select após indentação
 vnoremap    >           >gv|" mantêm select após indentação
 nnoremap    <expr>dj    &diff ? ":diffget LO<CR>" : "<nop>"
 nnoremap    <expr>dk    &diff ? ":diffget RE<CR>" : "<nop>"
+nnoremap    gc          :call <SID>ToggleComment()<CR>
+vnoremap    gc          :call <SID>ToggleComment()<CR>
 vnoremap    J           :m '>+1<CR>gv=gv|" move linha selecionada pra baixo
 vnoremap    K           :m '<-2<CR>gv=gv|" move linha selecionada pra cima
 inoremap    kj          <esc>|" esc mais fácil
@@ -379,4 +398,13 @@ augroup filetype_detect
   au BufRead,BufNewFile *.phtml setfiletype html
   au BufRead,BufNewFile *.gv setfiletype dot
   au BufRead,BufNewFile *.todone setfiletype todone
+
+  au FileType php setlocal commentstring=#\ %s
+  au FileType html setlocal commentstring=<!--\ %s\ -->
+augrou END
+
+augroup commentstring
+  au!
+  au FileType php setlocal commentstring=#\ %s
+  au FileType html setlocal commentstring=<!--\ %s\ -->
 augrou END

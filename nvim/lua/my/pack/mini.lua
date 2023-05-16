@@ -284,12 +284,3 @@ require('mini.starter').setup({
   footer = table.concat(footer_quote(), "\n"),
   query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_-.',
 })
---# Comment
-require('mini.comment').setup()
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'php',
-  group = vim.api.nvim_create_augroup('setcomment', { clear = true }),
-  callback = function()
-    vim.opt_local.commentstring = "# %s"
-  end,
-})
