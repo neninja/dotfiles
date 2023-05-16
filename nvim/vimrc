@@ -183,8 +183,6 @@ function! NN_GitAula()
   bdelete!
 endfunction
 
-function! s:FechaSplitOuDeletaBuffer()
-  if winnr('$') > 1
 function! s:ToggleComment()
   if getline('.') =~ "^\\s*$"
     return
@@ -202,15 +200,17 @@ function! s:ToggleComment()
   end
 endfunction
 
+function! s:FechaOuDeletaBuffer()
+  if tabpagenr('$') > 1 || winnr('$') > 1
     q
   else
     bd
   endif
 endfunction
 
-function! s:FechaSplitOuDeletaBufferForced()
-  if winnr('$') > 1
-    q!
+function! s:FechaOuDeletaBufferForced()
+  if tabpagenr('$') > 1 || winnr('$') > 1
+    close
   else
     bd!
   endif
@@ -303,8 +303,8 @@ nnoremap    <leader><leader>    :w<CR>
 nnoremap    <leader><CR>        :call NN_Lexplorer()<CR>
 nnoremap    <leader>/           :noh<CR>
 nnoremap    <leader>.           :pwd<CR>
-nnoremap    <leader>dd          :call <SID>FechaSplitOuDeletaBuffer()<CR>
-nnoremap    <leader>df          :call <SID>FechaSplitOuDeletaBufferForced()<CR>
+nnoremap    <leader>dd          :call <SID>FechaOuDeletaBuffer()<CR>
+nnoremap    <leader>df          :call <SID>FechaOuDeletaBufferForced()<CR>
 nnoremap    <leader>ds          :on<CR>|" fecha todas splits exceto atual
 nnoremap    <leader>j           <c-w>w|" estilo DWM
 nnoremap    <leader>k           <c-w>W|" estilo DWM
@@ -313,7 +313,7 @@ vnoremap    <leader>n           :call NN_<c-d>|" funções pessoais
 nnoremap    <expr><leader>q     empty(filter(getwininfo(), 'v:val.quickfix')) ? ":cope<CR>" : ":ccl<CR>"|" toggle quickfix
 nnoremap    <expr><leader>l     empty(filter(getwininfo(), 'v:val.loclist')) ? ":lope<CR>" : ":lcl<CR>"|" toggle location-list
 nnoremap    <leader>s           :split<CR>
-nnoremap    <leader>t           :tj <c-r><c-w><CR>|" goto definition (tag jump do ctags)
+nnoremap    <leader>t           :tab split<CR>
 nnoremap    <leader>v           :vsplit<CR>
 nnoremap    <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
 vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
@@ -366,6 +366,7 @@ nnoremap    <c-n>       yiwV|" substitue multi cursors
 xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>|" substitue multi cursors
 nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
 nnoremap    <c-q>       q:
+nnoremap    <c-t>       :tj <c-r><c-w><CR>|" goto definition (tag jump do ctags)
 nnoremap    <c-z>       <nop>
 inoremap    <c-z>       <c-r>=<SID>AutoCompleteCarinhas()<CR>
 tnoremap    <s-insert>  <c-w>"*
