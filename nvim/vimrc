@@ -202,14 +202,6 @@ endfunction
 
 function! s:FechaOuDeletaBuffer()
   if tabpagenr('$') > 1 || winnr('$') > 1
-    q
-  else
-    bd
-  endif
-endfunction
-
-function! s:FechaOuDeletaBufferForced()
-  if tabpagenr('$') > 1 || winnr('$') > 1
     close
   else
     bd!
@@ -303,8 +295,7 @@ nnoremap    <leader><leader>    :w<CR>
 nnoremap    <leader><CR>        :call NN_Lexplorer()<CR>
 nnoremap    <leader>/           :noh<CR>
 nnoremap    <leader>.           :pwd<CR>
-nnoremap    <leader>dd          :call <SID>FechaOuDeletaBuffer()<CR>
-nnoremap    <leader>df          :call <SID>FechaOuDeletaBufferForced()<CR>
+nnoremap    <leader>df          :call <SID>FechaOuDeletaBuffer()<CR>
 nnoremap    <leader>ds          :on<CR>|" fecha todas splits exceto atual
 nnoremap    <leader>j           <c-w>w|" estilo DWM
 nnoremap    <leader>k           <c-w>W|" estilo DWM
