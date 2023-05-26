@@ -20,7 +20,7 @@ local aucmd_dict = {
       end,
     },
     {
-      pattern = "javascriptreact,typescriptreact",
+      pattern = "html,javascriptreact,typescriptreact",
       callback = function()
         local function i(trig, cb)
           vim.cmd("inoremap <buffer> "..trig.." "..cb)
