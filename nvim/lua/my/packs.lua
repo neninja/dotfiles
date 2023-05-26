@@ -57,6 +57,11 @@ require('packer').startup(function(use)
   }
 
   use {
+    'mfussenegger/nvim-dap',
+    config = function() require('my.pack.dap') end,
+  }
+
+  use {
     'neovim/nvim-lspconfig',
     requires = {
       -- Automatically install LSPs to stdpath for neovim
