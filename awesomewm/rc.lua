@@ -378,6 +378,12 @@ clientkeys = gears.table.join(
   end, { description = "swap master", group = "client" }),
   awful.key({ modkey, "Control" }, "o", function(c) c:move_to_screen() end,
     { description = "move to screen", group = "screen" }),
+  awful.key({ modkey, "Control", "Shift" }, "o", function(_)
+    for _, c in ipairs(client.get()) do
+      c:move_to_screen()
+    end
+  end,
+    { description = "move to screen", group = "screen" }),
   --awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
   --          {description = "toggle keep on top", group = "client"}),
   --awful.key({ modkey,           }, "n",
