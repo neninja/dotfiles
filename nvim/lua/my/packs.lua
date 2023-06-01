@@ -107,3 +107,5 @@ require('packer').startup(function(use)
     config = function() require('my.pack.telescope') end,
   }
 end)
+
+require('my.clickup')

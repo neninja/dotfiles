@@ -22,6 +22,8 @@ qualidade --> t[trabalho eficiente]
 
 ## Utilização
 
+1. Download e link dos arquivos
+
 ```bash
 cd ~
 mkdir -p dev
@@ -30,6 +32,31 @@ git clone git@github.com:nenitf/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
+
+2. Configuração de ambiente do nvim
+
+```lua
+-- nvim/lua/env.lua
+local M = {}
+
+M.clickup = {
+  token = "TOKEN",
+  user_id = "USER",
+  space_id = "SPACE",
+  workspace_id = "WORKSPACE",
+  filter = {
+    statuses = {
+      "ready for development",
+      "backlog",
+      "code review",
+      "in development",
+    },
+  },
+}
+
+return M
+```
+
 > [Configuração do SSH](https://gist.github.com/nenitf/433e85b49acc802479654c75535eea2c)
 
 <details>
