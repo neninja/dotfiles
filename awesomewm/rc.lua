@@ -292,7 +292,7 @@ local globalkeys = gears.table.join(table.unpack({
   k("launcher", "terminal", { modkey, }, "Return", function() awful.spawn(terminal) end),
   k("launcher", "prompt", { modkey, }, "r", function() awful.screen.focused().mypromptbox:run() end),
   k("launcher", "launcher", { modkey, }, "p", function() menubar.show() end),
-  k("launcher", "launcher", { modkey, }, "iis", function() awful.spawn(screenshot) end),
+  k("launcher", "launcher", { modkey, }, "s", function() awful.spawn(screenshot) end),
 }))
 
 local clientkeys = gears.table.join(table.unpack({
