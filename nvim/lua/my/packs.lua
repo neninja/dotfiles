@@ -36,12 +36,7 @@ require('packer').startup(function(use)
     config = function() require('my.pack.mini') end,
   }
 
-  use {
-    'ggandor/leap.nvim',
-    config = function()
-      require('leap').add_default_mappings()
-    end,
-  }
+  use 'justinmk/vim-sneak'
 
   use {
     "zbirenbaum/copilot.lua",
