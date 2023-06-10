@@ -17,6 +17,7 @@ require('copilot').setup({
     yaml = false,
     typescript = true,
     markdown = true,
+    lua = true,
     cucumber = true,
     help = false,
     gitcommit = true,
