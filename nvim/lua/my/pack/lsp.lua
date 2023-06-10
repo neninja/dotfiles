@@ -51,7 +51,3 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
-lspconfig.dartls.setup({
-  cmd = { "dart", 'language-server', '--protocol=lsp' }
-})
