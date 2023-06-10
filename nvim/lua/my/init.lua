@@ -1,5 +1,6 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
 require('my.src-pre')
+require("my.env")
 require('my.vimrc')
 require('my.packs')
 require('my.spells')
