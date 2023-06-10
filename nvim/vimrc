@@ -301,6 +301,7 @@ nnoremap    <leader>j           <c-w>w|" estilo DWM
 nnoremap    <leader>k           <c-w>W|" estilo DWM
 nnoremap    <leader>n           :call NN_<c-d>|" funções pessoais
 vnoremap    <leader>n           :call NN_<c-d>|" funções pessoais
+vnoremap    <leader>p           "_dP
 nnoremap    <expr><leader>q     empty(filter(getwininfo(), 'v:val.quickfix')) ? ":cope<CR>" : ":ccl<CR>"|" toggle quickfix
 nnoremap    <expr><leader>l     empty(filter(getwininfo(), 'v:val.loclist')) ? ":lope<CR>" : ":lcl<CR>"|" toggle location-list
 nnoremap    <leader>s           :split<CR>
