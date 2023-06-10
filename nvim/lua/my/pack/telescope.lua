@@ -83,6 +83,17 @@ require("command_center").add({
     category = "telescope",
   },
   {
+    description = "Search for symbols with Aerial",
+    cmd = ":Telescope aerial<CR>",
+    keybindings = {"n", "<leader>a", silent_noremap},
+    category = "telescope",
+  },
+  {
+    description = "Toggle symbols showing with Aerial",
+    cmd = ":AerialToggle<CR>",
+    category = "aerial",
+  },
+  {
     description = "Search inside current buffer",
     cmd = ":Telescope current_buffer_fuzzy_find<CR>",
     category = "telescope",
@@ -234,3 +245,4 @@ require("telescope").load_extension "emoji"
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "luasnip"
 require("telescope").load_extension "command_center"
+require('telescope').load_extension "aerial"

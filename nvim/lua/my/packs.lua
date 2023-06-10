@@ -121,6 +121,7 @@ require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',
     tag = "0.1.1", -- attempt to call get_lang on null na preview
     requires = {
+      { 'stevearc/aerial.nvim' },
       { 'nvim-lua/plenary.nvim' },
       { 'xiyaowong/telescope-emoji.nvim' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
