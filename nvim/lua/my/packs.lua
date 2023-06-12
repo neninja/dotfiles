@@ -126,8 +126,13 @@ require('packer').startup(function(use)
   }
 
   use {
+    'stevearc/aerial.nvim',
+    config = function() require('aerial').setup() end
+  }
+
+  use {
     'nvim-telescope/telescope.nvim',
-    tag = "0.1.1", -- attempt to call get_lang on null na preview
+    -- tag = "0.1.1", -- attempt to call get_lang on null na preview
     requires = {
       { 'stevearc/aerial.nvim' },
       { 'nvim-lua/plenary.nvim' },
