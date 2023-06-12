@@ -122,7 +122,7 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function() require('my.pack.treesitter') end,
-    tag = "v0.9.0", -- vive quebrando taloco
+    -- tag = "v0.9.0", -- vive quebrando taloco
   }
 
   use {
