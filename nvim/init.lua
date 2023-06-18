@@ -2,6 +2,6 @@
 local fullpath = debug.getinfo(1,"S").source:sub(2)
 fullpath = io.popen("realpath '"..fullpath.."'", 'r'):read('*all'):gsub('[\n\r]*$','')
 DOTFILES_FULLPATH_NVIM, _ = fullpath:match('^(.*/)([^/]-)$')
-vim.cmd('set runtimepath+='..DOTFILES_FULLPATH_NVIM)
+vim.opt.runtimepath:append(DOTFILES_FULLPATH_NVIM)
 
 require('my.init')
