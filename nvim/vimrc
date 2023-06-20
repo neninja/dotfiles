@@ -191,12 +191,12 @@ function! s:ToggleComment()
   let [comment_leader1, comment_leader2] = split(&commentstring, '%s', 1)
   if getline('.') =~ "^\\s*" . comment_leader1
     " Uncomment
-    execute "silent s/^\\(\\s*\\)" . comment_leader1 . "/\\1/"
-    execute "silent s/" . comment_leader2 . "\\(\\s*\\)$/\\1/"
+    call setline('.', substitute(getline('.'), "^\\(\\s*\\)" . comment_leader1, "\\1", 'g'))
+    call setline('.', substitute(getline('.'), comment_leader2 . "\\(\\s*\\)$", "\\1", 'g'))
   else
     " Comment
-    execute "silent s/^\\(\\s*\\)/\\1" . comment_leader1 . "/"
-    execute "silent s/$/\\1" . comment_leader2 . "/"
+    call setline('.', substitute(getline('.'), "^\\(\\s*\\)", "\\1" . comment_leader1, 'g'))
+    call setline('.', substitute(getline('.'), "$", "\\1" . comment_leader2, 'g'))
   end
 endfunction
 
