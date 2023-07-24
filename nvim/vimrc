@@ -391,9 +391,6 @@ augroup filetype_detect
   au BufRead,BufNewFile *.phtml setfiletype html
   au BufRead,BufNewFile *.gv setfiletype dot
   au BufRead,BufNewFile *.todone setfiletype todone
-
-  au FileType php setlocal commentstring=#\ %s
-  au FileType html setlocal commentstring=<!--\ %s\ -->
 augrou END
 
 augroup commentstring
