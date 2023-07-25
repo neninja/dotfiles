@@ -16,11 +16,12 @@ local my_items = {
   { name = 'Quit', action = 'q', section = '' },
   { name = 'Dotfiles', action = 'e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()', section = '' },
   { name = 'Sync plugins', action = 'PackerSync', section = '' },
+  { name = 'Wikis', action = 'VimwikiUISelect', section = '' },
+  { name = 'Organização pessoal', action = 'VimwikiIndex 1', section = '' },
   { name = 'Git status', action = 'Gedit :', section = 'Projeto' },
   { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
-  { name = 'Wikis', action = 'VimwikiUISelect', section = 'Wiki' },
-  { name = 'Yesterday', action = 'VimwikiMakeYesterdayDiaryNote', section = 'Wiki' },
-  { name = 'Today', action = 'VimwikiMakeDiaryNote', section = 'Wiki' },
+  { name = 'Idez', action = 'VimwikiIndex 2', section = 'Idez' },
+  { name = 'Today Diary', action = 'VimwikiMakeDiaryNote 2', section = 'Idez' },
 }
 --## Header
 -- https://textkool.com/en/ascii-art-generator?hl=default&vl=default&font=ANSI%20Shadow&text=neovim
