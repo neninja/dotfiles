@@ -175,6 +175,17 @@ require("command_center").add({
     category = "nvim",
   },
   {
+    description = "Toggle relativenumber",
+    cmd = function()
+      if(vim.o.relativenumber) then
+        vim.o.relativenumber = false
+      else
+        vim.o.relativenumber = true
+      end
+    end,
+    category = "nvim",
+  },
+  {
     description = "Toggle cursorline",
     cmd = function()
       if(vim.o.cursorline) then
