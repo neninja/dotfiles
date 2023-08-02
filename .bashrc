@@ -158,6 +158,9 @@ alias xcb='tr -d "\n" | xclip -selection clipboard'
 alias pwdx='pwd | tr -d "\n" | xclip -selection clipboard'
 alias op='xdg-open .'
 alias anbox='anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity' # adb install ~/path/to/app.apk
+alias dc="docker-compose"
+alias dce="docker-compose exec"
+alias dca="docker-compose exec app"
 #{{{ CD
 alias cdf="cd $HOME/dev/dotfiles"
 alias cdev="cd $HOME/dev"
