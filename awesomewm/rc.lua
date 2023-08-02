@@ -316,7 +316,10 @@ local clientkeys = gears.table.join(table.unpack({
   k("client", "mover client para outra screen", { modkey, "Control", }, "o", function(c) c:move_to_screen() end),
   k("client", "mover todos clients para outra screen", { modkey, "Shift", "Control", }, "o", function(_)
     for _, c in ipairs(awful.screen.focused().all_clients) do
+      local index=c.first_tag.index
       c:move_to_screen()
+      local tag =c.screen.tags[index]
+      c:move_to_tag(tag)
     end
   end),
 
