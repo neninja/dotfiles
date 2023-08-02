@@ -138,12 +138,6 @@ require("command_center").add({
     category = "telescope",
   },
   {
-    description = "File browser",
-    cmd = ":Telescope file_browser<CR>",
-    keybindings = {"n", "<leader><cr>", silent_noremap},
-    category = "telescope",
-  },
-  {
     description = "Find a emoji",
     cmd = ":Telescope emoji<CR>",
     category = "telescope",

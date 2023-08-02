@@ -137,7 +137,6 @@ require('packer').startup(function(use)
       { 'stevearc/aerial.nvim' },
       { 'nvim-lua/plenary.nvim' },
       { 'xiyaowong/telescope-emoji.nvim' },
-      { 'nvim-telescope/telescope-file-browser.nvim' },
       { 'gfeiyou/command-center.nvim' },
       { 'benfowler/telescope-luasnip.nvim' },
     },
