@@ -188,16 +188,25 @@ function! s:ToggleComment()
     return
   endif
 
-  let [comment_leader1, comment_leader2] = split(&commentstring, '%s', 1)
-  if getline('.') =~ "^\\s*" . comment_leader1
-    " Uncomment
-    call setline('.', substitute(getline('.'), "^\\(\\s*\\)" . comment_leader1, "\\1", 'g'))
-    call setline('.', substitute(getline('.'), comment_leader2 . "\\(\\s*\\)$", "\\1", 'g'))
-  else
-    " Comment
-    call setline('.', substitute(getline('.'), "^\\(\\s*\\)", "\\1" . comment_leader1, 'g'))
-    call setline('.', substitute(getline('.'), "$", "\\1" . comment_leader2, 'g'))
-  end
+  let commentstrings = split(&commentstring, ',')
+
+  " handle multiple uncomments formats
+  for commentstring in commentstrings
+    let [comment_leader1, comment_leader2] = split(commentstring, '%s', 1)
+    let comment_leader1 = substitute(comment_leader1, ' ', '', 'g')
+    let comment_leader2 = substitute(comment_leader2, ' ', '', 'g')
+    if getline('.') =~ "^\\s*" . comment_leader1
+      call setline('.', substitute(getline('.'), "^\\(\\s*\\)" . comment_leader1 . "\\(\\s*\\)", "\\1", 'g'))
+      call setline('.', substitute(getline('.'), "\\(\\s*\\)" . comment_leader2 . "\\(\\s*\\)$", "", 'g'))
+      return
+    end
+  endfor
+
+  " Comment
+  let first_commentstring = commentstrings[0]
+  let [comment_leader1, comment_leader2] = split(first_commentstring, '%s', 1)
+  call setline('.', substitute(getline('.'), "^\\(\\s*\\)", "\\1" . comment_leader1, 'g'))
+  call setline('.', substitute(getline('.'), "$", "\\1" . comment_leader2, 'g'))
 endfunction
 
 function! s:FechaOuDeletaBuffer()
@@ -395,6 +404,6 @@ augrou END
 
 augroup commentstring
   au!
-  au FileType php setlocal commentstring=#\ %s
+  au FileType php setlocal commentstring=#\ %s,//\ %s,/\\*\ %s\ \\*/
   au FileType html setlocal commentstring=<!--\ %s\ -->
 augrou END
