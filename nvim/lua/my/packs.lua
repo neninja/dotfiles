@@ -89,23 +89,6 @@ require('packer').startup(function(use)
   }
 
   use {
-    'nenitf/cu.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-    },
-    config = function()
-      require('cu-nvim').setup({
-        env = {
-          api_token = vim.env.CLICKUP_API_TOKEN,
-          user_id = vim.env.CLICKUP_USER_ID,
-          default_workspace = vim.env.CLICKUP_WORKSPACE_ID,
-          default_space = vim.env.CLICKUP_SPACE_ID,
-        }
-      })
-    end,
-  }
-
-  use {
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-buffer',
