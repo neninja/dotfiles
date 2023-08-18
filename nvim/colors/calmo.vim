@@ -230,6 +230,11 @@ elseif has("terminal")
         \ ]
 endif
 
+
+"## Custom syntax
+"THANKS: https://stackoverflow.com/a/45447251/9881278
+syn region conflictMerge containedin=ALL start=/^<<<<<<<$\@<!/ end=/^>>>>>>> \@=/
+
 "## Defs
 " call s:hi('Normal', s:fg, s:bg, '')
 hi! Normal guibg=NONE ctermbg=NONE
@@ -379,6 +384,8 @@ hi! link Pmenu TelescopeNormal
 
 hi! link DiagnosticError Error
 hi! link DiagnosticHint Todo
+
+hi! link conflictMerge Todo
 
 call s:hi('MiniStarterHeader', s:detach02, '', '')
 call s:hi('MiniStarterItemPrefix', s:detach02, '', '')
