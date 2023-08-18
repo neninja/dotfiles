@@ -1,14 +1,12 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
 --# Setup Telescope
 local actions = require("telescope.actions")
-local fb_actions = require "telescope".extensions.file_browser.actions
 require('telescope').setup{
   defaults = {
     file_ignore_patterns = {
       "^.git",
       "^android", "^linux", "^ios", "^macos", "^windows", "^build", -- flutter
       "^node_modules",
-      "^assets",
       "^vendor",
       "^tags",
     },
@@ -31,13 +29,6 @@ require('telescope').setup{
       action = function(emoji)
         vim.fn.setreg("+", emoji.value)
       end,
-    },
-    file_browser = {
-      mappings = {
-        ["i"] = {
-          ["<c-y>"] = fb_actions.create_from_prompt,
-        },
-      },
     },
   }
 }
@@ -247,7 +238,6 @@ require("command_center").add({
 })
 --# Carregamento de extensões
 require("telescope").load_extension "emoji"
-require("telescope").load_extension "file_browser"
 require("telescope").load_extension "luasnip"
 require("telescope").load_extension "command_center"
 require('telescope').load_extension "aerial"
