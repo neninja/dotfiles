@@ -34,7 +34,7 @@ set autoindent
 set mouse=
 set linebreak
 set nocursorcolumn nocursorline
-set number relativenumber
+set number norelativenumber
 set nrformats-=octal
 set lazyredraw
 set nobackup
