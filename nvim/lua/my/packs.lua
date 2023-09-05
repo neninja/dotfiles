@@ -120,7 +120,7 @@ require('packer').startup(function(use)
       { 'stevearc/aerial.nvim' },
       { 'nvim-lua/plenary.nvim' },
       { 'xiyaowong/telescope-emoji.nvim' },
-      { 'gfeiyou/command-center.nvim' },
+      { 'FeiyouG/commander.nvim' },
       { 'benfowler/telescope-luasnip.nvim' },
     },
     config = function() require('my.pack.telescope') end,

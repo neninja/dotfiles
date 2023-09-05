@@ -48,125 +48,125 @@ vim.api.nvim_create_autocmd('BufRead', {
 local map = vim.keymap.set
 local silent_noremap = {noremap = true, silent = true}
 
-map('n', '<leader>n', [[:Telescope command_center<CR>]], silent_noremap)
+map('n', '<leader>n', [[:Telescope commander<CR>]], silent_noremap)
 --# Extensões
---## Command center
-require("command_center").add({
+--## Commander
+require("commander").add({
   {
-    description = ":pwd to git dir",
+    desc = ":pwd to git dir",
     cmd = ":call NN_SetGitDir()<CR>",
-    category = "git",
+    cat = "git",
   },
   {
-    description = "commit aula `vim README.md -c \"call NN_GitAula()\"`",
+    desc = "commit aula `vim README.md -c \"call NN_GitAula()\"`",
     cmd = ":call NN_GitAula()<CR>",
-    category = "git",
+    cat = "git",
   },
   {
-    description = "generate tags (ctags)",
+    desc = "generate tags (ctags)",
     cmd = ":call NN_ctags()<CR>",
-    category = "ctags",
+    cat = "ctags",
   },
   {
-    description = "Search for a buffer",
+    desc = "Search for a buffer",
     cmd = ":Telescope buffers<CR>",
-    keybindings = {"n", "<leader>b", silent_noremap},
-    category = "telescope",
+    keys = {"n", "<leader>b", silent_noremap},
+    cat = "telescope",
   },
   {
-    description = "Search for symbols with Aerial",
+    desc = "Search for symbols with Aerial",
     cmd = ":Telescope aerial<CR>",
-    keybindings = {"n", "<leader>a", silent_noremap},
-    category = "telescope",
+    keys = {"n", "<leader>a", silent_noremap},
+    cat = "telescope",
   },
   {
-    description = "Toggle symbols showing with Aerial",
+    desc = "Toggle symbols showing with Aerial",
     cmd = ":AerialToggle<CR>",
-    category = "aerial",
+    cat = "aerial",
   },
   {
-    description = "Search inside current buffer",
+    desc = "Search inside current buffer",
     cmd = ":Telescope current_buffer_fuzzy_find<CR>",
-    category = "telescope",
+    cat = "telescope",
   },
   {
-    description = "Search for a file inside project (:pwd)",
+    desc = "Search for a file inside project (:pwd)",
     cmd = function()
       require("telescope.builtin").find_files({
         hidden = true,
         cwd = vim.fn.getcwd(),
       })
     end,
-    keybindings = {"n", "<leader>f", silent_noremap},
-    category = "telescope",
+    keys = {"n", "<leader>f", silent_noremap},
+    cat = "telescope",
   },
   {
-    description = "Search for a file inside project (:pwd) with hidden files",
+    desc = "Search for a file inside project (:pwd) with hidden files",
     cmd = ":Telescope find_files hidden=true<CR>",
-    category = "telescope",
+    cat = "telescope",
   },
   {
-    description = "Find recent files (MRU)",
+    desc = "Find recent files (MRU)",
     cmd = ":Telescope oldfiles<CR>",
-    keybindings = {"n", "<leader>m", silent_noremap},
-    category = "telescope",
+    keys = {"n", "<leader>m", silent_noremap},
+    cat = "telescope",
   },
   {
-    description = "Find word inside :pwd",
+    desc = "Find word inside :pwd",
     cmd = ":Telescope live_grep<CR>",
-    keybindings = {"n", "<c-f>", silent_noremap},
-    category = "telescope",
+    keys = {"n", "<c-f>", silent_noremap},
+    cat = "telescope",
   },
   {
-    description = "Find a helptag",
+    desc = "Find a helptag",
     cmd = ":Telescope help_tags<CR>",
-    keybindings = {"n", "<leader>h", silent_noremap},
-    category = "telescope",
+    keys = {"n", "<leader>h", silent_noremap},
+    cat = "telescope",
   },
   {
-    description = "Find a man page",
+    desc = "Find a man page",
     cmd = ":Telescope man_pages<CR>",
-    category = "telescope",
+    cat = "telescope",
   },
   {
-    description = "Find a emoji",
+    desc = "Find a emoji",
     cmd = ":Telescope emoji<CR>",
-    category = "telescope",
-    keybindings = {"n", "<leader>em", silent_noremap},
+    cat = "telescope",
+    keys = {"n", "<leader>em", silent_noremap},
   },
   {
-    description = "Find a snippet",
+    desc = "Find a snippet",
     cmd = ":Telescope luasnip<CR>",
-    keybindings = {"n", "<leader><tab>", silent_noremap},
-    category = "telescope",
+    keys = {"n", "<leader><tab>", silent_noremap},
+    cat = "telescope",
   },
   {
-    description = "Find a highlight",
+    desc = "Find a highlight",
     cmd = ":Telescope highlights<CR>",
-    category = "telescope",
+    cat = "telescope",
   },
   {
-    description = "Find a command",
+    desc = "Find a command",
     cmd = ":Telescope commands<CR>",
-    category = "telescope",
+    cat = "telescope",
   },
   {
-    description = "Show vim tips",
+    desc = "Show vim tips",
     cmd = ":h tips<CR>",
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Show vim cheatsheet",
+    desc = "Show vim cheatsheet",
     cmd = ":h index<CR>",
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Check health",
+    desc = "Check health",
     cmd = ":checkhealth<CR>",
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Toggle relativenumber",
+    desc = "Toggle relativenumber",
     cmd = function()
       if(vim.o.relativenumber) then
         vim.o.relativenumber = false
@@ -174,10 +174,10 @@ require("command_center").add({
         vim.o.relativenumber = true
       end
     end,
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Toggle cursorline",
+    desc = "Toggle cursorline",
     cmd = function()
       if(vim.o.cursorline) then
         vim.o.cursorline = false
@@ -185,10 +185,10 @@ require("command_center").add({
         vim.o.cursorline = true
       end
     end,
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Toggle colorcolumn",
+    desc = "Toggle colorcolumn",
     cmd = function()
       if(vim.o.colorcolumn == '81') then
         vim.o.colorcolumn = ''
@@ -196,20 +196,20 @@ require("command_center").add({
         vim.o.colorcolumn = '81'
       end
     end,
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Vim keymaps",
+    desc = "Vim keymaps",
     cmd = ":lua require('telescope.builtin').keymaps()<CR>",
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Vim options",
+    desc = "Vim options",
     cmd = ":lua require('telescope.builtin').vim_options()<CR>",
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Toggle dark/light colorscheme",
+    desc = "Toggle dark/light colorscheme",
     cmd = function()
       if(vim.o.background == 'dark') then
         vim.o.background = 'light'
@@ -217,27 +217,27 @@ require("command_center").add({
         vim.o.background = 'dark'
       end
     end,
-    category = "nvim",
+    cat = "nvim",
   },
   {
-    description = "Update packages",
+    desc = "Update packages",
     cmd = ":PackerSync<CR>",
-    category = "packages",
+    cat = "packages",
   },
   {
-    description = "Search for TODO|FIXME",
+    desc = "Search for TODO|FIXME",
     cmd = ":call NN_Tasks()<CR>",
-    category = "todo",
+    cat = "todo",
   },
   {
-    description = "Update vimwiki index",
+    desc = "Update vimwiki index",
     cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks TODO backlog STARTED XXX<CR>",
-    category = "vimki",
+    cat = "vimki",
   },
 
 })
 --# Carregamento de extensões
 require("telescope").load_extension "emoji"
 require("telescope").load_extension "luasnip"
-require("telescope").load_extension "command_center"
+require("telescope").load_extension "commander"
 require('telescope').load_extension "aerial"
