@@ -389,3 +389,5 @@ hi! link conflictMerge Todo
 
 call s:hi('MiniStarterHeader', s:detach02, '', '')
 call s:hi('MiniStarterItemPrefix', s:detach02, '', '')
+
+call s:hi('FlashLabel', s:m01, s:detach01, 'bold')
