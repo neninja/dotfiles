@@ -8,3 +8,4 @@ vim.g.vimwiki_list = {
 }
 
 vim.g.vimwiki_folding = 'expr'
+vim.g.vimwiki_auto_chdir = 1
