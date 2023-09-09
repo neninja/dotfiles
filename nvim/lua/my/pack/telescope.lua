@@ -51,7 +51,26 @@ local silent_noremap = {noremap = true, silent = true}
 map('n', '<leader>n', [[:Telescope commander<CR>]], silent_noremap)
 --# Extensões
 --## Commander
-require("commander").add({
+local commander = require("commander")
+commander.setup({
+      components = {
+        "DESC",
+        "KEYS",
+        "CAT",
+      },
+      sort_by = {
+        "DESC",
+        "KEYS",
+        "CAT",
+        "CMD"
+      },
+      integration = {
+        telescope = {
+          enable = false,
+        },
+      }
+    })
+commander.add({
   {
     desc = ":pwd to git dir",
     cmd = ":call NN_SetGitDir()<CR>",
