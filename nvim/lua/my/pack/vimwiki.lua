@@ -9,3 +9,10 @@ vim.g.vimwiki_list = {
 
 vim.g.vimwiki_folding = 'expr'
 vim.g.vimwiki_auto_chdir = 1
+
+-- Dicas:
+--
+-- Centralizar titulo com `:center`, copiar espaços iniciais para o final
+-- Centralizar comandos com `:right`, copiar espaços iniciais para o meio
+--
+-- `ggVGgq` formata texto
