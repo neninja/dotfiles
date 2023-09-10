@@ -20,8 +20,6 @@ sudo dpkg -i --force-depends ~/Downloads/chrome.deb
 rm ~/Downloads/chrome.deb
 ```
 
-> Para "instalar"/executar `AppImage` precisa de permissão (``chmod +x ~/bin/file.AppImage``) e depois somente executar (``sudo ~/bin/file.AppImage --no-sandbox`` ou pelo awesome com <kbd>super</kbd><kbd>r</kbd> `$HOME/bin/file.AppImage`)
-
 > <kbd>super</kbd><kbd>s</kbd> exibe comandos
 
 - Transparência
@@ -38,4 +36,22 @@ awesome-client '
    naughty.notify({
      text="some message"})
 '
+```
+
+## App Image
+
+Para "instalar"/executar `AppImage` precisa de permissão (``chmod +x ~/bin/file.AppImage``) e depois somente executar (``sudo ~/bin/file.AppImage --no-sandbox`` ou pelo awesome com <kbd>super</kbd><kbd>r</kbd> `$HOME/bin/file.AppImage`)
+
+Para adicionar nos aplicativos, basta utilizar o template e salvar como `/usr/share/applications/NOMEDOARQUIVO.desktop`
+
+```toml
+[Desktop Entry]
+Name=Obsidian
+Exec=/home/neni/bin/Obsidian-1.4.5.AppImage
+Icon=/home/neni/Imagens/icons/obsidian-icon.png
+comment=app
+Type=Application
+Terminal=false
+Encoding=UTF-8
+Categories=Productivity;
 ```
