@@ -20,8 +20,8 @@ local my_items = {
   { name = 'Organização pessoal', action = 'VimwikiIndex 1', section = '' },
   { name = 'Git status', action = 'Gedit :', section = 'Projeto' },
   { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
-  { name = 'Idez', action = 'VimwikiIndex 2', section = 'Idez' },
-  { name = 'Today Diary', action = 'VimwikiMakeDiaryNote 2', section = 'Idez' },
+  { name = 'Idez', action = 'VimwikiIndex 3', section = 'Idez' },
+  { name = 'Today Diary', action = 'VimwikiMakeDiaryNote 3', section = 'Idez' },
 }
 --## Header
 -- https://textkool.com/en/ascii-art-generator?hl=default&vl=default&font=ANSI%20Shadow&text=neovim
