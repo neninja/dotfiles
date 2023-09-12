@@ -250,7 +250,7 @@ commander.add({
   },
   {
     desc = "Update vimwiki index",
-    cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks TODO backlog STARTED XXX<CR>",
+    cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks<CR>",
     cat = "vimki",
   },
 
