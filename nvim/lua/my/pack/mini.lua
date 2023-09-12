@@ -15,6 +15,7 @@ local my_items = {
   { name = 'Empty buffer', action = 'enew!', section = '' },
   { name = 'Quit', action = 'q', section = '' },
   { name = 'Dotfiles', action = 'e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()', section = '' },
+  { name = 'Blog WTF', action = 'e ' .. "~/dev/blog/wtf/README.md" .. ' | call NN_SetGitDir()', section = '' },
   { name = 'Sync plugins', action = 'PackerSync', section = '' },
   { name = 'Wikis', action = 'VimwikiUISelect', section = '' },
   { name = 'Organização pessoal', action = 'VimwikiIndex 1', section = '' },
