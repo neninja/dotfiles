@@ -249,11 +249,15 @@ commander.add({
     cat = "todo",
   },
   {
-    desc = "Update vimwiki index",
-    cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks<CR>",
-    cat = "vimki",
+    desc = "Update specific tag",
+    cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks <C-R><C-W><CR>",
+    cat = "vimwiki",
   },
-
+  {
+    desc = "Update ALL tags",
+    cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks<CR>",
+    cat = "vimwiki",
+  },
 })
 --# Carregamento de extensões
 require("telescope").load_extension "emoji"
