@@ -18,7 +18,7 @@ local my_items = {
   { name = 'Blog WTF', action = 'e ' .. "~/dev/blog/wtf/README.md" .. ' | call NN_SetGitDir()', section = '' },
   { name = 'Snippets blog', action = 'e ' .. "~/dev/blog/blog_snippets/README.md" .. ' | call NN_SetGitDir()', section = '' },
   { name = 'Plugin sync', action = 'PackerSync', section = '' },
-  { name = 'Wikis', action = 'VimwikiUISelect', section = '' },
+  { name = 'Wikis', action = 'VimwikiNewUISelect', section = '' },
   { name = 'Organização pessoal', action = 'VimwikiIndex 1', section = '' },
   { name = 'Git status', action = 'Gedit :', section = 'Projeto' },
   { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
