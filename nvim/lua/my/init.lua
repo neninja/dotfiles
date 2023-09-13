@@ -15,6 +15,12 @@ end
 local aucmd_dict = {
   FileType = {
     {
+      pattern = "vimwiki",
+      callback = function()
+        vim.cmd [[Goyo]]
+      end,
+    },
+    {
       pattern = "lua,dart,rust,javascript,javascriptreact,typescript,typescriptreact",
       callback = function()
         settab(2)
