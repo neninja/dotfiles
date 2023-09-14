@@ -263,14 +263,45 @@ end
 
 --## Footer
 local FOOTER_QUOTES = {
-  { 'Para quem só sabe usar martelo,', 'todo problema é um prego.' },
-  { 'Nós somos aquilo que', 'fazemos repetidamente' },
-  { 'Orgulha-te das tuas conquistas.', 'Apenas tu sabes o quanto foi difícil' },
-  { 'Feito é melhor que perfeito' },
-  { 'Memento mori' },
-  { 'Nunca ouviste passar o vento.', 'O vento só fala do vento.', 'O que lhe ouviste foi mentira,',
-    'E a mentira está em ti.', '- Alberto Caeiro' },
-  { 'Comunicação não é o que você fala,', 'é o que o outro entende' },
+  {
+    'Para quem só sabe usar martelo,',
+    'todo problema é um prego.'
+  },
+  {
+    'Nós somos aquilo que',
+    'fazemos repetidamente'
+  },
+  {
+    'Os atos ruins do seu passado',
+    'não te impedem de ser uma',
+    'pessoa boa no presente'
+  },
+  {
+    'Hábitos fáceis, vida difícil;',
+    'Hábitos difíceis, vida fácil'
+  },
+  {
+    'Perfer et obdura',
+    'dolor hic tibi proderit olim;',
+    'Sê paciente e resistente',
+    'um dia esta dôr ser-te-á útil'
+  },
+  {
+    'Feito é melhor que perfeito'
+  },
+  {
+    'Memento mori 💀' },
+  {
+    'Nunca ouviste passar o vento.',
+    'O vento só fala do vento.',
+    'O que lhe ouviste foi mentira,',
+    'E a mentira está em ti.',
+    '– Alberto Caeiro'
+  },
+  {
+    'Comunicação não é o que você fala,',
+    'é o que o outro entende'
+  },
 }
 
 local function footer_quote()
