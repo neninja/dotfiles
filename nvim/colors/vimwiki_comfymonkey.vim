@@ -60,5 +60,5 @@ call s:hi('PmenuSbar', s:bg, '', '')
 call s:hi('PmenuSel', '', '', 'inverse')
 call s:hi('PmenuThumb', s:fg, '', '')
 
-call s:hi('VimwikiLink', '', '', 'inverse')
+hi! link VimwikiLink Underlined
 hi! link VimwikiHeaderChar Title
