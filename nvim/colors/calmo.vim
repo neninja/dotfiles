@@ -258,7 +258,7 @@ call s:hi('Special', s:m05, '', '')
 call s:hi('SpecialComment', s:m03, '', 'bold')
 
 call s:hi('Title', s:m07, '', 'bold')
-call s:hi('Todo', s:purple01, '', 'bold')
+call s:hi('Todo', s:detach01, '', 'bold')
 if has("nvim") || has("gui_running")
   call s:hi('Comment', s:m03, '', 'italic')
 else
