@@ -100,6 +100,22 @@ local aucmd_dict = {
       end,
     },
   },
+  BufRead = {
+    {
+      pattern = "*.wiki",
+      callback = function()
+        vim.cmd [[colo vimwiki_comfymonkey]]
+      end,
+    },
+  },
+  BufNewFile = {
+    {
+      pattern = "*.wiki",
+      callback = function()
+        vim.cmd [[colo vimwiki_comfymonkey]]
+      end,
+    },
+  },
 }
 
 for event, opt_tbls in pairs(aucmd_dict) do
