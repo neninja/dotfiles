@@ -249,6 +249,11 @@ commander.add({
     cat = "todo",
   },
   {
+    desc = "Create a note, remember :TAG: strategy",
+    cmd = ":VimwikiTabMakeDiaryNote<CR>",
+    cat = "vimwiki",
+  },
+  {
     desc = "Update specific tag",
     cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks <C-R><C-W><CR>",
     cat = "vimwiki",
