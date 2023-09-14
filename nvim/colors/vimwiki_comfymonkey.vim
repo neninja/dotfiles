@@ -80,7 +80,7 @@ call s:hi('IncSearch', s:minordetach, s:bg2, '')
 call s:hi('Cursor', s:fg, s:majordetach, '')
 call s:hi('Underlined', s:minordetach, '', 'underline')
 
-call s:hi('MatchParen', '', '', 'inverse')
+call s:hi('MatchParen', s:majordetach, s:bg2, '')
 
 call s:hi('StatusLine', '', '', 'inverse')
 call s:hi('StatusLineNC', '', s:bg2, '')

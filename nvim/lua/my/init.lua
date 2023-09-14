@@ -102,7 +102,7 @@ local aucmd_dict = {
   },
   BufRead = {
     {
-      pattern = "*.wiki",
+      pattern = "*vimwiki/*.md",
       callback = function()
         vim.cmd [[colo vimwiki_comfymonkey]]
       end,
@@ -110,7 +110,7 @@ local aucmd_dict = {
   },
   BufNewFile = {
     {
-      pattern = "*.wiki",
+      pattern = "*vimwiki/*.md",
       callback = function()
         vim.cmd [[colo vimwiki_comfymonkey]]
       end,
