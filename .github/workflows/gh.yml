@@ -15,7 +15,7 @@ jobs:
         run: mkdir build
 
       - name: Create pages
-        run: vim -c "source nvim/vimrc" -c "source nvim/colors/calmo.vim" -c "TOhtml" -c "w build/index.html" -c "qa!" nvim/vimrc
+        run: vim -c "source nvim/vimrc" -c "source nvim/colors/calmo.vim" -c "hi! Normal guibg=#1c1c1c guifg=#bcbcbc" -c "TOhtml" -c "w build/index.html" -c "qa!" nvim/vimrc
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
