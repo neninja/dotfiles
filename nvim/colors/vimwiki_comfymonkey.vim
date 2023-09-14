@@ -74,7 +74,7 @@ hi! link Conceal Normal
 hi! link Conceal Normal
 
 call s:hi('Visual', s:fg, s:minordetach, '')
-call s:hi('Search', s:majordetach, s:bg2, '')
+call s:hi('Search', s:minordetach, s:bg2, '')
 call s:hi('IncSearch', s:minordetach, s:bg2, '')
 
 call s:hi('Cursor', s:fg, s:majordetach, '')
