@@ -118,8 +118,6 @@ require('packer').startup(function(use)
     config = function() require('aerial').setup() end
   }
 
-  use 'junegunn/goyo.vim'
-
   use {
     'nvim-telescope/telescope.nvim',
     -- tag = "0.1.1", -- attempt to call get_lang on null na preview
