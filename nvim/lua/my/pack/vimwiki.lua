@@ -6,7 +6,8 @@ local function wiki(opts)
     auto_generate_links = 1,
     auto_diary_index = 1,
     auto_tags = 1,
-    exclude_files = { 'README.md' },
+    auto_generate_tags = 1,
+    exclude_files = { 'README.md', 'diary/*', 'old/*' },
   },opts)
 end
 
@@ -39,3 +40,5 @@ vim.g.vimwiki_list = {
 
 vim.g.vimwiki_folding = 'expr'
 vim.g.vimwiki_auto_chdir = 1
+vim.g.vimwiki_links_header = "Links"
+vim.g.vimwiki_tags_header = "Tags"
