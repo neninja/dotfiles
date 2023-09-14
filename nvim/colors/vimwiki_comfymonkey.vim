@@ -35,6 +35,7 @@ let s:minordetach = '#9ec1cc'
 "## Defs
 call s:hi('Normal', s:fg, s:bg, '')
 call s:hi('Identifier', s:majordetach, '', 'bold')
+call s:hi('Comment', s:minordetach, '', 'bold')
 call s:hi('Keyword', s:minordetach, '', 'bold')
 call s:hi('Title', s:majordetach, '', 'bold')
 call s:hi('Todo', s:majordetach, '', 'bold')
