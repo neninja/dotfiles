@@ -172,6 +172,6 @@ git reset --hard origin/main
 
 ## Adendos
 
-- [Por que utilizar Vim?](https://wtf.neni.dev/posts/vim/motivos/)
+- [Por que utilizar Vim?](https://wtf.neni.dev/pqvim/)
 - [Wiki](https://github.com/nenitf/dotfiles/wiki)
 - [My Vimrc](http://vimrc.neni.dev)
