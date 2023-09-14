@@ -42,6 +42,9 @@ call s:hi('Todo', s:majordetach, '', 'bold')
 call s:hi('LineNr', s:bg, '', '')
 call s:hi('NonText', s:bg, '', '')
 
+hi! link Folded Normal
+hi! link FoldColumn Normal
+
 call s:hi('Visual', s:fg, s:minordetach, '')
 call s:hi('Search', s:majordetach, s:bg2, '')
 call s:hi('IncSearch', s:minordetach, s:bg2, '')
