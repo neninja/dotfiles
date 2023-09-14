@@ -44,6 +44,12 @@ call s:hi('NonText', s:bg, '', '')
 
 hi! link Folded Normal
 hi! link FoldColumn Normal
+hi! link SignColumn FoldColumn
+hi! link ColorColumn FoldColumn
+hi! link CursorColumn CursorLine
+
+hi! link Conceal Normal
+hi! link Conceal Normal
 
 call s:hi('Visual', s:fg, s:minordetach, '')
 call s:hi('Search', s:majordetach, s:bg2, '')
