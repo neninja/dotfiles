@@ -3,6 +3,7 @@ vim.g.vimwiki_list = {
     name = 'my',
     path = '~/vimwiki/my',
     rx_todo = [[\C\<\%(TODO\|DONE\|STARTED\|FIXME\|FIXED\|WAIT\)\>]],
+    auto_toc = 1,
     auto_generate_links = 1,
     auto_diary_index = 1,
     auto_tags = 1,
