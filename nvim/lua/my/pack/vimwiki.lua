@@ -42,3 +42,4 @@ vim.g.vimwiki_folding = 'expr'
 vim.g.vimwiki_auto_chdir = 1
 vim.g.vimwiki_links_header = "Links"
 vim.g.vimwiki_tags_header = "Tags"
+vim.g.vimwiki_markdown_link_ext = 1
