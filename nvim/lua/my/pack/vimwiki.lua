@@ -28,7 +28,7 @@ vim.g.vimwiki_list = {
   wiki {
     name = 'idez',
     path = '~/vimwiki/idez',
-    rx_todo = [[\C\%(TODO\|DONE\|STARTED\|FIXME\|FIXED\|MERGE\|MY REVIEW\|MY PR\|WAIT REVIEW\|WAIT QA\|WAIT\|BUG\|NEW\|REVIEW\|PR\|QA\|???\)]],
+    rx_todo = [[\C\%(\<TODO\>\|\<DONE\>\|\<FLAKY\>\|\<STARTED\>\|\<FIXME\>\|\<FIXED\>\|\<MERGE\>\|\<MY REVIEW\>\|\<MY PR\>\|\<WAIT REVIEW\>\|\<WAIT QA\>\|\<WAIT\>\|\<BUG\>\|\<NEW\>\|\<REVIEW\>\|\<PR\>\|\<QA\>\|???\)]],
   },
 
   wiki {
