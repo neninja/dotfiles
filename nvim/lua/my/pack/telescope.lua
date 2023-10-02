@@ -249,18 +249,8 @@ commander.add({
     cat = "todo",
   },
   {
-    desc = "Create a note, remember :TAG: strategy",
-    cmd = ":VimwikiTabMakeDiaryNote<CR>",
-    cat = "vimwiki",
-  },
-  {
-    desc = "Update specific tag",
-    cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks <C-R><C-W><CR>",
-    cat = "vimwiki",
-  },
-  {
-    desc = "Update ALL tags",
-    cmd = ":VimwikiRebuildTags<CR>:VimwikiGenerateTagLinks<CR>",
+    desc = "Create a note",
+    cmd = [[:execute 'tabedit ~/vimwiki/pkm/capture_' . strftime("%Y-%m-%d_%Hh") . '.md'<cr>]],
     cat = "vimwiki",
   },
 })
