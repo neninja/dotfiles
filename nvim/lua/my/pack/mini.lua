@@ -295,7 +295,13 @@ local FOOTER_QUOTES = {
     'Feito é melhor que perfeito'
   },
   {
-    'Memento mori 💀' },
+    'Memento mori 💀'
+  },
+  {
+    'We suffer more in imagination',
+    'than in reality',
+    '– Seneca'
+  },
   {
     'Nunca ouviste passar o vento.',
     'O vento só fala do vento.',
