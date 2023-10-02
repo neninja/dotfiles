@@ -18,12 +18,17 @@ local my_items = {
   { name = 'Blog WTF', action = 'e ' .. "~/dev/blog/wtf/README.md" .. ' | call NN_SetGitDir()', section = '' },
   { name = 'Snippets blog', action = 'e ' .. "~/dev/blog/blog_snippets/README.md" .. ' | call NN_SetGitDir()', section = '' },
   { name = 'Plugin sync', action = 'PackerSync', section = '' },
-  { name = 'Wikis', action = 'VimwikiUISelect', section = '' },
+  { name = 'Wikis', action = function()
+    vim.cmd [[VimwikiUISelect]]
+    vim.cmd [[colo vimwiki_comfymonkey]]
+  end, section = '' },
   { name = 'Organização pessoal', action = 'VimwikiIndex 1', section = '' },
   { name = 'Git status', action = 'Gedit :', section = 'Projeto' },
   { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
-  { name = 'Idez', action = 'VimwikiIndex 3', section = 'Idez' },
-  { name = 'Today Diary', action = 'VimwikiMakeDiaryNote 3', section = 'Idez' },
+  { name = 'Idez diary', action = function()
+    vim.cmd [[VimwikiMakeDiaryNote 2]]
+    vim.cmd [[colo vimwiki_comfymonkey]]
+  end, section = 'Idez' },
 }
 --## Header
 -- https://textkool.com/en/ascii-art-generator?hl=default&vl=default&font=ANSI%20Shadow&text=neovim

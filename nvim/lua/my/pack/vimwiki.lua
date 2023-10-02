@@ -13,22 +13,16 @@ end
 
 vim.g.vimwiki_list = {
   wiki {
-    name = 'my',
-    path = '~/vimwiki/my',
+    name = 'pkm',
+    path = '~/vimwiki/pkm',
     rx_todo = [[\C\<\%(TODO\|DONE\|STARTED\|FIXME\|FIXED\|WAIT\)\>]],
     auto_toc = 1,
   },
 
   wiki {
-    name = 'bananas 🍌',
-    path = '~/vimwiki/bananas',
-    rx_todo = [[\C\<\%(TODO\|DONE\|STARTED\|FIXME\|FIXED\|WAIT\)\>]],
-  },
-
-  wiki {
     name = 'idez',
     path = '~/vimwiki/idez',
-    rx_todo = [[\C\%(\<TODO\>\|\<DONE\>\|\<FLAKY\>\|\<STARTED\>\|\<FIXME\>\|\<FIXED\>\|\<MERGE\>\|\<MY REVIEW\>\|\<MY PR\>\|\<WAIT REVIEW\>\|\<WAIT QA\>\|\<WAIT\>\|\<BUG\>\|\<NEW\>\|\<REVIEW\>\|\<PR\>\|\<QA\>\|???\)]],
+    rx_todo = [[\C\%(\<COP\>\|\<CALL\>\|\<TODO\>\|\<BACKLOG\>\|\<RELEASE\>\|\<DONE\>\|\<FLAKY\>\|\<STARTED\>\|\<FIXME\>\|\<FIXED\>\|\<MERGE\>\|\<MY REVIEW\>\|\<PRFIX\>\|\<WAIT QA\>\|\<WAIT\>\|\<BUG\>\|\<NEW\>\|\<REVIEW\>\|\<PR\>\|\<QA\>\|\<P:\>\|\<R:\>\|???\)]],
   },
 
   wiki {
