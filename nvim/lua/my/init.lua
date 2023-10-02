@@ -15,6 +15,12 @@ end
 local aucmd_dict = {
   FileType = {
     {
+      pattern = "go",
+      callback = function()
+        settab(4)
+      end,
+    },
+    {
       pattern = "lua,dart,rust,javascript,javascriptreact,typescript,typescriptreact",
       callback = function()
         settab(2)
