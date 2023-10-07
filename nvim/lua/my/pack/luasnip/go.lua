@@ -32,29 +32,24 @@ local not_in_func = {
 
 return {
   ls.s(
-    { trig = "pmain", name = "Main", dscr = "Create a main function" },
-    fmta("package main\n\nfunc main() {\n\t<>\n}", ls.i(0)),
-    not_in_func
+    { trig = "d", name = "defer", dscr = "defer ..." }, --{{{
+    fmta("defer <>", { ls.i(0) })                       --}}}
   ),
 
   ls.s(
-    { trig = "f", name = "Function", dscr = "Create a function or a method" },
-    fmt(
-      [[
-        func {rec}{name}({args}) {ret} {{
-          {finally}
-        }}
-      ]], {
-        rec   = ls.c(1, {
+    { trig = "f", name = "Function", dscr = "Create a function or a method" }, --{{{
+    fmta(
+      "func <rec><name>(<args>) <ret> {\n\t<finally>\n}", {
+        rec     = ls.c(1, {
           ls.t(""),
           ls.sn(nil, fmt("({} {}) ", {
             ls.i(1, "r"),
             ls.i(2, "receiver"),
           })),
         }),
-        name = ls.i(2, "Name"),
-        args  = ls.i(3),
-        ret   = ls.c(4, {
+        name    = ls.i(2, "Name"),
+        args    = ls.i(3),
+        ret     = ls.c(4, {
           ls.i(1, "error"),
           ls.sn(nil, fmt("({}, {}) ", {
             ls.i(1, "ret"),
@@ -62,49 +57,94 @@ return {
           })),
         }),
         finally = ls.i(0),
-    }),
+      }), --}}}
     not_in_func
   ),
 
   ls.s(
-    { trig = "ife", name = "If error", dscr = "If error, return wrapped" },
-    fmt("if {} != nil {{\n\treturn {}\n}}\n{}", {
-      ls.i(1, "err"),
-      ls.d(2, util.make_return_nodes, { 1 }, { user_args = { { "a1", "a2" } } }),
-      ls.i(0),
-    })
+    { trig = "p", name = "package name", dscr = "package ..." }, --{{{
+    fmta("package <>", { ls.i(1, "main") })                      --}}}
   ),
 
   ls.s(
-    { trig = "it", name = "if got != want", dscr = "if got != want {...}" },
-    fmt("if got != want {{\n\t{}\n}}\n{}", {
+    { trig = "r", name = "return", dscr = "return" }, --{{{
+    fmta("return", {})                                --}}}
+  ),
+
+  ls.s(
+    { trig = "pmain", name = "Main", dscr = "Create a main function" }, --{{{
+    fmta("package main\n\nfunc main() {\n\t<>\n}", ls.i(0)),            --}}}
+    not_in_func
+  ),
+
+  ls.s(
+    { trig = "if", name = "If", dscr = "If ... { ... }" }, --{{{
+    fmta("if <> {\n\t<>\n}", {
+      ls.i(1, "err"),
+      ls.i(0, "/* code */"),
+    }) --}}}
+  ),
+
+  ls.s(
+    { trig = "ife", name = "If error", dscr = "If error != nill { return ... }" }, --{{{
+    fmta("if <> != nil {\n\t<>\n}", {
+      ls.i(1, "err"),
+      ls.i(0, "/* code */"),
+    }) --}}}
+  ),
+
+  ls.s(
+    { trig = "ift", name = "if got != want", dscr = "if got != want {...}" }, --{{{
+    fmta("if got != want {\n\t<>\n}\n", {
+      ls.i(0, 't.Error("got:", got, "want:", want)'),
+    }) --}}}
+  ),
+
+  ls.s(
+    { trig = "el", name = "else", dscr = "else {...}" }, --{{{
+    fmta("if got != want {\n\t<>\n}\n<>", {
       ls.i(1, 't.Error("got:", got, "want:", want)'),
       ls.i(0),
-    })
+    }) --}}}
   ),
 
   ls.s(
-    { trig = "forr", name = "for range", dscr = "for ... := range ... {...}" },
-    fmt("for {} := range {} {{\n\t{}\n}}", {
+    { trig = "for", name = "for", dscr = "for ... {...}" }, --{{{
+    fmta("for <>{\n\t<>\n}", { ls.i(1), ls.i(0) })          --}}}
+  ),
+
+  ls.s(
+    { trig = "forr", name = "for range", dscr = "for ... := range ... {...}" }, --{{{
+    fmta("for <> := range <> {\n\t<>\n}", {
       ls.i(1),
       ls.i(2),
       ls.i(0),
-    })
+    }) --}}}
   ),
 
   ls.s(
-    { trig = "fori", name = "for i := 0", dscr = "for ... := 0; i <= ...; i++ {...}" },
-    fmt("for {i1} := 0; {i2} <= {max_conditions}; {i3}++ {{\n\t{finally}\n}}", {
+    { trig = "forc", name = "for channel", dscr = "for ... := range channel ... {...}" }, --{{{
+    fmta("for <> := range <> <> {\n\t<>\n}", {
+      ls.i(1),
+      ls.i(2, 'channel'),
+      ls.i(3),
+      ls.i(0),
+    }) --}}}
+  ),
+
+  ls.s(
+    { trig = "fori", name = "for i := 0", dscr = "for ... := 0; i <= ...; i++ {...}" }, --{{{
+    fmta("for <i1> := 0; <i2> <<= <max_conditions>; <i3>++ {\n\t<finally>\n}", {
       i1 = ls.i(1, "i"),
       i2 = rep(1),
       i3 = rep(1),
       max_conditions = ls.i(2, "max_conditions"),
       finally = ls.i(0),
-    })
+    }) --}}}
   ),
 
   ls.s(
-    { trig = "refrec", name = "Defer Recover", dscr = "Defer Recover" },
+    { trig = "refrec", name = "Defer Recover", dscr = "Defer Recover" }, --{{{
     fmta(
       [[
         defer func() {{
@@ -113,12 +153,12 @@ return {
           }}
         }}()
       ]]
-    , {}),
+      , {}), --}}}
     in_func
   ),
 
   ls.s(
-    { trig = "mockery", name = "Mockery", dscr = "Create an interface for making mocks" },
+    { trig = "mockery", name = "Mockery", dscr = "Create an interface for making mocks" }, --{{{
     fmt(
       [[
         // {} mocks {} interface for testing purposes.
@@ -133,11 +173,11 @@ return {
         ls.f(function(args) return util.snake_case(args[1][1]) end, { 1 }),
         ls.i(1, "Client"),
         ls.i(2, "pkg.Interface"),
-    })
+      }) --}}}
   ),
 
   ls.s(
-    { trig = "make", name = "Make", dscr = "Allocate map or slice" },
+    { trig = "make", name = "Make", dscr = "Allocate map or slice" }, --{{{
     fmt("{} {}= make({})\n{}", {
       ls.i(1, "name"),
       ls.i(2),
@@ -151,12 +191,12 @@ return {
         },
       }),
       ls.i(0),
-    }),
+    }), --}}}
     in_func
   ),
 
   ls.s(
-    { trig = "tt", dscr = "test table" },
+    { trig = "tt", dscr = "test table" }, --{{{
     fmta(
       [[
       var tt = []struct {
@@ -180,12 +220,12 @@ return {
         ls.i(4, 'testedFuncName'),
         ls.i(5, '...'),
       }
-    ),
+    ), --}}}
     in_test_func
   ),
 
   ls.s(
-    { trig = "gocmp", dscr = "Create an if block comparing with cmp.Diff" },
+    { trig = "gocmp", dscr = "Create an if block comparing with cmp.Diff" }, --{{{
     fmt(
       [[
         if diff := cmp.Diff({}, {}); diff != "" {{
@@ -194,86 +234,127 @@ return {
       ]], {
         ls.i(1, "want"),
         ls.i(2, "got"),
-    }),
+      }), --}}}
     in_test_func
   ),
 
   ls.s(
-    { trig = "mock", name = "Mocks", dscr = "Create a mock with defering assertion" },
+    { trig = "mock", name = "Mocks", dscr = "Create a mock with defering assertion" }, --{{{
     fmt("{} := &mocks.{}{{}}\ndefer {}.AssertExpectations(t)\n{}", {
       ls.i(1, "m"),
       ls.i(2, "Mocked"),
       rep(1),
       ls.i(0),
-    }),
+    }), --}}}
     in_test_func
   ),
 
   ls.s(
-    { trig = "noerr", name = "Require No Error", dscr = "Add a require.NoError call" },
+    { trig = "noerr", name = "Require No Error", dscr = "Add a require.NoError call" }, --{{{
     ls.c(1, {
       ls.sn(nil, fmt("require.NoError(t, {})", { ls.i(1, "err") })),
       ls.sn(nil, fmt('require.NoError(t, {}, "{}")', { ls.i(1, "err"), ls.i(2) })),
       ls.sn(nil, fmt('require.NoErrorf(t, {}, "{}", {})', { ls.i(1, "err"), ls.i(2), ls.i(3) })),
-    }),
+    }), --}}}
     in_test_func
   ),
 
   ls.s(
-    { trig = "ft", name = "Test/Subtest", dscr = "Create subtests and their function stubs" },
+    { trig = "ft", name = "Test/Subtest", dscr = "Create subtests and their function stubs" }, --{{{
     fmta("func <>(t *testing.T) {\n<>\n}\n\n <>", {
       ls.i(1),
       ls.d(2, util.create_t_run, ai({ 1 })),
       ls.d(3, util.mirror_t_run_funcs, ai({ 2 })),
-    }),
+    }), --}}}
     in_test_file
   ),
 
   ls.s(
-    { trig = "fh", name = "handle http func", dscr = "func handle...(res http.ResponseWriter, req *http.Request) {...}" },
-    fmt("func handle{}(res http.ResponseWriter, req *http.Request) {{\n\t{}\n}}", {
+    {
+      trig = "rr",
+      name = "res http.ResponseWriter, req *http.Request",
+      dscr = "res http.ResponseWriter, req *http.Request"
+    },                                                     --{{{
+    fmta("res http.ResponseWriter, req *http.Request", {}) --}}}
+  ),
+
+  ls.s(
+    { trig = "fh", name = "handle http func", dscr = "func handle...(res http.ResponseWriter, req *http.Request) {...}" }, --{{{
+    fmta("func handle<>(res http.ResponseWriter, req *http.Request) {\n\t<>\n}", {
       ls.i(1, "FunctionName"),
       ls.i(0, "/* code */"),
-    })
+    }) --}}}
   ),
 
   ls.s(
-    { trig = "hf", name = "route handle http func", dscr = "http.HandleFunc(...)" },
-    fmt("http.HandleFunc({}, {})", { ls.i(1, "route"), ls.i(0, "functionName") })
+    { trig = "om", name = "if key in a map", dscr = "if ..., ok := ...; ok { ... }" }, --{{{
+    fmta("if <>, ok := <>[<>]; ok {\n\t<>\n}", {
+      ls.i(1, "value"),
+      ls.i(2, "map"),
+      ls.i(3, "key"),
+      ls.i(0),
+    }) --}}}
   ),
 
   ls.s(
-    { trig = "hls", name = "listen and serve", dscr = "http.ListenAndServe(...)" },
-    fmt("http.ListenAndServe({}, nil)", { ls.i(0, ":9090") })
+    { trig = "hf", name = "route handle http func", dscr = "http.HandleFunc(...)" }, --{{{
+    fmta("http.HandleFunc(<>, <>)", { ls.i(1, "route"), ls.i(0, "functionName") })   --}}}
   ),
 
   ls.s(
-    { trig = "pl", name = "print line", dscr = "fmt.Println(...)" },
-    fmt("fmt.Println({})", { ls.i(0) })
+    { trig = "ls", name = "listen and serve", dscr = "http.ListenAndServe(...)" }, --{{{
+    fmta("http.ListenAndServe(<>, nil)", { ls.i(0, ":9090") })                     --}}}
   ),
 
   ls.s(
-    { trig = "ts", name = "time sleep", dscr = "time.Sleep(time.Millisecond * ...)" },
-    fmt("time.Sleep(time.Millisecond * {})", { ls.i(0, 'miliseconds') })
+    { trig = "pl", name = "print line", dscr = "fmt.Println(...)" }, --{{{
+    fmta("fmt.Println(<>)", { ls.i(0) })                             --}}}
   ),
 
   ls.s(
-    { trig = "ts", name = "rand int", dscr = "rand.Intn(...)" },
-    fmt("rand.Intn({})", { ls.i(0, 'max_rand_int') })
+    { trig = "ef", name = "errorf", dscr = 'fmt.Errorf("%+v",...)' }, --{{{
+    fmta('fmt.Errorf("%+v", <>)', { ls.i(0) })                        --}}}
   ),
 
   ls.s(
-    { trig = "pv", name = "print value", dscr = 'fmt.Printf("%+v\\n", ...)' },
-    fmt('fmt.Printf("%+v\\n", {})', { ls.i(0, 'var_name') })
+    { trig = "pv", name = "print value", dscr = 'fmt.Printf("%+v\\n", ...)' }, --{{{
+    fmta('fmt.Printf("%+v\\n", <>)', { ls.i(0, 'var_name') })                  --}}}
   ),
 
   ls.s(
-    { trig = ":", name = ":=", dscr = "... := ..." },
-    fmt("{} := {}", { ls.i(1), ls.i(0) })
+    { trig = "tys", name = "type struct", dscr = "type ... struct ..." },      --{{{
+    fmta("type <> struct {\n\t<>\n}", { ls.i(1, 'name'), ls.i(0, 'finally') }) --}}}
   ),
 
   ls.s(
-    { trig = "p", name = "package name", dscr = "package ..." },
-    fmt("package {}\n\n{}", { ls.i(1, "main"), ls.i(0) })
+    { trig = "tyi", name = "type interface", dscr = "type ... interface ..." },   --{{{
+    fmta("type <> interface {\n\t<>\n}", { ls.i(1, 'name'), ls.i(0, 'finally') }) --}}}
+  ),
+
+  ls.s(
+    { trig = "tyf", name = "type function", dscr = "type ... function ..." },                 --{{{
+    fmta("type <> function(<>) <>", { ls.i(1, 'name'), ls.i(2, 'params'), ls.i(3, 'error') }) --}}}
+  ),
+
+  ls.s(
+    { trig = "ctx", name = "context", dscr = "ctx context.Context" }, --{{{
+    fmta("ctx context.Context", {})                                   --}}}
+  ),
+
+  ls.s(
+    { trig = "ts", name = "time sleep", dscr = "time.Sleep(time.Millisecond * ...)" }, --{{{
+    fmta("time.Sleep(time.Millisecond * <>)", { ls.i(0, 'miliseconds') })              --}}}
+  ),
+
+  ls.s(
+    { trig = "ts", name = "rand int", dscr = "rand.Intn(...)" }, --{{{
+    fmta("rand.Intn(<>)", { ls.i(0, 'max_rand_int') })           --}}}
+  ),
+
+  ls.s(
+    { trig = ":", name = ":=", dscr = "... := ..." }, --{{{
+    fmta("<> := <>", { ls.i(1), ls.i(0) })            --}}}
   ),
 }
+
+-- vim: fdm=marker fdl=0

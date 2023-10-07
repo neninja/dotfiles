@@ -120,7 +120,7 @@ return {
 
   ls.s(
     { trig = "t", name = "$this", dscr = "$this" },
-    fmt([[ $this ]], {}, in_func)
+    fmt([[ $this{} ]], { ls.i(0) }, in_func)
   ),
 
   ls.s(
@@ -237,7 +237,7 @@ return {
   ls.s(
     { trig = "dataprovider", name = "phpunit data provider", dscr = "function { yield ... }" },
     fmt([[
-    public function {name}Provider()
+    public static function {name}Provider()
     {{
         yield "{cenario}" => [ {params} ];{finally}
     }}
