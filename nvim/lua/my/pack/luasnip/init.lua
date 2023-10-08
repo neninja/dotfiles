@@ -70,10 +70,13 @@ end
 
 --# Mapeamentos
 local map = vim.keymap.set
-vim.cmd [[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]]
-map('s', '<Tab>', function()
-  if ls.expand_or_locally_jumpable() then
-    ls.expand_or_jump()
+vim.cmd [[imap <silent><expr> jk luasnip#expandable() ? '<Plug>luasnip-expand-or-jump' : 'jk' ]]
+
+map({ 'i', 's' }, '<Tab>', function()
+  if ls.jumpable(1) then
+    ls.jump(1)
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
   end
 end, { silent = true })
 
