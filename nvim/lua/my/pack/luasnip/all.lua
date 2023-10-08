@@ -41,6 +41,38 @@ return {
     end)
   ),
   --}}}
+
+  -- Tags {{{
+  ls.s(
+    {
+      trig = "(%w+)>",
+      name = "Tag comum",
+      regTrig = true,
+      dscr = "Abrir e fechar tag comum",
+    }, {
+      ls.f(function(_, snip)
+        return "<" .. snip.captures[1] .. ">"
+      end),
+      ls.i(0),
+      ls.f(function(_, snip)
+        return "</" .. snip.captures[1] .. ">"
+      end),
+    }
+  ),
+
+  ls.s(
+    {
+      trig = "(%w+)/",
+      name = "Tag unica",
+      regTrig = true,
+      dscr = "Abrir tag sozinha",
+    }, {
+      ls.f(function(_, snip)
+        return "<" .. snip.captures[1] .. "/>"
+      end),
+    }
+  ),
+  --}}}
 }
 
 -- vim: fdm=marker fdl=0

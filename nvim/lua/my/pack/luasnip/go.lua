@@ -32,6 +32,16 @@ local not_in_func = {
 
 return {
   ls.s(
+    { trig = ":", name = ":=", dscr = "... := ..." }, --{{{
+    fmta("<> := <>", { ls.i(1), ls.i(0) })            --}}}
+  ),
+
+  ls.s(
+    { trig = ";", name = ":=", dscr = "... := ..." }, --{{{
+    fmta("<> := <>", { ls.i(1), ls.i(0) })            --}}}
+  ),
+
+  ls.s(
     { trig = "d", name = "defer", dscr = "defer ..." }, --{{{
     fmta("defer <>", { ls.i(0) })                       --}}}
   ),
@@ -78,19 +88,18 @@ return {
   ),
 
   ls.s(
-    { trig = "if", name = "If", dscr = "If ... { ... }" }, --{{{
-    fmta("if <> {\n\t<>\n}", {
-      ls.i(1, "err"),
-      ls.i(0, "/* code */"),
-    }) --}}}
+    { trig = "if", name = "if", dscr = "if ... { ... }" }, --{{{
+    fmta("if <> {\n\t<>\n}", { ls.i(1, "err"), ls.i(0) })  --}}}
   ),
 
   ls.s(
-    { trig = "ife", name = "If error", dscr = "If error != nill { return ... }" }, --{{{
-    fmta("if <> != nil {\n\t<>\n}", {
-      ls.i(1, "err"),
-      ls.i(0, "/* code */"),
-    }) --}}}
+    { trig = "ife", name = "if error", dscr = "if error != nill { return ... }" }, --{{{
+    fmta("if <> != nil {\n\t<>\n}", { ls.i(1, "err"), ls.i(0) })                   --}}}
+  ),
+
+  ls.s(
+    { trig = "ifn", name = "if nill", dscr = "if val == nill { return ... }" }, --{{{
+    fmta("if <> == nil {\n\t<>\n}", { ls.i(1, "val"), ls.i(0) })                --}}}
   ),
 
   ls.s(
@@ -102,9 +111,16 @@ return {
 
   ls.s(
     { trig = "el", name = "else", dscr = "else {...}" }, --{{{
-    fmta("if got != want {\n\t<>\n}\n<>", {
-      ls.i(1, 't.Error("got:", got, "want:", want)'),
+    fmta("else {\n\t<>\n}", {
       ls.i(0),
+    }) --}}}
+  ),
+
+  ls.s(
+    { trig = "ei", name = "else if", dscr = "else if ... { ... }" }, --{{{
+    fmta("else if <> {\n\t<>\n}", {
+      ls.i(1, "err"),
+      ls.i(0, "/* code */"),
     }) --}}}
   ),
 
@@ -196,6 +212,17 @@ return {
   ),
 
   ls.s(
+    { trig = "ts", dscr = "test table" }, --{{{
+    fmta("var tt = []struct {\n\t<>\n}{\n\t{<>},\n}",
+      {
+        ls.i(1, 'name string, in []any, out any'),
+        ls.i(0, "cenarios")
+      }
+    ), --}}}
+    in_test_file
+  ),
+
+  ls.s(
     { trig = "tt", dscr = "test table" }, --{{{
     fmta(
       [[
@@ -261,26 +288,33 @@ return {
 
   ls.s(
     { trig = "ft", name = "Test/Subtest", dscr = "Create subtests and their function stubs" }, --{{{
-    fmta("func <>(t *testing.T) {\n<>\n}\n\n <>", {
-      ls.i(1),
-      ls.d(2, util.create_t_run, ai({ 1 })),
-      ls.d(3, util.mirror_t_run_funcs, ai({ 2 })),
-    }), --}}}
+    fmta("func Test<>(t *testing.T) {\n\t<>\n}", { ls.i(1), ls.i(0) }),                        --}}}
     in_test_file
   ),
 
   ls.s(
-    {
-      trig = "rr",
-      name = "res http.ResponseWriter, req *http.Request",
-      dscr = "res http.ResponseWriter, req *http.Request"
-    },                                                     --{{{
-    fmta("res http.ResponseWriter, req *http.Request", {}) --}}}
+    { trig = "tr", name = "Subtest", dscr = "Create subtests" },           --{{{
+    fmta("t.Run(<>, func(t *testing.T) {\n\t<>\n}", { ls.i(1), ls.i(0) }), --}}}
+    in_test_file
   ),
 
   ls.s(
-    { trig = "fh", name = "handle http func", dscr = "func handle...(res http.ResponseWriter, req *http.Request) {...}" }, --{{{
-    fmta("func handle<>(res http.ResponseWriter, req *http.Request) {\n\t<>\n}", {
+    { trig = "te", name = "test error", dscr = 't.Error(...)' }, --{{{
+    fmta('t.Error(<>)', { ls.i(0) })                             --}}}
+  ),
+
+  ls.s(
+    {
+      trig = "wr",
+      name = "w http.ResponseWriter, req *http.Request",
+      dscr = "r http.ResponseWriter, req *http.Request"
+    },                                                 --{{{
+    fmta("w http.ResponseWriter, r *http.Request", {}) --}}}
+  ),
+
+  ls.s(
+    { trig = "fh", name = "handle http func", dscr = "func handle...(w http.ResponseWriter, r *http.Request) {...}" }, --{{{
+    fmta("func handle<>(w http.ResponseWriter, r *http.Request) {\n\t<>\n}", {
       ls.i(1, "FunctionName"),
       ls.i(0, "/* code */"),
     }) --}}}
@@ -297,8 +331,15 @@ return {
   ),
 
   ls.s(
-    { trig = "hf", name = "route handle http func", dscr = "http.HandleFunc(...)" }, --{{{
+    { trig = "hfr", name = "handle func for route", dscr = "http.HandleFunc(...)" }, --{{{
     fmta("http.HandleFunc(<>, <>)", { ls.i(1, "route"), ls.i(0, "functionName") })   --}}}
+  ),
+
+  ls.s(
+    { trig = "hf", name = "handle func for route", dscr = "http.HandleFunc(...)" }, --{{{
+    fmta("http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t<>\n})", {
+      ls.i(0)
+    }) --}}}
   ),
 
   ls.s(
@@ -349,11 +390,6 @@ return {
   ls.s(
     { trig = "ts", name = "rand int", dscr = "rand.Intn(...)" }, --{{{
     fmta("rand.Intn(<>)", { ls.i(0, 'max_rand_int') })           --}}}
-  ),
-
-  ls.s(
-    { trig = ":", name = ":=", dscr = "... := ..." }, --{{{
-    fmta("<> := <>", { ls.i(1), ls.i(0) })            --}}}
   ),
 }
 
