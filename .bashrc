@@ -282,6 +282,42 @@ fmtpendrive(){
     sudo mkfs.vfat -I /dev/$1
 }
 #}}}
+
+#{{{
+# DESC: exibir um gopherzinho
+# USE: gopher
+# USE: gopher vampire
+gopher(){
+  pink=`tput setaf 213`
+  cyan=`tput setaf 14`
+  beige=`tput setaf 215`
+  white=`tput setaf 15`
+  black=`tput setaf 0`
+  red=`tput setaf 9`
+  base=$cyan
+  reset=`tput sgr0`
+  eye=" ^   "
+  teeth="${white}UU"
+  if [[ "$1" == "vampire" ]]
+  then
+    eye="  o  "
+    teeth="${red}VV"
+  fi
+  echo "${base}      ´.-::::::-.´"
+  echo "${base}  .:-::::::::::::::-:."
+  echo "${base}  ´_::${white}:    ::    :${base}::_´"
+  echo "${base}   .:${white}(${eye}::${eye})${base}:."
+  echo "${base}   ´::${white}:   ${beige}(${black}..${beige})${white}   :${base}::."
+  echo "${base}   ´:::::::${teeth}${base}:::::::´"
+  echo "${base}   .::::::::::::::::."
+  echo "${beige}   O${base}::::::::::::::::${beige}O"
+  echo "${base}   -::::::::::::::::-"
+  echo "${base}   ´::::::::::::::::´"
+  echo "${base}    .::::::::::::::."
+  echo "${beige}      oO${base}:::::::${beige}Oo"
+  echo "${reset}"
+}
+#}}}
 #}}}
 #{{{ Exports
 export GOPATH=$HOME/go
