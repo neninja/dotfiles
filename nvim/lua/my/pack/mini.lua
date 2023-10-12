@@ -259,7 +259,23 @@ local naruto = {
   [[⣸⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⠿⢿⣿⣿⡾⣿⠿⠿⢿⣿⣇⠀]],
 }
 
-local headers = { neovim, cool, rock, robust, uwu, idez, pacman, konoha, shrek, saitama, patrick, sasuke, naruto }
+
+local gopher = {
+  [[     ..-::::::-..     ]],
+  [[ .:-::::::::::::::-:  ]],
+  [[ ´_:::    ::    :::_´ ]],
+  [[  .:( ^   :: ^   ):.  ]],
+  [[  ´:::   (..)   :::.  ]],
+  [[  ´:::::::UU:::::::´  ]],
+  [[  .::::::::::::::::.  ]],
+  [[  O::::::::::::::::O  ]],
+  [[  -::::::::::::::::-  ]],
+  [[  ´::::::::::::::::´  ]],
+  [[   .::::::::::::::.   ]],
+  [[     oO:::::::Oo      ]],
+}
+
+local headers = { neovim, cool, rock, robust, uwu, idez, pacman, konoha, shrek, saitama, patrick, sasuke, naruto, gopher }
 
 local function header_chars()
   math.randomseed(os.clock())
