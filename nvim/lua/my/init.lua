@@ -15,7 +15,7 @@ end
 local aucmd_dict = {
   FileType = {
     {
-      pattern = "go",
+      pattern = "go,php",
       callback = function()
         settab(4)
       end,
