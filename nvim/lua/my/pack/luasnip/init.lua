@@ -53,10 +53,10 @@ ls.config.set_config({
     },
     [types.insertNode] = {
       active = {
-        virt_text = { { "<tab>", "DiffAdd" } },
+        virt_text = { { "<c-j>", "DiffAdd" } },
       },
       passive = {
-        virt_text = { { "<tab>", "DiffChange" } },
+        virt_text = { { "<c-j>", "DiffChange" } },
       },
     },
   },
@@ -72,15 +72,44 @@ end
 local map = vim.keymap.set
 vim.cmd [[imap <silent><expr> jk luasnip#expandable() ? '<Plug>luasnip-expand-or-jump' : 'jk' ]]
 
-map({ 'i', 's' }, '<Tab>', function()
-  if ls.jumpable(1) then
-    ls.jump(1)
+-- THANKS: https://www.reddit.com/r/neovim/comments/rztkaq/how_do_you_jump_out_pairs_or_quotes_in_insert/
+local function tabout()
+  local closers = { ")", "]", "}", ">", "'", '"', "`", "," }
+  local line = vim.api.nvim_get_current_line()
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local after = line:sub(col + 1, -1)
+  local closer_col = #after + 1
+  local closer_i = nil
+  for _, closer in ipairs(closers) do
+    local cur_index, _ = after:find(closer)
+    if cur_index and (cur_index < closer_col) then
+      closer_col = cur_index
+      closer_i = i
+    end
+  end
+  if closer_i then
+    vim.api.nvim_win_set_cursor(0, { row, col + closer_col })
   else
+    -- vim.api.nvim_win_set_cursor(0, {row, col + 1})
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+  end
+end
+
+map({ 'i', 's' }, '<Tab>', function()
+  if ls.expandable() then
+    ls.expand()
+  else
+    tabout()
   end
 end, { silent = true })
 
-map({ 'i', 's' }, '<s-Tab>', function()
+map({ 'i', 's' }, '<c-j>', function()
+  if ls.jumpable(1) then
+    ls.jump(1)
+  end
+end, { silent = true })
+
+map({ 'i', 's' }, '<c-k>', function()
   ls.jump(-1)
 end, { silent = true })
 
