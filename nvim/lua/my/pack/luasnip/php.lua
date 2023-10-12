@@ -25,24 +25,15 @@ local not_in_func = {
 return {
   ls.s(
     { trig = "if", name = "if", dscr = "if (...) {...}" },
-    fmt([[
-        if ({condition}) {{
-          {finally}
-        }}
-      ]], {
+    fmta("if (<condition>) {\n\t<finally>\n}", {
       condition = ls.i(1, "val"),
-      finally   = ls.i(0, "/* code */"),
+      finally   = ls.i(0),
     })
   ),
 
   ls.s(
     { trig = "m", name = "method", dscr = "... function ...(...)... {...}" },
-    fmt([[
-        {access}function {name}({params}){r}{ret}
-        {{
-          {finally}
-        }}
-      ]], {
+    fmta("<access>function <name>(<params>)<r><ret>\n{\n\t<finally>\n}", {
       access  = ls.c(1, {
         ls.t "private ",
         ls.t "protected ",
@@ -52,22 +43,18 @@ return {
       params  = ls.i(3, "params"),
       r       = m(4, "^$", "", ": "),
       ret     = ls.i(4, ""),
-      finally = ls.i(0, "/* code */"),
+      finally = ls.i(0),
     }),
     not_in_func
   ),
 
   ls.s(
     { trig = "f", name = "anonym function", dscr = "function(...) ... {...}" },
-    fmt([[
-        function({params}){r}{ret} {{
-          {finally}
-        }}
-      ]], {
+    fmta("function(<params>)<r><ret> {\n<finally>\n}", {
       params  = ls.i(1, "params"),
       r       = ne(2, ": "),
       ret     = ls.i(2, " "),
-      finally = ls.i(0, "/* code */"),
+      finally = ls.i(0),
     })
   ),
 
@@ -75,47 +62,23 @@ return {
     { trig = "fn", name = "closure", dscr = "fn() => ..." },
     fmt([[ fn({params}) => {finally} ]], {
       params  = ls.i(1, "params"),
-      finally = ls.i(0, "/* code */"),
+      finally = ls.i(0),
     })
   ),
 
   ls.s(
     { trig = "c", name = "create class", dscr = "class ... {...}" },
-    fmt([[
-        class {filename}
-        {{
-          {finally}
-        }}
-      ]], {
-      filename = partial(vim.fn.expand, "%:t:r"),
-      finally  = ls.i(0, "/* code */"),
-    })
+    fmta("class <>\n{\n\t<>\n}", { partial(vim.fn.expand, "%:t:r"), ls.i(0) })
   ),
 
   ls.s(
     { trig = "e", name = "create enum", dscr = "enum ... {...}" },
-    fmt([[
-        enum {filename}
-        {{
-          {finally}
-        }}
-      ]], {
-      filename = partial(vim.fn.expand, "%:t:r"),
-      finally  = ls.i(0, "/* code */"),
-    })
+    fmta("enum <>\n{\n\t<>\n}", { partial(vim.fn.expand, "%:t:r"), ls.i(0) })
   ),
 
   ls.s(
     { trig = "i", name = "create interface", dscr = "interface ... {...}" },
-    fmt([[
-        interface {filename}
-        {{
-          {finally}
-        }}
-      ]], {
-      filename = partial(vim.fn.expand, "%:t:r"),
-      finally  = ls.i(0, "/* code */"),
-    })
+    fmta("interface <>\n{\n\t<>\n}", { partial(vim.fn.expand, "%:t:r"), ls.i(0) })
   ),
 
   ls.s(
@@ -125,13 +88,7 @@ return {
 
   ls.s(
     { trig = "php", name = "php tag", dscr = "<?php" },
-    fmt([[
-      <?php
-
-      {finally}
-      ]], {
-      finally = ls.i(0, "/* code */")
-    }, not_in_func)
+    fmt("<?php\n\n{}", { ls.i(0) }, not_in_func)
   ),
 
   ls.s(
@@ -171,42 +128,30 @@ return {
 
   ls.s(
     { trig = "fore", name = "foreach", dscr = "foreach(...)" },
-    fmt([[
-    foreach({ar} as {item}) {{
-        {finally}
-    }}
-    ]], {
+    fmta("foreach(<ar> as <item>) {\n\t<finally>\n}", {
       ar = ls.i(1, "$array"),
       item = ls.i(2, "$item"),
-      finally = ls.i(0, "/* code */"),
+      finally = ls.i(0),
     }, in_func)
   ),
 
   ls.s(
     { trig = "reduce", name = "array reduce", dscr = "array_reduce(...)" },
-    fmt([[
-    array_reduce({ar}, function ({acc}, {item}) {{
-        {finally}
-    }}, {init})
-    ]], {
+    fmta("array_reduce(<ar>, function (<acc>, <item>) {\n\t<finally>\n}, <init>)", {
       ar = ls.i(1, "$array"),
       acc = ls.i(2, "$acc"),
       item = ls.i(3, "$item"),
       init = ls.i(4, "[]"),
-      finally = ls.i(0, "/* code */"),
+      finally = ls.i(0),
     }, in_func)
   ),
 
   ls.s(
     { trig = "map", name = "array map", dscr = "array_map(...)" },
-    fmt([[
-    array_map(function ({item}) {{
-        {finally}
-    }}, {ar})
-    ]], {
+    fmta("array_map(function (<item>) {\n<finally>\n}, <ar>)", {
       ar = ls.i(1, "$array"),
       item = ls.i(2, "$item"),
-      finally = ls.i(0, "/* code */"),
+      finally = ls.i(0),
     }, in_func)
   ),
 
@@ -222,30 +167,19 @@ return {
 
   ls.s(
     { trig = "try", name = "try catch", dscr = "try ... catch ..." },
-    fmt([[
-    try {{
-      {finally}
-    }} catch ({throw}) {{
-    }}
-    ]], {
+    fmta("try {\n\t<finally>\n} catch (<throw>) {\n}", {
       throw = ls.i(1, "\\Throwable $e"),
-      finally = ls.i(0, "/* code */"),
+      finally = ls.i(0),
     }, in_func)
   ),
 
   -- PHPUnit {{{
   ls.s(
     { trig = "dataprovider", name = "phpunit data provider", dscr = "function { yield ... }" },
-    fmt([[
-    public static function {name}Provider()
-    {{
-        yield "{cenario}" => [ {params} ];{finally}
-    }}
-    ]], {
+    fmta("public static function <name>Provider()\n{\n\tyield \"<cenario>\" =>> [ <params> ];\n}", {
       name = ls.i(1),
       cenario = ls.i(2, "data set"),
-      params = ls.i(3, "$parametro1, $parametro2, $parametro3"),
-      finally = ls.i(0),
+      params = ls.i(0, "$parametro1, $parametro2, $parametro3"),
     }, in_func)
   ),
   --}}}

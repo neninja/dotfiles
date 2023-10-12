@@ -49,14 +49,29 @@ return {
   ls.s(
     { trig = "f", name = "Function", dscr = "Create a function or a method" }, --{{{
     fmta(
-      "func <rec><name>(<args>) <ret> {\n\t<finally>\n}", {
-        rec     = ls.c(1, {
-          ls.t(""),
-          ls.sn(nil, fmt("({} {}) ", {
-            ls.i(1, "r"),
-            ls.i(2, "receiver"),
+      "func <name>(<args>) <ret>{\n\t<finally>\n}", {
+        name    = ls.i(1, "Name"),
+        args    = ls.i(2),
+        ret     = ls.c(3, {
+          ls.t "",
+          ls.sn(nil, fmt("{} ", {
+            ls.i(1, "error"),
+          })),
+          ls.sn(nil, fmt("({}, {}) ", {
+            ls.i(1, "ret"),
+            ls.i(2, "error"),
           })),
         }),
+        finally = ls.i(0),
+      }), --}}}
+    not_in_func
+  ),
+
+  ls.s(
+    { trig = "m", name = "Method", dscr = "Create a method" }, --{{{
+    fmta(
+      "func (<var>) <name>(<args>) <ret> {\n\t<finally>\n}", {
+        var     = ls.i(1, "obj Obj"),
         name    = ls.i(2, "Name"),
         args    = ls.i(3),
         ret     = ls.c(4, {
@@ -73,7 +88,7 @@ return {
 
   ls.s(
     { trig = "p", name = "package name", dscr = "package ..." }, --{{{
-    fmta("package <>", { ls.i(1, "main") })                      --}}}
+    fmta("package <>", { ls.i(0, "main") })                      --}}}
   ),
 
   ls.s(
@@ -248,7 +263,7 @@ return {
         ls.i(5, '...'),
       }
     ), --}}}
-    in_test_func
+    in_test_file
   ),
 
   ls.s(
@@ -378,13 +393,8 @@ return {
   ),
 
   ls.s(
-    { trig = "ctx", name = "context", dscr = "ctx context.Context" }, --{{{
-    fmta("ctx context.Context", {})                                   --}}}
-  ),
-
-  ls.s(
-    { trig = "ts", name = "time sleep", dscr = "time.Sleep(time.Millisecond * ...)" }, --{{{
-    fmta("time.Sleep(time.Millisecond * <>)", { ls.i(0, 'miliseconds') })              --}}}
+    { trig = "sleep", name = "time sleep", dscr = "time.Sleep(time.Millisecond * ...)" }, --{{{
+    fmta("time.Sleep(time.Millisecond * <>)", { ls.i(0, 'miliseconds') })                 --}}}
   ),
 
   ls.s(
