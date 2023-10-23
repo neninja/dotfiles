@@ -47,6 +47,7 @@ return {
     {
       trig = "(%w+)>",
       name = "Tag comum",
+      hidden = true,
       regTrig = true,
       dscr = "Abrir e fechar tag comum",
     }, {
@@ -64,6 +65,7 @@ return {
     {
       trig = "(%w+)/",
       name = "Tag unica",
+      hidden = true,
       regTrig = true,
       dscr = "Abrir tag sozinha",
     }, {
