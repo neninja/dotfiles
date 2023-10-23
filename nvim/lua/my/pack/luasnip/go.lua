@@ -6,6 +6,20 @@ local util = require("my.pack.luasnip.util")
 local ai = require("luasnip.nodes.absolute_indexer")
 local partial = require("luasnip.extras").partial
 
+local function f_filename()
+  return ls.function_node(function()
+    return vim.fn.expand('%:t:r')
+  end)
+end
+
+local function ret_filename()
+  return vim.fn.expand('%:t:r')
+end
+
+local function ret_directory()
+  return vim.fn.expand('%:p:h:t')
+end
+
 local function not_in_function()
   return not util.is_in_function()
 end
@@ -88,7 +102,16 @@ return {
 
   ls.s(
     { trig = "p", name = "package name", dscr = "package ..." }, --{{{
-    fmta("package <>", { ls.i(0, "main") })                      --}}}
+    fmta("package <>", {
+      ls.d(1, function()
+          local dir = ret_directory()
+          return ls.sn(nil, {
+            ls.i(1, dir)
+          })
+        end,
+        nil
+      )
+    }) --}}}
   ),
 
   ls.s(
@@ -227,7 +250,7 @@ return {
   ),
 
   ls.s(
-    { trig = "ts", dscr = "test table" }, --{{{
+    { trig = "tt", dscr = "test table" }, --{{{
     fmta("var tt = []struct {\n\t<>\n}{\n\t{<>},\n}",
       {
         ls.i(1, 'name string, in []any, out any'),
@@ -237,41 +260,41 @@ return {
     in_test_file
   ),
 
-  ls.s(
-    { trig = "tt", dscr = "test table" }, --{{{
-    fmta(
-      [[
-      var tt = []struct {
-        name string
-        in   []<>
-        out  <>
-      }{
-        {<>},
-      }
+  --ls.s(
+  --  { trig = "tt", dscr = "test table" }, --{{{
+  --  fmta(
+  --    [[
+  --    var tt = []struct {
+  --      name string
+  --      in   []<>
+  --      out  <>
+  --    }{
+  --      {<>},
+  --    }
 
-      for _, tc := range tt {
-        got := <>(test.in<>)
-        if got != want {
-          t.Error("For", test.in, "got:", got, "want:", test.out)
-        }
-      }
-      ]], {
-        ls.i(1, 'typeIn'),
-        ls.i(2, 'typeOut'),
-        ls.i(3, 'cenario'),
-        ls.i(4, 'testedFuncName'),
-        ls.i(5, '...'),
-      }
-    ), --}}}
-    in_test_file
-  ),
+  --    for _, tc := range tt {
+  --      got := <>(test.in<>)
+  --      if got != want {
+  --        t.Error("For", test.in, "got:", got, "want:", test.out)
+  --      }
+  --    }
+  --    ]], {
+  --      ls.i(1, 'typeIn'),
+  --      ls.i(2, 'typeOut'),
+  --      ls.i(3, 'cenario'),
+  --      ls.i(4, 'testedFuncName'),
+  --      ls.i(5, '...'),
+  --    }
+  --  ), --}}}
+  --  in_test_file
+  --),
 
   ls.s(
     { trig = "gocmp", dscr = "Create an if block comparing with cmp.Diff" }, --{{{
     fmt(
       [[
         if diff := cmp.Diff({}, {}); diff != "" {{
-        	t.Errorf("(-want +got):\\n%s", diff)
+          t.Errorf("(-want +got):\\n%s", diff)
         }}
       ]], {
         ls.i(1, "want"),
@@ -319,6 +342,11 @@ return {
   ),
 
   ls.s(
+    { trig = "tl", name = "test log", dscr = 't.Log(...)' }, --{{{
+    fmta('t.Log(<>)', { ls.i(0) })                           --}}}
+  ),
+
+  ls.s(
     {
       trig = "wr",
       name = "w http.ResponseWriter, req *http.Request",
@@ -363,13 +391,13 @@ return {
   ),
 
   ls.s(
-    { trig = "pl", name = "print line", dscr = "fmt.Println(...)" }, --{{{
-    fmta("fmt.Println(<>)", { ls.i(0) })                             --}}}
+    { trig = "pl", name = "print line", dscr = "fmt.Println(...)" },         --{{{
+    fmta("<>.Println(<>)", { ls.c(1, { ls.t "fmt", ls.t "log" }), ls.i(0) }) --}}}
   ),
 
   ls.s(
-    { trig = "ef", name = "errorf", dscr = 'fmt.Errorf("%+v",...)' }, --{{{
-    fmta('fmt.Errorf("%+v", <>)', { ls.i(0) })                        --}}}
+    { trig = "ef", name = "errorf", dscr = 'fmt.Errorf("%+v",...)' },              --{{{
+    fmta('<>.Errorf("%+v", <>)', { ls.c(1, { ls.t "fmt", ls.t "log" }), ls.i(0) }) --}}}
   ),
 
   ls.s(
@@ -378,13 +406,13 @@ return {
   ),
 
   ls.s(
-    { trig = "tys", name = "type struct", dscr = "type ... struct ..." },      --{{{
-    fmta("type <> struct {\n\t<>\n}", { ls.i(1, 'name'), ls.i(0, 'finally') }) --}}}
+    { trig = "tys", name = "type struct", dscr = "type ... struct ..." }, --{{{
+    fmta("type <> struct {\n\t<>\n}", { ls.i(1, 'name'), ls.i(0) })       --}}}
   ),
 
   ls.s(
-    { trig = "tyi", name = "type interface", dscr = "type ... interface ..." },   --{{{
-    fmta("type <> interface {\n\t<>\n}", { ls.i(1, 'name'), ls.i(0, 'finally') }) --}}}
+    { trig = "tyi", name = "type interface", dscr = "type ... interface ..." }, --{{{
+    fmta("type <> interface {\n\t<>\n}", { ls.i(1, 'name'), ls.i(0) })          --}}}
   ),
 
   ls.s(

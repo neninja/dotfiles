@@ -60,7 +60,7 @@ return {
 
   ls.s(
     { trig = "fn", name = "closure", dscr = "fn() => ..." },
-    fmt([[ fn({params}) => {finally} ]], {
+    fmt([[fn({params}) => {finally}]], {
       params  = ls.i(1, "params"),
       finally = ls.i(0),
     })
@@ -83,7 +83,7 @@ return {
 
   ls.s(
     { trig = "t", name = "$this", dscr = "$this" },
-    fmt([[ $this{} ]], { ls.i(0) }, in_func)
+    fmt([[$this{}]], { ls.i(0) }, in_func)
   ),
 
   ls.s(
@@ -93,37 +93,37 @@ return {
 
   ls.s(
     { trig = "r", name = "return", dscr = "return ...;" },
-    fmt([[ return {finally}; ]], { finally = ls.i(0) }, in_func)
+    fmt([[return {finally};]], { finally = ls.i(0) }, in_func)
   ),
 
   ls.s(
     { trig = "d", name = "dumper", dscr = "dump(...);" },
-    fmt([[ dump({finally}); ]], { finally = ls.i(0) }, in_func)
+    fmt([[dump({finally});]], { finally = ls.i(0) }, in_func)
   ),
 
   ls.s(
     { trig = "dd", name = "diedumper", dscr = "dd(...);" },
-    fmt([[ dd({finally}); ]], { finally = ls.i(0) }, in_func)
+    fmt([[dd({finally});]], { finally = ls.i(0) }, in_func)
   ),
 
   ls.s(
     { trig = "vd", name = "var_dump", dscr = "var_dump(...);" },
-    fmt([[ var_dump({finally}); ]], { finally = ls.i(0) }, in_func)
+    fmt([[var_dump({finally});]], { finally = ls.i(0) }, in_func)
   ),
 
   ls.s(
     { trig = "vdd", name = "var_dump die", dscr = "var_dump(...);die;" },
-    fmt([[ var_dump({finally});die; ]], { finally = ls.i(0) }, in_func)
+    fmt([[var_dump({finally});die;]], { finally = ls.i(0) }, in_func)
   ),
 
   ls.s(
     { trig = "isn", name = "is null", dscr = "is_null(...);" },
-    fmt([[ is_null({finally}); ]], { finally = ls.i(0) }, in_func)
+    fmt([[is_null({finally});]], { finally = ls.i(0) }, in_func)
   ),
 
   ls.s(
     { trig = "is", name = "is set", dscr = "isset(...);" },
-    fmt([[ isset({finally}); ]], { finally = ls.i(0) }, in_func)
+    fmt([[isset({finally});]], { finally = ls.i(0) }, in_func)
   ),
 
   ls.s(
