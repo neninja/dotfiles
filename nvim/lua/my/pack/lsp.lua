@@ -16,6 +16,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  emmet_ls = { filetypes = { 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } },
 }
 
 -- Setup neovim lua configuration
