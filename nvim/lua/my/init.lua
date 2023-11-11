@@ -15,6 +15,13 @@ end
 local aucmd_dict = {
   FileType = {
     {
+      pattern = "gdscript",
+      callback = function()
+        settab(4)
+        vim.bo.expandtab = false
+      end,
+    },
+    {
       pattern = "go,php",
       callback = function()
         settab(4)
