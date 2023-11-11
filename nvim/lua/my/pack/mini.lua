@@ -13,18 +13,21 @@ vim.cmd([[
 --## Comandos
 local my_items = {
   { name = 'Empty buffer', action = 'enew!', section = '' },
-  { name = 'Quit', action = 'q', section = '' },
   { name = 'Dotfiles', action = 'e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()', section = '' },
   { name = 'Blog WTF', action = 'e ' .. "~/dev/blog/wtf/README.md" .. ' | call NN_SetGitDir()', section = '' },
   { name = 'Snippets blog', action = 'e ' .. "~/dev/blog/blog_snippets/README.md" .. ' | call NN_SetGitDir()', section = '' },
-  { name = 'Plugin sync', action = 'PackerSync', section = '' },
   { name = 'Wikis', action = function()
     vim.cmd [[VimwikiUISelect]]
     vim.cmd [[colo vimwiki_comfymonkey]]
   end, section = '' },
-  { name = 'Organização pessoal', action = 'VimwikiIndex 1', section = '' },
+  { name = 'PKM', action = function()
+    vim.cmd [[VimwikiIndex 1]]
+    vim.cmd [[colo vimwiki_comfymonkey]]
+  end, section = '' },
   { name = 'Git status', action = 'Gedit :', section = 'Projeto' },
   { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
+  { name = 'Update all plugins', action = 'PackerSync', section = '' },
+  { name = 'Quit', action = 'q', section = '' },
   { name = 'Idez diary', action = function()
     vim.cmd [[VimwikiMakeDiaryNote 2]]
     vim.cmd [[colo vimwiki_comfymonkey]]
