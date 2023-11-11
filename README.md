@@ -15,11 +15,11 @@ Versionamento dos meus arquivos de configuração, scripts, instruções e templ
 ## Simplicidade como preceito
 
 ```mermaid
-graph LR
+graph TB
 simplicidade --> manutenibilidade --> qualidade
 simplicidade --> performance --> qualidade
 
-qualidade --> t[trabalho eficiente]
+qualidade --> t[eficiência no trabalho e estudos] --> l[menos tempo perdido] --> p[mais tempo para o que importa]
 ```
 
 ## Utilização
