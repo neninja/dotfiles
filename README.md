@@ -12,7 +12,7 @@ Versionamento dos meus arquivos de configuração, scripts, instruções e templ
 - Bash
 - Git
 
-## Simplicidade como preceito
+## Simplicidade como essência
 
 ```mermaid
 graph TB
