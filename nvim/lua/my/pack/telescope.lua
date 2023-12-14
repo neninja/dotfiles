@@ -154,12 +154,6 @@ commander.add({
     keys = {"n", "<leader>em", silent_noremap},
   },
   {
-    desc = "Find a snippet",
-    cmd = ":Telescope luasnip<CR>",
-    keys = {"n", "<leader><tab>", silent_noremap},
-    cat = "telescope",
-  },
-  {
     desc = "Find a highlight",
     cmd = ":Telescope highlights<CR>",
     cat = "telescope",
@@ -254,8 +248,11 @@ commander.add({
     cat = "vimwiki",
   },
 })
+
 --# Carregamento de extensões
 require("telescope").load_extension "emoji"
 require("telescope").load_extension "luasnip"
 require("telescope").load_extension "commander"
+
+require('aerial').setup()
 require('telescope').load_extension "aerial"

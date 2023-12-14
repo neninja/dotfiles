@@ -114,11 +114,6 @@ require('packer').startup(function(use)
   }
 
   use {
-    'stevearc/aerial.nvim',
-    config = function() require('aerial').setup() end
-  }
-
-  use {
     'nvim-telescope/telescope.nvim',
     -- tag = "0.1.1", -- attempt to call get_lang on null na preview
     requires = {
@@ -126,7 +121,6 @@ require('packer').startup(function(use)
       { 'nvim-lua/plenary.nvim' },
       { 'xiyaowong/telescope-emoji.nvim' },
       { 'FeiyouG/commander.nvim' },
-      { 'benfowler/telescope-luasnip.nvim' },
     },
     config = function() require('my.pack.telescope') end,
   }
