@@ -385,6 +385,8 @@ hi! link Pmenu TelescopeNormal
 hi! link DiagnosticError Error
 hi! link DiagnosticHint Todo
 
+hi! link fugitiveStagedHeading DiffAdd
+
 hi! link conflictMerge Todo
 
 call s:hi('MiniStarterHeader', s:detach02, '', '')
