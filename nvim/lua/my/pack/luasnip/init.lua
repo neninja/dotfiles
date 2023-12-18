@@ -105,13 +105,13 @@ map({ 'i', 's' }, '<Tab>', function()
   end
 end, { silent = true })
 
-map({ 'i', 's' }, '<c-j>', function()
+map({ 'n', 'i', 's' }, '<c-j>', function()
   if ls.jumpable(1) then
     ls.jump(1)
   end
 end, { silent = true })
 
-map({ 'i', 's' }, '<c-k>', function()
+map({ 'n', 'i', 's' }, '<c-k>', function()
   ls.jump(-1)
 end, { silent = true })
 
