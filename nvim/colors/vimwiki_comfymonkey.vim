@@ -30,6 +30,8 @@ let s:red01       = '#df5757'
 let s:cyan01      = '#5fd7d7'
 let s:green01     = '#5fd75f'
 let s:purple01    = '#5f5fd7'
+let s:blue01      = '#5f9bd7'
+let s:blue02      = '#5f5fd7'
 
 "# Roles
 let s:fg          = '#f5efee'
@@ -89,6 +91,14 @@ call s:hi('Pmenu', s:fg, s:bg2, '')
 call s:hi('PmenuSbar', s:bg, '', '')
 call s:hi('PmenuSel', '', '', 'inverse')
 call s:hi('PmenuThumb', s:fg, '', '')
+
+call s:hi('DiffAdd', '', s:green01, '')
+call s:hi('DiffChange', '', s:blue02, '')
+call s:hi('DiffDelete', '', s:red01, '')
+call s:hi('DiffText', s:bg, s:blue01, '')
+call s:hi('DiffAdded', s:green01, '', '')
+call s:hi('DiffChanged', s:blue02, '', '')
+call s:hi('DiffRemoved', s:red01, '', '')
 
 hi! link VimwikiLink Underlined
 hi! link VimwikiHeaderChar Title
