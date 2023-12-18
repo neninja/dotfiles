@@ -14,7 +14,6 @@ vim.cmd([[
 local my_items = {
   { name = 'Empty buffer', action = 'enew!', section = '' },
   { name = 'Dotfiles', action = 'e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()', section = '' },
-  { name = 'Blog WTF', action = 'e ' .. "~/dev/blog/wtf/README.md" .. ' | call NN_SetGitDir()', section = '' },
   { name = 'Snippets blog', action = 'e ' .. "~/dev/blog/blog_snippets/README.md" .. ' | call NN_SetGitDir()', section = '' },
   { name = 'Wikis', action = function()
     vim.cmd [[VimwikiUISelect]]
