@@ -251,7 +251,6 @@ commander.add({
 
 --# Carregamento de extensões
 require("telescope").load_extension "emoji"
-require("telescope").load_extension "luasnip"
 require("telescope").load_extension "commander"
 
 require('aerial').setup()
