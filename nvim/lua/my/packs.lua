@@ -89,9 +89,7 @@ require('packer').startup(function(use)
     config = function() require('my.fluttertools') end,
   }
 
-  use {
-    '~/dev/nvim-packs/laravim'
-  }
+  use 'nenitf/laravim'
 
   use {
     'hrsh7th/nvim-cmp',
