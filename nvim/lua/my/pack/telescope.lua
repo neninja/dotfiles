@@ -1,7 +1,7 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
 --# Setup Telescope
 local actions = require("telescope.actions")
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
     file_ignore_patterns = {
       "^.git",
@@ -37,39 +37,39 @@ require('telescope').setup{
 -- Ao abrir um buffer cujo deveria conter folds fechados,
 -- o telescope ignora-os e na primeira modificação são acionados
 vim.api.nvim_create_autocmd('BufRead', {
-   callback = function()
-      vim.api.nvim_create_autocmd('BufWinEnter', {
-         once = true,
-         command = 'normal! zxzR' -- zM para fechar todos folds
-      })
-   end
+  callback = function()
+    vim.api.nvim_create_autocmd('BufWinEnter', {
+      once = true,
+      command = 'normal! zxzR' -- zM para fechar todos folds
+    })
+  end
 })
 --# Mapeamentos
 local map = vim.keymap.set
-local silent_noremap = {noremap = true, silent = true}
+local silent_noremap = { noremap = true, silent = true }
 
 map('n', '<leader>n', [[:Telescope commander<CR>]], silent_noremap)
 --# Extensões
 --## Commander
 local commander = require("commander")
 commander.setup({
-      components = {
-        "DESC",
-        "KEYS",
-        "CAT",
-      },
-      sort_by = {
-        "DESC",
-        "KEYS",
-        "CAT",
-        "CMD"
-      },
-      integration = {
-        telescope = {
-          enable = false,
-        },
-      }
-    })
+  components = {
+    "DESC",
+    "KEYS",
+    "CAT",
+  },
+  sort_by = {
+    "DESC",
+    "KEYS",
+    "CAT",
+    "CMD"
+  },
+  integration = {
+    telescope = {
+      enable = false,
+    },
+  }
+})
 commander.add({
   {
     desc = ":pwd to git dir",
@@ -89,13 +89,13 @@ commander.add({
   {
     desc = "Search for a buffer",
     cmd = ":Telescope buffers<CR>",
-    keys = {"n", "<leader>b", silent_noremap},
+    keys = { "n", "<leader>b", silent_noremap },
     cat = "telescope",
   },
   {
     desc = "Search for symbols with Aerial",
     cmd = ":Telescope aerial<CR>",
-    keys = {"n", "<leader>a", silent_noremap},
+    keys = { "n", "<leader>a", silent_noremap },
     cat = "telescope",
   },
   {
@@ -116,7 +116,7 @@ commander.add({
         cwd = vim.fn.getcwd(),
       })
     end,
-    keys = {"n", "<leader>f", silent_noremap},
+    keys = { "n", "<leader>f", silent_noremap },
     cat = "telescope",
   },
   {
@@ -127,19 +127,19 @@ commander.add({
   {
     desc = "Find recent files (MRU)",
     cmd = ":Telescope oldfiles<CR>",
-    keys = {"n", "<leader>m", silent_noremap},
+    keys = { "n", "<leader>m", silent_noremap },
     cat = "telescope",
   },
   {
     desc = "Find word inside :pwd",
     cmd = ":Telescope live_grep<CR>",
-    keys = {"n", "<c-f>", silent_noremap},
+    keys = { "n", "<c-f>", silent_noremap },
     cat = "telescope",
   },
   {
     desc = "Find a helptag",
     cmd = ":Telescope help_tags<CR>",
-    keys = {"n", "<leader>h", silent_noremap},
+    keys = { "n", "<leader>h", silent_noremap },
     cat = "telescope",
   },
   {
@@ -151,7 +151,7 @@ commander.add({
     desc = "Find a emoji",
     cmd = ":Telescope emoji<CR>",
     cat = "telescope",
-    keys = {"n", "<leader>em", silent_noremap},
+    keys = { "n", "<leader>em", silent_noremap },
   },
   {
     desc = "Find a highlight",
@@ -181,7 +181,7 @@ commander.add({
   {
     desc = "Toggle relativenumber",
     cmd = function()
-      if(vim.o.relativenumber) then
+      if (vim.o.relativenumber) then
         vim.o.relativenumber = false
       else
         vim.o.relativenumber = true
@@ -192,7 +192,7 @@ commander.add({
   {
     desc = "Toggle cursorline",
     cmd = function()
-      if(vim.o.cursorline) then
+      if (vim.o.cursorline) then
         vim.o.cursorline = false
       else
         vim.o.cursorline = true
@@ -203,7 +203,7 @@ commander.add({
   {
     desc = "Toggle colorcolumn",
     cmd = function()
-      if(vim.o.colorcolumn == '81') then
+      if (vim.o.colorcolumn == '81') then
         vim.o.colorcolumn = ''
       else
         vim.o.colorcolumn = '81'
@@ -224,7 +224,7 @@ commander.add({
   {
     desc = "Toggle dark/light colorscheme",
     cmd = function()
-      if(vim.o.background == 'dark') then
+      if (vim.o.background == 'dark') then
         vim.o.background = 'light'
       else
         vim.o.background = 'dark'
