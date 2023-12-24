@@ -27,6 +27,7 @@ echo "[include]
 echo -e "OK"
 
 echo -ne "Neovim config: "
+touch $DIRDF/nvim/lua/my/env.lua
 echo "source ~/$DIRDF_FROM_HOME/nvim/init.lua" > $HOME/.config/nvim/init.vim
 echo -e "OK"
 
