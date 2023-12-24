@@ -11,26 +11,22 @@ vim.cmd([[
   augroup END
 ]])
 --## Comandos
+local edit_dotfiles = 'e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()'
 local my_items = {
-  { name = 'Empty buffer', action = 'enew!', section = '' },
-  { name = 'Dotfiles', action = 'e ' .. DOTFILES_FULLPATH_NVIM .. 'vimrc | call NN_SetGitDir()', section = '' },
-  { name = 'Snippets blog', action = 'e ' .. "~/dev/blog/blog_snippets/README.md" .. ' | call NN_SetGitDir()', section = '' },
-  { name = 'Wikis', action = function()
-    vim.cmd [[VimwikiUISelect]]
-    vim.cmd [[colo vimwiki_comfymonkey]]
-  end, section = '' },
-  { name = 'PKM', action = function()
-    vim.cmd [[VimwikiIndex 1]]
-    vim.cmd [[colo vimwiki_comfymonkey]]
-  end, section = '' },
-  { name = 'Git status', action = 'Gedit :', section = 'Projeto' },
-  { name = 'Find files', action = 'Telescope find_files', section = 'Projeto' },
-  { name = 'Update all plugins', action = 'PackerSync', section = '' },
-  { name = 'Quit', action = 'q', section = '' },
-  { name = 'Idez diary', action = function()
-    vim.cmd [[VimwikiMakeDiaryNote 2]]
-    vim.cmd [[colo vimwiki_comfymonkey]]
-  end, section = 'Idez' },
+  { name = 'Empty buffer',       action = 'enew!',                section = '' },
+  { name = 'Dotfiles',           action = edit_dotfiles,          section = '' },
+  { name = 'Update all plugins', action = 'PackerSync',           section = '' },
+  { name = 'Quit',               action = 'q',                    section = '' },
+  { name = 'Find files',         action = 'Telescope find_files', section = 'Projeto' },
+  { name = 'Git status',         action = 'Gedit :',              section = 'Projeto' },
+  {
+    name = 'Wikis',
+    action = function()
+      vim.cmd [[VimwikiUISelect]]
+      vim.cmd [[colo vimwiki_comfymonkey]]
+    end,
+    section = ''
+  },
 }
 --## Header
 -- https://textkool.com/en/ascii-art-generator?hl=default&vl=default&font=ANSI%20Shadow&text=neovim
