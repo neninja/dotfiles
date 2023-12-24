@@ -1,4 +1,5 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
+local env = require("my.env")
 --# Pairs
 require('mini.pairs').setup()
 --# Starter
@@ -334,12 +335,18 @@ local function footer_quote()
   return FOOTER_QUOTES[math.random(1, #FOOTER_QUOTES)]
 end
 
+local header = ""
+
+if (env.mini.header.enabled) then
+  header = table.concat(header_chars(), "\n")
+end
+
 --## Setup
 require('mini.starter').setup({
   autoopen = true,
   evaluate_single = true,
   items = my_items,
-  header = table.concat(header_chars(), "\n"),
+  header = header,
   footer = table.concat(footer_quote(), "\n"),
   query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_-.',
 })
