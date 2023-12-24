@@ -39,8 +39,14 @@ require('mason').setup()
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
+local ensure_installed = {}
+
+if (vim.env.LSP_ENSURE_INSTALLED) then
+  ensure_installed = vim.tbl_keys(servers)
+end
+
 mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
+  ensure_installed = ensure_installed,
 }
 
 mason_lspconfig.setup_handlers {

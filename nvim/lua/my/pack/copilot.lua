@@ -1,3 +1,8 @@
+print("hudfhfsuhf")
+if (!vim.env.COPILOT_ENABLED) then
+  return
+end
+
 require('copilot').setup({
   panel = { enabled = false },
   suggestion = {

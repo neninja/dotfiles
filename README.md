@@ -35,29 +35,7 @@ cd dotfiles
 ./install.sh
 ```
 
-2. Configuração de ambiente do nvim
-
-```lua
--- nvim/lua/env.lua
-local M = {}
-
-M.clickup = {
-  token = "TOKEN",
-  user_id = "USER",
-  space_id = "SPACE",
-  workspace_id = "WORKSPACE",
-  filter = {
-    statuses = {
-      "ready for development",
-      "backlog",
-      "code review",
-      "in development",
-    },
-  },
-}
-
-return M
-```
+2. Configuração de ambiente do nvim em `nvim/lua/my/env.lua` se necessário
 
 > [Configuração do SSH](https://gist.github.com/nenitf/433e85b49acc802479654c75535eea2c)
 
