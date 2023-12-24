@@ -1,28 +1,44 @@
 local function wiki(opts)
-  return vim.tbl_deep_extend('force',{
-    syntax = 'markdown',
-    ext = '.md',
-    index = 'README',
+  return vim.tbl_deep_extend('force', {
+    syntax = 'default',
+    ext = 'wiki',
+    index = 'index',
     auto_generate_links = 1,
     auto_diary_index = 1,
-    auto_tags = 1,
+    auto_tags = 1, -- muito bugado, linkando em paginas em branco
     auto_generate_tags = 1,
-    exclude_files = { 'README.md', 'diary/*', 'old/*' },
-  },opts)
+    exclude_files = { 'index.wiki', 'diary/*', 'old/**', 'priv/**' },
+  }, opts)
 end
 
 vim.g.vimwiki_list = {
   wiki {
     name = 'pkm',
+    diary_frequency = 'monthly',
     path = '~/vimwiki/pkm',
+    rx_todo = [[\C\<\%(\<TODO\>\|\<THANKS\>\|\<FIXME\>\|????\|!!!!\|\<CUIDADO\>\)\>]],
+  },
+
+  wiki {
+    name = 'wtf',
+    path = '~/dev/blog/wtf',
+    rx_todo = [[\C\<\%(\<TODO\>\|\<THANKS\>\|\<FIXME\>\|????\|!!!!\|\<CUIDADO\>\)\>]],
+    index = 'README',
+    ext = '.md',
+    syntax = 'markdown',
+  },
+
+  wiki {
+    name = 'org',
+    path = '~/vimwiki/org',
     rx_todo = [[\C\<\%(TODO\|DONE\|STARTED\|FIXME\|FIXED\|WAIT\)\>]],
-    auto_toc = 1,
   },
 
   wiki {
     name = 'idez',
     path = '~/vimwiki/idez',
-    rx_todo = [[\C\%(\<COP\>\|\<CALL\>\|\<TODO\>\|\<BACKLOG\>\|\<RELEASE\>\|\<DONE\>\|\<FLAKY\>\|\<STARTED\>\|\<FIXME\>\|\<FIXED\>\|\<MERGE\>\|\<MY REVIEW\>\|\<PRFIX\>\|\<WAIT QA\>\|\<WAIT\>\|\<BUG\>\|\<NEW\>\|\<REVIEW\>\|\<PR\>\|\<QA\>\|\<P:\>\|\<R:\>\|???\)]],
+    rx_todo =
+    [[\C\%(\<COP\>\|\<CALL\>\|\<TODO\>\|\<BACKLOG\>\|\<RELEASE\>\|\<DONE\>\|\<FLAKY\>\|\<STARTED\>\|\<FIXME\>\|\<FIXED\>\|\<MERGE\>\|\<MY REVIEW\>\|\<PRFIX\>\|\<WAIT QA\>\|\<WAIT\>\|\<BUG\>\|\<NEW\>\|\<REVIEW\>\|\<PR\>\|\<QA\>\|\<P:\>\|\<R:\>\|???\)]],
   },
 
   wiki {
