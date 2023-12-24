@@ -1,5 +1,5 @@
 local curl = require("plenary.curl")
-local env = require("env")
+local env = require("my.env")
 
 local token = env.clickup.token;
 local user_id = env.clickup.user_id;

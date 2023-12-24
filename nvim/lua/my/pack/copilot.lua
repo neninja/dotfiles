@@ -1,5 +1,5 @@
-print("hudfhfsuhf")
-if (!vim.env.COPILOT_ENABLED) then
+local env = require("my.env")
+if (env.copilot.enabled == false) then
   return
 end
 

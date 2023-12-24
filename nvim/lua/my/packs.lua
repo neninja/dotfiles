@@ -36,7 +36,7 @@ require('packer').startup(function(use)
     config = function() require('my.pack.mini') end,
   }
 
-  use  {
+  use {
     'folke/flash.nvim',
     config = function()
       vim.keymap.set({ 'n', 'x', 'o' }, 's', function() require("flash").jump() end, { desc = "Flash [s]earch" })
@@ -89,7 +89,10 @@ require('packer').startup(function(use)
     config = function() require('my.fluttertools') end,
   }
 
-  use 'nenitf/laravim'
+  use {
+    'nenitf/laravim',
+    config = function() require 'laravim'.setup() end,
+  }
 
   use {
     'hrsh7th/nvim-cmp',
@@ -122,5 +125,3 @@ require('packer').startup(function(use)
     config = function() require('my.pack.telescope') end,
   }
 end)
-
-require 'laravim'.setup()

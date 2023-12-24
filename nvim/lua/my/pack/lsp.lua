@@ -1,3 +1,4 @@
+local env = require("my.env")
 -- De clutter the editor by only showing diagnostic messages when the cursor is over the error
 vim.diagnostic.config({
   virtual_text = true, -- Do not show the text in front of the error
@@ -6,18 +7,16 @@ vim.diagnostic.config({
   },
 })
 
-local servers = {
-  intelephense = {},
-  eslint = {},
-  tsserver = {},
+local default_servers = {
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
-  emmet_ls = { filetypes = { 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } },
 }
+
+local servers = vim.tbl_deep_extend("force", default_servers, env.lsp.ensure_servers)
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -39,14 +38,8 @@ require('mason').setup()
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
-local ensure_installed = {}
-
-if (vim.env.LSP_ENSURE_INSTALLED) then
-  ensure_installed = vim.tbl_keys(servers)
-end
-
 mason_lspconfig.setup {
-  ensure_installed = ensure_installed,
+  ensure_installed = vim.tbl_keys(servers),
 }
 
 mason_lspconfig.setup_handlers {
