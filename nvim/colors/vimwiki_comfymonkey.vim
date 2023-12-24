@@ -32,6 +32,8 @@ let s:green01     = '#5fd75f'
 let s:purple01    = '#5f5fd7'
 let s:blue01      = '#5f9bd7'
 let s:blue02      = '#5f5fd7'
+let s:neonyellow01 = '#afff5f'
+let s:neonblue01   = '#5fffff'
 
 "# Roles
 let s:fg          = '#f5efee'
@@ -39,6 +41,7 @@ let s:bg          = '#4a5b6e'
 let s:bg2         = '#425366'
 let s:majordetach = '#f8cdc6'
 let s:minordetach = '#9ec1cc'
+let s:patchdetach = s:neonblue01
 
 let s:error = s:red01
 let s:error = s:red01
@@ -78,6 +81,8 @@ hi! link Conceal Normal
 call s:hi('Visual', s:fg, s:minordetach, '')
 call s:hi('Search', s:minordetach, s:bg2, '')
 call s:hi('IncSearch', s:minordetach, s:bg2, '')
+
+call s:hi('Substitute', s:bg, s:patchdetach, 'bold')
 
 call s:hi('Cursor', s:fg, s:majordetach, '')
 call s:hi('Underlined', s:minordetach, '', 'underline')
