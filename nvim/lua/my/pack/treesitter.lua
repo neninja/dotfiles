@@ -1,7 +1,7 @@
 require("nvim-treesitter.install").update()
 require("nvim-treesitter.configs").setup({
   -- To install additional languages, do: `:TSInstall <mylang>`. `:TSInstall maintained` to install all maintained
-  ensure_installed = { "c", "vim", "vimdoc", "query", "lua", "php", "dart", "markdown" },
+  ensure_installed = { "c", "vim", "query", "lua", "php", "dart", "markdown" },
   sync_install = true,
   highlight = {
     enable = true, -- This is a MUST
