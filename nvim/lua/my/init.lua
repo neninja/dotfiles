@@ -106,6 +106,13 @@ local aucmd_dict = {
       end,
     },
     {
+      pattern = "vimwiki",
+      callback = function(opts)
+        vim.keymap.set('n', "<leader><cr>", [[<cmd>PARA<CR>]], { noremap=true, silent=true, buffer=opts.buf })
+        vim.keymap.set('n', "<leader>we", [[<cmd>PARAfile<CR>]], { noremap=true, silent=true, buffer=opts.buf })
+      end,
+    },
+    {
       pattern = "help,lspinfo,qf,startuptime",
       callback = function(opts)
         vim.keymap.set("n", "q", [[<cmd>close<CR>]], { noremap=true, silent=true, buffer=opts.buf })

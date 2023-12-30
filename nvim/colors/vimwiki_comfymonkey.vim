@@ -26,6 +26,7 @@ function! s:NONE(attr)
 endfunction
 
 "# Colors
+let s:black       = '#000000'
 let s:red01       = '#df5757'
 let s:cyan01      = '#5fd7d7'
 let s:green01     = '#5fd75f'
@@ -64,6 +65,7 @@ call s:hi('Todo', s:majordetach, '', 'bold')
 call s:hi('PreProc', s:minordetach, '', 'bold')
 
 call s:hi('LineNr', s:bg, '', '')
+call s:hi('qfLineNr', s:minordetach, '', '')
 call s:hi('NonText', s:bg, '', '')
 
 call s:hi('Error', s:error, '', 'bold')
@@ -105,6 +107,6 @@ call s:hi('DiffAdded', s:green01, '', '')
 call s:hi('DiffChanged', s:blue02, '', '')
 call s:hi('DiffRemoved', s:red01, '', '')
 
-hi! link VimwikiLink Underlined
+call s:hi('VimwikiLink', s:minordetach, '', '')
 hi! link VimwikiHeaderChar Title
 call s:hi('VimwikiList', s:majordetach, '', 'bold')

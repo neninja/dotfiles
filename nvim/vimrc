@@ -98,6 +98,7 @@ set wildignore+=*/_gen
 set wildignore+=DS_Store,DS_Store/**
 set wildignore+=tags
 set wildignore+=.next
+set wildignore+=index.wiki
 
 set wildignorecase
 
