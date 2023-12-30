@@ -180,6 +180,19 @@ add("html", {
     i(0)
   }),
 })
+--## lua
+add("lua", {
+  ts("n", "vim.notify", "vim.notify(...)", [[
+    vim.notify(§);
+    ]], {
+    i(0),
+  }),
+  ts("n", "vim.notify with inspect", "vim.notify(vim.inspect(...))", [[
+    vim.notify(vim.inspect(§));
+    ]], {
+    i(0),
+  }),
+})
 --## javascript
 add("javascript", {
   ts("imp", "import from", "import ... from ...", [[
