@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>-", [[<cmd>NvimTreeFindFileToggle<CR>]], { noremap=true, silent=true })
+vim.keymap.set("n", "<leader><cr>", [[<cmd>NvimTreeFindFileToggle<CR>]], { noremap=true, silent=true })
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
@@ -21,8 +21,7 @@ require("nvim-tree").setup({
       },
     },
     float = {
-      enable = true,
-      quit_on_focus_loss = true,
+      enable = false,
     },
   },
   renderer = {
