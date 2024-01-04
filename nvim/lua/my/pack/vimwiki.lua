@@ -14,7 +14,6 @@ vim.g.vimwiki_list = {
   wiki {
     name = 'pkm',
     diary_rel_path = "_diary",
-    diary_frequency = 'monthly',
     exclude_files = { 'index.wiki', '_diary/*', 'o/**' },
     path = '~/vimwiki/pkm',
     auto_toc = 1,
@@ -52,10 +51,34 @@ vim.g.vimwiki_links_header = "Links"
 vim.g.vimwiki_tags_header = "Tags"
 vim.g.vimwiki_markdown_link_ext = 1
 
+vim.api.nvim_create_user_command('PARAback', function()
+    local word = vim.fn.expand("<cword>")
+    vim.api.nvim_exec2([[VWB]], {})
+
+    local loclist = vim.fn.getloclist(0)
+    local new_locflist = {}
+    for _, item in ipairs(loclist) do
+      local filename = vim.fn.bufname(item.bufnr)
+      local file = io.open(filename, "r")
+      local first_line = file:read()
+      first_line = string.gsub(first_line, "^= ", "")
+      first_line = string.gsub(first_line, " =$", "")
+      file:close()
+      item.text = first_line
+      item.module = word
+
+      table.insert(new_locflist, item)
+    end
+    -- setqflist
+    vim.fn.setloclist(0, new_locflist)
+  end,
+  {}
+)
+
 vim.api.nvim_create_user_command('PARA', function()
     local word = vim.fn.expand("<cword>")
     vim.api.nvim_exec2(
-      [[:execute "noautocmd vimgrep /:\\<" . expand("<cword>") . "\\>:/gj **/*." .  expand("%:e") | cw]],
+      [[:execute "noautocmd vimgrep /:\\<" . expand("<cword>") . "\\>:/gj **/*." .  expand("%:e") | cope]],
       {}
     )
 
@@ -96,10 +119,12 @@ vim.api.nvim_create_user_command('PARAfile', function()
       ":edit " .. random_name .. ".wiki",
       {}
     )
-    vim.api.nvim_exec2([[:normal!I= :projeto: =]], {})
-    vim.api.nvim_exec2([[:normal!o= :area: =]], {})
-    vim.api.nvim_exec2([[:normal!o= :recurso: =]], {})
-    vim.api.nvim_exec2([[:normal!o= :arquivo: =]], {})
+    vim.api.nvim_exec2([[:normal!I= Titulo =]], {})
+    vim.api.nvim_exec2([[:normal!o:projeto:]], {})
+    vim.api.nvim_exec2([[:normal!o:area:]], {})
+    vim.api.nvim_exec2([[:normal!o:recurso:]], {})
+    vim.api.nvim_exec2([[:normal!o:arquivo:]], {})
+    vim.api.nvim_exec2([[:normal!o:collection:]], {})
     vim.api.nvim_exec2([[:normal!Bh]], {})
   end,
   {}

@@ -6,9 +6,9 @@ require('my.spells')
 require('my.src-pos')
 --# auto cmd
 local function settab(tabsize)
-  vim.bo.tabstop=tabsize
-  vim.bo.softtabstop=tabsize
-  vim.bo.shiftwidth=tabsize
+  vim.bo.tabstop = tabsize
+  vim.bo.softtabstop = tabsize
+  vim.bo.shiftwidth = tabsize
 end
 
 local aucmd_dict = {
@@ -36,7 +36,7 @@ local aucmd_dict = {
       pattern = "html,javascriptreact,typescriptreact",
       callback = function()
         local function i(trig, cb)
-          vim.cmd("inoremap <buffer> "..trig.." "..cb)
+          vim.cmd("inoremap <buffer> " .. trig .. " " .. cb)
         end
         i('<c-d>', '<esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit')
         i('<c-d><c-s>', '<esc>bi<<esc>ea /><esc>hi')
@@ -47,7 +47,7 @@ local aucmd_dict = {
       pattern = "gitcommit",
       callback = function()
         local function i(abbr, cb)
-          vim.cmd("inoreabbrev <buffer> "..abbr.." "..cb)
+          vim.cmd("inoreabbrev <buffer> " .. abbr .. " " .. cb)
         end
         i('b-', ':bug:')
         i('n-', ':new:')
@@ -108,14 +108,15 @@ local aucmd_dict = {
     {
       pattern = "vimwiki",
       callback = function(opts)
-        vim.keymap.set('n', "<leader><cr>", [[<cmd>PARA<CR>]], { noremap=true, silent=true, buffer=opts.buf })
-        vim.keymap.set('n', "<leader>we", [[<cmd>PARAfile<CR>]], { noremap=true, silent=true, buffer=opts.buf })
+        vim.keymap.set('n', "gI", [[<cmd>PARAback<CR>]], { noremap = true, silent = true, buffer = opts.buf })
+        vim.keymap.set('n', "gr", [[<cmd>PARA<CR>]], { noremap = true, silent = true, buffer = opts.buf })
+        vim.keymap.set('n', "<leader>we", [[<cmd>PARAfile<CR>]], { noremap = true, silent = true, buffer = opts.buf })
       end,
     },
     {
       pattern = "help,lspinfo,qf,startuptime",
       callback = function(opts)
-        vim.keymap.set("n", "q", [[<cmd>close<CR>]], { noremap=true, silent=true, buffer=opts.buf })
+        vim.keymap.set("n", "q", [[<cmd>close<CR>]], { noremap = true, silent = true, buffer = opts.buf })
       end,
     },
   },
