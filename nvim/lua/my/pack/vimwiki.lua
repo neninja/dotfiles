@@ -101,20 +101,6 @@ vim.api.nvim_create_user_command('PARA', function()
   end,
   {}
 )
-vim.api.nvim_create_user_command('GtimelogUpdate', function()
-    -- move content from ~/timetrack.log to ~/.local/share/gtimelog/timelog.txt
-    local file = io.open(os.getenv("HOME") .. "/timetrack.log", "r")
-    local content = file:read("*a")
-    file:close()
-    local gtimelog_file = io.open(os.getenv("HOME") .. "/.local/share/gtimelog/timelog.txt", "a")
-    gtimelog_file:write(content)
-    gtimelog_file:close()
-    -- clear ~/timetrack.log
-    local command = "echo '' > ~/timetrack.log"
-    vim.cmd("silent !" .. command)
-  end,
-  {}
-)
 
 local function get_random_filename()
   local allowed_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'

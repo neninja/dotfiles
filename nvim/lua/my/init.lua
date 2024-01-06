@@ -115,6 +115,7 @@ local aucmd_dict = {
         vim.keymap.set('n', "<leader>dd", function()
           local captured_line = vim.fn.getline('.')
           captured_line = string.gsub(captured_line, "^%s*%d+%s*%.", "")
+          captured_line = string.gsub(captured_line, "^%s*%- %[%w*%]", "")
           captured_line = string.gsub(captured_line, "^%s*%- %[%s*%]", "")
           captured_line = string.gsub(captured_line, "^%s*%-", "")
           captured_line = string.gsub(captured_line, "^%s", "")
@@ -132,9 +133,13 @@ local aucmd_dict = {
           local log_line = timestamp .. ": " .. captured_line
           if (current_wiki_name ~= "") then
             log_line = timestamp .. ": " .. current_wiki_name .. ": " .. captured_line
+            if (current_wiki_name == "pkm") then
+              log_line = timestamp .. ": ** " .. captured_line
+            end
           end
 
-          local command = "echo " .. log_line .. " >> ~/timetrack.log"
+          local gtimelog_file = os.getenv("HOME") .. "/.local/share/gtimelog/timelog.txt"
+          local command = "echo '" .. log_line .. "' >> " .. gtimelog_file
           vim.cmd("silent !" .. command)
         end, { noremap = true, silent = true, buffer = opts.buf })
       end,
