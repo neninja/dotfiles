@@ -111,6 +111,32 @@ local aucmd_dict = {
         vim.keymap.set('n', "gI", [[<cmd>PARAback<CR>]], { noremap = true, silent = true, buffer = opts.buf })
         vim.keymap.set('n', "gr", [[<cmd>PARA<CR>]], { noremap = true, silent = true, buffer = opts.buf })
         vim.keymap.set('n', "<leader>we", [[<cmd>PARAfile<CR>]], { noremap = true, silent = true, buffer = opts.buf })
+
+        vim.keymap.set('n', "<leader>dd", function()
+          local captured_line = vim.fn.getline('.')
+          captured_line = string.gsub(captured_line, "^%s*%d+%s*%.", "")
+          captured_line = string.gsub(captured_line, "^%s*%- %[%s*%]", "")
+          captured_line = string.gsub(captured_line, "^%s*%-", "")
+          captured_line = string.gsub(captured_line, "^%s", "")
+          local timestamp = vim.fn.strftime("%Y-%m-%d %H:%M")
+
+          local current_vimwiki_id = vim.api.nvim_eval('vimwiki#vars#get_bufferlocal("wiki_nr")')
+          local current_wiki_name = ""
+          local vimwikis = vim.api.nvim_eval('vimwiki#vars#number_of_wikis()')
+          for i = 0, vimwikis do
+            if (i == current_vimwiki_id) then
+              current_wiki_name = vim.api.nvim_eval('vimwiki#vars#get_wikilocal("name", ' .. i .. ')')
+            end
+          end
+
+          local log_line = timestamp .. ": " .. captured_line
+          if (current_wiki_name ~= "") then
+            log_line = timestamp .. ": " .. current_wiki_name .. ": " .. captured_line
+          end
+
+          local command = "echo " .. log_line .. " >> ~/timetrack.log"
+          vim.cmd("silent !" .. command)
+        end, { noremap = true, silent = true, buffer = opts.buf })
       end,
     },
     {
