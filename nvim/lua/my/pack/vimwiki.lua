@@ -129,3 +129,6 @@ vim.api.nvim_create_user_command('PARAfile', function()
   end,
   {}
 )
+
+vim.g.calendar_diary = '~/vimwiki/pkm/_diary'
+vim.g.calendar_mark = 'right'

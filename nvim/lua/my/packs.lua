@@ -28,6 +28,9 @@ require('packer').startup(function(use)
 
   use {
     'vimwiki/vimwiki',
+    requires = {
+      'mattn/calendar-vim',
+    },
     config = function() require('my.pack.vimwiki') end,
   }
 
