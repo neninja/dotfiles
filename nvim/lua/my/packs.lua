@@ -25,6 +25,7 @@ packer.init({
 --# Packages
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+  use 'jwalton512/vim-blade'
 
   use {
     'vimwiki/vimwiki',
