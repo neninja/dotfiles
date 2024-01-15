@@ -19,13 +19,13 @@ vim.g.vimwiki_list = {
     auto_toc = 1,
     auto_generate_links = 1,
     generated_links_caption = 1,
-    rx_todo = [[\C\<\%(\<TODO\>\|\<DONE\>\|\<THANKS\>\|\<FIXME\>\|????\|!!!!\|\<CUIDADO\>\)\>]],
+    rx_todo = [[\C\%(\<TODO\>\|\<DONE\>\|\<THANKS\>\|\<FIXME\>\|\<CUIDADO\>\|????\|!!!!\)]],
   },
 
   wiki {
     name = 'wtf',
     path = '~/dev/blog/wtf',
-    rx_todo = [[\C\<\%(\<TODO\>\|\<THANKS\>\|\<FIXME\>\|????\|!!!!\|\<CUIDADO\>\)\>]],
+    rx_todo = [[\C\%(\<TODO\>\|\<DONE\>\|\<THANKS\>\|\<FIXME\>\|\<CUIDADO\>\|????\|!!!!\)]],
     index = 'README',
     ext = '.md',
     syntax = 'markdown',
