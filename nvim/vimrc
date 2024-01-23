@@ -298,6 +298,10 @@ command! -nargs=* Lake make! <args> | cw
 
 command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 
+command YankFullPathWorkDir let @+ = getcwd()
+command YankFullPathFile let @+ = expand("%:p")
+command YankRelativePathFile let @+ = expand('%:~:.')
+
 "# Mapeamentos
 let mapleader="\<space>"
 
