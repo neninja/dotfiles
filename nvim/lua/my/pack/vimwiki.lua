@@ -103,14 +103,7 @@ vim.api.nvim_create_user_command('PARA', function()
 )
 
 local function get_random_filename()
-  local allowed_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  local quantity = 4
-  local filename = ''
-  for _ = 1, quantity do
-    local random_index = math.random(1, #allowed_chars)
-    filename = filename .. string.sub(allowed_chars, random_index, random_index)
-  end
-  return filename
+  return os.date("%Y%m%d%H%M") -- zettelkasten
 end
 
 vim.api.nvim_create_user_command('PARAfile', function()
