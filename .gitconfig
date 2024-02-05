@@ -133,7 +133,7 @@
     sb = status -s -b
     #############
     sa = stash apply
-    sc = stash clear
+    sclear = stash clear
     sd = stash drop
     sl = stash list
     sp = stash pop
