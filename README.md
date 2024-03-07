@@ -30,14 +30,14 @@ qualidade --> t[eficiência no trabalho e estudos] --> l[menos tempo perdido] --
 cd ~
 mkdir -p dev
 cd dev
-git clone git@github.com:nenitf/dotfiles.git
+git clone git@github.com:neninja/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
 
 2. Configuração de ambiente do nvim em `nvim/lua/my/env.lua` se necessário
 
-> [Configuração do SSH](https://gist.github.com/nenitf/433e85b49acc802479654c75535eea2c)
+> [Configuração do SSH](https://gist.github.com/neninja/433e85b49acc802479654c75535eea2c)
 
 <details>
 <summary>Baixar Nvim</summary>
@@ -63,12 +63,12 @@ exe "source ".g:dotfiles."nvim/colors/calmo.vim"
 
 - O mais simples possível (Windows):
 ```sh
-curl https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc > %userprofile%\_vimrc
+curl https://raw.githubusercontent.com/neninja/dotfiles/main/nvim/vimrc > %userprofile%\_vimrc
 ```
 
 - O mais simples possível (Linux):
 ```sh
-wget https://raw.githubusercontent.com/nenitf/dotfiles/main/nvim/vimrc -O $HOME/.vimrc
+wget https://raw.githubusercontent.com/neninja/dotfiles/main/nvim/vimrc -O $HOME/.vimrc
 ```
 </details>
 
@@ -153,5 +153,5 @@ git reset --hard origin/main
 ## Adendos
 
 - [Por que utilizar Vim?](https://wtf.neni.dev/pqvim/)
-- [Wiki](https://github.com/nenitf/dotfiles/wiki)
+- [Wiki](https://github.com/neninja/dotfiles/wiki)
 - [My Vimrc](http://vimrc.neni.dev)

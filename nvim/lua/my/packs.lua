@@ -94,7 +94,7 @@ require('packer').startup(function(use)
   }
 
   use {
-    'nenitf/laravim',
+    'neninja/laravim',
     config = function() require 'laravim'.setup() end,
   }
 

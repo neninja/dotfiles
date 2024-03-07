@@ -3,8 +3,8 @@
 # Esse sript copia arquivos de configuração (dotfiles) selecionados para linux
 # e windows.
 #
-# AUTHOR: Neni @nenitf <http://neni.dev>
-# SOURCE: https://raw.githubusercontent.com/nenitf/dotfiles/install.sh
+# AUTHOR: Neni @neninja <http://neni.dev>
+# SOURCE: https://raw.githubusercontent.com/neninja/dotfiles/install.sh
 #
 # Agradecimentos:
 #   - @gbencke durante o meetup de python em 2018 onde explicou as vantagens da

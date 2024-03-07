@@ -1,1 +1,1 @@
--- https://github.com/nenitf/dotfiles/wiki/Vim-dissecado#spell
+-- https://github.com/neninja/dotfiles/wiki/Vim-dissecado#spell
