@@ -203,6 +203,12 @@ wrl(){
   # while read line; do $@; done;
 }
 
+# DESC: Simplificar comando de execução imnline do Laravel Tinker
+# USE: tinker "Storage::put(time().'.txt', 'hello')"
+tinker(){
+	sail art tinker --execute="$@"
+}
+
 # DESC: Repetir X vezes o comando Y
 # USE: fori 10 echo "olha"
 fori(){
