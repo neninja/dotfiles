@@ -177,6 +177,9 @@ alias lm='ls -alS --block-size=M'
 #}}}
 #{{{ PHP
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias s='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias sa='[ -f sail ] && bash sail || bash vendor/bin/sail art'
+alias sn='[ -f sail ] && bash sail || bash vendor/bin/sail npm'
 alias tdd='gon -c '
 alias tdds='gon -c ./vendor/bin/sail test '
 alias tddsf='gon -c ./vendor/bin/sail test --filter '
