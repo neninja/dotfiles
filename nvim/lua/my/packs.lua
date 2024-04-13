@@ -62,6 +62,16 @@ require('packer').startup(function(use)
   }
 
   use {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    branch = 'canary',
+    config = function()
+      require("CopilotChat").setup {
+        debug = true,
+      }
+    end,
+  }
+
+  use {
     'tpope/vim-fugitive',
     config = function()
       vim.keymap.set('n', '<leader>gg', [[:G<CR>]], {})
@@ -75,7 +85,11 @@ require('packer').startup(function(use)
   }
 
   use {
-    'mfussenegger/nvim-dap',
+    'rcarriga/nvim-dap-ui',
+    requires = {
+      'mfussenegger/nvim-dap',
+      'nvim-neotest/nvim-nio'
+    },
     config = function() require('my.pack.dap') end,
   }
 

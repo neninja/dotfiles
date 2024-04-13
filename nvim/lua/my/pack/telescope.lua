@@ -179,6 +179,31 @@ commander.add({
     cat = "nvim",
   },
   {
+    desc = "Copilot Chat Toggle",
+    keys = { "n", "<leader>cx", silent_noremap },
+    cmd = ":CopilotChatToggle<CR>",
+    cat = "Copilot Chat",
+  },
+  {
+    desc = "Copilot question/answer",
+    keys = { {"n", "v"}, "<leader>cc", silent_noremap },
+    cmd = function()
+      local input = vim.fn.input("Quick Chat: ")
+      if input ~= "" then
+        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+      end
+    end,
+    cat = "Copilot Chat",
+  },
+  {
+    desc = "Copilot prompt actions",
+    cmd = function()
+      local a = require("CopilotChat.actions")
+      require("CopilotChat.integrations.telescope").pick(a.prompt_actions())
+    end,
+    cat = "Copilot Chat",
+  },
+  {
     desc = "Toggle relativenumber",
     cmd = function()
       if (vim.o.relativenumber) then
