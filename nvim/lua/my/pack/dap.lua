@@ -117,26 +117,6 @@ dapui.setup({
     current_frame = "",
     expanded = ""
   },
-  layouts = {
-    {
-      elements = {
-        {
-          id = "breakpoints",
-          size = 0.30
-        },
-        {
-          id = "scopes",
-          size = 0.50
-        },
-        {
-          id = "stacks",
-          size = 0.20
-        },
-      },
-      position = "left",
-      size = 40
-    }
-  },
 })
 
 dap.listeners.before.attach.dapui_config = function()
