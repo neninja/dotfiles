@@ -179,6 +179,12 @@ commander.add({
     cat = "nvim",
   },
   {
+    desc = "Open DAP UI",
+    keys = { "n", "<leader>cx", silent_noremap },
+    cmd = ":CopilotChatToggle<CR>",
+    cat = "DAP",
+  },
+  {
     desc = "Copilot Chat Toggle",
     keys = { "n", "<leader>cx", silent_noremap },
     cmd = ":CopilotChatToggle<CR>",
@@ -266,11 +272,6 @@ commander.add({
     desc = "Search for TODO|FIXME",
     cmd = ":call NN_Tasks()<CR>",
     cat = "todo",
-  },
-  {
-    desc = "Create a note",
-    cmd = [[:execute 'tabedit ~/vimwiki/pkm/capture_' . strftime("%Y-%m-%d_%Hh") . '.md'<cr>]],
-    cat = "vimwiki",
   },
 })
 

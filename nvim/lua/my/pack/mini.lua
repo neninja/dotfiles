@@ -20,14 +20,6 @@ local my_items = {
   { name = 'Quit',               action = 'q',                    section = '' },
   { name = 'Find files',         action = 'Telescope find_files', section = 'Projeto' },
   { name = 'Git status',         action = 'Gedit :',              section = 'Projeto' },
-  {
-    name = 'Wikis',
-    action = function()
-      vim.cmd [[VimwikiUISelect]]
-      vim.cmd [[colo vimwiki_comfymonkey]]
-    end,
-    section = ''
-  },
 }
 --## Header
 -- https://textkool.com/en/ascii-art-generator?hl=default&vl=default&font=ANSI%20Shadow&text=neovim

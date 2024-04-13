@@ -28,14 +28,6 @@ require('packer').startup(function(use)
   use 'jwalton512/vim-blade'
 
   use {
-    'vimwiki/vimwiki',
-    requires = {
-      'mattn/calendar-vim',
-    },
-    config = function() require('my.pack.vimwiki') end,
-  }
-
-  use {
     'echasnovski/mini.nvim',
     config = function() require('my.pack.mini') end,
   }
