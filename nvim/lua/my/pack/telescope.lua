@@ -179,6 +179,14 @@ commander.add({
     cat = "nvim",
   },
   {
+    desc = "Scopes sidebar",
+    cmd = function()
+      local widgets = require('dap.ui.widgets')
+      widgets.sidebar(widgets.scopes).open()
+    end,
+    cat = "DAP",
+  },
+  {
     desc = "Scopes modal",
     cmd = function()
       local widgets = require('dap.ui.widgets')
