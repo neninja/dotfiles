@@ -179,9 +179,27 @@ commander.add({
     cat = "nvim",
   },
   {
-    desc = "Open DAP UI",
-    keys = { "n", "<leader>cx", silent_noremap },
-    cmd = ":CopilotChatToggle<CR>",
+    desc = "Scopes modal",
+    cmd = function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.scopes)
+    end,
+    cat = "DAP",
+  },
+  {
+    desc = "Frames list modal",
+    cmd = function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.frames)
+    end,
+    cat = "DAP",
+  },
+  {
+    desc = "Breakpoints list quickfix",
+    cmd = function()
+      require('dap').list_breakpoints()
+      vim.cmd('copen')
+    end,
     cat = "DAP",
   },
   {

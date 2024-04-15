@@ -77,11 +77,7 @@ require('packer').startup(function(use)
   }
 
   use {
-    'rcarriga/nvim-dap-ui',
-    requires = {
-      'mfussenegger/nvim-dap',
-      'nvim-neotest/nvim-nio'
-    },
+    'mfussenegger/nvim-dap',
     config = function() require('my.pack.dap') end,
   }
 

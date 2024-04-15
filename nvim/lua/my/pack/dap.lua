@@ -1,5 +1,4 @@
 local dap = require('dap')
-local dapui = require("dapui")
 
 vim.fn.sign_define('DapBreakpoint', {
   text = '🔴',
@@ -16,39 +15,21 @@ vim.fn.sign_define('DapStopped', { text = '⭕', texthl = 'DapStopped', linehl =
 
 
 vim.keymap.set('n', '<F5>', function() dap.continue() end)
-vim.keymap.set('n', '<F10>', function() dap.step_over() end)
---vim.keymap.set('n', '<F11>', function() dap.step_into() end)
---vim.keymap.set('n', '<F12>', function() dap.step_out() end)
+vim.keymap.set('n', '<F6>', function() dap.step_over() end)
+vim.keymap.set('n', '<F7>', function() dap.step_into() end)
+vim.keymap.set('n', '<F8>', function() dap.step_out() end)
 vim.keymap.set('n', '<Leader>dd', function() dap.toggle_breakpoint() end)
 vim.keymap.set('n', '<Leader>dl', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
-
-vim.keymap.set('n', '<Leader>du', function() dapui.toggle() end)
+vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
 
 vim.keymap.set('n', '<Leader>dx', function()
   dap.terminate()
-  dapui.close()
   dap.clear_breakpoints()
 end)
 
-vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end)
--- .exit               Closes the REPL
--- .c or .continue     Same as |dap.continue|
--- .n or .next         Same as |dap.step_over|
--- .into               Same as |dap.step_into|
--- .into_target        Same as |dap.step_into{askForTargets=true}|
--- .out                Same as |dap.step_out|
-
-vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function()
+vim.keymap.set('n', '<m-k>', function()
   require('dap.ui.widgets').hover()
 end)
-vim.keymap.set({ 'n', 'v' }, '<m-k>', function()
-  require('dapui').eval()
-end)
-
---vim.keymap.set('n', '<Leader>ds', function()
---  local widgets = require('dap.ui.widgets')
---  widgets.centered_float(widgets.scopes)
---end)
 
 -- https://gist.github.com/christopherfujino/80be0f4cd88f75c4991b478e6b071153
 
@@ -110,24 +91,3 @@ dap.configurations.php = {
     },
   }
 }
-
-dapui.setup({
-  icons = {
-    collapsed = "",
-    current_frame = "",
-    expanded = ""
-  },
-})
-
-dap.listeners.before.attach.dapui_config = function()
-  dapui.open()
-end
-dap.listeners.before.launch.dapui_config = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated.dapui_config = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited.dapui_config = function()
-  dapui.close()
-end
