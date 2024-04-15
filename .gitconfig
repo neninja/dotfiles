@@ -32,9 +32,14 @@
 [mergetool]
     keepBackup = false
 [merge]
-    tool = vimdiff
+    tool = diffconflicts
+    ; tool = vimdiff
     ; tool = nvimdiff
     ; tool = merge3
+[mergetool "diffconflicts"]
+    cmd = nvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
+    keepBackup = false
 [mergetool "merge3"]
     cmd = nvim -d -c \"wincmd l\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
 [mergetool "fugitive"]

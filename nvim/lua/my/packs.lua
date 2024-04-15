@@ -81,6 +81,8 @@ require('packer').startup(function(use)
     config = function() require('my.pack.dap') end,
   }
 
+  use "whiteinge/diffconflicts"
+
   use {
     'neovim/nvim-lspconfig',
     requires = {
