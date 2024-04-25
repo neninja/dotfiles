@@ -67,6 +67,9 @@
     cl = clone
     # git clb <branch-name> <url>
     clb = clone --single-branch --branch
+    cp = cherry-pick
+    cpa = cherry-pick --abort
+    cpc = cherry-pick --continue
     #############
     d = diff
     #############
