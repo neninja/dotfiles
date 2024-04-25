@@ -96,6 +96,7 @@
     #ps = push
     #ps = push origin HEAD
     pso = push origin
+    psf = push -f origin # obviamente é p origin
     psof = push -f origin
     psfo = push -f origin
     #############
