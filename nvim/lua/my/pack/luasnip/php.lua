@@ -176,9 +176,9 @@ return {
   -- PHPUnit {{{
   ls.s(
     { trig = "dataprovider", name = "phpunit data provider", dscr = "function { yield ... }" },
-    fmta("public static function <name>Provider()\n{\n\tyield \"<cenario>\" =>> [ <params> ];\n}", {
+    fmta("public static function <name>()\n{\n\tyield [ <params> ];\n}\n\n#[DataProvider('<name2>')]", {
       name = ls.i(1),
-      cenario = ls.i(2, "data set"),
+      name2 = rep(1),
       params = ls.i(0, "$parametro1, $parametro2, $parametro3"),
     }, in_func)
   ),
@@ -196,7 +196,7 @@ return {
   ),
 
   ls.s(
-    { trig = "lmock", name = "simple mock", dscr = "$this->mock(...::class)" },
+    { trig = "mock", name = "simple mock", dscr = "$this->mock(...::class)" },
     fmt([[
     $this->mock({classname}::class)
         ->shouldReceive('{method}')
@@ -209,7 +209,7 @@ return {
   ),
 
   ls.s(
-    { trig = "lmocki", name = "complex mock", dscr = "$this->mock(...::class, function (MockInterface $mock) { ... })" },
+    { trig = "mocki", name = "complex mock", dscr = "$this->mock(...::class, function (MockInterface $mock) { ... })" },
     fmt([[
         $this->mock({classname}::class, function (MockInterface $mock) {{
             $mock->shouldReceive('{method}')
