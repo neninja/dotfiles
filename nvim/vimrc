@@ -295,7 +295,7 @@ nnoremap    <expr><leader>l     empty(filter(getwininfo(), 'v:val.loclist')) ? "
 nnoremap    <leader>s           :split<CR>
 nnoremap    <leader>t           :tab split<CR>
 nnoremap    <leader>v           :vsplit<CR>
-nnoremap    <leader>y           my^vg_"+y:echo "Copiado!!"<CR>
+nnoremap    <leader>y           :YankRelativePathFile<CR>
 vnoremap    <leader>y           "+y:echo "Copiado!!"<CR>
 nnoremap    <leader>z           za
 
@@ -377,10 +377,4 @@ augroup filetype_detect
   au BufRead,BufNewFile *.gv setfiletype dot
   au BufRead,BufNewFile *.todone setfiletype todone
   au BufRead,BufNewFile neni.* set buftype=nofile
-augrou END
-
-augroup commentstring
-  au!
-  au FileType php setlocal commentstring=#\ %s,//\ %s,/\\*\ %s\ \\*/
-  au FileType html setlocal commentstring=<!--\ %s\ -->
 augrou END
