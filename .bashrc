@@ -331,6 +331,7 @@ gopher(){
 #{{{ Exports
 export GOPATH=$HOME/go
 
+# export VISUAL=nvim
 export VISUAL=vim
 export EDITOR=$VISUAL
 
