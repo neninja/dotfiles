@@ -36,6 +36,18 @@ if awesome.startup_errors then
   })
 end
 
+local function echo(params)
+  params = params or {}
+  local options = {
+    title = nil,
+    preset = "low",
+    text = "dump",
+  }
+
+  for k,v in pairs(params) do options[k] = v end
+  naughty.notify(options)
+end
+
 -- Handle runtime errors after startup
 do
   local in_error = false
@@ -62,6 +74,9 @@ local terminal = "x-terminal-emulator"
 local editor = os.getenv("EDITOR") or "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 local screenshot = "flameshot gui"
+local logseq = "/home/neni/bin/logseq.AppImage"
+local system_monitor = "gnome-system-monitor"
+local firefox_killer = "pkill -f firefox"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -292,8 +307,15 @@ local globalkeys = gears.table.join(table.unpack({
   k("client", "acessar tela anterior", { modkey, "Control", }, "k", function() awful.screen.focus_relative(-1) end),
   k("launcher", "terminal", { modkey, }, "Return", function() awful.spawn(terminal) end),
   k("launcher", "prompt", { modkey, }, "r", function() awful.screen.focused().mypromptbox:run() end),
-  k("launcher", "launcher", { modkey, }, "p", function() menubar.show() end),
-  k("launcher", "launcher", { modkey, }, "s", function() awful.spawn(screenshot) end),
+  k("launcher", "menu", { modkey, }, "p", function() menubar.show() end),
+  k("launcher", "screenshot", { modkey, }, "s", function() awful.spawn(screenshot) end),
+  k("launcher", "logseq", { modkey, }, "q", function()
+    awful.client.run_or_raise(logseq, function (c)
+      return awful.rules.match(c, {class = "Logseq"})
+    end, function(c) c:jump_to() end)
+  end),
+  k("launcher", "system monitor", { modkey, "Control", }, "q", function() awful.spawn(system_monitor) end),
+  k("launcher", "firefox killer", { modkey, "Shift", "Control", }, "k", function() awful.spawn(firefox_killer) end),
 }))
 
 local clientkeys = gears.table.join(table.unpack({
