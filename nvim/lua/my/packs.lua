@@ -40,6 +40,9 @@ require('packer').startup(function(use)
         modes = {
           search = {
             enabled = false
+          },
+          char = {
+            enabled = false
           }
         }
       })
