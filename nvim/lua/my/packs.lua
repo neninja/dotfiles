@@ -72,7 +72,6 @@ require('packer').startup(function(use)
 
   use {
     'nvim-tree/nvim-tree.lua',
-    tag = 'nightly',
     config = function() require('my.pack.tree') end,
   }
 
