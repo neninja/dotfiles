@@ -401,8 +401,8 @@ return {
   ),
 
   ls.s(
-    { trig = "pv", name = "print value", dscr = 'fmt.Printf("%+v\\n", ...)' }, --{{{
-    fmta('fmt.Printf("%+v\\n", <>)', { ls.i(0, 'var_name') })                  --}}}
+    { trig = "pv", name = "print value", dscr = 'fmt.Printf("%#v\\n", ...)' }, --{{{
+    fmta('fmt.Printf("%#v\\n", <>)', { ls.i(0, 'var_name') })                  --}}}
   ),
 
   ls.s(
