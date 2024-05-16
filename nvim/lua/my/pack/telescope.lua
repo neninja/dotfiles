@@ -82,6 +82,21 @@ commander.add({
     cat = "git",
   },
   {
+    desc = "Git stash list -p",
+    cmd = ":Gclog -g stash<CR>",
+    cat = "git",
+  },
+  {
+    desc = "Git log project",
+    cmd = ":Gclog --<CR>",
+    cat = "git",
+  },
+  {
+    desc = "Git log current file",
+    cmd = ":Gclog -- %<CR>",
+    cat = "git",
+  },
+  {
     desc = "generate tags (ctags)",
     cmd = ":call NN_ctags()<CR>",
     cat = "ctags",
@@ -304,6 +319,7 @@ commander.add({
 --# Carregamento de extensões
 require("telescope").load_extension "emoji"
 require("telescope").load_extension "commander"
+require("telescope").load_extension "undo"
 
 require('aerial').setup()
 require('telescope').load_extension "aerial"
