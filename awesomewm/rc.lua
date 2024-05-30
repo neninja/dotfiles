@@ -74,7 +74,7 @@ local terminal = "x-terminal-emulator"
 local editor = os.getenv("EDITOR") or "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 local screenshot = "flameshot gui"
-local logseq = "/home/neni/bin/logseq.AppImage"
+local ticktick = "ticktick"
 local system_monitor = "gnome-system-monitor"
 local firefox_killer = "pkill -f firefox"
 
@@ -309,9 +309,9 @@ local globalkeys = gears.table.join(table.unpack({
   k("launcher", "prompt", { modkey, }, "r", function() awful.screen.focused().mypromptbox:run() end),
   k("launcher", "menu", { modkey, }, "p", function() menubar.show() end),
   k("launcher", "screenshot", { modkey, }, "s", function() awful.spawn(screenshot) end),
-  k("launcher", "logseq", { modkey, }, "q", function()
-    awful.client.run_or_raise(logseq, function (c)
-      return awful.rules.match(c, {class = "Logseq"})
+  k("launcher", "ticktick", { modkey, }, "q", function()
+    awful.client.run_or_raise(ticktick, function (c)
+      return awful.rules.match(c, {class = "ticktick"})
     end, function(c) c:jump_to() end)
   end),
   k("launcher", "system monitor", { modkey, "Control", }, "q", function() awful.spawn(system_monitor) end),
