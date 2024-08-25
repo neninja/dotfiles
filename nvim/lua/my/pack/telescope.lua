@@ -233,7 +233,7 @@ commander.add({
   },
   {
     desc = "Copilot question/answer",
-    keys = { {"n", "v"}, "<leader>cc", silent_noremap },
+    keys = { { "n", "v" }, "<leader>cc", silent_noremap },
     cmd = function()
       local input = vim.fn.input("Quick Chat: ")
       if input ~= "" then
