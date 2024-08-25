@@ -112,6 +112,11 @@ require('packer').startup(function(use)
   }
 
   use {
+      'neninja/nvim-dailypong',
+      config = function() require('dailypong').setup() end,
+  }
+
+  use {
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-buffer',
