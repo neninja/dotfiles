@@ -132,14 +132,14 @@ require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function() require('my.pack.treesitter') end,
-    -- tag = "v0.9.2", -- vive quebrando taloco
+    commit = '3de418e73d5b912096229aaeea8bb7aef5094e0d',
   }
 
   use {
     'nvim-telescope/telescope.nvim',
     -- tag = "0.1.1", -- attempt to call get_lang on null na preview
     requires = {
-      { 'stevearc/aerial.nvim' },
+      { 'stevearc/aerial.nvim', commit = '228fad11393322537d9662c0347f75549a3d6c0a' },
       { 'nvim-lua/plenary.nvim' },
       { 'xiyaowong/telescope-emoji.nvim' },
       { 'debugloop/telescope-undo.nvim' },
