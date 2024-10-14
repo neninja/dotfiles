@@ -164,6 +164,7 @@ alias dca="docker-compose exec app"
 #{{{ CD
 alias cdf="cd $HOME/dev/dotfiles"
 alias cdev="cd $HOME/dev"
+alias cdphp="cd $HOME/dev/php"
 alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard\n-> to clean: rm -rf * .*"'
 alias .b='. ~/.bashrc'
 alias ..='cd ..'
@@ -179,6 +180,16 @@ alias lm='ls -alS --block-size=M'
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias s='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias sa='[ -f sail ] && bash sail || bash vendor/bin/sail art'
+alias sc='[ -f sail ] && bash sail || bash vendor/bin/sail composer'
+alias sup='[ -f sail ] && bash sail || bash vendor/bin/sail up -d'
+alias sd='[ -f sail ] && bash sail || bash vendor/bin/sail down'
+alias sam='[ -f sail ] && bash sail || bash vendor/bin/sail artisan migrate:fresh --seed'
+alias sao='[ -f sail ] && bash sail || bash vendor/bin/sail artisan optimize:clear'
+alias saq='[ -f sail ] && bash sail || bash vendor/bin/sail composer art queue:work'
+alias sci='[ -f sail ] && bash sail || bash vendor/bin/sail composer ide'
+alias sp='[ -f sail ] && bash sail || bash vendor/bin/sail php'
+alias spp='[ -f sail ] && bash sail || bash vendor/bin/sail php ./vendor/bin/pint'
+alias sppd='[ -f sail ] && bash sail || bash vendor/bin/sail php ./vendor/bin/pint --dirty'
 alias sn='[ -f sail ] && bash sail || bash vendor/bin/sail npm'
 alias tdd='gon -c '
 alias tdds='gon -c ./vendor/bin/sail test '
