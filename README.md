@@ -76,8 +76,8 @@ wget https://raw.githubusercontent.com/neninja/dotfiles/main/nvim/vimrc -O $HOME
 
 ### Nvim
 
-- `~/.vimrc-pre.vim`: **antes** do carregamento de vários módulos
-- `~/.vimrc-local.vim`: **depois** do carregamento completo
+- `~/vimrc-pre.vim`: **antes** do carregamento de vários módulos
+- `~/vimrc-local.vim`: **depois** do carregamento completo
 - `/path/do/projeto/.exvrc`, `/path/do/projeto/.exrc`, `/path/do/projeto/.nvim.lua` ou `.rgignore` (rg): **depois** do carregamento completo, somente no projeto aberto
 
 ### Bash
