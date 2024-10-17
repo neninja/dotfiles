@@ -48,6 +48,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set nosmartcase
+set exrc
 set noemoji
 if !has('nvim')
   set renderoptions=
@@ -375,6 +376,50 @@ augroup filetype_detect
   au!
   au BufRead,BufNewFile *.phtml setfiletype html
   au BufRead,BufNewFile *.gv setfiletype dot
-  au BufRead,BufNewFile *.todone setfiletype todone
   au BufRead,BufNewFile neni.* set buftype=nofile
+
+  au FileType html,javascriptreact,typescriptreact inoremap <buffer> <c-d> <esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit
+  au FileType html,javascriptreact,typescriptreact inoremap <buffer> <c-d><c-s> <esc>bi<<esc>ea /><esc>hi
+  au FileType html,javascriptreact,typescriptreact inoremap <buffer> <c-d><c-d> <esc>"tyiwi<<esc>ea></<esc>"tpa><esc>cit<cr><esc>O
+
+  au FileType gitcommit inoreabbrev <buffer> b- :bug:
+  au FileType gitcommit inoreabbrev <buffer> n- :new:
+  au FileType gitcommit inoreabbrev <buffer> 1- :100:
+  au FileType gitcommit inoreabbrev <buffer> c- :cop:
+  au FileType gitcommit inoreabbrev <buffer> s- :sos:
+  au FileType gitcommit inoreabbrev <buffer> z- :zzz:
+  au FileType gitcommit inoreabbrev <buffer> bn- :bug:(nvim)
+  au FileType gitcommit inoreabbrev <buffer> nn- :new:(nvim)
+  au FileType gitcommit inoreabbrev <buffer> 1n- :100:(nvim)
+  au FileType gitcommit inoreabbrev <buffer> sn- :sos:(nvim)
+  au FileType gitcommit inoreabbrev <buffer> ba- :bug:(awm)
+  au FileType gitcommit inoreabbrev <buffer> na- :new:(awm)
+  au FileType gitcommit inoreabbrev <buffer> 1a- :100:(awm)
+  au FileType gitcommit inoreabbrev <buffer> sa- :sos:(awm)
+  au FileType gitcommit inoreabbrev <buffer> bg- :bug:(git)
+  au FileType gitcommit inoreabbrev <buffer> ng- :new:(git)
+  au FileType gitcommit inoreabbrev <buffer> 1g- :100:(git)
+  au FileType gitcommit inoreabbrev <buffer> bb- :bug:(bash)
+  au FileType gitcommit inoreabbrev <buffer> nb- :new:(bash)
+  au FileType gitcommit inoreabbrev <buffer> 1b- :100:(bash)
+
+  au FileType markdown setlocal foldmethod=expr
+  au FileType markdown setlocal foldexpr=FoldExprMarkdown()
+  au FileType markdown setlocal foldtext=FoldTextMarkdown()
+
+  au FileType vim setlocal foldmethod=expr
+  au FileType vim setlocal foldexpr=FoldExprVim()
+  au FileType vim setlocal foldtext=FoldTextVim()
+
+  au FileType help,lspinfo,qf,startuptime nnoremap <buffer> q :close<CR>
+
+  au FileType gitcommit startinsert
+
+  au FileType markdown,txt,gitcommit iskeyword^⁼-
+  au FileType php iskeyword^⁼$
+
+  au FileType lua,dart,rust,javascript,javascriptreact,typescript,typescriptreact setlocal ts=2 sts=2 sw=2
+  au FileType gdscript,go,php setlocal ts=4 sts=4 sw=4
+
+  au FileType gdscript setlocal expandtab=8
 augrou END

@@ -84,3 +84,36 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
   end,
 })
+
+-- ## Keymaps
+local nmap = function(keys, func, desc)
+  vim.keymap.set('n', keys, func, { desc = desc })
+end
+
+nmap('[d', vim.diagnostic.goto_prev, "Goto prev diagnostic")
+nmap(']d', vim.diagnostic.goto_next, "Goto next diagnostic")
+nmap('<leader>ee', vim.diagnostic.open_float, "Show diagnostic on float")
+nmap('<leader>eq', vim.diagnostic.setloclist, "Show diagnostic on loclist")
+
+nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+nmap('gs', ":split | lua vim.lsp.buf.definition()<CR>", '[G]oto Definition [S]plited')
+nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+nmap('<leader>gs', require('telescope.builtin').lsp_document_symbols, '[G]o to document [S]ymbols')
+
+-- See `:help K` for why this keymap
+nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+nmap('<leader>=', function()
+  if vim.lsp.buf.format then
+    vim.lsp.buf.format()
+  elseif vim.lsp.buf.formatting then
+    vim.lsp.buf.formatting()
+  end
+end, 'Format current buffer with LSP')

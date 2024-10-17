@@ -1,1 +1,0 @@
--- https://github.com/neninja/dotfiles/wiki/Vim-dissecado#spell
