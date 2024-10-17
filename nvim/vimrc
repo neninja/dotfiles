@@ -415,8 +415,8 @@ augroup filetype_detect
 
   au FileType gitcommit startinsert
 
-  au FileType markdown,txt,gitcommit iskeyword^⁼-
-  au FileType php iskeyword^⁼$
+  au FileType markdown,txt,gitcommit setlocal iskeyword^=-
+  au FileType php setlocal iskeyword^=$
 
   au FileType lua,dart,rust,javascript,javascriptreact,typescript,typescriptreact setlocal ts=2 sts=2 sw=2
   au FileType gdscript,go,php setlocal ts=4 sts=4 sw=4
