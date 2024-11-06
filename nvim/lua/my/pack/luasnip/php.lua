@@ -8,20 +8,6 @@ local util = require("my.pack.luasnip.util")
 local ai = require("luasnip.nodes.absolute_indexer")
 local partial = require("luasnip.extras").partial
 
-local function not_in_function()
-  return not util.is_in_function()
-end
-
-local in_func = {
-  show_condition = util.is_in_function,
-  condition = util.is_in_function,
-}
-
-local not_in_func = {
-  show_condition = not_in_function,
-  condition = not_in_function,
-}
-
 return {
   ls.s(
     { trig = "if", name = "if", dscr = "if (...) {...}" },
@@ -29,23 +15,6 @@ return {
       condition = ls.i(1, "val"),
       finally   = ls.i(0),
     })
-  ),
-
-  ls.s(
-    { trig = "m", name = "method", dscr = "... function ...(...)... {...}" },
-    fmta("<access>function <name>(<params>)<r><ret>\n{\n\t<finally>\n}", {
-      access  = ls.c(1, {
-        ls.t "private ",
-        ls.t "protected ",
-        ls.t "public "
-      }),
-      name    = ls.i(2, "functionName"),
-      params  = ls.i(3, "params"),
-      r       = m(4, "^$", "", ": "),
-      ret     = ls.i(4, ""),
-      finally = ls.i(0),
-    }),
-    not_in_func
   ),
 
   ls.s(
@@ -84,11 +53,6 @@ return {
   ls.s(
     { trig = "t", name = "$this", dscr = "$this" },
     fmt([[$this{}]], { ls.i(0) }, in_func)
-  ),
-
-  ls.s(
-    { trig = "php", name = "php tag", dscr = "<?php" },
-    fmt("<?php\n\n{}", { ls.i(0) }, not_in_func)
   ),
 
   ls.s(

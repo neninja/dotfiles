@@ -1,7 +1,5 @@
 local ls = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
-local ts_utils = require("nvim-treesitter.ts_utils")
-local ts_locals = require("nvim-treesitter.locals")
 local rep = require("luasnip.extras").rep
 local ai = require("luasnip.nodes.absolute_indexer")
 
@@ -96,63 +94,6 @@ local function transform(text, info)
   return ls.t(text)
 end
 
-local get_node_text = vim.treesitter.get_node_text
-local handlers = {
-  parameter_list = function(node, info)
-    local result = {}
-
-    local count = node:named_child_count()
-    for idx = 0, count - 1 do
-      table.insert(result, transform(get_node_text(node:named_child(idx), 0), info))
-      if idx ~= count - 1 then
-        table.insert(result, ls.t({ ", " }))
-      end
-    end
-
-    return result
-  end,
-
-  type_identifier = function(node, info)
-    local text = get_node_text(node, 0)
-    return { transform(text, info) }
-  end,
-}
-
-local function return_value_nodes(info)
-  local cursor_node = ts_utils.get_node_at_cursor()
-  local scope_tree = ts_locals.get_scope_tree(cursor_node, 0)
-
-  local function_node
-  for _, scope in ipairs(scope_tree) do
-    if
-      scope:type() == "function_declaration"
-      or scope:type() == "method_declaration"
-      or scope:type() == "func_literal"
-    then
-      function_node = scope
-      break
-    end
-  end
-
-  if not function_node then
-    return
-  end
-
-  local query = vim.treesitter.query.get("go", "luasnip")
-  for _, node in query:iter_captures(function_node, 0) do
-    if handlers[node:type()] then
-      return handlers[node:type()](node, info)
-    end
-  end
-  return ls.t({ "" })
-end
-
----Transforms the given arguments into nodes wrapped in a snippet node.
-M.make_return_nodes = function(args)
-  local info = { index = 0, err_name = args[1][1] }
-  return ls.sn(nil, return_value_nodes(info))
-end
-
 ---Runs the command in shell.
 -- @param command string
 -- @return table
@@ -180,35 +121,11 @@ M.last_lua_module_section = function(args)
   })
 end
 
----Returns true if the cursor in a function body.
--- @return boolean
-function M.is_in_function()
-  local current_node = ts_utils.get_node_at_cursor()
-  if not current_node then
-    return false
-  end
-  local expr = current_node
-
-  while expr do
-    if expr:type() == "function_declaration" or expr:type() == "method_declaration" then
-      return true
-    end
-    expr = expr:parent()
-  end
-  return false
-end
-
 ---Returns true if the cursor in a test file.
 -- @return boolean
 function M.is_in_test_file()
   local filename = vim.fn.expand("%:p")
   return vim.endswith(filename, "_test.go")
-end
-
----Returns true if the cursor in a function body in a test file.
--- @return boolean
-function M.is_in_test_function()
-  return M.is_in_test_file() and M.is_in_function()
 end
 
 math.randomseed(os.time())

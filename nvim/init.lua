@@ -1,7 +1,10 @@
--- THANKS http://lua-users.org/lists/lua-l/2020-01/msg00345.html
-local fullpath = debug.getinfo(1,"S").source:sub(2)
-fullpath = io.popen("realpath '"..fullpath.."'", 'r'):read('*all'):gsub('[\n\r]*$','')
-DOTFILES_FULLPATH_NVIM, _ = fullpath:match('^(.*/)([^/]-)$')
+-- Define o caminho fixo onde o arquivo está localizado
+DOTFILES_FULLPATH_NVIM = "~/dev/dotfiles/nvim/"
+
+-- Expande o caminho para o formato absoluto
+DOTFILES_FULLPATH_NVIM = vim.fn.expand(DOTFILES_FULLPATH_NVIM)
+
+-- Adiciona o caminho ao runtimepath do Vim
 vim.opt.runtimepath:append(DOTFILES_FULLPATH_NVIM)
 
 require('my.init')

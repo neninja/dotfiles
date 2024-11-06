@@ -20,28 +20,9 @@ local function ret_directory()
   return vim.fn.expand('%:p:h:t')
 end
 
-local function not_in_function()
-  return not util.is_in_function()
-end
-
-local in_test_func = {
-  show_condition = util.is_in_test_function,
-  condition = util.is_in_test_function,
-}
-
 local in_test_file = {
   show_condition = util.is_in_test_file,
   condition = util.is_in_test_file,
-}
-
-local in_func = {
-  show_condition = util.is_in_function,
-  condition = util.is_in_function,
-}
-
-local not_in_func = {
-  show_condition = not_in_function,
-  condition = not_in_function,
 }
 
 return {
@@ -61,46 +42,6 @@ return {
   ),
 
   ls.s(
-    { trig = "f", name = "Function", dscr = "Create a function or a method" }, --{{{
-    fmta(
-      "func <name>(<args>) <ret>{\n\t<finally>\n}", {
-        name    = ls.i(1, "Name"),
-        args    = ls.i(2),
-        ret     = ls.c(3, {
-          ls.t "",
-          ls.sn(nil, fmt("{} ", {
-            ls.i(1, "error"),
-          })),
-          ls.sn(nil, fmt("({}, {}) ", {
-            ls.i(1, "ret"),
-            ls.i(2, "error"),
-          })),
-        }),
-        finally = ls.i(0),
-      }), --}}}
-    not_in_func
-  ),
-
-  ls.s(
-    { trig = "m", name = "Method", dscr = "Create a method" }, --{{{
-    fmta(
-      "func (<var>) <name>(<args>) <ret> {\n\t<finally>\n}", {
-        var     = ls.i(1, "obj Obj"),
-        name    = ls.i(2, "Name"),
-        args    = ls.i(3),
-        ret     = ls.c(4, {
-          ls.i(1, "error"),
-          ls.sn(nil, fmt("({}, {}) ", {
-            ls.i(1, "ret"),
-            ls.i(2, "error"),
-          })),
-        }),
-        finally = ls.i(0),
-      }), --}}}
-    not_in_func
-  ),
-
-  ls.s(
     { trig = "p", name = "package name", dscr = "package ..." }, --{{{
     fmta("package <>", {
       ls.d(1, function()
@@ -117,12 +58,6 @@ return {
   ls.s(
     { trig = "r", name = "return", dscr = "return" }, --{{{
     fmta("return", {})                                --}}}
-  ),
-
-  ls.s(
-    { trig = "pmain", name = "Main", dscr = "Create a main function" }, --{{{
-    fmta("package main\n\nfunc main() {\n\t<>\n}", ls.i(0)),            --}}}
-    not_in_func
   ),
 
   ls.s(
@@ -288,41 +223,6 @@ return {
   --  ), --}}}
   --  in_test_file
   --),
-
-  ls.s(
-    { trig = "gocmp", dscr = "Create an if block comparing with cmp.Diff" }, --{{{
-    fmt(
-      [[
-        if diff := cmp.Diff({}, {}); diff != "" {{
-          t.Errorf("(-want +got):\\n%s", diff)
-        }}
-      ]], {
-        ls.i(1, "want"),
-        ls.i(2, "got"),
-      }), --}}}
-    in_test_func
-  ),
-
-  ls.s(
-    { trig = "mock", name = "Mocks", dscr = "Create a mock with defering assertion" }, --{{{
-    fmt("{} := &mocks.{}{{}}\ndefer {}.AssertExpectations(t)\n{}", {
-      ls.i(1, "m"),
-      ls.i(2, "Mocked"),
-      rep(1),
-      ls.i(0),
-    }), --}}}
-    in_test_func
-  ),
-
-  ls.s(
-    { trig = "noerr", name = "Require No Error", dscr = "Add a require.NoError call" }, --{{{
-    ls.c(1, {
-      ls.sn(nil, fmt("require.NoError(t, {})", { ls.i(1, "err") })),
-      ls.sn(nil, fmt('require.NoError(t, {}, "{}")', { ls.i(1, "err"), ls.i(2) })),
-      ls.sn(nil, fmt('require.NoErrorf(t, {}, "{}", {})', { ls.i(1, "err"), ls.i(2), ls.i(3) })),
-    }), --}}}
-    in_test_func
-  ),
 
   ls.s(
     { trig = "ft", name = "Test/Subtest", dscr = "Create subtests and their function stubs" }, --{{{
