@@ -37,10 +37,8 @@ require("nvim-tree").setup({
         symlink = "",
         modified = "",
         folder = {
-          default = "",
-          open = "",
-          -- default = "▸",
-          -- open = "▾",
+          default = "▸",
+          open = "▾",
 
           arrow_closed = "",
           arrow_open = "",
