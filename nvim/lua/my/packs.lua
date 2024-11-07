@@ -51,6 +51,9 @@ require('packer').startup(function(use)
 
   use {
     "zbirenbaum/copilot.lua",
+    requires = {
+      { 'github/copilot.vim' },
+    },
     cmd = "Copilot",
     event = "InsertEnter",
     config = function() require('my.pack.copilot') end,
