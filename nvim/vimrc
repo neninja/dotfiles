@@ -343,7 +343,6 @@ tnoremap    <c-l>       cls<CR>|" limpa terminal Windows
 nnoremap    <c-n>       yiwV|" substitue multi cursors
 xnoremap    <c-n>       :s/<c-r><c-*>//g<left><left>|" substitue multi cursors
 nnoremap    <c-s>       mi<esc>gg=G`i|" indenta todo o arquivo
-nnoremap    <c-q>       q:
 nnoremap    <c-t>       :tj <c-r><c-w><CR>|" goto definition (tag jump do ctags)
 nnoremap    <c-z>       <nop>
 inoremap    <c-z>       <c-r>=<SID>AutoCompleteCarinhas()<CR>
