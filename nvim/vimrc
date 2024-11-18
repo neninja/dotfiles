@@ -422,3 +422,10 @@ augroup filetype_detect
 
   au FileType gdscript setlocal expandtab=8
 augrou END
+
+"# Plugins
+let g:copilot_filetypes = {
+      \ '*': v:false,
+\ }
+
+let g:copilot_no_tab_map = v:true
