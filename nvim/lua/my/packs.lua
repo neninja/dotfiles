@@ -51,8 +51,9 @@ require('packer').startup(function(use)
 
   use {
     "zbirenbaum/copilot.lua",
+    -- por algum motivo é necessário somente na inicialização/auth do windows
     requires = {
-      { 'github/copilot.vim' },
+      'github/copilot.vim',
     },
     cmd = "Copilot",
     event = "InsertEnter",
@@ -61,7 +62,7 @@ require('packer').startup(function(use)
 
   use {
     'CopilotC-Nvim/CopilotChat.nvim',
-    branch = 'canary',
+    branch = 'main',
     config = function()
       require("CopilotChat").setup {
         debug = true,
@@ -135,7 +136,18 @@ require('packer').startup(function(use)
       { 'xiyaowong/telescope-emoji.nvim' },
       { 'debugloop/telescope-undo.nvim' },
       { 'FeiyouG/commander.nvim' },
+
+      {
+        'stevearc/aerial.nvim',
+        -- commit = '228fad11393322537d9662c0347f75549a3d6c0a'
+      },
     },
     config = function() require('my.pack.telescope') end,
+  }
+
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = function() require('my.pack.treesitter') end,
+    -- commit = '3de418e73d5b912096229aaeea8bb7aef5094e0d',
   }
 end)

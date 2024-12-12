@@ -320,3 +320,6 @@ commander.add({
 require("telescope").load_extension "emoji"
 require("telescope").load_extension "commander"
 require("telescope").load_extension "undo"
+
+require('aerial').setup()
+require('telescope').load_extension "aerial"
