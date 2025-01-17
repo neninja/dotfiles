@@ -4,7 +4,8 @@ local actions = require("telescope.actions")
 require('telescope').setup {
   defaults = {
     file_ignore_patterns = {
-      "^.git",
+      "^.git/.*",
+      "^.git\\.*",
       "^android", "^linux", "^ios", "^macos", "^windows", "^build", -- flutter
       "^node_modules",
       "^vendor",
