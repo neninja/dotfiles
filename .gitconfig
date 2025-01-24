@@ -62,6 +62,7 @@
     c = commit -m
     ca = commit --amend
     ce = commit --amend --no-edit
+    cet = commit -m "empty commit as a trigger" --allow-empty
     cm = commit
     #############
     cl = clone
