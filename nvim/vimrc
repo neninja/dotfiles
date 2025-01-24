@@ -117,6 +117,7 @@ set statusline+=\ %{expand('%:~:.')}\ %r\%m
 set statusline+=\%=
 set statusline+=\ %p%%\ %l:\%c
 set statusline+=\ %y
+set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}
 
 "# Funções
 function! NN_ctags()
