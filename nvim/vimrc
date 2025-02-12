@@ -430,3 +430,22 @@ let g:copilot_filetypes = {
 \ }
 
 let g:copilot_no_tab_map = v:true
+
+"## Tatakaer
+augroup TatakaeCommand
+    autocmd!
+    autocmd BufRead,BufNewFile *.ttk.php command! Tatakae silent call s:RunTinkerOutputFunc()
+    autocmd BufRead,BufNewFile *.ttk.php nnoremap <buffer> !! :Tatakae<CR>
+    autocmd BufNewFile,BufRead *.ttkaer set filetype=ttkaer
+    autocmd BufNewFile,BufRead *.ttkaer setlocal bufhidden=hide nobuflisted
+    setlocal nobuflisted
+augroup END
+
+function! s:RunTinkerOutputFunc()
+    execute '!./vendor/bin/sail art tinker % > output.ttkaer'
+    if bufwinnr('output.ttkaer') != -1
+        execute bufwinnr('output.ttkaer') . 'wincmd w'
+    else
+        execute 'vsplit output.ttkaer'
+    endif
+endfunction

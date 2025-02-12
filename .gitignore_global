@@ -17,3 +17,6 @@ tags
 # vim rest console
 *.rest
 .vrc*
+
+*.ttkaer
+*.ttk.php
