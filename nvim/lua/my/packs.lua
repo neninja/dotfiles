@@ -52,11 +52,11 @@ require('packer').startup(function(use)
   use {
     "zbirenbaum/copilot.lua",
     -- por algum motivo é necessário somente na inicialização/auth do windows
+    event = "InsertEnter",
     requires = {
       'github/copilot.vim',
     },
     cmd = "Copilot",
-    event = "InsertEnter",
     config = function() require('my.pack.copilot') end,
   }
 
@@ -84,10 +84,13 @@ require('packer').startup(function(use)
 
   use {
     'mfussenegger/nvim-dap',
+    event = 'VeryLazy',
     config = function() require('my.pack.dap') end,
   }
 
-  use "whiteinge/diffconflicts"
+  use { 'rhysd/diffconflicts',
+    cmd = 'DiffConflicts' -- Carregar sob o comando
+  }
 
   use {
     'neovim/nvim-lspconfig',
@@ -111,12 +114,13 @@ require('packer').startup(function(use)
   }
 
   use {
-      'neninja/nvim-dailypong',
-      config = function() require('dailypong').setup() end,
+    'neninja/nvim-dailypong',
+    config = function() require('dailypong').setup() end,
   }
 
   use {
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     requires = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -131,6 +135,7 @@ require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     -- tag = "0.1.1", -- attempt to call get_lang on null na preview
+    event = 'VimEnter',
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'xiyaowong/telescope-emoji.nvim' },
