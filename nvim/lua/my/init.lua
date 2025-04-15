@@ -8,6 +8,7 @@ end
 ----# vimrc
 -- print(DOTFILES_FULLPATH_NVIM)
 vim.cmd('source '..DOTFILES_FULLPATH_NVIM..'vimrc')
+vim.opt.shadafile = "NONE"
 --
 ----# plugins
 require('my.packs')
