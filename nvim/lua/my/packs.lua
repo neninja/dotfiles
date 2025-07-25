@@ -49,26 +49,26 @@ require('packer').startup(function(use)
     end,
   }
 
-  use {
-    "zbirenbaum/copilot.lua",
-    -- por algum motivo é necessário somente na inicialização/auth do windows
-    event = "InsertEnter",
-    requires = {
-      'github/copilot.vim',
-    },
-    cmd = "Copilot",
-    config = function() require('my.pack.copilot') end,
-  }
+  -- use {
+  --   "zbirenbaum/copilot.lua",
+  --   -- por algum motivo é necessário somente na inicialização/auth do windows
+  --   event = "InsertEnter",
+  --   requires = {
+  --     'github/copilot.vim',
+  --   },
+  --   cmd = "Copilot",
+  --   config = function() require('my.pack.copilot') end,
+  -- }
 
-  use {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    branch = 'main',
-    config = function()
-      require("CopilotChat").setup {
-        debug = true,
-      }
-    end,
-  }
+  -- use {
+  --   'CopilotC-Nvim/CopilotChat.nvim',
+  --   branch = 'main',
+  --   config = function()
+  --     require("CopilotChat").setup {
+  --       debug = true,
+  --     }
+  --   end,
+  -- }
 
   use {
     'tpope/vim-fugitive',
