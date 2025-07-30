@@ -84,11 +84,11 @@ require('packer').startup(function(use)
 
   use {
     'mfussenegger/nvim-dap',
-    event = 'VeryLazy',
+    event = 'BufRead',
     config = function() require('my.pack.dap') end,
   }
 
-  use { 'rhysd/diffconflicts',
+  use { 'whiteinge/diffconflicts',
     cmd = 'DiffConflicts' -- Carregar sob o comando
   }
 
