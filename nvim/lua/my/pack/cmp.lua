@@ -1,3 +1,15 @@
+vim.pack.add({'https://github.com/hrsh7th/nvim-cmp'})
+vim.pack.add({'https://github.com/hrsh7th/cmp-buffer'})
+vim.pack.add({'https://github.com/hrsh7th/cmp-path'})
+vim.pack.add({'https://github.com/hrsh7th/cmp-nvim-lua'})
+vim.pack.add({'https://github.com/hrsh7th/cmp-nvim-lsp'})
+vim.pack.add({'https://github.com/saadparwaiz1/cmp_luasnip'})
+
+local has_luasnip, luasnip = pcall(require, "luasnip")
+if not has_luasnip then
+  return
+end
+
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
@@ -44,5 +56,3 @@ cmp.setup({
     { name = "buffer", keyword_length = 5 },
   },
 })
-
-require("my.pack.luasnip")

@@ -44,9 +44,15 @@ cd dotfiles
 
 ```bash
 # Ubuntu
-curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-chmod u+x nvim.appimage
-sudo mv ./nvim.appimage /usr/bin/nvim
+curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage
+chmod u+x nvim-linux-x86_64.appimage
+sudo mv ./nvim-linux-x86_64.appimage /usr/bin/nvim
+```
+```bash
+# Limpe o ambiente
+rm -rf ~/.cache/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
 ```
 </details>
 

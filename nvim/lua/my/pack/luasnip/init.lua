@@ -1,4 +1,6 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
+vim.pack.add({'https://github.com/L3MON4D3/LuaSnip'})
+
 --# Utils
 local ls = require "luasnip"
 local s = ls.snippet

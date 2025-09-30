@@ -1,3 +1,40 @@
+vim.pack.add({'https://github.com/neovim/nvim-lspconfig'})
+vim.pack.add({'https://github.com/folke/neodev.nvim'})
+vim.pack.add({'https://github.com/williamboman/mason.nvim'})
+vim.pack.add({'https://github.com/williamboman/mason-lspconfig.nvim'})
+vim.pack.add({'https://github.com/folke/neodev.nvim'})
+vim.pack.add({'https://github.com/hrsh7th/cmp-nvim-lsp'})
+
+local env = require("my.env")
+
+-- Protege requires de plugins
+local ok_neodev, neodev = pcall(require, "neodev")
+if ok_neodev then neodev.setup() end
+
+local ok_cmp_nvim_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not ok_cmp_nvim_lsp then
+  vim.notify("cmp_nvim_lsp não encontrado", vim.log.levels.ERROR)
+  return
+end
+
+local ok_mason, mason = pcall(require, "mason")
+if ok_mason then mason.setup() end
+
+local ok_mason_lspconfig, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not ok_mason_lspconfig then
+  vim.notify("mason-lspconfig não encontrado", vim.log.levels.ERROR)
+  return
+end
+
+local ok_lspconfig, lspconfig = pcall(require, "lspconfig")
+if not ok_lspconfig then
+  vim.notify("lspconfig não encontrado", vim.log.levels.ERROR)
+  return
+end
+
+-- Agora o resto do seu código...
+-- [restante do lsp.lua]
+
 local env = require("my.env")
 -- De clutter the editor by only showing diagnostic messages when the cursor is over the error
 vim.diagnostic.config({
@@ -42,15 +79,6 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_filter(function(server)
   return server ~= 'tsserver'
 end, vim.tbl_keys(servers)),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      settings = servers[server_name],
-    }
-  end,
 }
 
 local lspconfig = require('lspconfig')

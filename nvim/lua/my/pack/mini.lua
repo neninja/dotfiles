@@ -1,4 +1,6 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
+vim.pack.add({'https://github.com/echasnovski/mini.nvim'})
+
 local env = require("my.env")
 --# Pairs
 require('mini.pairs').setup()

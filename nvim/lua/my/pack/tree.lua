@@ -1,3 +1,5 @@
+vim.pack.add({'https://github.com/nvim-tree/nvim-tree.lua'})
+
 vim.keymap.set("n", "<leader><cr>", [[<cmd>NvimTreeFindFileToggle<CR>]], { noremap=true, silent=true })
 
 -- disable netrw at the very start of your init.lua (strongly advised)

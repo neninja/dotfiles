@@ -1,4 +1,11 @@
 -- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
+vim.pack.add({'https://github.com/nvim-lua/plenary.nvim'})
+vim.pack.add({'https://github.com/nvim-telescope/telescope.nvim'})
+vim.pack.add({'https://github.com/xiyaowong/telescope-emoji.nvim'})
+vim.pack.add({'https://github.com/debugloop/telescope-undo.nvim'})
+vim.pack.add({'https://github.com/FeiyouG/commander.nvim'})
+vim.pack.add({'https://github.com/stevearc/aerial.nvim'})
+
 --# Setup Telescope
 local actions = require("telescope.actions")
 require('telescope').setup {
