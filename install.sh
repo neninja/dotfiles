@@ -35,15 +35,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   echo -ne "Bash:"
   echo ". $DIRDF/.bashrc" > $HOME/.bashrc
   echo -e "OK"
-
-  echo -ne "Neovim packer:"
-  git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-  echo -e "OK (ignore o erro \"already exists and is not an empty directory\")"
 fi
-
-echo -ne "Neovim plugins:"
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-echo -e "OK"
 
 echo -e "\nNotas:"
 echo -e "\tNeovim 1: instalar xclip e ripgrep (rg)"

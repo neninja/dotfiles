@@ -1,4 +1,3 @@
--- vim: fdm=expr:fdt=FoldTextLua():foldexpr=FoldExprLua():
 --# vimrc-pre
 local pre_vimrc = "~/vimrc-pre.vim"
 if vim.loop.fs_stat(pre_vimrc) then
@@ -10,6 +9,52 @@ vim.opt.shadafile = "NONE"
 --
 vim.pack.add({'https://github.com/nvim-lua/plenary.nvim'})
 vim.pack.add({'https://github.com/folke/neodev.nvim'})
+
+-- vim.pack.add({'https://github.com/mfussenegger/nvim-dap'})
+-- vim.pack.add({'https://github.com/mfussenegger/nvim-jdtls'})
+-- require('java').setup()
+-- vim.lsp.enable("jdtls")
+
+-- dap.adapters.java = function(callback)  
+--   callback({  
+--     type = 'server',  
+--     host = '127.0.0.1',  
+--     port = '9091',  
+--     executable = {  
+--       command = 'java',  
+--       args = {  
+--         '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:9091',  
+--         '-Declipse.application=org.eclipse.jdt.ls.core.id1',  
+--         '-Dosgi.bundles.defaultStartLevel=4',  
+--         '-Declipse.product=org.eclipse.jdt.ls.core.product',  
+--         '-jar',  
+--         '/home/c01460/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.53.2.jar',  
+--         -- '${port}'  
+--       }  
+--     }  
+--   })  
+-- end
+--
+-- dap.configurations.java = {
+--   {
+--     type = 'java',
+--     name = 'Debug (Attach)',
+--     request = 'attach',
+--     hostName = '127.0.0.1',
+--     port = 5005,
+--   },
+-- }
+--
+-- local bundles = {
+--   vim.fn.glob("~/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1)
+-- }
+--
+-- require('jdtls').start_or_attach({
+--     cmd = {"jdtls"},
+--   init_options = {
+--     bundles = bundles
+--   },
+-- })
 
 require('my.pack.git')
 require('my.pack.tree')

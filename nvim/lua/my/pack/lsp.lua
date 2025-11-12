@@ -1,9 +1,12 @@
 vim.pack.add({'https://github.com/neovim/nvim-lspconfig'})
 vim.pack.add({'https://github.com/folke/neodev.nvim'})
-vim.pack.add({'https://github.com/williamboman/mason.nvim'})
-vim.pack.add({'https://github.com/williamboman/mason-lspconfig.nvim'})
+vim.pack.add({'https://github.com/mason-org/mason.nvim'})
+vim.pack.add({'https://github.com/mason-org/mason-lspconfig.nvim'})
 vim.pack.add({'https://github.com/folke/neodev.nvim'})
 vim.pack.add({'https://github.com/hrsh7th/cmp-nvim-lsp'})
+
+-- vim.pack.add({'https://github.com/nvim-java/nvim-java-core'})
+-- vim.pack.add({'https://github.com/nvim-java/nvim-java'})
 
 local env = require("my.env")
 
@@ -45,6 +48,7 @@ vim.diagnostic.config({
 })
 
 local default_servers = {
+  jdtls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
