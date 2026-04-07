@@ -6,7 +6,8 @@ end
 --
 vim.cmd('source '..DOTFILES_FULLPATH_NVIM..'vimrc')
 vim.opt.shadafile = "NONE"
---
+
+--# packages
 vim.pack.add({'https://github.com/nvim-lua/plenary.nvim'})
 vim.pack.add({'https://github.com/folke/neodev.nvim'})
 
@@ -58,7 +59,6 @@ vim.pack.add({'https://github.com/folke/neodev.nvim'})
 
 require('my.pack.git')
 require('my.pack.tree')
-vim.pack.add({'https://github.com/whiteinge/diffconflicts'})
 require('my.pack.telescope')
 require('my.pack.luasnip')
 require('my.pack.flash')
@@ -68,15 +68,5 @@ require('my.pack.treesitter')
 require('my.pack.lsp')
 require('my.pack.dailypong')
 
---
-----# vimrc-pos
---local local_vimrc = "~/vimrc-local.vim"
---if vim.loop.fs_stat(local_vimrc) then
---  vim.cmd('source '..local_vimrc)
---end
---
---local proj_vimrc = vim.fn.getcwd()..'/.exvrc'
---if vim.loop.fs_stat(proj_vimrc) then
---  vim.cmd('source '..proj_vimrc)
---end
---
+-- vim.pack.add({'https://github.com/elixir-tools/elixir-tools.nvim'})
+-- require("elixir").setup()

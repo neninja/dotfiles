@@ -3,11 +3,11 @@ vim.pack.add({'https://github.com/nvim-treesitter/nvim-treesitter'})
 require("nvim-treesitter.install").update()
 require("nvim-treesitter.configs").setup({
   -- To install additional languages, do: `:TSInstall <mylang>`. `:TSInstall maintained` to install all maintained
-  ensure_installed = { "c", "vim", "query", "lua", "php", "dart", "markdown" },
+  ensure_installed = { "c", "vim", "query", "lua", "elixir", "dart", "markdown" },
   sync_install = true,
   highlight = {
     enable = true, -- This is a MUST
-    additional_vim_regex_highlighting = { "lua", "php", "dart", "markdown" },
+    additional_vim_regex_highlighting = { "lua", "elixir", "dart", "markdown" },
     -- additional_vim_regex_highlighting = false,
   },
   indent = {

@@ -5,11 +5,6 @@ vim.pack.add({'https://github.com/mason-org/mason-lspconfig.nvim'})
 vim.pack.add({'https://github.com/folke/neodev.nvim'})
 vim.pack.add({'https://github.com/hrsh7th/cmp-nvim-lsp'})
 
--- vim.pack.add({'https://github.com/nvim-java/nvim-java-core'})
--- vim.pack.add({'https://github.com/nvim-java/nvim-java'})
-
-local env = require("my.env")
-
 -- Protege requires de plugins
 local ok_neodev, neodev = pcall(require, "neodev")
 if ok_neodev then neodev.setup() end
@@ -35,13 +30,8 @@ if not ok_lspconfig then
   return
 end
 
--- Agora o resto do seu código...
--- [restante do lsp.lua]
-
-local env = require("my.env")
--- De clutter the editor by only showing diagnostic messages when the cursor is over the error
 vim.diagnostic.config({
-  virtual_text = true, -- Do not show the text in front of the error
+  virtual_text = true,
   float = {
     border = 'rounded',
   },
@@ -57,12 +47,11 @@ local default_servers = {
   },
 }
 
+local env = require("my.env")
 local servers = vim.tbl_deep_extend("force", default_servers, env.lsp.ensure_servers)
 
--- Setup neovim lua configuration
 require('neodev').setup()
---
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.textDocument = {
@@ -76,16 +65,11 @@ capabilities.textDocument = {
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_filter(function(server)
   return server ~= 'tsserver'
 end, vim.tbl_keys(servers)),
 }
-
-local lspconfig = require('lspconfig')
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -138,7 +122,6 @@ nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 nmap('<leader>gs', require('telescope.builtin').lsp_document_symbols, '[G]o to document [S]ymbols')
 
--- See `:help K` for why this keymap
 nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
