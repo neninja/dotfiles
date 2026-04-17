@@ -38,7 +38,6 @@ vim.diagnostic.config({
 })
 
 local default_servers = {
-  jdtls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
