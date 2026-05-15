@@ -164,6 +164,7 @@ alias dca="docker-compose exec app"
 #{{{ CD
 alias cdf="cd $HOME/dev/dotfiles"
 alias cdev="cd $HOME/dev"
+alias cde="cd $HOME/dev/elixir"
 alias cdphp="cd $HOME/dev/php"
 alias d='cd ~/dev/desh; ls -alf --color; echo -e "\n-> dev trash dashboard\n-> to clean: rm -rf * .*"'
 alias .b='. ~/.bashrc'
