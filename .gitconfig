@@ -97,9 +97,9 @@
     #ps = push
     #ps = push origin HEAD
     pso = push origin
-    psf = push -f origin # obviamente é p origin
-    psof = push -f origin
-    psfo = push -f origin
+    psf = push --force-with-lease origin
+    psof = push --force-with-lease origin
+    psfo = push --force-with-lease origin
     #############
     #pl = pull
     #pl = pull origin HEAD
@@ -107,6 +107,7 @@
     plomm = pull origin master
     plom = pull origin main
     plod = pull origin develop
+    plor = pull origin --rebase
     #############
     rb = rebase
     rba = rebase --abort
