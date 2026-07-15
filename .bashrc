@@ -339,6 +339,64 @@ gopher(){
   echo "${reset}"
 }
 #}}}
+#{{{ Conversor de imagem para wallpaper/sleep xteinkx4
+# USE: xx4 arquivoentrada.jpg
+# USE: xx4 arquivoentrada.jpg saida
+# USE: xx4 arquivoentrada.jpg saida.bmp
+xx4() {
+    # 1. Verifica se o parâmetro do arquivo de entrada foi passado
+    if [ -z "$1" ]; then
+        echo "Erro: Forneça pelo menos o arquivo de entrada."
+        echo "Uso: x4convert imagem.jpg [nome_da_saida]"
+        return 1
+    fi
+
+    local entrada="$1"
+
+    # 2. Valida se o arquivo de entrada realmente existe no disco
+    if [ ! -f "$entrada" ]; then
+        echo "Erro: O arquivo '$entrada' não foi encontrado ou não é um arquivo válido."
+        return 1
+    fi
+
+    # 3. Verifica se o ImageMagick está instalado
+    if ! command -v convert &> /dev/null; then
+        echo "Erro: ImageMagick não está instalado. Instale com: sudo apt install imagemagick"
+        return 1
+    fi
+
+    local saida=""
+
+    # Se o segundo parâmetro foi fornecido, usa ele
+    if [ -n "$2" ]; then
+        # Garante que o arquivo de saída terá a extensão .bmp
+        if [[ "$2" == *.bmp ]]; then
+            saida="$2"
+        else
+            saida="${2}.bmp"
+        fi
+    else
+        # Se não fornecido, gera o nome padrão com o sufixo _x4
+        local nome_sem_ext="${entrada%.*}"
+        saida="${nome_sem_ext}_x4.bmp"
+    fi
+
+    # Executa a conversão mantendo o ajuste perfeito para a tela e-ink
+    convert "$entrada" \
+        -resize 480x800^ \
+        -gravity center \
+        -extent 480x800 \
+        -colorspace gray \
+        -type truecolor \
+        "$saida"
+
+    if [ $? -eq 0 ]; then
+        echo "Sucesso! Imagem gerada: $saida"
+    else
+        echo "Erro ao converter a imagem."
+    fi
+}
+#}}}
 #}}}
 #{{{ Exports
 export GOPATH=$HOME/go
