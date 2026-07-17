@@ -347,7 +347,7 @@ xx4() {
     # 1. Verifica se o parâmetro do arquivo de entrada foi passado
     if [ -z "$1" ]; then
         echo "Erro: Forneça pelo menos o arquivo de entrada."
-        echo "Uso: x4convert imagem.jpg [nome_da_saida]"
+        echo "Uso: xx4 imagem.jpg [nome_da_saida]"
         return 1
     fi
 
@@ -389,6 +389,64 @@ xx4() {
         -colorspace gray \
         -type truecolor \
         "$saida"
+
+    if [ $? -eq 0 ]; then
+        echo "Sucesso! Imagem gerada: $saida"
+    else
+        echo "Erro ao converter a imagem."
+    fi
+}
+#}}}
+#{{{ Conversor de imagem para wallpaper/sleep kindle paper white 7
+# USE: xxk arquivoentrada.jpg
+# USE: xxk arquivoentrada.jpg saida
+# USE: xxk arquivoentrada.jpg saida.jpg
+xxk() {
+    # 1. Verifica se o parâmetro do arquivo de entrada foi passado
+    if [ -z "$1" ]; then
+        echo "Erro: Forneça pelo menos o arquivo de entrada."
+        echo "Uso: xxk imagem.jpg [nome_da_saida]"
+        return 1
+    fi
+
+    local entrada="$1"
+
+    # 2. Valida se o arquivo de entrada realmente existe no disco
+    if [ ! -f "$entrada" ]; then
+        echo "Erro: O arquivo '$entrada' não foi encontrado ou não é um arquivo válido."
+        return 1
+    fi
+
+    # 3. Verifica se o ImageMagick está instalado
+    if ! command -v convert &> /dev/null; then
+        echo "Erro: ImageMagick não está instalado. Instale com: sudo apt install imagemagick"
+        return 1
+    fi
+
+    local saida=""
+
+    # Se o segundo parâmetro foi fornecido, usa ele
+    if [ -n "$2" ]; then
+        # Garante que o arquivo de saída terá a extensão .jpg
+        if [[ "$2" == *.jpg ]]; then
+            saida="$2"
+        else
+            saida="${2}.jpg"
+        fi
+    else
+        # Se não fornecido, gera o nome padrão com o sufixo _x4
+        local nome_sem_ext="${entrada%.*}"
+        saida="${nome_sem_ext}_kindle.jpg"
+    fi
+
+    # Executa a conversão mantendo o ajuste perfeito para a tela e-ink
+    convert "$entrada" \
+      -resize 1072x1448^ \
+      -gravity center \
+      -extent 1072x1448 \
+      -colorspace gray \
+      -depth 8 \
+      "$saida"
 
     if [ $? -eq 0 ]; then
         echo "Sucesso! Imagem gerada: $saida"
